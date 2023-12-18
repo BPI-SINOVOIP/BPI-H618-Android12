@@ -1,0 +1,2 @@
+LICHEE_BRANDY_VER:=2.0
+LICHEE_BRANDY_DEFCONF:=sun50iw9p1_android11_defconfig

@@ -1,0 +1,330 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BLKS_FOR_BOOT0	boot0_v2.h	40;"	d
+BOOT0_23_PAGES_MAX_COUNT	boot0_v2.h	56;"	d
+BOOT0_23_PAGE_ADVANCE	boot0_v2.h	55;"	d
+BOOT0_23_PAGE_SIZE_BIT_WIDTH	boot0_v2.h	58;"	d
+BOOT0_23_START_PAGE_NUM	boot0_v2.h	54;"	d
+BOOT0_ALIGN_SIZE	egon_i.h	47;"	d
+BOOT0_ALIGN_SIZE	egon_i.h	49;"	d
+BOOT0_ALIGN_SIZE	egon_i.h	51;"	d
+BOOT0_BASE	egon_def.h	72;"	d
+BOOT0_IN_NF	egon_i.h	41;"	d
+BOOT0_LAST_BLK_NUM	boot0_v2.h	41;"	d
+BOOT0_MAGIC	boot0_v2.h	46;"	d
+BOOT0_PAGES_MAX_COUNT	boot0_v2.h	50;"	d
+BOOT0_PAGE_ADVANCE	boot0_v2.h	49;"	d
+BOOT0_PAGE_SIZE	boot0_v2.h	51;"	d
+BOOT0_PAGE_SIZE_BIT_WIDTH	boot0_v2.h	52;"	d
+BOOT0_SDMMC_START_ADDR	boot0_v2.h	61;"	d
+BOOT0_SPI_NOR_START_ADDR	boot0_v2.h	43;"	d
+BOOT0_START_BLK_NUM	boot0_v2.h	39;"	d
+BOOT0_START_PAGE_NUM	boot0_v2.h	48;"	d
+BOOT1_ALIGN_SIZE	egon_i.h	58;"	d
+BOOT1_ALIGN_SIZE	egon_i.h	60;"	d
+BOOT1_ALIGN_SIZE	egon_i.h	62;"	d
+BOOT1_BASE	egon_def.h	73;"	d
+BOOT1_IN_NF	egon_i.h	42;"	d
+BOOT_PUB_HEAD_VERSION	egon_def.h	35;"	d
+BOOT_PUB_HEAD_VERSION	egon_i.h	68;"	d
+BOOT_SECTOR_SIZE	egon_def.h	63;"	d
+BOOT_SECTOR_SIZE_WIDTH	egon_def.h	64;"	d
+Boot_vsn	egon_def.h	/^	__u8   Boot_vsn[4];           \/\/ Boot version$/;"	m	struct:_boot_para_info_t
+Boot_vsn	egon_def.h	/^	__u8   Boot_vsn[4];        \/\/ Boot version$/;"	m	struct:_Boot_file_head
+CHECK_IS_CORRECT	check.h	36;"	d
+CHECK_IS_WRONG	check.h	35;"	d
+DATA_TYPE_GPIO_WORD	script.h	27;"	d
+DATA_TYPE_MULTI_WORD	script.h	26;"	d
+DATA_TYPE_SINGLE_WORD	script.h	24;"	d
+DATA_TYPE_STRING	script.h	25;"	d
+DEFAULT_VALUE	egon_def.h	68;"	d
+EGON2_BOOT1_OFFSET	egon_mem_distribute.h	35;"	d
+EGON2_DRAM_BASE	egon_def.h	43;"	d
+EGON2_DRAM_SIZE	egon_def.h	44;"	d
+EGON2_MMU_BASE	egon_def.h	50;"	d
+EGON2_REGS_BASE	egon_def.h	51;"	d
+EGON2_REGS_SIZE	egon_def.h	52;"	d
+EGON2_RESET_BASE	egon_def.h	47;"	d
+EGON2_SRAM_BASE	egon_def.h	45;"	d
+EGON2_SRAM_SIZE	egon_def.h	46;"	d
+EGON_VERSION	egon_def.h	36;"	d
+EGON_VERSION	egon_i.h	69;"	d
+EPDK_CHIP_AF0B	egon_i.h	35;"	d
+EPDK_CHIP_AF0C	egon_i.h	36;"	d
+EPDK_CHIP_AFA0	egon_i.h	37;"	d
+EPDK_CHIP_AFAA	egon_i.h	38;"	d
+EPDK_CHIP_BDD0	egon_i.h	34;"	d
+FEL_BASE	egon_def.h	74;"	d
+GetFullPath	update_sboot.c	/^void GetFullPath(char *dName, const char *sName)$/;"	f
+IE_ALIGN_SIZE	egon_def.h	57;"	d
+IsFullName	update_sboot.c	/^int IsFullName(const char *FilePath)$/;"	f
+KENEL_IN_NF	egon_i.h	43;"	d
+MASK_TOTAL	egon_def.h	67;"	d
+MAX_PATH	update_sboot.c	13;"	d	file:
+NF_ALIGN_SIZE	egon_def.h	55;"	d
+PLATFORM	egon_def.h	40;"	d
+SCRIPT_BASE	egon_def.h	75;"	d
+SCRIPT_PARSER_BUFFER_NOT_ENOUGH	script.h	34;"	d
+SCRIPT_PARSER_DATA_VALUE_NULL	script.h	32;"	d
+SCRIPT_PARSER_EMPTY_BUFFER	script.h	30;"	d
+SCRIPT_PARSER_KEYNAME_NULL	script.h	31;"	d
+SCRIPT_PARSER_KEY_NOT_FIND	script.h	33;"	d
+SCRIPT_PARSER_OK	script.h	29;"	d
+SF_ALIGN_SIZE	egon_def.h	56;"	d
+SPI_NOR_SCT_SIZE	egon_def.h	60;"	d
+SPI_NOR_SCT_SIZE_WIDTH	egon_def.h	61;"	d
+SPI_NOR_SIZE_FOR_BOOT0	boot0_v2.h	44;"	d
+STAMP_VALUE	egon_def.h	69;"	d
+SUNII_PLATFORM_VALUE	egon_def.h	38;"	d
+SZ_128K	types.h	161;"	d
+SZ_128M	types.h	171;"	d
+SZ_16G	types.h	178;"	d
+SZ_16K	types.h	158;"	d
+SZ_16M	types.h	168;"	d
+SZ_1G	types.h	174;"	d
+SZ_1K	types.h	154;"	d
+SZ_1M	types.h	164;"	d
+SZ_256K	types.h	162;"	d
+SZ_256M	types.h	172;"	d
+SZ_2G	types.h	175;"	d
+SZ_2K	types.h	155;"	d
+SZ_2M	types.h	165;"	d
+SZ_32G	types.h	179;"	d
+SZ_32K	types.h	159;"	d
+SZ_32M	types.h	169;"	d
+SZ_4G	types.h	176;"	d
+SZ_4K	types.h	156;"	d
+SZ_4M	types.h	166;"	d
+SZ_512	types.h	153;"	d
+SZ_512K	types.h	163;"	d
+SZ_512M	types.h	173;"	d
+SZ_64G	types.h	180;"	d
+SZ_64K	types.h	160;"	d
+SZ_64M	types.h	170;"	d
+SZ_8G	types.h	177;"	d
+SZ_8K	types.h	157;"	d
+SZ_8M	types.h	167;"	d
+UBOOT_BASE	boot0_v2.h	37;"	d
+Usage	update_sboot.c	/^void Usage(void)$/;"	f
+_Boot_file_head	egon_def.h	/^typedef struct _Boot_file_head$/;"	s
+_SCRIPT_H_	script.h	22;"	d
+__Bool	types.h	/^typedef signed char         __Bool;$/;"	t
+__TYPES_H_	types.h	22;"	d
+__bool	types.h	/^typedef signed char         __bool;$/;"	t
+__boot0_v2_h	boot0_v2.h	31;"	d
+__cpu_sr	types.h	/^typedef unsigned int        __cpu_sr;               \/* Define size of CPU status register (PSR = 32 bits)           *\/$/;"	t
+__egon_def_h	egon_def.h	31;"	d
+__egon_i_h	egon_i.h	31;"	d
+__egon_mem_distribute_h	egon_mem_distribute.h	31;"	d
+__fp32	types.h	/^typedef float               __fp32;                 \/* Single precision floating point                              *\/$/;"	t
+__fp64	types.h	/^typedef double              __fp64;                 \/* Double precision floating point                              *\/$/;"	t
+__hdle	types.h	/^typedef unsigned int        __hdle;$/;"	t
+__s16	types.h	/^typedef   signed short      __s16;$/;"	t
+__s32	types.h	/^typedef   signed int        __s32;$/;"	t
+__s8	types.h	/^typedef   signed char       __s8;$/;"	t
+__script_check_h	check.h	31;"	d
+__sector_t	types.h	/^typedef unsigned int        __sector_t;$/;"	t
+__stk	types.h	/^typedef unsigned int        __stk;                  \/* Each stack entry is 32-bit wide                              *\/$/;"	t
+__u16	types.h	/^typedef unsigned short      __u16;$/;"	t
+__u32	types.h	/^typedef unsigned int        __u32;$/;"	t
+__u8	types.h	/^typedef unsigned char       __u8;$/;"	t
+_absolute	types.h	145;"	d
+_absolute	types.h	146;"	d
+_boot0_file_head_t	boot0_v2.h	/^typedef struct _boot0_file_head_t$/;"	s
+_boot0_private_head_t	boot0_v2.h	/^typedef struct _boot0_private_head_t$/;"	s
+_boot_dram_para_t	egon_def.h	/^typedef struct _boot_dram_para_t$/;"	s
+_boot_extend_head_t	boot0_v2.h	/^typedef struct _boot_extend_head_t {$/;"	s
+_boot_para_info_t	egon_def.h	/^typedef struct _boot_para_info_t$/;"	s
+_boot_sdcard_info_t	boot0_v2.h	/^typedef struct _boot_sdcard_info_t$/;"	s
+_clear_bit	types.h	101;"	d
+_clear_bit	types.h	102;"	d
+_clear_bit	types.h	113;"	d
+_clear_bit	types.h	114;"	d
+_max	types.h	138;"	d
+_max	types.h	139;"	d
+_min	types.h	132;"	d
+_min	types.h	133;"	d
+_normal_gpio_cfg	egon_def.h	/^typedef struct _normal_gpio_cfg$/;"	s
+_reverse_bit	types.h	119;"	d
+_reverse_bit	types.h	120;"	d
+_sboot_file_head_t	boot0_v2.h	/^typedef struct _sboot_file_head_t$/;"	s
+_set_bit	types.h	107;"	d
+_set_bit	types.h	108;"	d
+_set_bit	types.h	95;"	d
+_set_bit	types.h	96;"	d
+_special_gpio_cfg	egon_def.h	/^typedef struct _special_gpio_cfg$/;"	s
+_test_bit	types.h	125;"	d
+_test_bit	types.h	126;"	d
+_test_str_length	script.c	/^static  int   _test_str_length(char *str)$/;"	f	file:
+a15_power_gpio	egon_def.h	/^	special_gpio_cfg  a15_power_gpio;  \/\/the gpio config is to a15 extern power enable gpio$/;"	m	struct:_Boot_file_head
+absolute	types.h	148;"	d
+absolute	types.h	149;"	d
+blkmagic	egon_def.h	/^    __u8   blkmagic[16];          \/\/ "ePDK-Magic-Block", not C-style string.$/;"	m	struct:_boot_para_info_t
+boot0_file_head_t	boot0_v2.h	/^}boot0_file_head_t;$/;"	t	typeref:struct:_boot0_file_head_t
+boot0_private_head_t	boot0_v2.h	/^}boot0_private_head_t;$/;"	t	typeref:struct:_boot0_private_head_t
+boot_cpu	egon_def.h	/^	__u32  boot_cpu;           \/\/ eGON version$/;"	m	struct:_Boot_file_head
+boot_dram_para_t	egon_def.h	/^}boot_dram_para_t;$/;"	t	typeref:struct:_boot_dram_para_t
+boot_extend_head_t	boot0_v2.h	/^} boot_extend_head_t;$/;"	t	typeref:struct:_boot_extend_head_t
+boot_file_head_t	egon_def.h	/^}boot_file_head_t;$/;"	t	typeref:struct:_Boot_file_head
+boot_head	boot0_v2.h	/^	boot_file_head_t      boot_head;$/;"	m	struct:_boot0_file_head_t
+boot_head	boot0_v2.h	/^	boot_file_head_t      boot_head;$/;"	m	struct:_sboot_file_head_t
+boot_offset	boot0_v2.h	/^	__s32				boot_offset;                  \/\/指定卡启动之后，逻辑和物理分区的管理$/;"	m	struct:_boot_sdcard_info_t
+boot_para_info_t	egon_def.h	/^}boot_para_info_t;$/;"	t	typeref:struct:_boot_para_info_t
+boot_sdcard_info_t	boot0_v2.h	/^}boot_sdcard_info_t;$/;"	t	typeref:struct:_boot_sdcard_info_t
+card_ctrl_num	boot0_v2.h	/^	__s32               card_ctrl_num;                \/\/总共的卡的个数$/;"	m	struct:_boot_sdcard_info_t
+card_no	boot0_v2.h	/^	__s32 				card_no[4];                   \/\/当前启动的卡号, 16-31:GPIO编号，0-15:实际卡控制器编号$/;"	m	struct:_boot_sdcard_info_t
+check_file	check.c	/^__s32 check_file( __u32 *mem_base, __u32 size, const char *magic )$/;"	f
+check_magic	check.c	/^__s32 check_magic( __u32 *mem_base, const char *magic )$/;"	f
+check_sum	check.c	/^__s32 check_sum( __u32 *mem_base, __u32 size )$/;"	f
+check_sum	egon_def.h	/^	__u32  check_sum;          \/\/ generated by PC$/;"	m	struct:_Boot_file_head
+clear_bit	types.h	104;"	d
+clear_bit	types.h	105;"	d
+clear_bit	types.h	116;"	d
+clear_bit	types.h	117;"	d
+data	boot0_v2.h	/^	char data[8];$/;"	m	struct:_sboot_file_head_t
+data	egon_def.h	/^	char				data;				\/\/输出电平$/;"	m	struct:_special_gpio_cfg
+data	egon_def.h	/^    __s8      data;                       \/\/输出电平$/;"	m	struct:_normal_gpio_cfg
+data	script.h	/^    int data;$/;"	m	struct:__anon4
+debug_mode	boot0_v2.h	/^	__u8                       debug_mode;       \/\/ turn off print if realease$/;"	m	struct:_boot0_private_head_t
+dram_baseaddr	egon_def.h	/^    __u32           dram_baseaddr;$/;"	m	struct:_boot_dram_para_t
+dram_bus_width	egon_def.h	/^    __u32		    dram_bus_width;$/;"	m	struct:_boot_dram_para_t
+dram_cas	egon_def.h	/^    __u32           dram_cas;$/;"	m	struct:_boot_dram_para_t
+dram_chip_density	egon_def.h	/^    __u32           dram_chip_density;$/;"	m	struct:_boot_dram_para_t
+dram_clk	egon_def.h	/^    __u32           dram_clk;$/;"	m	struct:_boot_dram_para_t
+dram_emr1	egon_def.h	/^    __u32 			dram_emr1;$/;"	m	struct:_boot_dram_para_t
+dram_emr2	egon_def.h	/^    __u32           dram_emr2;$/;"	m	struct:_boot_dram_para_t
+dram_emr3	egon_def.h	/^    __u32           dram_emr3;$/;"	m	struct:_boot_dram_para_t
+dram_io_width	egon_def.h	/^    __u32           dram_io_width;$/;"	m	struct:_boot_dram_para_t
+dram_odt_en	egon_def.h	/^    __u32           dram_odt_en;$/;"	m	struct:_boot_dram_para_t
+dram_para	boot0_v2.h	/^	unsigned int                dram_para[32];          \/\/ DRAM patameters for initialising dram. Original values is arbitrary,$/;"	m	struct:_boot0_private_head_t
+dram_para	boot0_v2.h	/^	unsigned int    dram_para[15][32];	\/*ext dram参数*\/$/;"	m	struct:_boot_extend_head_t
+dram_rank_num	egon_def.h	/^    __u32           dram_rank_num;$/;"	m	struct:_boot_dram_para_t
+dram_select_gpio	boot0_v2.h	/^	normal_gpio_cfg dram_select_gpio[4];	\/*select_mode=1|3 时设置的pin*\/$/;"	m	struct:_boot_extend_head_t
+dram_size	egon_def.h	/^    __u32 			dram_size;$/;"	m	struct:_boot_dram_para_t
+dram_tpr0	egon_def.h	/^    __u32           dram_tpr0;$/;"	m	struct:_boot_dram_para_t
+dram_tpr1	egon_def.h	/^    __u32           dram_tpr1;$/;"	m	struct:_boot_dram_para_t
+dram_tpr2	egon_def.h	/^    __u32           dram_tpr2;$/;"	m	struct:_boot_dram_para_t
+dram_tpr3	egon_def.h	/^    __u32           dram_tpr3;$/;"	m	struct:_boot_dram_para_t
+dram_tpr4	egon_def.h	/^    __u32           dram_tpr4;$/;"	m	struct:_boot_dram_para_t
+dram_tpr5	egon_def.h	/^    __u32           dram_tpr5;$/;"	m	struct:_boot_dram_para_t
+dram_type	egon_def.h	/^    __u32           dram_type;$/;"	m	struct:_boot_dram_para_t
+dram_zq	egon_def.h	/^    __u32           dram_zq;$/;"	m	struct:_boot_dram_para_t
+drv_level	egon_def.h	/^    __s8      drv_level;                  \/\/驱动驱动能力$/;"	m	struct:_normal_gpio_cfg
+drv_level	script.h	/^    int drv_level;$/;"	m	struct:__anon4
+eGON2_FAIL	types.h	93;"	d
+eGON2_OK	types.h	92;"	d
+eGON_vsn	egon_def.h	/^    __u8   eGON_vsn[4];           \/\/ eGON version$/;"	m	struct:_boot_para_info_t
+enable_jtag	boot0_v2.h	/^	__s32                       enable_jtag;            \/\/ 1 : enable,  0 : disable$/;"	m	struct:_boot0_private_head_t
+extd_head	boot0_v2.h	/^	boot_extend_head_t      extd_head;$/;"	m	struct:_sboot_file_head_t
+extd_head	boot0_v2.h	/^	boot_extend_head_t    extd_head;$/;"	m	struct:_boot0_file_head_t
+file_head_vsn	egon_def.h	/^	__u8   file_head_vsn[4];   \/\/ the version of boot0_file_head_t or boot1_file_head_t$/;"	m	struct:_Boot_file_head
+gen_check_sum	check.c	/^__s32 gen_check_sum( void *boot_buf )$/;"	f
+gpadc_channel	boot0_v2.h	/^	__u8            gpadc_channel;		\/*select gpadc 通道*\/$/;"	m	struct:_boot_extend_head_t
+gpio_name	script.h	/^    char  gpio_name[32];$/;"	m	struct:__anon4
+hash	boot0_v2.h	/^	char hash[32];$/;"	m	struct:_sboot_file_head_t
+hash	boot0_v2.h	/^	char hash[64];$/;"	m	struct:_boot0_file_head_t
+jtag_gpio	boot0_v2.h	/^    normal_gpio_cfg	            jtag_gpio[5];           \/\/ 保存JTAG的全部GPIO信息$/;"	m	struct:_boot0_private_head_t
+jump_instruction	egon_def.h	/^	__u32  jump_instruction;   \/\/ one intruction jumping to real code$/;"	m	struct:_Boot_file_head
+length	egon_def.h	/^	__u32  length;             \/\/ generated by PC$/;"	m	struct:_Boot_file_head
+lenth	script.h	/^	int  lenth;$/;"	m	struct:__anon2
+line_count	boot0_v2.h	/^	__s32				line_count[4];                \/\/卡使用线的个数$/;"	m	struct:_boot_sdcard_info_t
+line_sel	boot0_v2.h	/^	__s32				line_sel[4];                  \/\/卡的线制，0: 1线，其它，4线$/;"	m	struct:_boot_sdcard_info_t
+magic	boot0_v2.h	/^	__u8		magic[8];		\/* ="DRAM.ext" *\/$/;"	m	struct:_boot_extend_head_t
+magic	egon_def.h	/^	__u8   magic[8];           \/\/ ="eGON.BT0" or "eGON.BT1",  not C-style string.$/;"	m	struct:_Boot_file_head
+magic	egon_def.h	/^    __u8   magic[8];$/;"	m	struct:_boot_para_info_t
+main	update_sboot.c	/^int main(int argc, char* argv[])$/;"	f
+main_key_count	script.h	/^	int  main_key_count;$/;"	m	struct:__anon1
+main_name	script.h	/^	char main_name[32];$/;"	m	struct:__anon2
+max	types.h	141;"	d
+max	types.h	142;"	d
+min	types.h	135;"	d
+min	types.h	136;"	d
+mul_sel	egon_def.h	/^	char				mul_sel;			\/\/功能编号$/;"	m	struct:_special_gpio_cfg
+mul_sel	egon_def.h	/^    __s8      mul_sel;                    \/\/功能编号$/;"	m	struct:_normal_gpio_cfg
+mul_sel	script.h	/^    int mul_sel;$/;"	m	struct:__anon4
+normal_gpio_cfg	egon_def.h	/^normal_gpio_cfg;$/;"	t	typeref:struct:_normal_gpio_cfg
+objects	makefile	/^objects = check.o script.o update_sboot.o$/;"	m
+offset	script.h	/^	int  offset;$/;"	m	struct:__anon2
+offset	script.h	/^	int  offset;$/;"	m	struct:__anon3
+pattern	script.h	/^	int  pattern;$/;"	m	struct:__anon3
+platform	egon_def.h	/^	__u8   platform[8];        \/\/ platform information$/;"	m	struct:_Boot_file_head
+port	egon_def.h	/^	unsigned char		port;				\/\/端口号$/;"	m	struct:_special_gpio_cfg
+port	egon_def.h	/^    __u8      port;                       \/\/端口号$/;"	m	struct:_normal_gpio_cfg
+port	script.h	/^    int port;$/;"	m	struct:__anon4
+port_num	egon_def.h	/^	unsigned char		port_num;			\/\/端口内编号$/;"	m	struct:_special_gpio_cfg
+port_num	egon_def.h	/^    __u8      port_num;                   \/\/端口内编号$/;"	m	struct:_normal_gpio_cfg
+port_num	script.h	/^    int port_num;$/;"	m	struct:__anon4
+power_mode	boot0_v2.h	/^	__u8                        power_mode;      	 \/*0:axp , 1: dummy pmu  *\/$/;"	m	struct:_boot0_private_head_t
+prvt_head	boot0_v2.h	/^	boot0_private_head_t  prvt_head;$/;"	m	struct:_boot0_file_head_t
+prvt_head_size	boot0_v2.h	/^	__u32                       prvt_head_size;$/;"	m	struct:_boot0_private_head_t
+pub_head_size	egon_def.h	/^	__u32  pub_head_size;      \/\/ the size of boot_file_head_t$/;"	m	struct:_Boot_file_head
+pull	egon_def.h	/^    __s8      pull;                       \/\/电阻状态$/;"	m	struct:_normal_gpio_cfg
+pull	script.h	/^    int pull;$/;"	m	struct:__anon4
+res	boot0_v2.h	/^	char res[24];$/;"	m	struct:_sboot_file_head_t
+reserve	boot0_v2.h	/^	__u8                        reserve[2];$/;"	m	struct:_boot0_private_head_t
+reserve	boot0_v2.h	/^	__u8            reserve[2];$/;"	m	struct:_boot_extend_head_t
+reserved	boot0_v2.h	/^	__u8		      reserved[8];$/;"	m	struct:_boot0_file_head_t
+reserved	egon_def.h	/^    __u32  reserved[20];$/;"	m	struct:_boot_para_info_t
+reserved	egon_def.h	/^    __u8      reserved[2];                \/\/保留位，保证对齐$/;"	m	struct:_normal_gpio_cfg
+reverse_bit	types.h	122;"	d
+reverse_bit	types.h	123;"	d
+s16	types.h	/^typedef   signed short        s16;$/;"	t
+s32	types.h	/^typedef   signed int          s32;$/;"	t
+s8	types.h	/^typedef   signed char         s8;$/;"	t
+sboot_file_head_t	boot0_v2.h	/^}sboot_file_head_t;$/;"	t	typeref:struct:_sboot_file_head_t
+script_file_decode	update_sboot.c	/^void *script_file_decode(char *script_file_name)$/;"	f
+script_gpio_set_t	script.h	/^script_gpio_set_t;$/;"	t	typeref:struct:__anon4
+script_head_t	script.h	/^script_head_t;$/;"	t	typeref:struct:__anon1
+script_main_key_count	script.c	/^static  int    script_main_key_count = 0;       \/\/保存主键的个数$/;"	v	file:
+script_main_key_t	script.h	/^script_main_key_t;$/;"	t	typeref:struct:__anon2
+script_mod_buf	script.c	/^static  char  *script_mod_buf = NULL;           \/\/指向第一个主键$/;"	v	file:
+script_parser_exit	script.c	/^int script_parser_exit(void)$/;"	f
+script_parser_fetch	script.c	/^int script_parser_fetch(char *main_name, char *sub_name, int value[])$/;"	f
+script_parser_init	script.c	/^int script_parser_init(char *script_buf)$/;"	f
+script_parser_mainkey_get_gpio_cfg	script.c	/^int script_parser_mainkey_get_gpio_cfg(char *main_name, void *gpio_cfg, int gpio_count)$/;"	f
+script_parser_sunkey_all	script.c	/^int script_parser_sunkey_all(char *main_name, void *buffer)$/;"	f
+script_sub_key_t	script.h	/^script_sub_key_t;$/;"	t	typeref:struct:__anon3
+sdc_2xmode	boot0_v2.h	/^	__s32 				sdc_2xmode[4];$/;"	m	struct:_boot_sdcard_info_t
+sdc_ddrmode	boot0_v2.h	/^	__s32 				sdc_ddrmode[4];$/;"	m	struct:_boot_sdcard_info_t
+sdc_ex_dly_used	boot0_v2.h	/^	__s32				sdc_ex_dly_used[4];			\/\/used config.fex delay$/;"	m	struct:_boot_sdcard_info_t
+sdc_f_max	boot0_v2.h	/^	__s32 				sdc_f_max[4];$/;"	m	struct:_boot_sdcard_info_t
+sdc_odly_25M	boot0_v2.h	/^	__s32				sdc_odly_25M[4];			\/\/25MHz clk output delay$/;"	m	struct:_boot_sdcard_info_t
+sdc_odly_50M	boot0_v2.h	/^	__s32				sdc_odly_50M[4];			\/\/50MHz clk output delay$/;"	m	struct:_boot_sdcard_info_t
+sdc_sdly_25M	boot0_v2.h	/^	__s32				sdc_sdly_25M[4];			\/\/25MHz clk sample delay$/;"	m	struct:_boot_sdcard_info_t
+sdc_sdly_50M	boot0_v2.h	/^	__s32				sdc_sdly_50M[4];			\/\/50MHz clk sample delay$/;"	m	struct:_boot_sdcard_info_t
+select_mode	boot0_v2.h	/^	__u8            select_mode;		\/*0:不进行自动识别 1:gpio识别模式 2:gpadc识别模式 3:1个IO+gpadc识别模式*\/$/;"	m	struct:_boot_extend_head_t
+set_bit	types.h	110;"	d
+set_bit	types.h	111;"	d
+set_bit	types.h	98;"	d
+set_bit	types.h	99;"	d
+special_gpio_cfg	egon_def.h	/^}special_gpio_cfg;$/;"	t	typeref:struct:_special_gpio_cfg
+speed_mode	boot0_v2.h	/^	__s32 				speed_mode[4];                \/\/卡的速度模式，0：低速，其它：高速$/;"	m	struct:_boot_sdcard_info_t
+storage_data	boot0_v2.h	/^    char                        storage_data[512 - sizeof(normal_gpio_cfg) * 32];      \/\/ 用户保留数据信息$/;"	m	struct:_boot0_private_head_t
+storage_gpio	boot0_v2.h	/^    normal_gpio_cfg             storage_gpio[32];       \/\/ 存储设备 GPIO信息$/;"	m	struct:_boot0_private_head_t
+sub_name	script.h	/^	char sub_name[32];$/;"	m	struct:__anon3
+test_bit	types.h	128;"	d
+test_bit	types.h	129;"	d
+u16	types.h	/^typedef unsigned short        u16;$/;"	t
+u32	types.h	/^typedef unsigned int          u32;$/;"	t
+u8	types.h	/^typedef unsigned char         u8;$/;"	t
+u_char	types.h	/^typedef unsigned char		u_char;$/;"	t
+u_int	types.h	/^typedef unsigned int		u_int;$/;"	t
+u_long	types.h	/^typedef unsigned long		u_long;$/;"	t
+u_short	types.h	/^typedef unsigned short		u_short;$/;"	t
+uart_ctrl	boot0_v2.h	/^	normal_gpio_cfg             uart_ctrl[2];           \/\/ UART控制器(调试打印口)数据信息$/;"	m	struct:_boot0_private_head_t
+uart_port	boot0_v2.h	/^	__s32						uart_port;              \/\/ UART控制器编号$/;"	m	struct:_boot0_private_head_t
+uint	types.h	/^typedef unsigned int		uint;$/;"	t
+uint16_t	types.h	/^typedef		__u16		uint16_t;$/;"	t
+uint32_t	types.h	/^typedef		__u32		uint32_t;$/;"	t
+uint8_t	types.h	/^typedef		__u8		uint8_t;$/;"	t
+ulong	types.h	/^typedef unsigned long		ulong;$/;"	t
+unchar	types.h	/^typedef unsigned char		unchar;$/;"	t
+update_for_sboot	update_sboot.c	/^int update_for_sboot(char *sboot_name, int storage_type)$/;"	f
+update_sdcard_info	update_sboot.c	/^int update_sdcard_info(char  *buf)$/;"	f
+ushort	types.h	/^typedef unsigned short		ushort;$/;"	t
+version	boot0_v2.h	/^	__u8		version[8];		\/*version:1.0*\/$/;"	m	struct:_boot_extend_head_t
+version	script.h	/^	int  version[3];$/;"	m	struct:__anon1

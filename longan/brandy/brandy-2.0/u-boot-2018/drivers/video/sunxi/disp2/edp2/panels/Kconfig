@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+config EDP2_SUPPORT_VVX10T025J00_2560X1600
+    tristate "eDP panel support VVX10T025J00_2560X1600"
+    depends on (EDP2_DISP2_SUNXI)
+    default n
+    help
+        If you want to support VVX10T025J00_2560X1600 panel for edp2 driver, select it.

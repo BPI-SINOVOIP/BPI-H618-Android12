@@ -1,0 +1,158 @@
+<!-- 
+        system module init param config
+        for ATSC 
+-->
+
+<AllData BigEnd="1" BuildName="1" Comment="">
+        <COMMON>
+                <ConfigPath Val="/data/tv/save" />
+                <OSDPlane Val="8" />
+                <CCPlane Val="9" />
+                <EndianType Val="0" />    <!-- 0:Big Endian; 1:Little Endian -->
+                <FastBootEnable Val="0" /><!-- config for FastBoot feature, 0:disable 1:enable -->
+            <ForceMono Val="1" />
+            <NetLinkType Val="0" /> <!-- 0:normal mode; 1:nfs mode -->
+            <UseCustomerMEMC Val="1" /> <!-- 0: use Tapi_VCTRL_SetMEMCMode in picture mode, otherwise, use Tapi_VCTRL_SetCustomMEMCLevelMode -->
+        </COMMON>
+        <TTK>
+                <DTVRatingFromCC Val="1" />
+                <CAChanCheckMode Val="3" />    <!--check video/audio encrypted channel, 0:not check,1:PSIP,2:Demux,3:PSIP&Demux-->
+                <DemuxScramble_timeout Val="100" />     <!--Demux check Scramble timeout ms-->
+                <SkipAccessChan Val="0" />     <!--access control flag from VCT, 0: not check, 1: check-->
+                <SkipDataChan Val="1" />       <!--skip data channel-->
+                <CheckEncrypt Val="1" />        <!-- 1:check encrypt channel when scan; 0:do not check encrypt channel -->
+                <MakeMinorNoflag Val="1" />     <!-- 0:squence, 1: program number -->
+                <Parse>
+                        <SkipWrongTSID Val="1" />
+                        <SkipInvalidPIDChannel Val="0" />
+                        <SkipHidden Val="1" />  <!-- 0: normal,  1: hidden channel -->
+                        <SkipHideGuide Val="0" />       <!-- for hidden channel, 0: inactive channel, 1: special access only -->
+                        <AudioOnlyByFlag Val="0" />
+                        <EPGTimeSpan Val="384" />       <!-- hour -->
+                        <PAT_timeout Val="5000" />      <!-- ms -->
+                        <PMT_timeout Val="2000" />      <!-- ms -->
+                        <TVCT_timeout Val="800" />      <!-- ms -->
+                        <CVCT_timeout Val="800" />      <!-- ms -->
+                </Parse>
+        </TTK>
+        <CC>    <!-- HD: 1920 panel WXGA: 1366 panel -->
+                <HD_Width Val="960" />
+                <HD_Height Val="572" />
+                <WXGA_Width Val="1366" />
+                <WXGA_Height Val="768" />
+                <HD_ZoomX Val="0x200" />        <!-- 0x200/0x400 -->
+                <HD_ZoomY Val="0x200" />        <!-- 0x200/0x400 -->
+                <WXGA_ZoomX Val="0x400" />      <!-- 0x200/0x400 -->
+                <WXGA_ZoomY Val="0x400" />      <!-- 0x200/0x400 -->
+                <HD_StartX Val="0xc5" />
+                <HD_StartY Val="0x29" />
+                <WXGA_StartX Val="0x99" />
+                <WXGA_StartY Val="0x2f" />
+                <FontFileType Val="TRID_CC_TRUETYPE_FONT" />
+                <ScrollWhenSPLBackwards Val="1" />
+                <IgnoreBacWithoutSpace Val="0" />
+                <IgnoreExtCharWithoutStdChar Val="0" />
+                <OnlyUseSolidBlackBgIn608 Val="0" />
+                <CC608HigherPriority Val="0" />
+                <DelayMilliSec Val="20" />
+                <DefFont_Normal Val="NULL" />
+                <DefFont_Italic Val="NULL" />
+                <Font0_Normal Val="fonts/CC_Fonts/font0_cinecavC_type.ttf" />
+                <Font0_Italic Val="fonts/CC_Fonts/font0_cinecavC_type.ttf" />
+                <Font1_Normal Val="fonts/CC_Fonts/font1_cinecavC_type.ttf" />
+                <Font1_Italic Val="fonts/CC_Fonts/font1_cinecavC_type.ttf" />
+                <Font2_Normal Val="fonts/CC_Fonts/font2_cinecavC_serif.ttf" />
+                <Font2_Italic Val="fonts/CC_Fonts/font2_cinecavC_serif.ttf" />
+                <Font3_Normal Val="fonts/CC_Fonts/font3_cinecavC_mono.ttf" />
+                <Font3_Italic Val="fonts/CC_Fonts/font3_cinecavC_mono.ttf" />
+                <Font4_Normal Val="fonts/CC_Fonts/font4_cinecavC_sans.ttf" />
+                <Font4_Italic Val="fonts/CC_Fonts/font4_cinecavC_sans.ttf" />
+                <Font5_Normal Val="fonts/CC_Fonts/font5_cinecavC_casual.ttf" />
+                <Font5_Italic Val="fonts/CC_Fonts/font5_cinecavC_casual.ttf" />
+                <Font6_Normal Val="fonts/CC_Fonts/font6_cinecavC_script.ttf" />
+                <Font6_Italic Val="fonts/CC_Fonts/font6_cinecavC_script.ttf" />
+                <Font7_Normal Val="fonts/CC_Fonts/font7_cinecavC_sc.ttf" />
+                <Font7_Italic Val="fonts/CC_Fonts/font7_cinecavC_sc.ttf" />
+        </CC>
+        <OSD>           <!-- HD: 1920 panel WXGA: 1366 panel -->
+                <HD_Width Val="1920" />
+                <HD_Height Val="1080" />
+                <WXGA_Width Val="1366" />
+                <WXGA_Height Val="768" />
+                <StartX Val="0" />
+                <StartY Val="0" />
+                <BitPerPixel Val="8" /> <!-- 8, 16, 32 -->
+                <ZoomX Val="0x400" />   <!-- 0x200/0x400 -->
+                <ZoomY Val="0x400" />   <!-- 0x200/0x400 -->
+                <Flags Val="0x4000" />
+        </OSD>
+        <Display>
+                <BinFile Val="/system/misc/database.TSE" />
+                <Entry Val="1" />
+                <PanelType Val="1" />   <!-- 0 means 1920@60Hz ,1 means 1920@120Hz-->
+                <LVDSType Val="3" />
+                <Offset Val="0" />
+                <WithFRC Val="1"/> <!-- 1 with FRC, 0 without FRC -->
+                <HighSpeedLVDS Val="0"/> <!-- 1 set to high speed LVDS forcely; 0 decided by program -->
+                <FRC_Cfg>
+                        <PanelType Val="1" />   <!-- ????-->
+                </FRC_Cfg>
+                <FRC_Feature> <!-- 0: use default, 1: use FRC, 2: both -->
+                        <WhiteBalance   Val="1" />
+                        <Brightness     Val="1" />
+                        <Sharpness              Val="1" />
+                        <Hue                    Val="1" />
+                        <Saturation     Val="1" />
+                        <Contrast               Val="1" />
+                        <BackLight              Val="1" />
+                        <TwoDDimming            Val="1" />
+                        <DisplayMirro Val="0" />
+                        <BorderColor    Val="0" />
+                        <GameMode               Val="1" />
+                        <DemoMode               Val="0" />
+                        <ThreeDCtrl                     Val="1" />
+                        <MEMC                           Val="1" />
+                        <PIC_BLUESTRETCH                Val="1" />
+                        <PIC_WHITEEXTENSION Val="0" />
+                        <PIC_BLACKEXTENSION Val="0" />
+                        <PIC_NOISEREDUCTION     Val="0" />
+                        <PIC_SUPERRESOLUTION    Val="0" />
+                        <PIC_ADV_COLOR_MANAGE   Val="1" />
+                        <PIC_ADV_COLOR_ACR              Val="0" />
+                        <PIC_COLORMANAGEMENT_SKIN Val="0" />
+                        <PIC_DCI                        Val="1" />
+                        <PIC_MEMC               Val="1" />
+                        <PIC_DeRing     Val="0" />
+                        <PIC_GAMMA              Val="1" />
+                        <PIC_MPEGNR     Val="1" />
+                        <PIC_MOVIEMODE Val="1" />
+                        <PIC_BACKLIGHT Val="0" />
+                        <PIC_DPA Val="1" />
+                </FRC_Feature>
+        </Display>
+        <AVCore>
+                <TSInput Val="3" />     <!-- 0:Serial_TS, 1: Serial_Demod , 2: Serial_TS1, 3: Parallel_Demod , 4:Parallel_TS1, 5:Parallel_TS2  -->
+                <CIPath Val="0" />      <!-- 0:CI_ByPass, 1:CI_Out_TS1, 2:CI_Out_TS2 -->
+                <PES_Buf_Size Val="0x100000" />         <!-- Byte, assigned to Demux PES buffer-->
+                <Section_Buf_Size Val="0x300000" />     <!-- Byte, assigned to Demux Section buffer-->
+                <Record_Buf_Size Val = "0x300000" />    <!-- Byte, assigned to PVR Recorder buffer-->
+        </AVCore>
+        <Tuner>
+                <DemodType Val="9" />   <!-- 6:SXL; 7:Fusion;9:SX6; 99:TS; 100:DRX_39xyJ2; 101:S5H1409; 102:S5H1411; 103:TDM5550_ATSC; -->
+                <RFType Val="34" />     <!-- 0 means NULL, 34 means ATBM253, 35 means SI2151(0xC0), 36 means R842(0xFC) -->
+                <RFI2cAddr Val="0xC0"/> <!-- ATBM253&SI2151 is 0xC0, R842 is 0xFC -->
+                <SerialTS Val="0" />            <!-- 0 means Parallel, 1 means Serial -->
+                <TSInput Val="3" />     <!-- 0:Serial_TS, 1: Serial_Demod , 2: Serial_TS1, 3: Parallel_Demod , 4:Parallel_TS1, 5:Parallel_TS2  -->
+                <CIPath Val="0" />      <!-- 0:CI_ByPass, 1:CI_Out_TS1, 2:CI_Out_TS2 -->
+                <ClockReverse Val="1" />        <!-- 0:falling clock edge trigger, 1:raising clock edge trigger -->
+                <SupportAFC Val="1" />  <!-- 0 means not support,1 means support -->
+                <CableTryTime Val="15" />       <!-- 50ms for each time -->
+                <AirTryTime Val="10" /> <!-- 50ms for each time -->
+                <AnalogTryTime Val="5" />       <!-- 50ms for each time -->
+                <DisableAtvAVCheck Val="0" /> <!-- whether Atv AV check in DRX lib, 0:check; 1:not check -->
+        </Tuner>
+        <Revision>
+                <VersionNo Val="1526" />
+        <BuildNumber Val="1526" />
+        </Revision>
+</AllData>

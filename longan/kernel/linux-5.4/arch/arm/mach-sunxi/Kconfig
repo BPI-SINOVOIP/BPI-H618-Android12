@@ -1,0 +1,168 @@
+# SPDX-License-Identifier: GPL-2.0-only
+menuconfig ARCH_SUNXI
+	bool "Allwinner SoCs"
+	depends on ARCH_MULTI_V5 || ARCH_MULTI_V7
+	select ARCH_HAS_RESET_CONTROLLER
+	select CLKSRC_MMIO
+	select GENERIC_IRQ_CHIP
+	select GPIOLIB
+	select PINCTRL
+	select PM_OPP
+	select SUN4I_TIMER
+	select RESET_CONTROLLER
+	help
+	  Support for Allwinner ARM-based family of processors
+
+if ARCH_SUNXI
+
+if ARCH_MULTI_V7
+
+config MACH_SUN4I
+	bool "Allwinner A10 (sun4i) SoCs support"
+	default ARCH_SUNXI
+
+config MACH_SUN5I
+	bool "Allwinner A10s / A13 (sun5i) SoCs support"
+	default ARCH_SUNXI
+	select SUN5I_HSTIMER
+
+config MACH_SUN6I
+	bool "Allwinner A31 (sun6i) SoCs support"
+	default ARCH_SUNXI
+	select ARM_GIC
+	select MFD_SUN6I_PRCM
+	select SUN5I_HSTIMER
+
+config MACH_SUN7I
+	bool "Allwinner A20 (sun7i) SoCs support"
+	default ARCH_SUNXI
+	select ARM_GIC
+	select ARM_PSCI
+	select ARCH_SUPPORTS_BIG_ENDIAN
+	select HAVE_ARM_ARCH_TIMER
+	select SUN5I_HSTIMER
+
+config MACH_SUN8I
+	bool "Allwinner sun8i Family SoCs support"
+	default ARCH_SUNXI
+	select ARM_GIC
+	select MFD_SUN6I_PRCM
+
+config MACH_SUN9I
+	bool "Allwinner (sun9i) SoCs support"
+	default ARCH_SUNXI
+	select ARM_GIC
+
+config MACH_SUN50I
+	bool "Allwinner sun50i Family SoCs support"
+	default ARCH_SUNXI
+	select ARM_GIC
+	select MFD_SUN6I_PRCM
+
+config ARCH_SUNXI_MC_SMP
+	bool
+	depends on SMP
+	default MACH_SUN9I || MACH_SUN8I
+	select ARM_CCI400_PORT_CTRL
+	select ARM_CPU_SUSPEND
+
+endif
+
+if ARCH_MULTI_V5
+
+config MACH_SUNIV
+	bool "Allwinner ARMv5 F-series (suniv) SoCs support"
+	default ARCH_SUNXI
+	help
+	  Support for Allwinner suniv ARMv5 SoCs.
+	  (F1C100A, F1C100s, F1C200s, F1C500, F1C600)
+
+endif
+
+choice
+	prompt "Select the architecture of SoC"
+	default ARCH_SUN50I
+	help
+	  Select the architecture for SoC
+	  sunxi
+	  `-- sun50i ----- Cortex-A53 based Family SoCs
+
+config ARCH_SUN50I
+	bool "Allwinner A53 smp SoCs"
+	select ARM_GIC
+	select CPU_V7
+	select HAVE_SMP
+	select HAVE_ARM_ARCH_TIMER
+	select SUN4I_TIMER
+	select MIGHT_HAVE_CACHE_L2X0
+	select PINCTRL
+	select ARCH_REQUIRE_GPIOLIB
+	select COMMON_CLK
+	select CLKDEV_LOOKUP
+	select CLKSRC_MMIO
+	select CLKSRC_OF
+	select GENERIC_CLOCKEVENTS
+	select GENERIC_IRQ_CHIP
+	select SPARSE_IRQ
+	select GENERIC_ALLOCATOR
+	help
+	  Allwinner A53 smp SoCs(sun50i)
+endchoice
+
+if ARCH_SUN50I
+choice
+	prompt "Select the wafer with arch sun50i"
+	help
+	  Select the wafer with arch sun50i
+
+config ARCH_SUN50IW10
+        bool "Allwinner sun50iw10 SoCs"
+        help
+          Allwinner sun50iw10 SoCs
+endchoice
+endif
+
+if ARCH_SUN50IW10
+choice
+	prompt "Select the SoC with wafer sun50iw10"
+	default ARCH_SUN50IW10P1
+	help
+	 Select the SoC with wafer sun50iw10
+
+config ARCH_SUN50IW10P1
+	bool "Allwinner sun50iw10p1 SoC"
+	help
+	  Allwinner sun50iw10p1 SoC
+endchoice
+endif
+
+# Select the board between FPGA and EVB
+
+choice
+    prompt "Allwinner development Board"
+    depends on ARCH_SUNXI
+    default FPGA_V4_PLATFORM
+
+config FPGA_V4_PLATFORM
+       bool "FPGAv4 board"
+       help
+         Support for Allwinner's FPGAv4 board
+
+config FPGA_V7_PLATFORM
+       bool "FPGAv7 board"
+       help
+         Support for Allwinner's FPGAv4 board
+
+config EVB_PLATFORM
+       bool "EVB board"
+       help
+         Support for Allwinner's EVB board
+endchoice
+
+config SUNXI_SOC_NAME
+	string "The name of Sunxi SoC"
+	default ""
+	help
+	  Used for /proc/cpuinfo and /sys/.../sysinfo.
+
+endif

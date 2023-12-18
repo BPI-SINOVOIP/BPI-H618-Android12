@@ -1,0 +1,151 @@
+
+#
+# (C) Copyright 2017-2018
+# Allwinner Technology Co., Ltd. <www.allwinnertech.com>
+# wangwei <wangwei@allwinnertech.com>
+#
+# SPDX-License-Identifier:	GPL-2.0+
+#
+export CFLGAS INCLUDE
+platform=$(shell cat .config | grep "CONFIG_MACH_SUN8IW18=y" | awk -F '=' '{print $$1}')
+
+ifneq ("$(platform)", "CONFIG_MACH_SUN8IW18")
+platform=$(shell cat .config | grep "CONFIG_MACH_SUN8IW20=y" | awk -F '=' '{print $$1}')
+endif
+
+ifneq ("$(platform)", "CONFIG_MACH_SUN8IW20")
+platform=$(shell cat .config | grep "CONFIG_MACH_SUN20IW1=y" | awk -F '=' '{print $$1}')
+endif
+
+export platform
+
+SRCTREE		:= $(CURDIR)
+TOPDIR		:= $(SRCTREE)
+
+ifeq ("$(platform)", "CONFIG_MACH_SUN20IW1")
+CROSS_COMPILE := $(TOPDIR)/../tools/toolchain/riscv64-linux-x86_64-20200528/bin/riscv64-unknown-linux-gnu-
+else
+CROSS_COMPILE := $(TOPDIR)/../tools/toolchain/gcc-linaro-7.2.1-2017.11-x86_64_arm-linux-gnueabi/bin/arm-linux-gnueabi-
+endif
+
+DRIVER_DIR	:= $(TOPDIR)/drivers/sunxi_flash/nand
+export TOPDIR
+
+AS              = $(CROSS_COMPILE)as
+LD              = $(CROSS_COMPILE)ld
+CC              = $(CROSS_COMPILE)gcc
+AR              = $(CROSS_COMPILE)ar
+NM              = $(CROSS_COMPILE)nm
+LDR             = $(CROSS_COMPILE)ldr
+STRIP           = $(CROSS_COMPILE)strip
+OBJCOPY         = $(CROSS_COMPILE)objcopy
+OBJDUMP         = $(CROSS_COMPILE)objdump
+
+export AS LD CC CPP AR NM LDR STRIP OBJCOPY OBJDUMP
+
+ifeq ("$(platform)", "CONFIG_MACH_SUN20IW1")
+
+CFLGAS = -nostdinc -isystem -D__KERNEL__ -D__UBOOT__ -Wall -Wstrict-prototypes -Wno-format-security -fno-builtin -ffreestanding -Wno-packed-bitfield-compat -fshort-wchar -Os -fno-stack-protector -fno-delete-null-pointer-checks -g -fstack-usage -Wno-format-nonliteral -Werror=date-time -ffixed-gp -fpic -fno-common -gdwarf-2 -ffunction-sections -fdata-sections -pipe -march=rv64imacxthead -mabi=lp64 -mcmodel=medlow
+
+INCLUDE = -I$(shell dirname `$(CC)  -print-libgcc-file-name`)/include \
+		  -I$(SRCTREE)/include \
+		  -I$(SRCTREE)/arch/riscv/include \
+		  -I$(TOPDIR)/../tools/toolchain/riscv64-linux-x86_64-20200528/lib/gcc/riscv64-unknown-linux-gnu/8.1.0/include
+
+else
+
+CFLGAS = -nostdinc -isystem \
+  -D__KERNEL__ -D__UBOOT__ \
+  -Wall -Wstrict-prototypes \
+  -Wno-format-security -fno-builtin -ffreestanding -fshort-wchar -Os \
+  -fno-stack-protector -fno-delete-null-pointer-checks \
+  -fstack-usage -Wno-format-nonliteral \
+  -Werror=date-time -D__ARM__ \
+  -Wa,-mimplicit-it=always -mthumb -mthumb-interwork \
+  -mabi=aapcs-linux -mword-relocations -fno-pic -mno-unaligned-access \
+  -ffunction-sections -fdata-sections -fno-common \
+  -ffixed-r9 -msoft-float -pipe -march=armv7-a \
+  -D__LINUX_ARM_ARCH__=7
+
+
+INCLUDE = -I$(shell dirname `$(CC)  -print-libgcc-file-name`)/include \
+		  -I$(SRCTREE)/include \
+		  -I$(SRCTREE)/arch/arm/include
+
+endif
+
+.PHONY:clean clean_libcomm1 clean_libcomm0
+
+all:libcomm0 libcomm1
+
+libcomm0:clean_libcomm0
+ifneq ("$(wildcard $(DRIVER_DIR)/common0/lib-nand)","")
+	make -C $(DRIVER_DIR)/common0/lib-nand
+endif
+
+clean_libcomm0:
+ifneq ("$(wildcard $(DRIVER_DIR)/common0/lib-nand)","")
+	make -k -C $(DRIVER_DIR)/common0/lib-nand clean
+endif
+
+ifeq ("$(platform)", "CONFIG_MACH_SUN8IW18")
+libcomm1:clean_libcomm1
+ifneq ("$(wildcard $(DRIVER_DIR)/common1/lib-nand)","")
+	make -C $(DRIVER_DIR)/common1/lib-nand
+endif
+
+else ifeq ("$(platform)", "CONFIG_MACH_SUN8IW20")
+libcomm1:clean_libcomm1
+ifneq ("$(wildcard $(DRIVER_DIR)/common1/lib-nand)","")
+	make -C $(DRIVER_DIR)/common1/lib-nand
+endif
+
+else ifeq ("$(platform)", "CONFIG_MACH_SUN20IW1")
+libcomm1:clean_libcomm1
+ifneq ("$(wildcard $(DRIVER_DIR)/common1/lib-nand)","")
+	make -C $(DRIVER_DIR)/common1/lib-nand
+	echo $(INCLUDE)
+endif
+
+else
+libcomm1:clean_libcomm1
+ifneq ("$(wildcard $(DRIVER_DIR)/common1/)","")
+	make -C $(DRIVER_DIR)/common1/lib
+endif
+endif
+libsun8iw7p1:clean_sun8iw7p1
+ifneq ("$(wildcard $(DRIVER_DIR)/sun8iw7p1/lib-nand)","")
+	make -C $(DRIVER_DIR)/sun8iw7p1/lib-nand
+endif
+
+ifeq ("$(platform)", "CONFIG_MACH_SUN8IW18")
+clean_libcomm1:
+ifneq ("$(wildcard $(DRIVER_DIR)/common1/lib-nand)","")
+	make -k -C $(DRIVER_DIR)/common1/lib-nand clean
+endif
+
+else ifeq ("$(platform)", "CONFIG_MACH_SUN8IW20")
+clean_libcomm1:
+ifneq ("$(wildcard $(DRIVER_DIR)/common1/lib-nand)","")
+	make -k -C $(DRIVER_DIR)/common1/lib-nand clean
+endif
+
+else ifeq ("$(platform)", "CONFIG_MACH_SUN20IW1")
+clean_libcomm1:
+ifneq ("$(wildcard $(DRIVER_DIR)/common1/lib-nand)","")
+	make -k -C $(DRIVER_DIR)/common1/lib-nand clean
+endif
+
+else
+clean_libcomm1:
+ifneq ("$(wildcard $(DRIVER_DIR)/common1/lib)","")
+	make -k -C $(DRIVER_DIR)/common1/lib clean
+endif
+endif
+clean_sun8iw7p1:
+ifneq ("$(wildcard $(DRIVER_DIR)/sun8iw7p1/lib-nand)","")
+	make -k -C $(DRIVER_DIR)/sun8iw7p1/lib-nand clean
+endif
+
+clean: clean_libcomm1 clean_libcomm0 clean_sun8iw7p1
+

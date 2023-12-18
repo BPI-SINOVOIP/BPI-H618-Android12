@@ -1,0 +1,3 @@
+config SUNXI_RSA_SOFTWARE
+	bool "sunxi rsa software calculation"
+	default n

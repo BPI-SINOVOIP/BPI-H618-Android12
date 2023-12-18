@@ -1,0 +1,3 @@
+config BOOT_RISCV
+	bool "Support RISCV"
+	default n

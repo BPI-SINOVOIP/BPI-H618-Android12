@@ -1,0 +1,65 @@
+//###############################################################################
+// Build tee supplicant                                                         #
+//###############################################################################
+
+cc_library_shared {
+    name: "lib_enc_storage",
+    //vendor_available:true,
+    //vendor: true,
+    relative_install_path: "ca_demos",
+    proprietary: true,
+    cflags: [
+        "-Werror",
+        "-c",
+        "-fPIC",
+    ] + [
+        "-DDEBUGLEVEL_1",
+    ] + ["-DCFG_GP_SOCKETS=1"] + ["-DCFG_TA_GPROF_SUPPORT"],
+    srcs: [
+        "libstorage.c",
+    ],
+    include_dirs: [
+        "hardware/aw/optee_client/public",
+        "hardware/aw/optee_client/libteec/include",
+        "hardware/aw/optee_client/tee-supplicant/src",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libteec",
+    ],
+
+}
+cc_binary {
+    name: "encrypt_storage_demo_ca",
+    //vendor_available:true,
+    //vendor: true,
+    proprietary: true,
+    relative_install_path: "ca_demos",
+    cflags: [
+        "-Werror",
+        "-c",
+        "-fPIC",
+    ] + [
+        "-DDEBUGLEVEL_1",
+    ] + ["-DCFG_GP_SOCKETS=1"] + ["-DCFG_TA_GPROF_SUPPORT"],
+    srcs: [
+        "demo.c",
+    ],
+    include_dirs: [
+        "hardware/aw/optee_client/public",
+        "hardware/aw/optee_client/libteec/include",
+        "hardware/aw/optee_client/tee-supplicant/src",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libteec",
+        "lib_enc_storage"
+    ],
+
+}

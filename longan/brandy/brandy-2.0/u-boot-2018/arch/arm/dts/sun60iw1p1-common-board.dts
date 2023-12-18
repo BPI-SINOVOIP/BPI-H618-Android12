@@ -1,0 +1,100 @@
+/*
+ * Allwinner Technology CO., Ltd. sun60iw1p1 soc board.
+ *
+ * soc board support.
+ */
+
+&platform {
+	eraseflag   = <1>;
+	next_work   = <3>;
+	debug_mode  = <1>;
+};
+
+&target {
+	boot_clock = <1008>;	/*CPU boot frequency, Unit: MHz*/
+	storage_type = <0xffffffff>; /*boot medium, 0-nand, 1-card0, 2-card2, -1(defualt)auto scan*/
+	burn_key = <1>;		/*1:support burn key; 0:not support burn key*/
+	dragonboard_test = <0>;	/*1:support card boot dragonboard; 0:not support card boot dragonboard*/
+};
+
+&sdc0_pins_a {
+		allwinner,pins = "PF0", "PF1", "PF2",
+							"PF3", "PF4", "PF5";
+		allwinner,function = "sdc0";
+		allwinner,muxsel = <2>;
+		allwinner,drive = <3>;
+		allwinner,pull = <1>;
+};
+
+&sdc0_pins_b {
+		allwinner,pins = "PF0", "PF1", "PF2",
+							"PF3", "PF4", "PF5";
+		allwinner,function = "io_disabled";
+		allwinner,muxsel = <7>;
+		allwinner,drive = <1>;
+		allwinner,pull = <1>;
+};
+
+&sdc0_pins_c {
+		allwinner,pins = "PF0", "PF1", "PF2",
+							"PF3", "PF4", "PF5";
+		allwinner,function = "uart0_jtag";
+		allwinner,muxsel = <3>;
+		allwinner,drive = <1>;
+		allwinner,pull = <1>;
+};
+
+
+&sdc2_pins_a {
+		allwinner,pins = "PF16", "PF17", "PF18",
+							"PF19", "PF20", "PF21", "PF22",
+							"PF23", "PF24", "PF25";
+		allwinner,function = "sdc2";
+		allwinner,muxsel = <3>;
+		allwinner,drive = <3>;
+		allwinner,pull = <1>;
+};
+
+&sdc2_pins_b {
+		allwinner,pins = "PC0", "PC1", "PC5", "PC6",
+							"PC8", "PC9", "PC10", "PC11",
+							"PC13", "PC14", "PC15", "PC16";
+		allwinner,function = "io_disabled";
+		allwinner,muxsel = <7>;
+		allwinner,drive = <1>;
+		allwinner,pull = <1>;
+};
+
+&sdc2_pins_c {
+		allwinner,pins = "PC0";
+		allwinner,function = "sdc2";
+		allwinner,muxsel = <3>;
+		allwinner,drive = <3>;
+		allwinner,pull = <2>;
+};
+
+&card0_boot_para {
+		/* Avoid dtc compiling warnings. @TODO: Developer should modify this to the actual value */
+		/* reg = <0x0 0x2 0x0 0x0>;  [> Avoid dtc compiling warnings. @TODO: Developer should modify this to the actual value <] */
+		device_type = "card0_boot_para";
+		card_ctrl = <0x0>;
+		card_high_speed = <0x1>;
+		card_line = <0x4>;
+		pinctrl-0 = <&sdc0_pins_a>;
+};
+
+&card2_boot_para {
+		/*
+		* Avoid dtc compiling warnings.
+		* @TODO: Developer should modify this to the actual value
+		*/
+		reg = <0x0 0x3 0x0 0x0>;
+		device_type = "card2_boot_para";
+		card_ctrl = <0x2>;
+		card_high_speed = <0x1>;
+		card_line = <0x8>;
+		pinctrl-0 = <&sdc2_pins_a>;
+		/*sdc_ex_dly_used = <0x2>;*/
+		/*sdc_io_1v8 = <0x0>;*/
+		/*sdc_type = "tm4";*/
+};
