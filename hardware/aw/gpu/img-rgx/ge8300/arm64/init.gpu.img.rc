@@ -1,0 +1,11 @@
+on late-fs
+    # gpu
+    insmod /vendor/lib/modules/pvrsrvkm.ko
+
+service pvrsrvinit /vendor/bin/pvrsrvctl --start
+    class core
+    user root
+    group root
+    oneshot
+
+

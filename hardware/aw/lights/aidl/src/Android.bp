@@ -1,0 +1,41 @@
+bootstrap_go_package {
+    name: "soong-sunxilight",
+    pkgPath: "android/soong/sunxilight",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-cc",
+    ],
+    srcs: [
+        "sunxilight.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+rule_sunxilight_defaults {
+    name: "sunxilight_defaults",
+}
+
+cc_binary {
+    defaults: ["sunxilight_defaults"],
+    name: "android.hardware.lights-service",
+    relative_install_path: "hw",
+    init_rc: ["android.hardware.lights-service.rc"],
+    vintf_fragments: ["android.hardware.lights-service.xml"],
+    vendor: true,
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "liblog",
+        "libhardware",
+        "android.hardware.light-V1-ndk_platform",
+    ],
+    srcs: [
+        "LightsDevice.cpp",
+        "Lights.cpp",
+        "main.cpp",
+    ],
+    include_dirs: [
+        "hardware/aw/display/include",
+    ],
+}

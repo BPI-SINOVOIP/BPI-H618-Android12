@@ -1,0 +1,536 @@
+#!/usr/bin/python
+
+import sys, os
+import os.path as pu # path utils
+import struct
+import gzip
+import re
+from getopt import getopt, GetoptError
+from tempfile import mkdtemp, NamedTemporaryFile
+from subprocess import Popen, STDOUT, PIPE
+
+usage = """
+Usage:
+       %s [OPTION] logfile
+
+Script parses output file from 'pvrlogdump' and stores separate files
+in a temporary location.
+
+'logfile' can be either in txt format or in gzip format.
+
+If 'tracebuf' tool is not in PATH it has to be define with --tracebuf option.
+
+Options:
+         -h, --help           prints this message
+         -v                   verbose
+         --keeptree           keeps directory structure of debugfs, and lockdep
+         --movehere           moves created temporary directory to current CWD
+         --dumpfwlog          prints decoded firmware log
+         --dumpregs           prints decoded firmware registers
+         --tracebuf=<path>    path to 'tracebuf' tool, if not given tracebuf
+                              needs to be in PATH
+""" % (pu.basename(sys.argv[0]))
+
+# internal options
+"""
+If 'regdecode' tool is not in PATH it has to be define with --regdecode option.
+
+Note: If 'regdecode' fails due to missing *.h file, please refer to 'regdecode'
+help about ROGUEDDK_ROOT variable.
+
+         --regdecode=<path>   path to 'regdecode' tool, if not given regdecode
+                              needs to be in PATH
+"""
+
+def is_gzip(filepath):
+    """Returns True if file is a gzip archive and False otherwise"""
+    try:
+        with open(filepath, "rb") as f:
+            mn = f.read(2)
+    except Exception as ex:
+        raise ex
+
+    ext = filepath.split('.')[-1]
+
+    # gzip magic number is 0x1f8b
+    if mn == '\x1f\x8b' and ext == 'gz':
+        return True
+    else:
+        return False
+
+def is_exec(filepath):
+    """Returns True if command is executable. This function looks
+    either in PATH env or in a destination if fullpath is provided"""
+    if not filepath:
+        return False
+
+    if pu.isfile(filepath) and os.access(filepath, os.X_OK):
+        return True
+    else:
+        for path in os.environ['PATH'].split(os.pathsep):
+            fexec = pu.join(path.strip('"'), filepath)
+            if pu.isfile(fexec) and os.access(fexec, os.X_OK):
+                return True
+        return False
+
+class Executor:
+    """Utility class for running various external tools"""
+    def __init__(self):
+        self._args = Args()
+        self._output = None
+        self._status = None
+
+    def tracebuf(self, filepath):
+        """Runs 'tracebuf' tool"""
+        path = self._args.get_tracebuf_path()
+        proc = Popen([path, '-txt', filepath],
+                    stdout = PIPE, stderr = STDOUT, universal_newlines = True)
+        self._output = proc.communicate()[0]
+        self._status = proc.returncode
+
+    def regdecode(self, filepath):
+        """Runs 'regdecode' tool"""
+        path = self._args.get_regdecode_path()
+        proc = Popen([path, '-d', filepath],
+                    stdout = PIPE, stderr = STDOUT, universal_newlines = True)
+        self._output = proc.communicate()[0]
+        self._status = proc.returncode
+
+    def get_output(self):
+        return self._output
+
+    def get_status(self):
+        return self._status
+
+class Section:
+    def __init__(self, name):
+        self._name = name
+        self._content = list()
+
+    def __str__(self):
+        return 'Section: ' + self._name
+
+    def append(self, text):
+        self._content.append(text)
+
+    def get_name(self):
+        return self._name
+
+    def get_content(self):
+        return self._content
+
+class SubLog:
+    def __init__(self, section):
+        self._args = Args()
+        self._section = section
+
+    def dump(self, tmpdir):
+        name = self._section.get_name() + '.txt'
+        if self._args.is_verbose():
+            print('Dumping file ' + pu.join(tmpdir, name))
+        with open(pu.join(tmpdir, name), 'w') as f:
+            for line in self._section.get_content():
+                f.write(line)
+
+class FilesListLog(SubLog):
+    def __init__(self, section):
+        SubLog.__init__(self, section)
+
+        self._re_filepath = re.compile('[=]{4}\s([\w/]+)\s[=]{4}')
+
+        self._files = dict()
+        self._parse()
+
+    def _parse(self):
+        current = None
+        for line in self._section.get_content():
+            result = self._re_filepath.match(line)
+            if result:
+                current = result.group(1)[1:] if result.group(1)[0] == os.sep \
+                    else result.group(1)
+                self._files[current] = list()
+                continue
+            if current:
+                self._files[current].append(line)
+
+    def dump(self, tmpdir):
+        for name in self._files.keys():
+            if self._args.keeptree():
+                if not pu.isdir(pu.join(tmpdir, pu.dirname(name))):
+                    try:
+                        os.makedirs(pu.join(tmpdir, pu.dirname(name)))
+                    except OSError as ex:
+                        print('Error: ' + str(ex))
+                filename = name
+            else:
+                filename = name.replace(os.sep, '_')
+            if self._args.is_verbose():
+                print('Dumping file ' + pu.join(tmpdir, filename + '.txt'))
+            with open(pu.join(tmpdir, filename + '.txt'), 'w') as f:
+                self.dump_file(name, outfile = f)
+
+    def dump_file(self, filename, outfile = sys.stdout):
+        for line in self._files[filename]:
+            outfile.write(line)
+        outfile.flush()
+
+    def has_file(self, filename):
+        return any(filename in s for s in self._files.keys())
+
+class DebugFsLog(FilesListLog):
+    def __init__(self, section):
+        FilesListLog.__init__(self, section)
+        self._exec = Executor()
+
+        self._re_fwreg_line = re.compile('.*:\s*0x[\dA-Fa-f]+.+')
+
+    def dumpfwlog(self, outfile = sys.stdout):
+        if self.has_file('sys/kernel/debug/pvr/firmware_trace'):
+            self.dump_file('sys/kernel/debug/pvr/firmware_trace',
+                           outfile = outfile)
+        elif self.has_file('sys/kernel/debug/pvr/debug_dump'):
+            tmpfile = NamedTemporaryFile(mode = 'w+', prefix = 'fwlog_')
+            self.dump_file('sys/kernel/debug/pvr/debug_dump', outfile = tmpfile)
+            self._exec.tracebuf(tmpfile.name)
+
+            if self._exec.get_status() == 0:
+                outfile.write(self._exec.get_output())
+            else:
+                outfile.write('Error: tracebuf returned error status (%d).'
+                    % self._exec.get_status())
+        else:
+            outfile.write('Error: Could not find firmware log.')
+        outfile.flush()
+
+    def dumpregs(self, outfile = sys.stdout):
+        tmpfile = NamedTemporaryFile(mode = 'w+', prefix = 'fwlog_')
+        self.dump_file('sys/kernel/debug/pvr/debug_dump', outfile = tmpfile)
+        self._exec.regdecode(tmpfile.name)
+
+        if self._exec.get_status() == 0:
+            outfile.write(self._exec.get_output())
+        else:
+            outfile.write('Error: regdecode returned error status (%d).'
+                % self._exec.get_status())
+        outfile.flush()
+
+class DmesgLog(SubLog):
+    def __init__(self, section):
+        SubLog.__init__(self, section)
+        self._exec = Executor()
+
+        self._re_fwdump_line = re.compile('.*PVR_K.*FWT\[\d+\]:\s[\w\s]+')
+        self._re_fwreg_line = re.compile('.*PVR_K.*:\s*0x[\dA-Fa-f]+.*')
+
+    def dumpfwlog(self, outfile = sys.stdout):
+        content = ''
+        tmpfile = NamedTemporaryFile(mode = 'w+', prefix = 'fwlog_')
+        for line in self._section.get_content():
+            result = self._re_fwdump_line.match(line)
+            if result:
+                content += line
+
+        if not content:
+            outfile.write('Error: Could not find firmware log.')
+            return
+
+        tmpfile.write(content)
+        tmpfile.flush()
+
+        self._exec.tracebuf(tmpfile.name)
+        if self._exec.get_status() == 0:
+            outfile.write(self._exec.get_output())
+        else:
+            outfile.write('Error: tracebuf returned error status (%d).'
+                % self._exec.get_status())
+        outfile.flush()
+
+    def dumpregs(self, outfile = sys.stdout):
+        content = ''
+        tmpfile = NamedTemporaryFile(mode = 'w+', prefix = 'fwlog_')
+        for line in self._section.get_content():
+            result = self._re_fwreg_line.match(line)
+            if result:
+                content += line
+
+        if not content:
+            print('Error: Could not find firmware log.')
+            return
+
+        tmpfile.write(content)
+        tmpfile.flush()
+
+        self._exec.regdecode(tmpfile.name)
+        if self._exec.get_status() == 0:
+            outfile.write(self._exec.get_output())
+        else:
+            outfile.write('Error: tracebuf returned error status (%d).'
+                % self._exec.get_status())
+        outfile.flush()
+
+class Log:
+    def __init__(self, logpath):
+        self._args = Args()
+        self._logpath = logpath
+        self._log = None
+        self._sections = list()
+
+        self._re_section = re.compile('[=]{5}\sDumping\s([\w\s\.\_]+)[=]+')
+
+        self._read_log()
+
+    def _read_log(self):
+        if is_gzip(self._logpath):
+            fopen = gzip.open
+        else:
+            fopen = open
+
+        try:
+            with fopen(self._logpath, "r") as fin:
+                current = None
+                for line in fin:
+                    result = self._re_section.match(line)
+                    if result:
+                        name = result.group(1).strip().replace(' ', '_')
+                        current = Section(name)
+                        self._sections.append(current)
+                    if current:
+                        current.append(line)
+        except IOError as ex:
+            print('Error: ' + str(ex))
+            exit(1)
+
+    def dump_all(self, tmpdir):
+        for section in self._sections:
+            filelist_sections = ['lockdep', 'ftrace', 'android']
+            if any(substr in section.get_name() for substr in filelist_sections):
+                log = FilesListLog(section)
+                log.dump(tmpdir)
+            elif 'debugfs' in section.get_name():
+                log = DebugFsLog(section)
+                log.dump(tmpdir)
+                self._dumpfwlog_tofile(log, tmpdir, 'debugfs')
+                self._dumpregs_tofile(log, tmpdir, 'debugfs')
+            elif 'dmesg' in section.get_name():
+                log = DmesgLog(section)
+                log.dump(tmpdir)
+                self._dumpfwlog_tofile(log, tmpdir, 'dmesg')
+                self._dumpregs_tofile(log, tmpdir, 'dmesg')
+            else:
+                log = SubLog(section)
+                log.dump(tmpdir)
+
+    def _dumpfwlog_tofile(self, log, tmpdir, prefix):
+        filename = pu.join(tmpdir, prefix + '_tracebuf.txt')
+        if not self._args.is_tracebuf_exec():
+            print('Warning: tracebuf has not been found (please see option'
+                  ' "--tracebuf"). "%s" will not be created.' % filename)
+            return
+
+        if self._args.is_verbose():
+            print('Dumping file ' + filename)
+        with open(filename, 'w') as fout:
+            log.dumpfwlog(fout)
+
+    def _dumpregs_tofile(self, log, tmpdir, prefix):
+        filename = pu.join(tmpdir, prefix + '_regdecode.txt')
+        if not self._args.is_regdecode_exec():
+            # don't print warning as this is an internal option
+
+            # print('Warning: regdecode has not been found. "%s" will not be '
+            #     'created.' % filename)
+            return
+
+        if self._args.is_verbose():
+            print('Dumping file ' + filename)
+        with open(filename, 'w') as fout:
+            log.dumpregs(fout)
+
+    def dumpfwlog(self):
+        if any(('debugfs' in s.get_name()) for s in self._sections):
+            section = (s for s in self._sections if 'debugfs' in s.get_name())\
+                .next()
+            log = DebugFsLog(section)
+            log.dumpfwlog()
+        elif any(('dmesg' in section.get_name()) for section in self._sections):
+            section = (s for s in self._sections if 'dmesg' in s.get_name())\
+                .next()
+            log = DmesgLog(section)
+            log.dumpfwlog()
+        else:
+            print("Could not find firmware log")
+
+    def dumpregs(self):
+        if any(('debugfs' in s.get_name()) for s in self._sections):
+            section = (s for s in self._sections if 'debugfs' in s.get_name())\
+                .next()
+            log = DebugFsLog(section)
+            log.dumpregs()
+        elif any(('dmesg' in section.get_name()) for section in self._sections):
+            section = (s for s in self._sections if 'dmesg' in s.get_name())\
+                .next()
+            log = DmesgLog(section)
+            log.dumpregs()
+        else:
+            print("Could not find firmware log")
+
+class Args:
+    """Represents command line options."""
+
+    _args = None
+    _opts = None
+
+    _verbose = False
+    _dumpfwlog = False
+    _dumpregs = False
+    _keeptree = False
+    _move2cwd = False
+    _tracebuf_path = ''
+    _regdecode_path = ''
+    _logpath = None
+    _logname = None
+    _is_tracebuf_exec = False
+    _is_regdecode_exec = False
+
+    def __init__(self):
+        if not Args._opts and not Args._args:
+            self._getopts()
+            self._parse_opts()
+            self._parse_args()
+            self._validate()
+
+    def _getopts(self):
+        try:
+            longOpts = ['help', 'tracebuf=', 'regdecode=',
+               'dumpfwlog', 'dumpregs', 'keeptree', 'movehere']
+            shortOpts = 'hv'
+            Args._opts, Args._args = getopt(sys.argv[1:], shortOpts, longOpts)
+        except GetoptError as ex:
+            print('Error: ' + str(ex))
+            print(usage)
+            exit(1)
+
+    def _parse_opts(self):
+        for opt, arg in Args._opts:
+            if opt in ('-h', '--help'):
+                print(usage)
+                exit(0)
+            elif opt in ('-v'):
+                Args._verbose = True
+            elif opt in ('--withreg'):
+                Args._withreg = True
+            elif opt in ('--dumpfwlog'):
+                Args._dumpfwlog = True
+            elif opt in ('--dumpregs'):
+                Args._dumpregs = True
+            elif opt in ('--tracebuf'):
+                Args._tracebuf_path = pu.expanduser(arg)
+            elif opt in ('--regdecode'):
+                Args._regdecode_path = pu.expanduser(arg)
+            elif opt in ('--keeptree'):
+                Args._keeptree = True
+            elif opt in ('--movehere'):
+                Args._move2cwd = True
+            else:
+                print('Unhandled option')
+                exit(1)
+
+    def _parse_args(self):
+        if not Args._args:
+            print('Error: No input file given.')
+            print(usage)
+            exit(1)
+
+        if len(Args._args) > 1:
+            print('Error: Wrong number of parameters passed.')
+            print(usage)
+            exit(1)
+
+        if not pu.isfile(Args._args[0]):
+            print('Error: %s is not a file.' % Args._args[0])
+            exit(1)
+
+        Args._logpath = Args._args[0]
+        Args._logname = pu.basename(Args._args[0]).split('.')[0]
+
+    def _validate(self):
+        is_exe1 = is_exec(Args._regdecode_path)
+        is_exe2 = is_exec(pu.join(Args._regdecode_path, 'regdecode.py'))
+        if is_exe1 or is_exe2:
+            Args._is_regdecode_exec = True
+            if not is_exec(Args._regdecode_path):
+                Args._regdecode_path = pu.join(Args._regdecode_path,
+                                               'regdecode.py')
+        elif Args._dumpregs:
+            print('Error: regdecode.py tool is not a valid executable. Please'
+                + ' use --regdecode option to set valid path.')
+            exit(1)
+
+        if is_exec(Args._tracebuf_path) or is_exec(pu.join(Args._tracebuf_path,
+                                                           'tracebuf')):
+            Args._is_tracebuf_exec = True
+            if not is_exec(Args._tracebuf_path):
+                Args._tracebuf_path = pu.join(Args._tracebuf_path, 'tracebuf')
+        elif Args._dumpfwlog:
+            print('Error: tracebuf tool is not a valid executable. Please'
+                + ' use --tracebuf option to set valid path.')
+            exit(1)
+
+    def get_logpath(self):
+        return Args._logpath
+
+    def get_logname(self):
+        return Args._logname
+
+    def get_tracebuf_path(self):
+        return Args._tracebuf_path
+
+    def get_regdecode_path(self):
+        return Args._regdecode_path
+
+    def dumpfwlog(self):
+        return Args._dumpfwlog
+
+    def dumpregs(self):
+        return Args._dumpregs
+
+    def keeptree(self):
+        return Args._keeptree
+
+    def move2cwd(self):
+        return Args._move2cwd
+
+    def is_verbose(self):
+        return Args._verbose
+
+    def is_tracebuf_exec(self):
+        return Args._is_tracebuf_exec
+
+    def is_regdecode_exec(self):
+        return Args._is_regdecode_exec
+
+def main():
+    args = Args()
+
+    log = Log(args.get_logpath())
+    if args.dumpfwlog():
+        log.dumpfwlog()
+    elif args.dumpregs():
+        log.dumpregs()
+    else:
+        tmpdir = mkdtemp(prefix = args.get_logname() + '_')
+        print('Temporary directory created: ' + tmpdir)
+        log.dump_all(tmpdir)
+
+        if args.move2cwd():
+            # try to move the directory to CWD
+            cwd = os.getcwd()
+            try:
+                import shutil
+                shutil.move(tmpdir, cwd)
+                print('Temporary directory "%s" moved to "%s".' % (tmpdir, cwd))
+            except:
+                print('Warning: Could not move "%s" to "%s".' % (tmpdir, cwd))
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,26 @@
+cc_library_shared {
+    name: "vendor.display.config@1.0-impl",
+    vendor: true,
+    srcs: [
+        "DisplayConfig.cpp",
+    ],
+    shared_libs: [
+        "liblog",
+        "libhidlbase",
+        "libhidltransport",
+        "libutils",
+        "vendor.display.config@1.0",
+    ],
+    include_dirs: [
+        "hardware/aw/display/include",
+    ],
+    required: ["null"],
+}
+
+cc_binary {
+    name: "null",
+    srcs: ["main.c"],
+    relative_install_path: "hw",
+    proprietary: true,
+    vintf_fragments: ["vendor.display.config@1.0.xml"],
+}

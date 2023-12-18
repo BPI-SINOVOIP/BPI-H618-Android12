@@ -1,0 +1,32 @@
+
+cc_prebuilt_binary {
+    name: "treadahead",
+    srcs: ["treadahead"],
+    init_rc: ["treadahead.rc"],
+    shared_libs: ["libbase", "libc++", "libc", "libcutils", "libdl", "liblog", "libm", "libsqlite"],
+}
+
+/*
+cc_binary {
+    name: "treadahead",
+    srcs: ["src/trace_readahead.c",
+            "src/values.c",
+            "src/readahead-blocks.c"
+        ],
+    include_dirs: ["bionic/libc/include"],
+    local_include_dirs: ["src/include"],
+    init_rc: ["treadahead.rc"],
+    cflags: [
+            "-Werror",
+            "-Wno-unused-parameter",
+        ],
+     shared_libs: [
+                "libc",
+                "libbase",
+                "liblog",
+                "libm",
+                "libcutils",
+                "libsqlite"
+        ],
+}
+*/

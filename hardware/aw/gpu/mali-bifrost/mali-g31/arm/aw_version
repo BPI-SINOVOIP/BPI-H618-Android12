@@ -1,0 +1,16 @@
+Commit information:
+mali-bifrost: default to build vulkan
+
+Change-Id: I498ff49895d47036e849b75c1ba062788c034484
+
+Branch Info: sunxi-platform-q
+
+Build parameters:
+GPU_G31=y
+HWVER_R0P0=y
+ANDROID=y
+ANDROID_FUTURE=y
+ANDROID_GRALLOC_PATH=hardware/aw/gpu/mali-bifrost/gralloc/src
+
+MD5 Info:
+2bc8457afcb517d3f8860000fee52efb lib/libGLES_mali.so

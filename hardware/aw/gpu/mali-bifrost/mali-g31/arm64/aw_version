@@ -1,0 +1,13 @@
+Commit information:
+mali-g31: open the secure mode
+
+Build parameters:
+GPU_G31=y
+HWVER_R0P0=y
+ANDROID=y
+ANDROID_FUTURE=y
+ANDROID_GRALLOC_PATH=hardware/aw/gpu/mali-bifrost/gralloc/src
+
+MD5 Info:
+36ee55d07c20de864d63f70185c0b744  lib/libGLES_mali.so
+556d9966d61794f2223127db3ea9cb73  lib64/libGLES_mali.so

@@ -1,0 +1,273 @@
+// Bluetooth main HW module / shared library for target
+// ========================================================
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+filegroup {
+    name: "LibBluetoothSources",
+    srcs: [
+        "bte_conf.cc",
+        "bte_init_cpp_logging.cc",
+        "bte_logmsg.cc",
+        "bte_main.cc",
+        "stack_config.cc",
+    ]
+}
+
+cc_library_static {
+    name: "libbte",
+    defaults: ["fluoride_defaults"],
+    srcs: [
+        ":LibBluetoothSources",
+        ":LibBluetoothShimSources",
+    ],
+    include_dirs: [
+        "system/bt",
+        "system/bt/gd",
+        "system/bt/gd/rust/shim",
+        "system/bt/bta/include",
+        "system/bt/bta/sys",
+        "system/bt/bta/dm",
+        "system/bt/btcore/include",
+        "system/bt/internal_include",
+        "system/bt/stack/include",
+        "system/bt/stack/l2cap",
+        "system/bt/stack/a2dp",
+        "system/bt/stack/btm",
+        "system/bt/stack/avdt",
+        "system/bt/udrv/include",
+        "system/bt/btif/include",
+        "system/bt/btif/co",
+        "system/bt/hci/include",
+        "system/bt/vnd/include",
+        "system/bt/embdrv/sbc/encoder/include",
+        "system/bt/embdrv/sbc/decoder/include",
+        "system/bt/utils/include",
+        "system/security/keystore/include",
+        "hardware/interfaces/keymaster/4.0/support/include",
+    ],
+    shared_libs: [
+            "libflatbuffers-cpp",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+    header_libs: ["libbt_callbacks_cxx_headers"],
+    host_supported: true,
+}
+
+cc_library_shared {
+    name: "libbluetooth",
+    defaults: ["fluoride_defaults"],
+    header_libs: ["libbluetooth_headers"],
+    export_header_lib_headers: ["libbluetooth_headers"],
+    include_dirs: [
+        "system/bt",
+        "system/bt/bta/include",
+        "system/bt/bta/sys",
+        "system/bt/bta/dm",
+        "system/bt/btcore/include",
+        "system/bt/internal_include",
+        "system/bt/stack/include",
+        "system/bt/stack/l2cap",
+        "system/bt/stack/a2dp",
+        "system/bt/stack/btm",
+        "system/bt/stack/avdt",
+        "system/bt/udrv/include",
+        "system/bt/btif/include",
+        "system/bt/btif/co",
+        "system/bt/hci/include",
+        "system/bt/vnd/include",
+        "system/bt/embdrv/sbc/encoder/include",
+        "system/bt/embdrv/sbc/decoder/include",
+        "system/bt/utils/include",
+        "system/security/keystore/include",
+        "hardware/interfaces/keymaster/4.0/support/include",
+    ],
+    logtags: ["../EventLogTags.logtags"],
+    shared_libs: [
+        "android.hardware.bluetooth.a2dp@1.0",
+        "android.hardware.bluetooth.audio@2.0",
+        "android.hardware.bluetooth.audio@2.1",
+        "android.hardware.bluetooth@1.0",
+        "android.hardware.bluetooth@1.1",
+        "libbinder_ndk",
+        "libcrypto",
+        "libcutils",
+        "libflatbuffers-cpp",
+        "libhidlbase",
+        "liblog",
+        "libprocessgroup",
+        "libprotobuf-cpp-lite",
+        "libtinyxml2",
+        "libutils",
+        "libz",
+    ],
+    static_libs: [
+        "libbte",
+        "libbt-sbc-decoder",
+        "libbt-sbc-encoder",
+        "libFraunhoferAAC",
+        "libg722codec",
+        "libudrv-uipc",
+        "libbluetooth_gd", // Gabeldorsche
+        "libbluetooth_rust_interop",
+    ],
+    whole_static_libs: [
+        "libbt-bta",
+        "libbt-common",
+        "libbtdevice",
+        "libbtif",
+        "libbt-hci",
+        "libbt-stack",
+        "libbt-utils",
+        "libbtcore",
+        "libosi",
+        "libbt-protos-lite",
+    ],
+    target: {
+        android: {
+            shared_libs: [
+                "android.system.suspend.control-V1-ndk",
+                "android.system.suspend@1.0",
+                "libaaudio",
+                "libfmq",
+            ],
+            required: [
+                "libldacBT_enc",
+                "libldacBT_abr",
+            ],
+        },
+    },
+    // Shared library link options.
+    // References to global symbols and functions should bind to the library
+    // itself. This is to avoid issues with some of the unit/system tests
+    // that might link statically with some of the code in the library, and
+    // also dlopen(3) the shared library.
+    ldflags: ["-Wl,-Bsymbolic,-Bsymbolic-functions"],
+    required: [
+        "bt_did.conf",
+        "bt_stack.conf",
+    ],
+    cflags: [
+        "-DBUILDCFG",
+    ],
+    sanitize: {
+        never: true,
+    },
+    host_supported: true,
+}
+
+cc_library_static {
+    name: "libbluetooth-for-tests",
+    defaults: ["fluoride_defaults"],
+
+    srcs: [
+        ":LibBluetoothSources",
+        ":LibBluetoothShimSources",
+    ],
+    host_supported: true,
+    include_dirs: [
+        "system/bt",
+        "system/bt/gd",
+        "system/bt/gd/rust/shim",
+        "system/bt/bta/include",
+        "system/bt/btcore/include",
+        "system/bt/btif/include",
+        "system/bt/hci/include",
+        "system/bt/internal_include",
+        "system/bt/stack/include",
+        "system/bt/utils/include",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedPackets_h",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+    ],
+    cflags: [
+        "-DBUILDCFG",
+    ],
+    shared_libs: [
+        "libflatbuffers-cpp",
+    ],
+    whole_static_libs: [
+        "libbluetooth_gd", // Gabeldorsche
+    ],
+}
+
+cc_test {
+    name: "net_test_main_shim",
+    test_suites: ["device-tests"],
+    host_supported: true,
+    test_options: {
+        unit_test: true,
+    },
+    defaults: ["fluoride_defaults"],
+    include_dirs: [
+        "system/bt",
+        "system/bt/gd",
+        "system/bt/stack/include",
+    ],
+    srcs: [
+        ":TestMockBta",
+        ":TestMockBtif",
+        ":TestMockLegacyHciCommands",
+        ":TestMockMainShimEntry",
+        ":TestMockStack",
+        "shim/acl_api.cc",
+        "shim/acl.cc",
+        "shim/acl_legacy_interface.cc",
+        "shim/btm_api.cc",
+        "shim/btm.cc",
+        "shim/config.cc",
+        "shim/controller.cc",
+        "shim/dumpsys.cc",
+        "shim/hci_layer.cc",
+        "shim/l2c_api.cc",
+        "shim/le_advertising_manager.cc",
+        "shim/le_scanning_manager.cc",
+        "shim/link_policy.cc",
+        "shim/metric_id_api.cc",
+        "shim/metrics_api.cc",
+        "shim/shim.cc",
+        "shim/stack.cc",
+        "test/main_shim_test.cc",
+    ],
+    static_libs: [
+        "libbt-common",
+        "libbt-protos-lite",
+        "libgmock",
+        "liblog",
+        "libosi",
+        "libbtdevice",
+    ],
+    shared_libs: [
+        "libcrypto",
+        "libflatbuffers-cpp",
+        "libprotobuf-cpp-lite",
+    ],
+    sanitize: {
+        address: true,
+        all_undefined: true,
+        cfi: true,
+        integer_overflow: true,
+        scs: true,
+        diag: {
+            undefined : true
+        },
+    },
+    generated_headers: [
+        "BluetoothGeneratedBundlerSchema_h_bfbs",
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedDumpsysBundledSchema_h",
+        "BluetoothGeneratedPackets_h",
+    ],
+}

@@ -1,0 +1,53 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "hardware_interfaces_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["hardware_interfaces_license"],
+}
+
+cc_test {
+    name: "VtsHalIdentityTargetTest",
+    defaults: [
+        "VtsHalTargetTestDefaults",
+        "use_libaidlvintf_gtest_helper_static",
+    ],
+    cflags: [
+        "-Wno-deprecated-declarations",
+    ],
+    srcs: [
+        "VtsIWritableIdentityCredentialTests.cpp",
+        "Util.cpp",
+        "VtsAttestationTests.cpp",
+        "UserAuthTests.cpp",
+        "ReaderAuthTests.cpp",
+        "DeleteCredentialTests.cpp",
+        "ProveOwnershipTests.cpp",
+        "UpdateCredentialTests.cpp",
+        "EndToEndTests.cpp",
+        "TestCredentialTests.cpp",
+        "AuthenticationKeyTests.cpp",
+    ],
+    shared_libs: [
+        "libbinder",
+        "libcrypto",
+    ],
+    static_libs: [
+        "libcppbor_external",
+        "libcppcose_rkp",
+        "libkeymaster_portable",
+        "libpuresoftkeymasterdevice",
+        "android.hardware.keymaster@4.0",
+        "android.hardware.identity-support-lib",
+        "android.hardware.identity-V3-cpp",
+        "android.hardware.keymaster-V3-cpp",
+        "android.hardware.keymaster-V3-ndk_platform",
+        "libkeymaster4support",
+        "libkeymaster4_1support",
+    ],
+    test_suites: [
+        "general-tests",
+        "vts",
+    ],
+}

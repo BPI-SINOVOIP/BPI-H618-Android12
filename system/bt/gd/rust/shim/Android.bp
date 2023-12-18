@@ -1,0 +1,158 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+rust_defaults {
+    name: "gd_rust_defaults",
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    host_supported: true,
+}
+
+cc_defaults {
+    name: "gd_ffi_defaults",
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+}
+
+rust_ffi_static {
+    name: "libbt_shim_ffi",
+    defaults: ["gd_rust_defaults"],
+    crate_name: "bt_shim",
+    srcs: ["src/lib.rs"],
+    rustlibs: [
+        "libbt_hal",
+        "libbt_hci",
+        "libbt_common",
+        "libcxx",
+        "libtokio",
+        "libbt_main",
+        "libbt_packets",
+        "libfutures",
+        "libnum_traits",
+        "libnix",
+        "liblog_rust",
+        "libbt_facade_helpers",
+    ],
+    proc_macros: [
+        "libpaste",
+    ],
+    whole_static_libs: [
+        "libbt_callbacks_cxx",
+    ],
+}
+
+cc_library_static {
+    name: "libbluetooth_rust_interop",
+    defaults: ["gd_ffi_defaults"],
+    generated_headers: [
+        "libbt_init_flags_bridge_header",
+        "libbt_shim_bridge_header",
+        "libbt_message_loop_thread_bridge_header",
+        "cxx-bridge-header",
+    ],
+    generated_sources: [
+        "libbt_init_flags_bridge_code",
+        "libbt_shim_bridge_code",
+        "libbt_message_loop_thread_bridge_code",
+    ],
+    export_generated_headers: [
+        "libbt_init_flags_bridge_header",
+        "libbt_shim_bridge_header",
+        "libbt_message_loop_thread_bridge_header",
+        "cxx-bridge-header",
+    ],
+    header_libs: ["libbt_callbacks_cxx_headers"],
+    export_header_lib_headers: ["libbt_callbacks_cxx_headers"],
+    cflags: [
+        "-Wno-unused-const-variable",
+    ],
+    host_supported: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.bluetooth.updatable",
+    ],
+    shared_libs: [
+        "libchrome",
+    ],
+    whole_static_libs: [
+        "libbt_shim_ffi",
+    ],
+}
+
+cc_library_static {
+    name: "libbt_callbacks_cxx",
+    defaults: ["gd_ffi_defaults"],
+    header_libs: ["libbt_callbacks_cxx_headers"],
+    srcs: ["callbacks/callbacks.cc"],
+    generated_headers: ["libbt_shim_bridge_header", "cxx-bridge-header"],
+    shared_libs: [
+        "libchrome",
+    ],
+    host_supported: true,
+}
+
+cc_library_headers {
+    name: "libbt_callbacks_cxx_headers",
+    local_include_dirs: ["callbacks"],
+    host_supported: true,
+}
+
+genrule {
+    name: "libbt_shim_bridge_header",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) --header > $(out)",
+    srcs: ["src/bridge.rs"],
+    out: ["src/bridge.rs.h"],
+}
+
+genrule {
+    name: "libbt_shim_bridge_code",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) >> $(out)",
+    srcs: ["src/bridge.rs"],
+    out: ["bridge.cc"],
+}
+
+genrule {
+    name: "libbt_init_flags_bridge_header",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) --header > $(out)",
+    srcs: ["src/init_flags.rs"],
+    out: ["src/init_flags.rs.h"],
+}
+
+genrule {
+    name: "libbt_init_flags_bridge_code",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) >> $(out)",
+    srcs: ["src/init_flags.rs"],
+    out: ["init_flags.cc"],
+}
+
+genrule {
+    name: "libbt_message_loop_thread_bridge_header",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) --header > $(out)",
+    srcs: ["src/message_loop_thread.rs"],
+    out: ["src/message_loop_thread.rs.h"],
+}
+
+genrule {
+    name: "libbt_message_loop_thread_bridge_code",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) >> $(out)",
+    srcs: ["src/message_loop_thread.rs"],
+    out: ["message_loop_thread.cc"],
+}

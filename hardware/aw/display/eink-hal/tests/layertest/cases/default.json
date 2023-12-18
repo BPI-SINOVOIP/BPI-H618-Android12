@@ -1,0 +1,733 @@
+{
+    "CASE0": {
+        "CaseName": "twoSkipLayer",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 1,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Client",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,0,320,180]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 2,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Client",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Device",
+            "Channel": 0,
+            "Slot": 0
+        }
+    },
+    "CASE1": {
+        "CaseName": "twoHardwareLayer",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 120,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 1
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Invalid",
+            "Channel": -1,
+            "Slot": -1
+        }
+    },
+    "CASE2": {
+        "CaseName": "ThreeNotInterectLayer",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 99,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,1280,720],"DisplayFrame": [0,0,320,180
+                    ]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 1,
+                    "Slot": 0
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer3": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 120,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 1
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Invalid",
+            "Channel": -1,
+            "Slot": -1
+        }
+    },
+    "CASE3": {
+        "CaseName": "ThreeNotInterectLayerWithSameAlpha",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 99,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,0,320,180]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 1
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer3": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 120,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 2
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Invalid",
+            "Channel": -1,
+            "Slot": -1
+        }
+    },
+    "CASE3_1": {
+        "CaseName": "ThreeNotInterectLayerWithUniqueAlpha",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 99,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,0,320,180]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 1,
+                    "Slot": 0
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer3": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 120,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 1,
+                    "Slot": 1
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Invalid",
+            "Channel": -1,
+            "Slot": -1
+        }
+    },
+    "CASE4": {
+        "CaseName": "ThreeNotInterectLayerAndOneSkipLayer",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 99,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,0,320,180]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 1
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer3": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 120,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 2
+                }
+            },
+            "Layer4": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 100,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Client",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,0,1280,180]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Device",
+            "Channel": 1,
+            "Slot": 0
+        }
+    },
+    "CASE5": {
+        "CaseName": "twoNotInterectYuvLayerShouldAssignedInOneChannel",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_YV12",
+                    "Zorder": 99,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,0,320,180]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 1,
+                    "Slot": 0
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer3": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_YV12",
+                    "Zorder": 120,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 1,
+                    "Slot": 1
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Invalid",
+            "Channel": -1,
+            "Slot": -1
+        }
+    },
+    "CASE6": {
+        "CaseName": "RollbackToClient1",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 99,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,1280,720],
+                    "DisplayFrame": [0,0,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 2,
+                    "Slot": 0
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 1,
+                    "Slot": 0
+                }
+            },
+            "Layer3": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 120,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            },
+            "Layer4": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_YV12",
+                    "Zorder": 8,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,1280,720],
+                    "DisplayFrame": [0,0,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer5": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 124,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,1280,720],
+                    "DisplayFrame": [0,0,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Device",
+            "Channel": 3,
+            "Slot": 0
+        }
+    },
+    "CASE7": {
+        "CaseName": "RollbackToClient2",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 99,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,1280,720],
+                    "DisplayFrame": [0,0,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 1,
+                    "Slot": 0
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer3": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 120,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            },
+            "Layer4": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_YV12",
+                    "Zorder": 123,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,0,320,180]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 2,
+                    "Slot": 0
+                }
+            },
+            "Layer5": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 124,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,1280,720],
+                    "DisplayFrame": [0,0,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Device",
+            "Channel": 3,
+            "Slot": 0
+        }
+    },
+    "CASE8": {
+        "CaseName": "RollbackToClient3",
+        "InputLayers": {
+            "Layer1": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 99,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,1280,720],
+                    "DisplayFrame": [0,0,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 1,
+                    "Slot": 0
+                }
+            },
+            "Layer2": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 9,
+                    "Alpha": 1,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [960,540,1280,720]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 0,
+                    "Slot": 0
+                }
+            },
+            "Layer3": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 120,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Client",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            },
+            "Layer4": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_YV12",
+                    "Zorder": 123,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,320,180],
+                    "DisplayFrame": [0,540,320,720]
+                },
+                "Expect": {
+                    "Composition": "Client",
+                    "Channel": -1,
+                    "Slot": -1
+                }
+            },
+            "Layer5": {
+                "Property": {
+                    "PixelFormat": "HAL_PIXEL_FORMAT_RGBA_8888",
+                    "Zorder": 124,
+                    "Alpha": 0.8,
+                    "BlendMode": "Premultiplied",
+                    "Composition": "Device",
+                    "Dataspace": 0,
+                    "Transform": 0,
+                    "Crop": [0,0,1280,720],
+                    "DisplayFrame": [0,0,320,180]
+                },
+                "Expect": {
+                    "Composition": "Device",
+                    "Channel": 2,
+                    "Slot": 0
+                }
+            }
+        },
+        "ClientTarget": {
+            "Composition": "Device",
+            "Channel": 3,
+            "Slot": 0
+        }
+    }
+}
+

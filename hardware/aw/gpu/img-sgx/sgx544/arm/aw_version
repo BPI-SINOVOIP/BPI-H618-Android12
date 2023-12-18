@@ -1,0 +1,21 @@
+Commit information:
+sgx544: make Gralloc support VNDK
+
+	Remove the reliance on libunwind.so in Gralloc.
+
+MD5 information:
+63bbf7cba666aa891f5f239575407115  lib/pvrsrvctl
+18b95382f99ea3337291dbbc91494612  lib/gralloc.sunxi.so
+118b33a0c0591a783bb5395304721045  lib/libEGL_POWERVR_SGX544_115.so
+23d26d5d0c801199abed52ab944d6dc9  lib/libGLESv1_CM_POWERVR_SGX544_115.so
+803c22d2e4423f0314761e6f00f442e8  lib/libGLESv2_POWERVR_SGX544_115.so
+c209f5b98de4d5be3b7f47f24ee2c764  lib/libglslcompiler.so
+ad143ab3a5b0ccae5590b3b29af9b3c4  lib/libIMGegl.so
+f35d84b5bd4863d0af81195597a6c548  lib/libpvr2d.so
+0ccc3b7a4a021fdaaf3f2b6a345054dd  lib/libpvrANDROID_WSEGL.so
+2ad6d0dd083f93922dc61d688225950e  lib/libPVRScopeServices.so
+01f282a4679ca218e7afd89c24dbb408  lib/libsrv_init.so
+c67b17b61164633902135c23ce214322  lib/libsrv_um.so
+830ef594ed8a712fe0f18d68ef1f6507  lib/libusc.so
+999fdd3802504d63c0709c4ad2396f71  lib/memtrack.sunxi.so
+

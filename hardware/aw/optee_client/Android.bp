@@ -1,0 +1,51 @@
+//###############################################################################
+// Android optee-client and optee-supplicant makefile                                                #
+//###############################################################################
+
+// ANDROIDMK TRANSLATION ERROR: unsupported conditional
+// ifeq ($(SECURE_OS_OPTEE), yes)
+
+//###############################################################################
+// Include optee-client common config and flags                                 #
+//###############################################################################
+// ANDROIDMK TRANSLATION ERROR: unsupported include
+// include $(LOCAL_PATH)/config.mk
+
+// ANDROIDMK TRANSLATION ERROR: unsupported include
+// include $(LOCAL_PATH)/android_flags.mk
+
+//###############################################################################
+// Build libteec.so - TEE (Trusted Execution Environment) shared library        #
+//###############################################################################
+cc_library_shared {
+    name: "libteec",
+    vendor_available:true,
+    //vendor: true,
+    //proprietary: true,
+    cflags: ["-DTEEC_LOG_FILE=\"/data/vendor/tee/teec.log\""] + ["-DDEBUGLEVEL_1"] + ["-DBINARY_PREFIX=\"TEEC\""] + ["-c", "-fPIC",],
+    srcs: [
+        "libteec/src/tee_client_api.c",
+        "libteec/src/teec_trace.c",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+
+    local_include_dirs: [
+        "libteec/include",
+    ],
+
+
+    export_include_dirs: ["public"],
+
+}
+
+// TEE Supplicant
+// ANDROIDMK TRANSLATION ERROR: unsupported include
+// include $(LOCAL_PATH)/tee-supplicant/tee_supplicant_android.mk
+
+// ANDROIDMK TRANSLATION ERROR: endif from unsupported conditional
+// endif

@@ -1,0 +1,111 @@
+#!/system/bin/sh
+
+module_path="/vendor/lib/modules"
+[ -e "/vendor/modules" ] && module_path="/vendor/modules"
+
+module_preload=(u_serial usb_f_obex usb_f_acm)
+module_function=(g_serial)
+
+config_enable=(CONFIG_U_SERIAL_CONSOLE CONFIG_USB_G_SERIAL)
+config_disable=(CONFIG_USB_DUMMY_HCD CONFIG_USB_CONFIGFS_SERIAL)
+
+function check_config()
+{
+	local r
+	for c in ${config_disable[@]}; do
+		r="$(zcat /proc/config.gz | grep "^$c=")"
+		if [ -n "$r" ]; then
+			echo "Must disable $c"
+			return 1
+		fi
+	done
+
+	for c in ${config_enable[@]}; do
+		r="$(zcat /proc/config.gz | grep "^$c=")"
+		if [ -z "$r" ]; then
+			echo "Must enable $c"
+			return 1
+		fi
+	done
+
+	return 0
+}
+
+function register()
+{
+	local count=0
+
+	check_config
+	[ $? -ne 0 ] && return 1
+
+	while [ $count -lt 3 ]; do
+		setprop sys.usb.config none
+		setprop sys.usb.configfs 0
+
+		for m in ${module_preload[@]}; do
+			if [ -z "$(grep "^$m " /proc/modules)" ]; then
+				insmod "$module_path/${m}.ko" 2>/dev/null
+			fi
+		done
+		for m in ${module_function[@]}; do
+			if [ -z "$(grep "^$m " /proc/modules)" ]; then
+				insmod "$module_path/${m}.ko" 2>/dev/null
+			fi
+		done
+
+		sleep 1
+		if [ -e /dev/ttyGS0 ]; then
+			echo "Done register /dev/ttyGS0"
+			return 0
+		fi
+
+		for m in ${module_function[@]}; do
+			if [ -n "$(grep "^$m " /proc/modules)" ]; then
+				rmmod "${m}" 2>/dev/null
+			fi
+		done
+		setprop sys.usb.config adb
+		setprop sys.usb.configfs 1
+		let "count++"
+	done
+
+	echo "Failed to register /dev/ttyGS0"
+}
+
+function unregister()
+{
+	for m in ${module_function[@]}; do
+		if [ -n "$(grep "^$m " /proc/modules)" ]; then
+			rmmod "${m}" 2>/dev/null
+		fi
+	done
+	setprop sys.usb.config adb
+	setprop sys.usb.configfs 1
+
+	echo "Done unregister /dev/ttyGS0"
+}
+
+function help()
+{
+	echo "Help Message:"
+	echo "  -i: register ttyGS0."
+	echo "  -r: unregister ttyGS0."
+	echo "  -h: print this help message."
+}
+
+[ $# -eq 0 ] && help && exit 0
+
+while getopts irh opt; do
+	case $opt in
+		i)
+			register
+			;;
+		r)
+			unregister
+			;;
+		*)
+			help
+			;;
+	esac
+done
+

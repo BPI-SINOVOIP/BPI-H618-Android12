@@ -1,0 +1,28 @@
+service treadahead_process /system/bin/treadahead process /data/vendor/treadahead/readahead_file_offset
+    class core
+    user root
+    group root system shell
+    disabled
+    oneshot
+    seclabel u:r:vendor_init:s0
+
+
+service treadahead_trace /system/bin/treadahead trace /data/vendor/treadahead/readahead_file_offset
+    class core
+    user root
+    group root system shell
+    disabled
+    oneshot
+    seclabel u:r:vendor_init:s0
+
+# start readahead for performance
+#
+#on load_persist_props_action
+#on post-fs-data
+on load_persist_props_action && property:ro.config.low_ram=true
+    mkdir /data/vendor/treadahead
+    start treadahead_process
+
+
+on property:sys.boot_completed=1 && property:ro.config.low_ram=true
+    start treadahead_trace

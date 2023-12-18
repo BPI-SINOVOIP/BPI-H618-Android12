@@ -1,0 +1,21 @@
+cc_library_shared {
+    name: "lib_aw_km_utility",
+    proprietary: true,
+    relative_install_path: "hw",
+    vendor: true,
+    srcs: [
+		"AWKeymasterLogger.cpp",
+		"AWTACommunicator.cpp"
+    ],
+    shared_libs: [
+        "libkeymaster_messages",
+        "libsoftkeymasterdevice",
+        "liblog",
+        "libcutils",
+        "libbase",
+        "libteec",
+        "libutils",
+        "libhardware",
+    ],
+    export_include_dirs: ["include"],
+}

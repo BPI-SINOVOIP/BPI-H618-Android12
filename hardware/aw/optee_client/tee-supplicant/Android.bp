@@ -1,0 +1,43 @@
+//###############################################################################
+// Build tee supplicant                                                         #
+//###############################################################################
+
+cc_binary {
+    name: "tee_supplicant",
+    //vendor_available:true,
+    //vendor: true,
+    proprietary: true,
+    cflags: [
+        "-Werror",
+        "-c",
+        "-fPIC",
+    ] + [
+        "-DDEBUGLEVEL_1",
+        "-DBINARY_PREFIX=\"TEES\"",
+        "-DTEEC_LOAD_PATH=\"/vendor/lib\"",
+        "-DTEE_FS_PARENT_PATH=\"/data/vendor\"",
+    ] + ["-DCFG_TA_TEST_PATH=1"] + ["-DCFG_GP_SOCKETS=1"] + ["-DCFG_TA_GPROF_SUPPORT"],
+    srcs: [
+        "src/handle.c",
+        "src/tee_supp_fs.c",
+        "src/tee_supplicant.c",
+        "src/teec_ta_load.c",
+        "src/rpmb.c",
+    ] + ["src/tee_socket.c"] + ["src/gprof.c"],
+    include_dirs: [
+        "hardware/aw/optee_client/public",
+        "hardware/aw/optee_client/libteec/include",
+        "hardware/aw/optee_client/tee-supplicant/src",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libteec",
+    ],
+
+    init_rc: ["android.supplicant@2.5-optee.rc"],
+    relative_install_path: "hw",
+
+}

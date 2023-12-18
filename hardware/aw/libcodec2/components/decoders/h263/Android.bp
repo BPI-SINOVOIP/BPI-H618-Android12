@@ -1,0 +1,43 @@
+cc_defaults {
+    name: "libcodec2_hw_h263dec_defaults",
+    proprietary: true,
+    defaults: [
+        "libcodec2_hw-defaults",
+        "libcodec2_soft_sanitize_signed-defaults",
+        "codec2_defaults",
+   ],
+
+    srcs: ["H263DecComponent.cpp"],
+
+    include_dirs: [
+        "hardware/aw/libcodec2/components/include",
+        "hardware/aw/libcodec2/vndk/include",
+        "hardware/aw/gpu",
+        "hardware/aw/gpu/include",
+    ],
+
+    header_libs:[
+        "libcedarc_headers",
+    ],
+
+    shared_libs:[
+        "liblog",
+        "libcodec2_hw_common",
+        "libawcodec2_vndk",
+    ],
+
+}
+
+
+cc_library_shared {
+    name: "libcodec2_hw_h263dec",
+    defaults: ["libcodec2_hw_h263dec_defaults"],
+}
+
+cc_library_shared {
+    name: "libcodec2_hw_s263dec",
+    defaults: ["libcodec2_hw_h263dec_defaults"],
+    cflags: [
+        "-DS263",
+    ],
+}

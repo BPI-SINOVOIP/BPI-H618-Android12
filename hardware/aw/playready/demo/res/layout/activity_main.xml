@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="8">
+    
+   <SurfaceView
+        android:id="@+id/surfaceView1"
+        android:keepScreenOn="true"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="7"/>
+
+   <Spinner
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/spinner" />
+    
+   <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+ 
+        <Button
+           android:id="@+id/license"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/license" />
+
+        <Button
+           android:id="@+id/start"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/start" />
+
+        <Button
+           android:id="@+id/pause"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:enabled="false"
+           android:text="@string/pause" />
+
+        <Button
+           android:id="@+id/stop"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/stop" />
+ 
+        <Button
+           android:id="@+id/debug"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/debug" />
+   </LinearLayout>
+
+
+
+</LinearLayout>

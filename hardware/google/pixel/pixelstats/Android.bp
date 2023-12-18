@@ -1,0 +1,96 @@
+//
+// Copyright (C) 2017 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_library {
+    name: "pixelatoms-cpp",
+    vendor: true,
+    proto: {
+        type: "lite",
+        export_proto_headers: true,
+    },
+    srcs: [
+        "pixelatoms.proto",
+    ],
+}
+
+java_library {
+    name: "pixelatoms-java",
+    vendor: true,
+    proto: {
+        type: "lite",
+    },
+    srcs: [
+        "pixelatoms.proto",
+    ],
+    sdk_version: "current",
+}
+
+java_library_host {
+    name: "pixelatoms-java_host",
+    proto: {
+        type: "full",
+    },
+    srcs: [
+        "pixelatoms.proto",
+    ],
+}
+
+cc_library {
+  name: "libpixelstats",
+  vendor: true,
+  export_include_dirs: ["include"],
+
+  srcs: [
+    "BatteryCapacityReporter.cpp",
+    "BatteryEEPROMReporter.cpp",
+    "DropDetect.cpp",
+    "MmMetricsReporter.cpp",
+    "MitigationStatsReporter.cpp",
+    "OrientationCollector.cpp",
+    "PcaChargeStats.cpp",
+    "StatsHelper.cpp",
+    "SysfsCollector.cpp",
+    "UeventListener.cpp",
+    "WirelessChargeStats.cpp",
+    "WlcReporter.cpp",
+  ],
+  cflags: [
+    "-Wall",
+    "-Werror",
+  ],
+  shared_libs: [
+    "android.frameworks.stats-V1-ndk_platform",
+    "libbase",
+    "libbinder_ndk",
+    "libcutils",
+    "libhidlbase",
+    "liblog",
+    "libutils",
+    "libsensorndkbridge",
+    "pixelatoms-cpp",
+  ],
+  export_shared_lib_headers: [
+    "android.frameworks.stats-V1-ndk_platform",
+    "pixelatoms-cpp",
+  ],
+  static_libs: [
+    "chre_client",
+  ],
+  header_libs: ["chre_api"],
+}

@@ -1,0 +1,36 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "hardware_google_interfaces_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["hardware_google_interfaces_license"],
+}
+
+aidl_interface {
+    name: "com.google.hardware.pixel.display",
+    vendor_available: true,
+    srcs: [
+        "com/google/hardware/pixel/display/*.aidl",
+    ],
+
+    stability: "vintf",
+
+    imports: [
+        "android.hardware.common",
+    ],
+
+    backend: {
+        java: {
+            platform_apis: true,
+        },
+        cpp: {
+            enabled: false,
+        },
+    },
+    versions: [
+        "1",
+        "2",
+        "3",
+    ],
+}

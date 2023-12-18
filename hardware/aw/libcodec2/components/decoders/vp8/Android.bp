@@ -1,0 +1,28 @@
+cc_library_shared {
+    name: "libcodec2_hw_vp8dec",
+    proprietary: true,
+    defaults: [
+        "libcodec2_hw-defaults",
+        "libcodec2_soft_sanitize_signed-defaults",
+        "codec2_defaults",
+   ],
+
+    srcs: ["Vp8DecComponent.cpp"],
+
+    include_dirs: [
+        "hardware/aw/libcodec2/components/include",
+        "hardware/aw/libcodec2/vndk/include",
+        "hardware/aw/gpu",
+        "hardware/aw/gpu/include",
+    ],
+
+    header_libs: [
+         "libcedarc_headers",
+    ],
+
+    shared_libs:[
+        "liblog",
+        "libcodec2_hw_common",
+        "libawcodec2_vndk",
+    ],
+}

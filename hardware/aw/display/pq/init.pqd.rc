@@ -1,0 +1,7 @@
+on boot
+service pqd /vendor/bin/pqd
+	class core late_start
+	user root
+	group root system graphics
+	oneshot
+	

@@ -1,0 +1,39 @@
+cc_binary {
+    name: "pqd",
+    init_rc: ["init.pqd.rc"],
+    cflags: [
+        "-DANDROID_PLT",
+        "-DDEXX_SO_SP",
+        "-DLOG_TAG=\"Sunxi_PQ\"",
+        "-DPQ_DEBUG_LEVEL=3",
+    ],
+    srcs: [
+        "pq_main.c",
+        "trans_info.c",
+        "dexxx/de_generic.c",
+    ],
+    shared_libs: [
+        "libutils",
+        "liblog",
+    ],
+   vendor: true,
+}
+
+cc_library_shared {
+    name: "libde201",
+    cflags: [
+        "-DANDROID_PLT",
+        "-DDEXX_SO_SP",
+        "-DLOG_TAG=\"Sunxi_PQ\"",
+        "-DPQ_DEBUG_LEVEL=3",
+    ],
+    srcs: [
+        "dexxx/de201_tans.c",
+    ],
+    shared_libs: [
+        "libutils",
+        "liblog",
+    ],
+    vendor: true,
+}
+

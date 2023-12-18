@@ -1,0 +1,260 @@
+/*
+ * Copyright (C) 2019 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_defaults {
+    name: "linkerconfig_defaults",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+    ],
+    defaults: ["libapexutil-deps"],
+    static_libs: [
+        "libapexutil",
+        "libbase",
+        "liblog",
+        "libprotobuf-cpp-lite",
+        "libxml2",
+        "lib_linker_config_proto_lite",
+    ],
+    target: {
+        host: {
+            static_libs: [
+                "libicui18n",
+                "libicuuc",
+            ],
+        },
+        not_windows: {
+            static_libs: ["libicuuc_stubdata"],
+        },
+    },
+    host_supported: true,
+}
+
+cc_defaults {
+    name: "linkerconfig_test_defaults",
+    defaults: ["linkerconfig_defaults"],
+    cflags: [
+        "-g",
+        "-Wunused",
+    ],
+    test_suites: ["general-tests"],
+}
+
+cc_library_static {
+    name: "linkerconfig_modules",
+    defaults: [ "linkerconfig_defaults" ],
+    export_include_dirs: [ "modules/include" ],
+    srcs: [
+        "modules/*.cc",
+    ],
+    generated_sources: ["apex-info-list"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.runtime",
+    ],
+}
+
+cc_library_static {
+    name: "linkerconfig_contents",
+    defaults: [ "linkerconfig_defaults" ],
+    export_include_dirs: [ "contents/include" ],
+    static_libs: [
+        "linkerconfig_modules",
+    ],
+    srcs: [
+        "contents/namespace/*.cc",
+        "contents/section/*.cc",
+        "contents/configuration/*.cc",
+        "contents/context/*.cc",
+        "contents/common/*.cc",
+    ],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.runtime",
+    ],
+}
+
+cc_library_static {
+    name: "linkerconfig_generator",
+    defaults : [ "linkerconfig_defaults" ],
+    export_include_dirs: [ "generator/include" ],
+    static_libs: [
+        "linkerconfig_modules",
+        "linkerconfig_contents",
+    ],
+    srcs: [
+        "generator/*.cc",
+    ],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.runtime",
+    ],
+}
+
+cc_binary {
+    name: "linkerconfig",
+    defaults: [ "linkerconfig_defaults" ],
+    static_libs: [
+        "linkerconfig_modules",
+        "linkerconfig_contents",
+        "linkerconfig_generator",
+    ],
+    srcs: [
+        "main.cc",
+    ],
+    required: [
+        // files from /system/etc
+        "sanitizer.libraries.txt",
+        "vndkcorevariant.libraries.txt",
+        // Note that even thought linkerconfig requires at least one version of VNDK APEXes,
+        // we can't list it here because the exact version is unknown at build-time. It is decided
+        // at runtime according to ro.vndk.version (or ro.product.vndk.version)
+    ],
+    target: {
+        android: {
+            // This binary needs to be static on device, but it's also packaged
+            // as a host prebuilt in runtime-module-host-exports. On host it
+            // should link all libraries statically except libc and other system
+            // libraries, so enable this only on device.
+            static_executable: true,
+        },
+        host: {
+            stl: "c++_static",  // Link libc++ statically.
+        },
+    },
+
+    // Device does not boot when global ThinLTO is enabled for linkerconfig.
+    // http://b/170573443
+    lto: {
+        never: true,
+    },
+
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.runtime",
+    ],
+}
+
+cc_test {
+    name: "linkerconfig_modules_unittest",
+    defaults: [ "linkerconfig_test_defaults" ],
+    srcs: [
+        "modules/tests/*_test.cc",
+    ],
+    static_libs: [
+        "libgmock",
+        "linkerconfig_modules",
+        "libc++fs",
+    ],
+    data: [
+        "modules/tests/data/linker.config.*",
+    ],
+}
+
+cc_test {
+    name: "linkerconfig_backward_compatibility_test",
+    defaults: [ "linkerconfig_test_defaults" ],
+    srcs: [
+        "contents/tests/backward_compatibility/*_test.cc",
+    ],
+    static_libs: [
+        "linkerconfig_modules",
+        "linkerconfig_contents",
+    ],
+}
+
+cc_test {
+    name: "linkerconfig_generator_unittest",
+    defaults: [ "linkerconfig_test_defaults" ],
+    srcs: [
+        "generator/tests/*_test.cc",
+    ],
+    static_libs: [
+        "linkerconfig_modules",
+        "linkerconfig_contents",
+        "linkerconfig_generator",
+    ],
+    data: [
+        "generator/tests/data/*.txt",
+    ],
+}
+
+cc_test {
+    name: "linkerconfig_contents_fulltest",
+    defaults: [ "linkerconfig_test_defaults" ],
+    local_include_dirs: [
+        "contents/tests/configuration/include",
+    ],
+    srcs: [
+        "contents/tests/configuration/*_test.cc",
+    ],
+    static_libs: [
+        "linkerconfig_modules",
+        "linkerconfig_contents",
+    ],
+}
+
+prebuilt_etc {
+    name: "ld.config.recovery.txt",
+    recovery: true,
+    filename: "ld.config.txt",
+    src: ":generate_recovery_linker_config",
+}
+
+genrule {
+    name: "generate_recovery_linker_config",
+    recovery: true,
+    out: ["ld.config.txt"],
+    tools: ["linkerconfig"],
+    cmd: "$(location linkerconfig) --recovery --target $(genDir)",
+}
+
+genrule {
+    name: "linkerconfig_diff_test_host_tools",
+    out: ["linkerconfig_diff_test_host_tools.zip"],
+    tools: ["conv_apex_manifest", "conv_linker_config", "linkerconfig", "soong_zip"],
+    cmd: "HOST_OUT_BIN=$$(dirname $(location conv_apex_manifest)) && " +
+         "HOST_SOONG_OUT=$$(dirname $$HOST_OUT_BIN) && " +
+         "LIBCPLUSPLUS=$$(find $${HOST_SOONG_OUT}/lib64 -name \"libc++.*\") && " +
+         "mkdir -p $(genDir)/tools/bin && " +
+         "mkdir -p $(genDir)/tools/lib64 && " +
+         "cp $(location conv_apex_manifest) $(genDir)/tools/bin && " +
+         "cp $(location conv_linker_config) $(genDir)/tools/bin && " +
+         "cp $(location linkerconfig) $(genDir)/tools/bin && " +
+         "cp $$LIBCPLUSPLUS $(genDir)/tools/lib64 && " +
+         "$(location soong_zip) -C $(genDir)/tools -D $(genDir)/tools -o $(out)",
+}
+
+sh_test_host {
+    name: "linkerconfig_diff_test",
+    src: "rundiff.sh",
+    filename: "linkerconfig_diff_test.sh",
+    test_suites: ["general-tests"],
+    test_config: "linkerconfig_diff_test.xml",
+    data: [
+        "testdata/**/*",
+        "testdata/**/.*", // copy .keep files
+        // workaround to use host tools(conv_apex_manifest, linkerconfig) on build server
+        // ":conv_apex_manifest",
+        // ":linkerconfig",
+        ":linkerconfig_diff_test_host_tools",
+    ],
+}

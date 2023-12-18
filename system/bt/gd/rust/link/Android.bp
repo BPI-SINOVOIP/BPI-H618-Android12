@@ -1,0 +1,37 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+rust_library {
+    name: "libbt_link",
+    defaults: ["gd_rust_defaults"],
+    crate_name: "bt_link",
+    srcs: ["src/lib.rs"],
+    edition: "2018",
+    rustlibs: [
+        "libbt_hci",
+        "libbt_hal",
+        "libbt_facade_proto",
+        "libbt_packets",
+        "libbytes",
+        "libfutures",
+        "libgrpcio",
+        "libnum_traits",
+        "libthiserror",
+        "libtokio",
+        "libtokio_stream",
+        "libprotobuf",
+        "libgddi",
+        "liblog_rust",
+        "libbt_common",
+        "libbt_hci_custom_types",
+    ],
+    proc_macros: [
+        "libnum_derive",
+    ],
+}

@@ -1,0 +1,231 @@
+#
+#  Copyright 2015 Google, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at:
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+
+# This is the root build file for GN. GN will start processing by loading this
+# file, and recursively load all dependencies until all dependencies are either
+# resolved or known not to exist (which will cause the build to fail). So if
+# you add a new build file, there must be some path of dependencies from this
+# file to your new one or GN won't know about it.
+
+group("all") {
+  deps = [ ":bluetooth" ]
+
+  if (use.test) {
+    deps += [ ":bluetooth_tests" ]
+  }
+}
+
+# This pulls in main/BUILD.gn and all of its dependencies.
+group("bluetooth") {
+  deps = [
+    "//bt/main:bluetooth",
+    "//bt/main:bluetooth-static",
+    #"//bt/service:bluetoothtbd",
+  ]
+}
+
+if (use.test) {
+  group("bluetooth_tests") {
+    deps = [
+      "//bt/btcore:net_test_btcore",
+      "//bt/common:bluetooth_test_common",
+      "//bt/profile/avrcp:net_test_avrcp",
+      "//bt/service:bluetoothtbd_test",
+      "//bt/stack:net_test_btm_iso",
+      "//bt/types:net_test_types",
+
+      #"//bt/packet:net_test_btpackets",
+    ]
+  }
+}
+
+if (host_cpu == target_cpu && host_os == target_os) {
+  group("tools") {
+    deps = [
+      "//bt/gd/dumpsys/bundler:bluetooth_flatbuffer_bundler",
+      "//bt/gd/packet/parser:bluetooth_packetgen",
+    ]
+  }
+}
+
+if (defined(use.android) && use.android) {
+  group("android_bluetooth_tests") {
+    deps = [
+      "//bt/device:net_test_device",
+      "//bt/hci:net_test_hci",
+      "//bt/osi:net_test_osi",
+      "//bt/test/suite:net_test_bluetooth",
+    ]
+  }
+}
+
+config("target_defaults") {
+  include_dirs = [
+    "//bt",
+    "//bt/linux_include",
+    "//bt/types",
+    "//bt/include",
+
+    # For flatbuffer generated headers
+    "${root_gen_dir}/bt/gd/",
+    "${root_gen_dir}/bt/gd/dumpsys/bundler",
+  ]
+
+  cflags = [
+    "-fPIC",
+    "-Wno-non-c-typedef-for-linkage",
+    "-Wno-unreachable-code-return",
+    "-Wno-defaulted-function-deleted",
+    "-Wno-gnu-variable-sized-type-not-at-end",
+    "-Wno-format-nonliteral",
+    "-Wno-inconsistent-missing-override",
+    "-Wno-unreachable-code",
+    "-Wno-range-loop-construct",
+    "-Wno-reorder-init-list",
+    "-Wno-unused-function",
+    "-Wno-unused-result",
+    "-Wno-unused-variable",
+    "-Wno-unused-const-variable",
+    "-Wno-format",
+    "-Wno-pessimizing-move",
+    "-Wno-unknown-warning-option",
+    "-Wno-final-dtor-non-final-class",
+  ]
+
+  cflags_cc = [
+    "-std=c++17",
+  ]
+
+  defines = [
+    "HAS_NO_BDROID_BUILDCFG",
+    "OS_GENERIC",
+    "OS_LINUX_GENERIC",
+    "TARGET_FLOSS",
+    "USE_LINUX_HCI_SOCKET",
+    "EXPORT_SYMBOL=__attribute__((visibility(\"default\")))",
+    "FALLTHROUGH_INTENDED=[[clang::fallthrough]]",
+  ]
+
+  # If not configured as a dynamic library, default to static library
+  if (!(defined(use.bt_dynlib) && use.bt_dynlib)) {
+    defines += [
+      "STATIC_LIBBLUETOOTH",
+    ]
+  }
+
+  if (!(defined(use.bt_nonstandard_codecs) && use.bt_nonstandard_codecs)) {
+    defines += [ "EXCLUDE_NONSTANDARD_CODECS" ]
+  }
+
+  configs = [ ":external_libchrome" ]
+}
+
+group("libbt-platform-protos-lite") {
+  deps = [
+    "//external/proto_logging/stats/enums/bluetooth:libbt-platform-protos-lite",
+  ]
+}
+
+# Configurations to use as dependencies for GN build
+config("external_gtest") {
+  configs = [
+    ":pkg_gtest",
+    ":pkg_gmock",
+  ]
+}
+
+config("external_gtest_main") {
+  configs = [ ":pkg_gtest_main" ]
+}
+
+config("external_gmock_main") {
+  configs = [ ":pkg_gmock_main" ]
+}
+
+config("external_libchrome") {
+  configs = [ ":pkg_libchrome" ]
+}
+
+config("external_modp_b64") {
+  configs = [ ":pkg_modp_b64" ]
+}
+
+config("external_tinyxml2") {
+  configs = [ ":pkg_tinyxml2" ]
+}
+
+config("external_flatbuffers") {
+  lib_dirs = [ "${libdir}" ]
+
+  libs = [ "flatbuffers" ]
+}
+
+# Package configurations to extract dependencies from env
+pkg_config("pkg_gtest") {
+  pkg_deps = [ "gtest" ]
+}
+
+pkg_config("pkg_gtest_main") {
+  pkg_deps = [ "gtest_main" ]
+}
+
+pkg_config("pkg_gmock") {
+  pkg_deps = [ "gmock" ]
+}
+
+pkg_config("pkg_gmock_main") {
+  pkg_deps = [ "gmock_main" ]
+}
+
+pkg_config("pkg_libchrome") {
+  pkg_deps = [ "libchrome" ]
+}
+
+pkg_config("pkg_modp_b64") {
+  pkg_deps = [ "libmodp_b64" ]
+}
+
+pkg_config("pkg_tinyxml2") {
+  pkg_deps = [ "tinyxml2" ]
+}
+
+# To use non-standard codecs (i.e. ldac, aac, aptx), set this use flag when
+# building. These codecs may have licensing issues that need to be resolved
+# first.
+if (defined(use.bt_nonstandard_codecs) && use.bt_nonstandard_codecs) {
+  config("external_aac") {
+    configs = [ ":pkg_aac" ]
+  }
+
+  pkg_config("pkg_aac") {
+    pkg_deps = [ "fdk-aac" ]
+  }
+
+  config("external_libldac") {
+    configs = [
+      ":pkg_libldacBT_enc",
+      ":pkg_libldacBT_abr",
+    ]
+  }
+
+  pkg_config("pkg_libldacBT_enc") {
+    pkg_deps = [ "ldacBT-enc" ]
+  }
+
+  pkg_config("pkg_libldacBT_abr") {
+    pkg_deps = [ "ldacBT-abr" ]
+  }
+}

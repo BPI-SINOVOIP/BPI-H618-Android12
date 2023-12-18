@@ -1,0 +1,20 @@
+soong_namespace {
+    imports: [
+        "hardware/google/interfaces",
+    ],
+}
+
+package {
+    default_applicable_licenses: ["hardware_google_av_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "hardware_google_av_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    // large-scale-change unable to identify any license_text files
+}

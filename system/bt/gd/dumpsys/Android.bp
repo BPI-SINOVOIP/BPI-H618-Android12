@@ -1,0 +1,151 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+filegroup {
+    name: "BluetoothDumpsysSources",
+    srcs: [
+        "filter.cc",
+        "init_flags.cc",
+        "internal/filter_internal.cc",
+        "reflection_schema.cc",
+    ],
+}
+
+filegroup {
+    name: "BluetoothDumpsysTestSources",
+    srcs: [
+        "filter_test.cc",
+        "internal/filter_internal_test.cc",
+        "reflection_schema_test.cc",
+    ],
+}
+
+genrule {
+    name: "BluetoothGeneratedDumpsysTestData_h",
+    tools: [
+        "flatc",
+    ],
+    cmd: "$(location flatc) -I system/bt/gd -b --schema -o $(genDir) --cpp $(in) ",
+    srcs: [
+            "test_data/root.fbs",
+            "test_data/bar.fbs",
+            "test_data/baz.fbs",
+            "test_data/foo.fbs",
+            "test_data/qux.fbs",
+    ],
+    out: [
+        "root_generated.h",
+        "bar_generated.h",
+        "baz_generated.h",
+        "foo_generated.h",
+        "qux_generated.h",
+    ],
+}
+
+genrule {
+    name: "BluetoothGeneratedDumpsysTestData_bfbs",
+    tools: [
+        "flatc",
+    ],
+    cmd: "$(location flatc) -I system/bt/gd -b --schema -o $(genDir) --cpp $(in) ",
+    srcs: [
+            "test_data/root.fbs",
+            "test_data/bar.fbs",
+            "test_data/baz.fbs",
+            "test_data/foo.fbs",
+            "test_data/qux.fbs",
+    ],
+    out: [
+        "root.bfbs",
+        "bar.bfbs",
+        "baz.bfbs",
+        "foo.bfbs",
+        "qux.bfbs",
+    ],
+}
+
+genrule {
+    name: "BluetoothGeneratedDumpsysTestSchema_h",
+    tools: [
+        "bluetooth_flatbuffer_bundler",
+    ],
+    cmd: "$(location bluetooth_flatbuffer_bundler) -w -m bluetooth.DumpsysData -f dumpsys_module_schema_data -n testing -g $(genDir) $(locations :BluetoothGeneratedDumpsysBinarySchema_bfbs)",
+    srcs: [
+        ":BluetoothGeneratedDumpsysBinarySchema_bfbs",
+    ],
+    out: [
+         "dumpsys_module_schema_data.h",
+    ],
+}
+
+genrule {
+    name: "BluetoothGeneratedDumpsysBundledSchema_h",
+    tools: [
+            "bluetooth_flatbuffer_bundler",
+    ],
+    cmd: "$(location bluetooth_flatbuffer_bundler) -w -m bluetooth.DumpsysData -f generated_dumpsys_bundled_schema -n bluetooth::dumpsys -g $(genDir) $(locations :BluetoothGeneratedDumpsysBinarySchema_bfbs)",
+    srcs: [
+        ":BluetoothGeneratedDumpsysBinarySchema_bfbs",
+    ],
+    out: [
+         "generated_dumpsys_bundled_schema.h",
+    ],
+}
+
+genrule {
+    name: "BluetoothGeneratedDumpsysBundledTestSchema_h",
+    tools: [
+            "bluetooth_flatbuffer_bundler",
+    ],
+    cmd: "$(location bluetooth_flatbuffer_bundler) -w -m testing.DumpsysTestDataRoot  -f generated_dumpsys_bundled_test_schema -n testing -g $(genDir) $(locations :BluetoothGeneratedDumpsysTestData_bfbs)",
+    srcs: [
+        ":BluetoothGeneratedDumpsysTestData_bfbs",
+    ],
+    out: [
+         "generated_dumpsys_bundled_test_schema.h",
+    ],
+}
+
+genrule {
+    name: "BluetoothFlatbufferTestData_h",
+    tools: [
+        "flatc",
+    ],
+    cmd: "$(location flatc) -I system/bt/gd -b --schema -o $(genDir) --cpp $(in) ",
+    srcs: [
+        "bluetooth_flatbuffer_test.fbs",
+    ],
+    out: [
+        "bluetooth_flatbuffer_test_generated.h", "bluetooth_flatbuffer_test.bfbs",
+    ],
+}
+
+cc_test {
+    name: "bluetooth_flatbuffer_test",
+    test_suites: ["device-tests"],
+    host_supported: true,
+    test_options: {
+        unit_test: true,
+    },
+    static_libs: [
+        "libgmock",
+        "libflatbuffers-cpp",
+    ],
+    srcs: [
+        "bluetooth_flatbuffer_test.cc",
+    ],
+    generated_headers: [
+        "BluetoothFlatbufferTestData_h",
+    ],
+    cflags: [
+        "-Werror",
+        "-Wall",
+        "-Wextra",
+    ],
+}

@@ -1,0 +1,79 @@
+subdirs = [
+    "decoders",
+    "encoders",
+]
+cc_library_shared {
+    name: "libcodec2_hw_common",
+    proprietary: true,
+    defaults: [
+        "libcodec2-impl-defaults",
+        "codec2_defaults",
+    ],
+    srcs: [
+        "HwC2Component.cpp",
+        "VdecComponent.cpp",
+        "VencComponent.cpp",
+        "HwC2Interface.cpp",
+        "neon_rgb2yuv.s",
+    ],
+
+    local_include_dirs:[
+        "include",
+    ],
+
+    include_dirs: [
+        "frameworks/av/media/codec2/sfplugin/utils",
+        "hardware/aw/gpu",
+        "hardware/libhardware/include/hardware/",
+        "system/memory/libion/include",
+    ],
+
+    header_libs:[
+        "libcedarc_headers",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libion",
+        "libstagefright_foundation", // for ColorUtils and MIME
+        "libsfplugin_ccodec_utils",
+        "libvdecoder",
+        "libVE",
+        "libvideoengine",
+        "libMemAdapter",
+        "libvencoder",
+        "libcdc_base",
+    ],
+}
+
+filegroup {
+    name: "codec2_hw_exports",
+    srcs: [ "exports.lds" ],
+}
+
+// public dependency for software codec implementation
+// to be used by code under media/codecs/* only as its stability is not guaranteed
+cc_defaults {
+    name: "libcodec2_hw-defaults",
+    defaults: ["libcodec2-impl-defaults"],
+    proprietary: true,
+    version_script: ":codec2_hw_exports",
+
+    shared_libs: [
+        "libcodec2_hw_common",
+        "libcutils", // for properties
+        "liblog", // for ALOG
+        "libsfplugin_ccodec_utils", // for ImageCopy
+        "libstagefright_foundation", // for ColorUtils and MIME
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-mfpu=neon",
+    ],
+
+    ldflags: ["-Wl,-Bsymbolic"],
+}

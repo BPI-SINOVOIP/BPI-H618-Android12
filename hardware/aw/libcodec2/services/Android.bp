@@ -1,0 +1,72 @@
+cc_binary {
+    name: "android.hardware.media.aw.c2@1.0-service",
+    defaults: ["hidl_defaults"],
+    soc_specific: true,
+    relative_install_path: "hw",
+    srcs: [
+        "vendor.cpp",
+    ],
+
+    init_rc: ["android.hardware.media.aw.c2@1.0-service.rc"],
+
+    shared_libs: [
+        "android.hardware.media.c2@1.0",
+        "android.hardware.media.omx@1.0",
+        "libavservices_minijail_vendor",
+        "libbinder",
+        "libcodec2_hidl@1.0",
+        "libawcodec2_vndk",
+        "libcodec2_vndk",
+        "libhidlbase",
+        "liblog",
+        "libstagefright_omx",
+        "libstagefright_xmlparser",
+        "libutils",
+        "libcodec2_hw_common",
+        "libcodec2_hw_avcdec",
+        "libcodec2_hw_avcenc",
+        "libcodec2_hw_divxdec",
+        "libcodec2_hw_h263dec",
+        "libcodec2_hw_hevcdec",
+        "libcodec2_hw_hevcenc",
+        "libcodec2_hw_mjpegdec",
+        "libcodec2_hw_mpeg1dec",
+        "libcodec2_hw_mpeg2dec",
+        "libcodec2_hw_mpeg4dec",
+        "libcodec2_hw_s263dec",
+        "libcodec2_hw_vc1dec",
+        "libcodec2_hw_vp8dec",
+        "libcodec2_hw_vp9dec",
+        "libcodec2_hw_xviddec",
+        "libcodec2_hw_av1dec",
+        "libion",
+        "libvdecoder",
+        "libVE",
+        "libvideoengine",
+        "libMemAdapter",
+        "libvencoder",
+        "libcdc_base",
+    ],
+
+    include_dirs: [
+        "frameworks/av/media/codec2/vndk/include",
+        "frameworks/av/media/codec2/vndk/internal",
+        "system/memory/libion/include",
+    ],
+
+    header_libs:[
+        "libcedarc_headers",
+    ],
+
+    arch: {
+        arm: {
+            required: ["codec2.vendor.base.policy"],
+        },
+        x86: {
+            required: ["codec2.vendor.base.policy"],
+        },
+    },
+    vintf_fragments: ["manifest_media_c2_V1_0_default.xml"],
+    compile_multilib: "32",
+}
+

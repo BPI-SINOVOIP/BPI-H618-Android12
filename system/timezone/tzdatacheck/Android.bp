@@ -1,0 +1,22 @@
+package {
+    // http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // the below license kinds from "system_timezone_license":
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_timezone_license"],
+}
+
+// ========================================================
+// Executable
+// ========================================================
+cc_binary {
+    name: "tzdatacheck",
+    host_supported: true,
+    srcs: ["tzdatacheck.cpp"],
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "liblog",
+    ],
+    cflags: ["-Werror"],
+}

@@ -1,0 +1,12 @@
+1.mBufferMap.find(device_buffer->index)
+
+将mBufferMap.find(device_buffer->index)中的对象类型从void *，替换为int之后出现异常。
+即跨线程访问报错。
+
+
+好像跟 metadata的属性设置相关，上层在读取CONTROL_AE_TARGET_FPS_RANGE这个属性的时候出错了。
+但是在修改过程中，突然又不会出现了，不知道是怎么恢复的。
+、
+
+
+2.ANDROID_SCALER_AVAILABLE_STREAM_CONFIGURATIONS  读该属性出现错误，不断重启，是驱动分辨率，没有VIDIOC_ENUM_FRAMESIZES正确，驱动已经修复。

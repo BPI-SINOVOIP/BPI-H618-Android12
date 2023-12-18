@@ -1,0 +1,709 @@
+################################################################################
+# @Copyright     Copyright (c) Imagination Technologies Ltd.
+#                All Rights Reserved
+# @License       MIT
+#
+# The contents of this file are subject to the MIT license as set out below.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+################################################################################
+
+ARGC=$#
+ARGV=$1
+
+# snapshot timestamp used to determine how much time passed since last
+# call to snapshot
+SSTS=0
+
+usage() {
+    echo ""
+    echo "Usage: $0 [OPTIONS | APP_NAME]"
+    echo "Gathers diagnostic information for IMG."
+    echo "If APP_NAME is specified also gather diagnostics on that specific app."
+    echo "Note that APP_NAME should contain full path to the app binary."
+    echo ""
+    echo "    -h, --help     prints this message"
+    echo ""
+}
+
+log_timestamp() {
+    local ts="$(cat /proc/uptime)"
+
+    echo ""
+    if [ -z "$1" ]; then
+        echo "[TS: ${ts% *}]"
+    else
+        echo "[TS ($1): ${ts% *}]"
+    fi
+    echo ""
+}
+
+init() {
+    # detect os
+    if [ -x "/system/bin/logcat" ]; then
+        OS="Android"
+    elif [ -d "/var/log/ui" ]; then
+        OS="Chrome"
+    else
+        OS="Linux"
+    fi
+
+    if [ $OS = 'Android' ]; then
+        USERID=$USER_ID
+        # grep's '-o' option is not POSIX compliant but since this case is
+        # Android specific and it's supported we don't care
+        VER_MAJOR=$(getprop ro.build.version.release | grep -oE "^[[:digit:]]+")
+        # we assume major.minor version format which is used since Android 5
+        # major part is always correct
+        VER_MINOR=$(getprop ro.build.version.release | grep -oE "[[:digit:]]+$")
+    else
+        USERID=`id -u`
+    fi
+
+    if [ "$USERID" != "0" ]; then
+        echo "This script needs to be executed with root privileges."
+        exit 1
+    fi
+
+    if [ "$ARGC" -gt "1" ]; then
+        echo "Error: Too many arguments."
+        usage
+        exit 1
+    fi
+
+    if [ "$ARGV" = "--help" ] || [ "$ARGV" = "-h" ]; then
+        usage
+        exit 0
+    fi
+
+    # output file
+    if [ -d /tmp ]; then
+        OUT=/tmp/`date +pvrlogdump_%y%m%d%H%M.txt`
+    else
+	mkdir -p /data/pvr/
+        OUT=/data/pvr/`date +pvrlogdump_%y%m%d%H%M.txt`
+    fi
+
+    # some useful variables
+    DEBUGFS_PATH=/sys/kernel/debug
+    if [ -d $DEBUGFS_PATH/pvr ]; then
+        PVR_DEBUGFS_PATH=$DEBUGFS_PATH/pvr
+    elif [ -d /proc/pvr ]; then
+        PVR_DEBUGFS_PATH=/proc/pvr
+    fi
+    FTRACE_PATH=$DEBUGFS_PATH/tracing
+    LOCKDEP_PATH=/proc/lockdep
+    PVRINI_PATH=/etc/powervr.ini
+    INSTKMLOG_PATH=/etc/powervr_ddk_install_km.log
+    INSTUMLOG_PATH=/etc/powervr_ddk_install_um.log
+
+    if [ "$ARGC" -eq "1" ]; then
+        APPNAME=$ARGV
+    fi
+}
+
+perform_check() {
+    echo -n "Checking driver state ............... "
+    if [ -d $PVR_DEBUGFS_PATH ]; then
+        LOADED=true
+        DRIVER_STATE="initialised"
+    else
+        if [ -d /sys/module/pvrsrvkm ]; then
+            LOADED=true
+            DRIVER_STATE="loaded"
+        else
+            LOADED=false
+            DRIVER_STATE="not loaded"
+        fi
+    fi
+
+    echo "$DRIVER_STATE"
+    if [ "$LOADED" = "false" ]; then
+        echo "    Driver is not loaded. Not all crucial information can be"
+        echo "    gathered in that state. Please consider running the driver."
+    fi
+
+    echo -n "Checking for debugfs ................ "
+    if [ -d $PVR_DEBUGFS_PATH ]; then
+        echo "found"
+    else
+        echo "not found"
+    fi
+
+    echo -n "Checking for lockdep ................ "
+    if [ -f $LOCKDEP_PATH ]; then
+        echo "found"
+    else
+        echo "not found"
+    fi
+
+    echo -n "Checking for ftrace ................. "
+    if [ -d $FTRACE_PATH ]; then
+        echo "found"
+    else
+        echo "not found"
+    fi
+
+    echo -n "Checking for firmware log groups .... "
+    local FW_LOG_GROUPS_EN=false
+    if [ -f $PVR_DEBUGFS_PATH/apphint/0/EnableLogGroup ] && \
+       [ $(cat $PVR_DEBUGFS_PATH/apphint/0/EnableLogGroup) != "none" ]; then
+        FW_LOG_GROUPS_EN=true
+    else
+        if [ -f $PVRINI_PATH ]; then
+            if [ -n "$(grep -E ^EnableLogGroup.+[#\;]* $PVRINI_PATH)" ]; then
+                FW_LOG_GROUPS_EN=true
+            fi
+        fi
+    fi
+    if [ "$FW_LOG_GROUPS_EN" = "true" ]; then
+        echo "found"
+    else
+        echo "not found"
+        echo "    There are no AppHints enabled in $PVRINI_PATH or in debugfs"
+        echo "    for any of the firmware log groups. Unless 'pvrdebug' tool"
+        echo "    was used for that purpose there will be no information in"
+        echo "    firmware log."
+        echo "    Please consider enabling some of the firmware log groups"
+        echo "    before the problem occurs."
+    fi
+}
+
+dump_env_info() {
+    echo ""
+    echo "===== Dumping environment info ======================================"
+    echo ""
+
+    log_timestamp
+
+    echo "Date:" `date`
+    echo "/proc/version:" `cat /proc/version`
+
+    echo ""
+    echo "Driver state: $DRIVER_STATE"
+
+    echo ""
+    echo "env:"
+    export -p
+
+    echo ""
+    echo "lsmod:"
+    lsmod
+
+    echo ""
+    echo "/cpu/info"
+    cat /proc/cpuinfo
+
+    echo ""
+    echo "/proc/meminfo"
+    cat /proc/meminfo
+
+    if [ $OS = "Linux" ]; then
+        echo ""
+        echo "lshw"
+        lshw -quiet
+    fi
+}
+
+dump_installation_log() {
+    echo ""
+    echo "===== Dumping powervr_ddk_install_km.log ============================"
+    echo ""
+
+    log_timestamp
+
+    if [ -f $INSTKMLOG_PATH ]; then
+        cat  $INSTKMLOG_PATH
+    else
+        echo "Not found"
+    fi
+
+    echo ""
+    echo "===== Dumping powervr_ddk_install_um.log ============================"
+    echo ""
+
+    if [ -f $INSTUMLOG_PATH ]; then
+        head $INSTUMLOG_PATH
+    else
+        echo "Not found"
+    fi
+}
+
+dump_apphints() {
+    echo ""
+    echo "===== Dumping powervr.ini ==========================================="
+    echo ""
+
+    log_timestamp
+
+    if [ -f $PVRINI_PATH ]; then
+        cat $PVRINI_PATH
+    else
+        echo "Not found"
+    fi
+}
+
+dump_fw_snapshot() {
+    echo ""
+    echo "===== Dumping fw snapshot ==========================================="
+    echo ""
+
+    log_timestamp
+
+    if [ $SSTS -eq 0 ]; then
+        # save current time for the next call
+        SSTS=$(date +%s)
+    else
+        local DIFF=$(($(date +%s) - $SSTS))
+        if [ $DIFF -lt 3 ]; then
+            # wait before making 2nd snapshot
+            sleep 2;
+        fi
+    fi
+
+    local FW_TRACE=$PVR_DEBUGFS_PATH/firmware_trace
+    local DEBUG_DUMP=$PVR_DEBUGFS_PATH/debug_dump
+
+    for IDX in 1 2; do
+        # if there is a firmware log file dump it for our convenience
+        if [ -f $FW_TRACE ]; then
+            echo ""
+            echo "==== firmware_trace ($IDX) ===="
+            echo ""
+            cat $FW_TRACE
+        fi
+
+        # if there is debug_dump file then dump it but if for some reason it's
+        # absent use dmesg to obtain it
+        if [ -f $DEBUG_DUMP ]; then
+            echo ""
+            echo "==== debug_dump ($IDX) ===="
+            echo ""
+            cat $DEBUG_DUMP
+        else
+            echo ""
+            echo "==== dmesg ($IDX) ===="
+            echo ""
+            if [ -c /dev/kmsg ]; then
+                echo "" >/dev/kmsg
+                echo "==== debug_dump ($IDX) ====" >/dev/kmsg
+                echo "" >/dev/kmsg
+            fi
+            if command -v pvrdebug >/dev/null 2>&1; then
+                if ! pvrdebug -dd >/dev/null 2>&1; then
+                    if [ -c /dev/kmsg ]; then
+                        echo "pvrdebug failed" >/dev/kmsg
+                    fi
+                fi
+            fi
+            dmesg
+        fi
+
+        # skip sleep on last iteration
+        if [ $IDX -ne 2 ]; then
+            # Android, ChromeOS and most Linux distributions accept time as
+            # a floating point number so wait for 10ms
+            # but e.g. busybox supports only integers so wait for 1s
+            if ! sleep 0.01 >/dev/null 2>&1; then sleep 1; fi
+        fi
+    done
+}
+
+dump_dmesg() {
+    echo ""
+    echo "===== Dumping dmesg ================================================="
+    echo ""
+
+    log_timestamp
+
+    dmesg
+
+    # even if debugfs exists dump firmware log to dmesg because
+    # there may be some additional information that are not present in debugfs
+    if command pvrdebug >/dev/null 2>&1; then
+        if [ "$LOADED" = "true" ]; then
+            echo ""
+            echo "===== Running pvrdebug -dd then dumping dmesg ======================="
+            echo ""
+            pvrdebug -dd >/dev/null 2>&1
+            dmesg
+        fi
+    fi
+}
+
+dump_debugfs() {
+    local BLACKLIST="
+        $PVR_DEBUGFS_PATH/rgxregs
+    "
+
+    echo ""
+    echo "===== Dumping files from pvr debugfs ================================"
+    echo ""
+
+    log_timestamp
+
+    if [ -d $PVR_DEBUGFS_PATH ]; then
+        # android below version 6 (Marshmallow) doesn't have 'find' command
+        if [ $OS = "Android" ] && [ $VER_MAJOR -lt 6 ]; then
+            ls -FR $PVR_DEBUGFS_PATH | while read FILE; do
+                if echo $FILE | grep / >/dev/null 2>&1; then
+                    # save last found full directory path
+                    DIR=$FILE
+                    continue
+                fi
+                if echo $FILE | grep -E "^d .+" >/dev/null 2>&1; then
+                    # ignore as it is a subdirectory
+                    continue
+                fi
+                if echo $FILE | grep -E "^- .+" >/dev/null 2>&1; then
+                    echo -e "\n==== ${DIR%:}/${FILE#- } ====\n"
+                    cat ${DIR%:}/${FILE#- }
+                fi
+            done
+        else
+            local FILES="`find $PVR_DEBUGFS_PATH -type f`"
+            for FILE in $FILES; do
+                local IGNORE=false
+                for ELEMENT in $BLACKLIST; do
+                    if [ $ELEMENT = $FILE ]; then
+                        IGNORE=true
+                        break
+                    fi
+                done
+
+                if [ "$IGNORE" = "true" ]; then
+                    continue
+                fi
+
+                echo ""
+                echo "==== $FILE ===="
+                echo ""
+                cat $FILE
+            done
+        fi
+    else
+        echo "Not found"
+    fi
+}
+
+# check if SurfaceFlinger is running
+# this function is Android-specific
+android_check_surfaceflinger_running() {
+    # 'dumpsys -l' will return a list of all services running.
+    # use grep to see if SurfaceFlinger is running.
+    dumpsys -l | grep SurfaceFlinger >/dev/null 2>&1
+
+    # return the exit code from grep.
+    # if SurfaceFlinger was found in the services list then grep will have
+    # exited with exit code 0 (true)
+    return $?
+}
+
+dump_android() {
+    echo ""
+    echo "===== Dumping android logs =========================================="
+    echo ""
+
+    log_timestamp
+
+    if [ -x /system/bin/logcat ]; then
+        echo ""
+        echo "==== android/logcat ===="
+        echo ""
+        logcat -d
+    fi
+
+    if [ -x /system/bin/dumpsys ]; then
+        echo ""
+        echo "==== android/dumpsys ===="
+        echo ""
+        android_check_surfaceflinger_running
+        if [ $? = 0 ]; then
+            dumpsys
+        else
+            echo "Android services not running. dumpsys skipped."
+        fi
+    fi
+
+    # NOTE: It might be worth to call also dumpstate (which runs procrank) here
+    # but procrank causes some of the targets to crash. It's left out for now.
+}
+
+dump_chrome() {
+    echo ""
+    echo "===== Dumping ChromeOS UI logs ======================================"
+    echo ""
+
+    log_timestamp
+
+    local UILOGS="/var/log/chrome/chrome /home/chronos/user/log/chrome \
+                  /var/log/ui/ui.LATEST"
+
+    for FILE in $UILOGS; do
+        echo ""
+        echo "==== $FILE ===="
+        echo ""
+
+        if [ -f $FILE ]; then
+            cat $FILE
+        else
+            echo "Not found"
+        fi
+    done
+}
+
+dump_native_sync_info() {
+    echo ""
+    echo "==== Dumping native syncs info ======================================"
+    echo ""
+
+    log_timestamp
+
+    if [ -f $DEBUGFS_PATH/sync ]; then
+        echo ""
+        echo "==== $DEBUGFS_PATH/sync ===="
+        echo ""
+        cat $DEBUGFS_PATH/sync
+    elif [ -f $DEBUGFS_PATH/sync/info ]; then
+        echo ""
+        echo "==== $DEBUGFS_PATH/sync/info ===="
+        echo ""
+        cat $DEBUGFS_PATH/sync/info
+    else
+        echo "Not found"
+    fi
+}
+
+dump_lockdep() {
+    echo ""
+    echo "===== Dumping lockdep related files ================================="
+    echo ""
+
+    log_timestamp
+
+    if [ -f $LOCKDEP_PATH ]; then
+        local FILES="/proc/lockdep_stats $LOCKDEP_PATH /proc/lockdep_chains"
+
+        for FILE in $FILES; do
+            echo ""
+            echo "==== $FILE ===="
+            echo ""
+
+            if [ -f $FILE ]; then
+                cat $FILE
+            else
+                echo "Not found"
+            fi
+        done
+    else
+        echo "Not found"
+    fi
+}
+
+dump_ftrace() {
+    echo ""
+    echo "===== Dumping ftrace files =========================================="
+    echo ""
+
+    log_timestamp
+
+    if [ -d $FTRACE_PATH ]; then
+        local FILES="$FTRACE_PATH/trace $FTRACE_PATH/trace_clock \
+                     $FTRACE_PATH/tracing_on $FTRACE_PATH/buffer_size_kb \
+                     $FTRACE_PATH/buffer_total_size_kb"
+
+        for FILE in $FILES; do
+            echo ""
+            echo "==== $FILE ===="
+            echo ""
+
+            if [ -f $FILE ]; then
+                cat $FILE
+            else
+                echo "Not found"
+            fi
+        done
+
+        if [ -d $FTRACE_PATH/per_cpu ]; then
+            local PERCPU_FILES="buffer_size_kb stats"
+            for CPU in `ls $FTRACE_PATH/per_cpu`; do
+                for FILE in $PERCPU_FILES; do
+                    echo ""
+                    echo "==== $FTRACE_PATH/per_cpu/$CPU/$FILE ===="
+                    echo ""
+
+                    if [ -f $FTRACE_PATH/per_cpu/$CPU/$FILE ]; then
+                        cat $FTRACE_PATH/per_cpu/$CPU/$FILE
+                    else
+                        echo "Not found"
+                    fi
+                done
+            done
+        fi
+    else
+        echo "Not found"
+    fi
+}
+
+dump_pvrhtb() {
+    echo ""
+    echo "===== Dumping HTB trace file ========================================"
+    echo ""
+
+    log_timestamp
+
+    if ! command pvrhtbd -h >/dev/null 2>&1; then
+        return
+    fi
+
+    TMP_HTB_FILE="pvrhtbd_output"
+    if [ "$OS" = "Android" ]; then
+        TMP_HTB_FILE="/data/local/tmp/$TMP_HTB_FILE"
+    else
+        TMP_HTB_FILE="/tmp/$TMP_HTB_FILE"
+    fi
+
+    if [ "$LOADED" = "true" ]; then
+        pvrhtbd --grab > $TMP_HTB_FILE 2>&1
+
+        HTBD_OUT_FILE=`grep "Host Trace Data written to" $TMP_HTB_FILE`
+
+        # if we fail to parse the output and find the file name then
+        # add this information to the output, in addition to
+        # the output from pvrhtbd so we can see any errors it printed
+        if [ -z "$HTBD_OUT_FILE" ]; then
+                echo "Failed to get pvrhtbd output file name. Command output"
+                echo "follows."
+                cat $TMP_HTB_FILE
+                rm $TMP_HTB_FILE
+                return
+        fi
+
+        HTBD_OUT_FILE=${HTBD_OUT_FILE#Host Trace Data written to: }
+        rm $TMP_HTB_FILE
+
+        if [ -f $HTBD_OUT_FILE ]; then
+            cat $HTBD_OUT_FILE
+        fi
+    fi
+}
+
+dump_app_info() {
+    echo ""
+    echo "===== Dumping app info =============================================="
+    echo ""
+
+    log_timestamp
+
+    if [ -f "$APPNAME" ]; then
+        echo "Analysing $APPNAME"
+        if [ -f `dirname $APPNAME`/powervr.ini ]; then
+            echo `dirname $APPNAME`/powervr.ini
+            cat `dirname $APPNAME`/powervr.ini
+        fi
+        echo ""
+        echo "Checking nature of $APPNAME:"
+        file $APPNAME
+        echo
+        echo "Checking linkage of $APPNAME:"
+        ldd $APPNAME
+    else
+        if [ -n "$APPNAME" ]; then
+            echo "Not app with name '$APPNAME' exists."
+            echo ""
+        fi
+
+        if [ -f /usr/local/bin/gltest1 ]; then
+            echo "Checking linkage of gltest1:"
+            ldd /usr/local/bin/gltest1
+        fi
+        if [ -f /usr/local/bin/gles1test1 ]; then
+            echo ""
+            echo "Checking linkage of gles1test1:"
+            ldd /usr/local/bin/gles1test1
+        fi
+        if [ -f /usr/local/bin/xgltest1 ]; then
+            echo ""
+            echo "Checking linkage of xgltest1:"
+            ldd /usr/local/bin/xgltest1
+        fi
+        if [ -f /usr/local/bin/xgles1test1 ]; then
+            echo ""
+            echo "Checking linkage of xgles1test1:"
+            ldd /usr/local/bin/xgles1test1
+        fi
+    fi
+}
+
+dump_all() {
+    echo ""
+    echo -n "Dumping data ........................ "
+    log_timestamp "START" >> $OUT
+    dump_env_info >> $OUT 2>&1
+    dump_installation_log >> $OUT
+    dump_apphints >> $OUT
+    dump_fw_snapshot >> $OUT
+    dump_dmesg >> $OUT
+    dump_pvrhtb >> $OUT
+    dump_debugfs >> $OUT 2>&1
+    if [ $OS = "Android" ]; then
+        dump_android >> $OUT 2>&1
+    fi
+    if [ $OS = "Chrome" ]; then
+        dump_chrome >> $OUT 2>&1
+    fi
+    dump_native_sync_info >> $OUT 2>&1
+    dump_lockdep >> $OUT
+    dump_ftrace >> $OUT
+    dump_app_info >> $OUT
+    dump_fw_snapshot >> $OUT
+    log_timestamp "END" >> $OUT
+    echo "done"
+}
+
+archive() {
+    if [ $OS = "Android" ]; then
+        if [ ! -x /system/bin/gzip ]; then
+            return
+        fi
+    else
+        if ! command -v gzip >/dev/null 2>&1; then
+            return
+        fi
+    fi
+
+    echo -n "Archiving data ...................... "
+    gzip -f $OUT
+    echo "done"
+    echo ""
+    echo "File $OUT.gz was created."
+}
+
+main() {
+    init
+
+    touch $OUT
+
+    perform_check
+    dump_all
+    archive
+}
+
+# main function
+main

@@ -1,0 +1,85 @@
+// Copyright (C) 2008 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+bootstrap_go_package {
+    name: "soong-sunxidisplayconfig",
+    pkgPath: "android/soong/sunxidisplayconfig",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-cc",
+    ],
+    srcs: [
+        "sunxidisplayconfig.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+rule_sunxidisplayconfig_defaults {
+    name: "sunxidisplayconfig_defaults",
+}
+
+cc_library_shared {
+    defaults: ["sunxidisplayconfig_defaults"],
+    local_include_dirs: ["include"],
+    include_dirs: [
+        "system/core/include",
+        "hardware/aw/display",
+        "hardware/aw/display/include",
+        "hardware/libhardware/include",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Wunused",
+        "-Wunreachable-code",
+        "-Wno-unused-parameter",
+        "-DLOG_TAG=\"displayd\"",
+    ],
+    ldflags: ["-shared"],
+
+    srcs: [
+        "utils/utils.cpp",
+        "utils/string.cpp",
+        "utils/persist_property.cpp",
+        "utils/disprslfile.cpp",
+        "hotplug_monitor.cpp",
+        "mq_thread.cpp",
+    ] + [
+        "output_policy/output_policy.cpp",
+        "platform/platform.cpp",
+        "device/edid_strategy.cpp",
+        "device/hardware_ctrl.cpp",
+        "device/device_controler.cpp",
+        "device/device_hdmi.cpp",
+        "device/device_cvbs.cpp",
+        "device/device_lcd.cpp",
+        "device_manager.cpp",
+
+        "hdcp/HdcpManager.cpp",
+    ],
+
+    name: "libdisplayd",
+    shared_libs: [
+        "libutils",
+        "libsysutils",
+        "libcutils",
+        "liblog",
+        "libbinder",
+        "libedid",
+        "libhwc_config",
+    ],
+
+    proprietary: true,
+}

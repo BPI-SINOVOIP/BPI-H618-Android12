@@ -1,0 +1,64 @@
+// Bluetooth test suite for target
+// ========================================================
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+cc_test {
+    name: "net_test_bluetooth",
+    test_suites: ["device-tests"],
+    defaults: ["fluoride_defaults"],
+    include_dirs: ["system/bt"],
+    srcs: [
+        "adapter/adapter_unittest.cc",
+        "adapter/bluetooth_test.cc",
+        "gatt/gatt_test.cc",
+        "gatt/gatt_unittest.cc",
+    ],
+    header_libs: ["libhardware_headers"],
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libbinder",
+        "libutils",
+    ],
+    static_libs: [
+        "libbtcore",
+        "libosi",
+    ],
+    whole_static_libs: [
+        "libbluetoothtbd_hal",
+    ],
+}
+
+// Bluetooth test suite for target
+// ========================================================
+cc_test {
+    name: "net_test_rfcomm_suite",
+    defaults: ["fluoride_defaults"],
+    include_dirs: ["system/bt"],
+    srcs: [
+        "adapter/bluetooth_test.cc",
+        "rfcomm/rfcomm_test.cc",
+        "rfcomm/rfcomm_unittest.cc",
+    ],
+    header_libs: ["libhardware_headers"],
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libbinder",
+        "libutils",
+    ],
+    static_libs: [
+        "libbtcore",
+        "libosi",
+    ],
+    whole_static_libs: [
+        "libbluetoothtbd_hal",
+    ],
+}

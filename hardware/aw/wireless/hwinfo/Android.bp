@@ -1,0 +1,50 @@
+// Copyright 2006 The Android Open Source Project
+
+cc_library_static {
+    name: "libhwinfo",
+    cflags: [
+        "-Wno-error",
+        "-Wno-unused-const-variable",
+        "-DWIFI_USE_RTL8723BS_VQ0",
+        "-DPROP_PREFIX=\"persist.log.tag.\"",
+    ],
+    srcs: ["libhwinfo.c"],
+    vendor: true,
+    shared_libs: [
+        "liblog",
+        "libcutils",
+    ],
+}
+
+cc_binary {
+    name: "wireless_hwinfo",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wunused",
+        "-Wunreachable-code",
+    ],
+    srcs: ["hwinfo.c"],
+    whole_static_libs: ["libhwinfo"],
+    include_dirs: ["system/core/libutils/include"],
+
+    relative_install_path: "hw",
+    proprietary: true,
+    init_rc: ["hwinfo.rc"],
+    required: ["hwinfo.conf"],
+
+    shared_libs: [
+        "libcutils",
+        "liblog",
+    ],
+
+}
+
+prebuilt_etc {
+    name: "hwinfo.conf",
+
+    owner: "wireless_hwinfo",
+    src: "hwinfo.conf",
+    proprietary: true,
+
+}

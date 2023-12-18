@@ -1,0 +1,6 @@
+userdebug_or_eng(`
+  allow shell debugfs_lpm:file r_file_perms;
+  allow shell sysfs_scsi_devices_0000:file r_file_perms;
+  allow shell sysfs_mmc:dir r_dir_perms;
+')
+

@@ -1,0 +1,33 @@
+cc_defaults {
+    name: "enhance_defaults",
+    vendor: true,
+    enabled: true,
+    cflags: [
+        "-Wall",
+        "-Wunreachable-code",
+        "-Werror",
+        "-Wformat",
+        "-Wthread-safety",
+        "-Wunused",
+        "-Wunreachable-code",
+    ],
+    include_dirs: [
+        "system/core/include",
+        "hardware/aw/display/include",
+    ],
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "liblog",
+    ],
+}
+
+cc_binary {
+    name: "enhance-debug",
+    defaults: ["enhance_defaults"],
+    srcs: [
+        "test.cpp",
+        "DefaultEnhance.cpp",
+    ],
+    enabled: true,
+}

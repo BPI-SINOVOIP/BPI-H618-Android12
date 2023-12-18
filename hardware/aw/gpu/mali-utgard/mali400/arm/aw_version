@@ -1,0 +1,33 @@
+mali-utgard: Refine workaround code for uirendering cts
+
+Google frameworks cannot handle prerotated device which will cause
+frameworks to get a non-identity matrix. So that gl_linear will be
+set when operate texture, but the test only want to use gl_nearest
+indeed.
+Workaround in mali-utgard ddk to fail setting transfrom in this
+situation.
+
+Test:CtsUiRenderingTestCases
+android.uirendering.cts.testclasses.BitmapFilterTests#testDrawSnapped
+android.uirendering.cts.testclasses.BitmapTests#testChangeDuringUiAnimation
+android.uirendering.cts.testclasses.CanvasStateTests#testDrawLargeBitmap
+android.uirendering.cts.testclasses.CanvasStateTests#testDrawScreenWideBitmap
+android.uirendering.cts.testclasses.ColorSpaceTests#testDrawTranslucentAdobeRGB
+android.uirendering.cts.testclasses.ForceDarkTests#testFgRectDisable
+android.uirendering.cts.testclasses.LayerTests#testLayerPaintXfermodeWithSoftware
+android.uirendering.cts.testclasses.WideColorGamutTests#testCanvasDrawColorLongBlendMode
+android.uirendering.cts.testclasses.WideColorGamutTests#testCanvasDrawColorLong
+android.uirendering.cts.testclasses.HardwareBitmapTests#testCreateScaledBitmapFromPicture
+
+Test:CtsViewTestCases
+android.view.cts.TextureViewTest#testSamplingWithTransform
+
+Build parameters:
+VARIANT=mali400-r1p1-gles-linux-android-pie-prerotate-dma_buf-standalone-egl_wait_sync-no_profiling-rgb_is_xrgb-no_Werror
+TARGET_TOOLCHAIN=arm-linux-gcc-vfp
+TARGET_PLATFORM=default_7a
+CONFIG=release
+CROSS_COMPILE=arm-linux-androideabi-
+
+MD5 Info:
+ef2b09bbd8eca9152e807c478c8564c6  lib/libGLES_mali.so

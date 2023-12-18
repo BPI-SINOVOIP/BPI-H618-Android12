@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libspiplus
+Description: Library for something with se-gto
+Version: @VERSION@
+Libs: -L${libdir} -lse-gto
+Libs.private:
+Cflags: -I${includedir}

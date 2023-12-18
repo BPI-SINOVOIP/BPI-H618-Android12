@@ -1,0 +1,10 @@
+#Note default open channel 1-13
+#For most country, channel 1-13
+ccode=CN
+regrev=0
+
+#For North America, channel 1-11
+#ccode=US
+#regrev=3
+dhd_master_mode=0
+pkt_filter_add=120 0 0 12 0xFFFF000000000000000000FF00000000000000000000000000FF 0x0800000000000000000000110000000000000000000000000089, 121 0 0 0 0xFFFF 0x3333

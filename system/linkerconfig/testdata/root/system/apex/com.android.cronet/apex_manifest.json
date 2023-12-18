@@ -1,0 +1,15 @@
+{
+  "name": "com.android.cronet",
+  "version": 1,
+  "provideNativeLibs": [],
+  "requireNativeLibs": [
+    "libandroid.so",
+    "libc.so",
+    "libdl.so",
+    "liblog.so",
+    "libm.so"
+  ],
+  "jniLibs": [
+    "libcronet.80.0.3986.0.so"
+  ]
+}

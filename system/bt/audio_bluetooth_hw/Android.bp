@@ -1,0 +1,59 @@
+// The format of the name is audio.<type>.<hardware/etc>.so
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+cc_library_shared {
+    name: "audio.bluetooth.default",
+    relative_install_path: "hw",
+    proprietary: true,
+    srcs: [
+        "audio_bluetooth_hw.cc",
+        "stream_apis.cc",
+        "device_port_proxy.cc",
+        "utils.cc",
+    ],
+    header_libs: ["libhardware_headers"],
+    shared_libs: [
+        "android.hardware.bluetooth.audio@2.0",
+        "android.hardware.bluetooth.audio@2.1",
+        "libaudioutils",
+        "libbase",
+        "libbluetooth_audio_session",
+        "libcutils",
+        "libfmq",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-parameter",
+    ],
+}
+
+cc_test {
+    name: "audio_bluetooth_hw_test",
+    srcs: [
+        "utils.cc",
+        "utils_unittest.cc",
+    ],
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-parameter",
+    ],
+}

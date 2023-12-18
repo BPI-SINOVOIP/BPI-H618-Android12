@@ -1,0 +1,106 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_security_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    default_applicable_licenses: ["system_security_license"],
+}
+
+cc_defaults {
+    name: "keystore_defaults",
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-Wunused",
+    ],
+
+    sanitize: {
+        misc_undefined: [
+             "signed-integer-overflow",
+             "unsigned-integer-overflow",
+             "shift",
+             "integer-divide-by-zero",
+             "implicit-unsigned-integer-truncation",
+             // BUG: 123630767
+             //"implicit-signed-integer-truncation",
+             "implicit-integer-sign-change",
+        ],
+    },
+
+    clang: true,
+}
+
+cc_binary {
+    name: "keystore_cli_v2",
+    defaults: ["keystore_defaults"],
+
+    cflags: [
+        "-DKEYMASTER_NAME_TAGS",
+        "-Wno-unused-parameter",
+    ],
+    srcs: [
+        "keystore_cli_v2.cpp",
+        "keystore_client.proto",
+    ],
+    shared_libs: [
+        "android.security.apc-ndk_platform",
+        "android.system.keystore2-V1-ndk_platform",
+        "libbinder",
+        "libbinder_ndk",
+        "libchrome",
+        "libcrypto",
+        "libkeymint_support",
+        "libprotobuf-cpp-lite",
+        "libutils",
+    ],
+
+    local_include_dirs: ["include"],
+}
+
+// Library used by both keystore and credstore for generating the ASN.1 stored
+// in Tag::ATTESTATION_APPLICATION_ID
+cc_library_shared {
+    name: "libkeystore-attestation-application-id",
+    defaults: ["keystore_defaults"],
+
+    srcs: [
+        ":IKeyAttestationApplicationIdProvider.aidl",
+        "keystore_attestation_id.cpp",
+        "KeyAttestationApplicationId.cpp",
+        "KeyAttestationPackageInfo.cpp",
+        "Signature.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "libcrypto",
+    ],
+
+    export_include_dirs: ["include"],
+}
+
+// Library for keystore clients using the WiFi HIDL interface
+cc_library_shared {
+    name: "libkeystore-wifi-hidl",
+    defaults: ["keystore_defaults"],
+
+    srcs: ["keystore_get_wifi_hidl.cpp"],
+    shared_libs: [
+        "android.system.wifi.keystore@1.0",
+        "libbase",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+
+    export_include_dirs: ["include"],
+
+    vendor: true,
+}

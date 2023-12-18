@@ -1,0 +1,6 @@
+service crda.uevent /vendor/bin/crda.uevent
+    class main
+    user root
+    group system
+    capabilities BLOCK_SUSPEND NET_ADMIN
+    oneshot

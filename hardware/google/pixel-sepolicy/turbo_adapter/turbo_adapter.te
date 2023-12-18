@@ -1,0 +1,23 @@
+# Normal platform_apps cannot access PowerHAL, so we need to define our own domain. Unfortunately
+# this means that TurboAdapter doesn't get the platform_app permissions any more, so we need to
+# list everything that it needs here.
+
+type turbo_adapter, domain, coredomain, system_suspend_internal_server;
+
+app_domain(turbo_adapter)
+
+# To use ServiceManager
+allow turbo_adapter app_api_service:service_manager find;
+
+# To find and call hal_power_default so turbo can obtain the service extension (IPowerExt)
+hal_client_domain(turbo_adapter, hal_power)
+
+# PAS: for PowerStatsHalDataProvider
+hal_client_domain(turbo_adapter, hal_power_stats)
+
+# PAS: for GoogleCpuTimeProvider
+r_dir_file(turbo_adapter, proc_uid_cputime_showstat);
+
+# PAS: for SuspendControlServiceDataProvider
+binder_call(turbo_adapter, system_suspend_internal_server)
+get_prop(turbo_adapter, suspend_prop)

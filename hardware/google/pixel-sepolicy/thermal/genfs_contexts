@@ -1,0 +1,3 @@
+genfscon sysfs /devices/virtual/thermal                                        u:object_r:sysfs_thermal:s0
+genfscon sysfs /class/thermal                                                  u:object_r:sysfs_thermal:s0
+genfscon debugfs /gs101-thermal                                                u:object_r:debugfs_thermal:s0

@@ -1,0 +1,13 @@
+on property:sys.boot_completed=1
+    # snd-aloop device for bluetooth vohci
+    insmod /vendor/lib/modules/snd-aloop.ko id="VoHCILoopback"
+    start vohci
+
+service vohci /vendor/bin/vohci
+    class main
+    capabilities BLOCK_SUSPEND NET_ADMIN SYS_NICE
+    user root
+    group bluetooth net_bt net_bt_admin wakelock audio media root
+    disabled
+    oneshot
+    task_profiles ProcessCapacityHigh HighPerformance

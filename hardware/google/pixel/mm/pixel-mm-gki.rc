@@ -1,0 +1,24 @@
+# Copyright (C) 2021 The Android Open-Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+on init
+    # memory reserve tuning
+    write /proc/sys/vm/watermark_boost_factor 0
+    write /proc/sys/vm/min_free_kbytes 27386
+    write /proc/sys/vm/lowmem_reserve_ratio "0 0 0"
+    # khugepaged tuning
+    write /sys/kernel/mm/transparent_hugepage/khugepaged/scan_sleep_millisecs 60000
+
+on property:sys.boot_completed=1
+    chmod 444 /sys/kernel/debug/page_owner

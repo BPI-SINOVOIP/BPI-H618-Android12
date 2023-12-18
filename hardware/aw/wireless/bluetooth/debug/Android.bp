@@ -1,0 +1,30 @@
+// Copyright 2006 The Android Open Source Project
+
+sh_binary {
+    name: "uart-setup",
+    src: "uart-setup",
+    proprietary: true,
+}
+
+cc_binary {
+    name: "uart-bridge",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wunused",
+        "-Wunreachable-code",
+    ],
+    srcs: ["main.c"],
+    include_dirs: ["system/core/libutils/include"],
+
+    proprietary: true,
+
+    shared_libs: [
+        "libcutils",
+        "liblog",
+    ],
+
+    required: [
+        "uart-setup",
+    ],
+}

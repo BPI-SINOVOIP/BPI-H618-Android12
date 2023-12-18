@@ -1,0 +1,22 @@
+1.gpu arch: ge8300
+
+
+2.gpu_um_priv commot log information:
+commit f032e992f31f679a36126f444b618e6060078198
+Author: zhengwanyu <zhengwanyu@allwinnertech.com>
+Date:   Thu Jan 20 16:34:36 2022 +0800
+
+    img-rgx: support HAL_PIXEL_FORMAT_YCBCR_422_I
+
+    Change-Id: I959fefa1254738613ee398e1ddde37ea073037ef
+
+
+
+3.toolchain information:
+/home/zhengwanyu/AndroidS/prebuilts/clang/host/linux-x86/clang-r416183b
+/home/zhengwanyu/AndroidS/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin
+
+
+4.build android standalone:0
+
+

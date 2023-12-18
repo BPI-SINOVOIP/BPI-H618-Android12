@@ -1,0 +1,9 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+kernel_headers {
+    name: "qti_kernel_headers",
+    vendor: true,
+    recovery_available: true,
+}

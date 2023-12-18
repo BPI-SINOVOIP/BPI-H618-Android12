@@ -1,0 +1,148 @@
+// Copyright 2020, The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_security_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_security_license"],
+}
+
+rust_defaults {
+    name: "libkeystore2_defaults",
+    crate_name: "keystore2",
+    srcs: ["src/lib.rs"],
+
+    rustlibs: [
+        "android.hardware.security.keymint-V1-rust",
+        "android.hardware.security.secureclock-V1-rust",
+        "android.hardware.security.sharedsecret-V1-rust",
+        "android.os.permissions_aidl-rust",
+        "android.security.apc-rust",
+        "android.security.authorization-rust",
+        "android.security.compat-rust",
+        "android.security.maintenance-rust",
+        "android.security.metrics-rust",
+        "android.security.remoteprovisioning-rust",
+        "android.system.keystore2-V1-rust",
+        "libanyhow",
+        "libbinder_rs",
+        "libcutils_bindgen",
+        "libkeystore2_aaid-rust",
+        "libkeystore2_apc_compat-rust",
+        "libkeystore2_crypto_rust",
+        "libkeystore2_km_compat",
+        "libkeystore2_selinux",
+        "libkeystore2_system_property-rust",
+        "libkeystore2_vintf_rust",
+        "liblazy_static",
+        "liblibc",
+        "liblibsqlite3_sys",
+        "liblog_event_list",
+        "liblog_rust",
+        "librand",
+        "librusqlite",
+        "libthiserror",
+    ],
+    shared_libs: [
+        "libcutils",
+    ],
+    features: [
+        "watchdog",
+    ],
+}
+
+rust_library {
+    name: "libkeystore2",
+    defaults: ["libkeystore2_defaults"],
+}
+
+rust_library {
+    name: "libkeystore2_test_utils",
+    crate_name: "keystore2_test_utils",
+    srcs: ["test_utils/lib.rs"],
+    rustlibs: [
+        "liblog_rust",
+        "librand",
+    ],
+}
+
+rust_test {
+    name: "keystore2_test",
+    crate_name: "keystore2",
+    test_suites: ["general-tests"],
+    auto_gen_config: true,
+    compile_multilib: "first",
+    defaults: ["libkeystore2_defaults"],
+    rustlibs: [
+        "libandroid_logger",
+        "libkeystore2_test_utils",
+        "libnix",
+    ],
+    // The test should always include watchdog.
+    features: [
+        "watchdog",
+    ],
+}
+
+rust_binary {
+    name: "keystore2",
+    srcs: ["src/keystore2_main.rs"],
+    rustlibs: [
+        "libandroid_logger",
+        "libbinder_rs",
+        "libkeystore2",
+        "liblog_rust",
+        "liblegacykeystore-rust",
+    ],
+    init_rc: ["keystore2.rc"],
+
+    // In S, keystore2 is the only process using dynamically linked Rust from
+    // /system. As a result, the usual savings from sharing libraries don't
+    // apply.
+    // Remove `prefer_rlib: true` once we have several processes, once a space
+    // calculation shows net RAM savings, or once we have automatic variant
+    // selection available in the build system.
+    prefer_rlib: true,
+
+    // TODO(b/187412695)
+    // This is a hack to work around the build system not installing
+    // dynamic dependencies of rlibs to the device. This section should
+    // be removed once that works correctly.
+    shared_libs: [
+        "android.hardware.confirmationui@1.0",
+        "android.hardware.security.sharedsecret-V1-ndk_platform",
+        "android.security.compat-ndk_platform",
+        "libc",
+        "libdl_android",
+        "libdl",
+        "libandroidicu",
+        "libkeymint",
+        "libkeystore2_aaid",
+        "libkeystore2_apc_compat",
+        "libkeystore2_crypto",
+        "libkeystore2_vintf_cpp",
+        "libkm_compat_service",
+        "libkm_compat",
+        "libm",
+        "libstatspull",
+        "libstatssocket",
+    ],
+
+    vintf_fragments: ["android.system.keystore2-service.xml"],
+
+    required: ["keystore_cli_v2"],
+}

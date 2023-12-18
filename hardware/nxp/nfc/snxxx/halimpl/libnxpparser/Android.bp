@@ -1,0 +1,46 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "hardware_nxp_nfc_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["hardware_nxp_nfc_license"],
+}
+
+cc_library_shared {
+
+    name: "nxp_nci_parser",
+    defaults: ["hidl_defaults"],
+    proprietary: true,
+
+    cflags: [
+        "-Wall",
+        "-Wno-unused-parameter",
+        "-Wextra",
+    ],
+
+    srcs: [
+        "osal/src/phOsal_LinkList.cpp",
+        "osal/src/phOsal_Log.cpp",
+        "osal/src/phOsal_Posix.cpp",
+        "osal/src/phOsal_Queue.cpp",
+        "parser/src/NCIBase.cpp",
+        "parser/src/NCIDecoderProp.cpp",
+        "parser/src/NCIDecoderStandard.cpp",
+        "parser/src/NCILxDebugDecoder.cpp",
+        "parser/src/NCIParser.cpp",
+        "parser/src/NCIParserInterface.cpp",
+        "parser/src/phOsal_Adaptation.cpp",
+    ],
+
+    local_include_dirs: [
+        "osal/inc",
+        "parser/inc",
+    ],
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+}

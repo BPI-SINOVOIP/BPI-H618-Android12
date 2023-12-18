@@ -1,0 +1,58 @@
+cc_library_shared {
+    name: "libkeymaster4_1_ca_aw",
+    proprietary: true,
+    //relative_install_path: "hw",
+    vendor: true,
+    srcs: [
+        "ca/AW_Keymaster41Device.cpp"
+    ],
+    shared_libs: [
+        "libkeymaster_messages",
+        "libsoftkeymasterdevice",
+        "liblog",
+        "libcutils",
+        "libbase",
+        "libteec",
+        "libhardware",
+        "libhidlbase",
+//        "libhidltransport",
+        "android.hardware.keymaster@4.0",
+        "android.hardware.keymaster@4.1",
+        "libutils",
+        "libkeymaster4_ca_aw",
+        "lib_aw_km_utility",
+    ],
+}
+
+cc_binary {
+    name: "android.hardware.keymaster@4.1-service-aw",
+    defaults: ["hidl_defaults"],
+    proprietary: true,
+    relative_install_path: "hw",
+    vendor: true,
+    init_rc: ["android.hardware.keymaster@4.1-service-aw.rc"],
+    vintf_fragments: ["keymaster-aw@4.1.xml"],
+    srcs: [
+        "service.cpp"
+    ],
+
+    shared_libs: [
+        "libkeymaster_messages",
+        "libkeymaster4_ca_aw",
+        "libkeymaster4_1_ca_aw",
+        "liblog",
+        "libcutils",
+        "libdl",
+        "libbase",
+        "libutils",
+        "libhidlbase",
+//        "libhidltransport",
+        "libhardware",
+        "android.hardware.keymaster@4.0",
+        "android.hardware.keymaster@4.1",
+        "libkeymaster4",
+        "libkeymaster41",
+        "libkeymaster4_1support",
+        "lib_aw_km_utility",
+    ],
+}

@@ -1,0 +1,314 @@
+###############################################################################
+# @File         pvrhtbd
+# @Title        HTB Log dump tool
+# @Copyright    Copyright (c) Imagination Technologies Ltd. All Rights Reserved
+# @Description  Script to execute a set of tests and collate the benchmark
+#               performance into a single report.
+# @License      Strictly Confidential.
+###############################################################################
+
+usage() {
+    echo ""
+    echo "Usage: ./pvrhtbd [pvrdebug hostlog options and arguments]"
+    echo "Dump the processed output of the Host Trace Buffer to a file."
+	echo ""
+    echo "This tool starts a reader daemon, then applies any hostlog"
+	echo "configuration options."
+    echo "Data logging continues until <enter> is pressed to stop log capture"
+	echo ""
+    echo "There are two main use-cases supported by this tool:"
+	echo "Crash Logging:"
+	echo "    Where the Host Trace Buffer has been configured via powervr.ini"
+	echo "    to drop the oldest logs, this tool can be used without arguments"
+	echo "    after the driver has crashed to capture the logs leading up to"
+	echo "    the crash point."
+	echo "Continuous Logging:"
+	echo "    The tool may be stated, applying any Host Trace configuration"
+	echo "    options required and left running until the data required has"
+	echo "    been captured."
+	echo "    If the Host Trace Buffer size specified in powervr.ini is large"
+	echo "    enough, and this tool started early enough putting the Host Trace"
+	echo "    in blocking mode, it should be possible to capture all Host Trace"
+	echo "    events"
+	echo ""
+    echo "    -h, --help     prints this message"
+    echo ""
+}
+
+# write_cfg_file(tld_output_folder, cfg_file)
+write_cfg_file() {
+echo "
+[pvrtld]
+output_folder_name=$1
+output_type=file
+omit_header=yes
+output_file_save_previous=yes
+
+[PVRHTBuffer]
+enabled=yes
+output_file_name=$2
+wait_for_stream=yes
+" > $3
+}
+
+
+PVRINI_FILE="/etc/powervr.ini"
+
+TLD_CFG_FILE="htbtld.conf"
+FIFO_FILE="tldctrl.fifo"
+
+HT_BASENAME="hosttrace"
+HT_OUTFILE="${HT_BASENAME}.bin"
+HOSTTRACE_FILE="${HT_BASENAME}.log"
+
+PVRDBG_DROPLATEST="-hostlogtype droplatest"
+BLOCK_STR="block"
+APPHINT_EN_STR="EnableHTBLogGroup"
+PVRDEBUG_EN_STR="hostloggroups"
+PVRDEBUG_ARGS=""
+
+GRAB_LOG=0
+
+init() {
+    # detect os
+    if [ -x "/system/bin/logcat" ]; then
+        OS="Android"
+    elif [ -c "/dev/slog" ]; then
+        OS="QNX"
+    else
+        OS="Linux"
+    fi
+    echo "Detected OS: $OS"
+
+	# set OS dependent variables here
+    if [ $OS = 'Android' ]; then
+		TMP_DIR="/data/local/tmp"
+		BIN_DIR="/system/vendor/bin"
+		TLD_BIN="$BIN_DIR/pvrtld"
+		PVRDEBUG_BIN="$BIN_DIR/pvrdebug"
+		HTB_BIN="$BIN_DIR/pvrhtb2txt"
+	elif [ $OS = 'QNX' ]; then
+		TMP_DIR="/tmp"
+		TLD_BIN="`command -v pvrtld`"
+		PVRDEBUG_BIN="`command -v pvrdebug`"
+		HTB_BIN="`command -v pvrhtb2txt`"
+		# QNX does not have /etc/powervr.ini by default. Check current directory first.
+		if [ -e "`pwd`/powervr.ini" ]; then
+			PVRINI_FILE="`pwd`/powervr.ini"
+		fi
+	else
+		TMP_DIR="/tmp"
+		TLD_BIN="`command -v \"pvrtld\"`"
+		PVRDEBUG_BIN="`command -v \"pvrdebug\"`"
+		HTB_BIN="`command -v \"pvrhtb2txt\"`"
+	fi
+
+	if [ ! -x "$TLD_BIN" ]; then
+		echo "[Error] pvrtld not found"
+		exit 1
+	fi
+
+	if [ ! -x "$PVRDEBUG_BIN" ]; then
+		echo "[Error] pvrdebug not found"
+		exit 1
+	fi
+
+	if [ ! -x "$HTB_BIN" ]; then
+		echo "[Error] pvrhtb2txt not found"
+		exit 1
+	fi
+
+	if [ $OS = 'QNX' ]; then
+		# QNX not support creating folder in /tmp. User must cd to a mount point (NFS or external disk)
+		WORK_DIR="`pwd`/`date +pvrhtbd_%y%m%d%H%M`"
+	else
+		WORK_DIR="$TMP_DIR/`date +pvrhtbd_%y%m%d%H%M`"
+	fi
+	
+	mkdir -p $WORK_DIR
+	if [ $? -ne 0 ]; then
+		echo "Failed to create folder $WORK_DIR"
+		if [ $OS = 'QNX' ]; then
+			# Worst case that user do not have NFS mount or external disk.
+			echo
+			echo "Using $TMP_DIR as output directory"
+			echo -n "Old data files will be deleted. Press <Enter> to continue..."
+			dd bs=1 count=1 2> /dev/null
+			
+			WORK_DIR=$TMP_DIR
+			
+			# Remove existing files
+			rm -f $WORK_DIR/$TLD_CFG_FILE
+			rm -f $WORK_DIR/$HT_OUTFILE
+			rm -f $WORK_DIR/$HOSTTRACE_FILE
+		else
+			exit 1
+		fi
+	fi
+	# Should print out working variables
+	echo "TMP_DIR=$TMP_DIR"
+	echo "TLD_BIN=$TLD_BIN"
+	echo "PVRDEBUG_BIN=$PVRDEBUG_BIN"
+	echo "HTB_BIN=$HTB_BIN"
+	echo "WORK_DIR=$WORK_DIR"
+}
+
+
+arg_parse() {
+	arg_add=0
+	for argument in "$@"
+	do
+		case "$argument" in
+			-hostloggroups|-hostlogmode|-hostlogtype|-hostloglevel)
+				PVRDEBUG_ARGS="$PVRDEBUG_ARGS $argument"
+				arg_add=1
+				;;
+
+			-h|--help)
+				usage
+				exit 0
+				;;
+
+			-g|--grab)
+				GRAB_LOG=1
+				;;
+
+			*)
+				if [ "$arg_add" -eq "1" ]; then
+					PVRDEBUG_ARGS="$PVRDEBUG_ARGS $argument"
+					arg_add=0
+				else
+					echo "[Error] Argument '$argument' not recognized." 
+					echo "        Run '$0 -h' for more information."; exit 1 
+				fi
+				;;
+		esac
+	done
+}
+
+
+capture_hosttrace() {
+	# fifo to send keypress to backgrounded app
+	# mknod $WORK_DIR/$FIFO_FILE p
+
+	# run pvrtld in background
+	# (redirecting stdout causes pvrtld to fail to write output)
+	#$TLD_BIN -f=$WORK_DIR/$TLD_CFG_FILE < $WORK_DIR/$FIFO_FILE &
+	$TLD_BIN -f=$WORK_DIR/$TLD_CFG_FILE &
+	proc_num=$!
+	sleep 3
+
+	# set the logging parameters as requested
+	# this has to be done after starting capture to support blocking logs
+	if [ ! -z "$PVRDEBUG_ARGS" ]; then
+		echo "Using pvrdebug to set logging parameters:"
+		echo "    $PVRDEBUG_ARGS"
+		$PVRDEBUG_BIN $PVRDEBUG_ARGS
+	fi
+
+	if [ "0" -eq "$GRAB_LOG" ]; then
+		# wait for a keypress (Android does not give a lot of options for this)
+		echo "Please press <Enter> to stop log capture"
+		dd bs=1 count=1 2> /dev/null
+	else
+		sleep 3
+	fi
+
+	# safely stop if reading a blocking log
+	echo $PVRDEBUG_ARGS | grep -q "$BLOCK_STR"
+	if [ "0" -eq "$?" ]; then
+		echo "Using pvrdebug to reset logging parameters:"
+		echo "    $PVRDBG_DROPLATEST"
+		$PVRDEBUG_BIN $PVRDBG_DROPLATEST
+	fi
+
+	# stop pvrtld
+	#echo -n "x" > $WORK_DIR/$FIFO_FILE
+	#rm $WORK_DIR/$FIFO_FILE
+	echo "Stopping..."
+	kill -s QUIT $proc_num
+
+	# wait some because pvrtld is slow to stop
+	sleep 3
+
+	if [ ! $OS = 'QNX' ]; then
+		# flush to disk
+		sync
+	fi
+}
+
+
+process_binfile() {
+	$HTB_BIN -bin $WORK_DIR/$HT_OUTFILE > $WORK_DIR/$HOSTTRACE_FILE
+	echo "Host Trace Data written to: $WORK_DIR/$HOSTTRACE_FILE"
+}
+
+
+perform_check() {
+	if [ -e $PVRINI_FILE ]; then
+		grep -q "$APPHINT_EN_STR" $PVRINI_FILE
+		app_en=$?
+	else
+		app_en=1
+	fi
+
+	echo $PVRDEBUG_ARGS > $WORK_DIR/args.tmp
+	grep -q "$PVRDEBUG_EN_STR" $WORK_DIR/args.tmp
+	arg_en=$?
+
+	if [ "0" -ne "$app_en" -a "0" -ne "$arg_en" ]; then
+		echo "Host Trace Logging is not enabled in either:"
+		echo "    $PVRINI_FILE"
+		echo "    or cmdline args"
+		echo "Nothing will be captured"
+		exit 1
+	fi
+}
+
+
+archive() {
+    if [ $OS = "Android" ]; then
+        if [ ! -x /system/bin/gzip ]; then
+            return
+        fi
+    else
+        if ! command gzip -h >/dev/null 2>&1; then
+            return
+        fi
+    fi
+
+    echo -n "Archiving data ...................... "
+    gzip -f $OUT
+    echo "done"
+    echo ""
+    echo "File $OUT.gz was created."
+}
+
+
+run_main() {
+	echo ""
+	echo "========================== HTB Log Dump ============================"
+
+	init
+
+	arg_parse $@
+
+	perform_check
+
+	write_cfg_file $WORK_DIR $HT_BASENAME $WORK_DIR/$TLD_CFG_FILE
+
+	echo ""
+	echo "======================== Capturing HTB Log ========================="
+	capture_hosttrace
+
+	echo ""
+	echo "======================== Write out HTB Log ========================="
+	process_binfile
+
+	echo ""
+	echo ""
+}
+
+# main function
+run_main $@
+

@@ -1,0 +1,54 @@
+bootstrap_go_package {
+    name: "soong-homletlibs",
+    pkgPath: "android/soong/homletlibs",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-cc",
+    ],
+    srcs: [
+        "homletlibs.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+rule_homletlibs_defaults {
+    name: "homletlibs_defaults",
+}
+
+cc_library_shared {
+    defaults: [
+        "sunxidisplayconfig_defaults",
+        "homletlibs_defaults",
+    ],
+    name: "libdisplayconfig",
+    vendor: true,
+
+    cflags: [
+        "-Wall",
+        "-Wunreachable-code",
+    ],
+    include_dirs: [
+        "system/core/include",
+        "hardware/libhardware/include",
+        "hardware/aw/display/include",
+        "hardware/aw/display/interfaces/config/1.0/src",
+    ],
+    srcs: [
+        "DisplayConfigImpl.cpp",
+        "DisplayConfigService.cpp",
+        "snr/SNRManager.cpp",
+        "snr/snr.cpp",
+        "enhance/DefaultEnhance.cpp",
+    ],
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "liblog",
+        "libbinder",
+        "libhidlbase",
+        "libhidltransport",
+        "vendor.display.config@1.0",
+        "vendor.display.config@1.0-impl",
+    ],
+}

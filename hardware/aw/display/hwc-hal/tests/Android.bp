@@ -1,0 +1,55 @@
+
+cc_defaults {
+    name: "cc_test_defaults",
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "libion",
+        "libbase",
+        "liblog",
+        "libui",
+        "libjsoncpp",
+    ],
+
+    static_libs: [
+        "libhwc3-static",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-DHWC2_USE_CPP11",
+        "-DHWC2_INCLUDE_STRINGIFICATION",
+        "-DHWC2_INCLUDE_STRINGIFICATION",
+    ],
+
+    include_dirs: [
+        "system/core/include",
+        "hardware/libhardware/include",
+        "hardware/aw/display/hwc-hal",
+        "hardware/aw/display/hwc-hal/rotator",
+        "hardware/aw/display/hwc-hal/include",
+        "hardware/aw/display/include",
+        "hardware/aw/gpu",
+        "hardware/aw/gpu/include",
+    ],
+
+    proprietary: true,
+    defaults: ["sunxidisplayconfig_defaults"],
+}
+
+cc_test {
+    name: "rotate-test",
+    srcs: ["rotate-tests.cpp"],
+    defaults: ["cc_test_defaults"],
+}
+
+cc_test {
+    name: "layerPlanner-test",
+    srcs: [
+        "layertest/main.cpp",
+        "layertest/LayerPlannerTest.cpp",
+        "layertest/TestCaseLoader.cpp",
+    ],
+    defaults: ["cc_test_defaults"],
+}

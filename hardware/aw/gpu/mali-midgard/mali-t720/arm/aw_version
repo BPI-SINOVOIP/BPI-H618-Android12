@@ -1,0 +1,16 @@
+mali-t720: r18p0-01rel0 um android P arm 008
+
+Build parameters:
+profile=tx041-release
+gpu=t72x
+hwver=r1p1
+kernel_modules=0
+winsys=android
+android_version=oreo_mr1
+android_config_override=sunxi
+toolchain=clang
+ump=0
+afbc=0
+
+MD5 information:
+d2357bb2a782cfc6f18fc74ebeddd2c5  lib/libGLES_mali.so

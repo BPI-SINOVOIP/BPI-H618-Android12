@@ -1,0 +1,1568 @@
+is arm32
+make: Entering directory `/home/zhengwanyu/AndroidS/gpu-src/gpu_um_priv/img-rgx/android/rogue/build/linux/sunxi_android'
+../config/preconfig.mk:335: *** Ignoring unrecognised entries in EXCLUDED_APIS: cldnn imgdnn
+../config/preconfig.mk:336: *** EXCLUDED_APIS was set via file to: opengl cldnn imgdnn camerahal composerhal sensorhal thermalhal unittests
+../config/preconfig.mk:337: *** Excludable APIs are: camerahal composerhal hwperftools memtrackhal opencl opengl opengles1 opengles3 openglsc2 rogue2d scripts sensorhal servicestools thermalhal unittests vulkan
+../config/preconfig.mk:366: PVR_ARCH (rogue) is specified when RGX_BVNC (22.102.54.38) is also specified - ignoring PVR_ARCH
+******* Multiarch build: no
+******* Primary arch:    target_armv7-a
+******* Secondary arch:  none
+******* PVR arch:        rogue
+******* HWDefs:          /home/zhengwanyu/AndroidS/gpu-src/gpu_um_priv/img-rgx/android/rogue/hwdefs/rogue
+******* HWDefs (all):    /home/zhengwanyu/AndroidS/gpu-src/gpu_um_priv/img-rgx/android/rogue/hwdefs/rogue /home/zhengwanyu/AndroidS/gpu-src/gpu_um_priv/img-rgx/android/rogue/hwdefs/rogue/22.V.54.38 /home/zhengwanyu/AndroidS/gpu-src/gpu_um_priv/img-rgx/android/rogue/hwdefs/rogue/22.V.54.38/isa /home/zhengwanyu/AndroidS/gpu-src/gpu_um_priv/img-rgx/android/rogue/hwdefs/rogue/km
+******* Host OS:         linux
+******* Target OS:       android
+../config/core.mk:431: KERNELDIR is not set. Kernel components cannot be built
+build/linux/scripts.mk:146: WARNING: UM libufwriter_static_install_path not defined
+  HOST_CC  services/client/devices/shaderfactory/main.c
+  HOST_CC  services/client/devices/shaderfactory/shaderfactory.c
+  HOST_CC  services/client/devices/rogue/shaderfactory/shaderfactory_eot.c
+  HOST_CC  services/client/devices/rogue/shaderfactory/shaderfactory_fragment.c
+  HOST_CC  services/client/devices/rogue/shaderfactory/shaderfactory_varyings.c
+  HOST_CC  services/client/devices/rogue/rgxtransfer_3dconv.c
+  HOST_CC  services/client/devices/rgxtransfer_3dsprop.c
+  HOST_CC  services/client/devices/rgxtransfer_shaderbinary.c
+  HOST_CC  compiler/usc/rogue/efogen.c
+  HOST_CC  compiler/usc/rogue/efotable.c
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/efogen
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/efogen.dbg
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/rgxefogen_header/efogen_out.h
+  HOST_CC  compiler/usc/rogue/usc.c
+  HOST_CC  compiler/usc/rogue/fast_alloc.c
+  HOST_CC  compiler/usc/rogue/data.c
+  HOST_CC  compiler/usc/rogue/dce.c
+  HOST_CC  compiler/usc/rogue/efo.c
+  HOST_CC  compiler/usc/rogue/regalloc.c
+  HOST_CC  compiler/usc/rogue/ssa.c
+  HOST_CC  compiler/usc/rogue/groupinst.c
+  HOST_CC  compiler/usc/rogue/iselect.c
+  HOST_CC  compiler/usc/rogue/dgraph.c
+  HOST_CC  compiler/usc/rogue/reorder.c
+  HOST_CC  compiler/usc/rogue/regpack.c
+  HOST_CC  compiler/usc/rogue/icvt_f32.c
+  HOST_CC  compiler/usc/rogue/icvt_core.c
+  HOST_CC  compiler/usc/rogue/precise.c
+  HOST_CC  compiler/usc/rogue/pregalloc.c
+  HOST_CC  compiler/usc/rogue/finalise.c
+  HOST_CC  compiler/usc/rogue/asm.c
+  HOST_CC  compiler/usc/rogue/indexreg.c
+  HOST_CC  compiler/usc/rogue/usc_utils.c
+  HOST_CC  compiler/usc/rogue/icvt_i32.c
+  HOST_CC  compiler/usc/rogue/domcalc.c
+  HOST_CC  compiler/usc/rogue/layout.c
+  HOST_CC  compiler/usc/rogue/inst.c
+  HOST_CC  compiler/usc/rogue/hw.c
+  HOST_CC  compiler/usc/rogue/reggroup.c
+  HOST_CC  compiler/usc/rogue/icvt_mem.c
+  HOST_CC  compiler/usc/rogue/icvt_atomic.c
+  HOST_CC  compiler/usc/rogue/usedef.c
+  HOST_CC  compiler/usc/rogue/arithsimp.c
+  HOST_CC  compiler/usc/rogue/uniform.c
+  HOST_CC  compiler/usc/rogue/intdiv.c
+  HOST_CC  compiler/usc/rogue/ordered_list.c
+  HOST_CC  compiler/usc/rogue/phase_split.c
+  HOST_CC  compiler/usc/rogue/temparray.c
+  HOST_CC  compiler/usc/rogue/dagraph.c
+  HOST_CC  compiler/usc/rogue/usccompute.c
+  HOST_CC  compiler/usc/rogue/serialise.c
+  HOST_CC  compiler/usc/rogue/uvsw.c
+  HOST_CC  compiler/usc/rogue/itrwcache.c
+  HOST_CC  compiler/usc/rogue/smpswap.c
+  HOST_CC  compiler/usc/rogue/cfg.c
+  HOST_CC  compiler/usc/rogue/queue.c
+  HOST_CC  compiler/usc/rogue/constcalc.c
+  HOST_CC  compiler/usc/rogue/ifconvert.c
+  HOST_CC  compiler/usc/rogue/usctexture.c
+  HOST_CC  compiler/usc/rogue/roguedwarf.c
+  HOST_CC  compiler/usc/rogue/imgdwarflib.c
+  HOST_CC  compiler/usc/rogue/imgelflib.c
+  HOST_CC  compiler/usc/rogue/bitcp.c
+  HOST_CC  compiler/usc/rogue/brn51210.c
+  HOST_CC  compiler/usc/rogue/f16replace.c
+  HOST_CC  compiler/usc/rogue/liftcoeff.c
+  HOST_CC  compiler/usc/rogue/bigraphmatch.c
+  HOST_CC  compiler/usc/rogue/efotable.c
+  HOST_CC  compiler/usc/rogue/ufinststats.c
+  HOST_CC  compiler/usc/rogue/removesat.c
+  HOST_CC  compiler/usc/rogue/mrt_api.c
+  HOST_CC  compiler/usc/rogue/usc_host.c
+  HOST_CC  compiler/usc/common/data/bit_vector_tree.c
+  PREPROC  compiler/usc/rogue/external/usc.h
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/usc_serialize/out_read.c
+  HOST_CC  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/usc_serialize/out_read.c
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/usc_serialize/out_write.c
+  HOST_CC  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/usc_serialize/out_write.c
+  HOST_CC  common/hashfns.c
+  HOST_CC  compiler/usc/rogue/execpred/cfa.c
+  HOST_CC  compiler/usc/rogue/execpred/cdg.c
+  HOST_CC  compiler/usc/rogue/execpred/execpred.c
+  HOST_CC  compiler/usc/rogue/execpred/execswitch.c
+  HOST_CC  compiler/usc/rogue/execpred/avoidduplication.c
+  HOST_CC  compiler/usc/rogue/opt/licm.c
+  HOST_CC  compiler/usc/rogue/validate/brn62269.c
+  HOST_CC  compiler/usc/rogue/validate/brn70209.c
+  HOST_CC  compiler/usc/rogue/opt/register_pressure.c
+  HOST_CC  compiler/usc/rogue/opt/u16rtz.c
+  HOST_CC  compiler/usc/rogue/backend/estimate_stalls.c
+  HOST_CC  compiler/usc/rogue/validate/fix_big_insts.c
+  HOST_CC  compiler/usc/rogue/cfg/fixloops.c
+  HOST_CC  compiler/usc/rogue/cfg/infiniteloop.c
+  HOST_CC  compiler/usc/rogue/cfg/inline.c
+  HOST_CC  compiler/usc/rogue/backend/waits.c
+  HOST_CC  compiler/usc/rogue/ir/srcposition.c
+  HOST_CC  compiler/usc/rogue/opt/precision_upgrade.c
+  HOST_CC  compiler/usc/rogue/texture/cubegradients.c
+  HOST_AR  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/libusc_host.a
+  HOST_CC  compiler/uscasm/rogue/rogueasm.c
+  HOST_CC  compiler/uscasm/rogue/roguedisasm.c
+  HOST_CC  compiler/uscasm/rogue/roguetab.c
+  HOST_CC  compiler/uscasm/rogue/rogueinstutils.c
+  HOST_CC  compiler/uscasm/rogue/roguevalidate.c
+  HOST_CC  common/string.c
+  HOST_AR  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/libuscasm_host.a
+  HOST_CC  common/binshaderbuffer.c
+  HOST_CC  common/hash64.c
+  HOST_CC  common/qsort_s.c
+  HOST_CC  common/mipgen.c
+  HOST_CC  common/takickreason.c
+  HOST_CC  common/pvr_debug_host.c
+  HOST_CC  common/rogue/debugger.c
+  HOST_CC  common/rogue/hwresourcecalc.c
+  HOST_CC  common/rogue/twiddle.c
+  HOST_CC  common/rogue/yuvcoeff.c
+  HOST_CC  common/rogue/hwperf_client_utils.c
+  HOST_CC  common/rogue/pixfmts/blockapi.c
+  HOST_CC  common/rogue/pixfmts/imgfmt_helper.c
+  HOST_CC  common/rogue/pixfmts/imgfmt_string.c
+  HOST_CC  common/rogue/pixeventpbesetup.c
+  HOST_CC  common/rogue/yuvinfo.c
+  HOST_CC  common/rogue/fbc.c
+  HOST_AR  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/libapicommon_host.a
+  HOST_CC  common/rogue/pixfmts/rgxfmt_api.c
+  HOST_CC  common/rogue/pixfmts/imgfmt_api.c
+  HOST_CC  common/rogue/pixfmts/imgfmt_extractindex.c
+  HOST_CC  common/rogue/pixfmts/blockapi.c
+  HOST_CC  common/rogue/pixfmts/imgfmt_string.c
+  HOST_CC  common/rogue/pixfmts/imgfmt_helper.c
+  HOST_CC  common/rogue/pixfmts/rgxborderformats.c
+  HOST_CC  common/rogue/pixfmts/rgxpixelencoding.c
+  HOST_AR  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/libpixfmts_host.a
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/tq_shader_factory
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/tq_shader_factory.dbg
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/rgxtransfer_uniout/rgxtransfer_fragment.h
+  RGXSH    /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/rgx.sh.22.102.54.38
+  CC       services/srvctl/env/linux/pvrsrvctl.c
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/pvrsrvctl
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/pvrsrvctl.dbg
+  CC       tools/services/pvrtld/tldtool/main/tld_paramparser.c
+  CC       tools/services/pvrtld/tldtool/main/tld_main.c
+  HOST_CC  services/client/devices/rogue/usc/vdm_store_sr.usc.asm
+  BISON    compiler/uscasm/rogue/rogue.y
+  HOST_CC  compiler/uscasm/rogue/main.c
+  HOST_CC  compiler/uscasm/rogue/parserutils.c
+  HOST_CC  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/uscasm_parser/rogue.tab.c
+  FLEX     compiler/uscasm/rogue/rogue.l
+  HOST_CC  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/uscasm_lexer/rogue.l.c
+  HOST_CC  compiler/uscasm/rogue/roguedebug.c
+  HOST_CC  compiler/uscasm/rogue/uscinststats.c
+  HOST_CC  compiler/uscasm/common/lines.c
+  HOST_CC  common/string.c
+  HOST_AR  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/libuscdisasm_host.a
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/uscasm
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/uscasm.dbg
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/vdm_store_sr_usc/vdm_store_sr_usc.preproc
+  HOST_CC  services/client/devices/rogue/usc/vdm_load_sr.usc.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/vdm_load_sr_usc/vdm_load_sr_usc.preproc
+  HOST_CC  services/client/devices/rogue/usc/vdm_load_sr_56152.usc.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/vdm_load_sr_56152_usc/vdm_load_sr_56152_usc.preproc
+  HOST_CC  services/client/env/linux/globalregsgen.c
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/globalregsgen
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/globalregsgen.dbg
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/globalregsheader/rgxglobalregdefs_asm.h
+  HOST_CC  services/client/devices/rogue/usc/cdm_load_sr_56152.usc.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/cdm_load_sr_56152_usc/cdm_load_sr_56152_usc.preproc
+  HOST_CC  services/client/devices/rogue/usc/nop.usc.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/nop_usc/nop_usc.preproc
+  HOST_CC  services/client/devices/rogue/usc/non_tiled_store.usc.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/non_tiled_store_usc/non_tiled_store_usc.preproc
+  HOST_CC  services/client/devices/rogue/usc/reset_mutex_bits.usc.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/reset_mutex_bits_usc/reset_mutex_bits_usc.preproc
+  HOST_CC  services/client/devices/rogue/usc/progtex_reset.usc.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/progtex_reset_usc/progtex_reset_usc.preproc
+  HOST_CC  services/client/devices/rogue/usc/read_pixel_output.usc.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/read_pixel_output_usc/read_pixel_output_usc.preproc
+  HOST_CC  services/client/devices/rogue/usc/state_update.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/state_update/state_update.preproc
+  CC       services/client/common/services_ext.c
+  CXX      services/client/env/linux/debug_utils_android.cpp
+  CC       common/linux_sync.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libsync_linux.a
+  CC       common/linux_utils.c
+  CC       common/ftrace_events.c
+  CC       common/tls/linux_tls.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libutil_linux.a
+  HOST_CC  compiler/pds/pds.c
+  HOST_CC  compiler/pds/psc.c
+  HOST_CC  compiler/pds/psc_util.c
+  HOST_CC  compiler/pds/psc_standalone.c
+  HOST_CC  compiler/pdsdisasm/rogue/disasm.c
+  HOST_CC  compiler/pdsdisasm/rogue/pds_printer.c
+  HOST_AR  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/libpdsasm_host.a
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/psc_standalone
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/psc_standalone.dbg
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_patch/draw_indirect_count_patch.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indexed_indirect_count_patch/draw_indexed_indirect_count_patch.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_reset/draw_indirect_count_reset.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_init0/draw_indirect_count_init0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_init1/draw_indirect_count_init1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_init2/draw_indirect_count_init2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_init3/draw_indirect_count_init3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_init0_wa/draw_indirect_count_init0_wa.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_init1_wa/draw_indirect_count_init1_wa.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_init2_wa/draw_indirect_count_init2_wa.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_init3_wa/draw_indirect_count_init3_wa.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_patch_wa0/draw_indirect_count_patch_wa0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_patch_wa1/draw_indirect_count_patch_wa1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_patch_wa2/draw_indirect_count_patch_wa2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_count_patch_wa3/draw_indirect_count_patch_wa3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indexed_indirect_count_patch_wa0/draw_indexed_indirect_count_patch_wa0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indexed_indirect_count_patch_wa1/draw_indexed_indirect_count_patch_wa1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indexed_indirect_count_patch_wa2/draw_indexed_indirect_count_patch_wa2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indexed_indirect_count_patch_wa3/draw_indexed_indirect_count_patch_wa3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays0/draw_indirect_arrays0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays1/draw_indirect_arrays1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays2/draw_indirect_arrays2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays3/draw_indirect_arrays3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays_base_instance0/draw_indirect_arrays_base_instance0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays_base_instance1/draw_indirect_arrays_base_instance1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays_base_instance2/draw_indirect_arrays_base_instance2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays_base_instance3/draw_indirect_arrays_base_instance3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays_base_instance_drawid0/draw_indirect_arrays_base_instance_drawid0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays_base_instance_drawid1/draw_indirect_arrays_base_instance_drawid1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays_base_instance_drawid2/draw_indirect_arrays_base_instance_drawid2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_arrays_base_instance_drawid3/draw_indirect_arrays_base_instance_drawid3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements0/draw_indirect_elements0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements1/draw_indirect_elements1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements2/draw_indirect_elements2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements3/draw_indirect_elements3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements_base_instance0/draw_indirect_elements_base_instance0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements_base_instance1/draw_indirect_elements_base_instance1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements_base_instance2/draw_indirect_elements_base_instance2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements_base_instance3/draw_indirect_elements_base_instance3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements_base_instance_drawid0/draw_indirect_elements_base_instance_drawid0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements_base_instance_drawid1/draw_indirect_elements_base_instance_drawid1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements_base_instance_drawid2/draw_indirect_elements_base_instance_drawid2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/draw_indirect_elements_base_instance_drawid3/draw_indirect_elements_base_instance_drawid3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/compute_dispatch_indirect0/compute_dispatch_indirect0.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/compute_dispatch_indirect1/compute_dispatch_indirect1.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/compute_dispatch_indirect2/compute_dispatch_indirect2.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/compute_dispatch_indirect3/compute_dispatch_indirect3.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/transform_feedback_dummy_firstpause/transform_feedback_dummy_firstpause.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/transform_feedback_dummy_pause/transform_feedback_dummy_pause.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/transform_feedback_firstpause/transform_feedback_firstpause.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/transform_feedback_pause/transform_feedback_pause.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/transform_feedback_stop_nopause/transform_feedback_stop_nopause.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/transform_feedback_stop_afterpause/transform_feedback_stop_afterpause.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/transform_feedback_stop/transform_feedback_stop.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/primquery_set_addr/primquery_set_addr.h
+  PSC      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/primquery_set_addr_and_zero/primquery_set_addr_and_zero.h
+  CC       compiler/pds/pds.c
+  CC       compiler/pds/xgl_pds.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libpds.a
+  CC       common/binshaderbuffer.c
+  CC       common/hash64.c
+  CC       common/qsort_s.c
+  CC       common/mipgen.c
+  CC       common/takickreason.c
+  CC       common/resourceman.c
+  CC       common/c_map.c
+  CC       common/c_hashmap.c
+  CC       common/hashfns.c
+  CC       common/rogue/debugger.c
+  CC       common/rogue/hwresourcecalc.c
+  CC       common/rogue/twiddle.c
+  CC       common/rogue/yuvcoeff.c
+  CC       common/rogue/hwperf_client_utils.c
+  CC       common/rogue/pixfmts/blockapi.c
+  CC       common/rogue/pixfmts/imgfmt_helper.c
+  CC       common/rogue/pixfmts/imgfmt_string.c
+  CC       common/rogue/pixeventpbesetup.c
+  CC       common/rogue/yuvinfo.c
+  CC       common/rogue/fbc.c
+  CC       common/rogue/memheap.c
+  CC       common/rogue/buffers.c
+  CC       common/logmanager/logmanager.c
+  CC       common/rogue/img_drm_modifier_conversion.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libapicommon.a
+  CC       common/rogue/pixfmts/rgxfmt_api.c
+  CC       common/rogue/pixfmts/imgfmt_api.c
+  CC       common/rogue/pixfmts/imgfmt_extractindex.c
+  CC       common/rogue/pixfmts/blockapi.c
+  CC       common/rogue/pixfmts/imgfmt_string.c
+  CC       common/rogue/pixfmts/imgfmt_helper.c
+  CC       common/rogue/pixfmts/rgxborderformats.c
+  CC       common/rogue/pixfmts/rgxpixelencoding.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libpixfmts.a
+  CC       android/libs/android_utils.c
+  CC       android/libs/android_dlsym.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libutil_android.a
+  CC       services/client/env/linux/allocmem.c
+  CC       services/client/env/linux/devicemem_dmabuf.c
+  CC       services/client/env/linux/lock.c
+  CC       services/client/env/linux/memchk.c
+  CC       services/client/env/linux/osfunc_mutex.c
+  CC       services/client/env/linux/osfunc_mutexpg.c
+  CC       services/client/env/linux/osfunc_um.c
+  CC       services/client/env/linux/osmmap.c
+  CC       services/client/env/linux/pvrsrv_devmem_dmabuf.c
+  CC       services/client/env/linux/pvr_apphint.c
+  CC       services/client/env/linux/pvr_apphintipc.c
+  CC       services/client/env/linux/pvr_bridge_u.c
+  CC       services/client/env/linux/pvr_debug.c
+  CC       services/client/env/linux/pvr_drm_utils.c
+  CC       services/client/env/linux/pvr_metrics.c
+  CC       services/client/env/linux/tree.c
+  CC       services/client/env/linux/pvrsrv_sync_fdsync.c
+  CC       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/rgxtransfer_uniout/rgxtransfer_eot.c
+  CC       services/shared/common/devicemem.c
+  CC       services/shared/common/devicememx.c
+  CC       services/shared/common/devicemem_utils.c
+  CC       services/shared/common/hash.c
+  CC       services/shared/common/htbuffer.c
+  CC       services/shared/common/mem_utils.c
+  CC       services/shared/common/pvrsrv_error.c
+  CC       services/shared/common/ra.c
+  CC       services/shared/common/sync.c
+  CC       services/shared/common/tlclient.c
+  CC       services/shared/common/uniq_key_splay_tree.c
+  CC       services/client/common/atomic.c
+  CC       services/client/common/cache.c
+  CC       services/client/common/cache_coherency.c
+  CC       services/client/common/connection.c
+  CC       services/client/common/devicemem_client.c
+  CC       services/client/common/devicemem_secbuf.c
+  CC       services/client/common/hwperf_client.c
+  CC       services/client/common/pvrsrv_devmem.c
+  CC       services/client/common/pvrsrv_devmemx.c
+  CC       services/client/common/pvrsrv_devmem_secbuf.c
+  CC       services/client/common/pvrsrv_devmem_miw.c
+  CC       services/client/common/pvrsrv_devvar.c
+  CC       services/client/common/pvrtl_client.c
+  CC       services/client/common/pvr_bridge_log.c
+  CC       services/client/common/pvr_htb.c
+  CC       services/client/common/resources.c
+  CC       services/client/common/srvcore.c
+  CC       services/client/common/sync_utils.c
+  CC       services/client/common/pvrsrv_task.c
+  CC       services/client/common/di_client.c
+  CC       compiler/common/ffcommon/ffcommon.c
+  CC       generated/rogue/mm_bridge/client_mm_bridge.c
+  CC       generated/rogue/cmm_bridge/client_cmm_bridge.c
+  CC       generated/rogue/srvcore_bridge/client_srvcore_bridge.c
+  CC       generated/rogue/sync_bridge/client_sync_bridge.c
+  CC       generated/rogue/synctracking_bridge/client_synctracking_bridge.c
+  CC       generated/rogue/htbuffer_bridge/client_htbuffer_bridge.c
+  CC       generated/rogue/pvrtl_bridge/client_pvrtl_bridge.c
+  CC       generated/rogue/devicememhistory_bridge/client_devicememhistory_bridge.c
+  CC       generated/rogue/cache_bridge/client_cache_bridge.c
+  CC       generated/rogue/di_bridge/client_di_bridge.c
+  CC       generated/rogue/rgxtq_bridge/client_rgxtq_bridge.c
+  CC       generated/rogue/rgxtq2_bridge/client_rgxtq2_bridge.c
+  CC       generated/rogue/rgxta3d_bridge/client_rgxta3d_bridge.c
+  CC       generated/rogue/rgxfwdbg_bridge/client_rgxfwdbg_bridge.c
+  CC       generated/rogue/rgxhwperf_bridge/client_rgxhwperf_bridge.c
+  CC       generated/rogue/rgxregconfig_bridge/client_rgxregconfig_bridge.c
+  CC       generated/rogue/rgxcmp_bridge/client_rgxcmp_bridge.c
+  CC       generated/rogue/rgxkicksync_bridge/client_rgxkicksync_bridge.c
+  CC       generated/rogue/rgxtimerquery_bridge/client_rgxtimerquery_bridge.c
+  CC       generated/rogue/rgxsignals_bridge/client_rgxsignals_bridge.c
+  CC       generated/rogue/rgxray_bridge/client_rgxray_bridge.c
+  CC       generated/rogue/rgxbreakpoint_bridge/client_rgxbreakpoint_bridge.c
+  CC       generated/rogue/dmabuf_bridge/client_dmabuf_bridge.c
+  CC       services/client/devices/rogue/rgxutils_client.c
+  CC       services/client/devices/rogue/rgxutils_ctxswitch.c
+  CC       services/client/devices/rogue/rgxutils_ctxswitch_ctrl.c
+  CC       services/client/devices/rogue/rgxsync_utils.c
+  CC       services/client/devices/rogue/rgxfwdbg_client.c
+  CC       services/client/devices/rgxkicksync_client.c
+  CC       services/client/devices/rgxbvnc_client.c
+  CC       services/client/devices/rgxtimerquery_client.c
+  CC       services/client/devices/rogue/rgxdevmem.c
+  CC       services/client/devices/rogue/rgxdevmem_static.c
+  CC       services/client/devices/rogue/rgx_resetframework.c
+  CC       services/client/devices/rogue/rgxutils_resetframework.c
+  CC       services/client/devices/rogue/rgxbreakpoint_client.c
+  CC       services/client/devices/rogue/rgxtransfer_3dconv.c
+  CC       services/client/devices/rgxtransfer_3dsprop.c
+  CC       services/client/devices/rgxtransfer_clearcolour.c
+  CC       services/client/devices/rogue/rgxtransfer_texelunwind.c
+  CC       services/client/devices/rgxtransfer_buffer.c
+  CC       services/client/devices/rgxtransfer_pmr.c
+  CC       services/client/devices/rgxtransfer_capture.c
+  CC       services/client/devices/rgxtransfer_utils.c
+  CC       services/client/devices/rgxtransfer_validation.c
+  CC       services/client/devices/rogue/rgxtransfer_validationcommon.c
+  CC       services/client/devices/rogue/rgxta3d_client.c
+  CC       services/client/devices/rogue/rgxpb.c
+  CC       services/client/devices/rogue/rgxrender_targets.c
+  CC       services/client/devices/rogue/rgxzsbuffer_client.c
+  CC       services/client/devices/rogue/rgxtransfer_addrvalidation.c
+  CC       services/client/devices/rogue/rgxtransfer_context.c
+  CC       services/client/devices/rogue/rgxtransfer_queue.c
+  CC       services/client/devices/rogue/rgxtransfer_3d.c
+  CC       services/client/devices/rogue/rgxtransfer_front.c
+  CC       services/client/devices/rogue/rgxtransfer_tlavalidation.c
+  CC       services/client/devices/rogue/rgxtransfer_3dvalidation.c
+  CC       services/client/devices/rogue/rgxcompute_client.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libsrv_um_static.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libsrv_um.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libsrv_um.dbg
+  CC       tools/services/pvrtld/tldlib/tld_common.c
+  CC       tools/services/pvrtld/tldlib/tld_threads_pool.c
+  CC       tools/services/pvrtld/tldlib/tld_processing.c
+  CC       tools/services/pvrtld/tldlib/tld_configuration.c
+  CC       services/client/env/linux/pvr_debug.c
+  CC       tools/services/pvrtld/tldlib/pvr_apphint/pvr_apphint.c
+  CC       tools/services/pvrtld/tldlib/pvr_apphint/ini_parser.c
+  CC       tools/services/pvrtld/tldlib/pvr_apphint/reader.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libpvrtld.a
+  CC       unittests/services/common/libsrvut/srv_unittest.c
+  CC       unittests/services/common/libsrvut/rogue/srv_unittest_utils.c
+  CC       common/rogue/hwresourcecalc.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libsrvut.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/pvrtld
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/pvrtld.dbg
+  CC       tools/services/pvrdebug/pvrdebug.c
+  CC       unittests/services/common/libsrvut/rogue/srv_unittest_utils.c
+  CC       unittests/services/common/libsrvut/rgx_unittest_utils.c
+  CC       tools/services/pvrdebug/rogue/pvr_debug_arch.c
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/pvrdebug
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/pvrdebug.dbg
+  HOST_CC  tools/services/tracebuf/tracebuf.c
+  HOST_CC  services/server/devices/rgxfwtrace_strings.c
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/tracebuf
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/tracebuf.dbg
+  CC       tools/services/pvrhtb/pvrhtb2txt.c
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/pvrhtb2txt
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/pvrhtb2txt.dbg
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/pvrhtbd
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/pvrhtbmerge.py
+  CC       common/rogue/pixfmts/imgfmt_string.c
+  CC       services/shared/common/mem_utils.c
+  CXX      tools/PVRScopeServices/PVRScopeServicesCommon.cpp
+  CXX      tools/PVRScopeServices/rogue/PVRScopeServices.cpp
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libPVRScopeServices.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libPVRScopeServices.dbg
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/pvrhwperf
+  CC       tools/services/hwperfbin2json/hwperfbin2json.c
+  CC       tools/services/hwperfbin2json/hwpb2j_client.c
+  CC       tools/services/hwperfbin2json/hwpb2j_utils.c
+  CC       services/shared/common/mem_utils.c
+  CC       common/rogue/pixfmts/imgfmt_string.c
+  CC       common/takickreason.c
+  CC       tools/services/hwperfbin2json/rogue/hwpb2j_common.c
+  CC       tools/services/hwperfbin2json/rogue/hwpb2j_firmware.c
+  CC       tools/services/hwperfbin2json/rogue/hwpb2j_host.c
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/hwperfbin2jsont
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/hwperfbin2jsont.dbg
+  HOST_CC  tools/services/hwperfbin2json/hwperfbin2json.c
+  HOST_CC  tools/services/hwperfbin2json/hwpb2j_client.c
+  HOST_CC  tools/services/hwperfbin2json/hwpb2j_utils.c
+  HOST_CC  services/shared/common/mem_utils.c
+  HOST_CC  common/rogue/pixfmts/imgfmt_string.c
+  HOST_CC  common/takickreason.c
+  HOST_CC  tools/services/hwperfbin2json/rogue/hwpb2j_common.c
+  HOST_CC  tools/services/hwperfbin2json/rogue/hwpb2j_firmware.c
+  HOST_CC  tools/services/hwperfbin2json/rogue/hwpb2j_host.c
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/hwperfbin2json
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/hwperfbin2json.dbg
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/hwperfjsonmerge.py
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/pvrftracesort.py
+  CC       egl/eglentrypoints.c
+  CC       egl/imgegl/cfg.c
+  CC       egl/imgegl/cfg_core.c
+  CC       egl/imgegl/egl_linux.c
+  CC       egl/imgegl/egl_sync.c
+  CC       egl/imgegl/metrics.c
+  CC       egl/imgegl/tls.c
+  CC       egl/imgegl/egl_eglbuffer.c
+  CC       egl/imgegl/blobcache.c
+  CC       common/tls/linux_tls.c
+  CC       common/tls/nothreads_tls.c
+  CC       egl/imgegl/rogue/egl_eglimage.c
+  CC       egl/imgegl/rogue/function_table.c
+  CC       egl/imgegl/rogue/generic_ws.c
+  CC       egl/imgegl/rogue/khronos_egl.c
+  HOST_CC  compiler/common/uscgen/rogue/passthrough_vtx.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/passthrough_vtx/passthrough_vtx.preproc
+  CC       egl/imgeglsup/apphints.c
+  CC       egl/imgeglsup/errata.c
+  CC       egl/imgeglsup/global.c
+  CC       egl/imgeglsup/image.c
+  CC       egl/imgeglsup/linux.c
+  CC       egl/imgeglsup/rendertargetpool.c
+  CC       egl/imgeglsup/srv.c
+  CC       egl/imgeglsup/sync.c
+  CC       common/resourceman.c
+  CC       common/rogue/buffers.c
+  CC       common/rogue/hwperf_client_utils.c
+  CC       common/rogue/hwresourcecalc.c
+  CC       common/rogue/yuvcoeff.c
+  CC       common/rogue/hwbrnwa.c
+  CC       egl/imgeglsup/rogue/bufferpool.c
+  CC       egl/imgeglsup/rogue/srv_rgx.c
+  CC       egl/imgeglsup/rogue/tqmanager.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libIMGeglsup.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libIMGegl.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libIMGegl.dbg
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libEGL_POWERVR_ROGUE.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libEGL_POWERVR_ROGUE.dbg
+  CC       opengles1/bufobj.c
+  CC       opengles1/drawtex.c
+  CC       opengles1/drawvarray.c
+  CC       opengles1/eglimage.c
+  CC       opengles1/fog.c
+  CC       opengles1/fftexgles.c
+  CC       opengles1/fftnlgles.c
+  CC       opengles1/get.c
+  CC       opengles1/makemips.c
+  CC       opengles1/matrix.c
+  CC       opengles1/metrics.c
+  CC       opengles1/names.c
+  CC       opengles1/parallel_render.c
+  CC       opengles1/pdump.c
+  CC       opengles1/pixop.c
+  CC       opengles1/scissor.c
+  CC       opengles1/shader.c
+  CC       opengles1/spanpack.c
+  CC       opengles1/state.c
+  CC       opengles1/statehash.c
+  CC       opengles1/tex.c
+  CC       opengles1/texcombine.c
+  CC       opengles1/texcopy.c
+  CC       opengles1/texrender.c
+  CC       opengles1/tnlapi.c
+  CC       opengles1/vertex.c
+  CC       opengles1/vertexarrobj.c
+  CC       common/tls/linux_tls.c
+  CC       common/tls/nothreads_tls.c
+  CC       opengles1/rogue/accum.c
+  CC       opengles1/rogue/clear.c
+  CC       opengles1/rogue/eglglue.c
+  CC       opengles1/rogue/fbo.c
+  CC       opengles1/rogue/misc.c
+  CC       opengles1/rogue/rgxif.c
+  CC       opengles1/rogue/texdata.c
+  CC       opengles1/rogue/texmgmt.c
+  CC       opengles1/rogue/texyuv.c
+  CC       opengles1/rogue/uscgles1.c
+  CC       opengles1/rogue/validate.c
+  CC       compiler/usc/rogue/usc.c
+  CC       compiler/usc/rogue/fast_alloc.c
+  CC       compiler/usc/rogue/data.c
+  CC       compiler/usc/rogue/dce.c
+  CC       compiler/usc/rogue/efo.c
+  CC       compiler/usc/rogue/regalloc.c
+  CC       compiler/usc/rogue/ssa.c
+  CC       compiler/usc/rogue/groupinst.c
+  CC       compiler/usc/rogue/iselect.c
+  CC       compiler/usc/rogue/dgraph.c
+  CC       compiler/usc/rogue/reorder.c
+  CC       compiler/usc/rogue/regpack.c
+  CC       compiler/usc/rogue/icvt_f32.c
+  CC       compiler/usc/rogue/icvt_core.c
+  CC       compiler/usc/rogue/precise.c
+  CC       compiler/usc/rogue/pregalloc.c
+  CC       compiler/usc/rogue/finalise.c
+  CC       compiler/usc/rogue/asm.c
+  CC       compiler/usc/rogue/indexreg.c
+  CC       compiler/usc/rogue/usc_utils.c
+  CC       compiler/usc/rogue/icvt_i32.c
+  CC       compiler/usc/rogue/domcalc.c
+  CC       compiler/usc/rogue/layout.c
+  CC       compiler/usc/rogue/inst.c
+  CC       compiler/usc/rogue/hw.c
+  CC       compiler/usc/rogue/reggroup.c
+  CC       compiler/usc/rogue/icvt_mem.c
+  CC       compiler/usc/rogue/icvt_atomic.c
+  CC       compiler/usc/rogue/usedef.c
+  CC       compiler/usc/rogue/arithsimp.c
+  CC       compiler/usc/rogue/uniform.c
+  CC       compiler/usc/rogue/intdiv.c
+  CC       compiler/usc/rogue/ordered_list.c
+  CC       compiler/usc/rogue/phase_split.c
+  CC       compiler/usc/rogue/temparray.c
+  CC       compiler/usc/rogue/dagraph.c
+  CC       compiler/usc/rogue/usccompute.c
+  CC       compiler/usc/rogue/serialise.c
+  CC       compiler/usc/rogue/uvsw.c
+  CC       compiler/usc/rogue/itrwcache.c
+  CC       compiler/usc/rogue/smpswap.c
+  CC       compiler/usc/rogue/cfg.c
+  CC       compiler/usc/rogue/queue.c
+  CC       compiler/usc/rogue/constcalc.c
+  CC       compiler/usc/rogue/ifconvert.c
+  CC       compiler/usc/rogue/usctexture.c
+  CC       compiler/usc/rogue/roguedwarf.c
+  CC       compiler/usc/rogue/imgdwarflib.c
+  CC       compiler/usc/rogue/imgelflib.c
+  CC       compiler/usc/rogue/bitcp.c
+  CC       compiler/usc/rogue/brn51210.c
+  CC       compiler/usc/rogue/f16replace.c
+  CC       compiler/usc/rogue/liftcoeff.c
+  CC       compiler/usc/rogue/bigraphmatch.c
+  CC       compiler/usc/rogue/efotable.c
+  CC       compiler/usc/rogue/ufinststats.c
+  CC       compiler/usc/rogue/removesat.c
+  CC       compiler/usc/rogue/mrt_api.c
+  CC       compiler/usc/rogue/usc_target.c
+  CC       compiler/usc/common/data/bit_vector_tree.c
+  CC       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/usc_serialize/out_read.c
+  CC       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/usc_serialize/out_write.c
+  CC       common/hashfns.c
+  CC       compiler/usc/rogue/execpred/cfa.c
+  CC       compiler/usc/rogue/execpred/cdg.c
+  CC       compiler/usc/rogue/execpred/execpred.c
+  CC       compiler/usc/rogue/execpred/execswitch.c
+  CC       compiler/usc/rogue/execpred/avoidduplication.c
+  CC       compiler/usc/rogue/opt/licm.c
+  CC       compiler/usc/rogue/validate/brn62269.c
+  CC       compiler/usc/rogue/validate/brn70209.c
+  CC       compiler/usc/rogue/opt/register_pressure.c
+  CC       compiler/usc/rogue/opt/u16rtz.c
+  CC       compiler/usc/rogue/backend/estimate_stalls.c
+  CC       compiler/usc/rogue/validate/fix_big_insts.c
+  CC       compiler/usc/rogue/cfg/fixloops.c
+  CC       compiler/usc/rogue/cfg/infiniteloop.c
+  CC       compiler/usc/rogue/cfg/inline.c
+  CC       compiler/usc/rogue/backend/waits.c
+  CC       compiler/usc/rogue/ir/srcposition.c
+  CC       compiler/usc/rogue/opt/precision_upgrade.c
+  CC       compiler/usc/rogue/texture/cubegradients.c
+  CC       compiler/uscasm/rogue/rogueasm.c
+  CC       compiler/uscasm/rogue/roguedisasm.c
+  CC       compiler/uscasm/rogue/roguetab.c
+  CC       compiler/uscasm/rogue/rogueinstutils.c
+  CC       compiler/uscasm/rogue/roguevalidate.c
+  CC       common/string.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libuscasm.a
+  CC       compiler/usc/rogue/imgelflib.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libimgelf.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libusc.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libusc.dbg
+  CC       compiler/common/fftnl/fftnl.c
+  CC       compiler/common/fftnl/lighting.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libfftnl.a
+  CC       compiler/common/ffpfo/rogue/ffpfo.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libffpfo.a
+  CC       compiler/common/fftb/rogue/fftb.c
+  CC       compiler/common/fftb/rogue/shadowmap.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libfftb.a
+  CC       common/vertexunpack/vertexunpack.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libvertexunpack.a
+  CC       compiler/usclink/rogue/usclink.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libusclink.a
+  CC       common/rogue/yuvcoeff.c
+  CC       compiler/common/specobj/rogue/specobj.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libspecobj.a
+  CC       compiler/common/ffcommon/scratchpad.c
+  CC       compiler/common/ffcommon/uniflexgen.c
+  CC       compiler/common/ffcommon/ffcommon.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libffcommon.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libGLESv1_CM_POWERVR_ROGUE.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libGLESv1_CM_POWERVR_ROGUE.dbg
+  HOST_CC  compiler/common/uscgen/rogue/passthrough_vtx_rta.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/passthrough_vtx_rta/passthrough_vtx_rta.preproc
+  HOST_CC  compiler/common/uscgen/rogue/idfwdf.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/idfwdf/idfwdf.preproc
+  CC       opengles3/asyncqueries.c
+  CC       opengles3/asyncqueries_occlusion.c
+  CC       opengles3/asyncqueries_primitive.c
+  CC       opengles3/autopls.c
+  CC       opengles3/bufobj.c
+  CC       opengles3/debug.c
+  CC       opengles3/drawvarray.c
+  CC       opengles3/eglimage.c
+  CC       opengles3/fencesync.c
+  CC       opengles3/get.c
+  CC       opengles3/makemips.c
+  CC       opengles3/metrics.c
+  CC       opengles3/misc.c
+  CC       opengles3/names.c
+  CC       opengles3/parallel_render.c
+  CC       opengles3/pdump.c
+  CC       opengles3/pixelop.c
+  CC       opengles3/samplerobj.c
+  CC       opengles3/scissor.c
+  CC       opengles3/shaderlog.c
+  CC       opengles3/shaderopt.c
+  CC       opengles3/shader.c
+  CC       opengles3/spanpack.c
+  CC       opengles3/state.c
+  CC       opengles3/statehash.c
+  CC       opengles3/tex.c
+  CC       opengles3/tex3d.c
+  CC       opengles3/texcopy.c
+  CC       opengles3/texformat.c
+  CC       opengles3/texyuv.c
+  CC       opengles3/uniform.c
+  CC       opengles3/vertex.c
+  CC       opengles3/vertexarrobj.c
+  CC       opengles3/pipeline.c
+  CC       opengles3/logging.c
+  CC       opengles3/logutil.c
+  CC       opengles3/memobject.c
+  CC       opengles3/blit.c
+  CC       opengles3/eglglue.c
+  CC       opengles3/image.c
+  CC       opengles3/uscgles3.c
+  CC       common/tls/linux_tls.c
+  CC       common/tls/nothreads_tls.c
+  CC       compiler/oglcompiler/glsl/glsltypes.c
+  CC       compiler/oglcompiler/rogue/compilersetup.c
+  CC       compiler/oglcompiler/binshader/binshaderinternal.c
+  CC       compiler/oglcompiler/binshader/binshaderunpack.c
+  CC       common/vulkan_gles_interop.c
+  CC       opengles3/rogue/accum.c
+  CC       opengles3/rogue/clear.c
+  CC       opengles3/rogue/fbo.c
+  CC       opengles3/rogue/rgxif.c
+  CC       opengles3/rogue/shadercompile.c
+  CC       opengles3/rogue/texdata.c
+  CC       opengles3/rogue/texmgmt.c
+  CC       opengles3/rogue/texborder.c
+  CC       opengles3/rogue/tfo.c
+  CC       opengles3/rogue/validate.c
+  CC       opengles3/rogue/glescompute.c
+  CC       opengles3/rogue/emutess_data.c
+  CC       opengles3/rogue/emutess.c
+  BISON    compiler/oglcompiler/parser/glsl_parser.y
+  CC       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/glslparser/glsl_parser.tab.c
+  CC       opengles3/rogue/emutess_data.c
+  CC       compiler/oglcompiler/rogue/glsl/astbuiltin.c
+  CC       compiler/oglcompiler/rogue/glsl/common.c
+  CC       compiler/oglcompiler/rogue/glsl/glsl.c
+  CC       compiler/oglcompiler/rogue/glsl/glsltree.c
+  CC       compiler/oglcompiler/rogue/powervr/glsl2uf.c
+  CC       compiler/oglcompiler/glsl/dumplog.c
+  CC       compiler/oglcompiler/glsl/error.c
+  CC       compiler/oglcompiler/glsl/glsldies.c
+  CC       compiler/oglcompiler/glsl/glslfns.c
+  CC       compiler/oglcompiler/glsl/glsltabs.c
+  CC       compiler/oglcompiler/glsl/glsltypes.c
+  CC       compiler/oglcompiler/glsl/iccommon.c
+  CC       compiler/oglcompiler/glsl/languages.c
+  CC       compiler/oglcompiler/glsl/prepro.c
+  CC       compiler/oglcompiler/glsl/semantic.c
+  CC       compiler/oglcompiler/parser/glsldebug.c
+  CC       compiler/oglcompiler/parser/lex.c
+  CC       compiler/oglcompiler/parser/memmgr.c
+  CC       compiler/oglcompiler/parser/metrics.c
+  CC       compiler/oglcompiler/parser/parser.c
+  CC       compiler/oglcompiler/parser/symtab.c
+  CC       compiler/oglcompiler/powervr/bindingsym.c
+  CC       compiler/oglcompiler/rogue/glsl/icbuiltin.c
+  CC       compiler/oglcompiler/rogue/glsl/icemul.c
+  CC       compiler/oglcompiler/rogue/glsl/icgen.c
+  CC       compiler/oglcompiler/rogue/glsl/icode.c
+  CC       compiler/oglcompiler/rogue/powervr/ic2uf.c
+  CC       compiler/oglcompiler/glsl/icunroll.c
+  CC       compiler/oglcompiler/binshader/binshaderinternal.c
+  CC       compiler/oglcompiler/binshader/binshaderpack.c
+  CXX      compiler/oglcompiler/rogue/powervr/ufgen.cpp
+  CXX      compiler/oglcompiler/glsl/icopt.cpp
+  CC       compiler/usc/rogue/perf_sim.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libperf_sim.a
+  OCLSHA1  common/rogue/compute.h common/rogue/compute/clbinary_serial.cpp include/img_types.h include/img_defs.h compiler/usc/rogue/external/usc.h compiler/llvmufgen/rogue/pvrcompute.h compiler/llvmufgen/rogue/oclshrd.h compiler/llvmufgen/rogue/glslshared.h
+  CC       common/rogue/compute.c
+  CXX      common/rogue/compute/clbinary_serial.cpp
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libcompute.a
+  CC       common/rogue/slotpacking.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libslotpacking.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libglslcompiler.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libglslcompiler.dbg
+  CC       compiler/oglcompiler/link/glsllink.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libglsllink.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libGLESv2_POWERVR_ROGUE.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libGLESv2_POWERVR_ROGUE.dbg
+  HOST_CC  compiler/common/uscgen/rogue/nop.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/nop/nop.preproc
+  HOST_CC  compiler/usc/rogue/usc.c
+  HOST_CC  compiler/usc/rogue/fast_alloc.c
+  HOST_CC  compiler/usc/rogue/data.c
+  HOST_CC  compiler/usc/rogue/dce.c
+  HOST_CC  compiler/usc/rogue/efo.c
+  HOST_CC  compiler/usc/rogue/regalloc.c
+  HOST_CC  compiler/usc/rogue/ssa.c
+  HOST_CC  compiler/usc/rogue/groupinst.c
+  HOST_CC  compiler/usc/rogue/iselect.c
+  HOST_CC  compiler/usc/rogue/dgraph.c
+  HOST_CC  compiler/usc/rogue/reorder.c
+  HOST_CC  compiler/usc/rogue/regpack.c
+  HOST_CC  compiler/usc/rogue/icvt_f32.c
+  HOST_CC  compiler/usc/rogue/icvt_core.c
+  HOST_CC  compiler/usc/rogue/precise.c
+  HOST_CC  compiler/usc/rogue/pregalloc.c
+  HOST_CC  compiler/usc/rogue/finalise.c
+  HOST_CC  compiler/usc/rogue/asm.c
+  HOST_CC  compiler/usc/rogue/indexreg.c
+  HOST_CC  compiler/usc/rogue/usc_utils.c
+  HOST_CC  compiler/usc/rogue/icvt_i32.c
+  HOST_CC  compiler/usc/rogue/domcalc.c
+  HOST_CC  compiler/usc/rogue/layout.c
+  HOST_CC  compiler/usc/rogue/inst.c
+  HOST_CC  compiler/usc/rogue/hw.c
+  HOST_CC  compiler/usc/rogue/reggroup.c
+  HOST_CC  compiler/usc/rogue/icvt_mem.c
+  HOST_CC  compiler/usc/rogue/icvt_atomic.c
+  HOST_CC  compiler/usc/rogue/usedef.c
+  HOST_CC  compiler/usc/rogue/arithsimp.c
+  HOST_CC  compiler/usc/rogue/uniform.c
+  HOST_CC  compiler/usc/rogue/intdiv.c
+  HOST_CC  compiler/usc/rogue/ordered_list.c
+  HOST_CC  compiler/usc/rogue/phase_split.c
+  HOST_CC  compiler/usc/rogue/temparray.c
+  HOST_CC  compiler/usc/rogue/dagraph.c
+  HOST_CC  compiler/usc/rogue/usccompute.c
+  HOST_CC  compiler/usc/rogue/serialise.c
+  HOST_CC  compiler/usc/rogue/uvsw.c
+  HOST_CC  compiler/usc/rogue/itrwcache.c
+  HOST_CC  compiler/usc/rogue/smpswap.c
+  HOST_CC  compiler/usc/rogue/cfg.c
+  HOST_CC  compiler/usc/rogue/queue.c
+  HOST_CC  compiler/usc/rogue/constcalc.c
+  HOST_CC  compiler/usc/rogue/ifconvert.c
+  HOST_CC  compiler/usc/rogue/usctexture.c
+  HOST_CC  compiler/usc/rogue/roguedwarf.c
+  HOST_CC  compiler/usc/rogue/imgdwarflib.c
+  HOST_CC  compiler/usc/rogue/imgelflib.c
+  HOST_CC  compiler/usc/rogue/bitcp.c
+  HOST_CC  compiler/usc/rogue/brn51210.c
+  HOST_CC  compiler/usc/rogue/f16replace.c
+  HOST_CC  compiler/usc/rogue/liftcoeff.c
+  HOST_CC  compiler/usc/rogue/bigraphmatch.c
+  HOST_CC  compiler/usc/rogue/efotable.c
+  HOST_CC  compiler/usc/rogue/ufinststats.c
+  HOST_CC  compiler/usc/rogue/removesat.c
+  HOST_CC  compiler/usc/rogue/mrt_api.c
+  HOST_CC  compiler/usc/rogue/usc_host.c
+  HOST_CC  compiler/usc/rogue/main.c
+  HOST_CC  compiler/usc/rogue/utils.c
+  HOST_CC  compiler/usc/common/data/bit_vector_tree.c
+  HOST_CC  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/usc_serialize/out_read.c
+  HOST_CC  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/usc_serialize/out_write.c
+  HOST_CC  common/hashfns.c
+  HOST_CC  compiler/usc/rogue/execpred/cfa.c
+  HOST_CC  compiler/usc/rogue/execpred/cdg.c
+  HOST_CC  compiler/usc/rogue/execpred/execpred.c
+  HOST_CC  compiler/usc/rogue/execpred/execswitch.c
+  HOST_CC  compiler/usc/rogue/execpred/avoidduplication.c
+  HOST_CC  compiler/usc/rogue/opt/licm.c
+  HOST_CC  compiler/usc/rogue/validate/brn62269.c
+  HOST_CC  compiler/usc/rogue/validate/brn70209.c
+  HOST_CC  compiler/usc/rogue/opt/register_pressure.c
+  HOST_CC  compiler/usc/rogue/opt/u16rtz.c
+  HOST_CC  compiler/usc/rogue/backend/estimate_stalls.c
+  HOST_CC  compiler/usc/rogue/validate/fix_big_insts.c
+  HOST_CC  compiler/usc/rogue/cfg/fixloops.c
+  HOST_CC  compiler/usc/rogue/cfg/infiniteloop.c
+  HOST_CC  compiler/usc/rogue/cfg/inline.c
+  HOST_CC  compiler/usc/rogue/backend/waits.c
+  HOST_CC  compiler/usc/rogue/ir/srcposition.c
+  HOST_CC  compiler/usc/rogue/opt/precision_upgrade.c
+  HOST_CC  compiler/usc/rogue/texture/cubegradients.c
+  HOST_CC  compiler/usclink/rogue/usclink.c
+  HOST_AR  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/libusclink_host.a
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/usc
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/usc.dbg
+  UNIFLEXC opencl/rogue/uniflex/accumulate_signal.uf
+  CC       opencl/cleglimage.c
+  CC       opencl/command.c
+  CC       opencl/command_queue.c
+  CC       opencl/compiler.c
+  CC       opencl/context.c
+  CC       opencl/deferred_recompile.c
+  CC       opencl/deferred_task.c
+  CC       opencl/device.c
+  CC       opencl/enqueue.c
+  CC       opencl/event.c
+  CC       opencl/global_data.c
+  CC       opencl/kernel_common.c
+  CC       opencl/kernelblobcache.c
+  CC       opencl/linkedlist.c
+  CC       opencl/map_wrapper.c
+  CC       opencl/memmgr.c
+  CC       opencl/memory.c
+  CC       opencl/metrics.c
+  CC       opencl/pdump.c
+  CC       opencl/platform.c
+  CC       opencl/program.c
+  CC       opencl/sampler.c
+  CC       opencl/semaphore.c
+  CC       opencl/simulate.c
+  CC       opencl/syncobj.c
+  CC       opencl/transferq.c
+  CC       opencl/wrapper.c
+  CC       common/c_map.c
+  CC       common/vulkan_gles_interop.c
+  CC       opencl/rogue/ctrlstream.c
+  CC       opencl/rogue/kernel.c
+  CXX      common/device_printf.cpp
+  CC       common/rogue/computehwr.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libcomputehwr.a
+  CC       common/blobcache.c
+  CC       common/env/linux/blobcache_utils.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libopencl_android_blobcache.a
+  CXX      compiler/oclcompiler/rogue/compiler/oclcompiler.cpp
+  CXX      compiler/oclcompiler/compiler/clang_interface.cpp
+  CXX      compiler/oclcompiler/compiler/OCLBuiltins.cpp
+  CXX      compiler/oclcompiler/compiler/Recompile.cpp
+  CXX      compiler/oclcompiler/compiler/SPIRImport.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/Common.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/Enqueue.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/LLVMIRWriter.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/MemSync.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/Textures.cpp
+  CXX      compiler/llvmufgen/Builtins/Atomics.cpp
+  CXX      compiler/llvmufgen/Builtins/BuiltinsWriterPass.cpp
+  CXX      compiler/llvmufgen/Builtins/Cast.cpp
+  CXX      compiler/llvmufgen/Builtins/FPMath.cpp
+  CXX      compiler/llvmufgen/Builtins/Geometrics.cpp
+  CXX      compiler/llvmufgen/Builtins/IMath.cpp
+  CXX      compiler/llvmufgen/Builtins/IRWriter.cpp
+  CXX      compiler/llvmufgen/Builtins/Matrix.cpp
+  CXX      compiler/llvmufgen/Builtins/PipeSupport.cpp
+  CXX      compiler/llvmufgen/Builtins/Relational.cpp
+  CXX      compiler/llvmufgen/Builtins/TexturesCommon.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/Builtins.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/CLSpecifics.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/GLSLUFWriterSpecificsRogue.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/Intrinsics.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/UFDIBuilder.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/UFInstruction.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/UFRegAlloc.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/UFRegister.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/USCBackend.cpp
+compiler/llvmufgen/rogue/UFWriter/USCBackend.cpp:1935:48: warning: loop variable 'it' of type 'const std::pair<const Value *, uint32_t> &' (aka 'const pair<const llvm::Value *, unsigned int> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, unsigned int>, std::__tree_node<std::__value_type<const llvm::Value *, unsigned int>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, unsigned int> &') [-Wrange-loop-construct]
+        for (const std::pair<const Value*, uint32_t>& it : asLocalMemoryTags)
+                                                      ^
+compiler/llvmufgen/rogue/UFWriter/USCBackend.cpp:1935:7: note: use non-reference type 'std::pair<const Value *, uint32_t>' (aka 'pair<const llvm::Value *, unsigned int>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, unsigned int>, std::__tree_node<std::__value_type<const llvm::Value *, unsigned int>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, unsigned int> &') to prevent copying
+        for (const std::pair<const Value*, uint32_t>& it : asLocalMemoryTags)
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+  CXX      compiler/llvmufgen/rogue/UFWriter/USCInstVisitors.cpp
+  CXX      compiler/llvmufgen/UFWriter/GLSLUFWriterSpecifics.cpp
+  CXX      compiler/llvmufgen/UFWriter/UFAliasAnalysis.cpp
+  CXX      compiler/llvmufgen/UFWriter/UFIRAnalysis.cpp
+  CXX      compiler/llvmufgen/UFWriter/UFDebugInfo.cpp
+  CXX      compiler/llvmufgen/UFWriter/UFPassBuilder.cpp
+In file included from compiler/llvmufgen/UFWriter/UFPassBuilder.cpp:12:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Passes/PassBuilder.h:19:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/CGSCCPassManager.h:101:
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/IR/ValueHandle.h:278:12: warning: definition of implicit copy constructor for 'AssertingVH<const llvm::Value>' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]
+  ValueTy *operator=(const AssertingVH<ValueTy> &RHS) {
+           ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:375:27: note: in implicit copy constructor for 'llvm::AssertingVH<const llvm::Value>' first required here
+    const KeyT EmptyKey = getEmptyKey();
+                          ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:791:20: note: in instantiation of member function 'llvm::DenseMapBase<llvm::DenseMap<llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult>, llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult, llvm::DenseMapInfo<llvm::AssertingVH<const llvm::Value>>, llvm::detail::DenseMapPair<llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult>>::initEmpty' requested here
+      this->BaseT::initEmpty();
+                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:726:52: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult>::init' requested here
+  explicit DenseMap(unsigned InitialReserve = 0) { init(InitialReserve); }
+                                                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/MemoryDependenceAnalysis.h:366:3: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult>::DenseMap' requested here
+  MemoryDependenceResults(AliasAnalysis &AA, AssumptionCache &AC,
+  ^
+In file included from compiler/llvmufgen/UFWriter/UFPassBuilder.cpp:12:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Passes/PassBuilder.h:19:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/CGSCCPassManager.h:101:
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/IR/ValueHandle.h:278:12: warning: definition of implicit copy constructor for 'AssertingVH<llvm::BasicBlock>' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]
+  ValueTy *operator=(const AssertingVH<ValueTy> &RHS) {
+           ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:375:27: note: in implicit copy constructor for 'llvm::AssertingVH<llvm::BasicBlock>' first required here
+    const KeyT EmptyKey = getEmptyKey();
+                          ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:791:20: note: in instantiation of member function 'llvm::DenseMapBase<llvm::DenseMap<llvm::AssertingVH<llvm::BasicBlock>, unsigned int>, llvm::AssertingVH<llvm::BasicBlock>, unsigned int, llvm::DenseMapInfo<llvm::AssertingVH<llvm::BasicBlock>>, llvm::detail::DenseMapPair<llvm::AssertingVH<llvm::BasicBlock>, unsigned int>>::initEmpty' requested here
+      this->BaseT::initEmpty();
+                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:726:52: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::BasicBlock>, unsigned int>::init' requested here
+  explicit DenseMap(unsigned InitialReserve = 0) { init(InitialReserve); }
+                                                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Transforms/Scalar/GVN.h:68:7: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::BasicBlock>, unsigned int>::DenseMap' requested here
+class GVN : public PassInfoMixin<GVN> {
+      ^
+In file included from compiler/llvmufgen/UFWriter/UFPassBuilder.cpp:12:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Passes/PassBuilder.h:19:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/CGSCCPassManager.h:101:
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/IR/ValueHandle.h:278:12: warning: definition of implicit copy constructor for 'AssertingVH<llvm::Value>' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]
+  ValueTy *operator=(const AssertingVH<ValueTy> &RHS) {
+           ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:375:27: note: in implicit copy constructor for 'llvm::AssertingVH<llvm::Value>' first required here
+    const KeyT EmptyKey = getEmptyKey();
+                          ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:791:20: note: in instantiation of member function 'llvm::DenseMapBase<llvm::DenseMap<llvm::AssertingVH<llvm::Value>, unsigned int>, llvm::AssertingVH<llvm::Value>, unsigned int, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Value>>, llvm::detail::DenseMapPair<llvm::AssertingVH<llvm::Value>, unsigned int>>::initEmpty' requested here
+      this->BaseT::initEmpty();
+                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:726:52: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::Value>, unsigned int>::init' requested here
+  explicit DenseMap(unsigned InitialReserve = 0) { init(InitialReserve); }
+                                                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Transforms/Scalar/Reassociate.h:71:7: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::Value>, unsigned int>::DenseMap' requested here
+class ReassociatePass : public PassInfoMixin<ReassociatePass> {
+      ^
+In file included from compiler/llvmufgen/UFWriter/UFPassBuilder.cpp:12:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Passes/PassBuilder.h:19:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/CGSCCPassManager.h:101:
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/IR/ValueHandle.h:278:12: warning: definition of implicit copy constructor for 'AssertingVH<llvm::Instruction>' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]
+  ValueTy *operator=(const AssertingVH<ValueTy> &RHS) {
+           ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:375:27: note: in implicit copy constructor for 'llvm::AssertingVH<llvm::Instruction>' first required here
+    const KeyT EmptyKey = getEmptyKey();
+                          ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:791:20: note: in instantiation of member function 'llvm::DenseMapBase<llvm::DenseMap<llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>, llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>::initEmpty' requested here
+      this->BaseT::initEmpty();
+                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:726:52: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>::init' requested here
+  explicit DenseMap(unsigned InitialReserve = 0) { init(InitialReserve); }
+                                                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseSet.h:67:56: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>::DenseMap' requested here
+  explicit DenseSetImpl(unsigned InitialReserve = 0) : TheMap(InitialReserve) {}
+                                                       ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseSet.h:249:7: note: in instantiation of member function 'llvm::detail::DenseSetImpl<llvm::AssertingVH<llvm::Instruction>, llvm::DenseMap<llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>>::DenseSetImpl' requested here
+class DenseSet : public detail::DenseSetImpl<
+      ^
+4 warnings generated.
+  CXX      compiler/llvmufgen/Trans/AsyncCopyLower.cpp
+  CXX      compiler/llvmufgen/Trans/BreakConstExpr.cpp
+  CXX      compiler/llvmufgen/Trans/ForceNoContract.cpp
+  CXX      compiler/llvmufgen/Trans/GenericASSupport.cpp
+  CXX      compiler/llvmufgen/Trans/GLSLHWBRNWorkAround.cpp
+  CXX      compiler/llvmufgen/Trans/HalfSupport.cpp
+  CXX      compiler/llvmufgen/Trans/ImageSupport.cpp
+  CXX      compiler/llvmufgen/Trans/LegaliseTypes.cpp
+  CXX      compiler/llvmufgen/Trans/LLVMIntrinsicLower.cpp
+  CXX      compiler/llvmufgen/Trans/MarkupUsedIds.cpp
+  CXX      compiler/llvmufgen/Trans/NewLowerPtrCasts.cpp
+  CXX      compiler/llvmufgen/Trans/RemovePointerCasts.cpp
+  CXX      compiler/llvmufgen/Trans/SpecialCasePrecision.cpp
+  CXX      compiler/llvmufgen/Trans/SubDwordPack.cpp
+  CXX      compiler/llvmufgen/Trans/TessControlLoop.cpp
+compiler/llvmufgen/Trans/TessControlLoop.cpp:289:48: warning: loop variable 'mapEntry' of type 'const std::pair<BasicBlock *, uint32_t> &' (aka 'const pair<llvm::BasicBlock *, unsigned int> &') binds to a temporary constructed from type 'std::__hash_map_iterator<std::__hash_iterator<std::__hash_node<std::__hash_value_type<llvm::BasicBlock *, unsigned int>, void *> *>>::reference' (aka 'pair<llvm::BasicBlock *const, unsigned int> &') [-Wrange-loop-construct]
+                for (const std::pair<BasicBlock*, uint32_t>& mapEntry : partitionMap)
+                                                             ^
+compiler/llvmufgen/Trans/TessControlLoop.cpp:289:8: note: use non-reference type 'std::pair<BasicBlock *, uint32_t>' (aka 'pair<llvm::BasicBlock *, unsigned int>') to make construction explicit or type 'const std::__hash_map_iterator<std::__hash_iterator<std::__hash_node<std::__hash_value_type<llvm::BasicBlock *, unsigned int>, void *> *>>::value_type &' (aka 'const pair<llvm::BasicBlock *const, unsigned int> &') to prevent copying
+                for (const std::pair<BasicBlock*, uint32_t>& mapEntry : partitionMap)
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+  CXX      compiler/llvmufgen/Trans/UnifyFunctionExitNodesWrapper.cpp
+  CXX      compiler/llvmufgen/rogue/Support/ComputeBinary.cpp
+  CXX      compiler/llvmufgen/rogue/Support/GLCommonTypes.cpp
+  CXX      compiler/llvmufgen/Support/APIInfo.cpp
+  CXX      compiler/llvmufgen/Support/CallGraphInfo.cpp
+  CXX      compiler/llvmufgen/Support/ComputeInfo.cpp
+  CXX      compiler/llvmufgen/Support/Utility.cpp
+  CXX      compiler/llvmufgen/Opt/ArgCopyProp.cpp
+  CXX      compiler/llvmufgen/Opt/CoeffOptPass.cpp
+  CXX      compiler/llvmufgen/Opt/DuplicateKernels.cpp
+  CXX      compiler/llvmufgen/Opt/DuplicateSamplers.cpp
+  CXX      compiler/llvmufgen/Opt/EliminateSpuriousOpts.cpp
+  CXX      compiler/llvmufgen/Opt/EnforceOCLAlignment.cpp
+  CXX      compiler/llvmufgen/Opt/ExpandWorkGroupSizeQueries.cpp
+  CXX      compiler/llvmufgen/Opt/FoldStaticOffsets.cpp
+  CXX      compiler/llvmufgen/Opt/GlobalMerge.cpp
+  CXX      compiler/llvmufgen/Opt/GlobalPromoteReadOnly.cpp
+  CXX      compiler/llvmufgen/Opt/InlineAnalysisPass.cpp
+  CXX      compiler/llvmufgen/Opt/InlineFunctions.cpp
+  CXX      compiler/llvmufgen/Opt/LoadReplacerPass.cpp
+  CXX      compiler/llvmufgen/Opt/LoopReorderInsertElements.cpp
+  CXX      compiler/llvmufgen/Opt/LowerDynamicIndices.cpp
+  CXX      compiler/llvmufgen/Opt/LowerImageStackSlots.cpp
+  CXX      compiler/llvmufgen/Opt/MemOptPass.cpp
+compiler/llvmufgen/Opt/MemOptPass.cpp:1432:46: warning: loop variable 'baseStorePair' of type 'const std::pair<BasePtr, StoreList> &' (aka 'const pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') [-Wrange-loop-construct]
+                        for (const std::pair<BasePtr, StoreList>& baseStorePair : storeInstrsMap)
+                                                                  ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1432:9: note: use non-reference type 'std::pair<BasePtr, StoreList>' (aka 'pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') to prevent copying
+                        for (const std::pair<BasePtr, StoreList>& baseStorePair : storeInstrsMap)
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compiler/llvmufgen/Opt/MemOptPass.cpp:1441:47: warning: loop variable 'baseStorePair' of type 'const std::pair<BasePtr, StoreList> &' (aka 'const pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') [-Wrange-loop-construct]
+                                for (const std::pair<BasePtr, StoreList>& baseStorePair : convergingStoreInstrsMap)
+                                                                          ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1441:10: note: use non-reference type 'std::pair<BasePtr, StoreList>' (aka 'pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') to prevent copying
+                                for (const std::pair<BasePtr, StoreList>& baseStorePair : convergingStoreInstrsMap)
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compiler/llvmufgen/Opt/MemOptPass.cpp:1519:51: warning: loop variable 'memAccessLoadsPair' of type 'const std::pair<MemoryAccess *, InstrList> &' (aka 'const pair<llvm::MemoryAccess *, SmallVector<pair<const llvm::Value *, llvm::Instruction *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<llvm::MemoryAccess *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, std::__tree_node<std::__value_type<llvm::MemoryAccess *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, void *> *, int>>::reference' (aka 'pair<llvm::MemoryAccess *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>> &') [-Wrange-loop-construct]
+                for (std::pair<MemoryAccess*, InstrList> const& memAccessLoadsPair : accessLoadMap)
+                                                                ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1519:8: note: use non-reference type 'std::pair<MemoryAccess *, InstrList>' (aka 'pair<llvm::MemoryAccess *, SmallVector<pair<const llvm::Value *, llvm::Instruction *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<llvm::MemoryAccess *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, std::__tree_node<std::__value_type<llvm::MemoryAccess *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<llvm::MemoryAccess *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>> &') to prevent copying
+                for (std::pair<MemoryAccess*, InstrList> const& memAccessLoadsPair : accessLoadMap)
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compiler/llvmufgen/Opt/MemOptPass.cpp:1500:44: warning: loop variable 'basePtrLoadsPair' of type 'const std::pair<BasePtr, InstrList> &' (aka 'const pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::Instruction *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>> &') [-Wrange-loop-construct]
+        for (std::pair<BasePtr, InstrList> const& basePtrLoadsPair : mapOfBasePtrsToLoads)
+                                                  ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1500:7: note: use non-reference type 'std::pair<BasePtr, InstrList>' (aka 'pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::Instruction *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>> &') to prevent copying
+        for (std::pair<BasePtr, InstrList> const& basePtrLoadsPair : mapOfBasePtrsToLoads)
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compiler/llvmufgen/Opt/MemOptPass.cpp:1654:45: warning: loop variable 'baseStorePair' of type 'const std::pair<BasePtr, StoreList> &' (aka 'const pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') [-Wrange-loop-construct]
+                for (const std::pair<BasePtr, StoreList>& baseStorePair : convergentStoreInstrsMap)
+                                                          ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1654:8: note: use non-reference type 'std::pair<BasePtr, StoreList>' (aka 'pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') to prevent copying
+                for (const std::pair<BasePtr, StoreList>& baseStorePair : convergentStoreInstrsMap)
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+5 warnings generated.
+  CXX      compiler/llvmufgen/Opt/OptimiseGenericPointerCasts.cpp
+  CXX      compiler/llvmufgen/Opt/OptimisePhis.cpp
+  CXX      compiler/llvmufgen/Opt/PromoteReadOnlyArgs.cpp
+  CXX      compiler/llvmufgen/Opt/RemoveDeadFunctions.cpp
+  CXX      compiler/llvmufgen/Opt/RemoveSingleEntryGlobalLoad.cpp
+  CXX      compiler/llvmufgen/Opt/RepeatedIfRewrite.cpp
+  CXX      compiler/llvmufgen/Opt/ReplaceByValArgs.cpp
+  CXX      compiler/llvmufgen/Opt/SimplifyGLSLLibFunctions.cpp
+  CXX      compiler/llvmufgen/Opt/SimplifyOCLLibFunctions.cpp
+  CXX      compiler/llvmufgen/Opt/SimplifyTrigonometricExpressions.cpp
+  CXX      compiler/llvmufgen/Opt/UniqueFunctionCalls.cpp
+  CXX      compiler/llvmufgen/Opt/VectorPckUnpck.cpp
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libufwriter_static.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libPVROCL.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libPVROCL.dbg
+  HOST_CC  compiler/common/uscgen/rogue/vktexturegather.asm
+  USCASM   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/vktexturegather/vktexturegather.preproc
+  HOST_CC  vulkan/rogue/shader_factory/main.c
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/vulkan_shader_factory
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/vulkan_shader_factory.dbg
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/vulkan_shader_generated/vk_static_shaders.h
+  CC       common/vulkan_gles_interop.c
+  CC       common/rogue/hwbrnwa.c
+  CC       common/rogue/pixfmts/decoderapi.c
+  CC       common/rogue/fbcutils/fbcutils.c
+  CC       vulkan/core/buffer.c
+  CC       vulkan/core/background.c
+  CC       vulkan/rogue/core/background.c
+  CC       vulkan/core/border.c
+  CC       vulkan/rogue/core/border.c
+  CC       vulkan/core/clear.c
+  CC       vulkan/rogue/core/clear.c
+  CC       vulkan/core/command.c
+  CC       vulkan/rogue/core/command.c
+  CC       vulkan/core/compiler_context.c
+  CC       vulkan/rogue/core/compute.c
+  CC       vulkan/rogue/core/descriptor.c
+  CC       vulkan/rogue/core/device.c
+  CC       vulkan/rogue/core/draw.c
+  CC       vulkan/core/dynamic.c
+  CC       vulkan/core/event.c
+  CC       vulkan/core/entry_tracker.c
+  CC       vulkan/core/extension.c
+  CC       vulkan/core/fence.c
+  CC       vulkan/core/format.c
+  CC       vulkan/core/format_table.c
+  CC       vulkan/core/format_convert.c
+  CC       vulkan/rogue/core/framebuffer_state.c
+  CC       vulkan/rogue/core/hash.c
+  CC       vulkan/core/image.c
+  CC       vulkan/core/icd_interface.c
+  CC       vulkan/core/init.c
+  CC       vulkan/rogue/core/init.c
+  CC       vulkan/core/layer.c
+  CC       vulkan/core/memory.c
+  CC       vulkan/core/object.c
+  CC       vulkan/rogue/core/pipeline.c
+  CC       vulkan/rogue/core/pipeline_state.c
+  CC       vulkan/rogue/core/pool.c
+  CC       vulkan/rogue/core/pppstate.c
+  CC       vulkan/core/query.c
+  CC       vulkan/rogue/core/query_compute.c
+  CC       vulkan/core/queue.c
+  CC       vulkan/rogue/core/queue.c
+  CC       vulkan/core/renderpass_setup.c
+  CC       vulkan/rogue/core/sampler.c
+  CC       vulkan/core/semaphore.c
+  CC       vulkan/core/shader.c
+  CC       vulkan/core/sync.c
+  CC       vulkan/core/timestamp.c
+  CC       vulkan/core/transfer.c
+  CC       vulkan/core/vertex_attrib.c
+  CC       vulkan/rogue/core/robustness.c
+  CC       vulkan/internal_layers/internal_layers.c
+  CC       vulkan/internal_layers/bfu/bfu_smart.c
+  CC       vulkan/internal_layers/dud/dud_layer.c
+  CC       vulkan/util/shader_analysis.c
+  CC       vulkan/util/render_info.c
+  CC       vulkan/util/shader_invocation_count.c
+  CC       vulkan/rogue/util/misc.c
+  CC       vulkan/util/circular_buffer.c
+  CC       vulkan/util/misc.c
+  CC       vulkan/extensions/vk_khr_get_physical_device_properties_2/properties_2_rogue.c
+  CC       vulkan/extensions/vk_khr_get_surface_capabilities_2/capabilities_2.c
+  CC       vulkan/extensions/vk_khr_get_display_properties_2/display_properties_2.c
+  CC       vulkan/extensions/vk_khr_get_memory_requirements_2/requirements_2.c
+  CC       vulkan/extensions/vk_khr_bind_memory_2/bind_memory_2.c
+  CC       vulkan/extensions/vk_khr_sampler_ycbcr_conversion/sampler_ycbcr_conversion_rogue.c
+  CC       vulkan/extensions/vk_khr_external/external_memory.c
+  CC       vulkan/extensions/vk_khr_external/external_semaphore_fence.c
+  CC       vulkan/extensions/vk_khr_device_group/device_group.c
+  CC       vulkan/rogue/extensions/vk_ext_khr_draw_indirect_count/draw_indirect_count.c
+  CC       vulkan/extensions/vk_ext_conditional_rendering/conditional_rendering_rogue.c
+  CC       vulkan/extensions/vk_khr_timeline_semaphore/timeline_semaphore.c
+  CC       vulkan/extensions/vk_ext_debug_marker/debug_marker.c
+  CC       vulkan/extensions/vk_ext_debug_report/debug_report.c
+  CC       vulkan/extensions/vk_ext_debug_utils/debug_utils.c
+  CC       vulkan/extensions/vk_ext_android_external_memory_android_hardware_buffer/android_hardware_buffer.c
+  CC       vulkan/extensions/vk_ext_image_drm_format_modifier/drm_format_modifier.c
+  CC       vulkan/extensions/vk_khr_copy_commands_2/copy_commands_2.c
+  CC       vulkan/extensions/vk_ext_device_memory_report/device_memory_report.c
+  CC       vulkan/core/android_hal.c
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/spvgen_header/SpvDecodeFuncs.cpp
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/spvgen_header/SpvDecodeFuncs.hpp
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/spvgen_header/SpvEnums.hpp
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/spvgen_header/SpvExtInstFuncs.cpp
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/spvgen_header/SpvExtInstFuncs.hpp
+  CXX      compiler/spvcompiler/LLVMAliasScopes.cpp
+  CXX      compiler/spvcompiler/LLVMDIWriter.cpp
+  CXX      compiler/spvcompiler/LLVMWriter.cpp
+  CXX      compiler/spvcompiler/SpvArg.cpp
+  CXX      compiler/spvcompiler/SpvBlock.cpp
+  CXX      compiler/spvcompiler/SpvCompiler.cpp
+  CXX      compiler/spvcompiler/SpvConst.cpp
+  CXX      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/spvgen_header/SpvDecodeFuncs.cpp
+  CXX      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/spvgen_header/SpvExtInstFuncs.cpp
+  CXX      compiler/spvcompiler/spvExtractEP.cpp
+  CXX      compiler/spvcompiler/SpvFunc.cpp
+  CXX      compiler/spvcompiler/SpvId.cpp
+  CXX      compiler/spvcompiler/SpvInst.cpp
+  CXX      compiler/spvcompiler/spvlink.cpp
+  CXX      compiler/spvcompiler/SpvModule.cpp
+  CXX      compiler/spvcompiler/SpvReader.cpp
+  CXX      compiler/spvcompiler/SpvTransform.cpp
+  CXX      compiler/spvcompiler/SpvTransformRay.cpp
+  CXX      compiler/spvcompiler/rogue/SpvTransformPasses.cpp
+  CXX      compiler/spvcompiler/SpvType.cpp
+  CXX      compiler/spvcompiler/SpvVulkan.cpp
+  CXX      compiler/spvcompiler/SpvVar.cpp
+  CXX      compiler/spvcompiler/spvwriter.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/Common.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/Enqueue.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/LLVMIRWriter.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/MemSync.cpp
+  CXX      compiler/llvmufgen/rogue/Builtins/Textures.cpp
+  CXX      compiler/llvmufgen/Builtins/Atomics.cpp
+  CXX      compiler/llvmufgen/Builtins/BuiltinsWriterPass.cpp
+  CXX      compiler/llvmufgen/Builtins/Cast.cpp
+  CXX      compiler/llvmufgen/Builtins/FPMath.cpp
+  CXX      compiler/llvmufgen/Builtins/Geometrics.cpp
+  CXX      compiler/llvmufgen/Builtins/IMath.cpp
+  CXX      compiler/llvmufgen/Builtins/IRWriter.cpp
+  CXX      compiler/llvmufgen/Builtins/Matrix.cpp
+  CXX      compiler/llvmufgen/Builtins/PipeSupport.cpp
+  CXX      compiler/llvmufgen/Builtins/Relational.cpp
+  CXX      compiler/llvmufgen/Builtins/TexturesCommon.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/Builtins.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/CLSpecifics.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/GLSLUFWriterSpecificsRogue.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/Intrinsics.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/UFDIBuilder.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/UFInstruction.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/UFRegAlloc.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/UFRegister.cpp
+  CXX      compiler/llvmufgen/rogue/UFWriter/USCBackend.cpp
+compiler/llvmufgen/rogue/UFWriter/USCBackend.cpp:1935:48: warning: loop variable 'it' of type 'const std::pair<const Value *, uint32_t> &' (aka 'const pair<const llvm::Value *, unsigned int> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, unsigned int>, std::__tree_node<std::__value_type<const llvm::Value *, unsigned int>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, unsigned int> &') [-Wrange-loop-construct]
+        for (const std::pair<const Value*, uint32_t>& it : asLocalMemoryTags)
+                                                      ^
+compiler/llvmufgen/rogue/UFWriter/USCBackend.cpp:1935:7: note: use non-reference type 'std::pair<const Value *, uint32_t>' (aka 'pair<const llvm::Value *, unsigned int>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, unsigned int>, std::__tree_node<std::__value_type<const llvm::Value *, unsigned int>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, unsigned int> &') to prevent copying
+        for (const std::pair<const Value*, uint32_t>& it : asLocalMemoryTags)
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+  CXX      compiler/llvmufgen/rogue/UFWriter/USCInstVisitors.cpp
+  CXX      compiler/llvmufgen/UFWriter/GLSLUFWriterSpecifics.cpp
+  CXX      compiler/llvmufgen/UFWriter/UFAliasAnalysis.cpp
+  CXX      compiler/llvmufgen/UFWriter/UFIRAnalysis.cpp
+  CXX      compiler/llvmufgen/UFWriter/UFDebugInfo.cpp
+  CXX      compiler/llvmufgen/UFWriter/UFPassBuilder.cpp
+In file included from compiler/llvmufgen/UFWriter/UFPassBuilder.cpp:12:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Passes/PassBuilder.h:19:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/CGSCCPassManager.h:101:
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/IR/ValueHandle.h:278:12: warning: definition of implicit copy constructor for 'AssertingVH<const llvm::Value>' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]
+  ValueTy *operator=(const AssertingVH<ValueTy> &RHS) {
+           ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:375:27: note: in implicit copy constructor for 'llvm::AssertingVH<const llvm::Value>' first required here
+    const KeyT EmptyKey = getEmptyKey();
+                          ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:791:20: note: in instantiation of member function 'llvm::DenseMapBase<llvm::DenseMap<llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult>, llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult, llvm::DenseMapInfo<llvm::AssertingVH<const llvm::Value>>, llvm::detail::DenseMapPair<llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult>>::initEmpty' requested here
+      this->BaseT::initEmpty();
+                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:726:52: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult>::init' requested here
+  explicit DenseMap(unsigned InitialReserve = 0) { init(InitialReserve); }
+                                                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/MemoryDependenceAnalysis.h:366:3: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<const llvm::Value>, llvm::NonLocalDepResult>::DenseMap' requested here
+  MemoryDependenceResults(AliasAnalysis &AA, AssumptionCache &AC,
+  ^
+In file included from compiler/llvmufgen/UFWriter/UFPassBuilder.cpp:12:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Passes/PassBuilder.h:19:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/CGSCCPassManager.h:101:
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/IR/ValueHandle.h:278:12: warning: definition of implicit copy constructor for 'AssertingVH<llvm::BasicBlock>' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]
+  ValueTy *operator=(const AssertingVH<ValueTy> &RHS) {
+           ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:375:27: note: in implicit copy constructor for 'llvm::AssertingVH<llvm::BasicBlock>' first required here
+    const KeyT EmptyKey = getEmptyKey();
+                          ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:791:20: note: in instantiation of member function 'llvm::DenseMapBase<llvm::DenseMap<llvm::AssertingVH<llvm::BasicBlock>, unsigned int>, llvm::AssertingVH<llvm::BasicBlock>, unsigned int, llvm::DenseMapInfo<llvm::AssertingVH<llvm::BasicBlock>>, llvm::detail::DenseMapPair<llvm::AssertingVH<llvm::BasicBlock>, unsigned int>>::initEmpty' requested here
+      this->BaseT::initEmpty();
+                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:726:52: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::BasicBlock>, unsigned int>::init' requested here
+  explicit DenseMap(unsigned InitialReserve = 0) { init(InitialReserve); }
+                                                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Transforms/Scalar/GVN.h:68:7: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::BasicBlock>, unsigned int>::DenseMap' requested here
+class GVN : public PassInfoMixin<GVN> {
+      ^
+In file included from compiler/llvmufgen/UFWriter/UFPassBuilder.cpp:12:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Passes/PassBuilder.h:19:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/CGSCCPassManager.h:101:
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/IR/ValueHandle.h:278:12: warning: definition of implicit copy constructor for 'AssertingVH<llvm::Value>' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]
+  ValueTy *operator=(const AssertingVH<ValueTy> &RHS) {
+           ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:375:27: note: in implicit copy constructor for 'llvm::AssertingVH<llvm::Value>' first required here
+    const KeyT EmptyKey = getEmptyKey();
+                          ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:791:20: note: in instantiation of member function 'llvm::DenseMapBase<llvm::DenseMap<llvm::AssertingVH<llvm::Value>, unsigned int>, llvm::AssertingVH<llvm::Value>, unsigned int, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Value>>, llvm::detail::DenseMapPair<llvm::AssertingVH<llvm::Value>, unsigned int>>::initEmpty' requested here
+      this->BaseT::initEmpty();
+                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:726:52: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::Value>, unsigned int>::init' requested here
+  explicit DenseMap(unsigned InitialReserve = 0) { init(InitialReserve); }
+                                                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Transforms/Scalar/Reassociate.h:71:7: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::Value>, unsigned int>::DenseMap' requested here
+class ReassociatePass : public PassInfoMixin<ReassociatePass> {
+      ^
+In file included from compiler/llvmufgen/UFWriter/UFPassBuilder.cpp:12:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Passes/PassBuilder.h:19:
+In file included from /home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/Analysis/CGSCCPassManager.h:101:
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/IR/ValueHandle.h:278:12: warning: definition of implicit copy constructor for 'AssertingVH<llvm::Instruction>' is deprecated because it has a user-declared copy assignment operator [-Wdeprecated-copy]
+  ValueTy *operator=(const AssertingVH<ValueTy> &RHS) {
+           ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:375:27: note: in implicit copy constructor for 'llvm::AssertingVH<llvm::Instruction>' first required here
+    const KeyT EmptyKey = getEmptyKey();
+                          ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:791:20: note: in instantiation of member function 'llvm::DenseMapBase<llvm::DenseMap<llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>, llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>::initEmpty' requested here
+      this->BaseT::initEmpty();
+                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseMap.h:726:52: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>::init' requested here
+  explicit DenseMap(unsigned InitialReserve = 0) { init(InitialReserve); }
+                                                   ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseSet.h:67:56: note: in instantiation of member function 'llvm::DenseMap<llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>::DenseMap' requested here
+  explicit DenseSetImpl(unsigned InitialReserve = 0) : TheMap(InitialReserve) {}
+                                                       ^
+/home/zhengwanyu/AndroidS/gpu-src/tools/toolchains/android-ndk-r21d-linux-x86_64/apps/llvm90/llvm/include/llvm/ADT/DenseSet.h:249:7: note: in instantiation of member function 'llvm::detail::DenseSetImpl<llvm::AssertingVH<llvm::Instruction>, llvm::DenseMap<llvm::AssertingVH<llvm::Instruction>, llvm::detail::DenseSetEmpty, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>, llvm::detail::DenseSetPair<llvm::AssertingVH<llvm::Instruction>>>, llvm::DenseMapInfo<llvm::AssertingVH<llvm::Instruction>>>::DenseSetImpl' requested here
+class DenseSet : public detail::DenseSetImpl<
+      ^
+4 warnings generated.
+  CXX      compiler/llvmufgen/Trans/AsyncCopyLower.cpp
+  CXX      compiler/llvmufgen/Trans/BreakConstExpr.cpp
+  CXX      compiler/llvmufgen/Trans/ForceNoContract.cpp
+  CXX      compiler/llvmufgen/Trans/GenericASSupport.cpp
+  CXX      compiler/llvmufgen/Trans/GLSLHWBRNWorkAround.cpp
+  CXX      compiler/llvmufgen/Trans/HalfSupport.cpp
+  CXX      compiler/llvmufgen/Trans/ImageSupport.cpp
+  CXX      compiler/llvmufgen/Trans/LegaliseTypes.cpp
+  CXX      compiler/llvmufgen/Trans/LLVMIntrinsicLower.cpp
+  CXX      compiler/llvmufgen/Trans/MarkupUsedIds.cpp
+  CXX      compiler/llvmufgen/Trans/NewLowerPtrCasts.cpp
+  CXX      compiler/llvmufgen/Trans/RemovePointerCasts.cpp
+  CXX      compiler/llvmufgen/Trans/SpecialCasePrecision.cpp
+  CXX      compiler/llvmufgen/Trans/SubDwordPack.cpp
+  CXX      compiler/llvmufgen/Trans/TessControlLoop.cpp
+compiler/llvmufgen/Trans/TessControlLoop.cpp:289:48: warning: loop variable 'mapEntry' of type 'const std::pair<BasicBlock *, uint32_t> &' (aka 'const pair<llvm::BasicBlock *, unsigned int> &') binds to a temporary constructed from type 'std::__hash_map_iterator<std::__hash_iterator<std::__hash_node<std::__hash_value_type<llvm::BasicBlock *, unsigned int>, void *> *>>::reference' (aka 'pair<llvm::BasicBlock *const, unsigned int> &') [-Wrange-loop-construct]
+                for (const std::pair<BasicBlock*, uint32_t>& mapEntry : partitionMap)
+                                                             ^
+compiler/llvmufgen/Trans/TessControlLoop.cpp:289:8: note: use non-reference type 'std::pair<BasicBlock *, uint32_t>' (aka 'pair<llvm::BasicBlock *, unsigned int>') to make construction explicit or type 'const std::__hash_map_iterator<std::__hash_iterator<std::__hash_node<std::__hash_value_type<llvm::BasicBlock *, unsigned int>, void *> *>>::value_type &' (aka 'const pair<llvm::BasicBlock *const, unsigned int> &') to prevent copying
+                for (const std::pair<BasicBlock*, uint32_t>& mapEntry : partitionMap)
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated.
+  CXX      compiler/llvmufgen/Trans/UnifyFunctionExitNodesWrapper.cpp
+  CXX      compiler/llvmufgen/rogue/Support/ComputeBinary.cpp
+  CXX      compiler/llvmufgen/rogue/Support/GLCommonTypes.cpp
+  CXX      compiler/llvmufgen/Support/APIInfo.cpp
+  CXX      compiler/llvmufgen/Support/CallGraphInfo.cpp
+  CXX      compiler/llvmufgen/Support/ComputeInfo.cpp
+  CXX      compiler/llvmufgen/Support/Utility.cpp
+  CXX      compiler/llvmufgen/Opt/ArgCopyProp.cpp
+  CXX      compiler/llvmufgen/Opt/CoeffOptPass.cpp
+  CXX      compiler/llvmufgen/Opt/DuplicateKernels.cpp
+  CXX      compiler/llvmufgen/Opt/DuplicateSamplers.cpp
+  CXX      compiler/llvmufgen/Opt/EliminateSpuriousOpts.cpp
+  CXX      compiler/llvmufgen/Opt/EnforceOCLAlignment.cpp
+  CXX      compiler/llvmufgen/Opt/ExpandWorkGroupSizeQueries.cpp
+  CXX      compiler/llvmufgen/Opt/FoldStaticOffsets.cpp
+  CXX      compiler/llvmufgen/Opt/GlobalMerge.cpp
+  CXX      compiler/llvmufgen/Opt/GlobalPromoteReadOnly.cpp
+  CXX      compiler/llvmufgen/Opt/InlineAnalysisPass.cpp
+  CXX      compiler/llvmufgen/Opt/InlineFunctions.cpp
+  CXX      compiler/llvmufgen/Opt/LoadReplacerPass.cpp
+  CXX      compiler/llvmufgen/Opt/LoopReorderInsertElements.cpp
+  CXX      compiler/llvmufgen/Opt/LowerDynamicIndices.cpp
+  CXX      compiler/llvmufgen/Opt/LowerImageStackSlots.cpp
+  CXX      compiler/llvmufgen/Opt/MemOptPass.cpp
+compiler/llvmufgen/Opt/MemOptPass.cpp:1432:46: warning: loop variable 'baseStorePair' of type 'const std::pair<BasePtr, StoreList> &' (aka 'const pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') [-Wrange-loop-construct]
+                        for (const std::pair<BasePtr, StoreList>& baseStorePair : storeInstrsMap)
+                                                                  ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1432:9: note: use non-reference type 'std::pair<BasePtr, StoreList>' (aka 'pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') to prevent copying
+                        for (const std::pair<BasePtr, StoreList>& baseStorePair : storeInstrsMap)
+                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compiler/llvmufgen/Opt/MemOptPass.cpp:1441:47: warning: loop variable 'baseStorePair' of type 'const std::pair<BasePtr, StoreList> &' (aka 'const pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') [-Wrange-loop-construct]
+                                for (const std::pair<BasePtr, StoreList>& baseStorePair : convergingStoreInstrsMap)
+                                                                          ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1441:10: note: use non-reference type 'std::pair<BasePtr, StoreList>' (aka 'pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') to prevent copying
+                                for (const std::pair<BasePtr, StoreList>& baseStorePair : convergingStoreInstrsMap)
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compiler/llvmufgen/Opt/MemOptPass.cpp:1519:51: warning: loop variable 'memAccessLoadsPair' of type 'const std::pair<MemoryAccess *, InstrList> &' (aka 'const pair<llvm::MemoryAccess *, SmallVector<pair<const llvm::Value *, llvm::Instruction *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<llvm::MemoryAccess *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, std::__tree_node<std::__value_type<llvm::MemoryAccess *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, void *> *, int>>::reference' (aka 'pair<llvm::MemoryAccess *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>> &') [-Wrange-loop-construct]
+                for (std::pair<MemoryAccess*, InstrList> const& memAccessLoadsPair : accessLoadMap)
+                                                                ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1519:8: note: use non-reference type 'std::pair<MemoryAccess *, InstrList>' (aka 'pair<llvm::MemoryAccess *, SmallVector<pair<const llvm::Value *, llvm::Instruction *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<llvm::MemoryAccess *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, std::__tree_node<std::__value_type<llvm::MemoryAccess *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<llvm::MemoryAccess *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>> &') to prevent copying
+                for (std::pair<MemoryAccess*, InstrList> const& memAccessLoadsPair : accessLoadMap)
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compiler/llvmufgen/Opt/MemOptPass.cpp:1500:44: warning: loop variable 'basePtrLoadsPair' of type 'const std::pair<BasePtr, InstrList> &' (aka 'const pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::Instruction *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>> &') [-Wrange-loop-construct]
+        for (std::pair<BasePtr, InstrList> const& basePtrLoadsPair : mapOfBasePtrsToLoads)
+                                                  ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1500:7: note: use non-reference type 'std::pair<BasePtr, InstrList>' (aka 'pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::Instruction *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::Instruction *>, 4>> &') to prevent copying
+        for (std::pair<BasePtr, InstrList> const& basePtrLoadsPair : mapOfBasePtrsToLoads)
+             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compiler/llvmufgen/Opt/MemOptPass.cpp:1654:45: warning: loop variable 'baseStorePair' of type 'const std::pair<BasePtr, StoreList> &' (aka 'const pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') binds to a temporary constructed from type 'std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::reference' (aka 'pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') [-Wrange-loop-construct]
+                for (const std::pair<BasePtr, StoreList>& baseStorePair : convergentStoreInstrsMap)
+                                                          ^
+compiler/llvmufgen/Opt/MemOptPass.cpp:1654:8: note: use non-reference type 'std::pair<BasePtr, StoreList>' (aka 'pair<const llvm::Value *, SmallVector<pair<const llvm::Value *, llvm::StoreInst *>, 4>>') to make construction explicit or type 'const std::__map_iterator<std::__tree_iterator<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, std::__tree_node<std::__value_type<const llvm::Value *, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>>, void *> *, int>>::value_type &' (aka 'const pair<const llvm::Value *const, llvm::SmallVector<std::pair<const llvm::Value *, llvm::StoreInst *>, 4>> &') to prevent copying
+                for (const std::pair<BasePtr, StoreList>& baseStorePair : convergentStoreInstrsMap)
+                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+5 warnings generated.
+  CXX      compiler/llvmufgen/Opt/OptimiseGenericPointerCasts.cpp
+  CXX      compiler/llvmufgen/Opt/OptimisePhis.cpp
+  CXX      compiler/llvmufgen/Opt/PromoteReadOnlyArgs.cpp
+  CXX      compiler/llvmufgen/Opt/RemoveDeadFunctions.cpp
+  CXX      compiler/llvmufgen/Opt/RemoveSingleEntryGlobalLoad.cpp
+  CXX      compiler/llvmufgen/Opt/RepeatedIfRewrite.cpp
+  CXX      compiler/llvmufgen/Opt/ReplaceByValArgs.cpp
+  CXX      compiler/llvmufgen/Opt/SimplifyGLSLLibFunctions.cpp
+  CXX      compiler/llvmufgen/Opt/SimplifyOCLLibFunctions.cpp
+  CXX      compiler/llvmufgen/Opt/SimplifyTrigonometricExpressions.cpp
+  CXX      compiler/llvmufgen/Opt/UniqueFunctionCalls.cpp
+  CXX      compiler/llvmufgen/Opt/VectorPckUnpck.cpp
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libufwriter.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libufwriter.dbg
+  CC       compiler/uscasm/rogue/roguedebug.c
+  CC       compiler/uscasm/rogue/uscinststats.c
+  CC       compiler/uscasm/common/lines.c
+  CC       common/string.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libuscdisasm.a
+  CC       compiler/renderpass/renderpass.c
+  AR       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/librenderpass.a
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/vulkan.POWERVR_ROGUE.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/vulkan.POWERVR_ROGUE.dbg
+  CC       android/graphicshal/buffer_generic.c
+  CC       android/graphicshal/buffer_alloc.c
+  CC       android/graphicshal/mapper.c
+  CC       android/graphicshal/gralloc1.c
+android/graphicshal/gralloc1.c:1409:23: warning: unused variable 'psNativeHandle' [-Wunused-variable]
+        IMG_native_handle_t *psNativeHandle = (IMG_native_handle_t *)buffer;
+                             ^
+1 warning generated.
+  CC       android/graphicshal/gralloc_metadata.c
+  CC       android/graphicshal/gralloc_blit.c
+  CC       android/graphicshal/buffer_sunxi.c
+android/graphicshal/buffer_sunxi.c:190:6: warning: no previous prototype for function 'sunxi_assign_info' [-Wmissing-prototypes]
+void sunxi_assign_info(const IMG_buffer_format_public_t *psFormat, IMG_native_handle_t *NativeHandle
+     ^
+android/graphicshal/buffer_sunxi.c:190:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+void sunxi_assign_info(const IMG_buffer_format_public_t *psFormat, IMG_native_handle_t *NativeHandle
+^
+static
+android/graphicshal/buffer_sunxi.c:350:8: warning: no previous prototype for function 'sunxi_get_formates' [-Wmissing-prototypes]
+size_t sunxi_get_formates(IMG_buffer_format_t **psformat)
+       ^
+android/graphicshal/buffer_sunxi.c:350:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+size_t sunxi_get_formates(IMG_buffer_format_t **psformat)
+^
+static
+2 warnings generated.
+  CC       common/string.c
+  CXX      services/client/env/linux/debug_utils_android.cpp
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/gralloc.ceres-b3.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/gralloc.ceres-b3.dbg
+  CC       android/memtrackhal/aidl/hal.c
+android/memtrackhal/aidl/hal.c:850:5: warning: no previous prototype for function 'get_memory' [-Wmissing-prototypes]
+int get_memory(pid_t pid, int type,
+    ^
+android/memtrackhal/aidl/hal.c:850:1: note: declare 'static' if the function is not intended to be used outside of this translation unit
+int get_memory(pid_t pid, int type,
+^
+static
+1 warning generated.
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/memtrack_aidl.ceres-b3.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/memtrack_aidl.ceres-b3.dbg
+  AIDL-HDR BnBlendMode.h BpBlendMode.h BlendMode.h BnChromaSiting.h BpChromaSiting.h ChromaSiting.h BnCompression.h BpCompression.h Compression.h BnCta861_3.h BpCta861_3.h Cta861_3.h BnDataspace.h BpDataspace.h Dataspace.h BnExtendableType.h BpExtendableType.h ExtendableType.h BnInterlaced.h BpInterlaced.h Interlaced.h BnPlaneLayout.h BpPlaneLayout.h PlaneLayout.h BnRect.h BpRect.h Rect.h BnPlaneLayoutComponent.h BpPlaneLayoutComponent.h PlaneLayoutComponent.h BnPlaneLayoutComponentType.h BpPlaneLayoutComponentType.h PlaneLayoutComponentType.h BnSmpte2086.h BpSmpte2086.h Smpte2086.h BnStandardMetadataType.h BpStandardMetadataType.h StandardMetadataType.h BnXyColor.h BpXyColor.h XyColor.h
+  HIDL-HDR BnHwBase.h BpHwBase.h BsBase.h IHwBase.h IBase.h hwtypes.h types.h
+  HIDL-HDR BnHwServiceManager.h BpHwServiceManager.h BsServiceManager.h IHwServiceManager.h IServiceManager.h BnHwServiceNotification.h BpHwServiceNotification.h BsServiceNotification.h IHwServiceNotification.h IServiceNotification.h
+  HIDL-HDR BnHwMemory.h BpHwMemory.h BsMemory.h IHwMemory.h IMemory.h BnHwMapper.h BpHwMapper.h BsMapper.h IHwMapper.h IMapper.h
+  HIDL-HDR hwtypes.h types.h
+  HIDL-HDR hwtypes.h types.h
+  HIDL-HDR hwtypes.h types.h
+  HIDL-HDR BnHwMapper.h BpHwMapper.h BsMapper.h IHwMapper.h IMapper.h hwtypes.h types.h
+  CXX      android/graphicshal/mapperhal/4.0/passthrough.cpp
+  CXX      android/graphicshal/mapperhal/4.0/MapperImpl_v4_0.cpp
+  CXX      android/graphicshal/mapperhal/4.0/MetadataConverterFactory.cpp
+  CXX      android/graphicshal/mapperhal/MapperImplBase.cpp
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/android.hardware.graphics.mapper@4.0-impl.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/android.hardware.graphics.mapper@4.0-impl.dbg
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/android.hardware.graphics.mapper@4.0-passthrough.img.xml
+  HIDL-HDR BnHwAllocator.h BpHwAllocator.h BsAllocator.h IHwAllocator.h IAllocator.h
+  CXX      android/graphicshal/allocatorhal/4.0/service.cpp
+  CXX      android/graphicshal/allocatorhal/4.0/allocator.cpp
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/android.hardware.graphics.allocator@4.0-service
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/android.hardware.graphics.allocator@4.dbg
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/android.hardware.graphics.allocator@4.0-service.img.rc
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/android.hardware.graphics.allocator@4.0.img.xml
+  CC       egl/wsegl/android/android_ws.c
+  LD       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libpvrANDROID_WSEGL.so
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/libpvrANDROID_WSEGL.dbg
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_armv7-a/install_um.sh
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/install_um.sh
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/install.sh
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/pvrlogdump
+  CP       /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/pvrlogsplit
+  MIPS_CC  firmware/mips/rgxfw_main.c
+  MIPS_CC  firmware/mips/rgxfw_bootldr.c
+  MIPS_CC  firmware/mips/rgxfw_nmi.c
+  MIPS_CC  firmware/mips/rgxfw_utils_mips.c
+  MIPS_CC  firmware/rgxfw_init.c
+  MIPS_CC  firmware/rogue/rgxfw_gpu_init.c
+  MIPS_CC  firmware/rgxfw_log.c
+  MIPS_CC  firmware/rogue/rgxfw_caches.c
+  MIPS_CC  firmware/rogue/rgxfw_hwperf.c
+  MIPS_CC  firmware/rogue/rgxfw_bif.c
+  MIPS_CC  firmware/rgxfw_client_ccb.c
+  MIPS_CC  firmware/rgxfw_kernel_ccb.c
+  MIPS_CC  firmware/rgxfw_bg.c
+  MIPS_CC  firmware/rgxfw_irq.c
+  MIPS_CC  firmware/rgxfw_utils.c
+  MIPS_CC  firmware/rgxfw_cr.c
+  MIPS_CC  firmware/rgxfw_fwccb.c
+  MIPS_CC  firmware/rgxfw_sched.c
+  MIPS_CC  firmware/rgxfw_pow.c
+  MIPS_CC  firmware/rgxfw_timer.c
+  MIPS_CC  firmware/rogue/rgxfw_hwr.c
+  MIPS_CC  firmware/rgxfw_cleanup.c
+  MIPS_CC  firmware/rogue/rgxfw_resetfw.c
+  MIPS_CC  firmware/rgxfw_gpu_memory.c
+  MIPS_CC  services/shared/devices/rogue/rgx_hwperf_table.c
+  MIPS_CC  firmware/rogue/rgxfw_breakpoint.c
+  MIPS_CC  firmware/rogue/rgxfw_3d.c
+  MIPS_CC  firmware/rogue/rgxfw_geometry.c
+  MIPS_CC  firmware/rogue/rgxfw_pm.c
+  MIPS_CC  firmware/rogue/rgxfw_compute.c
+  MIPS_CC  firmware/rgxfw_gpio.c
+  MIPS_CC  firmware/rogue/rgxfw_powmon.c
+  MIPS_CC  firmware/rgxfw_gp.c
+  MIPS_CC  firmware/mips/rgxfw_reset_vector.S
+  MIPS_CC  firmware/mips/rgxfw_exception_vectors.S
+  MIPS_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/intermediates/mipsfirmware/rgxmipsfirmware.elf
+  HOST_CC  tools/services/fwinfo/fwinfo.c
+  HOST_LD  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/fwinfo
+  DBGLINK  /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/host_x86_64/fwinfo.dbg
+  FWINFO   /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/rgx.fw.22.102.54.38
+  GEN      /home/zhengwanyu/AndroidS/gpu-src/out/rogue/binary_out_arm_release/target_neutral/install_fw.sh
+make: Leaving directory `/home/zhengwanyu/AndroidS/gpu-src/gpu_um_priv/img-rgx/android/rogue/build/linux/sunxi_android'

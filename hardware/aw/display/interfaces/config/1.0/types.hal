@@ -1,0 +1,141 @@
+package vendor.display.config@1.0;
+
+/*
+ * Display Port output type define.
+ */
+enum DisplayPortType : int32_t {
+  DISPLAY_PORT_NONE   = 0,
+  DISPLAY_PORT_LCD    = 1,
+  DISPLAY_PORT_CVBS   = 2,
+  DISPLAY_PORT_HDMI   = 4,
+  DISPLAY_PORT_VGA    = 8,
+};
+
+/*
+ * Eink support refresh mode
+ */
+enum hwc2_eink_refresh_mode_t: uint32_t {
+    HWC2_EINK_INIT_MODE     = 0x01,
+    HWC2_EINK_DU_MODE       = 0x02,
+    HWC2_EINK_GC16_MODE     = 0x04,
+    HWC2_EINK_GC4_MODE      = 0x08,
+    HWC2_EINK_A2_MODE       = 0x10,
+    HWC2_EINK_GL16_MODE     = 0x20,
+    HWC2_EINK_GLR16_MODE    = 0x40,
+    HWC2_EINK_GLD16_MODE    = 0x80,
+    HWC2_EINK_GU16_MODE     = 0x84,
+	HWC2_EINK_CLEAR_MODE = 0x88,
+	HWC2_EINK_GC4L_MODE = 0x8c,
+	HWC2_EINK_GCC16_MODE = 0xa0,
+	/* use self upd win not de*/
+	HWC2_EINK_RECT_MODE  = 0x400,
+    HWC_EINK_DISABLE					= 0xffffffff,
+    HWC_EINK_MASK					= 	0xffff0000,
+    HWC_EINK_SURFACEVIEW			=	0x10000,
+    HWC_EINK_FORCE_REFRESH			=	0x20000,
+    HWC_EINK_HANDWRITTEN			=	0x40000,
+    HWC_EINK_RELATIVE_COORDINATES	=	0x80000,
+    HWC_EINK_HANDWRITTEN_BG			=	0x100000,
+};
+
+/*
+ * Frame layout mode for 3D output.
+ */
+enum LayerMode : int32_t {
+  LAYER_2D_ORIGINAL         = 0,
+  LAYER_2D_LEFT             = 1,
+  LAYER_2D_TOP              = 2,
+  LAYER_3D_LEFT_RIGHT_HDMI  = 3,
+  LAYER_3D_TOP_BOTTOM_HDMI  = 4,
+  LAYER_2D_DUAL_STREAM      = 5,
+  LAYER_3D_DUAL_STREAM      = 6,
+  LAYER_3D_LEFT_RIGHT_ALL   = 7,
+  LAYER_3D_TOP_BOTTOM_ALL   = 8,
+};
+
+enum Dataspace : int32_t {
+  DATASPACE_MODE_AUTO       = 0,
+  DATASPACE_MODE_HDR        = 1,
+  DATASPACE_MODE_WCG        = 2,
+  DATASPACE_MODE_SDR        = 3,
+  DATASPACE_MODE_OTHER      = 4,
+  DATASPACE_MODE_NUM,
+};
+
+enum PixelFormat : int32_t {
+  PIXEL_FORMAT_AUTO         = 0,
+  PIXEL_FORMAT_YUV422_12bit = 1,
+  PIXEL_FORMAT_YUV420_10bit = 2,
+  PIXEL_FORMAT_YUV444_8bit  = 3,
+  PIXEL_FORMAT_RGB888_8bit  = 4,
+  PIXEL_FORMAT_NUM,
+};
+
+enum AspectRatio : int32_t {
+  ASPECT_RATIO_AUTO         = 0,
+  ASPECT_RATIO_FULL         = 1,
+  ASPECT_RATIO_4_3          = 2,
+  ASPECT_RATIO_16_9         = 3,
+  ASPECT_RATIO_MATCH_WIDTH  = 4,
+  ASPECT_RATIO_MATCH_HEIGHT = 5,
+  ASPECT_RATIO_FULL_ONCE    = 7,
+  ASPECT_RATIO_RATIO_LOAD   = 8,
+};
+
+enum EnhanceItem : int32_t {
+  ENHANCE_MODE             = 0,
+  ENHANCE_BRIGHT           = 1,
+  ENHANCE_CONTRAST         = 2,
+  ENHANCE_DENOISE          = 3,
+  ENHANCE_DETAIL           = 4,
+  ENHANCE_EDGE             = 5,
+  ENHANCE_SATURATION       = 6,
+  ENHANCE_COLOR_TEMPERATURE = 7,
+};
+
+/*
+ * Screen margin percentage
+ */
+struct ScreenMargin {
+  uint32_t left;
+  uint32_t right;
+  uint32_t top;
+  uint32_t bottom;
+};
+
+enum HdcpAuthorizedStatus: int32_t {
+  ERROR,
+  UN_AUTHORIZED,
+  AUTHORIZED,
+};
+
+enum HdcpLevel : uint32_t {
+  HDCP_UNKNOWN,
+  HDCP_NONE,
+  HDCP_V1,
+  HDCP_V2,
+  HDCP_V2_1,
+  HDCP_V2_2,
+  HDCP_NO_OUTPUT,
+};
+
+/*
+ * snr setting for yuv layer
+ */
+
+enum SNRFeatureMode: uint32_t {
+  SNR_DISABLE,
+  SNR_LEVEL1,
+  SNR_LEVEL2,
+  SNR_LEVEL3,
+  SNR_CUSTOM,
+  SNR_DEMO,
+};
+
+struct SNRInfo {
+  SNRFeatureMode mode;
+  uint32_t y;
+  uint32_t u;
+  uint32_t v;
+};
+

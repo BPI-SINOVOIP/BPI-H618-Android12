@@ -1,0 +1,6 @@
+service dom2reg /vendor/bin/dom2reg
+    class main
+    user root
+    group system
+    capabilities BLOCK_SUSPEND NET_ADMIN
+    oneshot

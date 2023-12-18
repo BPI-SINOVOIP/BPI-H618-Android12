@@ -1,0 +1,35 @@
+cc_library_shared {
+name: "libhwc_config",
+    proprietary: true,
+    srcs: [
+        "DeviceConfig.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libjsoncpp",
+    ],
+    cflags: [
+        "-Wall",
+        "-Wunused",
+        "-Wno-unused-parameter",
+        "-Wno-unused-private-field",
+        "-DLOG_TAG=\"sunxihwc\"",
+    ],
+    include_dirs: [
+        "hardware/aw/display/include",
+    ],
+}
+
+cc_binary {
+    name: "parsedispconfig",
+    proprietary: true,
+    srcs: [
+        "test.cpp",
+    ],
+    shared_libs: [
+        "libhwc_config",
+    ],
+}

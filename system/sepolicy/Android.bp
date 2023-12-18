@@ -1,0 +1,989 @@
+// Copyright (C) 2018 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["system_sepolicy_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'filegroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+// http://go/android-license-faq
+license {
+    name: "system_sepolicy_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "legacy_unencumbered",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+cc_defaults { name: "selinux_policy_version", cflags: ["-DSEPOLICY_VERSION=30"], }
+
+se_filegroup {
+    name: "26.0.board.compat.map",
+    srcs: [
+        "compat/26.0/26.0.cil",
+    ],
+}
+
+se_filegroup {
+    name: "27.0.board.compat.map",
+    srcs: [
+        "compat/27.0/27.0.cil",
+    ],
+}
+
+se_filegroup {
+    name: "28.0.board.compat.map",
+    srcs: [
+        "compat/28.0/28.0.cil",
+    ],
+}
+
+se_filegroup {
+    name: "29.0.board.compat.map",
+    srcs: [
+        "compat/29.0/29.0.cil",
+    ],
+}
+
+se_filegroup {
+    name: "30.0.board.compat.map",
+    srcs: [
+        "compat/30.0/30.0.cil",
+    ],
+}
+
+se_filegroup {
+    name: "26.0.board.compat.cil",
+    srcs: [
+        "compat/26.0/26.0.compat.cil",
+    ],
+}
+
+se_filegroup {
+    name: "27.0.board.compat.cil",
+    srcs: [
+        "compat/27.0/27.0.compat.cil",
+    ],
+}
+
+se_filegroup {
+    name: "28.0.board.compat.cil",
+    srcs: [
+        "compat/28.0/28.0.compat.cil",
+    ],
+}
+
+se_filegroup {
+    name: "29.0.board.compat.cil",
+    srcs: [
+        "compat/29.0/29.0.compat.cil",
+    ],
+}
+
+se_filegroup {
+    name: "30.0.board.compat.cil",
+    srcs: [
+        "compat/30.0/30.0.compat.cil",
+    ],
+}
+
+se_filegroup {
+    name: "26.0.board.ignore.map",
+    srcs: [
+        "compat/26.0/26.0.ignore.cil",
+    ],
+}
+
+se_filegroup {
+    name: "27.0.board.ignore.map",
+    srcs: [
+        "compat/27.0/27.0.ignore.cil",
+    ],
+}
+
+se_filegroup {
+    name: "28.0.board.ignore.map",
+    srcs: [
+        "compat/28.0/28.0.ignore.cil",
+    ],
+}
+
+se_filegroup {
+    name: "29.0.board.ignore.map",
+    srcs: [
+        "compat/29.0/29.0.ignore.cil",
+    ],
+}
+
+se_filegroup {
+    name: "30.0.board.ignore.map",
+    srcs: [
+        "compat/30.0/30.0.ignore.cil",
+    ],
+}
+
+se_cil_compat_map {
+    name: "plat_26.0.cil",
+    stem: "26.0.cil",
+    bottom_half: [":26.0.board.compat.map"],
+    top_half: "plat_27.0.cil",
+}
+
+se_cil_compat_map {
+    name: "plat_27.0.cil",
+    stem: "27.0.cil",
+    bottom_half: [":27.0.board.compat.map"],
+    top_half: "plat_28.0.cil",
+}
+
+se_cil_compat_map {
+    name: "plat_28.0.cil",
+    stem: "28.0.cil",
+    bottom_half: [":28.0.board.compat.map"],
+    top_half: "plat_29.0.cil",
+}
+
+se_cil_compat_map {
+    name: "plat_29.0.cil",
+    stem: "29.0.cil",
+    bottom_half: [":29.0.board.compat.map"],
+    top_half: "plat_30.0.cil",
+}
+
+se_cil_compat_map {
+    name: "plat_30.0.cil",
+    stem: "30.0.cil",
+    bottom_half: [":30.0.board.compat.map"],
+    // top_half: "plat_31.0.cil",
+}
+
+se_cil_compat_map {
+    name: "system_ext_26.0.cil",
+    stem: "26.0.cil",
+    bottom_half: [":26.0.board.compat.map"],
+    top_half: "system_ext_27.0.cil",
+    system_ext_specific: true,
+}
+
+se_cil_compat_map {
+    name: "system_ext_27.0.cil",
+    stem: "27.0.cil",
+    bottom_half: [":27.0.board.compat.map"],
+    top_half: "system_ext_28.0.cil",
+    system_ext_specific: true,
+}
+
+se_cil_compat_map {
+    name: "system_ext_28.0.cil",
+    stem: "28.0.cil",
+    bottom_half: [":28.0.board.compat.map"],
+    top_half: "system_ext_29.0.cil",
+    system_ext_specific: true,
+}
+
+se_cil_compat_map {
+    name: "system_ext_29.0.cil",
+    stem: "29.0.cil",
+    bottom_half: [":29.0.board.compat.map"],
+    top_half: "system_ext_30.0.cil",
+    system_ext_specific: true,
+}
+
+se_cil_compat_map {
+    name: "system_ext_30.0.cil",
+    stem: "30.0.cil",
+    bottom_half: [":30.0.board.compat.map"],
+    // top_half: "system_ext_31.0.cil",
+    system_ext_specific: true,
+}
+
+se_cil_compat_map {
+    name: "product_26.0.cil",
+    stem: "26.0.cil",
+    bottom_half: [":26.0.board.compat.map"],
+    top_half: "product_27.0.cil",
+    product_specific: true,
+}
+
+se_cil_compat_map {
+    name: "product_27.0.cil",
+    stem: "27.0.cil",
+    bottom_half: [":27.0.board.compat.map"],
+    top_half: "product_28.0.cil",
+    product_specific: true,
+}
+
+se_cil_compat_map {
+    name: "product_28.0.cil",
+    stem: "28.0.cil",
+    bottom_half: [":28.0.board.compat.map"],
+    top_half: "product_29.0.cil",
+    product_specific: true,
+}
+
+se_cil_compat_map {
+    name: "product_29.0.cil",
+    stem: "29.0.cil",
+    bottom_half: [":29.0.board.compat.map"],
+    top_half: "product_30.0.cil",
+    product_specific: true,
+}
+
+se_cil_compat_map {
+    name: "product_30.0.cil",
+    stem: "30.0.cil",
+    bottom_half: [":30.0.board.compat.map"],
+    // top_half: "product_31.0.cil",
+    product_specific: true,
+}
+
+se_cil_compat_map {
+    name: "26.0.ignore.cil",
+    bottom_half: [":26.0.board.ignore.map"],
+    top_half: "27.0.ignore.cil",
+}
+
+se_cil_compat_map {
+    name: "27.0.ignore.cil",
+    bottom_half: [":27.0.board.ignore.map"],
+    top_half: "28.0.ignore.cil",
+}
+
+se_cil_compat_map {
+    name: "28.0.ignore.cil",
+    bottom_half: [":28.0.board.ignore.map"],
+    top_half: "29.0.ignore.cil",
+}
+
+se_cil_compat_map {
+    name: "29.0.ignore.cil",
+    bottom_half: [":29.0.board.ignore.map"],
+    top_half: "30.0.ignore.cil",
+}
+
+se_cil_compat_map {
+    name: "30.0.ignore.cil",
+    bottom_half: [":30.0.board.ignore.map"],
+    // top_half: "31.0.ignore.cil",
+}
+
+se_cil_compat_map {
+    name: "system_ext_30.0.ignore.cil",
+    bottom_half: [":30.0.board.ignore.map"],
+    // top_half: "system_ext_31.0.ignore.cil",
+    system_ext_specific: true,
+}
+
+se_cil_compat_map {
+    name: "product_30.0.ignore.cil",
+    bottom_half: [":30.0.board.ignore.map"],
+    // top_half: "product_31.0.ignore.cil",
+    product_specific: true,
+}
+
+se_compat_cil {
+    name: "26.0.compat.cil",
+    srcs: [":26.0.board.compat.cil"],
+}
+
+se_compat_cil {
+    name: "27.0.compat.cil",
+    srcs: [":27.0.board.compat.cil"],
+}
+
+se_compat_cil {
+    name: "28.0.compat.cil",
+    srcs: [":28.0.board.compat.cil"],
+}
+
+se_compat_cil {
+    name: "29.0.compat.cil",
+    srcs: [":29.0.board.compat.cil"],
+}
+
+se_compat_cil {
+    name: "30.0.compat.cil",
+    srcs: [":30.0.board.compat.cil"],
+}
+
+se_compat_cil {
+    name: "system_ext_26.0.compat.cil",
+    srcs: [":26.0.board.compat.cil"],
+    stem: "26.0.compat.cil",
+    system_ext_specific: true,
+}
+
+se_compat_cil {
+    name: "system_ext_27.0.compat.cil",
+    srcs: [":27.0.board.compat.cil"],
+    stem: "27.0.compat.cil",
+    system_ext_specific: true,
+}
+
+se_compat_cil {
+    name: "system_ext_28.0.compat.cil",
+    srcs: [":28.0.board.compat.cil"],
+    stem: "28.0.compat.cil",
+    system_ext_specific: true,
+}
+
+se_compat_cil {
+    name: "system_ext_29.0.compat.cil",
+    srcs: [":29.0.board.compat.cil"],
+    stem: "29.0.compat.cil",
+    system_ext_specific: true,
+}
+
+se_compat_cil {
+    name: "system_ext_30.0.compat.cil",
+    srcs: [":30.0.board.compat.cil"],
+    stem: "30.0.compat.cil",
+    system_ext_specific: true,
+}
+
+se_filegroup {
+    name: "file_contexts_files",
+    srcs: ["file_contexts"],
+}
+
+se_filegroup {
+    name: "file_contexts_asan_files",
+    srcs: ["file_contexts_asan"],
+}
+
+se_filegroup {
+    name: "file_contexts_overlayfs_files",
+    srcs: ["file_contexts_overlayfs"],
+}
+
+se_filegroup {
+    name: "hwservice_contexts_files",
+    srcs: ["hwservice_contexts"],
+}
+
+se_filegroup {
+    name: "property_contexts_files",
+    srcs: ["property_contexts"],
+}
+
+se_filegroup {
+    name: "service_contexts_files",
+    srcs: ["service_contexts"],
+}
+
+se_filegroup {
+    name: "keystore2_key_contexts_files",
+    srcs: ["keystore2_key_contexts"],
+}
+
+file_contexts {
+    name: "plat_file_contexts",
+    srcs: [":file_contexts_files"],
+    product_variables: {
+        address_sanitize: {
+            srcs: [":file_contexts_asan_files"],
+        },
+        debuggable: {
+            srcs: [":file_contexts_overlayfs_files"],
+        },
+    },
+
+    flatten_apex: {
+        srcs: ["apex/*-file_contexts"],
+    },
+
+    recovery_available: true,
+}
+
+file_contexts {
+    name: "vendor_file_contexts",
+    srcs: [":file_contexts_files"],
+    soc_specific: true,
+    recovery_available: true,
+}
+
+file_contexts {
+    name: "system_ext_file_contexts",
+    srcs: [":file_contexts_files"],
+    system_ext_specific: true,
+    recovery_available: true,
+}
+
+file_contexts {
+    name: "product_file_contexts",
+    srcs: [":file_contexts_files"],
+    product_specific: true,
+    recovery_available: true,
+}
+
+file_contexts {
+    name: "odm_file_contexts",
+    srcs: [":file_contexts_files"],
+    device_specific: true,
+    recovery_available: true,
+}
+
+hwservice_contexts {
+    name: "plat_hwservice_contexts",
+    srcs: [":hwservice_contexts_files"],
+}
+
+hwservice_contexts {
+    name: "system_ext_hwservice_contexts",
+    srcs: [":hwservice_contexts_files"],
+    system_ext_specific: true,
+}
+
+hwservice_contexts {
+    name: "product_hwservice_contexts",
+    srcs: [":hwservice_contexts_files"],
+    product_specific: true,
+}
+
+hwservice_contexts {
+    name: "vendor_hwservice_contexts",
+    srcs: [":hwservice_contexts_files"],
+    reqd_mask: true,
+    soc_specific: true,
+}
+
+hwservice_contexts {
+    name: "odm_hwservice_contexts",
+    srcs: [":hwservice_contexts_files"],
+    device_specific: true,
+}
+
+property_contexts {
+    name: "plat_property_contexts",
+    srcs: [":property_contexts_files"],
+    recovery_available: true,
+}
+
+property_contexts {
+    name: "system_ext_property_contexts",
+    srcs: [":property_contexts_files"],
+    system_ext_specific: true,
+    recovery_available: true,
+}
+
+property_contexts {
+    name: "product_property_contexts",
+    srcs: [":property_contexts_files"],
+    product_specific: true,
+    recovery_available: true,
+}
+
+property_contexts {
+    name: "vendor_property_contexts",
+    srcs: [":property_contexts_files"],
+    reqd_mask: true,
+    soc_specific: true,
+    recovery_available: true,
+}
+
+property_contexts {
+    name: "odm_property_contexts",
+    srcs: [":property_contexts_files"],
+    device_specific: true,
+    recovery_available: true,
+}
+
+service_contexts {
+    name: "plat_service_contexts",
+    srcs: [":service_contexts_files"],
+}
+
+service_contexts {
+    name: "system_ext_service_contexts",
+    srcs: [":service_contexts_files"],
+    system_ext_specific: true,
+}
+
+service_contexts {
+    name: "product_service_contexts",
+    srcs: [":service_contexts_files"],
+    product_specific: true,
+}
+
+service_contexts {
+    name: "vendor_service_contexts",
+    srcs: [":service_contexts_files"],
+    reqd_mask: true,
+    soc_specific: true,
+}
+
+keystore2_key_contexts {
+    name: "plat_keystore2_key_contexts",
+    srcs: [":keystore2_key_contexts_files"],
+}
+
+keystore2_key_contexts {
+    name: "system_keystore2_key_contexts",
+    srcs: [":keystore2_key_contexts_files"],
+    system_ext_specific: true,
+}
+
+keystore2_key_contexts {
+    name: "product_keystore2_key_contexts",
+    srcs: [":keystore2_key_contexts_files"],
+    product_specific: true,
+}
+
+keystore2_key_contexts {
+    name: "vendor_keystore2_key_contexts",
+    srcs: [":keystore2_key_contexts_files"],
+    reqd_mask: true,
+    soc_specific: true,
+}
+
+// For vts_treble_sys_prop_test
+filegroup {
+    name: "private_property_contexts",
+    srcs: ["private/property_contexts"],
+    visibility: [
+        "//test/vts-testcase/security/system_property",
+    ],
+}
+
+se_build_files {
+    name: "se_build_files",
+    srcs: [
+        "security_classes",
+        "initial_sids",
+        "access_vectors",
+        "global_macros",
+        "neverallow_macros",
+        "mls_macros",
+        "mls_decl",
+        "mls",
+        "policy_capabilities",
+        "te_macros",
+        "attributes",
+        "ioctl_defines",
+        "ioctl_macros",
+        "*.te",
+        "roles_decl",
+        "roles",
+        "users",
+        "initial_sid_contexts",
+        "fs_use",
+        "genfs_contexts",
+        "port_contexts",
+    ],
+}
+
+// reqd_policy_mask - a policy.conf file which contains only the bare minimum
+// policy necessary to use checkpolicy.
+//
+// This bare-minimum policy needs to be present in all policy.conf files, but
+// should not necessarily be exported as part of the public policy.
+//
+// The rules generated by reqd_policy_mask will allow the compilation of public
+// policy and subsequent removal of CIL policy that should not be exported.
+se_policy_conf {
+    name: "reqd_policy_mask.conf",
+    srcs: [":se_build_files{.reqd_mask}"],
+    installable: false,
+}
+
+se_policy_cil {
+    name: "reqd_policy_mask.cil",
+    src: ":reqd_policy_mask.conf",
+    secilc_check: false,
+    installable: false,
+}
+
+// pub_policy - policy that will be exported to be a part of non-platform
+// policy corresponding to this platform version.
+//
+// This is a limited subset of policy that would not compile in checkpolicy on
+// its own.
+//
+// To get around this limitation, add only the required files from private
+// policy, which will generate CIL policy that will then be filtered out by the
+// reqd_policy_mask.
+//
+// There are three pub_policy.cil files below:
+//   - pub_policy.cil: exported 'product', 'system_ext' and 'system' policy.
+//   - system_ext_pub_policy.cil: exported 'system_ext' and 'system' policy.
+//   - plat_pub_policy.cil: exported 'system' policy.
+//
+// Those above files will in turn be used to generate the following versioned cil files:
+//   - product_mapping_file: the versioned, exported 'product' policy in product partition.
+//   - system_ext_mapping_file: the versioned, exported 'system_ext' policy in system_ext partition.
+//   - plat_mapping_file: the versioned, exported 'system' policy in system partition.
+//   - plat_pub_versioned.cil: the versioned, exported 'product', 'system_ext' and 'system' policy
+//                             in vendor partition.
+//
+se_policy_conf {
+    name: "pub_policy.conf",
+    srcs: [":se_build_files{.product_public}"], // product_ includes system and system_ext
+    installable: false,
+}
+
+se_policy_cil {
+    name: "pub_policy.cil",
+    src: ":pub_policy.conf",
+    filter_out: [":reqd_policy_mask.cil"],
+    secilc_check: false,
+    installable: false,
+}
+
+se_policy_conf {
+    name: "system_ext_pub_policy.conf",
+    srcs: [":se_build_files{.system_ext_public}"], // system_ext_public includes system
+    installable: false,
+}
+
+se_policy_cil {
+    name: "system_ext_pub_policy.cil",
+    src: ":system_ext_pub_policy.conf",
+    filter_out: [":reqd_policy_mask.cil"],
+    secilc_check: false,
+    installable: false,
+}
+
+se_policy_conf {
+    name: "plat_pub_policy.conf",
+    srcs: [":se_build_files{.plat_public}"],
+    installable: false,
+}
+
+se_policy_cil {
+    name: "plat_pub_policy.cil",
+    src: ":plat_pub_policy.conf",
+    filter_out: [":reqd_policy_mask.cil"],
+    secilc_check: false,
+    installable: false,
+}
+
+// plat_policy.conf - A combination of the private and public platform policy
+// which will ship with the device.
+//
+// The platform will always reflect the most recent platform version and is not
+// currently being attributized.
+se_policy_conf {
+    name: "plat_sepolicy.conf",
+    srcs: [":se_build_files{.plat}"],
+    installable: false,
+}
+
+se_policy_cil {
+    name: "plat_sepolicy.cil",
+    src: ":plat_sepolicy.conf",
+    additional_cil_files: ["private/technical_debt.cil"],
+}
+
+// userdebug_plat_policy.conf - the userdebug version plat_sepolicy.cil
+se_policy_conf {
+    name: "userdebug_plat_sepolicy.conf",
+    srcs: [":se_build_files{.plat}"],
+    build_variant: "userdebug",
+    installable: false,
+}
+
+se_policy_cil {
+    name: "userdebug_plat_sepolicy.cil",
+    src: ":userdebug_plat_sepolicy.conf",
+    additional_cil_files: ["private/technical_debt.cil"],
+    debug_ramdisk: true,
+}
+
+// system_ext_policy.conf - A combination of the private and public system_ext
+// policy which will ship with the device. System_ext policy is not attributized
+se_policy_conf {
+    name: "system_ext_sepolicy.conf",
+    srcs: [":se_build_files{.system_ext}"],
+    installable: false,
+}
+
+se_policy_cil {
+    name: "system_ext_sepolicy.cil",
+    src: ":system_ext_sepolicy.conf",
+    system_ext_specific: true,
+    filter_out: [":plat_sepolicy.cil"],
+    remove_line_marker: true,
+}
+
+// product_policy.conf - A combination of the private and public product policy
+// which will ship with the device. Product policy is not attributized
+se_policy_conf {
+    name: "product_sepolicy.conf",
+    srcs: [":se_build_files{.product}"],
+    installable: false,
+}
+
+se_policy_cil {
+    name: "product_sepolicy.cil",
+    src: ":product_sepolicy.conf",
+    product_specific: true,
+    filter_out: [":plat_sepolicy.cil", ":system_ext_sepolicy.cil"],
+    remove_line_marker: true,
+}
+
+// policy mapping files
+// auto-generate the mapping file for current platform policy, since it needs to
+// track platform policy development
+se_versioned_policy {
+    name: "plat_mapping_file",
+    base: ":plat_pub_policy.cil",
+    mapping: true,
+    version: "current",
+    relative_install_path: "mapping", // install to /system/etc/selinux/mapping
+}
+
+se_versioned_policy {
+    name: "system_ext_mapping_file",
+    base: ":system_ext_pub_policy.cil",
+    mapping: true,
+    version: "current",
+    filter_out: [":plat_mapping_file"],
+    relative_install_path: "mapping", // install to /system_ext/etc/selinux/mapping
+    system_ext_specific: true,
+}
+
+se_versioned_policy {
+    name: "product_mapping_file",
+    base: ":pub_policy.cil",
+    mapping: true,
+    version: "current",
+    filter_out: [":plat_mapping_file", ":system_ext_mapping_file"],
+    relative_install_path: "mapping", // install to /product/etc/selinux/mapping
+    product_specific: true,
+}
+
+// plat_pub_versioned.cil - the exported platform policy associated with the version
+// that non-platform policy targets.
+se_versioned_policy {
+    name: "plat_pub_versioned.cil",
+    base: ":pub_policy.cil",
+    target_policy: ":pub_policy.cil",
+    version: "current",
+    dependent_cils: [
+        ":plat_sepolicy.cil",
+        ":system_ext_sepolicy.cil",
+        ":product_sepolicy.cil",
+        ":plat_mapping_file",
+        ":system_ext_mapping_file",
+        ":product_mapping_file",
+    ],
+    vendor: true,
+}
+
+//////////////////////////////////
+// Precompiled sepolicy is loaded if and only if:
+// - plat_sepolicy_and_mapping.sha256 equals
+//   precompiled_sepolicy.plat_sepolicy_and_mapping.sha256
+// AND
+// - system_ext_sepolicy_and_mapping.sha256 equals
+//   precompiled_sepolicy.system_ext_sepolicy_and_mapping.sha256
+// AND
+// - product_sepolicy_and_mapping.sha256 equals
+//   precompiled_sepolicy.product_sepolicy_and_mapping.sha256
+// See system/core/init/selinux.cpp for details.
+//////////////////////////////////
+genrule {
+    name: "plat_sepolicy_and_mapping.sha256_gen",
+    srcs: [":plat_sepolicy.cil", ":plat_mapping_file"],
+    out: ["plat_sepolicy_and_mapping.sha256"],
+    cmd: "cat $(in) | sha256sum | cut -d' ' -f1 > $(out)",
+}
+
+prebuilt_etc {
+    name: "plat_sepolicy_and_mapping.sha256",
+    filename: "plat_sepolicy_and_mapping.sha256",
+    src: ":plat_sepolicy_and_mapping.sha256_gen",
+    relative_install_path: "selinux",
+}
+
+genrule {
+    name: "system_ext_sepolicy_and_mapping.sha256_gen",
+    srcs: [":system_ext_sepolicy.cil", ":system_ext_mapping_file"],
+    out: ["system_ext_sepolicy_and_mapping.sha256"],
+    cmd: "cat $(in) | sha256sum | cut -d' ' -f1 > $(out)",
+}
+
+prebuilt_etc {
+    name: "system_ext_sepolicy_and_mapping.sha256",
+    filename: "system_ext_sepolicy_and_mapping.sha256",
+    src: ":system_ext_sepolicy_and_mapping.sha256_gen",
+    relative_install_path: "selinux",
+    system_ext_specific: true,
+}
+
+genrule {
+    name: "product_sepolicy_and_mapping.sha256_gen",
+    srcs: [":product_sepolicy.cil", ":product_mapping_file"],
+    out: ["product_sepolicy_and_mapping.sha256"],
+    cmd: "cat $(in) | sha256sum | cut -d' ' -f1 > $(out)",
+}
+
+prebuilt_etc {
+    name: "product_sepolicy_and_mapping.sha256",
+    filename: "product_sepolicy_and_mapping.sha256",
+    src: ":product_sepolicy_and_mapping.sha256_gen",
+    relative_install_path: "selinux",
+    product_specific: true,
+}
+
+sepolicy_vers {
+    name: "plat_sepolicy_vers.txt",
+    version: "vendor",
+    vendor: true,
+}
+
+soong_config_module_type {
+    name: "precompiled_sepolicy_defaults",
+    module_type: "prebuilt_defaults",
+    config_namespace: "ANDROID",
+    bool_variables: ["BOARD_USES_ODMIMAGE"],
+    properties: ["vendor", "device_specific"],
+}
+
+precompiled_sepolicy_defaults {
+    name: "precompiled_sepolicy",
+    soong_config_variables: {
+        BOARD_USES_ODMIMAGE: {
+            device_specific: true,
+            conditions_default: {
+                vendor: true,
+            },
+        },
+    },
+}
+
+//////////////////////////////////
+// SHA-256 digest of the plat_sepolicy.cil and plat_mapping_file against
+// which precompiled_policy was built.
+//////////////////////////////////
+prebuilt_etc {
+    defaults: ["precompiled_sepolicy"],
+    name: "precompiled_sepolicy.plat_sepolicy_and_mapping.sha256",
+    filename: "precompiled_sepolicy.plat_sepolicy_and_mapping.sha256",
+    src: ":plat_sepolicy_and_mapping.sha256_gen",
+    relative_install_path: "selinux",
+}
+
+//////////////////////////////////
+// SHA-256 digest of the system_ext_sepolicy.cil and system_ext_mapping_file against
+// which precompiled_policy was built.
+//////////////////////////////////
+prebuilt_etc {
+    defaults: ["precompiled_sepolicy"],
+    name: "precompiled_sepolicy.system_ext_sepolicy_and_mapping.sha256",
+    filename: "precompiled_sepolicy.system_ext_sepolicy_and_mapping.sha256",
+    src: ":system_ext_sepolicy_and_mapping.sha256_gen",
+    relative_install_path: "selinux",
+}
+
+//////////////////////////////////
+// SHA-256 digest of the product_sepolicy.cil and product_mapping_file against
+// which precompiled_policy was built.
+//////////////////////////////////
+prebuilt_etc {
+    defaults: ["precompiled_sepolicy"],
+    name: "precompiled_sepolicy.product_sepolicy_and_mapping.sha256",
+    filename: "precompiled_sepolicy.product_sepolicy_and_mapping.sha256",
+    src: ":product_sepolicy_and_mapping.sha256_gen",
+    relative_install_path: "selinux",
+}
+
+
+//////////////////////////////////
+// SELinux policy embedded into CTS.
+// CTS checks neverallow rules of this policy against the policy of the device under test.
+//////////////////////////////////
+se_policy_conf {
+    name: "general_sepolicy.conf",
+    srcs: [":se_build_files{.plat}"],
+    build_variant: "user",
+    cts: true,
+    exclude_build_test: true,
+}
+
+//////////////////////////////////
+// modules for microdroid
+//////////////////////////////////
+
+// microdroid's system sepolicy is almost identical to host's system sepolicy, except that
+// microdroid doesn't have system_ext and product. So microdroid's plat_pub_versioned.cil is
+// generated with plat_pub_policy.cil (exported system), not pub_policy.cil (exported system +
+// system_ext + product). Other two files, plat_sepolicy.cil and plat_mapping_file, are copied from
+// host's files.
+se_versioned_policy {
+    name: "microdroid_plat_pub_versioned.cil",
+    stem: "plat_pub_versioned.cil",
+    base: ":plat_pub_policy.cil",
+    target_policy: ":plat_pub_policy.cil",
+    version: "current",
+    dependent_cils: [
+        ":plat_sepolicy.cil",
+        ":plat_mapping_file",
+    ],
+    installable: false,
+}
+
+// microdroid's vendor sepolicy is a minimalized sepolicy needed for microdroid to boot. It just
+// contains system/sepolicy/public and system/sepolicy/vendor.
+se_policy_conf {
+    name: "microdroid_vendor_sepolicy.conf",
+    srcs: [":se_build_files{.plat_vendor}"],
+    installable: false,
+}
+
+se_policy_cil {
+    name: "microdroid_vendor_sepolicy.cil.raw",
+    src: ":microdroid_vendor_sepolicy.conf",
+    filter_out: [":reqd_policy_mask.cil"],
+    secilc_check: false, // will be done in se_versioned_policy module
+    installable: false,
+}
+
+se_versioned_policy {
+    name: "microdroid_vendor_sepolicy.cil",
+    stem: "vendor_sepolicy.cil",
+    base: ":plat_pub_policy.cil",
+    target_policy: ":microdroid_vendor_sepolicy.cil.raw",
+    version: "current", // microdroid is bundled to system
+    dependent_cils: [
+        ":plat_sepolicy.cil",
+        ":microdroid_plat_pub_versioned.cil",
+        ":plat_mapping_file",
+    ],
+    filter_out: [":microdroid_plat_pub_versioned.cil"],
+    installable: false,
+}
+
+sepolicy_vers {
+    name: "microdroid_plat_sepolicy_vers.txt",
+    version: "platform",
+    stem: "plat_sepolicy_vers.txt",
+    installable: false,
+}

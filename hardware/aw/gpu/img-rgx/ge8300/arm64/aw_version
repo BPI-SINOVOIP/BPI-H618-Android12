@@ -1,0 +1,64 @@
+Note: Only update gralloc.sunxi.so other lib will based on "ge8300:gralloc4"
+
+
+Commit Info:
+img-rgx: Refine fixing dingding live stream screen slash problem
+
+Add missing patch to fix camera problem
+
+Commit Info:
+
+img-rgx: fix some vk deqp problem
+
+Fix:
+dEQP-VK.protected_memory.ssbo.ssbo_atomic.fragment.add.random#atomic_add_8
+dEQP-VK.memory.pipeline_barrier.transfer_dst_vertex_buffer#8192_vertex_buffer_stride_2
+dEQP-VK.wsi.android.swapchain.create#image_format
+dEQP-VK.wsi.android.colorspace#basic
+dEQP-VK.api.invariance#random
+dEQP-VK.memory.allocation.basic.size_64.forward#count_1
+dEQP-VK.pipeline.vertex_input.max_attributes.16_attributes.binding_one_to_one#interleaved
+dEQP-VK.wsi.android.incremental_present.scale_none.mailbox.identity.inherit#reference
+
+Change-Id: I3494ce3e23362d6f32f7d6710d9891d053133a7b
+
+MD5 Information:
+569d017b6f4f5e0ba2e5301bf0828eac lib/gralloc.sunxi.so
+6057d7b23818617a253a21850526d26b lib/libEGL_POWERVR_ROGUE.so
+04f818add11d2e8d2896465fef3a44f9 lib/libGLESv1_CM_POWERVR_ROGUE.so
+0e980a70dd153c2252f0718ef7ee4d7f lib/libGLESv2_POWERVR_ROGUE.so
+89a035539254de08c34f448bff4d8957 lib/libglslcompiler.so
+c68503a9c57fc761c0f99e407e711c71 lib/libIMGegl.so
+fed73e547fdf704824c55facbaad4692 lib/libPVROCL.so
+0eb4717bf49d715813f83ca34299d030 lib/libPVRScopeServices.so
+5488b06fcc9f88d414b7f0ac6a4e90d2 lib/libsrv_um.so
+00498991cc97fbce0748bb5e6fc88ee1 lib/libusc.so
+6350a714271e821204a5a4f359ea7b64 lib/libufwriter.so
+e9186b3da7e4a4c0b23f4fa995e7ca6a lib/vulkan.sunxi.so
+7b2b3e62a278cea8637babf4d1148302 lib64/gralloc.sunxi.so
+477695846454e2a55e42ddb169b412d0 lib64/libEGL_POWERVR_ROGUE.so
+e3d2b8c6d42e48b227c925760c7bec50 lib64/libGLESv1_CM_POWERVR_ROGUE.so
+20ea94060a4036240a18c4231a91e701 lib64/libGLESv2_POWERVR_ROGUE.so
+675e846493acb98dae543a97df380bcd lib64/libglslcompiler.so
+d82118bd7940ee5cec51b30322cd8b25 lib64/libIMGegl.so
+9040262fc0cdff6854975e6a6a6321f9 lib64/libPVROCL.so
+bebca941be52fccf17134cc24384f48c lib64/libPVRScopeServices.so
+4a2320ce64dfba74212f10a4e1e1d80a lib64/libsrv_um.so
+5333a1139994ed7e4a7603eceb517e65 lib64/libufwriter.so
+0fb2130d5e865549914b26f5e4fe53a8 lib64/vulkan.sunxi.so
+b7d0c7dc767b5d19c7f397cdb8319805 lib64/libusc.so
+c112c5bb124a255c000f1b30bb9e7f7b bin/pvrsrvctl
+
+Toolchain information:
+Android GCC has been deprecated in favor of Clang, and will be removed from
+Android in 2020-01 as per the deprecation plan in:
+https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+/master/GCC_4_9_DEPRECATION.md
+
+
+Using built-in specs.
+COLLECT_GCC=/home/cuiyuntao/zhengwanyu_gpu_src/tools/toolchains/aarch64-linux-android/bin/a8fe5040-2585-11e9-9684-4b547fbede22
+COLLECT_LTO_WRAPPER=/home/cuiyuntao/zhengwanyu_gpu_src/tools/toolchains/aarch64-linux-android/bin/../libexec/gcc/aarch64-linux-android/4.9.x/lto-wrapper
+Target: aarch64-linux-android
+Configured with: /usr/local/google/buildbot/src/android/gcc/toolchain/build/../gcc/gcc-4.9/configure --prefix=/tmp/5c3cd6dc237a9f9180560b02cb018058 --target=aarch64-linux-android --host=x86_64-linux-gnu --build=x86_64-linux-gnu --with-gnu-as --with-gnu-ld --enable-languages=c,c++ --with-gmp=/buildbot/tmp/build/toolchain/temp-install --with-mpfr=/buildbot/tmp/build/toolchain/temp-install --with-mpc=/buildbot/tmp/build/toolchain/temp-install --with-cloog=/buildbot/tmp/build/toolchain/temp-install --with-isl=/buildbot/tmp/build/toolchain/temp-install --with-ppl=/buildbot/tmp/build/toolchain/temp-install --disable-ppl-version-check --disable-cloog-version-check --disable-isl-version-check --enable-cloog-backend=isl --with-host-libstdcxx='-static-libgcc -Wl,-Bstatic,-lstdc++,-Bdynamic -lm' --disable-libssp --enable-threads --disable-nls --disable-libmudflap --disable-libgomp --disable-libstdc__-v3 --disable-sjlj-exceptions --disable-shared --disable-tls --disable-libitm --enable-bionic-libs --enable-libatomic-ifuncs=no --enable-initfini-array --disable-nls --prefix=/tmp/5c3cd6dc237a9f9180560b02cb018058 --with-sysroot=/tmp/5c3cd6dc237a9f9180560b02cb018058/sysroot --with-binutils-version=2.27 --with-mpfr-version=3.1.1 --with-mpc-version=1.0.1 --with-gmp-version=5.0.5 --with-gcc-version=4.9 --with-gdb-version=none --with-gxx-include-dir=/tmp/5c3cd6dc237a9f9180560b02cb018058/include/c++/4.9.x --with-bugurl=http://source.android.com/source/report-bugs.html --enable-languages=c,c++ --disable-bootstrap --enable-plugins --enable-libgomp --enable-gnu-indirect-function --disable-libsanitizer --enable-gold --enable-ld=default --enable-threads --enable-eh-frame-hdr-for-static --enable-fix-cortex-a53-835769 --enable-graphite=yes --with-isl-version=0.11.1 --with-cloog-version=0.18.0 --program-transform-name='s&^&aarch64-linux-android-&' --enable-gold
+Thread model: posix
+gcc version 4.9.x 20150123 (prerelease) (GCC) 

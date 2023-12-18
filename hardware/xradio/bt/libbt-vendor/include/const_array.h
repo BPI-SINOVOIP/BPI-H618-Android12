@@ -1,0 +1,143 @@
+
+#define MAX_LMP_CODE    66
+
+char* lmp_code[] = {
+    "LMP_unknown",//0
+    "LMP_name_req",
+    "LMP_name_rsp",
+    "LMP_accepted",
+    "LMP_not_accepted",
+    "LMP_clkoffset_req",
+    "LMP_clkoffset_rsp",
+    "LMP_detach",
+    "LMP_in_rand",
+    "LMP_comb_key",
+    "LMP_unit_key",//10
+    "LMP_au_rand",
+    "LMP_sres",
+    "LMP_temp_rand",
+    "LMP_temp_key",
+    "LMP_encryption_mode_req",
+    "LMP_encryption_key_size_req",
+    "LMP_start_encryption_req",
+    "LMP_stop_encryption_req",
+    "LMP_switch_req",
+    "LMP_hold",//20
+    "LMP_hold_req",
+    "LMP_unknown",
+    "LMP_sniff_req",
+    "LMP_unsniff_req",
+    "LMP_park_req",
+    "LMP_unknown",
+    "LMP_set_broadcast_scan_window",
+    "LMP_modify_beacon",
+    "LMP_unpark_BD_ADDR_req",
+    "LMP_unpark_PM_ADDR_req",//30
+    "LMP_incr_power_req",
+    "LMP_decr_power_req",
+    "LMP_max_power",
+    "LMP_min_power",
+    "LMP_auto_rate",
+    "LMP_preferred_rate",
+    "LMP_version_req",
+    "LMP_version_rsp",
+    "LMP_features_req",
+    "LMP_features_rsp",//40
+    "LMP_quality_of_service",
+    "LMP_quality_of_service_req",
+    "LMP_SCO_link_req",
+    "LMP_remove_SCO_link_req",
+    "LMP_max_slot",
+    "LMP_max_slot_req",
+    "LMP_timing_accuracy_req",
+    "LMP_timing_accuracy_res",
+    "LMP_setup_complete",
+    "LMP_use_semi_permanent_key",//50
+    "LMP_host_connection_req",
+    "LMP_slot_offset",
+    "LMP_page_mode_req",
+    "LMP_page_scan_mode_req",
+    "LMP_supervision_timeout",
+    "LMP_test_activate",
+    "LMP_test_control",
+    "LMP_encryption_key_size_mask_req",
+    "LMP_encryption_key_size_mask_res",
+    "LMP_set_AFH",//60
+    "LMP_encapsulated_header",
+    "LMP_encapsulated_payload",
+    "LMP_Simple_Pairing_Confirm",
+    "LMP_Simple_Pairing_Number",
+    "LMP_DHkey_Check",
+    "LMP_pause_encryption_aes_req"//66
+};
+
+
+#define EXTENED_CODE    0x7F
+#define MAX_EXT_CODE    34
+char* lmp_extened_code[] = {
+    "LMP_unknown_extended_op",//0
+    "LMP_accepted_ext",
+    "LMP_not_accepted_ext",
+    "LMP_features_req_ext",
+    "LMP_features_res_ext",
+    "LMP_clk_adj",
+    "LMP_clk_adj_ack",
+    "LMP_clk_adj_req",
+    "LMP_unknown_extended_op",
+    "LMP_unknown_extended_op",
+    "LMP_unknown_extended_op",//10
+    "LMP_packet_type_table_req",
+    "LMP_eSCO_link_req",
+    "LMP_remove_eSCO_link_req",
+    "LMP_unknown_extended_op",
+    "LMP_unknown_extended_op",
+    "LMP_channel_classification_req",
+    "LMP_channel_classification",
+    "LMP_unknown_extended_op",
+    "LMP_unknown_extended_op",
+    "LMP_unknown_extended_op",//20
+    "LMP_sniff_subrating_req",
+    "LMP_sniff_subrating_res",
+    "LMP_pause_encryption_req",
+    "LMP_resume_encryption_req",
+    "LMP_IO_Capability_req",
+    "LMP_IO_Capability_res",
+    "LMP_numeric_comparison_failed",
+    "LMP_passkey_failed",
+    "LMP_oob_failed",
+    "LMP_keypress_notification",//30
+    "LMP_power_control_req",
+    "LMP_power_control_res",
+    "LMP_ping_req",
+    "LMP_ping_res"//34
+};
+
+#define PKT_TYPE_CNT    25
+char* pkt_name_array[] = {
+    "tx_rep",
+    "rx_DM1",
+    "rx_err_DM1",
+    "rx_DM3",
+    "rx_err_DM3",
+    "rx_DM5",
+    "rx_err_DM5",
+    "rx_DH1",
+    "rx_err_DH1",
+    "rx_DH3",
+    "rx_err_DH3",
+    "rx_DH5",
+    "rx_err_DH5",
+    "rx_2DH1",
+    "rx_err_2DH1",
+    "rx_2DH3",
+    "rx_err_2DH3",
+    "rx_2DH5",
+    "rx_err_2DH5",
+    "rx_3DH1",
+    "rx_err_3DH1",
+    "rx_3DH3",
+    "rx_err_3DH3",
+    "rx_3DH5",
+    "rx_err_3DH5",
+};
+

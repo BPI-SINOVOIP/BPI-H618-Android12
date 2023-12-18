@@ -1,0 +1,12 @@
+{
+  "presubmit" : [
+    {
+      "name" : "chre_chpp_linux_tests",
+      "host" : true
+    },
+    {
+      "name" : "chre_chpp_convert_tests",
+      "host" : true
+    }
+  ]
+}

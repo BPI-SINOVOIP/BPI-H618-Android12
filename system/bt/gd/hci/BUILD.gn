@@ -1,0 +1,45 @@
+#
+#  Copyright 2021 Google, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at:
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+source_set("BluetoothHciSources") {
+  sources = [
+    "acl_manager.cc",
+    "acl_manager/acl_connection.cc",
+    "acl_manager/acl_fragmenter.cc",
+    "acl_manager/classic_acl_connection.cc",
+    "acl_manager/le_acl_connection.cc",
+    "acl_manager/round_robin_scheduler.cc",
+    "address.cc",
+    "class_of_device.cc",
+    "controller.cc",
+    "hci_layer.cc",
+    "hci_metrics_logging.cc",
+    "le_address_manager.cc",
+    "le_advertising_manager.cc",
+    "le_scanning_manager.cc",
+    "link_key.cc",
+    "uuid.cc",
+    "vendor_specific_event_manager.cc",
+  ]
+
+  include_dirs = [ "//bt/gd" ]
+
+  deps = [
+    "//bt:libbt-platform-protos-lite",
+    "//bt/gd:gd_default_deps",
+  ]
+
+  configs += [ "//bt:target_defaults" ]
+}

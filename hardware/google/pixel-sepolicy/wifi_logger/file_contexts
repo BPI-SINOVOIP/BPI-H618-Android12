@@ -1,0 +1,2 @@
+/vendor/bin/wifi_logger                             u:object_r:wifi_logger_exec:s0
+/data/vendor/wifi/wlan_logs(/.*)?                   u:object_r:wifi_logging_data_file:s0

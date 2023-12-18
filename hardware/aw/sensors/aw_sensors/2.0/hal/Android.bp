@@ -1,0 +1,56 @@
+cc_library_static {
+    name: "android.hardware.sensors@2.0-devices",
+    vendor_available: true,
+    cflags: [
+        "-Wall",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-designator",
+        "-Wno-unused-variable",
+        "-Wno-reorder",
+    ],
+    srcs: [
+        "sensorDetect.cpp",
+        "insmodDevice.cpp",
+        "SensorEventCallback.cpp",
+        "SensorBase.cpp",
+        "AccelSensor.cpp",
+        "LightSensor.cpp",
+        "ProximitySensor.cpp",
+        "TempSensor.cpp",
+        "PressSensor.cpp",
+        "InputEventReader.cpp",
+        "SensorsImpl.cpp",
+/*
+        "MagSensor.cpp",
+        "GyroSensor.cpp",
+*/
+    ],
+    export_include_dirs: ["include"],
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libbase",
+        "libutils",
+        "libfmq",
+        "libpower",
+        "libhidlbase",
+//        "libhidltransport",
+        "android.hardware.sensors@1.0",
+        "android.hardware.sensors@2.0",
+    ],
+    static_libs: ["android.hardware.sensors@2.0-convert"],
+    local_include_dirs: ["include"],
+}
+cc_library_headers {
+    name: "libsensor_devices",
+    vendor_available: true,
+
+    export_include_dirs: ["include"],
+
+    target: {
+        linux_bionic: {
+            enabled: true,
+        },
+    }
+}
+

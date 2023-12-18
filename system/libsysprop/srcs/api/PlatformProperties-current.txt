@@ -1,0 +1,198 @@
+props {
+  module: "android.sysprop.ApkVerityProperties"
+  prop {
+    api_name: "apk_verity_mode"
+    type: Integer
+    access: Writeonce
+    prop_name: "ro.apk_verity.mode"
+  }
+}
+props {
+  owner: Odm
+  module: "android.sysprop.DeviceProperties"
+  prop {
+    api_name: "media_performance_class"
+    type: Integer
+    prop_name: "ro.odm.build.media_performance_class"
+  }
+}
+props {
+  module: "android.sysprop.MediaProperties"
+  prop {
+    api_name: "codec2_dmabuf_padding"
+    type: Integer
+    prop_name: "media.c2.dmabuf.padding"
+  }
+  prop {
+    api_name: "swcodec_ion_align"
+    type: Integer
+    prop_name: "ro.com.android.media.swcodec.ion.align"
+  }
+  prop {
+    api_name: "swcodec_ion_flags"
+    type: Integer
+    prop_name: "ro.com.android.media.swcodec.ion.flags"
+  }
+  prop {
+    api_name: "swcodec_ion_heapmask"
+    type: Integer
+    prop_name: "ro.com.android.media.swcodec.ion.heapmask"
+  }
+}
+props {
+  module: "android.sysprop.NetworkProperties"
+  prop {
+    api_name: "isCellular464XlatEnabled"
+    prop_name: "net.464xlat.cellular.enabled"
+  }
+  prop {
+    api_name: "tcp_init_rwnd"
+    type: Integer
+    access: ReadWrite
+    prop_name: "net.tcp_def_init_rwnd"
+  }
+}
+props {
+  module: "android.sysprop.OtaProperties"
+  prop {
+    api_name: "ab_ota_partitions"
+    type: String
+    prop_name: "ro.product.ab_ota_partitions"
+  }
+  prop {
+    api_name: "virtual_ab_enabled"
+    prop_name: "ro.virtual_ab.enabled"
+  }
+  prop {
+    api_name: "virtual_ab_retrofit"
+    prop_name: "ro.virtual_ab.retrofit"
+  }
+  prop {
+    api_name: "warm_reset"
+    access: ReadWrite
+    prop_name: "ota.warm_reset"
+    integer_as_bool: true
+  }
+}
+props {
+  module: "android.sysprop.PowerProperties"
+  prop {
+    api_name: "fixed_performance_scale_factor"
+    type: Integer
+    prop_name: "ro.power.fixed_performance_scale_factor"
+  }
+}
+props {
+  module: "android.sysprop.SocProperties"
+  prop {
+    api_name: "soc_manufacturer"
+    type: String
+    prop_name: "ro.soc.manufacturer"
+  }
+  prop {
+    api_name: "soc_model"
+    type: String
+    prop_name: "ro.soc.model"
+  }
+}
+props {
+  module: "android.sysprop.TelephonyProperties"
+  prop {
+    api_name: "call_ring_delay"
+    type: Integer
+    prop_name: "ro.telephony.call_ring.delay"
+  }
+  prop {
+    api_name: "disable_call"
+    prop_name: "ro.telephony.disable-call"
+  }
+  prop {
+    api_name: "ecm_exit_timer"
+    type: Long
+    prop_name: "ro.cdma.ecmexittimer"
+  }
+  prop {
+    api_name: "ignore_nitz"
+    prop_name: "telephony.test.ignore.nitz"
+  }
+  prop {
+    api_name: "in_ecm_mode"
+    access: ReadWrite
+    prop_name: "ril.cdma.inecmmode"
+  }
+  prop {
+    api_name: "max_active_modems"
+    type: Integer
+    prop_name: "telephony.active_modems.max_count"
+  }
+  prop {
+    api_name: "mobile_data"
+    prop_name: "ro.com.android.mobiledata"
+  }
+  prop {
+    api_name: "multi_sim_config"
+    type: String
+    access: ReadWrite
+    prop_name: "persist.radio.multisim.config"
+  }
+  prop {
+    api_name: "operator_idp_string"
+    type: String
+    access: ReadWrite
+    prop_name: "gsm.operator.idpstring"
+  }
+  prop {
+    api_name: "operator_iso_country"
+    type: StringList
+    access: ReadWrite
+    prop_name: "gsm.operator.iso-country"
+  }
+  prop {
+    api_name: "reset_on_radio_tech_change"
+    prop_name: "persist.radio.reset_on_switch"
+  }
+  prop {
+    api_name: "ril_sends_multiple_call_ring"
+    prop_name: "ro.telephony.call_ring.multiple"
+  }
+  prop {
+    api_name: "sim_slots_count"
+    type: Integer
+    prop_name: "ro.telephony.sim_slots.count"
+  }
+  prop {
+    api_name: "test_csim"
+    prop_name: "persist.radio.test-csim"
+  }
+  prop {
+    api_name: "wake_lock_timeout"
+    type: Integer
+    prop_name: "ro.ril.wake_lock_timeout"
+  }
+}
+props {
+  module: "android.sysprop.VndkProperties"
+  prop {
+    api_name: "product_vndk_version"
+    type: String
+    prop_name: "ro.product.vndk.version"
+  }
+  prop {
+    api_name: "vendor_vndk_version"
+    type: String
+    prop_name: "ro.vndk.version"
+  }
+}
+props {
+  module: "android.sysprop.WifiProperties"
+  prop {
+    api_name: "start_supplicant"
+    access: Writeonce
+    prop_name: "ctl.start$supplicant"
+  }
+  prop {
+    api_name: "stop_supplicant"
+    access: Writeonce
+    prop_name: "ctl.stop$supplicant"
+  }
+}

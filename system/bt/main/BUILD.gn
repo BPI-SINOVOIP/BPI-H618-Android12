@@ -1,0 +1,124 @@
+#
+#  Copyright 2015 Google, Inc.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at:
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+#
+
+config("libbluetooth_config") {
+  include_dirs = [ "../include" ]
+}
+
+# Complete static library for linking with Rust
+static_library("bluetooth-static") {
+  complete_static_lib = true
+
+  sources = [
+    "//bt/service/hal/bluetooth_interface.cc",
+    "//bt/service/logging_helpers.cc",
+  ]
+
+  configs += [
+    "//bt:target_defaults"
+  ]
+
+  deps = [
+    ":bluetooth",
+  ]
+}
+
+# Configure libbluetooth as either dynamic or static library
+if (defined(use.bt_dynlib) && use.bt_dynlib) {
+  lib_type = "shared_library"
+} else {
+  lib_type = "static_library"
+}
+
+target(lib_type, "bluetooth") {
+
+  # Platform specific
+  sources = [
+    "bte_conf.cc",
+    "bte_init_cpp_logging.cc",
+    "bte_logmsg.cc",
+    "bte_main.cc",
+    "stack_config.cc",
+  ]
+
+  public_configs = [ ":libbluetooth_config" ]
+
+  include_dirs = [
+    "//bt/",
+    "//bt/bta/include",
+    "//bt/bta/sys",
+    "//bt/bta/dm",
+    "//bt/btcore/include",
+    "//bt/internal_include",
+    "//bt/stack/include",
+    "//bt/stack/l2cap",
+    "//bt/stack/a2dp",
+    "//bt/stack/btm",
+    "//bt/stack/avdt",
+    "//bt/hci",
+    "//bt/hci/include",
+    "//bt/udrv/include",
+    "//bt/btif/include",
+    "//bt/btif/co",
+    "//bt/hci/includ",
+    "//bt/vnd/include",
+    "//bt/brcm/include",
+    "//bt/embdrv/sbc/encoder/include",
+    "//bt/embdrv/sbc/decoder/include",
+    "//bt/utils/include",
+    "//bt/test/suite",
+  ]
+
+  deps = [
+    "//bt/audio_hal_interface",
+    "//bt/bta",
+    "//bt/btcore",
+    "//bt/btif",
+    "//bt/device",
+    "//bt/embdrv/g722",
+    "//bt/embdrv/sbc",
+    "//bt/gd:libbluetooth_gd",
+    "//bt/hci",
+    "//bt/main/shim:LibBluetoothShimSources",
+    "//bt/osi",
+    "//bt/packet",
+    "//bt/stack",
+    "//bt/udrv",
+    "//bt/utils",
+  ]
+
+  configs += [
+    "//bt:target_defaults",
+    "//bt:external_tinyxml2",
+    "//bt:external_flatbuffers",
+  ]
+
+  cflags_c = [
+    "-Lobj/osi",
+    "-losi",
+  ]
+
+  libs = [
+    "dl",
+    "pthread",
+    "resolv",
+    "rt",
+    "z",
+    "bt_shim_ffi",
+  ]
+
+  lib_dirs = [ "${root_out_dir}/rust" ]
+}

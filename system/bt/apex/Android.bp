@@ -1,0 +1,37 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+apex {
+    name: "com.android.bluetooth.updatable",
+    enabled: false,
+
+    manifest: "apex_manifest.json",
+
+    native_shared_libs: [
+      "libbluetooth_jni",
+      "libbluetooth"
+    ],
+    apps: ["Bluetooth"],
+
+    compile_multilib: "both",
+
+    key: "com.android.bluetooth.updatable.key",
+    certificate: ":com.android.bluetooth.updatable.certificate",
+}
+
+apex_key {
+    name: "com.android.bluetooth.updatable.key",
+    public_key: "com.android.bluetooth.updatable.avbpubkey",
+    private_key: "com.android.bluetooth.updatable.pem",
+}
+
+android_app_certificate {
+    name: "com.android.bluetooth.updatable.certificate",
+    certificate: "com.android.bluetooth.updatable",
+}

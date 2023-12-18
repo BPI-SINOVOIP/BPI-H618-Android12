@@ -1,0 +1,361 @@
+/*
+ * Copyright (C) 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package {
+    default_applicable_licenses: ["system_chre_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+// See: http://go/android-license-faq
+license {
+    name: "system_chre_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-BSD",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+cc_library_static {
+    name: "chre_client",
+    vendor: true,
+    export_include_dirs: [
+        "host/common/include",
+        "platform/shared/include",
+        "util/include",
+    ],
+    srcs: [
+        "host/common/fragmented_load_transaction.cc",
+        "host/common/host_protocol_host.cc",
+        "host/common/socket_client.cc",
+        "platform/shared/host_protocol_common.cc",
+    ],
+    header_libs: ["chre_flatbuffers"],
+    export_header_lib_headers: ["chre_flatbuffers"],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+    cflags: ["-Wall", "-Werror"],
+}
+
+cc_binary {
+    name: "chre_test_client",
+    vendor: true,
+    local_include_dirs: [
+        "chre_api/include/chre_api",
+        "util/include",
+    ],
+    srcs: [
+        "host/common/test/chre_test_client.cc",
+    ],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+    static_libs: ["chre_client"],
+}
+
+cc_binary {
+    name: "chre_power_test_client",
+    vendor: true,
+    local_include_dirs: [
+        "chre_api/include/chre_api",
+        "util/include",
+        "apps/power_test/common/include",
+    ],
+    srcs: [
+        "host/common/test/power_test/chre_power_test_client.cc",
+    ],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+    static_libs: ["chre_client"],
+}
+
+cc_test {
+    name: "audio_stress_test",
+    vendor: true,
+    local_include_dirs: [
+        "chre_api/include/chre_api",
+        "util/include",
+    ],
+    srcs: [
+        "host/common/audio_stress_test/audio_stress_test.cc",
+    ],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+    static_libs: ["chre_client"],
+    gtest: false,
+}
+
+cc_library_headers {
+    name: "android.hardware.contexthub@1.X-shared-impl",
+    vendor: true,
+    export_include_dirs: ["host/hal_generic/common/"],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libhidlbase",
+        "libutils",
+        "android.hardware.contexthub@1.0",
+    ],
+    static_libs: ["chre_client"],
+}
+
+cc_library_shared {
+    name: "android.hardware.contexthub@1.0-impl.generic",
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: [
+        "host/hal_generic/V1_0/generic_context_hub_v1_0.cc",
+        "host/hal_generic/common/permissions_util.cc",
+    ],
+    cflags: ["-Wall", "-Werror"],
+    header_libs: [
+        "android.hardware.contexthub@1.X-shared-impl",
+        "android.hardware.contexthub@1.X-common-utils",
+    ],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libhidlbase",
+        "libutils",
+        "android.hardware.contexthub@1.0",
+        "android.hardware.contexthub@1.1",
+        "android.hardware.contexthub@1.2",
+    ],
+    static_libs: ["chre_client"],
+}
+
+cc_binary {
+    name: "android.hardware.contexthub@1.1-service.generic",
+    defaults: ["hidl_defaults"],
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: [
+        "host/hal_generic/V1_1/generic_context_hub_v1_1.cc",
+        "host/hal_generic/V1_1/service.cc",
+        "host/hal_generic/common/context_hub_settings_util.cc",
+        "host/hal_generic/common/permissions_util.cc",
+    ],
+    init_rc: ["host/hal_generic/V1_1/android.hardware.contexthub@1.1-service-generic.rc"],
+    cflags: ["-Wall", "-Werror"],
+    header_libs: [
+        "android.hardware.contexthub@1.X-shared-impl",
+        "android.hardware.contexthub@1.X-common-utils",
+    ],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libhidlbase",
+        "libutils",
+        "android.hardware.contexthub@1.0",
+        "android.hardware.contexthub@1.1",
+        "android.hardware.contexthub@1.2",
+    ],
+    static_libs: ["chre_client"],
+    vintf_fragments: ["host/hal_generic/V1_1/android.hardware.contexthub@1.1-generic.xml"],
+}
+
+cc_binary {
+    name: "android.hardware.contexthub@1.2-service.generic",
+    defaults: ["hidl_defaults"],
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: [
+        "host/hal_generic/V1_2/generic_context_hub_v1_2.cc",
+        "host/hal_generic/V1_2/service.cc",
+        "host/hal_generic/common/context_hub_settings_util.cc",
+        "host/hal_generic/common/permissions_util.cc",
+    ],
+    init_rc: ["host/hal_generic/V1_2/android.hardware.contexthub@1.2-service-generic.rc"],
+    cflags: ["-Wall", "-Werror"],
+    header_libs: [
+        "android.hardware.contexthub@1.X-shared-impl",
+        "android.hardware.contexthub@1.X-common-utils",
+    ],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libhidlbase",
+        "libutils",
+        "android.hardware.contexthub@1.0",
+        "android.hardware.contexthub@1.1",
+        "android.hardware.contexthub@1.2",
+    ],
+    static_libs: ["chre_client"],
+    vintf_fragments: ["host/hal_generic/V1_2/android.hardware.contexthub@1.2-generic.xml"],
+}
+
+cc_library_headers {
+    name: "chre_api",
+    vendor: true,
+    export_include_dirs: [
+        "chre_api/include/chre_api",
+        "chre_api/include",
+    ],
+    host_supported: true,
+}
+
+cc_library_headers {
+    name: "chre_flatbuffers",
+    vendor: true,
+    export_include_dirs: [
+        "external/flatbuffers/include",
+    ],
+}
+
+cc_library_headers {
+    name: "chre_pal",
+    vendor: true,
+    export_include_dirs: [
+        "pal/include",
+    ],
+    header_libs: [
+        "chre_api",
+    ],
+    export_header_lib_headers: [
+        "chre_api",
+    ],
+    host_supported: true,
+}
+
+cc_library_headers {
+    name: "chre_test_common",
+    vendor: true,
+    export_include_dirs: [
+        "test/common/include",
+    ],
+    host_supported: true,
+}
+
+cc_library_static {
+    name: "chre_pal_linux",
+    vendor: true,
+    srcs: [
+        "platform/shared/pal_system_api.cc",
+        "platform/linux/assert.cc",
+        "platform/linux/fatal_error.cc",
+        "platform/linux/memory.cc",
+        "platform/linux/pal_gnss.cc",
+        "platform/linux/pal_wifi.cc",
+        "platform/linux/pal_wwan.cc",
+        "platform/linux/platform_log.cc",
+        "platform/linux/system_time.cc",
+    ],
+    export_include_dirs: [
+        "platform/shared/include",
+        "platform/include",
+        "platform/linux/include",
+        "util/include",
+    ],
+    header_libs: [
+        "chre_pal",
+    ],
+    cflags: [
+        "-DCHRE_MINIMUM_LOG_LEVEL=CHRE_LOG_LEVEL_DEBUG",
+        "-DCHRE_ASSERTIONS_ENABLED=true",
+        "-DCHRE_FILENAME=__FILE__"
+    ],
+    host_supported: true,
+}
+
+cc_test_host {
+    name: "chre_unit_tests",
+    srcs: [
+        "core/event_ref_queue.cc",
+        "core/nanoapp.cc",
+        "core/sensor_request.cc",
+        "core/tests/**/*.cc",
+        "core/wifi_scan_request.cc",
+        "pal/tests/src/wwan_test.cc",
+        "pal/tests/src/version_test.cc",
+        "pal/util/tests/**/*.cc",
+        "pal/util/wifi_scan_cache.c",
+        "platform/linux/assert.cc",
+        "platform/linux/fatal_error.cc",
+        "platform/linux/platform_nanoapp.cc",
+        "platform/linux/platform_log.cc",
+        "platform/linux/memory.cc",
+        "platform/linux/memory_manager.cc",
+        "platform/linux/system_time.cc",
+        "platform/shared/log_buffer.cc",
+        "platform/shared/memory_manager.cc",
+        "platform/shared/pal_system_api.cc",
+        "platform/tests/**/*.cc",
+        "util/buffer_base.cc",
+        "util/dynamic_vector_base.cc",
+        "util/nanoapp/wifi.cc",
+        "util/system/debug_dump.cc",
+        "util/tests/**/*.cc",
+    ],
+    local_include_dirs: [
+        "chre_api/include",
+        "chre_api/include/chre_api",
+        "core/include",
+        "pal/include",
+        "pal/util/include",
+        "platform/linux/include",
+        "platform/shared/include",
+        "platform/include",
+        "util/include",
+    ],
+    test_suites: [
+        // Needed to support running on TreeHugger
+        "general-tests",
+    ],
+    cflags: [
+        "-DCHRE_MESSAGE_TO_HOST_MAX_SIZE=4096",
+        "-DCHRE_MINIMUM_LOG_LEVEL=CHRE_LOG_LEVEL_DEBUG",
+        "-DCHRE_ASSERTIONS_ENABLED=true",
+        "-DCHRE_FILENAME=__FILE__",
+        "-DGTEST",
+    ],
+    static_libs: [
+        "libgmock",
+    ],
+}
+
+subdirs = [
+    "apps/wifi_offload",
+]

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright (C) 2019 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+!-->
+<node name="/org/chromium/UpdateEngine">
+  <interface name="org.chromium.UpdateEngineInterface">
+    <annotation name="org.freedesktop.DBus.GLib.CSymbol"
+                value="update_engine_service" />
+    <annotation name="org.freedesktop.DBus.GLib.ClientCSymbol"
+                value="update_engine_client" />
+    <method name="AttemptUpdate">
+      <arg type="s" name="app_version" direction="in" />
+      <arg type="s" name="omaha_url" direction="in" />
+    </method>
+    <!-- TODO(zeuthen,chromium:286399): Rename to AttemptUpdate and
+         update Chrome and other users of the AttemptUpdate() method
+         in lockstep.
+    -->
+    <method name="AttemptUpdateWithFlags">
+      <arg type="s" name="app_version" direction="in" />
+      <arg type="s" name="omaha_url" direction="in" />
+      <!-- See AttemptUpdateFlags enum in update_engine/dbus-constants.h. -->
+      <arg type="i" name="flags" direction="in" />
+    </method>
+    <method name="AttemptInstall">
+      <arg type="s" name="omaha_url" direction="in" />
+      <arg type="as" name="dlc_ids" direction="in">
+        <tp:docstring>
+          The list of DLC IDs that needs to be installed.
+        </tp:docstring>
+      </arg>
+    </method>
+    <method name="AttemptRollback">
+      <arg type="b" name="powerwash" direction="in" />
+    </method>
+    <method name="CanRollback">
+      <arg type="b" name="can_rollback" direction="out" />
+    </method>
+    <method name="ResetStatus">
+    </method>
+    <method name="SetDlcActiveValue">
+      <arg type="b" name="is_active" direction="in">
+        <tp:docstring>
+          If the DLC is being set to active or inactive.
+        </tp:docstring>
+      </arg>
+      <arg type="s" name="dlc_id" direction="in">
+        <tp:docstring>
+          The ID of the DLC module that will be set to active/inactive.
+        </tp:docstring>
+      </arg>
+    </method>
+    <method name="GetStatusAdvanced">
+      <arg type="ay" name="status" direction="out">
+        <tp:docstring>
+          The current status serialized in a protobuf.
+        </tp:docstring>
+        <annotation name="org.chromium.DBus.Argument.ProtobufClass"
+                    value="update_engine::StatusResult"/>
+      </arg>
+    </method>
+    <method name="RebootIfNeeded">
+    </method>
+    <method name="SetChannel">
+      <arg type="s" name="target_channel" direction="in" />
+      <arg type="b" name="is_powerwash_allowed" direction="in" />
+    </method>
+    <method name="GetChannel">
+      <arg type="b" name="get_current_channel" direction="in" />
+      <arg type="s" name="channel" direction="out" />
+    </method>
+    <method name="SetCohortHint">
+      <arg type="s" name="cohort_hint" direction="in" />
+    </method>
+    <method name="GetCohortHint">
+      <arg type="s" name="cohort_hint" direction="out" />
+    </method>
+    <method name="SetP2PUpdatePermission">
+      <annotation name="org.freedesktop.DBus.GLib.CSymbol"
+        value="update_engine_service_set_p2p_update_permission" />
+      <annotation name="org.freedesktop.DBus.GLib.ClientCSymbol"
+        value="update_engine_client_set_p2p_update_permission" />
+      <arg type="b" name="enabled" direction="in" />
+    </method>
+    <method name="GetP2PUpdatePermission">
+      <annotation name="org.freedesktop.DBus.GLib.CSymbol"
+        value="update_engine_service_get_p2p_update_permission" />
+      <annotation name="org.freedesktop.DBus.GLib.ClientCSymbol"
+        value="update_engine_client_get_p2p_update_permission" />
+      <arg type="b" name="enabled" direction="out" />
+    </method>
+    <method name="SetUpdateOverCellularPermission">
+      <arg type="b" name="allowed" direction="in" />
+    </method>
+    <method name="SetUpdateOverCellularTarget">
+      <arg type="s" name="target_version" direction="in" />
+      <arg type="x" name="target_size" direction="in" />
+    </method>
+    <method name="GetUpdateOverCellularPermission">
+      <arg type="b" name="allowed" direction="out" />
+    </method>
+    <method name="GetDurationSinceUpdate">
+      <arg type="x" name="usec_wallclock" direction="out" />
+    </method>
+    <signal name="StatusUpdateAdvanced">
+      <arg type="ay" name="status" direction="out">
+        <tp:docstring>
+          The current status serialized in a protobuf.
+        </tp:docstring>
+        <annotation name="org.chromium.DBus.Argument.ProtobufClass"
+                    value="update_engine::StatusResult"/>
+      </arg>
+    </signal>
+    <method name="GetPrevVersion">
+      <arg type="s" name="prev_version" direction="out" />
+    </method>
+    <method name="GetRollbackPartition">
+      <arg type="s" name="rollback_partition_name" direction="out" />
+    </method>
+    <method name="GetLastAttemptError">
+      <arg type="i" name="last_attempt_error" direction="out" />
+    </method>
+  </interface>
+</node>

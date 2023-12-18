@@ -1,0 +1,30 @@
+cc_binary {
+    name: "android.hardware.sensors@2.0-service",
+    defaults: ["hidl_defaults"],
+    relative_install_path: "hw",
+    vendor: true,
+    init_rc: ["android.hardware.sensors@2.0-service.rc"],
+    srcs: [
+        "service.cpp",
+        "Sensors.cpp"
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libdl",
+        "libbase",
+        "libutils",
+        "libhidlbase",
+        "libfmq",
+        "libpower",
+//        "libhidltransport",
+        "android.hardware.sensors@2.0",
+    ],
+    static_libs: [
+        "android.hardware.sensors@2.0-convert",
+        "android.hardware.sensors@2.0-devices",
+    ],
+    header_libs: ["libsensor_devices",],
+    vintf_fragments: ["sensors@2.0.xml"],
+}

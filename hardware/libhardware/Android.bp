@@ -1,0 +1,97 @@
+// Copyright 2006 The Android Open Source Project
+
+package {
+    default_applicable_licenses: ["hardware_libhardware_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+// See: http://go/android-license-faq
+license {
+    name: "hardware_libhardware_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-BSD",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+cc_library_headers {
+    name: "libhardware_headers",
+    header_libs: [
+        "libaudio_system_headers",
+        "libsystem_headers",
+        "libcutils_headers",
+        "libbluetooth-types-header",
+    ],
+    export_header_lib_headers: [
+        "libaudio_system_headers",
+        "libsystem_headers",
+        "libcutils_headers",
+        "libbluetooth-types-header",
+    ],
+
+    export_include_dirs: ["include"],
+    recovery_available: true,
+    vendor_available: true,
+    // TODO(b/153609531): remove when no longer needed.
+    native_bridge_supported: true,
+    target: {
+        recovery: {
+            exclude_header_libs: [
+                "libaudio_system_headers",
+                "libbluetooth-types-header",
+            ],
+        },
+    },
+    min_sdk_version: "29",
+    host_supported: true,
+
+}
+
+cc_library_shared {
+    name: "libhardware",
+
+    srcs: ["hardware.c"],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libdl",
+        "libvndksupport",
+    ],
+    cflags: [
+        "-DQEMU_HARDWARE",
+        "-Wall",
+        "-Werror",
+    ],
+
+    header_libs: ["libhardware_headers"],
+    export_header_lib_headers: ["libhardware_headers"],
+
+    recovery_available: true,
+    vendor_available: true,
+    vndk: {
+        enabled: true,
+        support_system_process: true,
+    },
+    target: {
+        recovery: {
+            exclude_shared_libs: ["libvndksupport"],
+        },
+    },
+    min_sdk_version: "29",
+}

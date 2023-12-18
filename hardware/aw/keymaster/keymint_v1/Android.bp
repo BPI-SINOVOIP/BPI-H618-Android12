@@ -1,0 +1,75 @@
+cc_library_shared {
+    name: "libkeymint1_ca_aw",
+    proprietary: true,
+    vendor: true,
+    srcs: [
+       "ca/AW_KeyMintDevice.cpp",
+       "ca/AW_KeyMintOperation.cpp",
+       "ca/AW_RemotelyProvisionedComponentDevice.cpp",
+       "ca/AW_SecureClock.cpp",
+       "ca/AW_SharedSecret.cpp",
+       "ca/KeyMintAidlUtils.cpp",
+       "ca/KeyMintUtils.cpp",
+    ],
+    shared_libs: [
+        "lib_aw_km_utility",
+
+        "lib_android_keymaster_keymint_utils",
+        "libbase",
+        "libbinder_ndk",
+        "libcppbor_external",
+        "libcrypto",
+        "libcutils",
+        "libkeymaster_messages",
+        "libkeymaster_portable",
+        "liblog",
+        "libpuresoftkeymasterdevice",
+        "libutils",
+
+        "android.hardware.security.keymint-V1-ndk_platform",
+        "android.hardware.security.sharedsecret-V1-ndk_platform",
+        "android.hardware.security.secureclock-V1-ndk_platform",
+    ],
+    export_include_dirs: ["ca/include"],
+}
+
+cc_binary {
+    name: "android.hardware.security.keymint-service-aw",
+    defaults: ["hidl_defaults"],
+    proprietary: true,
+    relative_install_path: "hw",
+    vendor: true,
+    init_rc: ["android.hardware.security.keymint-service-aw.rc"],
+    vintf_fragments: [
+        "android.hardware.security.keymint-service-aw.xml",
+        "android.hardware.security.sharedsecret-service-aw.xml",
+        "android.hardware.security.secureclock-service-aw.xml",
+    ],
+    srcs: [
+        "service.cpp"
+    ],
+
+    shared_libs: [
+        "libkeymaster_messages",
+        "libkeymint1_ca_aw",
+        "android.hardware.security.keymint-V1-ndk_platform",
+        "android.hardware.security.sharedsecret-V1-ndk_platform",
+        "android.hardware.security.secureclock-V1-ndk_platform",
+        "libbase",
+        "libbinder_ndk",
+        "libcutils",
+        "libcppbor_external",
+        "libcrypto",
+        "libkeymaster_portable",
+        "libkeymint",
+        "liblog",
+        "libpuresoftkeymasterdevice",
+        "libutils",
+        "lib_aw_km_utility",
+    ],
+    required: [
+        "RemoteProvisioner",
+        "android.hardware.hardware_keystore.xml",
+    ],
+}
+

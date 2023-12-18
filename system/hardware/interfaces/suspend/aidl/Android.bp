@@ -1,0 +1,37 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+aidl_interface {
+    name: "android.system.suspend.control.internal",
+    unstable: true,
+    local_include_dir: ".",
+    srcs: [
+        "android/system/suspend/internal/*.aidl",
+    ],
+    backend: {
+        java: {
+            sdk_version: "28",
+        },
+    },
+}
+
+aidl_interface {
+    name: "android.system.suspend.control",
+    local_include_dir: ".",
+    srcs: [
+        "android/system/suspend/*.aidl",
+    ],
+    backend: {
+        ndk: {
+            apex_available: [
+                "//apex_available:platform",
+                "com.android.bluetooth.updatable",
+            ],
+        },
+        java: {
+            sdk_version: "28",
+        },
+    },
+    versions: ["1"],
+}

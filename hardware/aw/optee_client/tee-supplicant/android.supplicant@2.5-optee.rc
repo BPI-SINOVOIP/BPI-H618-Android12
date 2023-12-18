@@ -1,0 +1,15 @@
+service optee /vendor/bin/hw/tee_supplicant
+    class early_hal
+
+# We should insmod tee.ko & optee.ko just before tee_supplicant start.
+# tee_supplicant classified as early_hal and starts at late-fs.
+# post-fs triggers just before late-fs.
+on early-init
+    insmod /vendor/lib/modules/tee.ko
+    insmod /vendor/lib/modules/optee.ko
+    insmod /vendor/lib/modules/sunxi_drm_heap.ko
+on post-fs-data
+    # mkdir for optee
+    mkdir /data/vendor/tee 0770 system system
+    restorecon_recursive /data/vendor/tee
+

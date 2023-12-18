@@ -1,0 +1,12 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_binary_host {
+    name: "xsdc",
+    srcs: ["src/**/*.java"],
+    static_libs: [
+        "commons-cli-1.2",
+    ],
+    manifest: "MANIFEST.MF"
+}

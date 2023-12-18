@@ -1,0 +1,10 @@
+type logger_app, domain;
+
+userdebug_or_eng(`
+  app_domain(logger_app)
+  net_domain(logger_app)
+
+  allow logger_app app_api_service:service_manager find;
+  allow logger_app tcpdump_vendor_data_file:dir create_dir_perms;
+  allow logger_app tcpdump_vendor_data_file:file create_file_perms;
+')

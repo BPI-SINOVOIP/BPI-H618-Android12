@@ -1,0 +1,503 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "hardware_st_secure_element2_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-GPL-2.0
+    default_applicable_licenses: ["hardware_st_secure_element2_license"],
+}
+
+cc_library_shared {
+    // FIXME: this should only be -impl for a passthrough hal.
+    // In most cases, to convert this to a binderized implementation, you should:
+    // - change '-impl' to '-service' here and make it a cc_binary instead of a
+    //   cc_library_shared.
+    // - add a *.rc file for this module.
+    // - delete HIDL_FETCH_I* functions.
+    // - call configureRpcThreadpool and registerAsService on the instance.
+    // You may also want to append '-impl/-service' with a specific identifier like
+    // '-vendor' or '-<hardware identifier>' etc to distinguish it.
+    name: "android.hardware.secure_element@1.0-impl-gto",
+    //relative_install_path: "hw",
+    // FIXME: this should be 'vendor: true' for modules that will eventually be
+    // on AOSP.
+    vendor: true,
+    srcs: [
+        "1.0/esehal/src/checksum.c",
+        "1.0/esehal/src/iso7816_t1.c",
+        "1.0/esehal/src/libse-gto.c",
+        "1.0/esehal/src/spi.c",
+        "1.0/esehal/src/transport.c",
+        "1.0/esehal/src/log.c",
+        "1.0/SecureElement.cpp",
+    ],
+
+    local_include_dirs: [
+        "1.0/esehal/src",
+    ],
+
+    cflags: [
+        "-DANDROID",
+        "-DENABLE_LOGGING=1",
+        "-DENABLE_DEBUG=1",
+        "-DBUILDCFG=1",
+        "-DNXP_EXTNS=TRUE",
+        "-Wno-unused-parameter",
+        "-Wno-unused-private-field",
+        "-Wno-error",
+        "-Wreturn-type",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "android.hardware.secure_element@1.0",
+    ],
+
+}
+
+cc_binary {
+    name: "android.hardware.secure_element@1.0-service-gto",
+    relative_install_path: "hw",
+    init_rc: ["1.0/android.hardware.secure_element@1.0-service-gto.rc"],
+    vendor: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "1.0/GtoService.cpp",
+    ],
+
+    shared_libs: [
+        "android.hardware.secure_element@1.0",
+        "android.hardware.secure_element@1.0-impl-gto",
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+
+    sanitize: {
+        memtag_heap: true,
+    },
+}
+
+cc_library_shared {
+    // FIXME: this should only be -impl for a passthrough hal.
+    // In most cases, to convert this to a binderized implementation, you should:
+    // - change '-impl' to '-service' here and make it a cc_binary instead of a
+    //   cc_library_shared.
+    // - add a *.rc file for this module.
+    // - delete HIDL_FETCH_I* functions.
+    // - call configureRpcThreadpool and registerAsService on the instance.
+    // You may also want to append '-impl/-service' with a specific identifier like
+    // '-vendor' or '-<hardware identifier>' etc to distinguish it.
+    name: "android.hardware.secure_element@1.1-impl-gto",
+    //relative_install_path: "hw",
+    // FIXME: this should be 'vendor: true' for modules that will eventually be
+    // on AOSP.
+    vendor: true,
+    srcs: [
+        "1.0/esehal/src/checksum.c",
+        "1.0/esehal/src/iso7816_t1.c",
+        "1.0/esehal/src/libse-gto.c",
+        "1.0/esehal/src/spi.c",
+        "1.0/esehal/src/transport.c",
+        "1.0/esehal/src/log.c",
+        "1.1/SecureElement.cpp",
+    ],
+
+    local_include_dirs: [
+        "1.0/esehal/src",
+    ],
+
+    cflags: [
+        "-DANDROID",
+        "-DENABLE_LOGGING=1",
+        "-DENABLE_DEBUG=1",
+        "-DBUILDCFG=1",
+        "-DNXP_EXTNS=TRUE",
+        "-Wno-unused-parameter",
+        "-Wno-unused-private-field",
+        "-Wno-error",
+        "-Wreturn-type",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "android.hardware.secure_element@1.0",
+	"android.hardware.secure_element@1.1",
+    ],
+
+}
+
+cc_binary {
+    name: "android.hardware.secure_element@1.1-service-gto",
+    relative_install_path: "hw",
+    init_rc: ["1.1/android.hardware.secure_element@1.1-service-gto.rc"],
+    vendor: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "1.1/GtoService.cpp",
+    ],
+
+    shared_libs: [
+        "android.hardware.secure_element@1.0",
+        "android.hardware.secure_element@1.0-impl-gto",
+	"android.hardware.secure_element@1.1",
+        "android.hardware.secure_element@1.1-impl-gto",
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+
+    sanitize: {
+        memtag_heap: true,
+    },
+}
+
+cc_library_shared {
+    // FIXME: this should only be -impl for a passthrough hal.
+    // In most cases, to convert this to a binderized implementation, you should:
+    // - change '-impl' to '-service' here and make it a cc_binary instead of a
+    //   cc_library_shared.
+    // - add a *.rc file for this module.
+    // - delete HIDL_FETCH_I* functions.
+    // - call configureRpcThreadpool and registerAsService on the instance.
+    // You may also want to append '-impl/-service' with a specific identifier like
+    // '-vendor' or '-<hardware identifier>' etc to distinguish it.
+    name: "android.hardware.secure_element@1.2-impl-gto",
+    //relative_install_path: "hw",
+    // FIXME: this should be 'vendor: true' for modules that will eventually be
+    // on AOSP.
+    vendor: true,
+    srcs: [
+        "1.0/esehal/src/checksum.c",
+        "1.0/esehal/src/iso7816_t1.c",
+        "1.0/esehal/src/libse-gto.c",
+        "1.0/esehal/src/spi.c",
+        "1.0/esehal/src/transport.c",
+        "1.0/esehal/src/log.c",
+        "1.2/SecureElement.cpp",
+    ],
+
+    local_include_dirs: [
+        "1.0/esehal/src",
+    ],
+
+    cflags: [
+        "-DANDROID",
+        "-DENABLE_LOGGING=1",
+        "-DENABLE_DEBUG=1",
+        "-DBUILDCFG=1",
+        "-DNXP_EXTNS=TRUE",
+        "-Wno-unused-parameter",
+        "-Wno-unused-private-field",
+        "-Wno-error",
+        "-Wreturn-type",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "android.hardware.secure_element@1.0",
+	"android.hardware.secure_element@1.1",
+	"android.hardware.secure_element@1.2",
+    ],
+
+}
+
+cc_binary {
+    name: "android.hardware.secure_element@1.2-service-gto",
+    relative_install_path: "hw",
+    init_rc: ["1.2/android.hardware.secure_element@1.2-service-gto.rc"],
+    vendor: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "1.2/GtoService.cpp",
+    ],
+
+    shared_libs: [
+        "android.hardware.secure_element@1.0",
+        "android.hardware.secure_element@1.0-impl-gto",
+	"android.hardware.secure_element@1.1",
+        "android.hardware.secure_element@1.1-impl-gto",
+        "android.hardware.secure_element@1.2",
+        "android.hardware.secure_element@1.2-impl-gto",
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+
+    sanitize: {
+        memtag_heap: true,
+    },
+}
+
+// --------------------------------------------------------------------------------
+
+cc_library_shared {
+    // FIXME: this should only be -impl for a passthrough hal.
+    // In most cases, to convert this to a binderized implementation, you should:
+    // - change '-impl' to '-service' here and make it a cc_binary instead of a
+    //   cc_library_shared.
+    // - add a *.rc file for this module.
+    // - delete HIDL_FETCH_I* functions.
+    // - call configureRpcThreadpool and registerAsService on the instance.
+    // You may also want to append '-impl/-service' with a specific identifier like
+    // '-vendor' or '-<hardware identifier>' etc to distinguish it.
+    name: "android.hardware.secure_element@1.0-impl-gto-ese2",
+    //relative_install_path: "hw",
+    // FIXME: this should be 'vendor: true' for modules that will eventually be
+    // on AOSP.
+    vendor: true,
+    srcs: [
+        "1.0/esehal/src/checksum.c",
+        "1.0/esehal/src/iso7816_t1.c",
+        "1.0/esehal/src/libse-gto.c",
+        "1.0/esehal/src/spi.c",
+        "1.0/esehal/src/transport.c",
+        "1.0/esehal/src/log.c",
+        "1.0/SecureElement.cpp",
+    ],
+
+    local_include_dirs: [
+        "1.0/esehal/src",
+    ],
+
+    cflags: [
+        "-DANDROID",
+        "-DENABLE_LOGGING=1",
+        "-DENABLE_DEBUG=1",
+        "-DBUILDCFG=1",
+        "-DNXP_EXTNS=TRUE",
+        "-Wno-unused-parameter",
+        "-Wno-unused-private-field",
+        "-Wno-error",
+        "-Wreturn-type",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "android.hardware.secure_element@1.0",
+    ],
+
+}
+
+cc_binary {
+    name: "android.hardware.secure_element@1.0-service-gto-ese2",
+    relative_install_path: "hw",
+    init_rc: ["1.0/android.hardware.secure_element@1.0-service-gto-ese2.rc"],
+    vendor: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "1.0/GtoService_ese2.cpp",
+    ],
+
+    shared_libs: [
+        "android.hardware.secure_element@1.0",
+        "android.hardware.secure_element@1.0-impl-gto-ese2",
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+
+    sanitize: {
+        memtag_heap: true,
+    },
+}
+
+cc_library_shared {
+    // FIXME: this should only be -impl for a passthrough hal.
+    // In most cases, to convert this to a binderized implementation, you should:
+    // - change '-impl' to '-service' here and make it a cc_binary instead of a
+    //   cc_library_shared.
+    // - add a *.rc file for this module.
+    // - delete HIDL_FETCH_I* functions.
+    // - call configureRpcThreadpool and registerAsService on the instance.
+    // You may also want to append '-impl/-service' with a specific identifier like
+    // '-vendor' or '-<hardware identifier>' etc to distinguish it.
+    name: "android.hardware.secure_element@1.1-impl-gto-ese2",
+    //relative_install_path: "hw",
+    // FIXME: this should be 'vendor: true' for modules that will eventually be
+    // on AOSP.
+    vendor: true,
+    srcs: [
+        "1.0/esehal/src/checksum.c",
+        "1.0/esehal/src/iso7816_t1.c",
+        "1.0/esehal/src/libse-gto.c",
+        "1.0/esehal/src/spi.c",
+        "1.0/esehal/src/transport.c",
+        "1.0/esehal/src/log.c",
+        "1.1/SecureElement.cpp",
+    ],
+
+    local_include_dirs: [
+        "1.0/esehal/src",
+    ],
+
+    cflags: [
+        "-DANDROID",
+        "-DENABLE_LOGGING=1",
+        "-DENABLE_DEBUG=1",
+        "-DBUILDCFG=1",
+        "-DNXP_EXTNS=TRUE",
+        "-Wno-unused-parameter",
+        "-Wno-unused-private-field",
+        "-Wno-error",
+        "-Wreturn-type",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "android.hardware.secure_element@1.0",
+	"android.hardware.secure_element@1.1",
+    ],
+
+}
+
+cc_binary {
+    name: "android.hardware.secure_element@1.1-service-gto-ese2",
+    relative_install_path: "hw",
+    init_rc: ["1.1/android.hardware.secure_element@1.1-service-gto-ese2.rc"],
+    vendor: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "1.1/GtoService_ese2.cpp",
+    ],
+
+    shared_libs: [
+        "android.hardware.secure_element@1.0",
+        "android.hardware.secure_element@1.0-impl-gto-ese2",
+	"android.hardware.secure_element@1.1",
+        "android.hardware.secure_element@1.1-impl-gto-ese2",
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+
+    sanitize: {
+        memtag_heap: true,
+    },
+}
+
+cc_library_shared {
+    // FIXME: this should only be -impl for a passthrough hal.
+    // In most cases, to convert this to a binderized implementation, you should:
+    // - change '-impl' to '-service' here and make it a cc_binary instead of a
+    //   cc_library_shared.
+    // - add a *.rc file for this module.
+    // - delete HIDL_FETCH_I* functions.
+    // - call configureRpcThreadpool and registerAsService on the instance.
+    // You may also want to append '-impl/-service' with a specific identifier like
+    // '-vendor' or '-<hardware identifier>' etc to distinguish it.
+    name: "android.hardware.secure_element@1.2-impl-gto-ese2",
+    //relative_install_path: "hw",
+    // FIXME: this should be 'vendor: true' for modules that will eventually be
+    // on AOSP.
+    vendor: true,
+    srcs: [
+        "1.0/esehal/src/checksum.c",
+        "1.0/esehal/src/iso7816_t1.c",
+        "1.0/esehal/src/libse-gto.c",
+        "1.0/esehal/src/spi.c",
+        "1.0/esehal/src/transport.c",
+        "1.0/esehal/src/log.c",
+        "1.2/SecureElement.cpp",
+    ],
+
+    local_include_dirs: [
+        "1.0/esehal/src",
+    ],
+
+    cflags: [
+        "-DANDROID",
+        "-DENABLE_LOGGING=1",
+        "-DENABLE_DEBUG=1",
+        "-DBUILDCFG=1",
+        "-DNXP_EXTNS=TRUE",
+        "-Wno-unused-parameter",
+        "-Wno-unused-private-field",
+        "-Wno-error",
+        "-Wreturn-type",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "android.hardware.secure_element@1.0",
+	"android.hardware.secure_element@1.1",
+	"android.hardware.secure_element@1.2",
+    ],
+
+}
+
+cc_binary {
+    name: "android.hardware.secure_element@1.2-service-gto-ese2",
+    relative_install_path: "hw",
+    init_rc: ["1.2/android.hardware.secure_element@1.2-service-gto-ese2.rc"],
+    vendor: true,
+    defaults: ["hidl_defaults"],
+    srcs: [
+        "1.2/GtoService_ese2.cpp",
+    ],
+
+    shared_libs: [
+        "android.hardware.secure_element@1.0",
+        "android.hardware.secure_element@1.0-impl-gto-ese2",
+	"android.hardware.secure_element@1.1",
+        "android.hardware.secure_element@1.1-impl-gto-ese2",
+        "android.hardware.secure_element@1.2",
+        "android.hardware.secure_element@1.2-impl-gto-ese2",
+        "libbase",
+        "libcutils",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+
+    sanitize: {
+        memtag_heap: true,
+    },
+}

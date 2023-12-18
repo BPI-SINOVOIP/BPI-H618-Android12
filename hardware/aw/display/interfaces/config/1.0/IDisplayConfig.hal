@@ -1,0 +1,202 @@
+
+package vendor.display.config@1.0;
+
+interface IDisplayConfig {
+
+    /*
+     * @param display Index of display to be querry
+     *        0 for primary display
+     *        1 for external display
+     * @return ret is 0 upon success.
+     */
+    @callflow(next="*")
+    setDisplayArgs(int32_t display,
+                   int32_t cmd1,
+                   int32_t cmd2,
+                   int32_t data)
+                generates(int32_t ret);
+
+    /*
+     * Querry and set current display port type.
+     */
+    @callflow(next="*")
+    getDisplayPortType(int32_t display) generates(DisplayPortType type);
+    setDisplayPortType(int32_t display, DisplayPortType type) generates(int32_t error);
+
+    /*
+     * Returns the active mode that is current set for the display.
+     *
+     * @return error is 0 upon success.
+     */
+    @callflow(next="*")
+    getActiveMode(int32_t display) generates(int32_t error, uint32_t mode);
+
+    /*
+     * Set a new mode for the display.
+     *
+     * @return error is 0 upon success.
+     */
+    @callflow(next="*")
+    setActiveMode(int32_t display, uint32_t mode) generates(int32_t error);
+
+    /*
+     * Get supported modes for the display.
+     *
+     * @return modes vector of supported modes.
+     */
+    @callflow(next="*")
+    getSupportedModes(int32_t display) generates(vec<uint32_t> modes);
+
+    /*
+     * Returns the 3D capability for the display.
+     *
+     * @return supported true when 3D output is capable.
+     */
+    @callflow(next="*")
+    supported3D(int32_t display) generates(bool supported);
+
+    /*
+     * Get the 3D layer mode for the display.
+     */
+    @callflow(next="*")
+    get3DLayerMode(int32_t display) generates(LayerMode mode);
+
+    /*
+     * Set a new 3D layer mode for the display.
+     *
+     * @return error is 0 upon success.
+     */
+    @callflow(next="*")
+    set3DLayerMode(int32_t display, LayerMode mode) generates(int32_t error);
+
+    /*
+     * Get supported pixel formats for the display.
+     */
+    @callflow(next="*")
+    getSupportedPixelFormats(int32_t display) generates(vec<PixelFormat> fmts);
+
+    /*
+     * Get current active pixel format for the display.
+     */
+    @callflow(next="*")
+    getPixelFormat(int32_t display) generates(PixelFormat fmt);
+
+    /*
+     * Set a new pixel format for the display.
+     *
+     * @return error is 0 upon success.
+     */
+    @callflow(next="*")
+    setPixelFormat(int32_t display, PixelFormat fmt) generates(int32_t error);
+
+    /*
+     * Return the actual output dataspace for the display.
+     */
+    @callflow(next="*")
+    getCurrentDataspace(int32_t display) generates(Dataspace dataspace);
+
+    /*
+     * Return the HDR output strategy mode for the display.
+     */
+    @callflow(next="*")
+    getDataspaceMode(int32_t display) generates(Dataspace mode);
+
+    /*
+     * Set a HDR output strategy mode for the display.
+     */
+    @callflow(next="*")
+    setDataspaceMode(int32_t display, Dataspace mode) generates(int32_t error);
+
+    /*
+     * Aspect ratio and screen margin api for homlet platform.
+     */
+    @callflow(next="*")
+    setAspectRatio(int32_t display, AspectRatio ratio) generates(int32_t error);
+    getAspectRatio(int32_t display) generates(AspectRatio ratio);
+    setScreenMargin(int32_t display, ScreenMargin margin) generates(int32_t error);
+    getScreenMargin(int32_t display) generates(ScreenMargin margin);
+
+    /*
+     * Color Enhance api for homlet platform.
+     */
+    @callflow(next="*")
+    getEnhanceComponent(int32_t display, EnhanceItem item) generates(int32_t value);
+    setEnhanceComponent(int32_t display, EnhanceItem item, int32_t value) generates(int32_t error);
+
+    /*
+     * snr setting for yuv layer
+     */
+    supportedSNRSetting(int32_t display) generates(bool supported);
+    getSNRInfo(int32_t display) generates(int32_t error, SNRInfo snr);
+    setSNRInfo(int32_t display, SNRInfo snr) generates(int32_t error);
+
+    /*
+     * Hdcp config api
+     */
+    @callflow(next="*")
+    configHdcp(bool enable) generates(int32_t value);
+    getConnectedHdcpLevel() generates(HdcpLevel level);
+    getAuthorizedStatus() generates(HdcpAuthorizedStatus status);
+
+    /*
+     * Retrieves implementation-defined debug information
+     *
+     * @return debugInfo is a string of debug information.
+     */
+    @callflow(next="*")
+    dumpDebugInfo() generates (string debugInfo);
+
+    /**
+     * @name       :getHDMINativeMode
+     * @brief      :get best resolution from edid
+     * @param[IN]  :display:index of display device
+     * @param[OUT] :NONE
+     * @return     :- resolution mode id(dispmode)
+     *              - -2 if current display is not hdmi
+     */
+    @callflow(next="*")
+    getHDMINativeMode(int32_t display) generates(int32_t vic);
+
+    /**
+     * @name       :getHdmiUserSetting
+     * @brief      :get best resolution from edid
+     * @param[IN]  :display:index of display device
+     * @param[OUT] :NONE
+     * @return     :- 255:hdmi auto mode
+     *              - dispmode defined in sunxi_display2.h
+     *              - -2:if not hdmi device
+     */
+    @callflow(next="*")
+    getHdmiUserSetting(int32_t display) generates(int32_t hdmi_mode);
+
+    /**
+     * set eink refresh mode
+     */
+    @callflow(next="*")
+    setEinkMode(int32_t mode) generates(int32_t error);
+
+    /**
+     * set eink handwriting buffer fd
+     */
+    @callflow(next="*")
+    setEinkBufferFd(handle fd) generates(int32_t error);
+
+    /**
+     * update eink handwriting update region
+     */
+    @callflow(next="*")
+    updateEinkRegion(int32_t left, int32_t top, int32_t right, int32_t bottom) generates(int32_t error);
+
+    /**
+     * eink force refresh
+     */
+    @callflow(next="*")
+    forceEinkRefresh(bool rightNow) generates(int32_t error);
+
+    /**
+     * set eink update area
+     */
+    @callflow(next="*")
+    setEinkUpdateArea(int32_t left, int32_t top, int32_t right, int32_t bottom) generates(int32_t error);
+};
+

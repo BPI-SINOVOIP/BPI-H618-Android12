@@ -1,0 +1,33 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+filegroup {
+    name: "LibBluetoothShimSources",
+    srcs: [
+        "acl.cc",
+        "acl_api.cc",
+        "acl_legacy_interface.cc",
+        "activity_attribution.cc",
+        "btm.cc",
+        "btm_api.cc",
+        "config.cc",
+        "controller.cc",
+        "dumpsys.cc",
+        "entry.cc",
+        "hci_layer.cc",
+        "l2c_api.cc",
+        "le_advertising_manager.cc",
+        "le_scanning_manager.cc",
+        "link_policy.cc",
+        "metric_id_api.cc",
+        "metrics_api.cc",
+        "shim.cc",
+        "stack.cc",
+    ]
+}

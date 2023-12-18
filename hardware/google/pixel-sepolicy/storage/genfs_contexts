@@ -1,0 +1,2 @@
+genfscon debugfs /lpm_stats/stats					u:object_r:debugfs_lpm:s0
+genfscon sysfs /devices/platform/soc/1d84000.ufshc/power		u:object_r:sysfs_scsi_devices_0000:s0

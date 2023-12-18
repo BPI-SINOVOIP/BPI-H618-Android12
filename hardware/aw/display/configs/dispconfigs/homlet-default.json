@@ -1,0 +1,38 @@
+{
+    "DisplayEngineVersion": 2,
+    "DisplayNumber": 2,
+
+    /* Primary display */
+    "Display0": {
+        /* Available interface type: LCD/HDMI/CVBS */
+        "InterfaceType": "HDMI",
+        "DisplayEnginePortId": 0,
+        "OverrideFramebufferSize": 1,
+        "FramebufferWidth": 1280,
+        "FramebufferHeight": 720,
+        "DpiX": 160,
+        "DpiY": 160,
+        "HotplugSupported": 0,
+        "AfbcSupported": 0,
+        "HardwareRotateSupported": 0,
+        "BandwidthLimited": 338800,
+        "DefaultOutputMode": 0
+    },
+
+    /* external display */
+    "Display1": {
+        /* Available interface type: LCD/HDMI/CVBS */
+        "InterfaceType": "CVBS",
+        "DisplayEnginePortId": 1,
+        "OverrideFramebufferSize": 1,
+        "FramebufferWidth": 1280,
+        "FramebufferHeight": 720,
+        "DpiX": 160,
+        "DpiY": 160,
+        "HotplugSupported": 0,
+        "AfbcSupported": 0,
+        "HardwareRotateSupported": 0,
+        "BandwidthLimited": 338800,
+        "DefaultOutputMode": 0
+    }
+}

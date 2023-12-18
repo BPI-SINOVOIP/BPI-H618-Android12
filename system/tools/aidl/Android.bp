@@ -1,0 +1,617 @@
+//
+// Copyright (C) 2015 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    default_applicable_licenses: ["system_tools_aidl_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "system_tools_aidl_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+cc_defaults {
+    name: "aidl_defaults",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+    ],
+    header_libs: ["libgtest_prod_headers"],
+    static_libs: [
+        "libbase",
+        "libcutils",
+        "libgtest",
+    ],
+    // TODO(b/174366536): basic_stringbuf::overflow causes "ubsan: implicit-conversion"
+    // sanitize: {
+    //     integer_overflow: true,
+    //     misc_undefined: ["integer"],
+    // },
+    target: {
+        windows: {
+            enabled: true,
+        },
+        host: {
+            cflags: [
+                "-O0",
+                "-g",
+            ],
+        },
+    },
+    product_variables: {
+        platform_sdk_version: {
+            cflags: ["-DPLATFORM_SDK_VERSION=%d"],
+        },
+    },
+}
+
+// Logic shared between aidl and its unittests
+cc_library_static {
+    name: "libaidl-common",
+    defaults: ["aidl_defaults"],
+    host_supported: true,
+
+    srcs: [
+        "aidl_checkapi.cpp",
+        "aidl_const_expressions.cpp",
+        "aidl_dumpapi.cpp",
+        "aidl_language_l.ll",
+        "aidl_language_y.yy",
+        "aidl_language.cpp",
+        "aidl_to_cpp_common.cpp",
+        "aidl_to_cpp.cpp",
+        "aidl_to_java.cpp",
+        "aidl_to_ndk.cpp",
+        "aidl_to_rust.cpp",
+        "aidl_typenames.cpp",
+        "aidl.cpp",
+        "ast_cpp.cpp",
+        "ast_java.cpp",
+        "code_writer.cpp",
+        "comments.cpp",
+        "diagnostics.cpp",
+        "generate_aidl_mappings.cpp",
+        "generate_cpp.cpp",
+        "generate_java_binder.cpp",
+        "generate_java.cpp",
+        "generate_ndk.cpp",
+        "generate_rust.cpp",
+        "import_resolver.cpp",
+        "io_delegate.cpp",
+        "line_reader.cpp",
+        "location.cpp",
+        "logging.cpp",
+        "options.cpp",
+        "parser.cpp",
+    ],
+    yacc: {
+        gen_location_hh: true,
+        gen_position_hh: true,
+    },
+}
+
+// aidl executable
+cc_binary_host {
+    name: "aidl",
+    defaults: ["aidl_defaults"],
+    srcs: ["main.cpp"],
+    static_libs: [
+        "libaidl-common",
+        "libbase",
+        "liblog",
+    ],
+}
+
+// aidl-cpp legacy executable, please use 'aidl' instead
+cc_binary_host {
+    name: "aidl-cpp",
+    defaults: ["aidl_defaults"],
+    srcs: ["main.cpp"],
+    cflags: ["-DAIDL_CPP_BUILD"],
+    static_libs: [
+        "libaidl-common",
+        "libbase",
+        "liblog",
+    ],
+}
+
+// Unit tests
+cc_test {
+    name: "aidl_unittests",
+    host_supported: true,
+
+    test_suites: ["general-tests"],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-g",
+    ],
+
+    srcs: [
+        "aidl_unittest.cpp",
+        "ast_cpp_unittest.cpp",
+        "ast_java_unittest.cpp",
+        "code_writer_unittest.cpp",
+        "diagnostics_unittest.cpp",
+        "generate_cpp_unittest.cpp",
+        "io_delegate_unittest.cpp",
+        "options_unittest.cpp",
+        "tests/fake_io_delegate.cpp",
+        "tests/main.cpp",
+        "tests/test_util.cpp",
+    ],
+
+    static_libs: [
+        "libaidl-common",
+        "libbase",
+        "libcutils",
+        "libgmock",
+        "liblog",
+    ],
+
+    required: ["aidl-golden-test-build-hook"],
+}
+
+cc_fuzz {
+    name: "aidl_parser_fuzzer",
+    host_supported: true,
+    dictionary: "tests/aidl_parser_fuzzer.dict",
+    corpus: [
+        "tests/corpus/*",
+    ],
+
+    fuzz_config: {
+        cc: [
+            "devinmoore@google.com",
+            "smoreland@google.com",
+            "jiyong@google.com",
+            "jeongik@google.com",
+        ],
+    },
+
+    srcs: [
+        "tests/aidl_parser_fuzzer.cpp",
+        "tests/fake_io_delegate.cpp",
+        "tests/test_util.cpp",
+    ],
+    static_libs: [
+        "libaidl-common",
+        "libbase",
+        "libcutils",
+        "libgtest",
+        "liblog",
+    ],
+    // Enable this to show additional information about what is being parsed during fuzzing.
+    // cflags: ["-DFUZZ_LOG"],
+}
+
+//
+// Integration testing of generated AIDL code.
+//
+
+python_test_host {
+    name: "aidl_integration_test",
+    main: "tests/aidl_integration_test.py",
+    srcs: ["tests/aidl_integration_test.py"],
+    test_config: "tests/aidl_integration_test.xml",
+    target_required: [
+        "aidl_test_client",
+        "aidl_test_service",
+        "aidl_test_java_client",
+        "aidl_test_java_service",
+        "aidl_test_rust_client",
+        "aidl_test_rust_service",
+    ],
+    test_suites: ["general-tests"],
+    test_options: {
+        unit_test: false,
+    },
+}
+
+cc_defaults {
+    name: "aidl_test_defaults",
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "liblog",
+        "libutils",
+    ],
+    compile_multilib: "both",
+    multilib: {
+        lib32: {
+            suffix: "32",
+        },
+        lib64: {
+            suffix: "64",
+        },
+    },
+    test_suites: ["general-tests"],
+}
+
+// Header-only library used for atrace in platform NDK builds
+cc_library_headers {
+    name: "libandroid_aidltrace",
+    host_supported: true,
+    vendor_available: true,
+    export_include_dirs: ["trace"],
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+}
+
+filegroup {
+    name: "libaidl-integration-test-files",
+    srcs: [
+        "tests/android/aidl/tests/BackendType.aidl",
+        "tests/android/aidl/tests/ByteEnum.aidl",
+        "tests/android/aidl/tests/ConstantExpressionEnum.aidl",
+        "tests/android/aidl/tests/DeprecatedEnum.aidl",
+        "tests/android/aidl/tests/DeprecatedParcelable.aidl",
+        "tests/android/aidl/tests/GenericStructuredParcelable.aidl",
+        "tests/android/aidl/tests/IDeprecated.aidl",
+        "tests/android/aidl/tests/INamedCallback.aidl",
+        "tests/android/aidl/tests/INewName.aidl",
+        "tests/android/aidl/tests/IOldName.aidl",
+        "tests/android/aidl/tests/ITestService.aidl",
+        "tests/android/aidl/tests/IntEnum.aidl",
+        "tests/android/aidl/tests/LongEnum.aidl",
+        "tests/android/aidl/tests/OtherParcelableForToString.aidl",
+        "tests/android/aidl/tests/ParcelableForToString.aidl",
+        "tests/android/aidl/tests/StructuredParcelable.aidl",
+        "tests/android/aidl/tests/Union.aidl",
+        "tests/android/aidl/tests/UnionWithFd.aidl",
+        "tests/android/aidl/tests/unions/*.aidl",
+    ],
+    path: "tests",
+}
+
+filegroup {
+    name: "libaidl-integration-cpp-java-test-files",
+    srcs: [
+        "tests/android/aidl/tests/ICppJavaTests.aidl",
+        "tests/android/aidl/tests/SimpleParcelable.aidl",
+        "tests/android/aidl/tests/extension/*.aidl",
+    ],
+    path: "tests",
+}
+
+aidl_interface {
+    name: "aidl-test-versioned-interface",
+    local_include_dir: "tests/versioned",
+    flags: ["-Werror"],
+    srcs: [
+        "tests/versioned/**/*.aidl",
+    ],
+    versions: [
+        "1",
+        "2",
+    ],
+    backend: {
+        rust: {
+            enabled: true,
+        },
+    },
+}
+
+cc_library_static {
+    name: "libaidl-integration-test",
+    defaults: ["aidl_test_defaults"],
+    aidl: {
+        generate_traces: true,
+        export_aidl_headers: true,
+        local_include_dirs: ["tests"],
+        include_dirs: ["frameworks/native/aidl/binder"],
+    },
+    srcs: [
+        ":libaidl-integration-test-files",
+        ":libaidl-integration-cpp-java-test-files",
+        "tests/simple_parcelable.cpp",
+    ],
+}
+
+cc_test {
+    name: "aidl_test_service",
+    gtest: false,
+    defaults: ["aidl_test_defaults"],
+    static_libs: [
+        "libaidl-integration-test",
+        "libcutils",
+        // service uses the old version
+        "aidl-test-versioned-interface-V1-cpp",
+        "aidl_test_loggable_interface-cpp",
+    ],
+    srcs: ["tests/aidl_test_service.cpp"],
+}
+
+cc_test {
+    name: "aidl_test_client",
+    defaults: ["aidl_test_defaults"],
+    static_libs: [
+        "libaidl-integration-test",
+        "libcutils",
+        "libgmock",
+        //  client uses the latest version
+        "aidl-test-versioned-interface-V2-cpp",
+        "aidl_test_loggable_interface-cpp"
+    ],
+    srcs: [
+        "tests/aidl_test_client.cpp",
+        "tests/aidl_test_client_file_descriptors.cpp",
+        "tests/aidl_test_client_parcelables.cpp",
+        "tests/aidl_test_client_nullables.cpp",
+        "tests/aidl_test_client_primitives.cpp",
+        "tests/aidl_test_client_utf8_strings.cpp",
+        "tests/aidl_test_client_service_exceptions.cpp",
+        "tests/aidl_test_client_defaultimpl.cpp",
+        "tests/aidl_test_client_versioned_interface.cpp",
+        "tests/aidl_test_client_renamed_interface.cpp",
+        "tests/aidl_test_client_loggable_interface.cpp",
+    ],
+}
+
+cc_test {
+    name: "aidl_test_client_ndk",
+    defaults: ["aidl_test_defaults"],
+    static_libs: [
+        "libcutils",
+        "libgmock",
+        //  client uses the latest version
+        "aidl-test-versioned-interface-V2-ndk_platform",
+        "aidl-test-interface-ndk_platform",
+        "aidl_test_loggable_interface-ndk_platform"
+    ],
+    shared_libs: [
+        "libbinder_ndk",
+    ],
+    srcs: [
+        "tests/aidl_test_client_ndk_loggable_interface.cpp",
+        "tests/aidl_test_client_ndk_versioned_interface.cpp",
+    ],
+}
+
+java_defaults {
+    name: "aidl_test_java_defaults",
+    platform_apis: true,
+    // Turn off Java optimization tools to speed up our test iterations.
+    optimize: {
+        enabled: false,
+    },
+    dex_preopt: {
+        enabled: false,
+    },
+    static_libs: [
+        "androidx.test.core",
+        "androidx.test.runner",
+        "aidl_test_nonvintf_parcelable-V1-java",
+        "aidl_test_unstable_parcelable-java",
+        "aidl_test_vintf_parcelable-V1-java",
+        // TODO: remove once Android migrates to JUnit 4.12,
+        // which provides assertThrows
+        "testng",
+    ],
+    srcs: [
+        "tests/android/aidl/tests/*.aidl",
+        "tests/android/aidl/tests/generic/*.aidl",
+        "tests/android/aidl/tests/immutable/*.aidl",
+        "tests/android/aidl/tests/map/*.aidl",
+        "tests/android/aidl/tests/extension/*.aidl",
+        "tests/android/aidl/tests/unions/*.aidl",
+        "tests/java/src/android/aidl/tests/SimpleParcelable.java",
+        "tests/java/src/android/aidl/tests/generic/Pair.java",
+    ],
+    aidl: {
+        include_dirs: [
+            "system/tools/aidl/tests/",
+            "frameworks/native/aidl/binder",
+        ],
+        generate_traces: true,
+    },
+    test_suites: ["general-tests"],
+}
+
+java_test {
+    name: "aidl_test_java_client",
+    defaults: ["aidl_test_java_defaults"],
+    static_libs: [
+        // client uses the new version
+        "aidl-test-versioned-interface-V2-java",
+    ],
+    // tests are included in defaults
+    srcs: [
+        "tests/java/src/android/aidl/tests/MapTests.java",
+        "tests/java/src/android/aidl/tests/TestServiceClient.java",
+        "tests/java/src/android/aidl/tests/JavaOnlyImmutableAnnotationTests.java",
+        "tests/java/src/android/aidl/tests/AidlJavaTests.java",
+        "tests/java/src/android/aidl/tests/GenericTests.java",
+        "tests/java/src/android/aidl/tests/TestVersionedInterface.java",
+        "tests/java/src/android/aidl/tests/UnionTests.java",
+        "tests/java/src/android/aidl/tests/ExtensionTests.java",
+        "tests/java/src/android/aidl/tests/NullableTests.java",
+        "tests/java/src/android/aidl/tests/VintfTests.java",
+    ],
+}
+
+java_test {
+    name: "aidl_test_java_service",
+    defaults: ["aidl_test_java_defaults"],
+    static_libs: [
+        // service uses the old version
+        "aidl-test-versioned-interface-V1-java",
+    ],
+    srcs: [
+        "tests/java/src/android/aidl/service/**/*.java",
+    ],
+}
+
+//
+// "Golden" test of compiler output
+//
+
+sh_binary_host {
+    name: "aidl-golden-test",
+    src: "tests/golden_test.sh",
+}
+
+genrule {
+    name: "aidl-golden-test-build-hook-gen",
+    tools: ["aidl-golden-test"],
+    cmd: "$(location aidl-golden-test) check && " +
+         "echo 'int main(){return 0;}' > $(genDir)/TODO_b_37575883.cpp",
+    srcs: [
+        // warning: keep this list up to date with tests/golden_test.sh
+        ":aidl-test-interface-cpp-source",
+        ":aidl-test-interface-java-source",
+        ":aidl-test-interface-ndk_platform-source",
+        ":aidl-test-interface-rust-source",
+        ":aidl_test_loggable_interface-cpp-source",
+        ":aidl_test_loggable_interface-java-source",
+        ":aidl_test_loggable_interface-ndk_platform-source",
+        ":aidl_test_loggable_interface-ndk-source",
+        "tests/golden_output/**/*",
+    ],
+    out: ["TODO_b_37575883.cpp"],
+}
+
+cc_test_host {
+    name: "aidl-golden-test-build-hook",
+    generated_sources: ["aidl-golden-test-build-hook-gen"],
+    gtest: false,
+}
+
+//
+// Testing generation of logs
+//
+
+aidl_interface {
+    name: "aidl_test_loggable_interface",
+    unstable: true,
+    local_include_dir: "tests",
+    flags: ["-Werror"],
+    srcs: [
+        "tests/android/aidl/loggable/ILoggableInterface.aidl",
+        "tests/android/aidl/loggable/Data.aidl",
+        "tests/android/aidl/loggable/Enum.aidl",
+        "tests/android/aidl/loggable/Union.aidl",
+    ],
+    gen_trace: true,
+    backend: {
+        cpp: {
+            srcs_available: true,
+            gen_log: true,
+        },
+        ndk: {
+            srcs_available: true,
+            gen_log: true,
+        },
+        java: {
+            srcs_available: true,
+            platform_apis: true,
+        },
+    },
+}
+
+//
+// Rust tests
+//
+
+aidl_interface {
+    name: "aidl-test-interface",
+    unstable: true,
+    flags: ["-Werror"],
+    srcs: [":libaidl-integration-test-files"],
+    local_include_dir: "tests",
+    backend: {
+        cpp: {
+            srcs_available: true,
+        },
+        java: {
+            platform_apis: true,
+            srcs_available: true,
+        },
+        rust: {
+            enabled: true,
+            srcs_available: true,
+        },
+        ndk: {
+            apps_enabled: false,
+            srcs_available: true,
+        },
+    },
+}
+
+rust_test {
+    name: "aidl_test_rust_client",
+    srcs: [
+        "tests/rust/test_client.rs",
+    ],
+    rustlibs: [
+        "aidl-test-interface-rust",
+        "aidl-test-versioned-interface-V2-rust",
+        "liblibc",
+    ],
+    prefer_rlib: true,
+    compile_multilib: "both",
+    multilib: {
+        lib32: {
+            suffix: "32",
+        },
+        lib64: {
+            suffix: "64",
+        },
+    },
+    test_suites: ["general-tests"],
+}
+
+rust_test {
+    name: "aidl_test_rust_service",
+    test_harness: false,
+    srcs: [
+        "tests/rust/test_service.rs",
+    ],
+    rustlibs: [
+        "aidl-test-interface-rust",
+        "aidl-test-versioned-interface-V1-rust",
+        "liblibc",
+    ],
+    prefer_rlib: true,
+    compile_multilib: "both",
+    multilib: {
+        lib32: {
+            suffix: "32",
+        },
+        lib64: {
+            suffix: "64",
+        },
+    },
+    test_suites: ["general-tests"],
+}
