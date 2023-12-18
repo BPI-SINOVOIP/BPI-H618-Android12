@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.android.server.wm.flicker">
+
+    <uses-sdk android:minSdkVersion="29" android:targetSdkVersion="29"/>
+    <!-- Read and write traces from external storage -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- Allow the test to write directly to /sdcard/ -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <!-- Capture screen contents -->
+    <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
+    <!-- Run layers trace -->
+    <uses-permission android:name="android.permission.HARDWARE_TEST"/>
+    <!-- Capture screen recording -->
+    <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT"/>
+    <!-- Enable / Disable tracing !-->
+    <uses-permission android:name="android.permission.DUMP" />
+    <!-- Allow the test to write directly to /sdcard/ -->
+    <application android:label="FlickerLibTest"
+                 android:requestLegacyExternalStorage="true">
+        <uses-library android:name="android.test.runner"/>
+    </application>
+
+    <instrumentation android:name="androidx.test.runner.AndroidJUnitRunner"
+                     android:targetPackage="com.android.server.wm.flicker"
+                     android:label="WindowManager Flicker Lib Test">
+    </instrumentation>
+
+</manifest>

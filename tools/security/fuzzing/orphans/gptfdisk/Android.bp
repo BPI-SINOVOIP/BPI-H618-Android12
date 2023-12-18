@@ -1,0 +1,21 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_fuzz {
+    name: "sgdisk_fuzz",
+    host_supported: true,
+    srcs: [
+        "sgdisk_fuzz.cc",
+    ],
+    static_libs: [
+        "libgptf",
+    ],
+    shared_libs: ["libext2_uuid"],
+    corpus: ["corpus/*"],
+    target: {
+        android: {
+            cflags: ["-DGPTFDISK_FUZZER_DEVICE"],
+        },
+    },
+}

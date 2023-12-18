@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+#
+# Copyright 2019, The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# pylint: disable=line-too-long
+
+"""Unittest for atest_execution_info."""
+
+import unittest
+
+
+class AsuiteMetricsTest(unittest.TestCase):
+    """Tests for verify asuite_metrics libs"""
+
+    def test_import_asuite_metrics_lib(self):
+        """Test asuite_metrics_lib."""
+        # pylint: disable=import-error
+        # pylint: disable=unused-variable
+        # pylint: disable=import-outside-toplevel
+        # pylint: disable=unused-import
+        from asuite import asuite_metrics
+
+        # TODO (b/132602907): Add the real usage for checking if metrics pass or fail.
+
+if __name__ == "__main__":
+    unittest.main()

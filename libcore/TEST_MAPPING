@@ -1,0 +1,90 @@
+{
+  "presubmit-large": [
+    {
+      "name": "CtsLibcoreTestCases",
+      "options": [
+        {
+          "exclude-filter": "com.android.org.conscrypt.java.security.AlgorithmParameterGeneratorTestDH"
+        },
+        {
+          "exclude-filter": "com.android.org.conscrypt.java.security.KeyPairGeneratorTest"
+        },
+        {
+          "exclude-filter": "com.android.org.conscrypt.java.security.SignatureTest"
+        },
+        {
+          "exclude-filter": "com.android.org.conscrypt.javax.crypto.CipherBasicsTest"
+        },
+        {
+          "exclude-filter": "com.android.org.conscrypt.javax.net.ssl.KeyManagerFactoryTest"
+        },
+        {
+          "exclude-filter": "com.android.org.conscrypt.javax.net.ssl.SSLSocketVersionCompatibilityTest"
+        },
+        {
+          "exclude-filter": "libcore.java.lang.OldRuntimeTest"
+        },
+        {
+          "exclude-filter": "libcore.java.lang.OldThreadTest"
+        },
+        {
+          "exclude-filter": "libcore.java.lang.ref.FinalizeTest"
+        },
+        {
+          "exclude-filter": "libcore.java.math.BigIntegerTest"
+        },
+        {
+          "exclude-filter": "libcore.java.net.ConcurrentCloseTest"
+        },
+        {
+          "exclude-filter": "libcore.java.net.OldSocketTest"
+        },
+        {
+          "exclude-filter": "libcore.java.net.URLConnectionTest"
+        },
+        {
+          "exclude-filter": "libcore.java.nio.channels.DatagramChannelMulticastTest"
+        },
+        {
+          "exclude-filter": "libcore.libcore.net.NetworkSecurityPolicyTest"
+        },
+        {
+          "exclude-filter": "libcore.libcore.util.NativeAllocationRegistryTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.logging.tests.java.util.logging.SocketHandlerTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.java.lang.ObjectTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.java.lang.ProcessManagerTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.java.math.OldBigIntegerTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.java.net.InetAddressThreadTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.java.nio.channels.DatagramChannelTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.java.util.ScannerTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.java.util.TimerTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.java.util.WeakHashMapTest"
+        },
+        {
+          "exclude-filter": "org.apache.harmony.tests.javax.net.ssl.SSLSessionTest"
+        },
+        {
+          "exclude-filter": "tests.java.sql.StressTest"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "tools_treble_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["tools_treble_license"],
+}
+
+python_defaults {
+  name: "fetcher-defaults",
+  version: {
+      py2: {
+          enabled: false,
+          embedded_launcher: false,
+      },
+      py3: {
+          enabled: true,
+          embedded_launcher: false,
+      },
+  },
+}
+
+
+python_library_host {
+  name: "fetcher-lib",
+  defaults: ["fetcher-defaults"],
+  srcs: [
+    "fetcher_lib.py"
+  ],
+  pkg_path: "treble/fetcher",
+  libs: [
+      "py-google-api-python-client",
+      "py-oauth2client",
+      "py-six",
+  ],
+}
+
+python_binary_host {
+    name: "fetcher",
+    main: "fetcher.py",
+    defaults: ["fetcher-defaults"],
+    srcs: [
+        "fetcher.py",
+    ],
+    libs: [
+        "fetcher-lib",
+    ],
+}

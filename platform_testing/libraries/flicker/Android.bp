@@ -1,0 +1,85 @@
+//
+// Copyright (C) 2018 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_test {
+    name: "flickerlib",
+    platform_apis: true,
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.kt"
+    ],
+    static_libs: [
+        "flickerlib-core",
+        "flickerlib-helpers"
+    ],
+}
+
+java_library {
+    name: "flickerlib-core",
+    platform_apis: true,
+    srcs: [
+        "src/com/android/server/wm/flicker/**/*.java",
+        "src/com/android/server/wm/flicker/**/*.kt"
+    ],
+    exclude_srcs: [
+        "**/helpers/*",
+    ],
+    static_libs: [
+        "compatibility-device-util-axt",
+        "ub-uiautomator",
+        "androidx.test.uiautomator_uiautomator",
+        "androidx.test.ext.junit",
+        "truth-prebuilt",
+        "launcher-helper-lib",
+        "wm-proto-parsers",
+        "platform-test-annotations",
+        "platform-test-core-rules",
+    ],
+}
+
+java_library {
+    name: "flickerlib-helpers",
+    sdk_version: "test_current",
+    srcs: [
+        "src/**/helpers/*.java",
+        "src/**/helpers/*.kt",
+    ],
+    static_libs: [
+        "compatibility-device-util-axt",
+        "app-helpers-core",
+        "launcher-helper-lib",
+        "wm-proto-parsers",
+    ],
+}
+
+java_library {
+    name: "wm-proto-parsers",
+    sdk_version: "test_current",
+    srcs: [
+        "src/com/android/server/wm/traces/**/*.java",
+        "src/com/android/server/wm/traces/**/*.kt",
+    ],
+    static_libs: [
+        "android-support-annotations",
+        "androidx.test.ext.junit",
+        "platformprotosnano",
+        "layersprotosnano",
+    ],
+}

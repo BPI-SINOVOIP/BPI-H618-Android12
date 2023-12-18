@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2020 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<configuration description="List of ART MTS tests that need root access.">
+
+    <!-- ART gtests. -->
+    <!-- TODO(b/167385698): Identify ART gtests that to not require root access
+         and move them from this "eng-only" list to the "user"
+         list. -->
+    <!-- Temporarily disable ART gtests in MTS, as they require the
+         installation of the Testing ART APEX, which is currently
+         being blocked on internal builds, making MTS runs fail with
+         this error:
+
+           com.android.tradefed.targetprep.TargetSetupError: Mainline
+           module com.android.art is not preloaded on the device but
+           is in the input lists.
+
+         TODO(b/162834439): Re-enable ART gtests when they are
+         uncoupled from the ART APEX. -->
+    <!--
+    <option name="compatibility:include-filter" value="ArtGtestsTargetInstallApex" />
+    -->
+
+    <!-- Enable MainlineTestModuleController. -->
+    <!-- Option disabled for the same reason as above.
+
+         TODO(b/162834439): Re-enable ART gtests when they are
+         uncoupled from the ART APEX. -->
+    <!--
+    <option name="compatibility:module-arg" value="ArtGtestsTargetInstallApex:enable:true" />
+    -->
+</configuration>

@@ -1,0 +1,37 @@
+package {
+    default_applicable_licenses: ["development_apps_SdkSetup_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "development_apps_SdkSetup_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+android_app {
+    name: "SdkSetup",
+    privileged: true,
+    srcs: ["**/*.java"],
+    platform_apis: true,
+    certificate: "platform",
+    optimize: {
+        enabled: false,
+    },
+    system_ext_specific: true,
+    required: ["privapp_whitelist_com.android.sdksetup"],
+}
+
+prebuilt_etc {
+    name: "privapp_whitelist_com.android.sdksetup",
+    system_ext_specific: true,
+    sub_dir: "permissions",
+    src: "com.android.sdksetup.xml",
+    filename_from_src: true,
+}

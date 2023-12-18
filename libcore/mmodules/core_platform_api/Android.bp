@@ -1,0 +1,119 @@
+// Copyright (C) 2018 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// Generates stub source files for the core platform API of the ART module.
+// i.e. every class/member that is either in the public API or annotated with
+// @CorePlatformApi.
+//
+// The API specification .txt files managed by this only contain the additional
+// classes/members that are in the intra-core API but which are not in the public
+// API.
+//
+// There are two versions of the API surface. The "stable" version contains the
+// APIs which are considered stable, and is indicated in source with the
+// annotation @CorePlatformApi(status = CorePlatformApi.Status.STABLE). The
+// "legacy" version also includes those which have not been audited for stability
+// or which are deprecated (which have the default status of LEGACY_ONLY).
+//
+// TODO(b/161973015): Remove the legacy/stable distinction once no longer useful.
+
+package {
+    // http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // the below license kinds from "libcore_license":
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-GPL
+    //   SPDX-license-identifier-GPL-2.0
+    //   SPDX-license-identifier-LGPL
+    //   SPDX-license-identifier-MIT
+    //   SPDX-license-identifier-W3C
+    default_applicable_licenses: ["libcore_license"],
+}
+
+// Ideally this should be a restricted allowlist but there are hundreds of modules that depend on
+// this.
+// TODO(http://b/134561230) - limit the number of dependents on this.
+core_platform_visibility = ["//visibility:public"]
+
+// Libraries containing the core platform API stubs for the core libraries.
+//
+// Although this stubs library is primarily used by the Java compiler / build to indicate
+// the core platform API surface area, compile_dex: true is used so that the Core Platform
+// API annotations are available to the dex tools that enable enforcement of runtime
+// accessibility. b/119068555
+java_library {
+    name: "legacy.core.platform.api.stubs",
+    visibility: core_platform_visibility,
+    hostdex: true,
+    compile_dex: true,
+
+    sdk_version: "none",
+    system_modules: "none",
+    static_libs: [
+        "art.module.public.api.stubs.module_lib",
+        "conscrypt.module.platform.api.stubs",
+        "legacy.i18n.module.platform.api.stubs",
+    ],
+    patch_module: "java.base",
+}
+
+java_library {
+    name: "stable.core.platform.api.stubs",
+    visibility: core_platform_visibility,
+    hostdex: true,
+    compile_dex: true,
+
+    sdk_version: "none",
+    system_modules: "none",
+    static_libs: [
+        "art.module.public.api.stubs.module_lib",
+        // conscrypt only has a stable version, so it is okay to depend on it here:
+        "conscrypt.module.platform.api.stubs",
+        "stable.i18n.module.platform.api.stubs",
+    ],
+    patch_module: "java.base",
+}
+
+// Used when compiling higher-level code against *.core.platform.api.stubs.
+java_system_modules {
+    name: "legacy-core-platform-api-stubs-system-modules",
+    visibility: core_platform_visibility,
+    libs: [
+        "legacy.core.platform.api.stubs",
+        // This one is not on device but it's needed when javac compiles code
+        // containing lambdas.
+        "core-lambda-stubs-for-system-modules",
+        // This one is not on device but it's needed when javac compiles code
+        // containing @Generated annotations produced by some code generation
+        // tools.
+        // See http://b/123891440.
+        "core-generated-annotation-stubs",
+    ],
+}
+
+java_system_modules {
+    name: "stable-core-platform-api-stubs-system-modules",
+    visibility: core_platform_visibility,
+    libs: [
+        "stable.core.platform.api.stubs",
+        // This one is not on device but it's needed when javac compiles code
+        // containing lambdas.
+        "core-lambda-stubs-for-system-modules",
+        // This one is not on device but it's needed when javac compiles code
+        // containing @Generated annotations produced by some code generation
+        // tools.
+        // See http://b/123891440.
+        "core-generated-annotation-stubs",
+    ],
+}

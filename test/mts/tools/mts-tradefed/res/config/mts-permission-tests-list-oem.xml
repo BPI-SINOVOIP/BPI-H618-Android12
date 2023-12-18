@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (C) 2020 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<configuration description="List MTS permission tests for OEM.">
+    <option name="compatibility:include-filter" value="PermissionApexTests" />
+    <option name="compatibility:include-filter" value="PermissionControllerMockingTests" />
+    <option name="compatibility:include-filter" value="PermissionControllerOutOfProcessTests" />
+    <option name="compatibility:include-filter" value="CtsPermissionTestCases android.permission.cts.BackgroundPermissionsTest" />
+    <option name="compatibility:include-filter" value="CtsPermissionTestCases android.permission.cts.LocationAccessCheckTest" />
+    <option name="compatibility:include-filter" value="CtsPermissionTestCases android.permission.cts.OneTimePermissionTest" />
+    <option name="compatibility:include-filter" value="CtsPermissionTestCases android.permission.cts.PermissionControllerTest" />
+    <option name="compatibility:include-filter" value="CtsPermissionTestCases android.permission.cts.PlatformPermissionGroupMappingTest" />
+    <option name="compatibility:module-arg" value="CtsPermissionTestCases:exclude-annotation:android.platform.test.annotations.FlakyTest" />
+    <option name="compatibility:include-filter" value="CtsPermission3TestCases" />
+    <option name="compatibility:module-arg" value="CtsPermission3TestCases:exclude-annotation:android.platform.test.annotations.FlakyTest" />
+    <option name="compatibility:include-filter" value="CtsBackupTestCases android.backup.cts.PermissionTest" />
+    <option name="compatibility:module-arg" value="CtsBackupTestCases:exclude-annotation:android.platform.test.annotations.FlakyTest" />
+    <option name="compatibility:include-filter" value="CtsDevicePolicyManagerTestCases" />
+    <option name="compatibility:module-arg" value="CtsDevicePolicyManagerTestCases:include-annotation:com.android.cts.devicepolicy.annotations.PermissionsTest" />
+    <option name="compatibility:module-arg" value="CtsDevicePolicyManagerTestCases:exclude-annotation:android.platform.test.annotations.FlakyTest" />
+    <option name="compatibility:include-filter" value="CtsOsTestCases android.os.cts.AutoRevokeTest" />
+    <option name="compatibility:include-filter" value="CtsOsTestCases android.os.cts.AppHibernationIntegrationTest" />
+    <option name="compatibility:module-arg" value="CtsOsTestCases:exclude-annotation:android.platform.test.annotations.FlakyTest" />
+    <option name="compatibility:include-filter" value="CtsRoleTestCases" />
+    <option name="compatibility:module-arg" value="CtsRoleTestCases:exclude-annotation:android.platform.test.annotations.FlakyTest" />
+    <option name="compatibility:include-filter" value="GtsIncidentManagerTestCases" />
+    <option name="compatibility:module-arg" value="GtsIncidentManagerTestCases:exclude-annotation:android.platform.test.annotations.FlakyTest" />
+</configuration>

@@ -1,0 +1,29 @@
+
+{
+  "presubmit": [
+    {
+      "name": "audiotestharness-serverlib-tests",
+      "host": true
+    },
+    {
+      "name": "audiotestharness-javasoundlib-tests",
+      "host": true
+    },
+    {
+      "name": "audiotestharness-servicelib-tests",
+      "host": true
+    },
+    {
+      "name": "audiotestharness-utilitylib-tests",
+      "host": true
+    },
+    {
+      "name": "audiotestharness-client-grpclib-tests",
+      "host": true
+    },
+    {
+      "name": "audiotestharness-testlib-tests",
+      "host": true
+    }
+  ]
+}

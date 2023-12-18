@@ -1,0 +1,133 @@
+syntax = "proto2";
+package eap_fuzz.proto;
+
+message PacketSet{
+    repeated Packet packets = 1;
+}
+
+message Packet{
+    oneof PacketType {
+        EapRequest eap_request = 1;
+        EapResponse eap_response = 2;
+        EapSuccess eap_success = 3;
+        EapFailure eap_failure = 4;
+    }
+}
+
+message EapRequest{
+    oneof EapRequestType{
+        EaptRequestIdentity identity = 1;
+        EsptRequestNotification notification = 2;
+        EaptRequestMD5Chap md5chap = 3;
+        EaptRequestSRP srp = 4;
+    }
+
+}
+
+message EaptRequestIdentity{
+    required bytes data = 1;
+}
+
+message EsptRequestNotification{
+    required bytes data = 1;
+}
+
+message EaptRequestMD5Chap{
+    required bytes data = 2;
+}
+message EaptRequestSRP{
+    oneof EspMessage {
+        EapRequestSRPChallenge srp_challenge = 1;
+        EapRequestSRPKey srp_key = 2;
+        EapRequestSRPValidator srp_validator = 3;
+        EapRequestSRPLWREChallenge srp_lwre_challenge = 4;
+    }
+}
+
+message EapRequestSRPChallenge{
+    required bytes data = 1;
+}
+
+message EapRequestSRPKey{
+    required bytes data = 1;
+}
+
+message EapRequestSRPValidator {
+    required bytes data = 1;
+}
+
+message EapRequestSRPLWREChallenge{
+   required bytes data = 1;
+}
+
+message EapResponse{
+    oneof EapResponseType{
+        EaptResponseIdentity identity = 1;
+        EsptResponseNotification notification = 2;
+        EaptResponseNAK nak = 3;
+        EaptResponseMD5Chap md5chap = 4;
+        EaptResponseSRP srp = 5;
+    }
+}
+
+message EaptResponseIdentity{
+    required bytes data = 1;
+}
+
+message EsptResponseNotification{
+    required bytes data = 1;
+}
+
+message EaptResponseNAK{
+    oneof EaptResponseNAKType{
+        EaptResponseNAKSRP srp = 1;
+        EaptResponseNAKMD5Chap md5_chap = 2;
+    }
+}
+
+
+message EaptResponseNAKSRP{
+    required bytes data = 1;
+}
+
+message EaptResponseNAKMD5Chap {
+    required bytes data = 1;
+}
+
+message EaptResponseMD5Chap {
+    required bytes data = 1;
+}
+
+message EaptResponseSRP{
+    oneof EspMessage {
+        EapResponseSRPCKey srp_ckey = 1;
+        EapResponseSRPCValidator srp_cvalidator = 2;
+        EapResponseSRPACK srp_ack = 3;
+        EapResponseSRPLWEChallenge srp_challenge = 4;
+    }
+}
+
+message EapResponseSRPCKey {
+    required bytes data = 1;
+}
+
+message EapResponseSRPCValidator{
+    required bytes data = 1;
+}
+
+message EapResponseSRPACK{
+    required bytes data = 1;
+}
+
+message EapResponseSRPLWEChallenge{
+    required bytes data = 1;
+}
+
+message EapSuccess{
+    required bytes data = 1;
+}
+
+message EapFailure{
+    required bytes data = 1;
+}
+

@@ -1,0 +1,35 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_fuzz {
+    name: "eap_pppd_fuzz",
+
+    srcs: [
+        "eap_fuzz.proto",
+        "eap_fuzz.cc",
+        "eap_fuzz_Cproxy.c",
+    ],
+
+    static_libs: [
+        "libprotobuf-mutator",
+        "libpppd",
+    ],
+    shared_libs: [
+        "libprotobuf-cpp-full",
+        "libdl",
+        "liblog",
+        "libcutils",
+        "libcrypto",
+    ],
+
+    cflags: [
+        "-Wno-unused-parameter",
+    ],
+
+    ldflags: ["-rdynamic"],
+    required: [
+        "pppol2tp-android",
+        "pppopptp-android",
+    ],
+}

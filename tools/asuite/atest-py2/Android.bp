@@ -1,0 +1,94 @@
+// Copyright (C) 2018 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+python_binary_host {
+    name: "atest-py2",
+    main: "atest.py",
+    srcs: [
+        "**/*.py",
+    ],
+    exclude_srcs: [
+        "*_unittest.py",
+        "*/*_unittest.py",
+        "asuite_lib_test/*.py",
+        "proto/*_pb2.py",
+        "proto/__init__.py",
+    ],
+    libs: [
+        "atest_py2_proto",
+    ],
+    data: [
+        "tools/updatedb_darwin.sh",
+    ],
+    // Make atest's built name to atest-py2-dev
+    stem: "atest-py2-dev",
+    defaults: ["atest_py2_default"],
+    dist: {
+        targets: ["droidcore"],
+    },
+}
+
+//python_test_host {
+//    name: "atest-py2_unittests",
+//    main: "atest_run_unittests.py",
+//    pkg_path: "atest",
+//    srcs: [
+//        "**/*.py",
+//    ],
+//    data: [
+//        "tools/updatedb_darwin.sh",
+//        "unittest_data/**/*",
+//        "unittest_data/**/.*",
+//    ],
+//    exclude_srcs: [
+//        "asuite_lib_test/*.py",
+//        "proto/*_pb2.py",
+//        "proto/__init__.py",
+//    ],
+//    libs: [
+//        "py-mock",
+//        "atest_py2_proto",
+//    ],
+//    test_config: "atest_unittests.xml",
+//    defaults: ["atest_py2_default"],
+//}
+
+python_library_host {
+    name: "atest_py2_proto",
+    defaults: ["atest_py2_default"],
+    srcs: [
+        "proto/*.proto",
+    ],
+    proto: {
+        canonical_path_from_root: false,
+    },
+}
+
+python_defaults {
+    name: "atest_py2_default",
+    version: {
+        py2: {
+            enabled: true,
+            embedded_launcher: false,
+        },
+        py3: {
+            enabled: false,
+            embedded_launcher: false,
+        },
+    },
+}
