@@ -1,0 +1,8 @@
+allow zygote proc_bootevent:file { write open getattr };
+allow zygote adbd:unix_stream_socket connectto;
+allow zygote servicemanager:binder call;
+allow zygote system_server:binder { call transfer };
+allow zygote user_profile_data_file:file getattr;
+
+# Set properties.
+set_prop(zygote, system_prop)

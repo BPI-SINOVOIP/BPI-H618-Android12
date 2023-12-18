@@ -1,0 +1,28 @@
+allow kernel rootfs:file execute;
+allow kernel device:dir write;
+allow kernel device:dir add_name;
+allow kernel device:chr_file create;
+allow kernel device:chr_file setattr;
+allow kernel self:capability mknod;
+allow kernel kernel:netlink_route_socket create;
+allow kernel device:dir create;
+allow kernel debugfs_mmc:dir search;
+allow kernel device:blk_file getattr;
+allow kernel device:chr_file create;
+allow kernel device:chr_file getattr;
+allow kernel device:chr_file setattr;
+allow kernel device:chr_file unlink;
+allow kernel device:dir remove_name;
+allow kernel device:dir rmdir;
+
+allow kernel wifi_data_file:file { open read };
+allow kernel wifi_data_file:dir search;
+#sst_storage
+allow kernel block_device:dir r_dir_perms;
+allow kernel root_block_device:blk_file rw_file_perms;
+allow kernel vendor_file:file { open read getattr };
+allow kernel system_data_file:file read;
+
+#==== for wcn driver access /data/unisoc_cp2(/.*)? =====
+allow kernel wcn_data_file:file { create read getattr write append open };
+allow kernel wcn_data_file:dir { add_name read write open search };

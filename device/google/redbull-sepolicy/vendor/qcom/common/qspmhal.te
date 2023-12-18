@@ -1,0 +1,30 @@
+#define the domain
+type hal_qspmhal_default, domain;
+type hal_qspmhal_default_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(hal_qspmhal_default)
+
+hal_server_domain(hal_qspmhal_default, hal_qspmhal)
+
+binder_call(hal_qspmhal_client, hal_qspmhal_server)
+binder_call(hal_qspmhal_server, hal_qspmhal_client)
+
+hal_attribute_hwservice(hal_qspmhal, hal_qspmhal_hwservice)
+
+hal_client_domain(hal_qspmhal_default, hal_allocator)
+
+hal_client_domain(untrusted_app, hal_qspmhal)
+hal_client_domain(platform_app, hal_qspmhal)
+hal_client_domain(gmscore_app, hal_qspmhal)
+hal_client_domain(surfaceflinger, hal_qspmhal)
+hal_client_domain(bootanim, hal_qspmhal)
+hal_client_domain(system_server, hal_qspmhal)
+hal_client_domain(priv_app, hal_qspmhal)
+hal_client_domain(system_app, hal_qspmhal)
+
+# It's not necessary to use the google camera app.
+dontaudit google_camera_app hal_qspmhal_hwservice:hwservice_manager find;
+
+dontaudit untrusted_app_29 hal_qspmhal_hwservice:hwservice_manager find;
+dontaudit untrusted_app_27 hal_qspmhal_hwservice:hwservice_manager find;
+dontaudit untrusted_app_25 hal_qspmhal_hwservice:hwservice_manager find;

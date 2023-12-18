@@ -1,0 +1,7 @@
+allow uncrypt cache_file:dir getattr;
+allow uncrypt cache_file:file getattr;
+allow uncrypt cache_file:file read;
+allow uncrypt media_rw_data_file:dir { getattr search };
+allow uncrypt media_rw_data_file:file { getattr ioctl open read write };
+allow uncrypt metadata_file:dir search;
+allow uncrypt self:capability sys_admin;

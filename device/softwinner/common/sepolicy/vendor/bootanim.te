@@ -1,0 +1,10 @@
+allow bootanim sysfs_sound:file { open read };
+allow bootanim sysfs_sound:dir search;
+allow bootanim sysfs_audio:file { open read };
+allow bootanim sysfs_audio:dir search;
+allow bootanim system_data_file:file { open read };
+allow bootanim mediaserver_service:service_manager find;
+allow bootanim mediaserver:binder { call transfer };
+allow bootanim audio_service:service_manager find;
+allow bootanim audioserver:binder { call transfer };
+allow bootanim mediametrics:binder { call transfer };

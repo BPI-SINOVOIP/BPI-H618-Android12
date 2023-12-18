@@ -1,0 +1,6 @@
+type smcinvoke_daemon, domain, coredomain;
+type smcinvoke_daemon_exec, system_file_type, exec_type, file_type;
+
+init_daemon_domain(smcinvoke_daemon)
+
+

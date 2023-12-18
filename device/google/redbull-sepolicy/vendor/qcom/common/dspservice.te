@@ -1,0 +1,18 @@
+# Policy for DSP HAL service
+type dspservice, domain;
+type dspservice_exec, exec_type, vendor_file_type, file_type;
+
+# Started by init
+init_daemon_domain(dspservice)
+
+hal_attribute(dspmanager);
+
+# Allow DSP clients to perform binder IPC to DSP HAL server
+binder_call(hal_dspmanager_client, hal_dspmanager_server);
+binder_call(hal_dspmanager_server, hal_dspmanager_client);
+
+hal_server_domain(dspservice, hal_dspmanager);
+
+# Add dspservice to hwservice_manager and allow it to be discovered
+hal_attribute_hwservice(hal_dspmanager, hal_dspmanager_hwservice)
+

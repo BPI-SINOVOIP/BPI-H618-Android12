@@ -1,0 +1,16 @@
+type vendor_ia_crash_dump, domain;
+type vendor_ia_crash_dump_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(vendor_ia_crash_dump);
+
+userdebug_or_eng(`
+  # allow to read source crash log in dev/
+  allow vendor_ia_crash_dump audio_device:chr_file rw_file_perms;
+
+  # allow socket connection
+  allow vendor_ia_crash_dump self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+
+  # allow to write property and write data to ramdump directory
+  allow vendor_ia_crash_dump ramdump_vendor_data_file:dir w_dir_perms;
+  allow vendor_ia_crash_dump ramdump_vendor_data_file:file create_file_perms;
+  set_prop(vendor_ia_crash_dump, vendor_ssr_prop)
+')

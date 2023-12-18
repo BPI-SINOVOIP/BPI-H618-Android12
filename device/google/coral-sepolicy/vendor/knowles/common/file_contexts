@@ -1,0 +1,10 @@
+###################################
+# System files
+#
+/(vendor|system/vendor)/bin/crash_event_logger   u:object_r:vendor_ia_crash_dump_exec:s0
+
+# dev nodes
+/dev/iaxxx-odsp-celldrv                          u:object_r:audio_device:s0
+/dev/tunnel0                                     u:object_r:audio_device:s0
+/dev/crashdump                                   u:object_r:audio_device:s0
+/dev/regdump                                     u:object_r:audio_device:s0

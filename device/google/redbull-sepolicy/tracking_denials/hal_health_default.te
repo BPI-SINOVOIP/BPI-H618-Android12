@@ -1,0 +1,3 @@
+# b/174535059
+dontaudit hal_health_default unlabeled:file read;
+dontaudit hal_health_default unlabeled:file write;

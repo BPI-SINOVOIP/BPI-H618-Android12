@@ -1,0 +1,15 @@
+allow hal_camera_default cedar_device:chr_file { ioctl open read write map};
+allow hal_camera_default vndbinder_device:chr_file { ioctl open read write map };
+allow hal_camera_default hal_graphics_mapper_hwservice:hwservice_manager find;
+allow hal_camera_default camera_device:chr_file{ read write };
+allow hal_camera_default property_socket:sock_file{ read write };
+allow hal_camera_default init:unix_stream_socket{connectto};
+allow hal_camera_default hal_graphics_composer_default:fd use;
+allow hal_camera_default gpu_device:chr_file{ open read write ioctl };
+allow hal_camera_default sunxi_soc_device:chr_file{ open read write ioctl };
+allow hal_camera_default deinterlace_device:chr_file { ioctl open read write};
+allow hal_camera_default gpu_device:chr_file map;
+allow hal_camera_default vendor_data_file:dir rw_dir_perms;
+allow hal_camera_default vendor_data_file:file create_file_perms;
+allow hal_camera_default mediaserver:fd use;
+get_prop(hal_camera_default, exported_default_prop)

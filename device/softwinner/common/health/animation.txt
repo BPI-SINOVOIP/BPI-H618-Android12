@@ -1,0 +1,10 @@
+animation: 3 2 charger/battery_scale
+frame: 750 0 19
+frame: 750 0 39
+frame: 750 0 59
+frame: 750 0 79
+frame: 750 80 95
+frame: 750 0 100
+fail: charger/battery_fail
+#clock_display: 
+percent_display: c c 255 0 0 255 charger/battery_percent

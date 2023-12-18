@@ -1,0 +1,3 @@
+# init_citadel might need to read the board-id from a sysfs file, if we
+# can't determine it from getprop.
+allow init_citadel sysfs_msm_boardid:file r_file_perms;

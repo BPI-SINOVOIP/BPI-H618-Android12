@@ -1,0 +1,10 @@
+allow rild ppp_device:chr_file rw_file_perms;
+allow rild radio_device:chr_file{ open read write ioctl };
+allow rild radio:process signal;
+allow rild vendor_file:file execute_no_trans;
+allow rild vendor_ril_prop:file { read getattr open map };
+allow rild vendor_ril_prop:property_service set;
+allow rild vendor_default_prop:file {open read getattr};
+
+allow rild vendor_toolbox_exec:file execute_no_trans;
+allow rild vendor_shell_exec:file execute_no_trans;

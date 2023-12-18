@@ -1,0 +1,21 @@
+type feature_enabler_client, domain;
+type feature_enabler_client_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(feature_enabler_client)
+vndbinder_use(feature_enabler_client);
+allow feature_enabler_client ion_device:chr_file r_file_perms;
+allow feature_enabler_client smcinvoke_device:chr_file rw_file_perms;
+allow feature_enabler_client graphics_device:chr_file rw_file_perms;
+allow feature_enabler_client tee_device:chr_file rw_file_perms;
+
+allow feature_enabler_client mnt_vendor_file:dir search;
+allow feature_enabler_client persist_drm_file:dir r_dir_perms;
+allow feature_enabler_client persist_file:dir search;
+r_dir_file(feature_enabler_client, persist_display_file);
+
+hwbinder_use(feature_enabler_client);
+
+binder_call(feature_enabler_client, hal_graphics_composer)
+allow feature_enabler_client qdisplay_service:service_manager find;
+add_service(feature_enabler_client, qfeatenab_client_service)
+unix_socket_connect(feature_enabler_client, ssgtzd, ssgtzd)

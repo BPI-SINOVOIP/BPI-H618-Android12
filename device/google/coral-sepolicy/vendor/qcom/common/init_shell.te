@@ -1,0 +1,11 @@
+# Restricted domain for shell processes spawned by init.
+# Normally these are shell commands or scripts invoked via sh
+# from an init*.rc file.  No service should ever run in this domain.
+type qti_init_shell, domain;
+type qti_init_shell_exec, exec_type, vendor_file_type,file_type;
+
+init_daemon_domain(qti_init_shell)
+
+#TODO(b/127313550): move relevant execution from domain qti_init_shell
+set_prop(qti_init_shell, public_vendor_system_prop)
+allow qti_init_shell vendor_toolbox_exec:file execute_no_trans;

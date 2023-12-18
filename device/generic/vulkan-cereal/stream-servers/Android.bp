@@ -1,0 +1,96 @@
+// *** THIS PACKAGE HAS SPECIAL LICENSING CONDITIONS.  PLEASE
+//     CONSULT THE OWNERS AND opensource-licensing@google.com BEFORE
+//     DEPENDING ON IT IN YOUR PROJECT. ***
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_generic_vulkan-cereal_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    //   SPDX-license-identifier-ISC
+    //   SPDX-license-identifier-MIT
+    //   legacy_by_exception_only (by exception only)
+    //   legacy_notice
+    //   legacy_unencumbered
+    default_applicable_licenses: ["device_generic_vulkan-cereal_license"],
+}
+
+cc_library_shared {
+    name: "libgfxstream_backend",
+    defaults: [ "gfxstream_defaults" ],
+    cflags: [
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-Wno-unused-function",
+        "-Wno-unreachable-code-loop-increment",
+    ],
+    static_libs: [
+        "gfxstream_base",
+        "gfxstream_host_common",
+        "gfxstream_apigen_codec_common",
+        "gfxstream_glsnapshot",
+        "gfxstream_translator_glcommon",
+        "gfxstream_translator_egl",
+        "gfxstream_translator_glescm",
+        "gfxstream_translator_glesv2",
+        "gfxstream_vulkan_cereal_host",
+        "gfxstream_vulkan_server",
+        "gfxstream_renderControl_dec",
+        "gfxstream_gles1_dec",
+        "gfxstream_gles2_dec",
+        "gfxstream_renderControl_dec",
+        "gfxstream_dispatch",
+        "gfxstream_astc_codec",
+        "gfxstream_angle_stub",
+        "gfxstream_lz4",
+        "gfxstream_compressedTextures",
+    ],
+    shared_libs: [
+        "liblog", // gfxstream_base uses this via perfetto-libperfettobase
+    ],
+    srcs: [
+        "ChannelStream.cpp",
+        "ColorBuffer.cpp",
+        "CompositorVk.cpp",
+        "DisplayVk.cpp",
+        "FbConfig.cpp",
+        "FenceSync.cpp",
+        "GLESVersionDetector.cpp",
+        "PostWorker.cpp",
+        "ReadbackWorker.cpp",
+        "ReadBuffer.cpp",
+        "render_api.cpp",
+        "RenderChannelImpl.cpp",
+        "RenderThreadInfo.cpp",
+        "RingStream.cpp",
+        "SwapChainStateVk.cpp",
+        "SyncThread.cpp",
+        "TextureDraw.cpp",
+        "TextureResize.cpp",
+        "WindowSurface.cpp",
+        "YUVConverter.cpp",
+        "RenderThread.cpp",
+        "RenderContext.cpp",
+        "RenderControl.cpp",
+        "RenderWindow.cpp",
+        "RenderLibImpl.cpp",
+        "RendererImpl.cpp",
+        "FrameBuffer.cpp",
+
+        "GfxStreamAgents.cpp",
+        "virtio-gpu-gfxstream-renderer.cpp",
+        "GfxStreamBackend.cpp",
+    ],
+    host_ldlibs: [
+        "-lpthread",
+    ],
+    target: {
+        host: {
+            srcs: ["NativeSubWindow_x11.cpp",],
+        },
+        android: {
+            srcs: ["NativeSubWindow_android.cpp",],
+        }
+    }
+}

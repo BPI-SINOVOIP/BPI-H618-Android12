@@ -1,0 +1,12 @@
+[Unit]
+Description=Android Dumpstate GRPC Server
+
+Wants=coqos-virtio-vsock.service
+After=coqos-virtio-vsock.service
+
+[Service]
+ExecStart=/usr/bin/dumpstate_grpc_server -server_addr vsock:2:9310
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

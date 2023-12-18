@@ -1,0 +1,9 @@
+#allow dumpstate debugfs:dir { open read };
+#allow dumpstate debugfs_mmc:dir search;
+allow dumpstate vold:binder call;
+#allow dumpstate debugfs:file { read open };
+allow dumpstate media_rw_data_file:dir ra_dir_perms;
+allow dumpstate media_rw_data_file:file create_file_perms;
+allow dumpstate hal_light_default:binder call;
+allow dumpstate hal_power_default:binder call;
+allow dumpstate hal_awdisplayoutput_default:binder call;

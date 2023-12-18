@@ -1,0 +1,8 @@
+allow hal_bluetooth_default serial_device:chr_file { read write open };
+allow hal_bluetooth_default sysfs:file rw_file_perms;
+allow hal_bluetooth_default storage_stub_file:dir getattr;
+allow hal_bluetooth_default tmpfs:dir { write };
+allow hal_bluetooth_default proc:file { open read write };
+allow hal_bluetooth_default vendor_data_file:file { open read write create };
+allow hal_bluetooth_default vendor_data_file:dir { add_name read write open search };
+allow hal_bluetooth_default device:dir { read watch };

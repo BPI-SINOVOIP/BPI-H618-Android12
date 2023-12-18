@@ -1,0 +1,12 @@
+type hal_drm_clearkey, domain;
+hal_server_domain(hal_drm_clearkey, hal_drm)
+
+type hal_drm_clearkey_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_drm_clearkey)
+
+allow hal_drm_clearkey vndbinder_device:chr_file { ioctl open read write };
+allow hal_drm_clearkey untrusted_app_25:fd { use };
+allow hal_drm_clearkey untrusted_app_27:fd { use };
+allow hal_drm_clearkey untrusted_app:fd { use };
+allow hal_drm_clearkey system_app:fd { use };
+allow hal_drm_clearkey ephemeral_app:fd { use };

@@ -1,0 +1,19 @@
+type perfstatsd_exec, exec_type, vendor_file_type, file_type;
+
+userdebug_or_eng(`
+  type perfstatsd, domain, mlstrustedsubject;
+  init_daemon_domain(perfstatsd)
+
+  #Binder permissions
+  add_service(perfstatsd, perfstatsd_service)
+  vndbinder_use(perfstatsd)
+
+  #read /proc/<pid>/stat
+  r_dir_file(perfstatsd, domain)
+
+  allow perfstatsd {
+    proc
+    proc_stat
+    proc_uid_io_stats
+  }:file r_file_perms;
+')

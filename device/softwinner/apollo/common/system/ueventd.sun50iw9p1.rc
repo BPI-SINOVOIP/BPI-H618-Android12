@@ -1,0 +1,47 @@
+firmware_directories /vendor/etc/firmware/
+
+/dev/disp                   0770    system      system
+/dev/cec                    0770    system      system
+/dev/hdmi                   0770    system      system
+/dev/cedar_dev              0666    media       camera
+/dev/deinterlace            0666    media       camera
+/dev/ace_dev                0666    system      system
+/dev/ump                    0777    system      graphics
+/dev/mali0                  0666    system      graphics
+/dev/dri/card0              0666    system      graphics
+/dev/gralloc                0666    system      graphics
+/dev/dri/controlD64         0666    system      graphics
+/dev/dri/renderD128         0666    system      graphics
+/dev/pvr_sync               0666    system      graphics
+/dev/video*                 0770    camera      camera
+/dev/media*                 0770    camera      camera
+/dev/v4l-subdev*            0770    camera      camera
+/dev/ttyUSB0                0777    system      system
+/dev/ttyUSB1                0777    system      system
+/dev/ttyUSB2                0777    system      system
+/dev/ttyUSB3                0777    system      system
+/dev/ttyACM0                0777    system      system
+/dev/ttyACM1                0777    system      system
+/dev/ttyACM2                0777    system      system
+/dev/gps                    0777    system      system
+/dev/pa_dev                 0777    system      system
+/dev/sunxi_mem              0666    media       media
+/dev/g2d                    0660    system      graphics
+/dev/syncfence              0660    system      graphics
+/dev/fd_dev                 0660    media       media
+/dev/sunxi_soc_info         0640    media        media
+/dev/sr0                    0777    system      system
+/dev/ion                    0777    system      graphics
+/dev/transform              0660    system       system
+/dev/pvrsrvkm               0666    root        root
+/dev/pvr_sync               0666    system      graphics
+/dev/block/by-name/misc     0660    system      root
+/dev/block/by-name/frp      0660    system      system
+/dev/block/pmem0            0660    system      system
+/dev/tee0                   0776    media       mediadrm
+/dev/teepriv0               0776    media       mediadrm
+/dev/input/*                0660    system      input
+/dev/sunxi_drm_heap         0777    system      graphics
+
+# sysfs properties
+/sys/devices/virtual/input/input*   delay          0660  root   input

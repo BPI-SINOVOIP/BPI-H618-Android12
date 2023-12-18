@@ -1,0 +1,5 @@
+get_prop(surfaceflinger, vendor_display_prop)
+
+allow surfaceflinger hal_graphics_composer_default:dir search;
+
+dontaudit surfaceflinger sysfs_msm_subsys:dir search;

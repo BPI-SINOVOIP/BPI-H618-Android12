@@ -1,0 +1,24 @@
+vendor.ril.                           u:object_r:vendor_ril_prop:s0
+persist.vendor.display.               u:object_r:vendor_awdisplayoutput_prop:s0
+
+## property for audio
+vendor.audio.output.active        u:object_r:vendor_audio_prop:s0
+vendor.mediasw.sft.rawdata        u:object_r:vendor_audio_prop:s0
+vendor.audio.input.active         u:object_r:vendor_audio_prop:s0
+
+# bluetooth
+vendor.driver.lpm.load                   u:object_r:vendor_wireless_prop:s0
+
+# For thermal hal
+vendor.thermal.             u:object_r:vendor_thermal_prop:s0
+
+# For usb gadget hal
+persist.vendor.usb.config  u:object_r:vendor_usb_config_prop:s0
+vendor.usb.config          u:object_r:vendor_usb_config_prop:s0
+vendor.usb.                u:object_r:vendor_usb_prop:s0
+persist.vendor.usb.        u:object_r:vendor_usb_prop:s0
+
+persist.vendor.tp.name    u:object_r:vendor_tp_prop:s0
+persist.vendor.tp.path    u:object_r:vendor_tp_prop:s0
+
+vendor.codec2.disable.hw  u:object_r:vendor_codec2_prop:s0

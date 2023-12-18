@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "6535581"
+    target: "kernel_sunfish_kasan"
+    source_file: "wil6210.ko"
+  }
+  dest_file: "kasan/wil6210.ko"
+  version: "Linux version 4.14.170-g0aabbd70b69a-ab6535581 (android-build@abfarm-00975) (Android (6207600 based on r377782b) clang version 10.0.4 (https://android.googlesource.com/toolchain/llvm-project 0cb1afdb060d6619a9837ab6866cf4adf2336416)) #1 SMP PREEMPT Thu May 28 07:11:29 UTC 2020"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/sunfish-kernel"
+}

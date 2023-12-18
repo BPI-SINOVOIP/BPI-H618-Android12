@@ -1,0 +1,20 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_generic_vulkan-cereal_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-BSD
+    default_applicable_licenses: ["device_generic_vulkan-cereal_license"],
+}
+
+cc_library_static {
+    name: "gfxstream_lz4",
+    defaults: ["gfxstream_defaults"],
+    srcs: [
+        "lz4.c",
+        "lz4frame.c",
+        "lz4hc.c",
+        "xxhash.c",
+    ],
+    export_include_dirs: [ "." ],
+}

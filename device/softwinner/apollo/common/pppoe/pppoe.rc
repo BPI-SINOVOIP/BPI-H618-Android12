@@ -1,0 +1,13 @@
+service start_pppoe /system/bin/pppoe-connect
+    class main
+    user root
+    group system vpn root
+    disabled
+    oneshot
+
+service stop_pppoe /system/bin/pppoe-disconnect
+    class main
+    user root
+    group system vpn root
+    disabled
+    oneshot

@@ -1,0 +1,13 @@
+type secure_ui_service_app, domain;
+app_domain(secure_ui_service_app);
+
+binder_use(secure_ui_service_app);
+hwbinder_use(secure_ui_service_app);
+binder_call(secure_ui_service_app, hal_tui_comm_qti);
+binder_call(secure_ui_service_app, surfaceflinger);
+binder_call(secure_ui_service_app, system_server);
+
+allow secure_ui_service_app hal_tui_comm_hwservice:hwservice_manager find;
+
+allow secure_ui_service_app app_api_service:service_manager find;
+get_prop(secure_ui_service_app, vendor_display_prop)

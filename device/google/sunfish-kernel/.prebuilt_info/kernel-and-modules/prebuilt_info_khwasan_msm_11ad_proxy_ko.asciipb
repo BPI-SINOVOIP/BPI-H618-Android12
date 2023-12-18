@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "7709096"
+    target: "kernel_sunfish_khwasan"
+    source_file: "msm_11ad_proxy.ko"
+  }
+  dest_file: "khwasan/msm_11ad_proxy.ko"
+  version: "Linux version 4.14.234-gb1e89e69b2d0-ab7709096 (android-build@abfarm-01193) (Android (7284624, based on r416183b) clang version 12.0.5 (https://android.googlesource.com/toolchain/llvm-project c935d99d7cf2016289302412d708641d52d2f7ee), LLD 12.0.5 (/buildbot/src/android/llvm-toolchain/out/llvm-project/lld c935d99d7cf2016289302412d708641d52d2f7ee)) #1 SMP PREEMPT Tue Sep 7 06:24:27 UTC 2021"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/sunfish-kernel"
+}

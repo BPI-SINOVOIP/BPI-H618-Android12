@@ -1,0 +1,58 @@
+{
+  "presubmit": [
+    {
+      "name": "netd_integration_test"
+    },
+    {
+      "name": "CtsBionicTestCases"
+    },
+    {
+      "name": "CtsGraphicsTestCases"
+    },
+    {
+        "name": "MediaProviderTests"
+    },
+    {
+        "name": "CtsProviderTestCases",
+        "options": [
+            {
+                "include-filter": "android.provider.cts.media."
+            }
+        ]
+    },
+    {
+      "name": "CtsOsTestCases",
+      "options": [
+        {
+          "exclude-annotation": "android.platform.test.annotations.LargeTest"
+        },
+        {
+          "exclude-filter": "android.os.cts.BuildTest#testSdkInt"
+        },
+        {
+          "exclude-filter": "android.os.cts.StrictModeTest#testNonSdkApiUsage"
+        },
+        {
+          "exclude-filter": "android.os.cts.UsbDebuggingTest#testUsbDebugging"
+        }
+      ]
+    },
+    {
+      "name": "minikin_tests"
+    },
+    {
+      "name": "toybox-tests"
+    },
+    {
+      "name": "CtsPerfettoTestCases"
+    }
+  ],
+  "presubmit-large": [
+    {
+      "name": "RollbackTest"
+    },
+    {
+      "name": "StagedRollbackTest"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+#set_prop(hal_sensors_default, system_prop)
+
+allow hal_sensors_default init:unix_stream_socket connectto;
+allow hal_sensors_default input_device:chr_file { ioctl open read };
+allow hal_sensors_default input_device:dir { open read };
+allow hal_sensors_default input_device:dir search;
+allow hal_sensors_default property_socket:sock_file write;
+allow hal_sensors_default sysfs:dir { open read };
+allow hal_sensors_default sysfs:file { open read write };
+allow hal_sensors_default kernel:system module_request;
+allow hal_sensors_default self:capability sys_module;
+allow hal_sensors_default { vendor_file rootfs }:system module_load;
+
+get_prop(hal_sensors_default, exported_default_prop)

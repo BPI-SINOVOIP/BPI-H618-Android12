@@ -1,0 +1,5 @@
+# b/149063577
+dontaudit gmscore_app sysfs_msm_subsys:file read;
+# b/180551443
+dontaudit gmscore_app hal_memtrack_service:service_manager find ;
+dontaudit gmscore_app hal_memtrack_hwservice:hwservice_manager find ;

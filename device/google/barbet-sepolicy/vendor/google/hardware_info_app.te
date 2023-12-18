@@ -1,0 +1,3 @@
+# putApplicationProcessor
+allow hardware_info_app sysfs_soc:dir search;
+allow hardware_info_app sysfs_soc:file r_file_perms;

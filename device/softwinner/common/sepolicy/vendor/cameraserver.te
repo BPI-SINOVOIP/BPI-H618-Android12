@@ -1,0 +1,8 @@
+allow cameraserver hal_allocator_server:fd use;
+allow cameraserver gpu_device:chr_file{ open read write ioctl };
+allow cameraserver gpu_device:chr_file map;
+#allow cameraserver vendor_default_prop:file {open read getattr};
+# for external camera
+allow cameraserver device:dir r_dir_perms;
+allow cameraserver video_device:dir r_dir_perms;
+allow cameraserver video_device:chr_file rw_file_perms;

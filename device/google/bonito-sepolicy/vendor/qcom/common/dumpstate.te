@@ -1,0 +1,24 @@
+dump_hal(hal_telephony)
+dump_hal(hal_thermal)
+dump_hal(hal_power)
+dump_hal(hal_power_stats)
+
+userdebug_or_eng(`
+  allow dumpstate proc_modules:file r_file_perms;
+  allow dumpstate proc_stat:file r_file_perms;
+  allow dumpstate persist_file:dir r_dir_perms;
+  allow dumpstate sysfs_leds:dir search;
+  allow dumpstate system_block_device:blk_file r_file_perms;
+
+  dontaudit dumpstate self:netlink_xfrm_socket create_socket_perms_no_ioctl;
+
+  binder_call(dumpstate, per_mgr)
+')
+
+# For collecting bugreports.
+allow dumpstate sysfs_mmc:file r_file_perms;
+allow dumpstate debugfs_mmc:dir search;
+allow dumpstate vendor_firmware_file:dir getattr;
+allow dumpstate vendor_firmware_file:filesystem getattr;
+
+dontaudit dumpstate kernel:system module_request;

@@ -1,0 +1,794 @@
+// Copyright (C) 2019 The Android Open Source Project
+// Copyright (C) 2019 Google Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+#include <linux/types.h>
+#include <linux/ioctl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <cstdlib>
+#include <errno.h>
+#include <memory>
+
+#ifdef VIRTIO_GPU
+#include <drm/virtgpu_drm.h>
+#include <xf86drm.h>
+#endif
+
+#include <log/log.h>
+
+#include "goldfish_address_space.h"
+#include "virtio_gpu_next.h"
+
+namespace {
+
+struct goldfish_address_space_allocate_block {
+    __u64 size;
+    __u64 offset;
+    __u64 phys_addr;
+};
+
+struct goldfish_address_space_claim_shared {
+    __u64 offset;
+    __u64 size;
+};
+
+#define GOLDFISH_ADDRESS_SPACE_IOCTL_MAGIC		'G'
+#define GOLDFISH_ADDRESS_SPACE_IOCTL_OP(OP, T)		_IOWR(GOLDFISH_ADDRESS_SPACE_IOCTL_MAGIC, OP, T)
+#define GOLDFISH_ADDRESS_SPACE_IOCTL_ALLOCATE_BLOCK	GOLDFISH_ADDRESS_SPACE_IOCTL_OP(10, struct goldfish_address_space_allocate_block)
+#define GOLDFISH_ADDRESS_SPACE_IOCTL_DEALLOCATE_BLOCK	GOLDFISH_ADDRESS_SPACE_IOCTL_OP(11, __u64)
+#define GOLDFISH_ADDRESS_SPACE_IOCTL_PING		GOLDFISH_ADDRESS_SPACE_IOCTL_OP(12, struct address_space_ping)
+#define GOLDFISH_ADDRESS_SPACE_IOCTL_CLAIM_SHARED		GOLDFISH_ADDRESS_SPACE_IOCTL_OP(13, struct goldfish_address_space_claim_shared)
+#define GOLDFISH_ADDRESS_SPACE_IOCTL_UNCLAIM_SHARED		GOLDFISH_ADDRESS_SPACE_IOCTL_OP(14, __u64)
+
+const char GOLDFISH_ADDRESS_SPACE_DEVICE_NAME[] = "/dev/goldfish_address_space";
+
+const int HOST_MEMORY_ALLOCATOR_COMMAND_ALLOCATE_ID = 1;
+const int HOST_MEMORY_ALLOCATOR_COMMAND_UNALLOCATE_ID = 2;
+
+int create_address_space_fd()
+{
+    return ::open(GOLDFISH_ADDRESS_SPACE_DEVICE_NAME, O_RDWR);
+}
+
+long ioctl_allocate(int fd, struct goldfish_address_space_allocate_block *request)
+{
+    return ::ioctl(fd, GOLDFISH_ADDRESS_SPACE_IOCTL_ALLOCATE_BLOCK, request);
+}
+
+long ioctl_deallocate(int fd, uint64_t offset)
+{
+    return ::ioctl(fd, GOLDFISH_ADDRESS_SPACE_IOCTL_DEALLOCATE_BLOCK, &offset);
+}
+
+long ioctl_ping(int fd, struct address_space_ping *request)
+{
+    return ::ioctl(fd, GOLDFISH_ADDRESS_SPACE_IOCTL_PING, request);
+}
+
+long set_address_space_subdevice_type(int fd, uint64_t type)
+{
+    struct address_space_ping request;
+    ::memset(&request, 0, sizeof(request));
+    request.version = sizeof(request);
+    request.metadata = type;
+
+    long ret = ioctl_ping(fd, &request);
+    if (ret) {
+        return ret;
+    }
+
+    return request.metadata;
+}
+
+long ioctl_claim_shared(int fd, struct goldfish_address_space_claim_shared *request)
+{
+    return ::ioctl(fd, GOLDFISH_ADDRESS_SPACE_IOCTL_CLAIM_SHARED, request);
+}
+
+long ioctl_unclaim_shared(int fd, uint64_t offset)
+{
+    return ::ioctl(fd, GOLDFISH_ADDRESS_SPACE_IOCTL_UNCLAIM_SHARED, &offset);
+}
+
+}  // namespace
+
+GoldfishAddressSpaceBlockProvider::GoldfishAddressSpaceBlockProvider(GoldfishAddressSpaceSubdeviceType subdevice)
+  : m_handle(create_address_space_fd())
+{
+    if ((subdevice != GoldfishAddressSpaceSubdeviceType::NoSubdevice) && is_opened()) {
+        const long ret = set_address_space_subdevice_type(m_handle, subdevice);
+        if (ret != 0 && ret != subdevice) {  // TODO: retire the 'ret != subdevice' check
+            ALOGE("%s: set_address_space_subdevice_type failed for device_type=%lu, ret=%ld",
+                  __func__, static_cast<unsigned long>(subdevice), ret);
+            close();
+        }
+    }
+}
+
+GoldfishAddressSpaceBlockProvider::~GoldfishAddressSpaceBlockProvider()
+{
+    if (is_opened()) {
+        ::close(m_handle);
+    }
+}
+
+bool GoldfishAddressSpaceBlockProvider::is_opened() const
+{
+    return m_handle >= 0;
+}
+
+void GoldfishAddressSpaceBlockProvider::close()
+{
+    if (is_opened()) {
+        ::close(m_handle);
+        m_handle = -1;
+    }
+}
+
+address_space_handle_t GoldfishAddressSpaceBlockProvider::release()
+{
+    address_space_handle_t handle = m_handle;
+    m_handle = -1;
+    return handle;
+}
+
+void GoldfishAddressSpaceBlockProvider::closeHandle(address_space_handle_t handle)
+{
+    ::close(handle);
+}
+
+GoldfishAddressSpaceBlock::GoldfishAddressSpaceBlock()
+    : m_handle(-1)
+    , m_mmaped_ptr(NULL)
+    , m_phys_addr(0)
+    , m_host_addr(0)
+    , m_offset(0)
+    , m_size(0) {}
+
+GoldfishAddressSpaceBlock::~GoldfishAddressSpaceBlock()
+{
+    destroy();
+}
+
+GoldfishAddressSpaceBlock &GoldfishAddressSpaceBlock::operator=(const GoldfishAddressSpaceBlock &rhs)
+{
+    m_mmaped_ptr = rhs.m_mmaped_ptr;
+    m_phys_addr = rhs.m_phys_addr;
+    m_host_addr = rhs.m_host_addr;
+    m_offset = rhs.m_offset;
+    m_size = rhs.m_size;
+    m_handle = rhs.m_handle;
+
+    return *this;
+}
+
+bool GoldfishAddressSpaceBlock::allocate(GoldfishAddressSpaceBlockProvider *provider, size_t size)
+{
+    ALOGD("%s: Ask for block of size 0x%llx\n", __func__,
+         (unsigned long long)size);
+
+    destroy();
+
+    if (!provider->is_opened()) {
+        return false;
+    }
+
+    struct goldfish_address_space_allocate_block request;
+    ::memset(&request, 0, sizeof(request));
+    request.size = size;
+
+    long res = ioctl_allocate(provider->m_handle, &request);
+    if (res) {
+        return false;
+    } else {
+        m_phys_addr = request.phys_addr;
+        m_offset = request.offset;
+        m_size = request.size;
+        m_handle = provider->m_handle;
+        m_is_shared_mapping = false;
+
+        ALOGD("%s: ioctl allocate returned offset 0x%llx size 0x%llx\n", __func__,
+                (unsigned long long)m_offset,
+                (unsigned long long)m_size);
+
+        return true;
+    }
+}
+
+bool GoldfishAddressSpaceBlock::claimShared(GoldfishAddressSpaceBlockProvider *provider, uint64_t offset, uint64_t size)
+{
+    ALOGD("%s: Ask to claim region [0x%llx 0x%llx]\n", __func__,
+         (unsigned long long)offset,
+         (unsigned long long)offset + size);
+
+    destroy();
+
+    if (!provider->is_opened()) {
+        return false;
+    }
+
+    struct goldfish_address_space_claim_shared request;
+    request.offset = offset;
+    request.size = size;
+    long res = ioctl_claim_shared(provider->m_handle, &request);
+
+    if (res) {
+        return false;
+    }
+
+    m_offset = offset;
+    m_size = size;
+    m_handle = provider->m_handle;
+    m_is_shared_mapping = true;
+
+    return true;
+}
+
+uint64_t GoldfishAddressSpaceBlock::physAddr() const
+{
+    return m_phys_addr;
+}
+
+uint64_t GoldfishAddressSpaceBlock::hostAddr() const
+{
+    return m_host_addr;
+}
+
+void *GoldfishAddressSpaceBlock::mmap(uint64_t host_addr)
+{
+    if (m_size == 0) {
+        ALOGE("%s: called with zero size\n", __func__);
+        return NULL;
+    }
+    if (m_mmaped_ptr) {
+        ALOGE("'mmap' called for an already mmaped address block");
+        ::abort();
+    }
+
+    void *result;
+    const int res = memoryMap(NULL, m_size, m_handle, m_offset, &result);
+    if (res) {
+        ALOGE("%s: host memory map failed with size 0x%llx "
+              "off 0x%llx errno %d\n",
+              __func__,
+              (unsigned long long)m_size,
+              (unsigned long long)m_offset, res);
+        return NULL;
+    } else {
+        m_mmaped_ptr = result;
+        m_host_addr = host_addr;
+        return guestPtr();
+    }
+}
+
+void *GoldfishAddressSpaceBlock::guestPtr() const
+{
+    return reinterpret_cast<char *>(m_mmaped_ptr) + (m_host_addr & (PAGE_SIZE - 1));
+}
+
+void GoldfishAddressSpaceBlock::destroy()
+{
+    if (m_mmaped_ptr && m_size) {
+        memoryUnmap(m_mmaped_ptr, m_size);
+        m_mmaped_ptr = NULL;
+    }
+
+    if (m_size) {
+        long res = -EINVAL;
+
+        if (m_is_shared_mapping) {
+            res = ioctl_unclaim_shared(m_handle, m_offset);
+            if (res) {
+                ALOGE("ioctl_unclaim_shared failed, res=%ld", res);
+                ::abort();
+            }
+        } else {
+            res = ioctl_deallocate(m_handle, m_offset);
+            if (res) {
+                ALOGE("ioctl_deallocate failed, res=%ld", res);
+                ::abort();
+            }
+        }
+
+        m_is_shared_mapping = false;
+
+        m_phys_addr = 0;
+        m_host_addr = 0;
+        m_offset = 0;
+        m_size = 0;
+    }
+}
+
+void GoldfishAddressSpaceBlock::release()
+{
+    m_handle = -1;
+    m_mmaped_ptr = NULL;
+    m_phys_addr = 0;
+    m_host_addr = 0;
+    m_offset = 0;
+    m_size = 0;
+}
+
+int GoldfishAddressSpaceBlock::memoryMap(void *addr,
+                                         size_t len,
+                                         address_space_handle_t fd,
+                                         uint64_t off,
+                                         void** dst) {
+    void* ptr = ::mmap64(addr, len, PROT_WRITE, MAP_SHARED, fd, off);
+    if (MAP_FAILED == ptr) {
+        return errno;
+    } else {
+        *dst = ptr;
+        return 0;
+    }
+}
+
+void GoldfishAddressSpaceBlock::memoryUnmap(void *ptr, size_t size)
+{
+    ::munmap(ptr, size);
+}
+
+GoldfishAddressSpaceHostMemoryAllocator::GoldfishAddressSpaceHostMemoryAllocator(bool useSharedSlots)
+  : m_provider(useSharedSlots
+        ? GoldfishAddressSpaceSubdeviceType::SharedSlotsHostMemoryAllocator
+        : GoldfishAddressSpaceSubdeviceType::HostMemoryAllocator),
+    m_useSharedSlots(useSharedSlots)
+{}
+
+bool GoldfishAddressSpaceHostMemoryAllocator::is_opened() const { return m_provider.is_opened(); }
+
+long GoldfishAddressSpaceHostMemoryAllocator::hostMalloc(GoldfishAddressSpaceBlock *block, size_t size)
+{
+    if (size == 0) {
+        return -EINVAL;
+    }
+    if (block->size() > 0) {
+        return -EINVAL;
+    }
+    if (!m_provider.is_opened()) {
+        return -ENODEV;
+    }
+
+    struct address_space_ping request;
+    if (m_useSharedSlots) {
+        // shared memory slots are supported
+        ::memset(&request, 0, sizeof(request));
+        request.version = sizeof(request);
+        request.size = size;
+        request.metadata = HOST_MEMORY_ALLOCATOR_COMMAND_ALLOCATE_ID;
+
+        long ret = ioctl_ping(m_provider.m_handle, &request);
+        if (ret) {
+            return ret;
+        }
+        ret = static_cast<long>(request.metadata);
+        if (ret) {
+            return ret;
+        }
+
+        block->claimShared(&m_provider, request.offset, request.size);
+    } else {
+        // shared memory slots are not supported
+        if (!block->allocate(&m_provider, size)) {
+            return -ENOMEM;
+        }
+
+        ::memset(&request, 0, sizeof(request));
+        request.version = sizeof(request);
+        request.offset = block->offset();
+        request.size = block->size();
+        request.metadata = HOST_MEMORY_ALLOCATOR_COMMAND_ALLOCATE_ID;
+
+        long ret = ioctl_ping(m_provider.m_handle, &request);
+        if (ret) {
+            return ret;
+        }
+        ret = static_cast<long>(request.metadata);
+        if (ret) {
+            return ret;
+        }
+    }
+
+    block->mmap(0);
+    return 0;
+}
+
+void GoldfishAddressSpaceHostMemoryAllocator::hostFree(GoldfishAddressSpaceBlock *block)
+{
+    if (block->size() == 0) {
+        return;
+    }
+
+    if (!m_provider.is_opened()) {
+        ALOGE("%s: device is not available", __func__);
+        ::abort();
+    }
+
+    if (block->guestPtr()) {
+        struct address_space_ping request;
+        ::memset(&request, 0, sizeof(request));
+        request.version = sizeof(request);
+        request.offset = block->offset();
+        request.metadata = HOST_MEMORY_ALLOCATOR_COMMAND_UNALLOCATE_ID;
+
+        const long ret = ioctl_ping(m_provider.m_handle, &request);
+        if (ret) {
+            ALOGE("%s: ioctl_ping failed, ret=%ld", __func__, ret);
+            ::abort();
+        }
+    }
+
+    block->replace(NULL);
+}
+
+address_space_handle_t goldfish_address_space_open() {
+    return ::open(GOLDFISH_ADDRESS_SPACE_DEVICE_NAME, O_RDWR);
+}
+
+void goldfish_address_space_close(address_space_handle_t handle) {
+    ::close(handle);
+}
+
+bool goldfish_address_space_allocate(
+    address_space_handle_t handle,
+    size_t size, uint64_t* phys_addr, uint64_t* offset) {
+
+    struct goldfish_address_space_allocate_block request;
+    ::memset(&request, 0, sizeof(request));
+    request.size = size;
+
+    long res = ioctl_allocate(handle, &request);
+
+    if (res) return false;
+
+    *phys_addr = request.phys_addr;
+    *offset = request.offset;
+    return true;
+}
+
+bool goldfish_address_space_free(
+    address_space_handle_t handle, uint64_t offset) {
+
+    long res = ioctl_deallocate(handle, offset);
+
+    if (res) {
+        ALOGE("ioctl_deallocate failed, res=%ld", res);
+        ::abort();
+    }
+
+    return true;
+}
+
+bool goldfish_address_space_claim_shared(
+    address_space_handle_t handle, uint64_t offset, uint64_t size) {
+
+    struct goldfish_address_space_claim_shared request;
+    request.offset = offset;
+    request.size = size;
+    long res = ioctl_claim_shared(handle, &request);
+
+    if (res) return false;
+
+    return true;
+}
+
+bool goldfish_address_space_unclaim_shared(
+        address_space_handle_t handle, uint64_t offset) {
+    long res = ioctl_unclaim_shared(handle, offset);
+    if (res) {
+        ALOGE("ioctl_unclaim_shared failed, res=%ld", res);
+        ::abort();
+    }
+
+    return true;
+}
+
+// pgoff is the offset into the page to return in the result
+void* goldfish_address_space_map(
+    address_space_handle_t handle,
+    uint64_t offset, uint64_t size,
+    uint64_t pgoff) {
+
+    void* res = ::mmap64(0, size, PROT_WRITE, MAP_SHARED, handle, offset);
+
+    if (res == MAP_FAILED) {
+        ALOGE("%s: failed to map. errno: %d\n", __func__, errno);
+        return 0;
+    }
+
+    return (void*)(((char*)res) + (uintptr_t)(pgoff & (PAGE_SIZE - 1)));
+}
+
+void goldfish_address_space_unmap(void* ptr, uint64_t size) {
+    void* pagePtr = (void*)(((uintptr_t)ptr) & ~(PAGE_SIZE - 1));
+    ::munmap(pagePtr, size);
+}
+
+bool goldfish_address_space_set_subdevice_type(
+    address_space_handle_t handle, GoldfishAddressSpaceSubdeviceType type,
+    address_space_handle_t* handle_out) {
+    struct address_space_ping request;
+    request.metadata = (uint64_t)type;
+    *handle_out = handle;
+    return goldfish_address_space_ping(handle, &request);
+}
+
+bool goldfish_address_space_ping(
+    address_space_handle_t handle,
+    struct address_space_ping* ping) {
+    long res = ioctl_ping(handle, ping);
+
+    if (res) {
+        ALOGE("%s: ping failed: errno: %d\n", __func__, errno);
+        return false;
+    }
+
+    return true;
+}
+
+// virtio-gpu version
+address_space_handle_t virtgpu_address_space_open() {
+return drmOpenRender(128);
+}
+
+void virtgpu_address_space_close(address_space_handle_t fd) {
+close(fd);
+}
+
+// kVirtioGpuAddressSpaceContextCreateWithSubdevice | subdeviceType
+const uint32_t kVirtioGpuAddressSpaceContextCreateWithSubdevice = 0x1001;
+
+// kVirtioGpuAddressSpacePing | offset_lo | offset_hi | size_lo | size_hi | metadata_lo | metadata_hi | version | wait_fd | wait_flags | direction
+// no output
+const uint32_t kVirtioGpuAddressSpacePing = 0x1002;
+
+// kVirtioGpuAddressSpacePingWithResponse | resp_resid | offset_lo | offset_hi | metadata_lo | metadata_hi | version | wait_fd | wait_flags | direction
+// out: same as input then | out: error
+const uint32_t kVirtioGpuAddressSpacePingWithResponse = 0x1003;
+
+// Ping with no response
+bool virtgpu_address_space_ping(address_space_handle_t fd, struct address_space_ping* info) {
+
+    uint32_t words[] = {
+        kVirtioGpuAddressSpacePing,
+        (uint32_t)(info->offset), (uint32_t)(info->offset >> 32),
+        (uint32_t)(info->size), (uint32_t)(info->size >> 32),
+        (uint32_t)(info->metadata), (uint32_t)(info->metadata >> 32),
+        (uint32_t)(info->version), (uint32_t)(info->wait_fd),
+        (uint32_t)(info->wait_flags), (uint32_t)(info->direction),
+    };
+
+    drm_virtgpu_execbuffer execbuffer = {
+        .flags = 0,
+        .size = sizeof(words),
+        .command = (uint64_t)(uintptr_t)(words),
+        .bo_handles = 0,
+        .num_bo_handles = 0,
+        .fence_fd = -1,
+    };
+
+    int queue_work_err = drmIoctl(fd, DRM_IOCTL_VIRTGPU_EXECBUFFER, &execbuffer);
+
+    if (queue_work_err) {
+        ALOGE("%s: failed with %d executing command buffer (%s)\n",  __func__,
+                queue_work_err, strerror(errno));
+        return false;
+    }
+
+    return true;
+}
+
+bool virtgpu_address_space_create_context_with_subdevice(
+    address_space_handle_t fd,
+    uint32_t subdevice_type,
+    struct address_space_virtgpu_info* info_out) {
+
+    // response page
+    drm_virtgpu_resource_create create = {
+        .target     = PIPE_BUFFER,
+        .format     = VIRGL_FORMAT_R8_UNORM,
+        .bind       = VIRGL_BIND_CUSTOM,
+        .width      = 4096,
+        .height     = 1U,
+        .depth      = 1U,
+        .array_size = 0U,
+        .size       = 4096,
+        .stride     = 4096,
+    };
+
+    int ret = drmIoctl(fd, DRM_IOCTL_VIRTGPU_RESOURCE_CREATE, &create);
+    if (ret) {
+        ALOGE("%s: failed with %d allocating command buffer (%s)\n",
+                __func__, ret, strerror(errno));
+        return false;
+    }
+
+    drm_virtgpu_map map;
+    memset(&map, 0, sizeof(map));
+    map.handle = create.bo_handle;
+
+    ret = drmIoctl(fd, DRM_IOCTL_VIRTGPU_MAP, &map);
+    if (ret) {
+        ALOGE("%s: failed with %d mapping command response buffer (%s)\n",
+            __func__, ret, strerror(errno));
+        return false;
+    }
+
+    void* ptr = static_cast<unsigned char*>(
+            mmap64(nullptr, 4096, PROT_WRITE, MAP_SHARED, fd, map.offset));
+
+    if (ptr == MAP_FAILED) {
+        ALOGE("%s: failed with %d mmap'ing command response buffer (%s)\n",
+                __func__, errno, strerror(errno));
+        return false;
+    }
+
+    info_out->fd = fd;
+    info_out->resp_bo = create.bo_handle;
+    info_out->resp_resid = create.res_handle;
+    info_out->resp_mapped_ptr = ptr;
+
+    ALOGD("%s: resp bo: %u resid %u mapped %p\n", __func__,
+            create.bo_handle, create.res_handle, ptr);
+
+    // Context creation command
+    uint32_t words[] = {
+        kVirtioGpuAddressSpaceContextCreateWithSubdevice,
+        subdevice_type,
+    };
+
+    drm_virtgpu_execbuffer execbuffer = {
+        .flags = 0,
+        .size = sizeof(words),
+        .command = (uint64_t)(uintptr_t)(words),
+        .bo_handles = 0,
+        .num_bo_handles = 0,
+        .fence_fd = -1,
+    };
+
+    int queue_work_err = drmIoctl(fd, DRM_IOCTL_VIRTGPU_EXECBUFFER, &execbuffer);
+
+    if (queue_work_err) {
+        ALOGE("%s: failed with %d executing command buffer (%s)\n",  __func__,
+                queue_work_err, strerror(errno));
+        return false;
+    }
+
+    return true;
+}
+
+bool virtgpu_address_space_allocate_hostmem(
+    address_space_handle_t fd,
+    size_t size,
+    uint64_t hostmem_id,
+    struct address_space_virtgpu_hostmem_info* hostmem_info_out) {
+
+    struct drm_virtgpu_resource_create_blob drm_rc_blob = {};
+    drm_rc_blob.blob_mem = VIRTGPU_BLOB_MEM_HOST;
+    drm_rc_blob.blob_flags = VIRTGPU_BLOB_FLAG_MAPPABLE;
+    drm_rc_blob.blob_id = hostmem_id;
+    drm_rc_blob.size = size;
+
+    int res = drmIoctl(
+            fd, DRM_IOCTL_VIRTGPU_RESOURCE_CREATE_BLOB, &drm_rc_blob);
+
+    if (res) {
+        ALOGE("%s: Failed to resource create v2: sterror: %s errno: %d\n", __func__,
+                strerror(errno), errno);
+        abort();
+    }
+
+    drm_virtgpu_map map;
+    memset(&map, 0, sizeof(map));
+    map.handle = drm_rc_blob.bo_handle;
+
+    res = drmIoctl(fd, DRM_IOCTL_VIRTGPU_MAP, &map);
+    if (res) {
+        ALOGE("%s: Failed to virtgpu map: sterror: %s errno: %d\n", __func__,
+                strerror(errno), errno);
+        abort();
+    }
+
+    void* directMappedAddr = mmap64(0, size, PROT_WRITE, MAP_SHARED, fd, map.offset);
+
+    if (!directMappedAddr) {
+        ALOGE("%s: mmap of virtio gpu resource failed\n", __func__);
+        abort();
+    }
+
+    hostmem_info_out->id = hostmem_id;
+    hostmem_info_out->bo = drm_rc_blob.bo_handle;
+    hostmem_info_out->ptr = directMappedAddr;
+    return true;
+}
+
+uint64_t buildu64(uint32_t lo, uint32_t hi) {
+    uint64_t res = (uint64_t)lo;
+    uint64_t hi64 = (uint64_t)hi;
+    return res | (hi64 << 32);
+}
+
+/* Used to retry DRM_IOCTL_VIRTGPU_WAIT, which can also return EBUSY. */
+#define TEMP_FAILURE_RETRY_BUSY(tag, exp) ({                                            \
+    __typeof__(exp) _rc;                                                                \
+    do {                                                                                \
+        uint32_t busy_times = 0;                                                        \
+        _rc = (exp);                                                                    \
+        if (errno == EBUSY) {                                                           \
+            ++busy_times;                                                               \
+            usleep(10000);                                                              \
+            ALOGE("%s:%s busy! waited %u times on EBUSY\n", __func__, tag, busy_times); \
+        }                                                                               \
+    } while (_rc != 0 && (errno == EINTR || errno == EBUSY));                           \
+    _rc; })
+
+// Ping with response
+bool virtgpu_address_space_ping_with_response(
+    struct address_space_virtgpu_info* info,
+    struct address_space_ping* ping) {
+
+    uint32_t words[] = {
+        kVirtioGpuAddressSpacePingWithResponse,
+        info->resp_resid,
+        (uint32_t)(ping->offset), (uint32_t)(ping->offset >> 32),
+        (uint32_t)(ping->size), (uint32_t)(ping->size >> 32),
+        (uint32_t)(ping->metadata), (uint32_t)(ping->metadata >> 32),
+        (uint32_t)(ping->version), (uint32_t)(ping->wait_fd),
+        (uint32_t)(ping->wait_flags), (uint32_t)(ping->direction),
+    };
+
+    drm_virtgpu_execbuffer execbuffer = {
+        .flags = 0,
+        .size = sizeof(words),
+        .command = (uint64_t)(uintptr_t)(words),
+        .bo_handles = (uint64_t)(uintptr_t)(&info->resp_bo),
+        .num_bo_handles = 1,
+        .fence_fd = -1,
+    };
+
+    int queue_work_err = drmIoctl(info->fd, DRM_IOCTL_VIRTGPU_EXECBUFFER, &execbuffer);
+
+    if (queue_work_err) {
+        ALOGE("%s: failed with %d executing command buffer (%s)\n",  __func__,
+                queue_work_err, strerror(errno));
+        return false;
+    }
+
+    struct drm_virtgpu_3d_wait waitcmd;
+    memset(&waitcmd, 0, sizeof(waitcmd));
+    waitcmd.handle = info->resp_bo;
+
+    int ret = TEMP_FAILURE_RETRY_BUSY("DRM_IOCTL_VIRTGPU_WAIT", drmIoctl(info->fd, DRM_IOCTL_VIRTGPU_WAIT, &waitcmd));
+    if (ret) {
+        ALOGE("%s: DRM_IOCTL_VIRTGPU_WAIT failed with %d (%s)\n", __func__, errno, strerror(errno));
+        return false;
+    }
+
+    uint32_t* respWords = (uint32_t*)info->resp_mapped_ptr;
+
+    ping->offset = buildu64(respWords[0], respWords[1]);
+    ping->size = buildu64(respWords[2], respWords[3]);
+    ping->metadata = buildu64(respWords[4], respWords[5]);
+    ping->version = respWords[6];
+    ping->wait_fd = respWords[7];
+    ping->wait_flags = respWords[8];
+    ping->direction = respWords[9];
+
+    return true;
+}

@@ -1,0 +1,18 @@
+<compatibility-matrix version="1.0" type="framework">
+    <hal format="hidl" optional="true">
+        <name>vendor.display.config</name>
+        <version>1.0</version>
+        <interface>
+            <name>IDisplayConfig</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.display.output</name>
+        <version>2</version>
+        <interface>
+            <name>IDisplayOutputManager</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>

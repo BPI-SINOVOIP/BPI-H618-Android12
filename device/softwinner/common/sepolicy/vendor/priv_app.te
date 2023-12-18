@@ -1,0 +1,9 @@
+
+allow priv_app proc_modules:file { read getattr open };
+allow priv_app zygote:dir search;
+allow priv_app device:dir { read open };
+allow priv_app proc_interrupts:file { read open };
+allow priv_app unlabeled:dir { search getattr };
+#allow priv_app net_dns_prop:file read;
+allow priv_app wifi_prop:file read;
+allow priv_app proc_bootevent:file { open write getattr };

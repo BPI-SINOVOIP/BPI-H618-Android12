@@ -1,0 +1,3 @@
+allow system_suspend sysfs:dir { read open };
+allow system_suspend sysfs_batteryinfo:dir { read open };
+allow system_suspend sysfs_rtc:dir { read open };

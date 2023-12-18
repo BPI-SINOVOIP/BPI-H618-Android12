@@ -1,0 +1,46 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_generic_vulkan-cereal_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-MIT
+    default_applicable_licenses: ["device_generic_vulkan-cereal_license"],
+}
+
+cc_library_static {
+    name: "gfxstream_vulkan_server",
+    defaults: [ "gfxstream_defaults" ],
+    static_libs: [
+        "gfxstream_base",
+        "gfxstream_compressedTextures",
+        "gfxstream_apigen_codec_common",
+        "gfxstream_vulkan_cereal_host",
+    ],
+    cflags: [
+        "-fvisibility=hidden",
+        "-Wno-inconsistent-missing-override",
+        "-Wno-unused-value",
+        "-Wno-return-type",
+        "-Wno-return-type-c-linkage",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-Wno-unused-function",
+        "-Wno-uninitialized",
+        "-Wno-unreachable-code-loop-increment",
+    ],
+    srcs: [
+        "VkAndroidNativeBuffer.cpp",
+        "VkCommonOperations.cpp",
+        "VkDecoder.cpp",
+        "VkDecoderGlobalState.cpp",
+        "VkDecoderSnapshot.cpp",
+        "VkReconstruction.cpp",
+        "VulkanDispatch.cpp",
+        "VulkanHandleMapping.cpp",
+        "VulkanStream.cpp",
+    ],
+    // http://b/178667698 - clang-tidy crashes with
+    // https://android-review.googlesource.com/c/device/generic/vulkan-cereal/+/1560695/
+    tidy: false,
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote  name="goog"
+           fetch="sso://googleplex-android/"
+           review="sso://googleplex-android/" />
+
+  <default revision="rvc-dev"
+           remote="goog"/>
+
+  <remote  name="goog-and-upload-partner" fetch="sso://googleplex-android/" review="sso://partner-android/" />
+
+  <remote  name="boringssl" fetch="https://boringssl.googlesource.com/" />
+  <remote  name="github" fetch="https://github.com/" />
+
+  <manifest-server url="http://android-smartsync.corp.google.com/googleplex-android.googlesource.com/manifestserver" />
+
+  <project path="device/google/trout" name="device/google/trout" groups="device,trout,gull" remote="goog-and-upload-partner" dest-branch="master" revision="mirror-partner-master">
+      <linkfile src="agl_services_build/build.sh" dest="build.sh" />
+      <linkfile src="agl_services_build/CMakeLists.txt" dest="CMakeLists.txt" />
+      <linkfile src="agl_services_build/cmake" dest="cmake" />
+      <linkfile src="agl_services_build/toolchain" dest="toolchain" />
+      <linkfile src="hal/audiocontrol/aidl/1.0" dest="audiocontrol" />
+      <linkfile src="hal/dumpstate/1.1" dest="dumpstate_server" />
+      <linkfile src="hal/vehicle/2.0" dest="vehicle_hal_server" />
+      <linkfile src="hal/common/agl/watchdog" dest="watchdog_test_server" />
+  </project>
+  <project path="third_party/fmtlib" name="platform/external/fmtlib" groups="pdk" />
+  <project path="third_party/grpc-grpc" name="platform/external/grpc-grpc" groups="pdk,tradefed" />
+  <project path="third_party/jsoncpp" name="platform/external/jsoncpp" groups="pdk" />
+  <project path="third_party/protobuf" name="platform/external/protobuf" groups="pdk" />
+  <project path="hardware/interfaces" name="platform/hardware/interfaces" groups="pdk" revision="229e07f9b922522e1612b6dd930919cf58c8865f">
+      <linkfile src="automotive/vehicle/2.0/default" dest="third_party/default_native_vehicle_hal" />
+  </project>
+  <project path="third_party/android/system_core" name="platform/system/core" groups="pdk" />
+
+  <project path="third_party/cares" name="c-ares/c-ares" remote="github" groups="pdk" revision="3be1924221e1326df520f8498d704a5c4c8d0cce" />
+  <project path="third_party/boringssl" name="boringssl" remote="boringssl" groups="pdk" revision="0b710a305b42b67522003a314dea3e3868485665" />
+  <project path="third_party/gflags" name="gflags/gflags" remote="github" groups="pdk" revision="28f50e0fed19872e0fd50dd23ce2ee8cd759338e" />
+  <project path="third_party/zlib" name="madler/zlib" remote="github" groups="pdk" revision="cacf7f1d4e3d44d871b605da3b647f07d718623f" />
+  <project path="third_party/googletest" name="google/googletest" remote="github" groups="pdk" revision="1fb1bb23bb8418dc73a5a9a82bbed31dc610fec7" />
+
+</manifest>

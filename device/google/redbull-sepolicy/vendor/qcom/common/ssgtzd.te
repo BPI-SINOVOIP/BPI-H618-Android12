@@ -1,0 +1,8 @@
+# ssgtzd - SSG TZ Daemon
+type ssgtzd, domain;
+type ssgtzd_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(ssgtzd)
+
+#Allow access to smcinvoke device
+allow ssgtzd smcinvoke_device:chr_file rw_file_perms;

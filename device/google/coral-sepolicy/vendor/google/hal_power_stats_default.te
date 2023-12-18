@@ -1,0 +1,13 @@
+allow hal_power_stats_default sysfs_msm_wlan:dir search; # Needed to traverse to wlan stats file
+get_prop(hal_power_stats_default, wifi_hal_prop) # Needed to detect wifi on/off
+r_dir_file(hal_power_stats_default, sysfs_iio_devices) # Needed to traverse to odpm files
+r_dir_file(hal_power_stats_default, sysfs_airbrush) # Needed to access airbrush files
+r_dir_file(hal_power_stats_default, sysfs_power_stats)
+r_dir_file(hal_power_stats_default, sysfs_msm_subsys)
+allow hal_power_stats_default pwrstats_device:chr_file rw_file_perms;
+
+# The following folders are incidentally accessed by hal_power_stats_default and are not needed.
+dontaudit hal_power_stats_default sysfs_power_stats_ignore:dir r_dir_perms;
+dontaudit hal_power_stats_default sysfs_power_stats_ignore:file r_file_perms;
+
+binder_call(hal_power_stats, citadeld)

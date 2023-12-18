@@ -1,0 +1,8 @@
+##============= servicemanager ==============
+#allow servicemanager zygote:dir search;
+#allow servicemanager zygote:file { read open };
+#allow servicemanager zygote:process getattr;
+#systemmix
+allow servicemanager systemmix:process { getattr };
+allow servicemanager systemmix:dir search;
+allow servicemanager systemmix:file r_file_perms;

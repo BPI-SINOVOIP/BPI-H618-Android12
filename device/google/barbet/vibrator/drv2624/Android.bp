@@ -1,0 +1,90 @@
+//
+// Copyright (C) 2017 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_defaults {
+    name: "android.hardware.vibrator-defaults.barbet",
+    cflags: [
+        "-DATRACE_TAG=(ATRACE_TAG_VIBRATOR | ATRACE_TAG_HAL)",
+        "-DLOG_TAG=\"android.hardware.vibrator-barbet\"",
+    ],
+    shared_libs: [
+        "libandroid",
+    ],
+    target: {
+        vendor: {
+            exclude_shared_libs: [
+                "libandroid",
+            ],
+            shared_libs: [
+                "libsensorndkbridge",
+            ],
+        }
+    },
+}
+
+cc_defaults {
+    name: "VibratorHalDrv2624BinaryDefaultsBarbet",
+    defaults: [
+        "PixelVibratorBinaryDefaults",
+        "android.hardware.vibrator-defaults.barbet",
+    ],
+}
+
+cc_defaults {
+    name: "VibratorHalDrv2624TestDefaultsBarbet",
+    defaults: [
+        "PixelVibratorTestDefaults",
+        "android.hardware.vibrator-defaults.barbet",
+    ],
+    static_libs: ["android.hardware.vibrator-impl_system.barbet"],
+}
+
+// TODO(eliptus): Combine library definitions when b/129505315 is resolved.
+
+cc_library {
+    name: "android.hardware.vibrator-impl_system.barbet",
+    defaults: ["VibratorHalDrv2624BinaryDefaultsBarbet"],
+    srcs: ["Vibrator.cpp"],
+    export_include_dirs: ["."],
+    visibility: [":__subpackages__"],
+}
+
+cc_library {
+    name: "android.hardware.vibrator-impl_vendor.barbet",
+    defaults: ["VibratorHalDrv2624BinaryDefaultsBarbet"],
+    srcs: ["Vibrator.cpp"],
+    export_include_dirs: ["."],
+    proprietary: true,
+    cppflags: [
+        "-DVIBRATOR_FACTORY_MODE=0",
+    ],
+}
+
+cc_binary {
+    name: "android.hardware.vibrator-service.barbet",
+    defaults: ["VibratorHalDrv2624BinaryDefaultsBarbet"],
+    init_rc: ["android.hardware.vibrator-service.barbet.rc"],
+    vintf_fragments: ["android.hardware.vibrator-service.barbet.xml"],
+    srcs: ["service.cpp"],
+    static_libs: ["android.hardware.vibrator-impl_vendor.barbet"],
+    proprietary: true,
+    cppflags: [
+        "-DVIBRATOR_FACTORY_MODE=0",
+    ],
+}

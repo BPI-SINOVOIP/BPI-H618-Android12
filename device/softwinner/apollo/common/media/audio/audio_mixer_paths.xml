@@ -1,0 +1,351 @@
+<mixer>
+  <!-- These are the initial mixer settings -->
+  <ctl name="External Speaker Switch" value="1" />
+  <ctl name="Headphone Switch" value="0" />
+  <ctl name="Earpiece Switch" value="0" />
+
+
+  <!-- These are commonly used control sequences -->
+  <path name="aif1.0-dac">
+    <ctl name="AIF1IN0R Mux" value="AIF1_DA0R" />
+    <ctl name="AIF1IN0L Mux" value="AIF1_DA0L" />
+    <ctl name="DACR Mixer AIF1DA0R Switch" value="1" />
+    <ctl name="DACL Mixer AIF1DA0L Switch" value="1" />
+  </path>
+
+  <path name="adc-aif1.0">
+    <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+    <ctl name="AIF1OUT0R Mux" value="AIF1_AD0R" />
+    <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+    <ctl name="AIF1 AD0R Mixer ADCR Switch" value="1" />
+    <ctl name="ADCR Mux" value="ADC" />
+    <ctl name="ADCL Mux" value="ADC" />
+  </path>
+
+  <path name="dac-headphone">
+    <ctl name="HP_R Mux" value="DACR HPR Switch" />
+    <ctl name="HP_L Mux" value="DACL HPL Switch" />
+  </path>
+
+  <path name="mixer-headphone">
+    <ctl name="HP_R Mux" value="Right Analog Mixer HPR Switch" />
+    <ctl name="HP_L Mux" value="Left Analog Mixer HPL Switch" />
+  </path>
+
+  <path name="dac-mixer">
+    <ctl name="Right Output Mixer DACR Switch" value="1" />
+    <ctl name="Left Output Mixer DACL Switch" value="1" />
+  </path>
+
+  <path name="mixer-speaker">
+    <ctl name="SPK_L Mux" value="MIXEL Switch" />
+    <ctl name="SPK_R Mux" value="MIXER Switch" />
+  </path>
+
+
+  <path name="media-speaker">
+    <path name="aif1.0-dac" />
+    <path name="dac-mixer" />
+    <path name="mixer-speaker" />
+    <ctl name="External Speaker Switch" value="1" />
+  </path>
+
+  <path name="media-headphones">
+    <path name="aif1.0-dac" />
+    <path name="dac-headphone" />
+    <ctl name="Headphone Switch" value="1" />
+  </path>
+
+  <path name="media-single-speaker">
+    <ctl name="AIF1IN0R Mux" value="AIF1_DA0R" />
+    <ctl name="AIF1IN0L Mux" value="AIF1_DA0L" />
+    <ctl name="DACR Mixer AIF1DA0R Switch" value="1" />
+    <ctl name="DACL Mixer AIF1DA0L Switch" value="1" />
+    <ctl name="Left Output Mixer DACR Switch" value="1" />
+    <ctl name="Left Output Mixer DACL Switch" value="1" />
+    <ctl name="SPK_L Mux" value="MIXEL Switch" />
+    <ctl name="External Speaker Switch" value="1" />
+  </path>
+
+  <path name="media-speaker-headphones">
+    <path name="aif1.0-dac" />
+    <path name="dac-mixer" />
+    <path name="mixer-speaker" />
+    <path name="dac-headphone" />
+    <ctl name="OutputL Mixer DACL Switch" value="1" />
+    <ctl name="OutputL Mixer DACR Switch" value="0" />
+    <ctl name="OutputR Mixer DACL Switch" value="0" />
+    <ctl name="OutputR Mixer DACR Switch" value="1" />
+    <ctl name="LINEOUTL src LR" value="0" />
+    <ctl name="LINEOUTR src LR" value="0" />
+    <ctl name="lineout volume" value="31" />
+    <ctl name="LINEOUT Switch" value="1" />
+  </path>
+
+  <path name="media-speaker-headphones-off">
+    <ctl name="DACR Mixer AIF1DA0R Switch" value="0" />
+    <ctl name="DACL Mixer AIF1DA0L Switch" value="0" />
+    <ctl name="AIF1 AD0L Mixer ADCL Switch" value="0" />
+    <ctl name="AIF1 AD0R Mixer ADCR Switch" value="0" />
+    <ctl name="Left Output Mixer DACL Switch" value="0" />
+    <ctl name="Left Output Mixer DACR Switch" value="0" />
+    <ctl name="Right Output Mixer DACL Switch" value="0" />
+    <ctl name="Right Output Mixer DACR Switch" value="0" />
+    <ctl name="Headphone Switch" value="0" />
+    <ctl name="External Speaker Switch" value="0" />
+    <ctl name="LINEOUT Switch" value="0" />
+  </path>
+
+    <!-- capture -->
+  <path name="media-main-mic">
+    <ctl name="AIF1OUT0R Mux" value="AIF1_AD0R" />
+    <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+    <ctl name="AIF1 AD0R Mixer ADCR Switch" value="1" />
+    <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+    <ctl name="ADCR Mux" value="ADC" />
+    <ctl name="ADCL Mux" value="ADC" />
+    <ctl name="LADC input Mixer MIC1 boost Switch" value="1" />
+    <ctl name="RADC input Mixer MIC1 boost Switch" value="1" />
+  </path>
+
+  <path name="media-digital-mic">
+    <ctl name="AIF1OUT0R Mux" value="AIF1_AD0R" />
+    <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+    <ctl name="AIF1 AD0R Mixer ADCR Switch" value="1" />
+    <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+    <ctl name="ADCR Mux" value="DMIC" />
+    <ctl name="ADCL Mux" value="DMIC" />
+  </path>
+
+  <path name="media-headset-mic">
+    <ctl name="MIC2 SRC" value="MIC2" />
+    <ctl name="LADC input Mixer MIC2 boost Switch" value="1" />
+    <ctl name="RADC input Mixer MIC2 boost Switch" value="1" />
+    <ctl name="ADCL Mux" value="ADC" />
+    <ctl name="ADCR Mux" value="ADC" />
+    <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+    <ctl name="AIF1 AD0R Mixer ADCR Switch" value="1" />
+    <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+    <ctl name="AIF1OUT0R Mux" value="AIF1_AD0R" />
+  </path>
+
+  <!-- dbb phone path -->
+  <path name="digital-phone-speaker">
+  <ctl name="AIF2 ADC volume" value="159" />
+  <ctl name="LEFT ADC input Mixer MIC1 boost Switch" value="1" />
+  <ctl name="ADCL Mux" value="ADC" />
+  <ctl name="AIF2 ADL Mixer ADCL Switch" value="1" />
+  <ctl name="AIF2OUTL Mux" value="AIF2_ADCL" />
+
+  <ctl name="AIF2INL Mux" value="AIF2_DACL" />
+  <ctl name="AIF2INL Mux switch aif2inl aif2Switch" value="1" />
+  <ctl name="DACL Mixer AIF2DACL Switch" value="1" />
+  <ctl name="Right Output Mixer DACL Switch" value="1" />
+  <ctl name="Left Output Mixer DACL Switch" value="1" />
+
+  <ctl name="SPK_L Mux" value="MIXEL Switch" />
+  <ctl name="SPK_R Mux" value="MIXER Switch" />
+  <ctl name="External Speaker Switch" value="1" />
+  </path>
+
+  <path name="digital-phone-headset">
+  <ctl name="AIF2 ADC volume" value="159" />
+  <ctl name="MIC2 SRC" value="MIC2" />
+  <ctl name="LEFT ADC input Mixer MIC2 boost Switch" value="1" />
+  <ctl name="ADCL Mux" value="ADC" />
+  <ctl name="AIF2 ADL Mixer ADCL Switch" value="1" />
+  <ctl name="AIF2OUTL Mux" value="AIF2_ADCL" />
+
+  <ctl name="AIF2INL Mux" value="AIF2_DACL" />
+  <ctl name="AIF2INL Mux switch aif2inl aif2Switch" value="1" />
+  <ctl name="DACL Mixer AIF2DACL Switch" value="1" />
+  <ctl name="Left Output Mixer DACL Switch" value="1" />
+  <ctl name="Right Output Mixer DACL Switch" value="1" />
+
+  <ctl name="HP_L Mux" value="Left Analog Mixer HPL Switch" />
+  <ctl name="HP_R Mux" value="Right Analog Mixer HPR Switch" />
+  <ctl name="Headphone Switch" value="1" />
+  </path>
+
+  <path name="digital-phone-headphone">
+  <ctl name="AIF2 ADC volume" value="159" />
+  <ctl name="LEFT ADC input Mixer MIC1 boost Switch" value="1" />
+  <ctl name="ADCL Mux" value="ADC" />
+  <ctl name="AIF2 ADL Mixer ADCL Switch" value="1" />
+  <ctl name="AIF2OUTL Mux" value="AIF2_ADCL" />
+
+  <ctl name="AIF2INL Mux" value="AIF2_DACL" />
+  <ctl name="AIF2INL Mux switch aif2inl aif2Switch" value="1" />
+  <ctl name="DACL Mixer AIF2DACL Switch" value="1" />
+  <ctl name="Left Output Mixer DACL Switch" value="1" />
+  <ctl name="Right Output Mixer DACL Switch" value="1" />
+
+  <ctl name="HP_L Mux" value="Left Analog Mixer HPL Switch" />
+  <ctl name="HP_R Mux" value="Right Analog Mixer HPR Switch" />
+  <ctl name="Headphone Switch" value="1" />
+  </path>
+
+  <path name="digital-phone-bt">
+  <ctl name="AIF2INL Mux" value="AIF2_DACL" />
+  <ctl name="AIF2INL Mux switch aif2inl aif2Switch" value="1" />
+  <ctl name="AIF2 ADR Mixer AIF2 DACL Switch" value="1" />
+  <ctl name="AIF3OUT Mux" value="AIF2 ADC right channel" />
+
+  <ctl name="AIF2INR Mux VIR switch aif2inr aif3Switch" value="1" />
+  <ctl name="AIF2 ADL Mixer AIF2 DACR Switch" value="1" />
+  <ctl name="AIF2OUTL Mux" value="AIF2_ADCL" />
+  </path>
+
+  <path name="digital-phone-earpiece">
+  <ctl name="AIF2 ADC volume" value="159" />
+  <ctl name="LEFT ADC input Mixer MIC1 boost Switch" value="1" />
+  <ctl name="ADCL Mux" value="ADC" />
+  <ctl name="AIF2 ADL Mixer ADCL Switch" value="1" />
+  <ctl name="AIF2OUTL Mux" value="AIF2_ADCL" />
+
+  <ctl name="AIF2INL Mux" value="AIF2_DACL" />
+  <ctl name="AIF2INL Mux switch aif2inl aif2Switch" value="1" />
+  <ctl name="DACL Mixer AIF2DACL Switch" value="1" />
+
+  <ctl name="EAR Mux" value="DACL" />
+  <ctl name="Earpiece Switch" value="1" />
+  </path>
+<!-- capture when in call with dbb-->
+  <path name="capture-dbb-phone-mainmic">
+  <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+  <ctl name="AIF1 AD0L Mixer AIF2 DACL Switch" value="1" />
+  <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+  </path>
+  <path name="capture-dbb-phone-headsetmic">
+  <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+  <ctl name="AIF1 AD0L Mixer AIF2 DACL Switch" value="1" />
+  <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+  </path>
+  <path name="capture-dbb-phone-btmic">
+  <ctl name="AIF1 AD0L Mixer AIF2 DACL Switch" value="1" />
+  <ctl name="AIF1 AD0L Mixer AIF2 DACR Switch" value="1" />
+  <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+  </path>
+
+ <!-- abb phone path -->
+  <path name="analog-mainmic">
+    <ctl name="Line Out Mixer MIC1 boost Switch" value="1" />
+  </path>
+
+  <path name="analog-headsetmic">
+    <ctl name="MIC2 SRC" value="MIC2" />
+    <ctl name="Line Out Mixer MIC2 boost Switch" value="1" />
+  </path>
+
+  <path name="analog-phonein">
+    <ctl name="Left Output Mixer LINEINL-LINEINR Switch" value="1" />
+    <ctl name="Right Output Mixer LINEINL-LINEINR Switch" value="1" />
+  </path>
+  <path name="mixer-earpiece">
+    <ctl name="EAR Mux" value="Right Analog Mixer" />
+  </path>
+
+  <path name="analog-phone-speaker">
+    <path name="analog-mainmic" />
+    <path name="analog-phonein" />
+    <path name="mixer-speaker"  />
+    <ctl name="External Speaker Switch" value="1" />
+  </path>
+
+  <path name="analog-phone-headset">
+    <path name="analog-headsetmic" />
+    <path name="analog-phonein" />
+    <path name="mixer-headphone" />
+    <ctl name="Headphone Switch" value="1" />
+  </path>
+
+  <path name="analog-phone-headphone">
+    <path name="analog-mainmic" />
+    <path name="analog-phonein" />
+    <path name="mixer-headphone" />
+    <ctl name="Headphone Switch" value="1" />
+  </path>
+
+  <path name="analog-phone-earpiece">
+    <path name="analog-mainmic" />
+    <path name="analog-phonein" />
+    <path name="mixer-earpiece" />
+    <ctl name="Earpiece Switch" value="1" />
+  </path>
+
+  <path name="analog-phone-bt">
+    <ctl name="LEFT ADC input Mixer LININL-R Switch" value="1" />
+    <ctl name="ADCL Mux" value="ADC" />
+    <ctl name="AIF2 ADL Mixer ADCL Switch" value="1" />
+    <ctl name="AIF3OUT Mux" value="AIF2 ADC left channel" />
+
+    <ctl name="AIF2INL Mux switch aif2inl aif2Switch" value="1" />
+    <ctl name="AIF2INR Mux VIR switch aif2inr aif3Switch" value="1" />
+    <ctl name="DACR Mixer AIF2DACR Switch" value="1" />
+    <ctl name="Right Output Mixer DACR Switch" value="1" />
+    <ctl name="Line Out Mixer Right Output mixer Switch" value="1" />
+  </path>
+
+  <path name="abb-phone-keytone-speaker">
+    <path name="aif1.0-dac" />
+    <path name="dac-mixer" />
+  </path>
+
+  <path name="abb-phone-keytone-headphones">
+    <path name="aif1.0-dac" />
+    <path name="dac-mixer" />
+  </path>
+
+  <path name="abb-phone-keytone-bt">
+
+  </path>
+
+  <path name="abb-phone-keytone-earpiece">
+
+  </path>
+
+  <!-- capture when in call with abb-->
+  <path name="capture-abb-phone-mainmic">
+    <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+    <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+    <ctl name="ADCL Mux" value="ADC" />
+    <ctl name="LEFT ADC input Mixer MIC1 boost Switch" value="1" />
+    <ctl name="LEFT ADC input Mixer LININL-R Switch" value="1" />
+  </path>
+
+  <path name="capture-abb-phone-headsetmic">
+    <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+    <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+    <ctl name="ADCL Mux" value="ADC" />
+    <ctl name="LEFT ADC input Mixer MIC2 boost Switch" value="1" />
+    <ctl name="LEFT ADC input Mixer LININL-R Switch" value="1" />
+  </path>
+
+  <path name="capture-abb-phone-btmic">
+    <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+    <ctl name="AIF1 AD0L Mixer ADCL Switch" value="1" />
+    <ctl name="AIF1 AD0L Mixer AIF2 DACR Switch" value="1" />
+  </path>
+
+  <path name="com-ap-bt">
+  <ctl name="AIF1IN0L Mux" value="AIF1_DA0L" />
+  <ctl name="AIF2 ADL Mixer AIF1 DA0L Switch" value="1" />
+  <ctl name="AIF2 ADL Mixer AIF1 DA0L Switch" value="1" />
+  <ctl name="AIF3OUT Mux" value="AIF2 ADC left channel" />
+  </path>
+  <path name="com-bt-ap">
+  <ctl name="AIF2INR Mux switch aif2inr aif2Switch" value="1" />
+  <ctl name="AIF2INR Mux VIR switch aif2inr aif3Switch" value="1" />
+  <ctl name="AIF1 AD0L Mixer AIF2 DACR Switch" value="1" />
+  <ctl name="AIF1OUT0L Mux" value="AIF1_AD0L" />
+  </path>
+  <path name="ac200-output">
+    <ctl name="AC DACR mixer I2S_DACDATR Switch" value="1" />
+    <ctl name="AC DACL mixer I2S_DACDATL Switch" value="1" />
+    <ctl name="Right Output Mixer DACR Switch" value="1" />
+    <ctl name="Left Output Mixer DACL Switch" value="1" />
+    <ctl name="External Speaker Switch" value="1" />
+  </path>
+  <path name="null">
+  </path>
+</mixer>

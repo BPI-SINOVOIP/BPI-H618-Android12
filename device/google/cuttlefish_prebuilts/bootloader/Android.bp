@@ -1,0 +1,19 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+prebuilt_etc {
+    name: "cuttlefish_crosvm_bootloader",
+    // We don't have u-boot for arm and x86. But Soong demands us to provide
+    // src anyway. Satisfy that by providing a bogus empty file as the src.
+    src: "empty",
+    arch: {
+        arm64: {
+            src: "crosvm_aarch64/u-boot.bin",
+        },
+        x86_64: {
+            src: "crosvm_x86_64/u-boot.rom",
+        },
+    },
+    filename_from_src: true,
+}

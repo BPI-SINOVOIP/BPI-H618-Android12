@@ -1,0 +1,44 @@
+# Read and write factory calibration and sensor configuration data
+allow hal_sensors_default persist_file:dir search;
+allow hal_sensors_default persist_file:lnk_file read;
+allow hal_sensors_default mnt_vendor_file:dir search;
+r_dir_file(hal_sensors_default, sensors_persist_file)
+allow hal_sensors_default sensors_vendor_data_file:dir create_dir_perms;
+allow hal_sensors_default sensors_vendor_data_file:file create_file_perms;
+
+# Interact with the sensors low power island (SLPI/ADSP) CPU
+allow hal_sensors_default self:qipcrtr_socket create_socket_perms_no_ioctl;
+
+# sysfs needed for HW version info
+r_dir_file(hal_sensors_default, sysfs_msm_subsys);
+
+# For QCOM diag port access
+userdebug_or_eng(`
+  allow hal_sensors_default diag_device:chr_file rw_file_perms;
+')
+
+vndbinder_use(hal_sensors_default);
+
+allow hal_sensors_default sysfs_ssr:file r_file_perms;
+
+# for MagCC
+r_dir_file(hal_sensors_default, sysfs_batteryinfo)
+
+allow hal_sensors_default hal_graphics_mapper_hwservice:hwservice_manager find;
+allow hal_sensors_default qdsp_device:chr_file r_file_perms;
+
+# For Suez metrics collection
+allow hal_sensors_default fwk_stats_hwservice:hwservice_manager find;
+allow hal_sensors_default system_server:binder call;
+
+# For rear light
+allow hal_sensors_default rls_service:service_manager find;
+binder_call(hal_sensors_default, rlsservice)
+
+# For call state
+allow hal_sensors_default sysfs_call_state:file r_file_perms;
+
+# For touch palm
+allow hal_sensors_default sysfs_touch:file rw_file_perms;
+allow hal_sensors_default sysfs_touch:dir r_dir_perms;
+get_prop(hal_sensors_default, vendor_sensor_prop)

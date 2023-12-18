@@ -1,0 +1,19 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+#<src>                                                 <mnt_point>  <type>   <mnt_flags and options>      <fs_mgr_flags>
+system                                                 /system      ext4     ro,barrier=1                 wait,first_stage_mount,logical,slotselect
+vendor                                                 /vendor      ext4     ro,barrier=1                 wait,first_stage_mount,logical,slotselect
+vendor_dlkm                                            /vendor_dlkm ext4     ro,barrier=1                 wait,first_stage_mount,logical,slotselect
+product                                                /product     ext4     ro,barrier=1                 wait,first_stage_mount,logical,slotselect
+/dev/block/by-name/userdata                            /data        f2fs     noatime,nosuid,nodev,discard,reserve_root=128000,resuid=0,resgid=1065         wait,check,formattable,quota,reservedsize=128M
+/dev/block/by-name/metadata                            /metadata    ext4     nodev,noatime,nosuid,errors=panic wait,first_stage_mount,formattable,check
+/dev/block/by-name/media_data                          /oem         vfat     ro,nodev,noatime,nosuid,context=u:object_r:oemfs:s0 wait,first_stage_mount,formattable,check
+/dev/block/by-name/boot                                /boot        emmc     defaults                     defaults
+/dev/block/by-name/misc                                /misc        emmc     defaults                     defaults
+/dev/block/by-name/super                               /super       emmc     defaults                     defaults
+/dev/block/by-name/frp                                 /persistent  emmc     defaults                     defaults
+/devices/platform/*/4020000.sdmmc/mmc_host/mmc*        auto         auto     defaults                     voldmanaged=extsd:auto,encryptable=footer
+/devices/platform/**/usb*                              auto         auto     defaults                     voldmanaged=usb:auto,encryptable=footer
+# add for recovery
+none                                                   /sdcard      emmc     defaults                     defaults,recoveryonly

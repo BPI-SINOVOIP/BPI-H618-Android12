@@ -1,0 +1,7 @@
+on property:init.svc.qemu-adb-keys=stopped
+    start qemu-adb-setup
+
+on property:vendor.qemu.adb.copykey=1
+    copy /data/vendor/adb/adb_keys /data/misc/adb/adb_keys
+    chown system shell /data/misc/adb/adb_keys
+    chmod 0640 /data/misc/adb/adb_keys

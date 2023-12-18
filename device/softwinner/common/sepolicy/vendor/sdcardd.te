@@ -1,0 +1,3 @@
+allow sdcardd unlabeled:dir { getattr open read search };
+allow sdcardd unlabeled:file { getattr open read };
+allow sdcardd sdcardfs:dir mounton;

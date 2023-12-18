@@ -1,0 +1,13 @@
+# qemu-adb-keys service:  Writes host adb key for adbd on boot.
+type qemu_adb_keys, domain;
+type qemu_adb_keys_exec, vendor_file_type, exec_type, file_type;
+
+init_daemon_domain(qemu_adb_keys)
+
+# Allow qemu_adb_keys to read /proc/bootconfig
+allow qemu_adb_keys proc_cmdline:file r_file_perms;
+allow qemu_adb_keys proc_bootconfig:file r_file_perms;
+
+# Permission to write to /data/vendor/adb/adb_keys.
+allow qemu_adb_keys vendor_data_file:dir create_dir_perms;
+allow qemu_adb_keys vendor_data_file:file create_file_perms;

@@ -1,0 +1,26 @@
+set_prop(mediaserver, system_prop)
+
+allow mediaserver cedar_device:chr_file rw_file_perms;
+allow mediaserver ion_device:chr_file write;
+allow mediaserver deinterlace_device:chr_file { ioctl open read write};
+allow mediaserver cameraserver:dir search;
+allow mediaserver cameraserver:file r_file_perms;
+allow mediaserver untrusted_app:dir search;
+allow mediaserver untrusted_app:file { read open };
+allow mediaserver untrusted_app_25:dir search;
+allow mediaserver untrusted_app_25:file { read open };
+allow mediaserver untrusted_app_27:dir search;
+allow mediaserver untrusted_app_27:file { read open write};
+allow mediaserver system_app_data_file:file { read getattr write };
+allow mediaserver audio_rw_data_file:dir {open write add_name create search};
+allow mediaserver audio_rw_data_file:file {open write create append read};
+allow mediaserver unlabeled:file { read getattr };
+#allow mediaserver vendor_default_prop:file {open read getattr};
+allow mediaserver bootanim:binder { transfer call };
+allow mediaserver bootanim:dir search;
+allow mediaserver bootanim:file { read open };
+allow mediaserver system_prop:property_service set;
+allow mediaserver system_data_file:file {read open};
+allow mediaserver sunxi_soc_device:chr_file rw_file_perms;
+allow mediaserver platform_app:dir { search };
+allow mediaserver platform_app:file { read open };

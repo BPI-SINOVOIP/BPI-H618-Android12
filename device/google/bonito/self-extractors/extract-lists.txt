@@ -1,0 +1,50 @@
+  google_devices)
+    TO_EXTRACT="\
+            IMAGES/vendor.img \
+            RADIO/bootloader.img \
+            RADIO/radio.img \
+            "
+    ;;
+  qcom)
+    TO_EXTRACT="\
+            system/app/ims/ims.apk \
+            system/app/QtiTelephonyService/QtiTelephonyService.apk \
+            system/etc/cne/andsfCne.xml \
+            system/etc/permissions/qcrilhook.xml \
+            system/etc/permissions/telephonyservice.xml \
+            system/etc/permissions/uimremoteclient.xml \
+            system/etc/permissions/uimremoteserver.xml \
+            system/etc/permissions/UimService.xml \
+            system/framework/qcrilhook.jar \
+            system/framework/QtiTelephonyServicelibrary.jar \
+            system/framework/uimremoteclientlibrary.jar \
+            system/framework/uimremoteserverlibrary.jar \
+            system/lib64/libadsprpc_system.so \
+            system/lib64/libcdsprpc_system.so \
+            system/lib64/libDiagService.so \
+            system/lib64/libimscamera_jni.so \
+            system/lib64/libimsmedia_jni.so \
+            system/lib64/lib-imsvideocodec.so \
+            system/lib64/lib-imsvtextutils.so \
+            system/lib64/lib-imsvt.so \
+            system/lib64/lib-imsvtutils.so \
+            system/lib64/libmdsprpc_system.so \
+            system/lib64/librcc.so \
+            system/lib64/libsdm-disp-apis.so \
+            system/lib64/libsdsprpc_system.so \
+            system/lib64/libsecureui_svcsock_system.so \
+            system/lib/libadsprpc_system.so \
+            system/lib/libcdsprpc_system.so \
+            system/lib/libimscamera_jni.so \
+            system/lib/libimsmedia_jni.so \
+            system/lib/lib-imsvideocodec.so \
+            system/lib/lib-imsvtextutils.so \
+            system/lib/lib-imsvt.so \
+            system/lib/lib-imsvtutils.so \
+            system/lib/libmdsprpc_system.so \
+            system/lib/librcc.so \
+            system/lib/libsdm-disp-apis.so \
+            system/lib/libsdsprpc_system.so \
+            system/lib/libsecureui_svcsock_system.so \
+            "
+    ;;

@@ -1,0 +1,13 @@
+get_prop(hal_sensors_default, vendor_display_prop)
+
+allow hal_sensors_default sysfs_leds:dir search;
+allow hal_sensors_default sysfs_leds:file rw_file_perms;
+
+# Allow Suez nanoapp clients to connect to CHRE.
+allow hal_sensors_default chre_socket:sock_file write;
+allow hal_sensors_default chre:unix_stream_socket connectto;
+
+# Allow SensorSuez to connect AIDL stats.
+binder_use(hal_sensors_default);
+get_prop(hal_sensors_default, boot_status_prop);
+allow hal_sensors_default fwk_stats_service:service_manager find;

@@ -1,0 +1,3 @@
+allow gsid gsi_data_file:file ioctl;
+allowxperm gsid gsi_data_file:file ioctl FS_IOC_GETFLAGS;
+allow gsid ota_image_data_file:file ioctl;

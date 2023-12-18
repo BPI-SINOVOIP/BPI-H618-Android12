@@ -1,0 +1,39 @@
+typeattribute setupwraith_app coredomain;
+
+app_domain(setupwraith_app)
+
+# Access the network.
+net_domain(setupwraith_app)
+# Access bluetooth.
+bluetooth_domain(setupwraith_app)
+
+allow setupwraith_app activity_service:service_manager find;
+allow setupwraith_app activity_task_service:service_manager find;
+allow setupwraith_app audio_service:service_manager find;
+allow setupwraith_app audioserver_service:service_manager find;
+allow setupwraith_app autofill_service:service_manager find;
+allow setupwraith_app bluetooth_manager_service:service_manager find;
+allow setupwraith_app content_capture_service:service_manager find;
+allow setupwraith_app clipboard_service:service_manager find;
+allow setupwraith_app device_identifiers_service:service_manager find;
+allow setupwraith_app gpu_service:service_manager find;
+allow setupwraith_app hint_service:service_manager find;
+allow setupwraith_app location_service:service_manager find;
+allow setupwraith_app mediaextractor_service:service_manager find;
+allow setupwraith_app mediametrics_service:service_manager find;
+allow setupwraith_app mediaserver_service:service_manager find;
+allow setupwraith_app network_score_service:service_manager find;
+allow setupwraith_app servicediscovery_service:service_manager find;
+allow setupwraith_app shell_data_file:file r_file_perms;
+allow setupwraith_app shell_data_file:dir r_dir_perms;
+allow setupwraith_app slice_service:service_manager find;
+allow setupwraith_app surfaceflinger_service:service_manager find;
+allow setupwraith_app tethering_service:service_manager find;
+allow setupwraith_app thermal_service:service_manager find;
+allow setupwraith_app uimode_service:service_manager find;
+allow setupwraith_app usb_service:service_manager find;
+allow setupwraith_app webviewupdate_service:service_manager find;
+allow setupwraith_app wifi_service:service_manager find;
+
+# Allow running subproc of DRM.
+allow setupwraith_app privapp_data_file:file execute;

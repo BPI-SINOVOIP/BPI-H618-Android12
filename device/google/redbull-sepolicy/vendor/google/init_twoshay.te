@@ -1,0 +1,10 @@
+type init_twoshay, domain;
+type init_twoshay_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(init_twoshay)
+
+allow init_twoshay vendor_toolbox_exec:file execute_no_trans;
+
+allow init_twoshay sysfs_display:dir search;
+allow init_twoshay sysfs_display:file r_file_perms;
+
+set_prop(init_twoshay, vendor_twoshay_prop)

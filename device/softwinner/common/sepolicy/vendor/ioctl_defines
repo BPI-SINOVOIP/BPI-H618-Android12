@@ -1,0 +1,4 @@
+define(`SW_SYNC_IOC_CREATE_FENCE', `0x5700')
+define(`SW_SYNC_IOC_INC', `0x5701')
+define(`NAND_BLKBURNBOOT0', `0x767f')
+define(`NAND_BLKBURNUBOOT', `0x7680')

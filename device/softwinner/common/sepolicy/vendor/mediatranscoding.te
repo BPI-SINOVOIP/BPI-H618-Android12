@@ -1,0 +1,3 @@
+allow mediatranscoding gpu_device:chr_file { open read write ioctl map};
+allow mediatranscoding surfaceflinger_service:service_manager find;
+#allow mediatranscoding vendor_default_prop:file read;

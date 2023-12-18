@@ -1,0 +1,33 @@
+on early-init
+    export TMPDIR /data/local/tmp
+    setrlimit memlock 8388608 8388608
+    mount debugfs debugfs /sys/kernel/debug
+    chmod 0755 /sys/kernel/debug
+
+service vendor.charger /system/bin/charger
+    class charger
+    user root
+    group shell root system wakelock input log
+    seclabel u:r:charger:s0
+
+# bugreport is triggered by holding down volume down, volume up and power
+
+service bugreport /system/bin/dumpstate -d -p -B -z \
+        -o /data/user_de/0/com.android.shell/files/bugreports/bugreport
+    class main
+    disabled
+    oneshot
+    keycodes 114 115 116
+
+on post-fs-data
+    mkdir data/vendor/camera 0771 cameraserver camera
+on property:sys.drop_cache=1
+    write /proc/sys/vm/drop_caches 3
+    setprop sys.drop_cache 0
+
+on charger
+    chmod 660 /sys/power/wakeup_count
+
+on property:ro.debuggable=1 && property:ro.product.name="gsi_arm"
+  setprop vendor.codec2.disable.hw 1
+  restart android-hardware-media-aw-c2-hal-1-0

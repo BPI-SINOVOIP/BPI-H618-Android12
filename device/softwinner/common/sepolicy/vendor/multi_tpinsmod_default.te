@@ -1,0 +1,14 @@
+type multi_tpinsmod, domain;
+type multi_tpinsmod_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(multi_tpinsmod)
+
+#============= multi_tpinsmod ==============
+allow multi_tpinsmod init:unix_stream_socket connectto;
+allow multi_tpinsmod property_socket:sock_file write;
+allow multi_tpinsmod self:capability sys_module;
+allow multi_tpinsmod sysfs:dir { open read };
+allow multi_tpinsmod sysfs:file { open read };
+#allow multi_tpinsmod vendor_default_prop:property_service set;
+allow multi_tpinsmod vendor_file:system module_load;
+
+set_prop(multi_tpinsmod, vendor_tp_prop)

@@ -1,0 +1,21 @@
+type wl_info, domain;
+type wl_info_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(wl_info)
+
+allow wl_info self:capability net_admin;
+allow wl_info self:netlink_kobject_uevent_socket { bind create read setopt };
+allow wl_info sysfs:dir { open read };
+allow wl_info sysfs:file { open read write };
+allow wl_info vendor_file:file execute_no_trans;
+
+allow wl_info property_socket:sock_file write;
+allow wl_info init:unix_stream_socket connectto;
+
+allow hal_wifi_supplicant_default property_socket:sock_file write;
+allow hal_wifi_supplicant_default init:unix_stream_socket connectto;
+
+set_prop(wl_info, log_tag_prop)
+set_prop(vendor_init, log_tag_prop)
+set_prop(hal_bluetooth_default, log_tag_prop)
+set_prop(hal_wifi_default, log_tag_prop)
+set_prop(hal_wifi_supplicant_default, log_tag_prop)

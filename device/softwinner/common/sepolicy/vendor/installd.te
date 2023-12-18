@@ -1,0 +1,8 @@
+binder_call(installd, servicemanager)
+allow installd package_service:service_manager find;
+allow installd system_data_file:lnk_file relabelto;
+allow installd system_data_file:file { getattr open read };
+allow installd system_file:file execute_no_trans;
+allow installd packages_list_file:file { getattr open read };
+allow installd kernel:security check_context;
+allow installd selinuxfs:file { open read write };

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2020 The Android Open Source Project
+
+         Licensed under the Apache License, Version 2.0 (the "License");
+         you may not use this file except in compliance with the License.
+         You may obtain a copy of the License at
+
+                    http://www.apache.org/licenses/LICENSE-2.0
+
+         Unless required by applicable law or agreed to in writing, software
+         distributed under the License is distributed on an "AS IS" BASIS,
+         WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         See the License for the specific language governing permissions and
+         limitations under the License.
+-->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="service">
+        <xs:attribute name="name"    type="xs:string" use="required"/>
+        <xs:attribute name="command" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="services">
+        <xs:sequence>
+            <xs:element name="service" type="service" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="systemLogs">
+        <xs:sequence>
+            <xs:element name="service" type="service" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="dumpstateHalConfiguration">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="services"   type="services" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="systemLogs" type="systemLogs" minOccurs="1" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute type="xs:float" name="version" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

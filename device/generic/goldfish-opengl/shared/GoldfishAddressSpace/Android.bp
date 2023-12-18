@@ -1,0 +1,27 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_generic_goldfish-opengl_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["device_generic_goldfish-opengl_license"],
+}
+
+cc_library_static {
+    name: "libGoldfishAddressSpace",
+    vendor: true,
+    srcs: [
+        "goldfish_address_space.cpp",
+    ],
+    shared_libs: [
+        "liblog",
+        "libdrm",
+    ],
+    export_include_dirs: [
+        "include",
+    ],
+    cflags: [
+        "-DLOG_TAG=\"goldfish-address-space\"",
+        "-DVIRTIO_GPU",
+    ],
+}

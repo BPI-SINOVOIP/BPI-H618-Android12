@@ -1,0 +1,48 @@
+allow hal_graphics_composer_default display_vendor_data_file:dir search;
+allow hal_graphics_composer_default fwk_sensor_hwservice:hwservice_manager find;
+binder_call(hal_graphics_composer, sensor_service_server)
+allow hal_graphics_composer_default mnt_vendor_file:dir search;
+allow hal_graphics_composer_default persist_file:dir search;
+allow hal_graphics_composer_default ion_device:chr_file rw_file_perms;
+r_dir_file(hal_graphics_composer_default, persist_display_file);
+
+allow hal_graphics_composer_default self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+
+allow hal_graphics_composer_default sysfs_leds:dir search;
+allow hal_graphics_composer_default sysfs_leds:file rw_file_perms;
+
+allow hal_graphics_composer_default sysfs_display:file rw_file_perms;
+
+r_dir_file(hal_graphics_composer_default, sysfs_msm_subsys)
+
+r_dir_file(hal_graphics_composer_default, sysfs_graphics)
+
+get_prop(hal_graphics_composer_default, vendor_display_prop)
+vndbinder_use(hal_graphics_composer_default)
+
+add_service(hal_graphics_composer_default, qdisplay_service)
+add_hwservice(hal_graphics_composer_default, hal_display_config_hwservice);
+
+dontaudit hal_graphics_composer_default sysfs_graphics_unused:file r_file_perms;
+
+userdebug_or_eng(`
+  allow hal_graphics_composer_default diag_device:chr_file rw_file_perms;
+')
+
+allow hal_graphics_composer_default oemfs:dir search;
+
+allow hal_graphics_composer_default sysfs_soc:dir search;
+allow hal_graphics_composer_default sysfs_soc:file r_file_perms;
+
+hal_client_domain(hal_graphics_composer_default, hal_graphics_allocator);
+
+# Allow r/w to data partition for writeback dumps
+allow hal_graphics_composer_default display_vendor_data_file:dir create_dir_perms;
+allow hal_graphics_composer_default display_vendor_data_file:file create_file_perms;
+
+#allow composer access hal_light
+hal_client_domain(hal_graphics_composer_default, hal_light);
+
+allow hal_graphics_composer_default pps_socket:sock_file write;
+
+add_service(hal_graphics_composer_default, hal_pixel_display_service)

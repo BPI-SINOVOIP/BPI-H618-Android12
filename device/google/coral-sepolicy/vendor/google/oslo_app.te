@@ -1,0 +1,20 @@
+type oslo_app, domain;
+
+app_domain(oslo_app)
+
+allow oslo_app fwk_stats_hwservice:hwservice_manager find;
+allow oslo_app fwk_stats_service:service_manager find;
+binder_call(oslo_app, statsd)
+binder_use(oslo_app)
+
+allow oslo_app app_api_service:service_manager find;
+allow oslo_app audioserver_service:service_manager find;
+allow oslo_app mediaserver_service:service_manager find;
+allow oslo_app radio_service:service_manager find;
+
+r_dir_file(oslo_app, persist_oslo_file)
+allow oslo_app mnt_vendor_file:dir search;
+allow oslo_app persist_file:dir search;
+
+get_prop(oslo_app, vendor_aware_available_prop)
+get_prop(oslo_app, pixel_oslo_debug_prop)

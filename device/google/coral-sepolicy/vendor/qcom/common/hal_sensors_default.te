@@ -1,0 +1,51 @@
+# Read and write factory calibration and sensor configuration data
+allow hal_sensors_default mnt_vendor_file:dir search;
+r_dir_file(hal_sensors_default, sensors_persist_file)
+allow hal_sensors_default sensors_vendor_data_file:dir create_dir_perms;
+allow hal_sensors_default sensors_vendor_data_file:file create_file_perms;
+
+# Interact with the sensors low power island (SLPI) CPU
+allow hal_sensors_default self:qipcrtr_socket create_socket_perms_no_ioctl;
+allowxperm hal_sensors_default self:socket ioctl msm_sock_ipc_ioctls;
+
+# sysfs needed for HW version info
+r_dir_file(hal_sensors_default, sysfs_msm_subsys);
+
+allow hal_sensors_default qdsp_device:chr_file r_file_perms;
+
+vndbinder_use(hal_sensors_default);
+allow hal_sensors_default rls_service:service_manager find;
+binder_call(hal_sensors_default, rlsservice)
+
+# Needed by elmyra_raw.cpp
+allow hal_sensors_default chre:unix_stream_socket connectto;
+allow hal_sensors_default chre_socket:sock_file write;
+
+# Needed by MagCurrentCompService.cpp
+r_dir_file(hal_sensors_default, sysfs_batteryinfo)
+allow hal_sensors_default sysfs_wlc:dir r_dir_perms;
+
+r_dir_file(hal_sensors_default, adsprpcd_file)
+
+# For QCOM diag port access
+userdebug_or_eng(`
+  allow hal_sensors_default diag_device:chr_file rw_file_perms;
+')
+
+allow hal_sensors_default persist_file:dir search;
+allow hal_sensors_default persist_file:lnk_file read;
+
+allow hal_sensors_default sysfs_ssr:file r_file_perms;
+
+allow hal_sensors_default hal_graphics_mapper_hwservice:hwservice_manager find;
+
+# For Suez metrics collection
+allow hal_sensors_default fwk_stats_hwservice:hwservice_manager find;
+allow hal_sensors_default system_server:binder call;
+allow hal_sensors_default fwk_stats_service:service_manager find;
+binder_use(hal_sensors_default)
+
+dontaudit hal_sensors_default kernel:system module_request;
+dontaudit hal_sensors_default sysfs_esoc:dir r_dir_perms;
+dontaudit hal_sensors_default sysfs_faceauth:dir search;
+dontaudit hal_sensors_default sysfs_faceauth:file r_file_perms;

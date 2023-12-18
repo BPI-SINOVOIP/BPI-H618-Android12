@@ -1,0 +1,3 @@
+# b/136426663
+dontaudit time_daemon sysfs_esoc:dir search;
+dontaudit time_daemon sysfs_msm_subsys:dir search;

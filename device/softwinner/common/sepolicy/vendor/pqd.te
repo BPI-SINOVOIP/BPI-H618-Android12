@@ -1,0 +1,26 @@
+type pqd, domain;
+type pqd_exec, exec_type, vendor_file_type, file_type;
+
+# Started by init
+init_daemon_domain(pqd)
+
+# allow access to /dev/dri/
+
+# allow graphics driver initialization
+allow pqd self:capability sys_module;
+allow pqd graphics_device:chr_file { open read write  };
+allow pqd port:tcp_socket name_bind;
+allow pqd self:tcp_socket { bind create  };
+allow pqd sysfs_pqd_r:file { open read  };
+allow pqd node:tcp_socket node_bind;
+allow pqd self:tcp_socket listen;
+allow pqd self:tcp_socket accept;
+allow pqd graphics_device:chr_file ioctl;
+allow pqd self:tcp_socket read;
+allow pqd self:tcp_socket write;
+allow pqd fwmarkd_socket:sock_file write;
+allow pqd fwmarkd_socket:sock_file read;
+allow pqd netd:unix_stream_socket connectto;
+allow netd pqd:fd use;
+allow netd pqd:tcp_socket { getopt read setopt write  };
+

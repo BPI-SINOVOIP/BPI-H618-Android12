@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "6985975"
+    target: "kernel_sunfish_debug_hang"
+    source_file: "rsa_generic.ko"
+  }
+  dest_file: "debug_hang/rsa_generic.ko"
+  version: "Linux version 4.14.199-gb85b743a92e8-ab6985975 (android-build@abfarm-01176) (Android (6875598, based on r399163b) clang version 11.0.5 (https://android.googlesource.com/toolchain/llvm-project 87f1315dfbea7c137aa2e6d362dbb457e388158d)) #1 SMP PREEMPT Fri Nov 20 09:18:31 UTC 2020"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/sunfish-kernel"
+}

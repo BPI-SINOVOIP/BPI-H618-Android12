@@ -1,0 +1,8 @@
+on early-init
+    setprop ro.setupwizard.mode ${ro.boot.setupwizard_mode}
+
+service tombstone_transmit /product/bin/tombstone_transmit
+    # Start tombstone_transmit after /data is mounted.
+    class late_start
+    group system
+    user root

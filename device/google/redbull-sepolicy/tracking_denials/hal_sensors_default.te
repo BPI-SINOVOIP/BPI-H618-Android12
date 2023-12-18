@@ -1,0 +1,3 @@
+# b/181834278
+dontaudit hal_sensors_default servicemanager:binder call;
+dontaudit hal_sensors_default boot_status_prop:file read;

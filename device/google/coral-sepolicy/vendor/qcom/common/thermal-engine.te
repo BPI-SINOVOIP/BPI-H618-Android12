@@ -1,0 +1,24 @@
+# Thermal-engine daemon
+type thermal-engine, domain;
+type thermal-engine_exec, exec_type, vendor_file_type, file_type;
+
+# Started by init
+init_daemon_domain(thermal-engine)
+
+allow thermal-engine sysfs_thermal:dir r_dir_perms;
+allow thermal-engine sysfs_thermal:file rw_file_perms;
+allow thermal-engine sysfs_msm_subsys:dir r_dir_perms;
+allow thermal-engine sysfs_msm_subsys:file r_file_perms;
+
+allow thermal-engine self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+
+# for modem throttling
+allow thermal-engine self:qipcrtr_socket create_socket_perms_no_ioctl;
+
+allow thermal-engine self:socket create_socket_perms;
+allowxperm thermal-engine self:socket ioctl msm_sock_ipc_ioctls;
+
+# reboot/shutdown for thermal limits exceeded
+set_prop(thermal-engine, powerctl_prop)
+
+dontaudit thermal-engine kernel:system module_request;

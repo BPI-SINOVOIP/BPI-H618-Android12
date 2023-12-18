@@ -1,0 +1,10 @@
+type face_debug, domain;
+
+userdebug_or_eng(`
+  app_domain(face_debug)
+  hal_client_domain(face_debug, hal_face)
+
+  allow face_debug hal_face_hwservice:hwservice_manager find;
+  allow face_debug activity_service:service_manager find;
+  binder_call(face_debug, hal_face_default)
+')

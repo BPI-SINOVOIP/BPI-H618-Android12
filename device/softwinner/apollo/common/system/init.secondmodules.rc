@@ -1,0 +1,7 @@
+on property:sys.boot_completed=1
+    #usb driver
+    insmod /vendor/lib/modules/sunxi-hci.ko
+    insmod /vendor/lib/modules/ehci-sunxi.ko
+    insmod /vendor/lib/modules/ohci-hcd.ko
+    insmod /vendor/lib/modules/ohci-sunxi.ko
+    insmod /vendor/lib/modules/sunxi_usbc.ko

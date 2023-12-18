@@ -1,0 +1,34 @@
+# Domain for Ramdump
+user=system seinfo=platform name=com.google.SSRestartDetector domain=ssr_detector_app type=system_app_data_file levelFrom=user
+user=_app seinfo=platform name=com.android.ramdump domain=ramdump_app type=app_data_file levelFrom=all
+
+# Domain for grilservice
+user=_app isPrivApp=true name=com.google.android.grilservice domain=grilservice_app levelFrom=all
+
+# Domain for Modem Diagnostic System
+user=_app seinfo=mds name=com.google.mds domain=modem_diagnostic_app type=app_data_file levelFrom=user
+
+# Domain for GoogleCBRS app
+user=_app seinfo=platform name=com.google.googlecbrs domain=cbrs_setup_app type=app_data_file levelFrom=user
+
+# Use a custom domain for GoogleCamera, to allow for Hexagon DSP access
+user=_app seinfo=google name=com.google.android.GoogleCamera domain=google_camera_app type=app_data_file levelFrom=all
+
+# Also allow GoogleCameraNext, the dogfood beta version, the same access as GoogleCamera
+user=_app seinfo=googlepulse name=com.google.android.apps.googlecamera.fishfood domain=google_camera_app type=app_data_file levelFrom=all
+
+# Domain for Display
+user=_app seinfo=platform name=com.android.hbmsvmanager domain=hbmsvmanager_app type=app_data_file levelFrom=all
+
+# Domain for UvExposureReporter service
+user=_app isPrivApp=true name=com.google.android.uvexposurereporter domain=uv_exposure_reporter type=app_data_file levelFrom=all
+
+# Domain for DeviceDropMonitor service
+user=_app seinfo=platform name=com.google.android.devicedropmonitor domain=device_drop_monitor type=app_data_file levelFrom=all
+
+# Domain for IpHealthMonitor service
+user=_app seinfo=platform name=com.google.android.iphealthmonitor domain=ip_health_monitor type=app_data_file levelFrom=all
+
+# Domain for EuiccSupportPixel
+user=_app isPrivApp=true seinfo=EuiccSupportPixel name=com.google.euiccpixel domain=euiccpixel_app type=app_data_file levelFrom=all
+

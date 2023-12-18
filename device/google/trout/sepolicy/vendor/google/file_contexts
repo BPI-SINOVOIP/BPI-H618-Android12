@@ -1,0 +1,18 @@
+# Dumpstate HAL
+/vendor/bin/hw/android\.hardware\.dumpstate@1\.1-service\.trout  u:object_r:hal_dumpstate_impl_exec:s0
+
+# Virtualized Vehicle HAL (Client)
+/(vendor|system/vendor)/bin/hw/android\.hardware\.automotive\.vehicle@2\.0-virtualization-service  u:object_r:hal_vehicle_default_exec:s0
+
+# Virtualized Vehicle HAL (Server)
+/(vendor|system/vendor)/bin/hw/android\.hardware\.automotive\.vehicle@2\.0-virtualization-grpc-server  u:object_r:hal_vehicle_default_exec:s0
+
+# Audio Control HAL
+/vendor/bin/hw/android\.hardware\.audiocontrol@2\.0-service\.trout  u:object_r:hal_audiocontrol_impl_exec:s0
+
+# Sensor HAL
+/sys/bus/iio/devices/iio:device[0-9]+  u:object_r:sysfs_iio_devices:s0
+/sys/devices/platform/system-controller/scmi_dev\.[0-9]+/iio:device[0-9]+(/.*)?  u:object_r:sysfs_iio_devices:s0
+/sys/devices/platform/system-controller/scmi_dev\.[0-9]+/iio:device[0-9]+/[^/]+_sampling_frequency$  u:object_r:sysfs_iio_file_ctrl:s0
+/sys/devices/platform/system-controller/scmi_dev\.[0-9]+/iio:device[0-9]+/scan_elements/[^/]+_en$  u:object_r:sysfs_iio_file_ctrl:s0
+/sys/devices/platform/system-controller/scmi_dev\.[0-9]+/iio:device[0-9]+/buffer/enable$  u:object_r:sysfs_iio_file_ctrl:s0

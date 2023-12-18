@@ -1,0 +1,30 @@
+allow init block_device:blk_file write;
+allow init userdata_block_device:blk_file write;
+allow init cache_block_device:blk_file write;
+allow init configfs:file write;
+allow init configfs:lnk_file create;
+allow init kernel:system module_request;
+allow init self:capability sys_module;
+dontaudit init self:capability sys_module;
+allow init tmpfs:lnk_file create;
+allow init ram_device:blk_file write;
+allow init { vendor_file rootfs }:system module_load;
+allow init kmsg_device:chr_file write;
+allow init proc_drop_caches:file write;
+allow init sysfs:file { create setattr };
+allow init sysfs_kernel_notes:file rw_file_perms;
+allow init proc:file { open write };
+allow init sysfs_zram:file create;
+allow init sysfs_thermal:file { read setattr getattr };
+allow init debugfs:dir mounton;
+allow init oemfs:dir mounton;
+allow init {
+    boot_block_device
+    super_block_device
+    metadata_block_device
+    ab_block_device
+}:lnk_file relabelto;
+allow init logpersist:file write;
+allow init kmsgd:file write;
+allow init vfat:dir mounton;
+allow init sysfs_axp:file setattr;

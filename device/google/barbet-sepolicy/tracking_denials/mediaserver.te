@@ -1,0 +1,4 @@
+# b/170356968
+dontaudit mediaserver sysfs_msm_subsys:file read ;
+dontaudit mediaserver sysfs_msm_subsys:file open ;
+dontaudit mediaserver sysfs_msm_subsys:file getattr ;

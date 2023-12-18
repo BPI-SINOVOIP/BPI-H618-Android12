@@ -1,0 +1,9 @@
+get_prop(mediacodec, vendor_display_prop)
+allow mediacodec hal_capabilityconfigstore_qti_hwservice:hwservice_manager find;
+# Add sepolicy for ECOService
+add_service(mediacodec, eco_service)
+get_prop(mediacodec, vendor_ecoservice_prop)
+allow mediacodec hal_camera_default:binder call;
+r_dir_file(mediacodec, sysfs_soc)
+
+dontaudit mediacodec sysfs_msm_subsys:dir search;

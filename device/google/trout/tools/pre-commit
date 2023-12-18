@@ -1,0 +1,45 @@
+#!/bin/bash
+# Owner: gchips-productivity-team@google.com
+# VERSION: 2019-12-16
+# Pre commit hook to auto format code using git clang-format
+
+# change the default style to Google
+git config --global clangformat.style Google
+
+# default PRE_COMMIT_CLANG_FORMAT to true
+PRE_COMMIT_CLANG_FORMAT="${PRE_COMMIT_CLANG_FORMAT:-true}"
+
+check_clang_format() {
+  if ! [ -x "$(command -v clang-format)" ]; then
+    echo "Warning: clang-format not found.  Unable to format source code before commit. Please check go/clang-format-setup for setup instructions."
+  fi
+}
+
+if [ "$PRE_COMMIT_CLANG_FORMAT" = true ] ; then
+  check_clang_format
+  FILES=$(git clang-format)
+  counter=0
+  for file in $FILES ; do
+    if [[ -f "$file" ]]; then
+      git add ${file}
+      echo -e "[Info] Changes in ${file} have been formatted"
+      ((counter++))
+    fi
+  done
+
+  if ((  counter > 0 )); then
+    echo "[Info] $counter file(s) have been formatted"
+    # Track Usage
+    MY_PATH=${PWD//\//"%2F"}
+    curl "https://us-central1-si-sw-eng-prod-team.cloudfunctions.net/trackAutoFormatUsage?user=${USER}&pwd=${MY_PATH}&timestamp=$(date +%s)&type=FORMAT&filesFormatted=${counter}" > /dev/null 2>&1
+  fi
+
+fi
+
+# Run google's default pre-commit
+if [ -x /usr/lib/git-core/google_hook ]; then
+  /usr/lib/git-core/google_hook pre-commit "$@"
+else
+  echo 'warning: Cannot run /usr/lib/git-core/google_hook.' \
+    'If this is unexpected, please file a go/git-bug' >&2
+fi

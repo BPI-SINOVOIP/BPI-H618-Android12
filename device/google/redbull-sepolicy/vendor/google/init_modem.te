@@ -1,0 +1,9 @@
+type init_modem, domain;
+type init_modem_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(init_modem)
+
+set_prop(init_modem, vendor_modem_prop)
+
+allow init_modem sysfs_imei:file r_file_perms;
+
+allow init_modem vendor_toolbox_exec:file execute_no_trans;

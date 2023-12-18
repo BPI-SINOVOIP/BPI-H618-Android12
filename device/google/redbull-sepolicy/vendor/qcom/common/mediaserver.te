@@ -1,0 +1,4 @@
+get_prop(mediaserver, vendor_display_prop)
+r_dir_file(mediaserver, sysfs_soc)
+
+dontaudit mediaserver sysfs_msm_subsys:dir search;

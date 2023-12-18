@@ -1,0 +1,8 @@
+type qti_init_shell, domain;
+type qti_init_shell_exec, exec_type, vendor_file_type,file_type;
+init_daemon_domain(qti_init_shell);
+set_prop(qti_init_shell, vendor_adsp_version_prop);
+set_prop(qti_init_shell, vendor_sensor_prop);
+allow qti_init_shell vendor_toolbox_exec:file execute_no_trans;
+allow qti_init_shell sysfs_soc:dir search;
+allow qti_init_shell sysfs_soc:file r_file_perms;

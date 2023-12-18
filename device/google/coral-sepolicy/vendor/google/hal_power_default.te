@@ -1,0 +1,9 @@
+allow hal_power_default sysfs_msm_subsys:dir search;
+allow hal_power_default sysfs_msm_subsys:file rw_file_perms;
+allow hal_power_default proc_sched_energy_aware:file rw_file_perms;
+allow hal_power_default sysfs_scsi_devices_0000:file rw_file_perms;
+allow hal_power_default sysfs_fs_f2fs:dir r_dir_perms;
+allow hal_power_default sysfs_fs_f2fs:file rw_file_perms;
+
+# Rule for powerhal to write/dump cgroup
+allow hal_power_default cgroup:file rw_file_perms;

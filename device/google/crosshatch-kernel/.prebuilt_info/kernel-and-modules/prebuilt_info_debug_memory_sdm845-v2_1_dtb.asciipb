@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "7613625"
+    target: "kernel_bluecross_debug_memory"
+    source_file: "sdm845-v2.1.dtb"
+  }
+  dest_file: "debug_memory/sdm845-v2.1.dtb"
+  version: "Linux version 4.9.270-g862f51bac900-ab7613625 (android-build@abfarm-east4-101) (Android (7284624, based on r416183b) clang version 12.0.5 (https://android.googlesource.com/toolchain/llvm-project c935d99d7cf2016289302412d708641d52d2f7ee)) #0 SMP PREEMPT Thu Aug 5 07:04:42 UTC 2021"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/crosshatch-kernel"
+}

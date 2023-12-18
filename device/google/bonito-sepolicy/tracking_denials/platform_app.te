@@ -1,0 +1,3 @@
+# b/149063509
+dontaudit platform_app sysfs_msm_subsys:dir search;
+dontaudit platform_app vendor_default_prop:file read;

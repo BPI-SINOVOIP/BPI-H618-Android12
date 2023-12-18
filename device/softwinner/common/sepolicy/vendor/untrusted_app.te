@@ -1,0 +1,8 @@
+allow untrusted_app sysfs_zram:dir search;
+allow untrusted_app sysfs_zram:file { read getattr open };
+allow untrusted_app rootfs:dir { read open };
+allow untrusted_app unlabeled:dir { open read search getattr setattr };
+allow untrusted_app unlabeled:filesystem getattr;
+allow untrusted_app device:dir { open read };
+allow untrusted_app storage_stub_file:dir getattr;
+allow untrusted_app block_device:dir { read open search };

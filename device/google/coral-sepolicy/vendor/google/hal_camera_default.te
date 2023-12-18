@@ -1,0 +1,101 @@
+vndbinder_use(hal_camera_default);
+allow hal_camera_default hal_graphics_mapper_hwservice:hwservice_manager find;
+allow hal_camera_default sysfs_soc:dir search;
+allow hal_camera_default sysfs_soc:file r_file_perms;
+allow hal_camera_default airbrush_device:chr_file rw_file_perms;
+allow hal_camera_default ipu_device:chr_file rw_file_perms;
+allow hal_camera_default airbrush_sm_device:chr_file getattr;
+allow hal_camera_default gpu_device:chr_file rw_file_perms;
+
+# For camera hal to use laser ioctl and sysfs
+allow hal_camera_default laser_device:chr_file rw_file_perms;
+allow hal_camera_default sysfs_camera:dir search;
+allow hal_camera_default sysfs_camera:file rw_file_perms;
+
+# For accessing device config (device build)
+allow hal_camera_default sysfs_devcfg:file r_file_perms;
+
+#For camera hal to talk with ECOService.
+allow hal_camera_default eco_service:service_manager { find };
+binder_call(hal_camera_default, mediacodec)
+
+#For camera hal to talk with Airbrush service
+allow hal_camera_default hal_airbrush_hwservice:hwservice_manager find;
+binder_call(hal_camera_default, airbrush)
+binder_call(airbrush, hal_camera_default)
+
+# For camera hal to talk with system server (for sensor access)
+binder_call(hal_camera_default, sensor_service_server)
+binder_call(sensor_service_server, hal_camera_default)
+
+#For camera hal to talk with NNAPI service
+typeattribute hal_camera_default hal_neuralnetworks_client;
+
+#For camera hal to talk with gralloc
+hal_client_domain(hal_camera_default, hal_graphics_allocator)
+
+# For camera hal to use factory calibration data
+allow hal_camera_default persist_file:dir search;
+allow hal_camera_default persist_file:lnk_file read;
+allow hal_camera_default persist_camera_file:dir search;
+allow hal_camera_default persist_camera_file:file r_file_perms;
+allow hal_camera_default mnt_vendor_file:dir search;
+
+# For camera hal to talk with rlsservice
+allow hal_camera_default rls_service:service_manager find;
+binder_call(hal_camera_default, rlsservice)
+
+# For camera hal to talk with statsd
+allow hal_camera_default fwk_stats_hwservice:hwservice_manager find;
+binder_call(hal_camera_default, stats_service_server)
+allow hal_camera_default fwk_stats_service:service_manager find;
+binder_use(hal_camera_default)
+
+# For camera hal to use system property
+set_prop(hal_camera_default, camera_prop)
+set_prop(hal_camera_default, vendor_faceauth_prop)
+get_prop(hal_camera_default, serialno_prop)
+get_prop(hal_camera_default, camera_ro_prop)
+get_prop(hal_camera_default, vendor_display_prop)
+
+hal_client_domain(hal_camera_default, hal_graphics_composer)
+
+# For interfacing with PowerHAL
+hal_client_domain(hal_camera_default, hal_power)
+
+# For camera debugging
+userdebug_or_eng(`
+  allow hal_camera_default camera_vendor_data_file:dir create_dir_perms;
+  allow hal_camera_default camera_vendor_data_file:file create_file_perms;
+')
+
+# For camera hal to talk with GPU and dontaudit unnecessary files in /sys
+hal_client_domain(hal_camera_default, hal_configstore)
+allow hal_camera_default self:qipcrtr_socket create_socket_perms_no_ioctl;
+dontaudit hal_camera_default sysfs_msm_subsys:dir search;
+dontaudit hal_camera_default sysfs_ssr:file r_file_perms;
+dontaudit hal_camera_default sysfs_esoc:dir search;
+dontaudit hal_camera_default sysfs_faceauth:dir search;
+
+# Access to Hexagon DSP
+allow hal_camera_default qdsp_device:chr_file r_file_perms;
+
+# Allow Camera HAL full access to its shared files with DarwiNN HAL.
+allow hal_camera_default hal_neuralnetworks_darwinn_hal_camera_data_file:file create_file_perms;
+allow hal_camera_default hal_neuralnetworks_darwinn_hal_camera_data_file:dir rw_dir_perms;
+
+# Access to Hexagon DSP
+allow hal_camera_default qdsp_device:chr_file r_file_perms;
+
+# Allow Camera to access Darwinn service.
+allow hal_camera_default hal_darwinn_hwservice:hwservice_manager find;
+
+# Allow reading and writing camera calibrations
+allow hal_camera_default camera_calibration_vendor_data_file:dir rw_dir_perms;
+allow hal_camera_default camera_calibration_vendor_data_file:file create_file_perms;
+
+# Allow the Camera HAL to communicate with the thermal HAL.
+hal_client_domain(hal_camera_default, hal_thermal)
+
+# For camera hal to control priority of current process
+allow hal_camera_default self:capability sys_nice;

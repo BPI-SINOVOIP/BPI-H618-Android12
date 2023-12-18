@@ -1,0 +1,18 @@
+allow vold kernel:system module_request;
+allow vold self:capability { setgid setuid };
+allow vold fuse_device:chr_file { getattr read write open };
+allow vold swap_block_device:blk_file getattr;
+allow vold storage_stub_file:dir { read open search };
+allow vold block_device:blk_file getattr;
+allow vold unlabeled:filesystem { mount unmount };
+allow vold cache_block_device:blk_file getattr;
+allow vold system_block_device:blk_file getattr;
+allow vold mnt_media_rw_stub_file:dir {getattr read write open ioctl};
+allowxperm vold dm_device:blk_file ioctl BLKDISCARD;
+allow vold vold_device:blk_file ioctl;
+allowxperm vold vold_device:blk_file ioctl BLKBSZSET;
+
+# Allow to load incremental file system driver
+allow vold self:capability sys_module;
+allow vold vendor_incremental_module:file r_file_perms;
+allow vold vendor_incremental_module:system module_load;

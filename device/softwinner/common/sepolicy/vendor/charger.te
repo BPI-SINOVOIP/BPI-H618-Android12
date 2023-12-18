@@ -1,0 +1,7 @@
+allow charger self:capability2 wake_alarm;
+allow charger sysfs_rtc:file rw_file_perms;
+allow charger kernel:system syslog_read;
+allow charger device:dir { open read };
+r_dir_file(charger, sysfs_rtc);
+#============= hal_health_default ==============
+allow hal_health_default sysfs:file { open getattr read };

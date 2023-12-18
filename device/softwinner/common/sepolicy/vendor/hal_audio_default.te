@@ -1,0 +1,14 @@
+allow hal_audio_default node:tcp_socket node_bind;
+allow hal_audio_default port:tcp_socket name_bind;
+# hal_audio_default self:tcp_socket { accept bind create listen setopt };
+allow hal_audio_default sysfs:file { open read };
+allow hal_audio_default init:unix_stream_socket connectto;
+allow hal_audio_default property_socket:sock_file write;
+allow hal_audio_default self:netlink_socket { bind create write };
+allow hal_audio_default sysfs_sound:dir search;
+allow hal_audio_default sysfs_sound:file { open read };
+set_prop(vendor_init, vendor_audio_prop)
+
+# for vohci service
+allow hal_audio_default sysfs:dir { open read };
+allow hal_audio_default hal_bluetooth_default:unix_stream_socket connectto;

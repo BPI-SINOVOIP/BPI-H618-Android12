@@ -1,0 +1,11 @@
+third_party {
+  # would be NOTICE save for:
+  #   android-emu/android/base/containers/Lookup.h
+  #   system/codecs/c2/store/include/goldfish_codec2/store/GoldfishComponentStore.h
+  #   system/codecs/c2/store/GoldfishComponentStore.cpp
+  # and RESTRICTED save for:
+  #  system/include/GLES/
+  #  system/include/GLES2/
+  #  system/include/GLES3/
+  license_type: BY_EXCEPTION_ONLY
+}

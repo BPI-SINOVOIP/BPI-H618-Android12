@@ -1,0 +1,9 @@
+# automotive watchdog support
+allow system_server hal_vehicle_server:process sigkill;
+carwatchdog_client_domain(hal_vehicle_default)
+binder_use(hal_vehicle_default)
+
+# communication between vehicle client/server via VSOCK
+allow hal_vehicle_default self:vsock_socket { create_socket_perms_no_ioctl listen accept };
+# TODO(b/130668487): Label the vsock sockets.
+allow hal_vehicle_default unlabeled:vsock_socket { read write shutdown };

@@ -1,0 +1,6 @@
+# b/149063577
+dontaudit surfaceflinger sysfs_msm_subsys:dir search;
+dontaudit surfaceflinger vendor_firmware_file:dir search;
+# b/178757634
+dontaudit surfaceflinger hal_graphics_composer_default:dir search ;
+dontaudit surfaceflinger hal_graphics_composer_default:dir search ;

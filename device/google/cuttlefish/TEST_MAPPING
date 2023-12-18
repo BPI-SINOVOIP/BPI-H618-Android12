@@ -1,0 +1,24 @@
+{
+  "postsubmit" : [
+    {
+      "name": "tombstone_transmit_tests"
+    },
+    {
+      "name": "RebootRecoveryTest"
+    }
+  ],
+  "presubmit": [
+    {
+      "name": "vts_treble_vintf_framework_test"
+    },
+    {
+      "name": "vts_treble_vintf_vendor_test"
+    },
+    {
+      "name": "hal_implementation_test"
+    },
+    {
+      "name": "vts_ibase_test"
+    }
+  ]
+}

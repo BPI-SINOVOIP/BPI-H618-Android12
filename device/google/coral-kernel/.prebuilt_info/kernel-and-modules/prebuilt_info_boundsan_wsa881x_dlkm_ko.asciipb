@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "6580010"
+    target: "kernel_boundsan"
+    source_file: "wsa881x_dlkm.ko"
+  }
+  dest_file: "boundsan/wsa881x_dlkm.ko"
+  version: "Linux version 4.14.180-g271a34011b63-ab6580010 (android-build@abfarm-east4-032) (Android (6443078 based on r383902) clang version 11.0.1 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79)) #1 SMP PREEMPT Thu Jun 11 10:20:24 UTC 2020"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/coral-kernel"
+}

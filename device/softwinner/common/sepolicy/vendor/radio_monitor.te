@@ -1,0 +1,13 @@
+type radio_monitor, domain;
+type radio_monitor_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(radio_monitor)
+
+allow radio_monitor self:capability net_admin;
+allow radio_monitor self:netlink_kobject_uevent_socket { bind create read setopt };
+allow radio_monitor sysfs:dir { open read };
+allow radio_monitor sysfs:file { open read write };
+allow radio_monitor usb_device:chr_file { ioctl open read write };
+allow radio_monitor usb_device:dir { open read };
+allow radio_monitor usb_device:dir search;
+allow radio_monitor vendor_file:file execute_no_trans;
+allow radio_monitor vendor_shell_exec:file execute_no_trans;

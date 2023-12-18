@@ -1,0 +1,14 @@
+<compatibility-matrix version="1.0" type="device">
+   <hal format="aidl" optional="true">
+       <name>android.automotive.computepipe.registry</name>
+       <interface>
+           <name>IPipeQuery</name>
+           <instance>router</instance>
+       </interface>
+       <interface>
+           <name>IPipeRegistration</name>
+           <instance>router</instance>
+       </interface>
+   </hal>
+</compatibility-matrix>
+

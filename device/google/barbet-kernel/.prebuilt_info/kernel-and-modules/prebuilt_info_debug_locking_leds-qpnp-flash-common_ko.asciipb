@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "7709095"
+    target: "kernel_barbet_debug_locking"
+    source_file: "leds-qpnp-flash-common.ko"
+  }
+  dest_file: "debug_locking/leds-qpnp-flash-common.ko"
+  version: "Linux version 4.19.191-g7a0aca88361d-ab7709095 (build-user@build-host) (Android (7284624, based on r416183b) clang version 12.0.5 (https://android.googlesource.com/toolchain/llvm-project c935d99d7cf2016289302412d708641d52d2f7ee), LLD 12.0.5 (/buildbot/src/android/llvm-toolchain/out/llvm-project/lld c935d99d7cf2016289302412d708641d52d2f7ee)) #1 SMP PREEMPT Tue Sep 7 03:21:11 UTC 2021"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/barbet-kernel"
+}

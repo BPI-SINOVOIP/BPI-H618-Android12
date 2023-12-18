@@ -1,0 +1,8 @@
+allow mediacodec cedar_device:chr_file { open ioctl read write map };
+allow mediacodec deinterlace_device:chr_file { ioctl open read write};
+allow mediacodec system_file:dir { open read };
+allow mediacodec tee_device:chr_file { open ioctl read write };
+allow mediacodec sunxi_soc_device:chr_file rw_file_perms;
+allow mediacodec cedar_device:chr_file map;
+allow mediacodec drm_heap_device:chr_file { open ioctl read write };
+allow mediacodec vendor_codec2_prop:file { read open getattr map };

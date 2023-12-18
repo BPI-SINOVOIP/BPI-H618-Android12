@@ -1,0 +1,4 @@
+# b/170356952
+dontaudit mediacodec sysfs_msm_subsys:file read ;
+dontaudit mediacodec sysfs_msm_subsys:file open ;
+dontaudit mediacodec sysfs_msm_subsys:file getattr ;

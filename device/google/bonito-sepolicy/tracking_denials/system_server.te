@@ -1,0 +1,4 @@
+# b/149064109
+dontaudit system_server sysfs_msm_subsys:file read;
+# b/149064109
+dontaudit system_server proc_irq:dir search;

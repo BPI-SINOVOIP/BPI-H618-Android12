@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- Copyright (C) 2020 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<dumpstateHalConfiguration version="1.0">
+    <services>
+        <service name="coqos-virtio-blk"        command="/bin/journalctl --no-pager -t coqos-virtio-blk"/>
+        <service name="coqos-virtio-net"        command="/bin/journalctl --no-pager -t coqos-virtio-net"/>
+        <service name="coqos-virtio-video"      command="/bin/journalctl --no-pager -t coqos-virtio-video"/>
+        <service name="coqos-virtio-console"    command="/bin/journalctl --no-pager -t coqos-virtio-console"/>
+        <service name="coqos-virtio-rng"        command="/bin/journalctl --no-pager -t coqos-virtio-rng"/>
+        <service name="coqos-virtio-vsock"      command="/bin/journalctl --no-pager -t coqos-virtio-vsock"/>
+        <service name="coqos-virtio-gpu-virgl"  command="/bin/journalctl --no-pager -t coqos-virtio-gpu-virgl"/>
+        <service name="coqos-virtio-scmi"       command="/bin/journalctl --no-pager -t coqos-virtio-scmi"/>
+        <service name="coqos-virtio-input"      command="/bin/journalctl --no-pager -t coqos-virtio-input"/>
+        <service name="coqos-virtio-snd"        command="/bin/journalctl --no-pager -t coqos-virtio-snd"/>
+        <service name="dumpstate_grpc_server"   command="/bin/journalctl --no-pager -t dumpstate_grpc_server"/>
+        <service name="systemd"                 command="/bin/journalctl --no-pager -t systemd"/>
+        <service name="systemctl"               command="/bin/systemctl status"/>
+        <service name="vehicle_hal_grpc_server" command="/bin/journalctl --no-pager -t vehicle_hal_grpc_server"/>
+    </services>
+    <systemLogs>
+        <service name="dmesg" command="/bin/dmesg -kuPT"/>
+    </systemLogs>
+</dumpstateHalConfiguration>

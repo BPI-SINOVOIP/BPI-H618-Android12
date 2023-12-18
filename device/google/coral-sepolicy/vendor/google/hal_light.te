@@ -1,0 +1,2 @@
+allow hal_light sysfs_lights:dir search;
+allow hal_light sysfs_lights:file rw_file_perms;

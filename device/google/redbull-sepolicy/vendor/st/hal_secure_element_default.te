@@ -1,0 +1,7 @@
+allow hal_secure_element_default secure_element_device:chr_file rw_file_perms;
+allow hal_secure_element_default nfc_device:chr_file rw_file_perms;
+dontaudit hal_secure_element_default debugfs_ipc:dir search;
+set_prop(hal_secure_element_default, vendor_secure_element_prop)
+set_prop(hal_secure_element_default, vendor_nfc_prop)
+set_prop(hal_secure_element_default, vendor_modem_prop)
+

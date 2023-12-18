@@ -1,0 +1,20 @@
+#============= update_engine ==============
+allow update_engine fuse:dir search;
+allow update_engine fuse:file { getattr open read write };
+allow update_engine loop_device:blk_file { open write };
+allow update_engine mnt_user_file:dir search;
+allow update_engine mnt_user_file:lnk_file read;
+allow update_engine system_app:binder call;
+allow update_engine platform_app:binder call;
+allow update_engine platform_app:fd use;
+allow update_engine platform_app:unix_stream_socket { read write };
+allow update_engine block_device:blk_file { getattr ioctl };
+allow update_engine metadata_block_device:blk_file { getattr };
+allow update_engine ab_block_device:blk_file rw_file_perms;
+allow update_engine ota_package_file:dir create_dir_perms;
+allow update_engine ota_package_file:file create_file_perms;
+allow update_engine sdcard_block_device:blk_file { open read write };
+allow update_engine root_block_device:blk_file { open read write };
+allow update_engine_common proc_drop_caches:file rw_file_perms;
+allowxperm update_engine_common boot_block_device:blk_file ioctl { NAND_BLKBURNBOOT0 NAND_BLKBURNUBOOT };
+domain_auto_trans(recovery, update_engine_exec, update_engine)

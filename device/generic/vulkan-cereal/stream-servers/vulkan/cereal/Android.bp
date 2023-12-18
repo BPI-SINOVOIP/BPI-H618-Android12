@@ -1,0 +1,29 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_generic_vulkan-cereal_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["device_generic_vulkan-cereal_license"],
+}
+
+cc_library_static {
+    name: "gfxstream_vulkan_cereal_host",
+    defaults: [ "gfxstream_defaults" ],
+    static_libs: [ "gfxstream_base" ],
+    srcs: [
+        "common/goldfish_vk_extension_structs.cpp",
+        "common/goldfish_vk_marshaling.cpp",
+        "common/goldfish_vk_reserved_marshaling.cpp",
+        "common/goldfish_vk_testing.cpp",
+        "common/goldfish_vk_deepcopy.cpp",
+        "common/goldfish_vk_handlemap.cpp",
+        "common/goldfish_vk_dispatch.cpp",
+        "common/goldfish_vk_transform.cpp",
+    ],
+    cflags: [
+        "-DVK_ANDROID_native_buffer",
+        "-DVK_GOOGLE_address_space",
+    ],
+    export_include_dirs: [ "." ],
+}

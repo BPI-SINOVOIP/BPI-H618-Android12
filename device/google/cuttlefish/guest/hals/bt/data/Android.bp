@@ -1,0 +1,9 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+prebuilt_etc_host {
+    name: "default_commands",
+    src: "default_commands",
+    sub_dir: "rootcanal/data",
+}

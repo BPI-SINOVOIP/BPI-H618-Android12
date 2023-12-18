@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "6581058"
+    target: "kernel_barbet"
+    source_file: "br_netfilter.ko"
+  }
+  dest_file: "br_netfilter.ko"
+  version: "Linux version 4.19.95-g67d61e212467-ab6581058 (android-build@abfarm626) (Android (6443078 based on r383902) clang version 11.0.1 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79)) #1 SMP PREEMPT Thu Jun 11 17:18:46 UTC 2020"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/barbet-kernel"
+}

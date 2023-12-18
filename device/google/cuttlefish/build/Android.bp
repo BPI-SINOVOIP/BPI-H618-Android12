@@ -1,0 +1,205 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+bootstrap_go_package {
+    name: "cuttlefish-soong-rules",
+    pkgPath: "android/soong/cuttlefish",
+    deps: [
+        "blueprint",
+        "soong",
+        "soong-android",
+    ],
+    srcs: [
+        "cvd-host-package.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+// Allow cvd-host-package.go to read custom action config variables
+// from ctx.Config().VendorConfig("cvd")
+soong_config_module_type {
+    name: "cvd_host_package_customization",
+    module_type: "cvd_host_package",
+    config_namespace: "cvd",
+    value_variables: [
+        "launch_configs",
+        "custom_action_config",
+        "custom_action_servers",
+    ],
+}
+
+cvd_host_tools = [
+    "android.hardware.automotive.vehicle@2.0-virtualization-grpc-server",
+    "adb",
+    "adb_connector",
+    "adbshell",
+    "allocd",
+    "allocd_client",
+    "assemble_cvd",
+    "bt_connector",
+    "common_crosvm",
+    "config_server",
+    "console_forwarder",
+    "crosvm",
+    "cvd_host_bugreport",
+    "cvd_status",
+    "extract-ikconfig",
+    "extract-vmlinux",
+    "fsck.f2fs",
+    "gnss_grpc_proxy",
+    "kernel_log_monitor",
+    "launch_cvd",
+    "libgrpc++",
+    "libgrpc++_unsecure",
+    "log_tee",
+    "logcat_receiver",
+    "lpmake",
+    "lpunpack",
+    "lz4",
+    "make_f2fs",
+    "metrics",
+    "mkbootfs",
+    "mkbootimg",
+    "mkenvimage",
+    "modem_simulator",
+    "ms-tpm-20-ref",
+    "newfs_msdos",
+    "powerwash_cvd",
+    "restart_cvd",
+    "root-canal",
+    // TODO(b/186487510): remove libchrome and libbacktrace when ASan-related dependency issue is resolved.
+    "libchrome",
+    "libbacktrace",
+    "run_cvd",
+    "secure_env",
+    "socket_vsock_proxy",
+    "stop_cvd",
+    "tapsetiff",
+    "tombstone_receiver",
+    "toybox",
+    "unpack_bootimg",
+    "vnc_server",
+    "webRTC",
+    "webrtc_operator",
+]
+
+cvd_bluetooth_config_files = [
+    "controller_properties.json",
+    "default_commands",
+]
+
+cvd_host_tests = [
+    "cuttlefish_net_tests",
+    "modem_simulator_test",
+]
+
+cvd_host_webrtc_assets = [
+    "webrtc_adb.js",
+    "webrtc_app.js",
+    "webrtc_controls.js",
+    "webrtc_cf.js",
+    "webrtc_index.html",
+    "webrtc_rootcanal.js",
+    "webrtc_server.crt",
+    "webrtc_server.key",
+    "webrtc_server.p12",
+    "webrtc_style.css",
+    "webrtc_controls.css",
+    "webrtc_trusted.pem",
+]
+
+cvd_host_model_simulator_files = [
+    "iccprofile_for_sim0.xml_host",
+    "iccprofile_for_sim0_for_CtsCarrierApiTestCases.xml_host",
+    "numeric_operator.xml_host",
+]
+
+cvd_host_seccomp_policy_x86_64 = [
+    "9p_device.policy_x86_64",
+    "balloon_device.policy_x86_64",
+    "block_device.policy_x86_64",
+    "cras_audio_device.policy_x86_64",
+    "fs_device.policy_x86_64",
+    "gpu_device.policy_x86_64",
+    "input_device.policy_x86_64",
+    "net_device.policy_x86_64",
+    "null_audio_device.policy_x86_64",
+    "pmem_device.policy_x86_64",
+    "rng_device.policy_x86_64",
+    "serial.policy_x86_64",
+    "tpm_device.policy_x86_64",
+    "vfio_device.policy_x86_64",
+    "vhost_net_device.policy_x86_64",
+    "vhost_vsock_device.policy_x86_64",
+    "video_device.policy_x86_64",
+    "vios_audio_device.policy_x86_64",
+    "wl_device.policy_x86_64",
+    "xhci.policy_x86_64",
+]
+
+cvd_host_seccomp_policy_arm64 = [
+    "9p_device.policy_aarch64",
+    "balloon_device.policy_aarch64",
+    "block_device.policy_aarch64",
+    "cras_audio_device.policy_aarch64",
+    "fs_device.policy_aarch64",
+    "gpu_device.policy_aarch64",
+    "input_device.policy_aarch64",
+    "net_device.policy_aarch64",
+    "null_audio_device.policy_aarch64",
+    "pmem_device.policy_aarch64",
+    "rng_device.policy_aarch64",
+    "serial.policy_aarch64",
+    "tpm_device.policy_aarch64",
+    "vhost_net_device.policy_aarch64",
+    "vhost_vsock_device.policy_aarch64",
+    "vios_audio_device.policy_aarch64",
+    "wl_device.policy_aarch64",
+    "xhci.policy_aarch64",
+]
+
+cvd_host_package_customization {
+    name: "cvd-host_package",
+    deps: cvd_host_tools +
+        cvd_host_tests,
+    multilib: {
+        common: {
+            deps: cvd_host_webrtc_assets +
+                cvd_host_model_simulator_files +
+                cvd_bluetooth_config_files,
+        },
+    },
+
+    arch: {
+        x86_64: {
+            multilib: {
+                common: {
+                    deps: cvd_host_seccomp_policy_x86_64,
+                },
+            },
+        },
+        arm64: {
+            multilib: {
+                common: {
+                    deps: cvd_host_seccomp_policy_arm64,
+                },
+            },
+        },
+    },
+    target: {
+        linux_bionic: {
+            multilib: {
+                common: {
+                    deps: ["tzdata_host"],
+                },
+            },
+        },
+        linux_bionic_x86_64: {
+            enabled: false,
+        },
+        darwin: {
+            enabled: false,
+        },
+    },
+}

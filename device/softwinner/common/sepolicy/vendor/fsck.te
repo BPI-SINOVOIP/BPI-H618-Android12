@@ -1,0 +1,4 @@
+allow fsck sdcard_block_device:blk_file { getattr ioctl open read write };
+allowxperm fsck sdcard_block_device:blk_file ioctl {
+    BLKGETSIZE64 BLKSSZGET
+};

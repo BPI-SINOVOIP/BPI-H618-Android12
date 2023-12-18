@@ -1,0 +1,10 @@
+allow fastbootd sysfs:dir open;
+allow fastbootd sysfs_batteryinfo:dir search;
+allow fastbootd root_block_device:blk_file { read write open };
+allow fastbootd kernel:process setsched;
+allow fastbootd storage_config_prop:file { getattr map open read };
+allow fastbootd ab_block_device:blk_file rw_file_perms;
+#allow fastbootd frp_block_device:blk_file { getattr ioctl open read };
+#allowxperm fastbootd frp_block_device:blk_file ioctl {
+#    BLKGETSIZE64 BLKSSZGET
+#};

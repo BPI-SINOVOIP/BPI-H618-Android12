@@ -1,0 +1,19 @@
+media.boost.pref                      u:object_r:system_prop:s0
+persist.display.                      u:object_r:system_prop:s0
+os.aot.path                           u:object_r:system_prop:s0
+battery.present                       u:object_r:system_prop:s0
+
+## property for mediaserver
+mediasw.doublestream                  u:object_r:system_prop:s0
+mediasw.stopscaner                    u:object_r:system_prop:s0
+mediasw.stopdeinterlace               u:object_r:system_prop:s0
+
+# ro.radio.noawril should same as ro.radio.noril
+ro.radio.noawril            u:object_r:exported_default_prop:s0
+
+# lmkd
+ro.lmk.use_new_strategy u:object_r:exported_default_prop:s0 exact bool
+
+# For user_rotation
+ro.primary_display.user_rotation      u:object_r:exported_default_prop:s0
+

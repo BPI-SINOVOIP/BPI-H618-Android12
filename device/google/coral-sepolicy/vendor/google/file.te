@@ -1,0 +1,87 @@
+type persist_battery_file, file_type, vendor_persist_type;
+type persist_oslo_file, file_type, vendor_persist_type;
+
+type airbrush_data_file, file_type, data_file_type;
+type modem_stat_data_file, file_type, data_file_type;
+type modem_dump_file, file_type, data_file_type;
+type tcpdump_vendor_data_file, file_type, data_file_type, mlstrustedobject;
+type ramoops_vendor_data_file, file_type, data_file_type, mlstrustedobject;
+type proc_touch, proc_type, fs_type, mlstrustedobject;
+type per_boot_file, file_type, data_file_type, core_data_file_type;
+
+# Battery-related files
+type debugfs_batteryinfo, debugfs_type, fs_type;
+type sysfs_chargelevel, sysfs_type, fs_type;
+
+#sysfs files
+type sysfs_display, sysfs_type, fs_type;
+type sysfs_touch, sysfs_type, fs_type;
+type sysfs_power_stats_ignore, sysfs_type, fs_type;
+type sysfs_camera, sysfs_type, fs_type;
+type sysfs_devcfg, sysfs_type, fs_type;
+type sysfs_msm_boardid, fs_type, sysfs_type;
+type sysfs_pixelstats, fs_type, sysfs_type;
+type sysfs_airbrush, sysfs_type, fs_type;
+type sysfs_wlc, sysfs_type, fs_type;
+type sysfs_pstore, sysfs_type, fs_type;
+
+#f2fs file
+type debugfs_f2fs, debugfs_type, fs_type;
+type proc_f2fs, proc_type, fs_type;
+
+#ufs files
+type debugfs_ufs, debugfs_type, fs_type;
+
+#lights file
+type sysfs_lights, sysfs_type, fs_type;
+
+#eSIM status
+type sysfs_esim, sysfs_type, fs_type;
+
+#usb file
+type debugfs_usb, debugfs_type, fs_type;
+
+# Directory used by Widevine HIDL service.
+type mediadrm_vendor_data_file, file_type, data_file_type;
+
+#diag cmd socket
+type diag_socket, file_type, mlstrustedobject;
+
+# Dumpstats dmabuf info
+type debugfs_dma_buf, debugfs_type, fs_type;
+
+# for clk/debug_suspend
+type debugfs_clk, debugfs_type, fs_type;
+
+# Airbrush debug
+type debugfs_airbrush, debugfs_type, fs_type;
+type sysfs_airbrush_dumpstate, sysfs_type, fs_type;
+
+# pmic_vote
+type debugfs_pmic, debugfs_type, fs_type;
+
+# USB contaminant detction
+type sysfs_contaminant, sysfs_type, fs_type;
+
+# Darwinn HAL shared files.
+type hal_neuralnetworks_darwinn_hal_camera_data_file, file_type, data_file_type;
+type proc_sched_lib_mask_cpuinfo, proc_type, fs_type;
+
+# Directory for camera autocalibration files
+type camera_calibration_vendor_data_file, file_type, data_file_type;
+
+# Dumpstate knowles framework info
+type sysfs_knowles_info, fs_type, sysfs_type;
+
+# Dumpstats IPA statistics
+type debugfs_ipa, debugfs_type, fs_type;
+
+# wifi_sniffer
+type sysfs_wifi_conmode, sysfs_type, fs_type;
+
+# Incremental file system driver
+type vendor_incremental_module, vendor_file_type, file_type;
+
+# Firmware mount
+type firmware_file, file_type, contextmount_type, vendor_file_type;
+allow firmware_file self:filesystem associate;

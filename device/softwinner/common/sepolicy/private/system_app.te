@@ -1,0 +1,2 @@
+allow system_app config_gz:file { open read getattr };
+allow system_app selinuxfs:file r_file_perms;

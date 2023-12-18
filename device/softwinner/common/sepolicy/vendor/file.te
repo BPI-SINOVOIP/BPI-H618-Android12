@@ -1,0 +1,16 @@
+type mediadrm_vendor_data_file, file_type, data_file_type;
+type sysfs_audio, fs_type, sysfs_type;
+type sysfs_pqd_r, fs_type, sysfs_type;
+type sysfs_sound, fs_type, sysfs_type;
+type audio_rw_data_file, file_type, data_file_type, core_data_file_type;
+type proc_bootevent, fs_type, mlstrustedobject, proc_type;
+type proc_swappiness, fs_type, proc_type;
+type proc_pvr, fs_type, mlstrustedobject, proc_type;
+type wcn_data_file, file_type, data_file_type, core_data_file_type;
+type sysfs_usb_c, sysfs_type, fs_type;
+type sysfs_usb_device, sysfs_type, fs_type;
+type sysfs_axp, fs_type, sysfs_type, mlstrustedobject;
+type eink_data_file, file_type, data_file_type, core_data_file_type;
+
+# Incremental file system driver
+type vendor_incremental_module, vendor_file_type, file_type;

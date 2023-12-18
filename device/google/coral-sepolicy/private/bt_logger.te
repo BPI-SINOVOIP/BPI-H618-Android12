@@ -1,0 +1,6 @@
+type bt_logger, domain;
+type bt_logger_exec, system_file_type, exec_type, file_type;
+typeattribute bt_logger coredomain;
+
+init_daemon_domain(bt_logger)
+

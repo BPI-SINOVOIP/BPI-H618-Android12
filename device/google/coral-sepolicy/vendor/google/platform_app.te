@@ -1,0 +1,2 @@
+get_prop(platform_app, vendor_aware_available_prop)
+add_hwservice(platform_app, vnd_atcmdfwd_hwservice)

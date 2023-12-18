@@ -1,0 +1,5 @@
+#Define Domain
+type wifidisplayhalservice_qti, domain;
+type wifidisplayhalservice_qti_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(wifidisplayhalservice_qti)

@@ -1,0 +1,109 @@
+/*
+cc_library_static {
+    name: "librecovery_updater_common",
+
+    defaults: [
+        "libcustom_defaults",
+    ],
+
+    export_include_dirs: ["."],
+    srcs: [
+        "recovery_updater.cpp",
+    ],
+
+    static_libs: [
+        "libedify",
+        "update_custom"
+    ],
+}
+*/
+//###########################################################
+// recovery ui
+
+cc_library_static {
+    name: "librecovery_ui_common",
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+    ],
+
+    srcs: [
+        "aw_device.cpp"
+    ],
+
+    shared_libs: [
+        "librecovery_ui",
+    ],
+
+}
+
+cc_library_static {
+    name: "update_custom",
+
+    header_libs: ["update_custom_headers"],
+    export_header_lib_headers: ["update_custom_headers"],
+
+    clang: true,
+
+    defaults: [
+        "libcustom_defaults",
+    ],
+
+    recovery_available: true,
+
+    srcs: [
+        "UpdateCustom.cpp",
+        "BurnNandBoot.cpp",
+        "BurnSdBoot.cpp",
+        "Utils.cpp",
+        "BurnCustomPartition/BurnCustomPartition.cpp",
+    ],
+
+    static_libs: [
+    ],
+
+}
+
+cc_defaults {
+    name: "libcustom_defaults",
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+        "-Wno-unused-function",
+    ],
+
+    static_libs: [
+        "libedify",
+        "libbase",
+        "libfs_mgr",
+        "libotautil",
+        "libz",
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libc",
+        "libziparchive",
+        "android.hardware.boot@1.1",
+    ],
+
+    include_dirs: [
+        "system/extras/boot_control_copy",
+        "bootable/recovery",
+        "bootable/recovery/edify/include",
+        "bootable/recovery/otautil/",
+        "bootable/recovery/updater/include",
+    ],
+}
+
+cc_library_headers {
+    name: "update_custom_headers",
+    export_include_dirs: ["."],
+    recovery_available: true,
+}

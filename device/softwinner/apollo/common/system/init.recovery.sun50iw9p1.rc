@@ -1,0 +1,25 @@
+on early-init
+    setprop sys.usb.configfs 1
+    setprop sys.usb.controller "5100000.udc-controller"
+    insmod /init-input.ko
+    insmod /gslX680new.ko
+    insmod /sunxi-hci.ko
+    insmod /ehci-sunxi.ko
+    insmod /ohci-hcd.ko
+    insmod /ohci-sunxi.ko
+    insmod /sunxi_usb_udc.ko
+    insmod /sunxi_usbc.ko
+    insmod /usbserial.ko
+    insmod /usb_wwan.ko
+    insmod /sunxi-keyboard.ko
+    start multi_ir
+
+on property:ro.debuggable=1
+    start console
+
+service console /system/bin/sh
+    console
+    user root
+    group root shell log readproc
+    seclabel u:r:shell:s0
+    setenv HOSTNAME console

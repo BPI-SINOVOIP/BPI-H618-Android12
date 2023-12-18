@@ -1,0 +1,25 @@
+# Extra permissions for userdebug that allow lazy-provisioning of
+# keymaster preshared-keys, used for faceauth authtoken enforcement.
+# (i.e. for EVT devices that leave factory unprovisioned).
+userdebug_or_eng(`
+  vndbinder_use(citadel_provision)
+  binder_call(citadel_provision, citadeld)
+  allow citadel_provision citadeld_service:service_manager find;
+  hwbinder_use(citadel_provision)
+  get_prop(citadel_provision, hwservicemanager_prop)
+  allow citadel_provision hidl_manager_hwservice:hwservice_manager find;
+
+  allow citadel_provision vndbinder_device:chr_file ioctl;
+  allow citadel_provision self:qipcrtr_socket create_socket_perms_no_ioctl;
+  allow citadel_provision ion_device:chr_file r_file_perms;
+  allow citadel_provision tee_device:chr_file rw_file_perms;
+  get_prop(citadel_provision, vendor_tee_listener_prop);
+
+  dontaudit citadel_provision sysfs_esoc:dir r_dir_perms;
+  dontaudit citadel_provision sysfs_esoc:file r_file_perms;
+  dontaudit citadel_provision sysfs_msm_subsys:dir r_dir_perms;
+  dontaudit citadel_provision sysfs_ssr:file r_file_perms;
+  dontaudit citadel_provision sysfs:file r_file_perms;
+  dontaudit citadel_provision sysfs_faceauth:dir r_dir_perms;
+  dontaudit citadel_provision sysfs_faceauth:file r_file_perms;
+')

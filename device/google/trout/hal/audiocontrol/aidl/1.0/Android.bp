@@ -1,0 +1,126 @@
+// Copyright (C) 2020 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_defaults {
+    name: "audiocontrol_hal_default_trout",
+    defaults: [
+        "hidl_defaults",
+    ],
+    shared_libs: [
+        "android.hardware.automotive.audiocontrol@2.0",
+        "libbase",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+}
+
+genrule {
+    name: "AudioFocusControlProtoStub_h",
+    tools: [
+        "aprotoc",
+        "protoc-gen-grpc-cpp-plugin",
+    ],
+    cmd: "$(location aprotoc) -I$$(dirname $(in)) -Iexternal/protobuf/src --plugin=protoc-gen-grpc=$(location protoc-gen-grpc-cpp-plugin) $(in) --grpc_out=$(genDir) --cpp_out=$(genDir)",
+    srcs: [
+        "proto/AudioFocusControl.proto",
+    ],
+    out: [
+        "AudioFocusControl.pb.h",
+        "AudioFocusControl.grpc.pb.h",
+    ],
+}
+
+genrule {
+    name: "AudioFocusControlProtoStub_cc",
+    tools: [
+        "aprotoc",
+        "protoc-gen-grpc-cpp-plugin",
+    ],
+    cmd: "$(location aprotoc) -I$$(dirname $(in)) -Iexternal/protobuf/src --plugin=protoc-gen-grpc=$(location protoc-gen-grpc-cpp-plugin) $(in) --grpc_out=$(genDir) --cpp_out=$(genDir)",
+    srcs: [
+        "proto/AudioFocusControl.proto",
+    ],
+    out: [
+        "AudioFocusControl.pb.cc",
+        "AudioFocusControl.grpc.pb.cc",
+    ],
+}
+
+cc_library {
+    name: "android.hardware.automotive.audiocontrol-server.trout",
+    vendor: true,
+    defaults: ["audiocontrol_hal_default_trout"],
+    srcs: [
+        "AudioControlServer.cpp",
+    ],
+    generated_headers: [
+        "AudioFocusControlProtoStub_h",
+        "audio_policy_configuration_V7_0",
+    ],
+    generated_sources: [
+        "AudioFocusControlProtoStub_cc",
+        "audio_policy_configuration_V7_0",
+    ],
+    header_libs: ["libxsdc-utils"],
+    shared_libs: [
+        "android.hardware.automotive.audiocontrol-V1-ndk_platform",
+        "libgrpc++",
+        "libprotobuf-cpp-full",
+        "libbase",
+        "libbinder_ndk",
+        "libutils",
+        "liblog",
+        "libcutils",
+        "libxml2",
+    ],
+    cflags: [
+        "-Wno-unused-parameter",
+    ],
+}
+
+cc_binary {
+    name: "android.hardware.automotive.audiocontrol-service.trout",
+    relative_install_path: "hw",
+    init_rc: ["audiocontrol-trout.rc"],
+    vintf_fragments: ["audiocontrol-trout.xml"],
+    vendor: true,
+    generated_headers: ["audio_policy_configuration_V7_0"],
+    generated_sources: ["audio_policy_configuration_V7_0"],
+    header_libs: ["libxsdc-utils"],
+    shared_libs: [
+        "android.hardware.automotive.audiocontrol-server.trout",
+        "android.hardware.automotive.audiocontrol-V1-ndk_platform",
+        "android.hardware.automotive.utils.watchdog",
+        "android.automotive.watchdog-V2-ndk_platform",
+        "libbase",
+        "libbinder_ndk",
+        "libutils",
+        "liblog",
+        "libcutils",
+        "libxml2",
+    ],
+    srcs: [
+        "AudioControl.cpp",
+        "main.cpp",
+        "WatchdogClient.cpp"
+    ],
+    static_libs: [
+        "android.hardware.automotive.utils.vsockinfo",
+    ],
+}

@@ -1,0 +1,88 @@
+// Signature format: 2.0
+package sensor.hal.configuration.V1_0 {
+
+  public class AxisType {
+    ctor public AxisType();
+    method public java.math.BigInteger getMap();
+    method public boolean getNegate();
+    method public void setMap(java.math.BigInteger);
+    method public void setNegate(boolean);
+  }
+
+  public class Configuration {
+    ctor public Configuration();
+    method public sensor.hal.configuration.V1_0.Location getLocation();
+    method public sensor.hal.configuration.V1_0.Orientation getOrientation();
+    method public void setLocation(sensor.hal.configuration.V1_0.Location);
+    method public void setOrientation(sensor.hal.configuration.V1_0.Orientation);
+  }
+
+  public class Location {
+    ctor public Location();
+    method public java.math.BigDecimal getX();
+    method public java.math.BigDecimal getY();
+    method public java.math.BigDecimal getZ();
+    method public void setX(java.math.BigDecimal);
+    method public void setY(java.math.BigDecimal);
+    method public void setZ(java.math.BigDecimal);
+  }
+
+  public class Modules {
+    ctor public Modules();
+    method public java.util.List<sensor.hal.configuration.V1_0.Modules.Module> getModule();
+  }
+
+  public static class Modules.Module {
+    ctor public Modules.Module();
+    method public String getHalName();
+    method public float getHalVersion();
+    method public sensor.hal.configuration.V1_0.Sensors getSensors();
+    method public void setHalName(String);
+    method public void setHalVersion(float);
+    method public void setSensors(sensor.hal.configuration.V1_0.Sensors);
+  }
+
+  public class Orientation {
+    ctor public Orientation();
+    method public boolean getRotate();
+    method public sensor.hal.configuration.V1_0.AxisType getX();
+    method public sensor.hal.configuration.V1_0.AxisType getY();
+    method public sensor.hal.configuration.V1_0.AxisType getZ();
+    method public void setRotate(boolean);
+    method public void setX(sensor.hal.configuration.V1_0.AxisType);
+    method public void setY(sensor.hal.configuration.V1_0.AxisType);
+    method public void setZ(sensor.hal.configuration.V1_0.AxisType);
+  }
+
+  public class Sensor {
+    ctor public Sensor();
+    method public sensor.hal.configuration.V1_0.Configuration getConfiguration();
+    method public String getName();
+    method public java.math.BigInteger getType();
+    method public void setConfiguration(sensor.hal.configuration.V1_0.Configuration);
+    method public void setName(String);
+    method public void setType(java.math.BigInteger);
+  }
+
+  public class SensorHalConfiguration {
+    ctor public SensorHalConfiguration();
+    method public sensor.hal.configuration.V1_0.Modules getModules();
+    method public float getVersion();
+    method public void setModules(sensor.hal.configuration.V1_0.Modules);
+    method public void setVersion(float);
+  }
+
+  public class Sensors {
+    ctor public Sensors();
+    method public java.util.List<sensor.hal.configuration.V1_0.Sensor> getSensor();
+  }
+
+  public class XmlParser {
+    ctor public XmlParser();
+    method public static sensor.hal.configuration.V1_0.SensorHalConfiguration read(java.io.InputStream) throws javax.xml.datatype.DatatypeConfigurationException, java.io.IOException, org.xmlpull.v1.XmlPullParserException;
+    method public static String readText(org.xmlpull.v1.XmlPullParser) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
+    method public static void skip(org.xmlpull.v1.XmlPullParser) throws java.io.IOException, org.xmlpull.v1.XmlPullParserException;
+  }
+
+}
+

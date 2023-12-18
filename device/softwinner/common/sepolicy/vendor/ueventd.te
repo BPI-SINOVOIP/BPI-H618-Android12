@@ -1,0 +1,2 @@
+allow ueventd usb_device:chr_file { relabelfrom  relabelto };
+allow ueventd radio_device:chr_file { relabelfrom  relabelto };

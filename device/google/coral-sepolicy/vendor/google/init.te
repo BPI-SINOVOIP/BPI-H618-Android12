@@ -1,0 +1,6 @@
+# Allow init to mount firmware
+allow init firmware_file:dir mounton;
+allow init firmware_file:filesystem { getattr mount relabelfrom };
+
+allow init per_boot_file:file ioctl;
+allowxperm init per_boot_file:file ioctl { F2FS_IOC_SET_PIN_FILE };

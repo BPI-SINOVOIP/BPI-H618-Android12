@@ -1,0 +1,3 @@
+# b/170267149
+dontaudit system_server proc_irq:dir search ;
+dontaudit system_server proc_scsi:dir search ;

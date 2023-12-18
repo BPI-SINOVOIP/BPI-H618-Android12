@@ -1,0 +1,8 @@
+This directory contains a reference implementation for sensors sub-HAL to be
+used by sensors Multi-Hal 2.0 service for Android Automotive OS with Android
+running as a VM. This HAL accesses sensors exposed as IIO devices by the kernel.
+
+This HAL is currently only supported for use with the IIO SCMI driver in the kernel
+which uses the ARM SCMI protocol to access the sensors exposed as VIRTIO SCMI device.
+
+This HAL supports Accelerometer and Gyroscope continuous sensors.

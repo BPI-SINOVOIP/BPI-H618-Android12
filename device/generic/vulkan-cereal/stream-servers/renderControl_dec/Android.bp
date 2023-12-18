@@ -1,0 +1,20 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_generic_vulkan-cereal_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["device_generic_vulkan-cereal_license"],
+}
+
+cc_library_static {
+    name: "gfxstream_renderControl_dec",
+    defaults: [ "gfxstream_defaults" ],
+    static_libs: [
+        "gfxstream_apigen_codec_common",
+    ],
+    srcs: [
+        "renderControl_dec.cpp",
+        "renderControl_server_context.cpp",
+    ],
+}

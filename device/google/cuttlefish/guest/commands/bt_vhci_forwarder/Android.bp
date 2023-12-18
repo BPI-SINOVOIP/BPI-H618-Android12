@@ -1,0 +1,20 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_binary {
+    name: "bt_vhci_forwarder",
+    srcs: [
+        "main.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "liblog",
+    ],
+    static_libs: [
+        "libgflags",
+        "libbt-rootcanal",
+    ],
+    defaults: ["cuttlefish_guest_only"]
+}

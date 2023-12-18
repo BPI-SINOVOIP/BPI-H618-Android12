@@ -1,0 +1,7 @@
+prebuilt_etc {
+    name: "privapp_permissions_go_system",
+    sub_dir: "permissions",
+    src: "privapp-permissions-go-system.xml",
+    filename_from_src: true,
+}
+

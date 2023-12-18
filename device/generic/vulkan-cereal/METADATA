@@ -1,0 +1,8 @@
+# *** THIS PACKAGE HAS SPECIAL LICENSING CONDITIONS.  PLEASE
+#     CONSULT THE OWNERS AND opensource-licensing@google.com BEFORE
+#     DEPENDING ON IT IN YOUR PROJECT. ***
+third_party {
+  # would be RESTRICED save for patent license in:
+  #   third-party/angle/extensions/EXT_color_buffer_float.txt
+  license_type: BY_EXCEPTION_ONLY
+}

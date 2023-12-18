@@ -1,0 +1,15 @@
+add_library(
+    renderControl_dec
+    renderControl_dec.cpp
+    renderControl_server_context.cpp)
+target_link_libraries(
+    renderControl_dec
+    PUBLIC
+    apigen-codec-common)
+target_include_directories(
+    renderControl_dec
+    PRIVATE
+    ${GFXSTREAM_REPO_ROOT}
+    ${GFXSTREAM_REPO_ROOT}/include
+    ${GFXSTREAM_REPO_ROOT}/stream-servers
+    ${GFXSTREAM_REPO_ROOT}/stream-servers/apigen-codec-common)

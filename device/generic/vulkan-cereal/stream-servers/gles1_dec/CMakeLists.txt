@@ -1,0 +1,17 @@
+add_library(
+    gles1_dec
+    gles1_dec.cpp
+    gles1_server_context.cpp
+    GLESv1Decoder.cpp)
+target_link_libraries(
+    gles1_dec
+    PUBLIC
+    apigen-codec-common
+    GLSnapshot)
+target_include_directories(
+    gles1_dec
+    PRIVATE
+    ${GFXSTREAM_REPO_ROOT}
+    ${GFXSTREAM_REPO_ROOT}/include
+    ${GFXSTREAM_REPO_ROOT}/stream-servers
+    ${GFXSTREAM_REPO_ROOT}/stream-servers/apigen-codec-common)

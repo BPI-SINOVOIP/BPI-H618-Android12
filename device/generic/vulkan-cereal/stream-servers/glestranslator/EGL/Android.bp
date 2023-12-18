@@ -1,0 +1,48 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_generic_vulkan-cereal_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["device_generic_vulkan-cereal_license"],
+}
+
+cc_library_static {
+    name: "gfxstream_translator_egl",
+    defaults: [ "gfxstream_defaults" ],
+    static_libs: [
+        "gfxstream_base",
+        "gfxstream_astc_codec",
+        "gfxstream_apigen_codec_common",
+        "gfxstream_translator_glcommon",
+        "gfxstream_translator_glescm",
+        "gfxstream_translator_glesv2",
+    ],
+    cflags: [
+        "-fvisibility=hidden",
+        "-Wno-inconsistent-missing-override",
+    ],
+    srcs: 
+    [
+        "ClientAPIExts.cpp",
+        "EglConfig.cpp",
+        "EglContext.cpp",
+        "EglDisplay.cpp",
+        "EglGlobalInfo.cpp",
+        "EglImp.cpp",
+        "EglPbufferSurface.cpp",
+        "EglSurface.cpp",
+        "EglThreadInfo.cpp",
+        "EglValidate.cpp",
+        "EglWindowSurface.cpp",
+        "ShaderCache.cpp",
+        "ThreadInfo.cpp",
+        "CoreProfileConfigs_linux.cpp",
+        "EglOsApi_egl.cpp",
+    ],
+    target: {
+        host: {
+            srcs: [ "EglOsApi_glx.cpp", ],
+        }
+    }
+}

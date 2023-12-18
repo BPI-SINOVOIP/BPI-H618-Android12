@@ -1,0 +1,3 @@
+dontaudit kernel sepolicy_file:file getattr;
+dontaudit kernel system_bootstrap_lib_file:dir getattr;
+dontaudit kernel system_bootstrap_lib_file:file getattr;

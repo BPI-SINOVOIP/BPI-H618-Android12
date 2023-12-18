@@ -1,0 +1,321 @@
+/*
+ * Copyright (C) 2014 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#include <unistd.h>
+#include <string.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <errno.h>
+
+#include "Utils.h"
+#include "BurnSdBoot.h"
+#include "mmc.h"
+#include "private_boot0.h"
+#include "private_toc.h"
+
+#define DEVNODE_PATH_SD "/dev/block/mmcblk0"
+
+#define SECTOR_SIZE 512
+/*Normal boot 0 and boot 1 */
+#define SD_BOOT0_SECTOR_START   16
+#define SD_BOOT0_SIZE_KBYTES    32
+
+#define SD_UBOOT_SECTOR_START_PRE   38192
+#define SD_UBOOT_SECTOR_START   32800
+#define SD_UBOOT_SIZE_KBYTES    1024
+
+/*TOC0 : sector 16 - 256*/
+#define SD_TOC0_SECTOR_START   16
+#define SD_TOC0_SIZE_KBYTES    120
+#define SD_TOC0_BACKUP_SECTOR_START 256
+
+/*TOC1 : sector 32800 - 40960 */
+#define SD_TOC1_SECTOR_START   32800
+#define SD_TOC1_SIZE_KBYTES    4080
+#define SD_TOC1_BACKUP_SECTOR_START 24576
+
+static int sd_boot0_start , sd_boot0_len;
+static int sd_boot1_start , sd_boot1_len;
+static int sd_boot1_start_pre , sd_boot1_len_pre;
+static int sd_boot0_backup_start, sd_boot1_backup_start;
+
+/*some chip (e.g. H8) BOOT0 save in mmcblk0boot0 */
+#define SD_BOOT0_PERMISION "/sys/block/mmcblk0boot0/force_ro"
+#define DEVNODE_PATH_SD_BOOT0 "/dev/block/mmcblk0boot0"
+
+/*some chip (e.g. H8) UBOOT save in mmcblk0boot1 */
+#define SD_BOOT1_PERMISION "/sys/block/mmcblk0boot1/force_ro"
+#define DEVNODE_PATH_SD_BOOT1 "/dev/block/mmcblk0boot1"
+
+
+static void sdBootInit(void)
+{
+    static int inited = 0;
+
+    if (inited == 1)
+        return ;
+
+    if (check_soc_is_secure()) { //secure
+        sd_boot0_start  =   SD_TOC0_SECTOR_START *  SECTOR_SIZE;
+        sd_boot0_len    =   SD_TOC0_SIZE_KBYTES * 1024;
+        sd_boot1_start  =   SD_TOC1_SECTOR_START * SECTOR_SIZE ;
+        sd_boot1_len    =   SD_TOC1_SIZE_KBYTES * 1024;
+        sd_boot0_backup_start = SD_TOC0_BACKUP_SECTOR_START *  SECTOR_SIZE;
+        sd_boot1_backup_start = SD_TOC1_BACKUP_SECTOR_START * SECTOR_SIZE;
+    } else {
+        sd_boot0_start  =   SD_BOOT0_SECTOR_START *  SECTOR_SIZE;
+        sd_boot0_len    =   SD_BOOT0_SIZE_KBYTES * 1024;
+        sd_boot1_start  =   SD_UBOOT_SECTOR_START * SECTOR_SIZE ;
+        sd_boot1_len    =   SD_UBOOT_SIZE_KBYTES * 1024;
+    }
+    sd_boot1_start_pre  =   SD_UBOOT_SECTOR_START_PRE * SECTOR_SIZE ;
+    sd_boot1_len_pre    =   SD_UBOOT_SIZE_KBYTES * 1024;
+    inited =1;
+    return;
+}
+
+static int writeSdBoot(int fd, void *buf, off_t offset, size_t bootsize) {
+    if (lseek(fd, 0, SEEK_SET) == -1) {
+        printf("burnboot: reset the cursor failed! the error num is %d:%s\n", errno, strerror(errno));
+        return -1;
+    }
+    if (lseek(fd, offset, SEEK_CUR) == -1) {
+        printf("burnboot: lseek failed! the error num is %d:%s\n", errno, strerror(errno));
+        return -1;
+    }
+    printf("burnboot: Write sd boot : offset = 0x%lx, len= 0x%zx\n", offset, bootsize);
+    int result = write(fd, buf, bootsize);
+    fsync(fd);
+    return result;
+}
+
+static int readSdBoot(int fd ,off_t offset, size_t bootsize, void *buffer) {
+    memset(buffer, 0, bootsize);
+
+    if (lseek(fd, 0, SEEK_SET) == -1) {
+        printf("burnboot: reset the cursor failed! the error num is %d:%s\n", errno, strerror(errno));
+        return -1;
+    }
+
+    if (lseek(fd, offset, SEEK_CUR) == -1) {
+        printf("burnboot: lseek failed! the error num is %d:%s\n", errno, strerror(errno));
+        return -1;
+    }
+
+    read(fd,buffer,bootsize);
+    return 0;
+}
+
+static int updateBoot0Info(void *in_buffer, void *out_buffer,unsigned int buffer_size) {
+    //struct boot_sdmmc_private_info_t priv_info;
+    if ((in_buffer == NULL) ||(out_buffer == NULL)
+            || (buffer_size < (sizeof(struct boot_sdmmc_private_info_t)))) {
+        printf("%s %d:wrong input arg\n",__FUNCTION__,__LINE__);
+        return  -1;
+    }
+    /*
+    ----- normal
+    offset 0~127: boot0 struct _boot_sdcard_info_t;
+    offset 128~255: struct tune_sdly, timing parameter for speed mode and frequency
+    ----- secure
+    offset 128 ~ (224=384-160): struct tune_sdly, timing parameter for speed mode and frequency
+    sizeof(priv_info)  is about 60 bytes.
+    */
+    memcpy((void *)((unsigned char*)out_buffer+SDMMC_PRIV_INFO_ADDR_OFFSET),
+            (void *)((unsigned char*)in_buffer + SDMMC_PRIV_INFO_ADDR_OFFSET),
+            sizeof(struct boot_sdmmc_private_info_t));
+
+    {
+        u32 i, *p;
+        printf("out buffer\n");
+        p = (u32 *)((unsigned char*)out_buffer+SDMMC_PRIV_INFO_ADDR_OFFSET);
+        for (i=0; i<sizeof(struct boot_sdmmc_private_info_t)/4; i++)
+            printf("%d %x\n", i, p[i]);
+    }
+    {
+        u32 i, *p;
+        printf("int buffer\n");
+        p = (u32 *)((unsigned char*)in_buffer+SDMMC_PRIV_INFO_ADDR_OFFSET);
+        for (i=0; i<sizeof(struct boot_sdmmc_private_info_t)/4; i++)
+            printf("%d %x\n", i, p[i]);
+    }
+    return 0;
+}
+
+static int updateSdBoot0(int fd, BufferExtractCookie *cookie, int boot0_start) {
+    int ret = 0;
+#if RESTORE_BOOT_STORAGE_DATA
+    unsigned char* buffer = reinterpret_cast<unsigned char *>(malloc(cookie->len));
+    readSdBoot(fd, boot0_start, cookie->len, buffer);
+    if (check_soc_is_secure()) {
+        sbrom_toc0_config_t *oldToc0Config = (sbrom_toc0_config_t *)(buffer + 0x80);
+        sbrom_toc0_config_t *newToc0Config = (sbrom_toc0_config_t *)(cookie->buffer + 0x80);
+        ret = updateBoot0Info((void *)(oldToc0Config->storage_data+160), (void *)(newToc0Config->storage_data+160), 384-160);
+    } else {
+        boot0_file_head_t *oldBoot0  = (boot0_file_head_t *)(buffer);
+        boot0_file_head_t *newBoot0  = (boot0_file_head_t *)(cookie->buffer);
+        ret = updateBoot0Info((void *)oldBoot0->prvt_head.storage_data, (void *)newBoot0->prvt_head.storage_data, STORAGE_BUFFER_SIZE);
+    }
+    if (ret == 0) genBoot0CheckSum(cookie->buffer);
+    free(buffer);
+#endif
+    return ret;
+}
+
+int burnSdBoot0(BufferExtractCookie *cookie) {
+    sdBootInit();
+    if (checkBoot0Sum(cookie)){
+        printf("burnboot: illegal binary file!\n");
+        return -1;
+    }
+
+    int fd = open(DEVNODE_PATH_SD, O_RDWR);
+    if (fd == -1) {
+        printf("burnboot: open device node failed ! errno is %d : %s\n", errno, strerror(errno));
+        return -1;
+    }
+
+    int ret;
+    if (check_soc_is_secure()) {
+        // update boot0 backup
+        printf("burnSdBoot0 in mmcblk0:offset = 0x%x, len =0x%lx\n", sd_boot0_backup_start, cookie->len);
+        updateSdBoot0(fd, cookie, sd_boot0_backup_start);
+        ret = writeSdBoot(fd, cookie->buffer, sd_boot0_backup_start, cookie->len);
+        fsync(fd);
+
+        if (ret > 0) {
+            printf("burnSdBoot0 backup update success, writed %d bytes\n", ret);
+        } else {
+            printf("burnSdBoot0 backup update failed: %d \n", ret);
+            return ret;
+        }
+    }
+
+    // update boot0
+    printf("burnSdBoot0 in mmcblk0:offset = 0x%x, len =0x%lx\n", sd_boot0_start, cookie->len);
+    updateSdBoot0(fd, cookie, sd_boot0_start);
+    ret = writeSdBoot(fd, cookie->buffer, sd_boot0_start, cookie->len);
+    fsync(fd);
+    close(fd);
+    if (ret > 0) {
+        printf("burnboot: burnSdBoot0 succeed! writed %d bytes\n", ret);
+    }
+
+
+    fd = open(DEVNODE_PATH_SD_BOOT0, O_RDWR);
+    if (fd > 0) {
+        int pmsFd = open(SD_BOOT0_PERMISION, O_WRONLY);
+        if (pmsFd > 0) {
+            ret = write(pmsFd,"0",1);
+            close(pmsFd);
+        } else {
+            printf("burnboot: can't open %s :%s \n", SD_BOOT0_PERMISION, strerror(errno));
+            close(fd);
+            return -1;
+        }
+        if (ret < 0) {
+            printf("burnboot: can't write 0 to %s :%s \n", SD_BOOT0_PERMISION, strerror(errno));
+            close(fd);
+            return -1;
+        }
+        // write boot0 in mmcblk0boot0
+        ret = writeSdBoot(fd, cookie->buffer, 0, cookie->len);
+        if (ret > 0) {
+            printf("burnboot: wipe boot0 in mmcblk0boot0 succeed! on %d writed %d bytes\n", 0, ret);
+        }
+        fsync(fd);
+        close(fd);
+    } else {
+        printf("burnboot: open device node failed ! errno is %d : %s\n", errno, strerror(errno));
+    }
+    return ret;
+}
+
+int burnSdUboot(BufferExtractCookie *cookie) {
+    sdBootInit();
+    char *empty_buffer;
+    int ret = -1;
+    int defaultOffset = -1;
+
+    if (checkUbootSum(cookie) && checkBoot1Sum(cookie)) {
+        printf("burnboot: illegal uboot binary file!\n");
+        return -1;
+    }
+
+    printf("burnboot: uboot binary length is %ld\n", cookie->len);
+    int fd = open(DEVNODE_PATH_SD, O_RDWR);
+    if (fd == -1) {
+        printf("burnboot: open device node failed ! errno is %d : %s\n", errno, strerror(errno));
+        return -1;
+    }
+
+    if (check_soc_is_secure()) {
+        // update uboot backup
+        ret = writeSdBoot(fd, cookie->buffer, sd_boot1_backup_start, cookie->len);
+        if (ret > 0) {
+            printf("burnSdBoot1 backup succeed! writed %d bytes\n", ret);
+        } else {
+            printf("burnSdBoot1 backup failed: %d \n", ret);
+        }
+        fsync(fd);
+
+        // update uboot
+        ret = writeSdBoot(fd, cookie->buffer, sd_boot1_start, cookie->len);
+    } else {
+        empty_buffer = (char *)malloc(sd_boot1_len_pre);
+        memset(empty_buffer, 0, sd_boot1_len_pre);
+        writeSdBoot(fd, empty_buffer, sd_boot1_start_pre, sd_boot1_len_pre);
+        free(empty_buffer);
+        defaultOffset = getUbootstartsector(cookie) * SECTOR_SIZE;
+        if (defaultOffset <= 0) defaultOffset = sd_boot1_start;
+        ret = writeSdBoot(fd, cookie->buffer, defaultOffset, cookie->len);
+    }
+
+    fsync(fd);
+    close(fd);
+
+    //wirte mmcblk0boot1
+    if (ret > 0) {
+        printf("burnboot: burnSdUboot succeed! writed %d bytes\n", ret);
+    }
+
+    fd = open(DEVNODE_PATH_SD_BOOT1, O_RDWR);
+    if (fd > 0) {
+        int pmsFd = open(SD_BOOT1_PERMISION, O_WRONLY);
+        if (pmsFd > 0) {
+            ret = write(pmsFd,"0",1);
+            close(pmsFd);
+        } else {
+            printf("can't open %s :%s \n", SD_BOOT1_PERMISION, strerror(errno));
+            close(fd);
+            return -1;
+        }
+
+        if (ret < 0) {
+            printf("can't write 0 to %s :%s \n", SD_BOOT1_PERMISION, strerror(errno));
+            close(fd);
+            return -1;
+        }
+        // write boot1 in mmcblk0boot1
+        ret = writeSdBoot(fd, cookie->buffer, 0, cookie->len);
+        if (ret > 0) {
+            printf("wipe uboot in mmcblk0boot1 succeed! on %d writed %d bytes\n", 0, ret);
+        }
+        fsync(fd);
+        close(fd);
+    }
+    return ret;
+}

@@ -1,0 +1,76 @@
+#Allow face hal to find airbrush service and face hal <-> airbrush comms
+allow hal_face_default hal_airbrush_hwservice:hwservice_manager find;
+binder_call(hal_face_default, airbrush)
+binder_call(airbrush, hal_face_default)
+
+allow hal_face_default hal_graphics_mapper_hwservice:hwservice_manager find;
+hal_client_domain(hal_face_default, hal_graphics_allocator)
+
+binder_call(hal_face_default, hal_graphics_allocator_default)
+
+# Grant TEE access to the face HAL
+allow hal_face_default tee_device:chr_file rw_file_perms;
+allow hal_face_default faceauth_device:chr_file rw_file_perms;
+allow hal_face_default vndbinder_device:chr_file ioctl;
+
+#Allow face hal to talk to process serving ITokenManager(libmediandk)
+allow hal_face_default hidl_token_hwservice:hwservice_manager find;
+
+#Allow face hal to talk to cameraserver
+allow hal_face_default fwk_camera_hwservice:hwservice_manager find;
+binder_call(hal_face_default, camera_service_server)
+binder_call(camera_service_server, hal_face_default)
+
+vndbinder_use(hal_face_default)
+
+allow hal_face_default airbrush_faceauth_service:service_manager find;
+# Allow the face HAL to communicate with keymaster. This is required
+# to verify authorization timestamps with citadel.
+# The face HAL *can only* use the verifyAuthorization API on keymaster
+hal_client_domain(hal_face_default, hal_keymaster)
+
+# Create subdirectories within the face vendor file directory.
+allow hal_face_default face_vendor_data_file:dir create_dir_perms;
+r_dir_file(hal_face_default, persist_camera_file)
+allow hal_face_default persist_file:dir search;
+allow hal_face_default mnt_vendor_file:dir search;
+allow hal_face_default system_app:fd use;
+
+
+# Grant incidentd and FaceDebugService access to the face HAL debug images
+userdebug_or_eng(`
+  allow hal_face_default incidentd:fd use;
+  allow hal_face_default incidentd:fifo_file write;
+
+  allow hal_face_default face_debug:fd use;
+  allow hal_face_default face_debug:fifo_file write;
+')
+
+get_prop(hal_face_default, camera_config_prop)
+get_prop(hal_face_default, camera_prop)
+get_prop(hal_face_default, vendor_faceauth_prop)
+
+hwbinder_use(hal_face_default);
+
+# Allow the face HAL to communicate with IStats.
+allow hal_face_default fwk_stats_hwservice:hwservice_manager find;
+binder_call(hal_face_default, stats_service_server)
+allow hal_face_default fwk_stats_service:service_manager find;
+binder_use(hal_face_default)
+
+# Allow writing new camera calibrations
+allow hal_face camera_calibration_vendor_data_file:dir rw_dir_perms;
+allow hal_face camera_calibration_vendor_data_file:file create_file_perms;
+
+# Allow the face HAL to discover pil sysfs nodes for faceauth firmware loading.
+allow hal_face_default sysfs_faceauth:dir r_dir_perms;
+# Allow the face HAL to select firmware version by writing to a file here.
+allow hal_face_default sysfs_faceauth:file w_file_perms;
+
+# Allow the face HAL to communicate with the thermal HAL.
+hal_client_domain(hal_face_default, hal_thermal)
+
+# Allow the face HAL to talk to citadeld to verify the firmware version.
+allow hal_face_default citadeld_service:service_manager find;
+binder_call(hal_face_default, citadeld)
+

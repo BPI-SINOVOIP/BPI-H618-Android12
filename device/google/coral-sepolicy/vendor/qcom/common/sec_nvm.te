@@ -1,0 +1,17 @@
+# sec_nvm service
+type sec_nvm, domain;
+
+type sec_nvm_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(sec_nvm)
+
+allow sec_nvm mnt_vendor_file:dir search;
+allow sec_nvm persist_file:dir search;
+allow sec_nvm persist_secnvm_file:dir rw_dir_perms;
+allow sec_nvm persist_secnvm_file:file create_file_perms;
+allow sec_nvm ion_device:chr_file rw_file_perms;
+allow sec_nvm skp_device:chr_file rw_file_perms;
+allow sec_nvm spcom_device:chr_file rw_file_perms;
+allow sec_nvm sec_nvm_device:chr_file rw_file_perms;
+
+set_prop(sec_nvm, spcomlib_prop)

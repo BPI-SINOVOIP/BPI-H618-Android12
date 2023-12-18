@@ -1,0 +1,1 @@
+../bonito/AndroidBoard.mk

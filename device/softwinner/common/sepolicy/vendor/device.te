@@ -1,0 +1,9 @@
+type cedar_device, dev_type;
+type private_block_device, dev_type;
+type zram_backing_device, dev_type;
+type sunxi_soc_device, dev_type;
+type deinterlace_device, dev_type;
+type sst_storage_device, dev_type, fs_type;
+type ab_block_device, dev_type;
+type drm_heap_device, dev_type;
+type i2c_device, dev_type, mlstrustedobject;

@@ -1,0 +1,16 @@
+allow untrusted_app_25 cgroup:dir { read open };
+allow untrusted_app_25 init_exec:file getattr;
+allow untrusted_app_25 mnt_media_rw_file:dir getattr;
+allow untrusted_app_25 rootfs:dir { read open };
+allow untrusted_app_25 rootfs:file getattr;
+allow untrusted_app_25 unlabeled:dir { getattr open search read write add_name setattr };
+allow untrusted_app_25 unlabeled:file { getattr read };
+allow untrusted_app_25 unlabeled:filesystem getattr;
+allow untrusted_app_25 proc:file { getattr };
+allow untrusted_app_25 su_exec:file getattr;
+allow untrusted_app_25 init:dir search;
+allow untrusted_app_25 kernel:dir { getattr search };
+allow untrusted_app_25 node:rawip_socket node_bind;
+allow untrusted_app_25 self:udp_socket ioctl;
+allow untrusted_app_25 wifi_prop:file { getattr open };
+allow untrusted_app_25 platform_app:dir search;

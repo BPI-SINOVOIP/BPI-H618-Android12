@@ -1,0 +1,2 @@
+allow hal_graphics_allocator_default rootfs:file { open read };
+allow hal_graphics_allocator_default drm_heap_device:chr_file { open ioctl read write };

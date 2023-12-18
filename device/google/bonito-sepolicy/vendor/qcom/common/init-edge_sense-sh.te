@@ -1,0 +1,25 @@
+type init-edge_sense-sh, domain;
+type init-edge_sense-sh_exec, exec_type, vendor_file_type, file_type;
+
+allow init-edge_sense-sh init-qcom-devstart-sh:fd use;
+allow init-edge_sense-sh vendor_toolbox_exec:file rx_file_perms;
+
+# Initialize Edge Sense.
+# See b/67205273.
+allow init-edge_sense-sh sysfs:dir r_dir_perms;
+allow init-edge_sense-sh sysfs_pinctrl:dir r_dir_perms;
+allow init-edge_sense-sh sysfs_pinctrl:file rw_file_perms;
+allow init-edge_sense-sh sysfs_gpio_export:file w_file_perms;
+allow init-edge_sense-sh sysfs_soc:dir r_dir_perms;
+allow init-edge_sense-sh sysfs_soc:file r_file_perms;
+allow init-edge_sense-sh sysfs_msm_subsys:dir r_dir_perms;
+allow init-edge_sense-sh sysfs_msm_subsys:file r_file_perms;
+allow init-edge_sense-sh sysfs_scsi_devices_0000:file r_file_perms;
+allow init-edge_sense-sh sysfs_pixelstats:file r_file_perms;
+# Ignore permissions used but not needed.
+dontaudit init-edge_sense-sh sysfs:file { create getattr };
+dontaudit init-edge_sense-sh sysfs_type:dir { read write };
+dontaudit init-edge_sense-sh sysfs_graphics:file getattr;
+dontaudit init-edge_sense-sh sysfs_devices_block:file getattr;
+dontaudit init-edge_sense-sh sysfs_pstore:file getattr;
+dontaudit init-edge_sense-sh sysfs_chargelevel:file getattr;

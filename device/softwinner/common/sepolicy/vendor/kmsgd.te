@@ -1,0 +1,23 @@
+type kmsgd, domain;
+type kmsgd_exec, exec_type, system_file_type, file_type;
+
+init_daemon_domain(kmsgd)
+
+typeattribute kmsgd coredomain;
+typeattribute kmsgd mlstrustedsubject;
+
+allow kmsgd kmsg_device:chr_file r_file_perms;
+allow kmsgd kernel:system syslog_read;
+allow kmsgd media_rw_data_file:dir create_dir_perms;
+allow kmsgd media_rw_data_file:file create_file_perms;
+allow kmsgd sdcardfs:dir { add_name open read write search };
+allow kmsgd sdcardfs:file { append create open write getattr };
+allow kmsgd pstorefs:dir search;
+allow kmsgd mnt_user_file:dir search;
+allow kmsgd mnt_user_file:lnk_file read;
+allow kmsgd storage_file:dir search;
+allow kmsgd storage_file:lnk_file read;
+allow kmsgd logdr_socket:sock_file write;
+allow kmsgd logd_socket:sock_file write;
+allow kmsgd logd:unix_stream_socket connectto;
+allow kmsgd { shell_exec toolbox_exec }:file { execute read open execute_no_trans getattr };

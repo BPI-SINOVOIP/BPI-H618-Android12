@@ -1,0 +1,2 @@
+allow platform_app config_gz:file { open read getattr };
+allow platform_app selinuxfs:file r_file_perms;

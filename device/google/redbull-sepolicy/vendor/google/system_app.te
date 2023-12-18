@@ -1,0 +1,5 @@
+allow system_app hal_wlc_hwservice:hwservice_manager find;
+binder_call(system_app, hal_wlc)
+binder_call(hal_wlc, system_app)
+
+allow system_app fwk_stats_hwservice:hwservice_manager find;

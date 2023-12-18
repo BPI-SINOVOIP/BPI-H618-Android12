@@ -1,0 +1,5 @@
+# b/170189576
+dontaudit hal_camera_default sysfs_msm_subsys:file getattr ;
+dontaudit hal_camera_default sysfs_msm_subsys:file open ;
+dontaudit hal_camera_default sysfs_msm_subsys:file read ;
+dontaudit hal_camera_default property_type:file rw_file_perms;

@@ -1,0 +1,13 @@
+type hal_dumpstate_impl, domain;
+type hal_dumpstate_impl_exec, exec_type, vendor_file_type, file_type;
+vendor_internal_prop(vendor_hal_dumpstate_prop)
+
+hal_server_domain(hal_dumpstate_impl, hal_dumpstate)
+
+init_daemon_domain(hal_dumpstate_impl)
+
+set_prop(hal_dumpstate_impl, vendor_hal_dumpstate_prop)
+
+allow system_server hal_dumpstate_server:process sigkill;
+carwatchdog_client_domain(hal_dumpstate_impl)
+binder_use(hal_dumpstate_impl)

@@ -1,0 +1,32 @@
+# virtio-gpu
+/dev/dri/card0 0660 system graphics
+/dev/dri/controlD64 0660 system graphics
+/dev/dri/renderD128 0666 system graphics
+
+# media.codec2
+/dev/ion 0664 system system
+
+# resume-on-reboot
+/dev/block/pmem0 0770 system system
+
+# vtpm
+/dev/tpm0 0000 root root
+/dev/tpmrm0 000 system system
+
+# seriallogging
+/dev/hvc2 0660 system logd
+
+# keymaster
+/dev/hvc3 0666 system system
+
+# gatekeeper
+/dev/hvc4 0660 system system
+
+# bluetooth
+/dev/hvc5 0660 bluetooth bluetooth
+/dev/vhci 0660 bluetooth bluetooth
+
+/dev/gnss0 0666 system system
+
+# Factory Reset Protection
+/dev/block/by-name/frp 0660 system system

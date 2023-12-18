@@ -1,0 +1,4 @@
+get_prop(mediaswcodec, vendor_display_prop)
+allow mediaswcodec gpu_device:chr_file rw_file_perms;
+allow mediaswcodec sysfs_msm_subsys:dir search;
+allow mediaswcodec sysfs_msm_subsys:file rw_file_perms;

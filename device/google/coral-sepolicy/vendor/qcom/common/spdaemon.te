@@ -1,0 +1,17 @@
+# spdaemon service
+type spdaemon, domain;
+
+type spdaemon_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(spdaemon)
+
+allow spdaemon sysfs_soc:dir search;
+allow spdaemon sysfs_soc:file r_file_perms;
+allow spdaemon sysfs_spss:dir search;
+allow spdaemon sysfs_spss:file r_file_perms;
+allow spdaemon spcom_device:chr_file rw_file_perms;
+allow spdaemon ion_device:chr_file rw_file_perms;
+allow spdaemon skp_device:chr_file rw_file_perms;
+allow spdaemon spdaemon_ssr_device:chr_file rw_file_perms;
+
+set_prop(spdaemon, spcomlib_prop)

@@ -1,0 +1,17 @@
+type color_init, domain;
+type color_init_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(color_init)
+
+# Allow reading files from /persist/display
+r_dir_file(color_init, persist_display_file)
+allow color_init persist_file:dir search;
+allow color_init persist_file:lnk_file read;
+allow color_init persist_file:dir search;
+allow color_init mnt_vendor_file:dir search;
+allow color_init mnt_vendor_file:file r_file_perms;
+
+# Set the vendor.display.native_display_primaries_ready property
+set_prop(color_init, vendor_display_prop)
+# Read the ro.hardware property
+get_prop(color_init, vendor_default_prop)

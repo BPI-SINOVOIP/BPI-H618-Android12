@@ -1,0 +1,4 @@
+service vendor.audiocontrol-default /vendor/bin/hw/android.hardware.automotive.audiocontrol-service.trout
+    class hal
+    user audioserver
+    group system

@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "6543217"
+    target: "kernel_sunfish"
+    source_file: "pkcs7_message.ko"
+  }
+  dest_file: "pkcs7_message.ko"
+  version: "Linux version 4.14.170-gc8e6c317d9e5-ab6543217 (android-build@abfarm-01136) (Android (6443078 based on r383902) clang version 11.0.1 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79)) #1 SMP PREEMPT Sat May 30 01:53:39 UTC 2020"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/sunfish-kernel"
+}

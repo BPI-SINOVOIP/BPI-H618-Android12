@@ -1,0 +1,26 @@
+# Policies for time daemon
+type time_daemon, domain, mlstrustedsubject;
+type time_daemon_exec, exec_type, vendor_file_type, file_type;
+type time_data_file, file_type, data_file_type;
+
+# Make transition to its own time_daemon domain from init
+init_daemon_domain(time_daemon)
+
+# Access persist files
+allow time_daemon mnt_vendor_file:dir search;
+allow time_daemon persist_file:dir search;
+allow time_daemon persist_time_file:dir w_dir_perms;
+allow time_daemon persist_time_file:file create_file_perms;
+
+# Access data files
+allow time_daemon time_data_file:file create_file_perms;
+allow time_daemon time_data_file:dir w_dir_perms;
+
+allow time_daemon self:capability sys_time;
+allow time_daemon rtc_device:chr_file r_file_perms;
+allow time_daemon self:qipcrtr_socket create_socket_perms_no_ioctl;
+allow time_daemon sysfs_soc:dir search;
+allow time_daemon sysfs_soc:file r_file_perms;
+
+# b/68864350
+dontaudit time_daemon unlabeled:dir search;

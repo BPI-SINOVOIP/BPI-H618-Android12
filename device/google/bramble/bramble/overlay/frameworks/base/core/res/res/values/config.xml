@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2016, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
+         autodetected from the Configuration. -->
+    <bool name="config_showNavigationBar">true</bool>
+
+    <!-- Indicate whether closing the lid causes the device to go to sleep and opening
+         it causes the device to wake up.
+         The default is false. -->
+    <bool name="config_lidControlsSleep">true</bool>
+
+    <!-- List of regexpressions describing the interface (if any) that represent tetherable
+         Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
+         should be empty.  An example would be "softap.*" -->
+    <string-array translatable="false" name="config_tether_wifi_regexs">
+        <item>"wlan0"</item>
+        <item>"softap.*"</item>
+    </string-array>
+
+    <!-- List of regexpressions describing the interface (if any) that represent tetherable
+         Wifi P2P interfaces.  If the device doesn't want to support tethering over Wifi P2p this
+         should be empty.  An example would be "p2p-p2p.*" -->
+    <string-array translatable="false" name="config_tether_wifi_p2p_regexs">
+        <item>"p2p-p2p\\d-.*"</item>
+    </string-array>
+
+    <!-- Enable doze mode
+         ComponentName of a dream to show whenever the system would otherwise have gone to sleep. -->
+    <string translatable="false" name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
+
+    <!-- Type of the ambient tap sensor. Empty if ambient tap is not supported. -->
+    <string name="config_dozeTapSensorType" translatable="false">com.google.sensor.single_touch</string>
+
+    <!-- MMS user agent string -->
+    <string name="config_mms_user_agent" translatable="false">g025e</string>
+    <!-- MMS user agent profile url -->
+    <string name="config_mms_user_agent_profile_url" translatable="false">http://www.gstatic.com/android/sms/G025E.xml</string>
+
+    <!-- Array of desired screen brightness in nits corresponding to the lux values
+      in the config_autoBrightnessLevels array. As with config_screenBrightnessMinimumNits and
+      config_screenBrightnessMaximumNits, the display brightness is defined as the measured
+      brightness of an all-white image.
+
+      If this is defined then:
+      - config_autoBrightnessLcdBacklightValues should not be defined
+      - config_screenBrightnessNits must be defined
+      - config_screenBrightnessBacklight must be defined
+
+      This array should have size one greater than the size of the config_autoBrightnessLevels
+      array. The brightness values must be non-negative and non-decreasing. This must be
+      overridden in platform specific overlays -->
+    <array name="config_autoBrightnessDisplayValuesNits">
+      <item>5.139055</item>       <!--  0 - 1 -->
+      <item>9.962018965</item>    <!--  1 - 2 -->
+      <item>18.34822964</item>    <!--  2 - 3 -->
+      <item>21.55068128</item>    <!--  3 - 4 -->
+      <item>24.0167788</item>     <!--  4 - 8 -->
+      <item>30.62162162</item>    <!--  8 - 12 -->
+      <item>35.09486396</item>    <!--  12 - 20 -->
+      <item>41.2249643</item>     <!--  20 - 33 -->
+      <item>47.6760716</item>     <!--  33 - 55 -->
+      <item>55.73002427</item>    <!--  55 - 90 -->
+      <item>66.24126116</item>    <!--  90 - 148 -->
+      <item>79.67614115</item>    <!--  148 - 245 -->
+      <item>98.04727274</item>    <!--  245 - 403 -->
+      <item>125.1221991</item>    <!--  403 - 665 -->
+      <item>161.6875093</item>    <!--  665 - 1097 -->
+      <item>208.4885553</item>    <!--  1097 - 1808 -->
+      <item>264.8221315</item>    <!--  1808 - 2981 -->
+      <item>327.8974352</item>    <!--  2981 - 5000 -->
+      <item>401.1676739</item>    <!--  5000 - 10000 -->
+      <item>494.0846144</item>    <!--  10000+ -->
+    </array>
+
+    <!-- Minimum screen brightness allowed by the power manager. -->
+    <integer name="config_screenBrightnessDim">6</integer>
+
+    <!-- Screen brightness when dozing. -->
+    <integer name="config_screenBrightnessDoze">34</integer>
+
+    <!-- Whether the always on display mode is available. -->
+    <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>
+
+    <!-- Disable AOD by default -->
+    <bool name="config_dozeAlwaysOnEnabled">false</bool>
+
+    <!-- True if the display hardware only has brightness buckets rather than a full range of
+         backlight values -->
+    <bool name="config_displayBrightnessBucketsInDoze">true</bool>
+
+    <!-- Default screen brightness for VR setting. Target default value: 0x0BB for EVT1.1. -->
+    <!-- 8 bit brightness level of 6 corresponds to the 10 bit brightness level of 0x0B6,
+         8 bit brightness level of 7 corresponds to the 10 bit brightness level of 0x0C1 on EVT1.1. -->
+    <integer name="config_screenBrightnessForVrSettingDefault">7</integer>
+    <integer name="config_screenBrightnessForVrSettingMinimum">6</integer>
+    <integer name="config_screenBrightnessForVrSettingMaximum">7</integer>
+
+    <!-- Minimum screen brightness setting allowed by power manager.
+         The user is forbidden from setting the brightness below this level.  -->
+    <item name="config_screenBrightnessSettingMinimumFloat" format="float" type="dimen">0.0</item>
+
+    <!-- Maximum screen brightness allowed by the power manager.
+         The user is forbidden from setting the brightness above this level. -->
+    <item name="config_screenBrightnessSettingMaximumFloat" format="float" type="dimen">1.0</item>
+
+    <!-- Default screen brightness setting
+         Must be in the range specified by minimum and maximum. -->
+    <item name="config_screenBrightnessSettingDefaultFloat" format="float" type="dimen">0.32156862745</item>
+
+    <!-- An array describing the screen's backlight values corresponding to the brightness
+         values in the config_screenBrightnessNits array.
+
+         This array should be equal in size to config_screenBrightnessBacklight. -->
+    <integer-array name="config_screenBrightnessBacklight">
+        <item>1</item>
+        <item>255</item>
+    </integer-array>
+
+    <!-- An array of floats describing the screen brightness in nits corresponding to the backlight
+         values in the config_screenBrightnessBacklight array.  On OLED displays these  values
+         should be measured with an all white image while the display is in the fully on state.
+         Note that this value should *not* reflect the maximum brightness value for any high
+         brightness modes but only the maximum brightness value obtainable in a sustainable manner.
+
+         This array should be equal in size to config_screenBrightnessBacklight -->
+    <array name="config_screenBrightnessNits">
+        <item>2.0</item>
+        <item>450.0</item>
+    </array>
+
+    <!-- Nonlinear coefficients for maximum panel brightness of 450 nits -->
+    <string-array name="config_reduceBrightColorsCoefficientsNonlinear">
+        <!-- a-coefficient --> <item>-0.4429953456</item>
+        <!-- b-coefficient --> <item>-0.2434077725</item>
+        <!-- y-intercept --> <item>0.9809063061</item>
+    </string-array>
+
+    <!-- Linear coefficients for maximum panel brightness of 450 nits -->
+    <string-array name="config_reduceBrightColorsCoefficients">
+        <!-- a-coefficient --> <item>-0.000000000000001</item>
+        <!-- b-coefficient --> <item>-0.955555555555554</item>
+        <!-- y-intercept --> <item>1.000000000000000</item>
+    </string-array>
+
+    <!-- The nominal white coordinates, in CIE1931 XYZ color space, for Display White Balance to
+         use in its calculations. AWB will adapt this white point to the target ambient white
+         point. The array must include a total of 3 float values (X, Y, Z) -->
+    <string-array name="config_displayWhiteBalanceDisplayNominalWhite">
+        <!-- Nominal White X --> <item>0.950352</item>
+        <!-- Nominal White Y --> <item>1.0     </item>
+        <!-- Nominal White Z --> <item>1.089366</item>
+    </string-array>
+
+    <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
+    <integer name="config_shutdownBatteryTemperature">600</integer>
+
+    <!-- Whether or not we should show the option to show battery percentage -->
+    <bool name="config_battery_percentage_setting_available">true</bool>
+
+    <!-- Whether or not wcg mode should be enabled on this device -->
+    <bool name="config_enableWcgMode">true</bool>
+
+    <!-- Whether the display cutout region of the main built-in display should be forced to
+         black in software (to avoid aliasing or emulate a cutout that is not physically existent).
+     -->
+    <bool name="config_fillMainBuiltInDisplayCutout">true</bool>
+
+    <!-- An array of device capabilities defined by GSMA SGP.22 v2.2.2, and their corresponding major
+     version. -->
+     <string-array translatable="false" name="config_telephonyEuiccDeviceCapabilities">
+          <item>"gsm,9"</item>
+          <item>"utran,9"</item>
+          <item>"cdma1x,1"</item>
+          <item>"hrpd,3"</item>
+          <item>"ehrpd,12"</item>
+          <item>"eutran,15"</item>
+          <item>"nrepc,15"</item>
+          <item>"nr5gc,15"</item>
+          <item>"eutran5gc,15"</item>
+     </string-array>
+
+    <!-- Display cutout configuration -->
+    <string translatable="false" name="config_mainBuiltInDisplayCutout">
+      <!-- The hole punch dimensions are this:
+      M 38,78 a 39,39 0 1,0 78,0 a 39,39 0 1,0 -78,0
+      but using a radius 40 circle for now to see the antialiasing.
+      -->
+        M 37,77 a 40,40 0 1 0 80,0 40,40 0 1 0 -80,0 Z
+
+        @left
+    </string>
+
+    <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">
+        M 0.0,0.0
+        h 136
+        v 136
+        h -136
+        Z
+        @left
+    </string>
+
+    <!-- Radius of the software rounded corners. -->
+    <dimen name="rounded_corner_radius">108px</dimen>
+
+    <!-- Top adjustment for the software rounded corners since corners are not perfectly
+         round. This value is used when retrieving the "radius" of the rounded corner in cases
+         where the exact bezier curve cannot be retrieved. This value will be subtracted from
+         rounded_corner_radius to more accurately provide a "radius" for the rounded corners.
+         -->
+    <dimen name="rounded_corner_radius_adjustment">16px</dimen>
+
+    <!-- Height of the status bar in portrait. The height should be
+         Max((status bar content height + waterfall top size), top cutout size) -->
+    <dimen name="status_bar_height_portrait">145px</dimen>
+    <dimen name="status_bar_height_landscape">28dp</dimen>
+    <!-- Height of area above QQS where battery/time go (equal to status bar) -->
+    <dimen name="quick_qs_offset_height">145px</dimen>
+
+    <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
+     when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
+     where: IDs are unique per device, Modality as defined in BiometricAuthenticator.java,
+     and Strength as defined in Authenticators.java -->
+    <string-array name="config_biometric_sensors" translatable="false" >
+        <item>0:2:15</item> <!-- ID0:Fingerprint:Strong -->
+    </string-array>
+</resources>

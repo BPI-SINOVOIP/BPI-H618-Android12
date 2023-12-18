@@ -1,0 +1,16 @@
+recovery_only(`
+  allow fastbootd custom_ab_block_device:blk_file { w_file_perms ioctl getattr };
+  allow fastbootd modem_block_device:blk_file getattr;
+  allow fastbootd gpt_block_device:blk_file rw_file_perms;
+  allow fastbootd sysfs_scsi_devices_0000:dir { search r_dir_perms };
+  allow fastbootd boot_block_device:blk_file r_file_perms;
+  allow fastbootd sg_device:chr_file rw_file_perms;
+  allow fastbootd devinfo_block_device:blk_file r_file_perms;
+  allow fastbootd sysfs_leds:file w_file_perms;
+  allow fastbootd sysfs_batteryinfo:file r_file_perms;
+  # Allow to read /sys/class/power_supply directory.
+  allow fastbootd sysfs:dir r_dir_perms;
+  allow fastbootd sysfs_batteryinfo:dir search;
+  allow fastbootd citadel_device:chr_file rw_file_perms;
+')
+

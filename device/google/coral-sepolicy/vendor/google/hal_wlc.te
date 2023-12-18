@@ -1,0 +1,16 @@
+type hal_wlc, domain;
+type hal_wlc_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hal_wlc)
+
+r_dir_file(hal_wlc, sysfs_batteryinfo)
+r_dir_file(hal_wlc, sysfs_wlc)
+
+allow hal_wlc sysfs_wlc:file rw_file_perms;
+allow hal_wlc self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+
+hwbinder_use(hal_wlc)
+add_hwservice(hal_wlc, hal_wlc_hwservice)
+get_prop(hal_wlc, hwservicemanager_prop)
+
+binder_call(hal_wlc, platform_app)

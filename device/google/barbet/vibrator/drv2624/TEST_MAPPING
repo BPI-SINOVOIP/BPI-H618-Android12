@@ -1,0 +1,15 @@
+{
+  "presubmit": [
+    {
+      "name": "VibratorHalDrv2624TestSuiteBarbet"
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "VibratorHalDrv2624BenchmarkBarbet",
+      "keywords": [
+        "primary-device"
+      ]
+    }
+  ]
+}

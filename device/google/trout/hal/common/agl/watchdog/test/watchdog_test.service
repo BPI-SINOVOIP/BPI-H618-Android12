@@ -1,0 +1,13 @@
+[Unit]
+Description=Watchdog Test
+
+Wants=coqos-virtio-vsock.service
+After=coqos-virtio-vsock.service
+
+[Service]
+ExecStart=/bin/watchdog_test_service
+Restart=always
+WatchdogSec=5
+
+[Install]
+WantedBy=multi-user.target

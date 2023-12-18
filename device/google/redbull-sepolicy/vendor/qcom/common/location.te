@@ -1,0 +1,43 @@
+type location, domain;
+type location_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(location)
+
+allow location hal_cacert_hwservice:hwservice_manager find;
+allow location hal_datafactory_hwservice:hwservice_manager find;
+allow location hal_cne_hwservice:hwservice_manager find;
+
+binder_call(location, qtidataservices_app)
+get_prop(location, hwservicemanager_prop)
+hwbinder_use(location)
+
+# Enable standard network access (for XTRA download)
+net_domain(location)
+
+r_dir_file(location, sysfs_msm_subsys)
+r_dir_file(location, sysfs_soc)
+r_dir_file(location, sysfs_ssr)
+
+allow location hal_gnss_qti:unix_dgram_socket sendto;
+
+allow location location_data_file:dir create_dir_perms;
+allow location location_data_file:file create_file_perms;
+allow location location_exec:file execute_no_trans;
+allow location location_socket:dir w_dir_perms;
+allow location location_socket:sock_file create_file_perms;
+
+allow location self:capability setgid;
+allow location self:qipcrtr_socket create_socket_perms_no_ioctl;
+
+# Network access for lowi-server
+allow location self:netlink_generic_socket create_socket_perms_no_ioctl;
+allow location self:netlink_socket create_socket_perms_no_ioctl;
+allowxperm location self:udp_socket ioctl lowi_server_ioctls;
+allow location wpa_data_file:dir rw_dir_perms;
+allow location wpa_data_file:sock_file create_file_perms;
+allow location hal_wifi_supplicant_default:unix_dgram_socket sendto;
+allow location wifihal_socket:dir search;
+unix_socket_send(location, wifihal, hal_wifi_ext);
+
+userdebug_or_eng(`
+  allow location diag_device:chr_file rw_file_perms;
+')

@@ -1,0 +1,30 @@
+type rlsservice, domain;
+type rlsservice_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(rlsservice)
+
+vndbinder_use(rlsservice)
+
+add_service(rlsservice, rls_service)
+
+# access vd6281 rainbow sensor files
+allow rlsservice sysfs_camera:dir search;
+allow rlsservice sysfs_camera:file rw_file_perms;
+allow rlsservice rls_device:chr_file rw_file_perms;
+allow rlsservice persist_file:dir search;
+allow rlsservice persist_file:lnk_file read;
+allow rlsservice persist_camera_file:dir search;
+allow rlsservice persist_camera_file:file r_file_perms;
+allow rlsservice mnt_vendor_file:dir search;
+
+allow rlsservice hal_sensors_default:binder call;
+allow rlsservice hal_camera_default:binder call;
+
+# For rlsservice to read debug property
+get_prop(rlsservice, camera_prop)
+
+# For rlsservice to access display related sys file nodes
+allow rlsservice sysfs_leds:dir search;
+allow rlsservice sysfs_leds:file r_file_perms;
+allow rlsservice sysfs_msm_subsys:dir search;
+allow rlsservice sysfs_msm_subsys:file r_file_perms;

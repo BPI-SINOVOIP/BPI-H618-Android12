@@ -1,0 +1,842 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--- Copyright (c) 2018, The Linux Foundation. All rights reserved.       -->
+<!---                                                                           -->
+<!--- Redistribution and use in source and binary forms, with or without        -->
+<!--- modification, are permitted provided that the following conditions are    -->
+<!--- met:                                                                      -->
+<!---     * Redistributions of source code must retain the above copyright      -->
+<!---       notice, this list of conditions and the following disclaimer.       -->
+<!---     * Redistributions in binary form must reproduce the above             -->
+<!---       copyright notice, this list of conditions and the following         -->
+<!---       disclaimer in the documentation and/or other materials provided     -->
+<!---       with the distribution.                                              -->
+<!---     * Neither the name of The Linux Foundation nor the names of its       -->
+<!---       contributors may be used to endorse or promote products derived     -->
+<!---       from this software without specific prior written permission.       -->
+<!---                                                                           -->
+<!--- THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED              -->
+<!--- WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF      -->
+<!--- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT    -->
+<!--- ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS    -->
+<!--- BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR    -->
+<!--- CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF      -->
+<!--- SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR           -->
+<!--- BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,     -->
+<!--- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE      -->
+<!--- OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN    -->
+<!--- IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                             -->
+
+<mixer>
+    <!-- These are the initial mixer settings -->
+    <ctl name="Rx0Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx0Ch EpGain" value="0"/>
+    <ctl name="Rx0Chan GnReEvt" value="off"/>
+    <ctl name="Rx0Chan Gain En" value="0"/>
+
+    <ctl name="Rx1Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx1Ch EpGain" value="0"/>
+    <ctl name="Rx1Chan GnReEvt" value="off"/>
+    <ctl name="Rx1Chan Gain En" value="0"/>
+
+    <ctl name="Rx2Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx2Ch EpGain" value="0"/>
+    <ctl name="Rx2Chan GnReEvt" value="off"/>
+    <ctl name="Rx2Chan Gain En" value="0"/>
+
+    <ctl name="Rx3Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx3Ch EpGain" value="0"/>
+    <ctl name="Rx3Chan GnReEvt" value="off"/>
+    <ctl name="Rx3Chan Gain En" value="0"/>
+
+    <ctl name="Rx4Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx4Ch EpGain" value="0"/>
+    <ctl name="Rx4Chan GnReEvt" value="off"/>
+    <ctl name="Rx4Chan Gain En" value="0"/>
+
+    <ctl name="Rx5Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx5Ch EpGain" value="0"/>
+    <ctl name="Rx5Chan GnReEvt" value="off"/>
+    <ctl name="Rx5Chan Gain En" value="0"/>
+
+    <ctl name="Rx6Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx6Ch EpGain" value="0"/>
+    <ctl name="Rx6Chan GnReEvt" value="off"/>
+    <ctl name="Rx6Chan Gain En" value="0"/>
+
+    <ctl name="Rx7Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx7Ch EpGain" value="0"/>
+    <ctl name="Rx7Chan GnReEvt" value="off"/>
+    <ctl name="Rx7Chan Gain En" value="0"/>
+
+    <ctl name="Rx8Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx8Ch EpGain" value="0"/>
+    <ctl name="Rx8Chan GnReEvt" value="off"/>
+    <ctl name="Rx8Chan Gain En" value="0"/>
+
+    <ctl name="Rx9Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx9Ch EpGain" value="0"/>
+    <ctl name="Rx9Chan GnReEvt" value="off"/>
+    <ctl name="Rx9Chan Gain En" value="0"/>
+
+    <ctl name="Rx10Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx10Ch EpGain" value="0"/>
+    <ctl name="Rx10Chan GnReEvt" value="off"/>
+    <ctl name="Rx10Chan Gain En" value="0"/>
+
+    <ctl name="Rx11Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx11Ch EpGain" value="0"/>
+    <ctl name="Rx11Chan GnReEvt" value="off"/>
+    <ctl name="Rx11Chan Gain En" value="0"/>
+
+    <ctl name="Tx0Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx0Chan EpGain" value="0"/>
+    <ctl name="Tx0Chan GnReEvt" value="off"/>
+    <ctl name="Tx0Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx0Chan Gain En" value="0"/>
+
+    <ctl name="Tx1Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx1Chan EpGain" value="0"/>
+    <ctl name="Tx1Chan GnReEvt" value="off"/>
+    <ctl name="Tx1Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx1Chan Gain En" value="0"/>
+
+    <ctl name="Tx2Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx2Chan EpGain" value="0"/>
+    <ctl name="Tx2Chan GnReEvt" value="off"/>
+    <ctl name="Tx2Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx2Chan Gain En" value="0"/>
+
+    <ctl name="Tx3Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx3Chan EpGain" value="0"/>
+    <ctl name="Tx3Chan GnReEvt" value="off"/>
+    <ctl name="Tx3Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx3Chan Gain En" value="0"/>
+
+    <ctl name="Tx4Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx4Chan EpGain" value="0"/>
+    <ctl name="Tx4Chan GnReEvt" value="off"/>
+    <ctl name="Tx4Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx4Chan Gain En" value="0"/>
+
+    <ctl name="Tx5Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx5Chan EpGain" value="0"/>
+    <ctl name="Tx5Chan GnReEvt" value="off"/>
+    <ctl name="Tx5Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx5Chan Gain En" value="0"/>
+
+    <ctl name="Tx6Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx6Chan EpGain" value="0"/>
+    <ctl name="Tx6Chan GnReEvt" value="off"/>
+    <ctl name="Tx6Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx6Chan Gain En" value="0"/>
+
+    <ctl name="Tx7Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx7Chan EpGain" value="0"/>
+    <ctl name="Tx7Chan GnReEvt" value="off"/>
+    <ctl name="Tx7Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx7Chan Gain En" value="0"/>
+
+    <ctl name="strm0 En" value="0"/>
+    <ctl name="strm0 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm0 Format Sr" value="RATE_8K"/>
+    <ctl name="strm0 Format FrLn" value="NONE"/>
+    <ctl name="strm0 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm0 Xfer Mode" value="SSP"/>
+    <ctl name="strm0 droop comp en" value="0"/>
+    <ctl name="strm0 DC block en" value="0"/>
+    <ctl name="strm0 tone gen en" value="0"/>
+    <ctl name="strm0 Port" value="NONE"/>
+    <ctl name="strm0 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm0 Dir" value="0"/>
+    <ctl name="strm0 CH Mask En" value="0"/>
+    <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm0 inter strm delay" value="0"/>
+
+    <ctl name="strm1 En" value="0"/>
+    <ctl name="strm1 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm1 Format Sr" value="RATE_8K"/>
+    <ctl name="strm1 Format FrLn" value="NONE"/>
+    <ctl name="strm1 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm1 Xfer Mode" value="SSP"/>
+    <ctl name="strm1 droop comp en" value="0"/>
+    <ctl name="strm1 DC block en" value="0"/>
+    <ctl name="strm1 tone gen en" value="0"/>
+    <ctl name="strm1 Port" value="NONE"/>
+    <ctl name="strm1 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm1 Dir" value="0"/>
+    <ctl name="strm1 CH Mask En" value="0"/>
+    <ctl name="strm1 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm1 inter strm delay" value="0"/>
+
+    <ctl name="strm2 En" value="0"/>
+    <ctl name="strm2 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm2 Format Sr" value="RATE_8K"/>
+    <ctl name="strm2 Format FrLn" value="NONE"/>
+    <ctl name="strm2 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm2 Xfer Mode" value="SSP"/>
+    <ctl name="strm2 droop comp en" value="0"/>
+    <ctl name="strm2 DC block en" value="0"/>
+    <ctl name="strm2 tone gen en" value="0"/>
+    <ctl name="strm2 Port" value="NONE"/>
+    <ctl name="strm2 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm2 Dir" value="0"/>
+    <ctl name="strm2 CH Mask En" value="0"/>
+    <ctl name="strm2 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm2 inter strm delay" value="0"/>
+
+    <ctl name="strm3 En" value="0"/>
+    <ctl name="strm3 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm3 Format Sr" value="RATE_8K"/>
+    <ctl name="strm3 Format FrLn" value="NONE"/>
+    <ctl name="strm3 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm3 Xfer Mode" value="SSP"/>
+    <ctl name="strm3 droop comp en" value="0"/>
+    <ctl name="strm3 DC block en" value="0"/>
+    <ctl name="strm3 tone gen en" value="0"/>
+    <ctl name="strm3 Port" value="NONE"/>
+    <ctl name="strm3 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm3 Dir" value="0"/>
+    <ctl name="strm3 CH Mask En" value="0"/>
+    <ctl name="strm3 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm3 inter strm delay" value="0"/>
+
+    <ctl name="strm4 En" value="0"/>
+    <ctl name="strm4 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm4 Format Sr" value="RATE_8K"/>
+    <ctl name="strm4 Format FrLn" value="NONE"/>
+    <ctl name="strm4 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm4 Xfer Mode" value="SSP"/>
+    <ctl name="strm4 droop comp en" value="0"/>
+    <ctl name="strm4 DC block en" value="0"/>
+    <ctl name="strm4 tone gen en" value="0"/>
+    <ctl name="strm4 Port" value="NONE"/>
+    <ctl name="strm4 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm4 Dir" value="0"/>
+    <ctl name="strm4 CH Mask En" value="0"/>
+    <ctl name="strm4 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm4 inter strm delay" value="0"/>
+
+    <ctl name="strm5 En" value="0"/>
+    <ctl name="strm5 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm5 Format Sr" value="RATE_8K"/>
+    <ctl name="strm5 Format FrLn" value="NONE"/>
+    <ctl name="strm5 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm5 Xfer Mode" value="SSP"/>
+    <ctl name="strm5 droop comp en" value="0"/>
+    <ctl name="strm5 DC block en" value="0"/>
+    <ctl name="strm5 tone gen en" value="0"/>
+    <ctl name="strm5 Port" value="NONE"/>
+    <ctl name="strm5 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm5 Dir" value="0"/>
+    <ctl name="strm5 CH Mask En" value="0"/>
+    <ctl name="strm5 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm5 inter strm delay" value="0"/>
+
+    <ctl name="strm6 En" value="0"/>
+    <ctl name="strm6 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm6 Format Sr" value="RATE_8K"/>
+    <ctl name="strm6 Format FrLn" value="NONE"/>
+    <ctl name="strm6 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm6 Xfer Mode" value="SSP"/>
+    <ctl name="strm6 droop comp en" value="0"/>
+    <ctl name="strm6 DC block en" value="0"/>
+    <ctl name="strm6 tone gen en" value="0"/>
+    <ctl name="strm6 Port" value="NONE"/>
+    <ctl name="strm6 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm6 Dir" value="0"/>
+    <ctl name="strm6 CH Mask En" value="0"/>
+    <ctl name="strm6 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm6 inter strm delay" value="0"/>
+
+    <ctl name="strm7 En" value="0"/>
+    <ctl name="strm7 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm7 Format Sr" value="RATE_8K"/>
+    <ctl name="strm7 Format FrLn" value="NONE"/>
+    <ctl name="strm7 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm7 Xfer Mode" value="SSP"/>
+    <ctl name="strm7 droop comp en" value="0"/>
+    <ctl name="strm7 DC block en" value="0"/>
+    <ctl name="strm7 tone gen en" value="0"/>
+    <ctl name="strm7 Port" value="NONE"/>
+    <ctl name="strm7 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm7 Dir" value="0"/>
+    <ctl name="strm7 CH Mask En" value="0"/>
+    <ctl name="strm7 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm7 inter strm delay" value="0"/>
+
+    <ctl name="strm8 En" value="0"/>
+    <ctl name="strm8 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm8 Format Sr" value="RATE_8K"/>
+    <ctl name="strm8 Format FrLn" value="NONE"/>
+    <ctl name="strm8 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm8 Xfer Mode" value="SSP"/>
+    <ctl name="strm8 droop comp en" value="0"/>
+    <ctl name="strm8 DC block en" value="0"/>
+    <ctl name="strm8 tone gen en" value="0"/>
+    <ctl name="strm8 Port" value="NONE"/>
+    <ctl name="strm8 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm8 Dir" value="0"/>
+    <ctl name="strm8 CH Mask En" value="0"/>
+    <ctl name="strm8 Master Strm Id" value="STREAMID_NONE"/>
+    <ctl name="strm8 inter strm delay" value="0"/>
+
+    <ctl name="strm9 En" value="0"/>
+    <ctl name="strm9 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm9 Format Sr" value="RATE_8K"/>
+    <ctl name="strm9 Format FrLn" value="NONE"/>
+    <ctl name="strm9 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm9 Xfer Mode" value="SSP"/>
+    <ctl name="strm9 droop comp en" value="0"/>
+    <ctl name="strm9 DC block en" value="0"/>
+    <ctl name="strm9 tone gen en" value="0"/>
+    <ctl name="strm9 Port" value="NONE"/>
+    <ctl name="strm9 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm9 Dir" value="0"/>
+    <ctl name="strm9 CH Mask En" value="0"/>
+    <ctl name="strm9 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm9 inter strm delay" value="0"/>
+
+    <ctl name="Plgin0Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin1Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin2Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin3Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin4Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin5Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin6Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin7Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin8Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin9Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep5 Conf" value="UNKNOWN"/>
+
+    <ctl name="Plgin0Blk0En" value="0"/>
+    <ctl name="Plgin0Blk1En" value="0"/>
+    <ctl name="Plgin0Blk2En" value="0"/>
+
+    <ctl name="Plgin1Blk0En" value="0"/>
+    <ctl name="Plgin1Blk1En" value="0"/>
+    <ctl name="Plgin1Blk2En" value="0"/>
+
+    <ctl name="Plgin2Blk0En" value="0"/>
+    <ctl name="Plgin2Blk1En" value="0"/>
+    <ctl name="Plgin2Blk2En" value="0"/>
+
+    <ctl name="Plgin3Blk0En" value="0"/>
+    <ctl name="Plgin3Blk1En" value="0"/>
+    <ctl name="Plgin3Blk2En" value="0"/>
+
+    <ctl name="Plgin4Blk0En" value="0"/>
+    <ctl name="Plgin4Blk1En" value="0"/>
+    <ctl name="Plgin4Blk2En" value="0"/>
+
+    <ctl name="Plgin5Blk0En" value="0"/>
+    <ctl name="Plgin5Blk1En" value="0"/>
+    <ctl name="Plgin5Blk2En" value="0"/>
+
+    <ctl name="Plgin6Blk0En" value="0"/>
+    <ctl name="Plgin6Blk1En" value="0"/>
+    <ctl name="Plgin6Blk2En" value="0"/>
+
+    <ctl name="Plgin7Blk0En" value="0"/>
+    <ctl name="Plgin7Blk1En" value="0"/>
+    <ctl name="Plgin7Blk2En" value="0"/>
+
+    <ctl name="Plgin8Blk0En" value="0"/>
+    <ctl name="Plgin8Blk1En" value="0"/>
+    <ctl name="Plgin8Blk2En" value="0"/>
+
+    <ctl name="Plgin9Blk0En" value="0"/>
+    <ctl name="Plgin9Blk1En" value="0"/>
+    <ctl name="Plgin9Blk2En" value="0"/>
+
+    <ctl name="sensor0 En" value="0"/>
+    <ctl name="sensor0 Ip Conf" value="UNKNOWN"/>
+    <ctl name="sensor1 En" value="0"/>
+    <ctl name="sensor1 Ip Conf" value="UNKNOWN"/>
+    <ctl name="sensor2 En" value="0"/>
+    <ctl name="sensor2 Ip Conf" value="UNKNOWN"/>
+    <ctl name="sensor3 En" value="0"/>
+    <ctl name="sensor3 Ip Conf" value="UNKNOWN"/>
+
+    <ctl name="Update Block0 Req" value="0"/>
+    <ctl name="Update Block1 Req" value="0"/>
+    <ctl name="Update Block2 Req" value="0"/>
+
+    <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_NONE"/>
+    <ctl name="PDM Port AudCLK" value="IAXXX_AUD_PORT_NONE"/>
+    <ctl name="CDC DMIC Enable" value="0"/>
+
+    <ctl name="PCM PortA Setup" value="0"/>
+    <ctl name="PCM PortB Setup" value="0"/>
+    <ctl name="PCM PortC Setup" value="0"/>
+    <ctl name="PCM PortD Setup" value="0"/>
+    <ctl name="PCM PortE Setup" value="0"/>
+    <ctl name="PCM PortF Setup" value="0"/>
+
+    <ctl name="PCM PortA Start" value="0"/>
+    <ctl name="PCM PortB Start" value="0"/>
+    <ctl name="PCM PortC Start" value="0"/>
+    <ctl name="PCM PortD Start" value="0"/>
+    <ctl name="PCM PortE Start" value="0"/>
+    <ctl name="PCM PortF Start" value="0"/>
+
+    <ctl name="Pdm PortB DMic0 En" value="0"/>
+    <ctl name="Pdm PortB DMic1 En" value="0"/>
+    <ctl name="Pdm PortB DMic2 En" value="0"/>
+    <ctl name="Pdm PortB DMic3 En" value="0"/>
+
+    <ctl name="Pdm PortC DMic0 En" value="0"/>
+    <ctl name="Pdm PortC DMic1 En" value="0"/>
+    <ctl name="Pdm PortC DMic2 En" value="0"/>
+    <ctl name="Pdm PortC DMic3 En" value="0"/>
+
+    <ctl name="Pdm CDC0 CDC DMic0 En" value="0"/>
+    <ctl name="Pdm CDC0 CDC DMic1 En" value="0"/>
+    <ctl name="Pdm CDC0 CDC DMic2 En" value="0"/>
+    <ctl name="Pdm CDC1 CDC DMic3 En" value="0"/>
+
+    <ctl name="Pdm PortC CDC DMic4 En" value="0"/>
+    <ctl name="Pdm PortC CDC DMic5 En" value="0"/>
+    <ctl name="Pdm PortB CDC DMic6 En" value="0"/>
+    <ctl name="Pdm PortB CDC DMic7 En" value="0"/>
+
+    <ctl name="Pdm PortB DO DMic0 En" value="0"/>
+    <ctl name="Pdm PortB DO DMic1 En" value="0"/>
+    <ctl name="Pdm PortC DO DMic0 En" value="0"/>
+    <ctl name="Pdm PortC DO DMic1 En" value="0"/>
+
+    <ctl name="Pdm PortB Setup" value="0"/>
+    <ctl name="Pdm PortC Setup" value="0"/>
+
+    <ctl name="Pdm CDC Setup" value="0"/>
+    <ctl name="Pdm CDC1 Setup" value="0"/>
+
+    <ctl name="PDM PortB Start" value="0"/>
+    <ctl name="PDM PortC Start" value="0"/>
+
+    <ctl name="PDM CDC0 Start" value="0"/>
+    <ctl name="PDM CDC1 Start" value="0"/>
+
+    <ctl name="PortB MicBias" value="0"/>
+    <ctl name="PortC MicBias" value="0"/>
+    <ctl name="CDC0 MicBias" value="0"/>
+    <ctl name="CDC1 MicBias" value="0"/>
+
+    <ctl name="PDM Hos" value="0"/>
+    <ctl name="Route Status" value="InActive"/>
+
+    <ctl name="Rx0 Mux Port" value="NONE"/>
+    <ctl name="Rx1 Mux Port" value="NONE"/>
+    <ctl name="Rx2 Mux Port" value="NONE"/>
+    <ctl name="Rx3 Mux Port" value="NONE"/>
+    <ctl name="Rx4 Mux Port" value="NONE"/>
+    <ctl name="Rx5 Mux Port" value="NONE"/>
+    <ctl name="Rx6 Mux Port" value="NONE"/>
+    <ctl name="Rx7 Mux Port" value="NONE"/>
+    <ctl name="Rx8 Mux Port" value="NONE"/>
+    <ctl name="Rx9 Mux Port" value="NONE"/>
+    <ctl name="Rx10 Mux Port" value="NONE"/>
+    <ctl name="Rx11 Mux Port" value="NONE"/>
+
+    <ctl name="Tx0 Mux Port" value="NONE"/>
+    <ctl name="Tx1 Mux Port" value="NONE"/>
+    <ctl name="Tx2 Mux Port" value="NONE"/>
+    <ctl name="Tx3 Mux Port" value="NONE"/>
+    <ctl name="Tx4 Mux Port" value="NONE"/>
+    <ctl name="Tx5 Mux Port" value="NONE"/>
+    <ctl name="Tx6 Mux Port" value="NONE"/>
+    <ctl name="Tx7 Mux Port" value="NONE"/>
+
+    <ctl name="Tx0 PortMux En" value="Off"/>
+    <ctl name="Tx1 PortMux En" value="Off"/>
+    <ctl name="Tx2 PortMux En" value="Off"/>
+    <ctl name="Tx3 PortMux En" value="Off"/>
+    <ctl name="Tx4 PortMux En" value="Off"/>
+    <ctl name="Tx5 PortMux En" value="Off"/>
+    <ctl name="Tx6 PortMux En" value="Off"/>
+    <ctl name="Tx7 PortMux En" value="Off"/>
+
+    <ctl name="Plgin0En" value="Off"/>
+    <ctl name="Plgin1En" value="Off"/>
+    <ctl name="Plgin2En" value="Off"/>
+    <ctl name="Plgin3En" value="Off"/>
+    <ctl name="Plgin4En" value="Off"/>
+    <ctl name="Plgin5En" value="Off"/>
+    <ctl name="Plgin6En" value="Off"/>
+    <ctl name="Plgin7En" value="Off"/>
+    <ctl name="Plgin8En" value="Off"/>
+    <ctl name="Plgin9En" value="Off"/>
+
+    <ctl name="Port ApllCLK Src" value="IAXXX_SRC_SYSCLK" />
+
+    <path name="port-c">
+    <!-- Port-C PDM4, DMIC3 -->
+        <ctl name="Route Status" value="Active"/>
+        <ctl name="CDC0 MicBias" value="1"/>
+        <!--ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/-->
+        <ctl name="Pdm CDC Setup" value="1"/>
+        <ctl name="Pdm PortC CDC DMic4 En" value="1"/>
+        <ctl name="PDM Hos" value="0x10"/>
+        <ctl name="PDM CDC0 Start" value="0x10"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Ch EpGain" value="20"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+        <ctl name="strm0 ASRC Mode" value="REDBOX_2-1"/>
+        <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm0 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm0 Format Sr" value="RATE_16K"/>
+        <ctl name="strm0 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm0 Dir" value="0"/>
+        <ctl name="strm0 DC block en" value="1" />
+        <ctl name="strm0 inter strm delay" value="0"/>
+        <ctl name="strm0 Port" value="PDMI4"/>
+        <ctl name="strm0 Port Enc" value="ENCODING_Q23"/>
+        <ctl name="strm0 CH Mask En" value="2"/>
+        <ctl name="Rx0 Mux Port" value="PDMI4"/>
+        <ctl name="strm0 En" value="1"/>
+    </path>
+
+    <path name="port-b">
+    <!-- Port-B PDM7, Flicker -->
+        <ctl name="Route Status" value="Active"/>
+        <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/>
+        <ctl name="Pdm CDC Setup" value="1"/>
+        <ctl name="Pdm PortB CDC DMic6 En" value="1"/>
+        <ctl name="PDM Hos" value="0x80"/>
+        <ctl name="PDM CDC0 Start" value="0x80"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Ch EpGain" value="20"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+        <ctl name="strm0 ASRC Mode" value="REDBOX_2-1"/>
+        <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm0 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm0 Format Sr" value="RATE_16K"/>
+        <ctl name="strm0 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm0 Dir" value="0"/>
+        <!-- ctl name="strm0 DC block en" value="1" /-->
+        <ctl name="strm0 inter strm delay" value="0"/>
+        <ctl name="strm0 Port" value="PDMI7"/>
+        <ctl name="strm0 Port Enc" value="ENCODING_Q23"/>
+        <ctl name="strm0 CH Mask En" value="2"/>
+        <ctl name="Rx0 Mux Port" value="PDMI7"/>
+        <ctl name="strm0 En" value="1"/>
+    </path>
+
+    <path name="port-d">
+    <!-- Port-D PDM3, DMIC2 -->
+        <ctl name="Route Status" value="Active"/>
+        <ctl name="PortB MicBias" value="1"/>
+        <!--ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/-->
+        <ctl name="Pdm CDC Setup" value="1"/>
+        <ctl name="Pdm CDC1 CDC DMic3 En" value="1"/>
+        <ctl name="PDM Hos" value="0x8"/>
+        <ctl name="PDM CDC0 Start" value="0x8"/>
+        <ctl name="Rx0Ch EpGain" value="20"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+        <ctl name="strm0 ASRC Mode" value="REDBOX_2-1"/>
+        <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm0 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm0 Format Sr" value="RATE_16K"/>
+        <ctl name="strm0 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm0 Dir" value="0"/>
+        <ctl name="strm0 DC block en" value="1" />
+        <ctl name="strm0 inter strm delay" value="0"/>
+        <ctl name="strm0 Port" value="PDMI3"/>
+        <ctl name="strm0 Port Enc" value="ENCODING_Q23"/>
+        <ctl name="strm0 CH Mask En" value="2" />
+        <ctl name="Rx0 Mux Port" value="PDMI3"/>
+        <ctl name="strm0 En" value="1" />
+    </path>
+
+    <path name="port-cdc">
+    <!-- Port-CDC PDM1, DMIC1 -->
+        <ctl name="Route Status" value="Active"/>
+        <ctl name="PortC MicBias" value="1"/>
+        <!--ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/-->
+        <ctl name="Pdm CDC Setup" value="1"/>
+        <ctl name="Pdm CDC0 CDC DMic1 En" value="1"/>
+        <ctl name="PDM Hos" value="0x2"/>
+        <ctl name="PDM CDC0 Start" value="0x2"/>
+        <ctl name="Rx0Ch EpGain" value="20"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+        <ctl name="strm0 ASRC Mode" value="REDBOX_2-1"/>
+        <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm0 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm0 Format Sr" value="RATE_16K"/>
+        <ctl name="strm0 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm0 Dir" value="0"/>
+        <ctl name="strm0 DC block en" value="1"/>
+        <ctl name="strm0 inter strm delay" value="0"/>
+        <ctl name="strm0 Port" value="PDMI1"/>
+        <ctl name="strm0 Port Enc" value="ENCODING_Q23"/>
+        <ctl name="strm0 CH Mask En" value="2"/>
+        <ctl name="Rx0 Mux Port" value="PDMI1"/>
+        <ctl name="strm0 En" value="1"/>
+    </path>
+
+    <path name="mic1-route">
+    <!-- main mic -->
+        <path name="port-cdc"/>
+    </path>
+
+    <path name="mic2-route">
+    <!-- second mic -->
+        <path name="port-d"/>
+    </path>
+
+    <path name="mic3-route">
+    <!-- third mic -->
+        <path name="port-c"/>
+    </path>
+
+    <path name="bargein-route">
+    <!-- use aec mic -->
+        <ctl name="Plgin4Ip Ep0 Conf" value="plugin7Out0"/>
+        <ctl name="Plgin4Ip Ep1 Conf" value="plugin7Out1"/>
+        <ctl name="Plgin4Ip Ep2 Conf" value="plugin6Out0"/>
+        <ctl name="Plgin4En" value="Rx0Plgin4On"/>
+        <ctl name="Plgin4Blk1En" value="1"/>
+    </path>
+
+    <path name="bargein-amp-ref">
+    <!-- use aec mic -->
+        <ctl name="PCM PortE Setup" value="1"/>
+        <ctl name="PCM PortE Start" value="0x1FF"/>
+        <ctl name="strm4 ASRC Mode" value="ASRC_ENABLE"/>
+        <ctl name="strm4 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm4 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm4 Format Sr" value="RATE_16K" />
+        <ctl name="strm4 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm4 Dir" value="0"/>
+        <!--ctl name="strm4 DC block en" value="1" /-->
+        <ctl name="strm4 inter strm delay" value="0"/>
+        <ctl name="strm4 Port" value="PCM4"/>
+        <ctl name="strm4 Port Enc" value="ENCODING_Q15"/>
+        <ctl name="strm4 CH Mask En" value="0xF0"/>
+        <ctl name="strm4 En" value="1"/>
+    </path>
+
+    <path name="bargein-amp-ref-48k">
+    <!-- use aec mic -->
+        <ctl name="PCM PortE Setup" value="1"/>
+        <ctl name="PCM PortE Start" value="0x1FF"/>
+        <ctl name="strm4 ASRC Mode" value="ASRC_ENABLE"/>
+        <ctl name="strm4 Master Strm Id" value="STREAMID_3"/>
+        <ctl name="strm4 Format FrLn" value="48K_10MS"/>
+        <ctl name="strm4 Format Sr" value="RATE_48K" />
+        <ctl name="strm4 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm4 Dir" value="0"/>
+        <ctl name="strm4 inter strm delay" value="0"/>
+        <ctl name="strm4 Port" value="PCM4"/>
+        <ctl name="strm4 Port Enc" value="ENCODING_Q15"/>
+        <ctl name="strm4 CH Mask En" value="0xF0"/>
+        <ctl name="strm4 En" value="1"/>
+    </path>
+
+    <!-- Hotword detect with bargein, mic in HPM(S=-37dBFS)-->
+    <path name="mic-route-external-clock">
+        <ctl name="Port ApllCLK Src" value="IAXXX_EXT_OSC" />
+        <ctl name="PDM Port AudCLK" value="IAXXX_AUD_PORT_32K" />
+        <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/>
+        <path name="mic3-route" />
+        <ctl name="Rx0Ch EpGain" value="0"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+    </path>
+
+    <!-- Normal hotword detect use, mic in LPM(S=-21dBFS)-->
+    <path name="mic-route-internal-clock">
+        <ctl name="Port ApllCLK Src" value="IAXXX_INT_OSC" />
+        <ctl name="PDM Port AudCLK" value="IAXXX_AUD_PORT_32K" />
+        <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_0P_768MHZ"/>
+        <path name="mic1-route" />
+        <ctl name="Rx0Ch EpGain" value="1"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+    </path>
+
+    <path name="src-route-mic">
+    <!-- bind src route on main-mic -->
+        <ctl name="Plgin6Ip Ep0 Conf" value="RX1_ChanMgr"/>
+        <ctl name="Plgin6En" value="Rx0Plgin6On"/>
+        <ctl name="Plgin6Blk1En" value="1"/>
+    </path>
+
+    <path name="src-route-amp-ref">
+    <!-- bind src route on main-mic -->
+        <ctl name="Plgin7Ip Ep0 Conf" value="RX4_ChanMgr"/>
+        <ctl name="Plgin7Ip Ep1 Conf" value="RX6_ChanMgr"/>
+        <ctl name="Plgin7En" value="Rx0Plgin7On"/>
+        <ctl name="Plgin7Blk1En" value="1"/>
+    </path>
+
+    <path name="hotword-route">
+    <!-- enable hotword route -->
+        <ctl name="Plgin0En" value="Rx0Plgin0On"/>
+        <ctl name="Plgin0Blk1En" value="1"/>
+    </path>
+
+    <path name="hotword-route-with-bargein">
+        <ctl name="Plgin0Ip Ep0 Conf" value="plugin4Out0"/>
+        <path name="hotword-route"/>
+    </path>
+
+    <path name="hotword-route-without-bargein">
+        <ctl name="Plgin0Ip Ep0 Conf" value="plugin6Out0"/>
+        <path name="hotword-route"/>
+    </path>
+
+    <path name="ambient-route">
+    <!-- enable ambient route -->
+        <ctl name="Plgin2En" value="Rx0Plgin2On"/>
+        <ctl name="Plgin2Blk1En" value="1"/>
+    </path>
+
+    <path name="ambient-route-with-bargein">
+        <ctl name="Plgin2Ip Ep0 Conf" value="plugin6Out0"/>
+        <path name="ambient-route"/>
+    </path>
+
+    <path name="ambient-route-without-bargein">
+        <ctl name="Plgin2Ip Ep0 Conf" value="plugin6Out0"/>
+        <path name="ambient-route"/>
+    </path>
+
+    <path name="chre-route">
+    <!-- enable chre route -->
+        <ctl name="Plgin5En" value="Rx0Plgin5On"/>
+        <ctl name="Plgin5Blk1En" value="1"/>
+    </path>
+
+    <path name="chre-route-with-bargein">
+        <ctl name="Plgin5Ip Ep0 Conf" value="plugin4Out0"/>
+        <path name="chre-route"/>
+    </path>
+
+    <path name="chre-route-without-bargein">
+        <ctl name="Plgin5Ip Ep0 Conf" value="plugin6Out0"/>
+        <path name="chre-route"/>
+    </path>
+
+    <path name="oslo-route">
+    <!-- enable oslo route -->
+        <ctl name="sensor0 Ip Conf" value="plugin9Out1"/>
+        <ctl name="sensor0 En" value="1"/>
+        <ctl name="Plgin8Ip Ep0 Conf" value="SensorOut0"/>
+        <ctl name="Plgin9Ip Ep0 Conf" value="plugin8Out0"/>
+        <ctl name="Plgin8Blk1En" value="1"/>
+        <ctl name="Plgin9Blk1En" value="1"/>
+    </path>
+
+    <path name="buffer-audio-route">
+        <ctl name="Plgin1En" value="Rx0Plgin1On" />
+        <ctl name="Plgin1Blk1En" value="1" />
+    </path>
+
+    <path name="buffer-route-with-bargein">
+        <ctl name="Plgin1Ip Ep0 Conf" value="plugin4Out0" />
+        <path name="buffer-audio-route" />
+    </path>
+
+    <path name="buffer-route-without-bargein">
+        <ctl name="Plgin1Ip Ep0 Conf" value="plugin6Out0" />
+        <path name="buffer-audio-route" />
+    </path>
+
+    <path name="music-buffer-route">
+        <ctl name="Plgin3En" value="Rx0Plgin3On" />
+        <ctl name="Plgin3Blk1En" value="1" />
+    </path>
+
+    <path name="music-buffer-with-bargein">
+        <ctl name="Plgin3Ip Ep0 Conf" value="plugin6Out0" />
+        <path name="music-buffer-route" />
+    </path>
+
+    <path name="music-buffer-without-bargein">
+        <ctl name="Plgin3Ip Ep0 Conf" value="plugin6Out0" />
+        <path name="music-buffer-route" />
+    </path>
+
+    <path name="music-audio-route">
+        <path name="music-buffer-without-bargein" />
+    </path>
+
+    <!-- Ignore Downlink Audio route to temporary disable feature-->
+    <path name="downlink-audio-route">
+        <path name="music-buffer-without-bargein" />
+        <!--ctl name="PCM PortA Setup" value="1" />
+        <ctl name="PCM PortA Start" value="0x3F" />
+        <ctl name="strm6 ASRC Mode" value="ASRC_ENABLE" />
+        <ctl name="strm6 Master Strm Id" value="STREAMID_6" />
+        <ctl name="strm6 Format FrLn" value="16K_10MS" />
+        <ctl name="strm6 Format Sr" value="RATE_16K" />
+        <ctl name="strm6 Format Enc" value="ENCODING_AFLOAT" />
+        <ctl name="strm6 Dir" value="0" />
+        <ctl name="strm6 inter strm delay" value="0" />
+        <ctl name="strm6 Port" value="PCM0" />
+        <ctl name="strm6 Port Enc" value="ENCODING_Q15" />
+        <ctl name="strm6 CH Mask En" value="0x1000" />
+        <ctl name="strm6 En" value="1" />
+        <path name="music-buffer-with-bargein" /-->
+    </path>
+</mixer>

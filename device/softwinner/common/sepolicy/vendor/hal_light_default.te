@@ -1,0 +1,2 @@
+allow hal_light_default graphics_device:chr_file { write read open ioctl };
+allow hal_light_default sysfs:file { read open write };

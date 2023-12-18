@@ -1,0 +1,6 @@
+type htserver_service, system_api_service, system_server_service, service_manager_type;
+type background_service,        app_api_service, ephemeral_app_api_service, service_manager_type;
+type display_output_service, service_manager_type;
+type softwinner_service,        service_manager_type;
+
+type hal_awdisplayoutput_service, vendor_service, service_manager_type;

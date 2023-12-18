@@ -1,0 +1,4 @@
+dontaudit vold kernel:system module_request;
+
+allow vold sysfs_scsi_devices_0000:file w_file_perms;
+get_prop(vold, vendor_hw_plat_prop)

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfgOverrides>
+    <cfgOverride
+        name="floatwindow_enable"
+        value="1"/>
+	<cfgOverride
+        name="smart_detection_enable"
+        value="0"/>
+	<cfgOverride
+        name="athumb_enable"
+        value="0"/>
+	<cfgOverride
+        name="presentation_enable"
+        value="0"/>
+	<cfgOverride
+        name="hide_menu_athumb"
+        value="1"/>
+	<cfgOverride
+        name="hide_menu_presentation"
+        value="1"/>
+	<cfgOverride
+        name="hide_icon_floatwindow"
+        value="0"/>
+	<cfgOverride
+        name="hide_3d_menu"
+        value="1"/>
+	<cfgOverride
+        name="earphone_plugout_pause"
+        value="1"/>
+</cfgOverrides>

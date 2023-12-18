@@ -1,0 +1,29 @@
+allow vendor_init { vendor_file rootfs }:system module_load;
+allow vendor_init rootfs:dir { write setattr read create open add_name };
+allow vendor_init self:capability sys_module;
+allow vendor_init kernel:system module_request;
+allow vendor_init proc_bootevent:file { write open getattr };
+allow vendor_init zram_backing_device:blk_file { getattr open read write };
+allow vendor_init tmpfs:dir write;
+allow vendor_init tmpfs:dir { add_name create  };
+allow vendor_init proc_drop_caches:file write;
+allow vendor_init proc:file write;
+allow vendor_init proc_swappiness:file { write open getattr };
+
+#============= for treadahead ==============
+allow vendor_init system_file_type:dir { search };
+allow vendor_init system_file_type:file { open getattr read };
+allow vendor_init vendor_file_type:dir { search };
+allow vendor_init vendor_file_type:file { open getattr read };
+allow vendor_init debugfs_tracing_debug:file { open getattr read write };
+allow vendor_init debugfs_tracing:file { open getattr read write };
+allow vendor_init exec_type:file { open getattr read };
+allow vendor_init exec_type:lnk_file { open getattr read };
+allow vendor_init kmsg_device:chr_file { open write };
+set_prop(vendor_init, system_prop);
+#============= end treadahead ==============
+
+set_prop(vendor_init, vendor_ril_prop);
+set_prop(vendor_init, vendor_usb_prop);
+#get_prop(vendor_init, default_prop);
+set_prop(vendor_init, vendor_codec2_prop);

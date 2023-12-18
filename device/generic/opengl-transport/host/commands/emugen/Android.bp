@@ -1,0 +1,22 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "device_generic_opengl-transport_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-GPL-2.0
+    default_applicable_licenses: ["device_generic_opengl-transport_license"],
+}
+
+cc_binary_host {
+    name: "emugen_cuttlefish",
+    srcs: [
+        "ApiGen.cpp",
+        "EntryPoint.cpp",
+        "main.cpp",
+        "Parser.cpp",
+        "strUtils.cpp",
+        "TypeFactory.cpp",
+    ],
+    cflags: ["-Wno-unused-parameter"],
+}

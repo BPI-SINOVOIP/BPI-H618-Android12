@@ -1,0 +1,10 @@
+# To find and bind hal_wlc
+allow platform_app hal_wlc_hwservice:hwservice_manager find;
+binder_call(platform_app, hal_wlc)
+binder_call(hal_wlc, platform_app)
+
+allow platform_app fwk_stats_hwservice:hwservice_manager find;
+allow platform_app nfc_service:service_manager find;
+
+allow platform_app fwk_stats_service:service_manager find;
+binder_use(platform_app)

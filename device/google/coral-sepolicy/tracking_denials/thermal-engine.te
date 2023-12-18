@@ -1,0 +1,9 @@
+# b/124250714
+dontaudit thermal-engine socket_device:dir write;
+dontaudit thermal-engine sysfs_batteryinfo:dir search;
+dontaudit thermal-engine sysfs:dir read;
+dontaudit thermal-engine sysfs_esoc:dir search;
+dontaudit thermal-engine sysfs_faceauth:dir search;
+dontaudit thermal-engine sysfs_leds:dir search;
+dontaudit thermal-engine sysfs_soc:dir search;
+dontaudit thermal-engine sysfs_ssr:file read;

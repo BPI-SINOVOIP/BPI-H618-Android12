@@ -1,0 +1,12 @@
+[Unit]
+Description=Android Vehicle HAL GRPC Server
+
+Wants=coqos-virtio-vsock.service
+After=coqos-virtio-vsock.service
+
+[Service]
+ExecStart=/usr/bin/vehicle_hal_grpc_server -server_cid 2 -server_port 9210 -power_state_file /tmp/power_state_marker -power_state_socket /tmp/power_state_socket
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

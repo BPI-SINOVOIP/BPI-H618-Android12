@@ -1,0 +1,7 @@
+# Camera service uses gralloc, gralloc mapper wants to talk to the GPU
+# and use debug properties; silently deny the former but allow the latter
+
+dontaudit cameraserver gpu_device:chr_file rw_file_perms;
+get_prop(cameraserver, vendor_display_prop)
+
+dontaudit cameraserver sysfs_msm_subsys:dir search;

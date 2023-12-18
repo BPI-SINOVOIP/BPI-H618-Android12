@@ -1,0 +1,32 @@
+genfscon sysfs /devices/platform/soc/c440000.qcom,spmi/spmi-0/spmi0-03/c440000.qcom,spmi:qcom,pm660l@3:analog-codec@f000     u:object_r:sysfs_pixelstats:s0
+genfscon sysfs /devices/platform/soc/a88000.i2c/i2c-0/0-0057    u:object_r:sysfs_pixelstats:s0
+genfscon sysfs /devices/virtual/misc/msm_cirrus_playback/resistance_left_right    u:object_r:sysfs_pixelstats:s0
+genfscon sysfs /devices/platform/soc/a88000.i2c/i2c-0/0-005a            u:object_r:sysfs_vibrator:s0
+genfscon sysfs /devices/virtual/ramoops/pstore/aes_key                  u:object_r:sysfs_pstore:s0
+genfscon sysfs /devices/virtual/ramoops/pstore/aes_key_iv               u:object_r:sysfs_pstore:s0
+genfscon sysfs /devices/virtual/ramoops/pstore/aes_key_tag              u:object_r:sysfs_pstore:s0
+genfscon sysfs /devices/virtual/ramoops/pstore/use_alt                  u:object_r:sysfs_pstore:s0
+genfscon sysfs /class/typec                                             u:object_r:sysfs_usb_c:s0
+genfscon sysfs /class/typec/usbc0                                       u:object_r:sysfs_usb_c:s0
+
+genfscon proc  /fts/driver_test                                         u:object_r:proc_touch:s0
+
+genfscon debugfs /tcpm/usbpd0                                           u:object_r:debugfs_usb:s0
+genfscon debugfs /logbuffer/smblib                                      u:object_r:debugfs_usb:s0
+genfscon debugfs /logbuffer/usbpd                                       u:object_r:debugfs_usb:s0
+
+# Charger
+genfscon sysfs /devices/platform/soc/soc:google,charger/charge_start_level      u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/charge_stop_level       u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_drainto_soc          u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_recharge_soc         u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_recharge_voltage     u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_resume_abs_temp      u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_resume_soc           u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_resume_temp          u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_resume_time          u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_trigger_temp         u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_trigger_time         u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_trigger_voltage      u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_temp_enable          u:object_r:sysfs_chargelevel:s0
+genfscon sysfs /devices/platform/soc/soc:google,charger/bd_clear                u:object_r:sysfs_chargelevel:s0

@@ -1,0 +1,9 @@
+service vendor.dumpstate-1-1 /vendor/bin/hw/android.hardware.dumpstate@1.1-service.bonito
+    class hal
+    user system
+    group system vendor_rfs
+    interface android.hardware.dumpstate@1.0::IDumpstateDevice default
+    interface android.hardware.dumpstate@1.1::IDumpstateDevice default
+
+on boot
+    chmod 0444 /sys/kernel/debug/tzdbg/qsee_log

@@ -1,0 +1,39 @@
+type hal_neuralnetworks_darwinn, domain;
+hal_server_domain(hal_neuralnetworks_darwinn, hal_neuralnetworks)
+
+type hal_neuralnetworks_darwinn_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_neuralnetworks_darwinn)
+
+# DarwiNN Hidl service.
+add_hwservice(hal_neuralnetworks_darwinn, hal_darwinn_hwservice)
+
+# The TPU HAL looks for TPU instance in /sys/class/abc-pcie-tpu/.
+allow hal_neuralnetworks_darwinn sysfs:dir { open read };
+
+# And opens the device at /dev/abc-pcie-tpu_0.
+allow hal_neuralnetworks_darwinn abc_tpu_device:chr_file { getattr ioctl map open read write };
+
+# Allow opening airbrush devices (DRAM and DMA drivers).
+allow hal_neuralnetworks_darwinn airbrush_device:chr_file rw_file_perms;
+
+allow hal_neuralnetworks_darwinn hal_airbrush_hwservice:hwservice_manager find;
+
+# Allow DawrinNN service to use a client-provided fd residing in /vendor/etc/.
+allow hal_neuralnetworks_darwinn vendor_configs_file:file { read getattr map };
+
+allow hal_neuralnetworks_darwinn airbrush_tpu_service:service_manager find;
+binder_call(hal_neuralnetworks_darwinn, airbrush)
+vndbinder_use(hal_neuralnetworks_darwinn)
+
+# Allows DarwiNN HAL to talk to Power HAL.
+hal_client_domain(hal_neuralnetworks_darwinn, hal_power);
+
+# Allow DarwiNN HAL to talk to stats service, and to make binder calls to it.
+allow hal_neuralnetworks_darwinn fwk_stats_hwservice:hwservice_manager find;
+binder_call(hal_neuralnetworks_darwinn, stats_service_server)
+allow hal_neuralnetworks_darwinn fwk_stats_service:service_manager find;
+binder_use(hal_neuralnetworks_darwinn)
+
+# Allow DarwiNN HAL full access to its shared files with Camera HAL.
+allow hal_neuralnetworks_darwinn hal_neuralnetworks_darwinn_hal_camera_data_file:file create_file_perms;
+allow hal_neuralnetworks_darwinn hal_neuralnetworks_darwinn_hal_camera_data_file:dir rw_dir_perms;

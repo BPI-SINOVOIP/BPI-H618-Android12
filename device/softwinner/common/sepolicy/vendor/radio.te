@@ -1,0 +1,2 @@
+allow radio system_app_data_file:dir getattr;
+allow system_server radio:file write;

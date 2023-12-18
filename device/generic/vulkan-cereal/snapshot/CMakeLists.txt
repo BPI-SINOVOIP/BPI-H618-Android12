@@ -1,0 +1,12 @@
+add_library(
+    gfxstream-snapshot
+    TextureLoader.cpp
+    TextureSaver.cpp)
+target_link_libraries(
+    gfxstream-snapshot
+    PRIVATE
+    gfxstream-base)
+target_include_directories(
+    gfxstream-snapshot
+    PUBLIC
+    ${GFXSTREAM_REPO_ROOT})

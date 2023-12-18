@@ -1,0 +1,35 @@
+# Tcpdump_logger
+vendor_internal_prop(vendor_tcpdump_log_prop)
+
+#face HAL
+vendor_internal_prop(vendor_faceauth_prop)
+
+# Vendor build type
+vendor_internal_prop(vendor_build_type_prop)
+
+# Vendor aware available type
+vendor_restricted_prop(vendor_aware_available_prop)
+
+# Modem property
+vendor_internal_prop(vendor_modem_prop)
+
+# Camera read only property
+vendor_restricted_prop(camera_ro_prop)
+
+#ramoops
+vendor_internal_prop(vendor_ramoops_prop)
+
+# battery_profile
+vendor_internal_prop(vendor_battery_profile_prop)
+
+#ecoservice
+vendor_internal_prop(ecoservice_prop)
+
+# hal_health
+vendor_internal_prop(vendor_shutdown_prop)
+vendor_internal_prop(vendor_battery_defender_prop)
+
+# wifi_sniffer
+vendor_internal_prop(vendor_wifi_sniffer_prop)
+
+vendor_internal_prop(vendor_device_prop)

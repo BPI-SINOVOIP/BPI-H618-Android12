@@ -1,0 +1,25 @@
+allow shell vendor_file:file { r_file_perms execute execute_no_trans};
+allow shell background_service:service_manager add;
+#allow shell sysfs_cma_readable:file { read getattr open };
+allow shell sysfs_thermal:file { read getattr open write};
+allow shell sysfs_thermal:dir search;
+allow shell sysfs_zram:dir search;
+allow shell sysfs_zram:file { read getattr open };
+allow shell hal_memtrack_default:binder call;
+allow shell untrusted_app_25:process getsched;
+set_prop(shell, system_prop)
+allow shell cache_file:dir search;
+allow shell cache_file:file { read getattr open };
+allow shell cache_file:lnk_file read;
+allow shell configfs:dir { search read };
+allow shell init_exec:lnk_file read;
+allow shell metadata_file:dir { search getattr };
+allow shell sysfs_devices_system_cpu:file write;
+allow shell linkerconfig_file:dir getattr;
+allow shell postinstall_mnt_dir:dir search;
+allow shell sysfs_android_usb:dir r_dir_perms;
+allow shell sysfs_android_usb:file rw_file_perms;
+allow shell sysfs_power:dir r_dir_perms;
+allow shell sysfs_power:file rw_file_perms;
+allow shell sysfs_rtc:dir r_dir_perms;
+allow shell sysfs_rtc:file rw_file_perms;

@@ -1,0 +1,5 @@
+# b/170189888
+dontaudit hal_neuralnetworks_default default_prop:file read ;
+dontaudit hal_neuralnetworks_default default_prop:file getattr ;
+dontaudit hal_neuralnetworks_default default_prop:file open ;
+dontaudit hal_neuralnetworks_default default_prop:file map ;

@@ -1,0 +1,44 @@
+allow recovery devpts:chr_file { open read write };
+allow recovery kmsg_device:chr_file { open read write };
+allow recovery boottime_prop:file { getattr open };
+allow recovery overlay_prop:file { getattr open };
+allow recovery persistent_properties_ready_prop:file { getattr open };
+allow recovery wifi_prop:file getattr;
+allow recovery device_logging_prop:file { getattr open };
+allow recovery mmc_prop:file { getattr open };
+allow recovery net_dns_prop:file open;
+allow recovery safemode_prop:file { getattr open };
+allow recovery wifi_prop:file open;
+allow recovery bluetooth_prop:file { getattr open };
+allow recovery dumpstate_options_prop:file { getattr open };
+allow recovery logpersistd_logging_prop:file { getattr open };
+allow recovery net_dns_prop:file getattr;
+allow recovery proc_drop_caches:file read;
+allow recovery proc_drop_caches:file getattr;
+allow recovery proc_filesystems:file r_file_perms;
+allow recovery vfat:dir { open read search };
+allow recovery vfat:file { getattr open read };
+allow recovery media_rw_data_file:dir r_dir_perms;
+allow recovery media_rw_data_file:file r_file_perms;
+allow recovery system_data_file:dir r_dir_perms;
+allow recovery system_data_file:file r_file_perms;
+allow recovery cache_file:lnk_file {open read write create};
+allow recovery ion_device:chr_file {open read write ioctl create };
+allow recovery userdata_block_device:blk_file { ioctl };
+
+allow recovery sysfs_dm:dir r_dir_perms;
+allow recovery sysfs_dm:file r_file_perms;
+allow recovery tmpfs:lnk_file { getattr read };
+allow recovery tmpfs:file { ioctl };
+allow recovery sysfs_devices_block:dir { search };
+allow recovery sysfs_devices_block:file { write open };
+
+dontaudit recovery self:global_capability_class_set fsetid;
+
+allow recovery apexd_prop:file { getattr open };
+allow recovery block_device:blk_file ioctl;
+allow recovery kernel:system module_request;
+allowxperm recovery block_device:blk_file ioctl { NAND_BLKBURNBOOT0 NAND_BLKBURNUBOOT };
+allowxperm recovery boot_block_device:blk_file ioctl { NAND_BLKBURNBOOT0 NAND_BLKBURNUBOOT };
+allowxperm recovery userdata_block_device:blk_file ioctl { BLKGETSIZE };
+allowxperm recovery tmpfs:file ioctl { 0x125e 0x125d };

@@ -1,0 +1,11 @@
+drops {
+  android_build_drop {
+    build_id: "6644918"
+    target: "kernel_barbet"
+    source_file: "cdc_ether.ko"
+  }
+  dest_file: "cdc_ether.ko"
+  version: "Linux version 4.19.110-g4eb40d861d45-ab6644918 (android-build@abfarm-us-west1-c-0090) (Android (6443078 based on r383902) clang version 11.0.1 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79)) #1 SMP PREEMPT Wed Jul 1 08:58:04 UTC 2020"
+  version_group: "kernel-and-modules"
+  git_project: "device/google/barbet-kernel"
+}

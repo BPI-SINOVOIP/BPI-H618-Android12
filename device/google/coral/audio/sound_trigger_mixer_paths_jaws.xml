@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--- Copyright (c) 2018, The Linux Foundation. All rights reserved.       -->
+<!---                                                                           -->
+<!--- Redistribution and use in source and binary forms, with or without        -->
+<!--- modification, are permitted provided that the following conditions are    -->
+<!--- met:                                                                      -->
+<!---     * Redistributions of source code must retain the above copyright      -->
+<!---       notice, this list of conditions and the following disclaimer.       -->
+<!---     * Redistributions in binary form must reproduce the above             -->
+<!---       copyright notice, this list of conditions and the following         -->
+<!---       disclaimer in the documentation and/or other materials provided     -->
+<!---       with the distribution.                                              -->
+<!---     * Neither the name of The Linux Foundation nor the names of its       -->
+<!---       contributors may be used to endorse or promote products derived     -->
+<!---       from this software without specific prior written permission.       -->
+<!---                                                                           -->
+<!--- THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED              -->
+<!--- WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF      -->
+<!--- MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT    -->
+<!--- ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS    -->
+<!--- BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR    -->
+<!--- CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF      -->
+<!--- SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR           -->
+<!--- BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,     -->
+<!--- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE      -->
+<!--- OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN    -->
+<!--- IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                             -->
+
+<mixer>
+    <!-- These are the initial mixer settings -->
+    <ctl name="Rx0Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx0Ch EpGain" value="0"/>
+    <ctl name="Rx0Chan GnReEvt" value="off"/>
+    <ctl name="Rx0Chan Gain En" value="0"/>
+
+    <ctl name="Rx1Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx1Ch EpGain" value="0"/>
+    <ctl name="Rx1Chan GnReEvt" value="off"/>
+    <ctl name="Rx1Chan Gain En" value="0"/>
+
+    <ctl name="Rx2Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx2Ch EpGain" value="0"/>
+    <ctl name="Rx2Chan GnReEvt" value="off"/>
+    <ctl name="Rx2Chan Gain En" value="0"/>
+
+    <ctl name="Rx3Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx3Ch EpGain" value="0"/>
+    <ctl name="Rx3Chan GnReEvt" value="off"/>
+    <ctl name="Rx3Chan Gain En" value="0"/>
+
+    <ctl name="Rx4Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx4Ch EpGain" value="0"/>
+    <ctl name="Rx4Chan GnReEvt" value="off"/>
+    <ctl name="Rx4Chan Gain En" value="0"/>
+
+    <ctl name="Rx5Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx5Ch EpGain" value="0"/>
+    <ctl name="Rx5Chan GnReEvt" value="off"/>
+    <ctl name="Rx5Chan Gain En" value="0"/>
+
+    <ctl name="Rx6Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx6Ch EpGain" value="0"/>
+    <ctl name="Rx6Chan GnReEvt" value="off"/>
+    <ctl name="Rx6Chan Gain En" value="0"/>
+
+    <ctl name="Rx7Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx7Ch EpGain" value="0"/>
+    <ctl name="Rx7Chan GnReEvt" value="off"/>
+    <ctl name="Rx7Chan Gain En" value="0"/>
+
+    <ctl name="Rx8Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx8Ch EpGain" value="0"/>
+    <ctl name="Rx8Chan GnReEvt" value="off"/>
+    <ctl name="Rx8Chan Gain En" value="0"/>
+
+    <ctl name="Rx9Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx9Ch EpGain" value="0"/>
+    <ctl name="Rx9Chan GnReEvt" value="off"/>
+    <ctl name="Rx9Chan Gain En" value="0"/>
+
+    <ctl name="Rx10Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx10Ch EpGain" value="0"/>
+    <ctl name="Rx10Chan GnReEvt" value="off"/>
+    <ctl name="Rx10Chan Gain En" value="0"/>
+
+    <ctl name="Rx11Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx11Ch EpGain" value="0"/>
+    <ctl name="Rx11Chan GnReEvt" value="off"/>
+    <ctl name="Rx11Chan Gain En" value="0"/>
+
+    <ctl name="Rx12Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx12Ch EpGain" value="0"/>
+    <ctl name="Rx12Chan GnReEvt" value="off"/>
+    <ctl name="Rx12Chan Gain En" value="0"/>
+
+    <ctl name="Rx13Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx13Ch EpGain" value="0"/>
+    <ctl name="Rx13Chan GnReEvt" value="off"/>
+    <ctl name="Rx13Chan Gain En" value="0"/>
+
+    <ctl name="Rx14Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx14Ch EpGain" value="0"/>
+    <ctl name="Rx14Chan GnReEvt" value="off"/>
+    <ctl name="Rx14Chan Gain En" value="0"/>
+
+    <ctl name="Rx15Chan GnRmp" value="STEP_0"/>
+    <ctl name="Rx15Ch EpGain" value="0"/>
+    <ctl name="Rx15Chan GnReEvt" value="off"/>
+    <ctl name="Rx15Chan Gain En" value="0"/>
+
+    <ctl name="Tx0Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx0Chan EpGain" value="0"/>
+    <ctl name="Tx0Chan GnReEvt" value="off"/>
+    <ctl name="Tx0Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx0Chan Gain En" value="0"/>
+
+    <ctl name="Tx1Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx1Chan EpGain" value="0"/>
+    <ctl name="Tx1Chan GnReEvt" value="off"/>
+    <ctl name="Tx1Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx1Chan Gain En" value="0"/>
+
+    <ctl name="Tx2Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx2Chan EpGain" value="0"/>
+    <ctl name="Tx2Chan GnReEvt" value="off"/>
+    <ctl name="Tx2Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx2Chan Gain En" value="0"/>
+
+    <ctl name="Tx3Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx3Chan EpGain" value="0"/>
+    <ctl name="Tx3Chan GnReEvt" value="off"/>
+    <ctl name="Tx3Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx3Chan Gain En" value="0"/>
+
+    <ctl name="Tx4Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx4Chan EpGain" value="0"/>
+    <ctl name="Tx4Chan GnReEvt" value="off"/>
+    <ctl name="Tx4Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx4Chan Gain En" value="0"/>
+
+    <ctl name="Tx5Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx5Chan EpGain" value="0"/>
+    <ctl name="Tx5Chan GnReEvt" value="off"/>
+    <ctl name="Tx5Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx5Chan Gain En" value="0"/>
+
+    <ctl name="Tx6Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx6Chan EpGain" value="0"/>
+    <ctl name="Tx6Chan GnReEvt" value="off"/>
+    <ctl name="Tx6Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx6Chan Gain En" value="0"/>
+
+    <ctl name="Tx7Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx7Chan EpGain" value="0"/>
+    <ctl name="Tx7Chan GnReEvt" value="off"/>
+    <ctl name="Tx7Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx7Chan Gain En" value="0"/>
+
+    <ctl name="Tx8Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx8Chan EpGain" value="0"/>
+    <ctl name="Tx8Chan GnReEvt" value="off"/>
+    <ctl name="Tx8Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx8Chan Gain En" value="0"/>
+
+    <ctl name="Tx9Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx9Chan EpGain" value="0"/>
+    <ctl name="Tx9Chan GnReEvt" value="off"/>
+    <ctl name="Tx9Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx9Chan Gain En" value="0"/>
+
+    <ctl name="Tx10Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx10Chan EpGain" value="0"/>
+    <ctl name="Tx10Chan GnReEvt" value="off"/>
+    <ctl name="Tx10Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx10Chan Gain En" value="0"/>
+
+    <ctl name="Tx11Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx11Chan EpGain" value="0"/>
+    <ctl name="Tx11Chan GnReEvt" value="off"/>
+    <ctl name="Tx11Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx11Chan Gain En" value="0"/>
+
+    <ctl name="Tx12Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx12Chan EpGain" value="0"/>
+    <ctl name="Tx12Chan GnReEvt" value="off"/>
+    <ctl name="Tx12Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx12Chan Gain En" value="0"/>
+
+    <ctl name="Tx13Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx13Chan EpGain" value="0"/>
+    <ctl name="Tx13Chan GnReEvt" value="off"/>
+    <ctl name="Tx13Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx13Chan Gain En" value="0"/>
+
+    <ctl name="Tx14Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx14Chan EpGain" value="0"/>
+    <ctl name="Tx14Chan GnReEvt" value="off"/>
+    <ctl name="Tx14Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx14Chan Gain En" value="0"/>
+
+    <ctl name="Tx15Chan IpSrcId" value="UNKNOWN"/>
+    <ctl name="Tx15Chan EpGain" value="0"/>
+    <ctl name="Tx15Chan GnReEvt" value="off"/>
+    <ctl name="Tx15Chan GnRmp" value="STEP_0"/>
+    <ctl name="Tx15Chan Gain En" value="0"/>
+
+    <ctl name="strm0 En" value="0"/>
+    <ctl name="strm0 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm0 Format Sr" value="RATE_8K"/>
+    <ctl name="strm0 Format FrLn" value="NONE"/>
+    <ctl name="strm0 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm0 Xfer Mode" value="SSP"/>
+    <ctl name="strm0 droop comp en" value="0"/>
+    <ctl name="strm0 DC block en" value="0"/>
+    <ctl name="strm0 tone gen en" value="0"/>
+    <ctl name="strm0 Port" value="NONE"/>
+    <ctl name="strm0 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm0 Dir" value="0"/>
+    <ctl name="strm0 CH Mask En" value="0"/>
+    <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm0 inter strm delay" value="0"/>
+
+    <ctl name="strm1 En" value="0"/>
+    <ctl name="strm1 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm1 Format Sr" value="RATE_8K"/>
+    <ctl name="strm1 Format FrLn" value="NONE"/>
+    <ctl name="strm1 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm1 Xfer Mode" value="SSP"/>
+    <ctl name="strm1 droop comp en" value="0"/>
+    <ctl name="strm1 DC block en" value="0"/>
+    <ctl name="strm1 tone gen en" value="0"/>
+    <ctl name="strm1 Port" value="NONE"/>
+    <ctl name="strm1 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm1 Dir" value="0"/>
+    <ctl name="strm1 CH Mask En" value="0"/>
+    <ctl name="strm1 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm1 inter strm delay" value="0"/>
+
+    <ctl name="strm2 En" value="0"/>
+    <ctl name="strm2 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm2 Format Sr" value="RATE_8K"/>
+    <ctl name="strm2 Format FrLn" value="NONE"/>
+    <ctl name="strm2 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm2 Xfer Mode" value="SSP"/>
+    <ctl name="strm2 droop comp en" value="0"/>
+    <ctl name="strm2 DC block en" value="0"/>
+    <ctl name="strm2 tone gen en" value="0"/>
+    <ctl name="strm2 Port" value="NONE"/>
+    <ctl name="strm2 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm2 Dir" value="0"/>
+    <ctl name="strm2 CH Mask En" value="0"/>
+    <ctl name="strm2 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm2 inter strm delay" value="0"/>
+
+    <ctl name="strm3 En" value="0"/>
+    <ctl name="strm3 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm3 Format Sr" value="RATE_8K"/>
+    <ctl name="strm3 Format FrLn" value="NONE"/>
+    <ctl name="strm3 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm3 Xfer Mode" value="SSP"/>
+    <ctl name="strm3 droop comp en" value="0"/>
+    <ctl name="strm3 DC block en" value="0"/>
+    <ctl name="strm3 tone gen en" value="0"/>
+    <ctl name="strm3 Port" value="NONE"/>
+    <ctl name="strm3 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm3 Dir" value="0"/>
+    <ctl name="strm3 CH Mask En" value="0"/>
+    <ctl name="strm3 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm3 inter strm delay" value="0"/>
+
+    <ctl name="strm4 En" value="0"/>
+    <ctl name="strm4 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm4 Format Sr" value="RATE_8K"/>
+    <ctl name="strm4 Format FrLn" value="NONE"/>
+    <ctl name="strm4 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm4 Xfer Mode" value="SSP"/>
+    <ctl name="strm4 droop comp en" value="0"/>
+    <ctl name="strm4 DC block en" value="0"/>
+    <ctl name="strm4 tone gen en" value="0"/>
+    <ctl name="strm4 Port" value="NONE"/>
+    <ctl name="strm4 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm4 Dir" value="0"/>
+    <ctl name="strm4 CH Mask En" value="0"/>
+    <ctl name="strm4 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm4 inter strm delay" value="0"/>
+
+    <ctl name="strm5 En" value="0"/>
+    <ctl name="strm5 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm5 Format Sr" value="RATE_8K"/>
+    <ctl name="strm5 Format FrLn" value="NONE"/>
+    <ctl name="strm5 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm5 Xfer Mode" value="SSP"/>
+    <ctl name="strm5 droop comp en" value="0"/>
+    <ctl name="strm5 DC block en" value="0"/>
+    <ctl name="strm5 tone gen en" value="0"/>
+    <ctl name="strm5 Port" value="NONE"/>
+    <ctl name="strm5 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm5 Dir" value="0"/>
+    <ctl name="strm5 CH Mask En" value="0"/>
+    <ctl name="strm5 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm5 inter strm delay" value="0"/>
+
+    <ctl name="strm6 En" value="0"/>
+    <ctl name="strm6 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm6 Format Sr" value="RATE_8K"/>
+    <ctl name="strm6 Format FrLn" value="NONE"/>
+    <ctl name="strm6 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm6 Xfer Mode" value="SSP"/>
+    <ctl name="strm6 droop comp en" value="0"/>
+    <ctl name="strm6 DC block en" value="0"/>
+    <ctl name="strm6 tone gen en" value="0"/>
+    <ctl name="strm6 Port" value="NONE"/>
+    <ctl name="strm6 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm6 Dir" value="0"/>
+    <ctl name="strm6 CH Mask En" value="0"/>
+    <ctl name="strm6 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm6 inter strm delay" value="0"/>
+
+    <ctl name="strm7 En" value="0"/>
+    <ctl name="strm7 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm7 Format Sr" value="RATE_8K"/>
+    <ctl name="strm7 Format FrLn" value="NONE"/>
+    <ctl name="strm7 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm7 Xfer Mode" value="SSP"/>
+    <ctl name="strm7 droop comp en" value="0"/>
+    <ctl name="strm7 DC block en" value="0"/>
+    <ctl name="strm7 tone gen en" value="0"/>
+    <ctl name="strm7 Port" value="NONE"/>
+    <ctl name="strm7 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm7 Dir" value="0"/>
+    <ctl name="strm7 CH Mask En" value="0"/>
+    <ctl name="strm7 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm7 inter strm delay" value="0"/>
+
+    <ctl name="strm8 En" value="0"/>
+    <ctl name="strm8 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm8 Format Sr" value="RATE_8K"/>
+    <ctl name="strm8 Format FrLn" value="NONE"/>
+    <ctl name="strm8 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm8 Xfer Mode" value="SSP"/>
+    <ctl name="strm8 droop comp en" value="0"/>
+    <ctl name="strm8 DC block en" value="0"/>
+    <ctl name="strm8 tone gen en" value="0"/>
+    <ctl name="strm8 Port" value="NONE"/>
+    <ctl name="strm8 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm8 Dir" value="0"/>
+    <ctl name="strm8 CH Mask En" value="0"/>
+    <ctl name="strm8 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm8 inter strm delay" value="0"/>
+
+    <ctl name="strm9 En" value="0"/>
+    <ctl name="strm9 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm9 Format Sr" value="RATE_8K"/>
+    <ctl name="strm9 Format FrLn" value="NONE"/>
+    <ctl name="strm9 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm9 Xfer Mode" value="SSP"/>
+    <ctl name="strm9 droop comp en" value="0"/>
+    <ctl name="strm9 DC block en" value="0"/>
+    <ctl name="strm9 tone gen en" value="0"/>
+    <ctl name="strm9 Port" value="NONE"/>
+    <ctl name="strm9 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm9 Dir" value="0"/>
+    <ctl name="strm9 CH Mask En" value="0"/>
+    <ctl name="strm9 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm9 inter strm delay" value="0"/>
+
+    <ctl name="strm10 En" value="0"/>
+    <ctl name="strm10 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm10 Format Sr" value="RATE_8K"/>
+    <ctl name="strm10 Format FrLn" value="NONE"/>
+    <ctl name="strm10 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm10 Xfer Mode" value="SSP"/>
+    <ctl name="strm10 droop comp en" value="0"/>
+    <ctl name="strm10 DC block en" value="0"/>
+    <ctl name="strm10 tone gen en" value="0"/>
+    <ctl name="strm10 Port" value="NONE"/>
+    <ctl name="strm10 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm10 Dir" value="0"/>
+    <ctl name="strm10 CH Mask En" value="0"/>
+    <ctl name="strm10 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm10 inter strm delay" value="0"/>
+
+    <ctl name="strm11 En" value="0"/>
+    <ctl name="strm11 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm11 Format Sr" value="RATE_8K"/>
+    <ctl name="strm11 Format FrLn" value="NONE"/>
+    <ctl name="strm11 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm11 Xfer Mode" value="SSP"/>
+    <ctl name="strm11 droop comp en" value="0"/>
+    <ctl name="strm11 DC block en" value="0"/>
+    <ctl name="strm11 tone gen en" value="0"/>
+    <ctl name="strm11 Port" value="NONE"/>
+    <ctl name="strm11 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm11 Dir" value="0"/>
+    <ctl name="strm11 CH Mask En" value="0"/>
+    <ctl name="strm11 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm11 inter strm delay" value="0"/>
+
+    <ctl name="strm12 En" value="0"/>
+    <ctl name="strm12 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm12 Format Sr" value="RATE_8K"/>
+    <ctl name="strm12 Format FrLn" value="NONE"/>
+    <ctl name="strm12 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm12 Xfer Mode" value="SSP"/>
+    <ctl name="strm12 droop comp en" value="0"/>
+    <ctl name="strm12 DC block en" value="0"/>
+    <ctl name="strm12 tone gen en" value="0"/>
+    <ctl name="strm12 Port" value="NONE"/>
+    <ctl name="strm12 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm12 Dir" value="0"/>
+    <ctl name="strm12 CH Mask En" value="0"/>
+    <ctl name="strm12 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm12 inter strm delay" value="0"/>
+
+    <ctl name="strm13 En" value="0"/>
+    <ctl name="strm13 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm13 Format Sr" value="RATE_8K"/>
+    <ctl name="strm13 Format FrLn" value="NONE"/>
+    <ctl name="strm13 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm13 Xfer Mode" value="SSP"/>
+    <ctl name="strm13 droop comp en" value="0"/>
+    <ctl name="strm13 DC block en" value="0"/>
+    <ctl name="strm13 tone gen en" value="0"/>
+    <ctl name="strm13 Port" value="NONE"/>
+    <ctl name="strm13 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm13 Dir" value="0"/>
+    <ctl name="strm13 CH Mask En" value="0"/>
+    <ctl name="strm13 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm13 inter strm delay" value="0"/>
+
+    <ctl name="strm14 En" value="0"/>
+    <ctl name="strm14 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm14 Format Sr" value="RATE_8K"/>
+    <ctl name="strm14 Format FrLn" value="NONE"/>
+    <ctl name="strm14 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm14 Xfer Mode" value="SSP"/>
+    <ctl name="strm14 droop comp en" value="0"/>
+    <ctl name="strm14 DC block en" value="0"/>
+    <ctl name="strm14 tone gen en" value="0"/>
+    <ctl name="strm14 Port" value="NONE"/>
+    <ctl name="strm14 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm14 Dir" value="0"/>
+    <ctl name="strm14 CH Mask En" value="0"/>
+    <ctl name="strm14 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm14 inter strm delay" value="0"/>
+
+    <ctl name="strm15 En" value="0"/>
+    <ctl name="strm15 Format Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm15 Format Sr" value="RATE_8K"/>
+    <ctl name="strm15 Format FrLn" value="NONE"/>
+    <ctl name="strm15 ASRC Mode" value="ASRC_ENABLE"/>
+    <ctl name="strm15 Xfer Mode" value="SSP"/>
+    <ctl name="strm15 droop comp en" value="0"/>
+    <ctl name="strm15 DC block en" value="0"/>
+    <ctl name="strm15 tone gen en" value="0"/>
+    <ctl name="strm15 Port" value="NONE"/>
+    <ctl name="strm15 Port Enc" value="ENCODING_OPAQUE"/>
+    <ctl name="strm15 Dir" value="0"/>
+    <ctl name="strm15 CH Mask En" value="0"/>
+    <ctl name="strm15 Master Strm Id" value="STREAMID_0"/>
+    <ctl name="strm15 inter strm delay" value="0"/>
+
+    <ctl name="Plgin0Create0" value="0"/>
+    <ctl name="Plgin0Create1" value="0"/>
+    <ctl name="Plgin0Create2" value="0"/>
+    <ctl name="Plgin0Reset0" value="0"/>
+    <ctl name="Plgin0Reset1" value="0"/>
+    <ctl name="Plgin0Reset2" value="0"/>
+    <ctl name="Plgin0Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin0Pkg ID" value="none"/>
+    <ctl name="Plgin0inst priority" value="pri1"/>
+    <ctl name="Plgin0Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin0Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin0Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin0Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin0Cr Conf" value="none"/>
+
+    <ctl name="Plgin1Create0" value="0"/>
+    <ctl name="Plgin1Create1" value="0"/>
+    <ctl name="Plgin1Create2" value="0"/>
+    <ctl name="Plgin1Reset0" value="0"/>
+    <ctl name="Plgin1Reset1" value="0"/>
+    <ctl name="Plgin1Reset2" value="0"/>
+    <ctl name="Plgin1Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin1Pkg ID" value="none"/>
+    <ctl name="Plgin1inst priority" value="pri1"/>
+    <ctl name="Plgin1Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin1Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin1Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin1Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin1Cr Conf" value="none"/>
+
+    <ctl name="Plgin2Create0" value="0"/>
+    <ctl name="Plgin2Create1" value="0"/>
+    <ctl name="Plgin2Create2" value="0"/>
+    <ctl name="Plgin2Reset0" value="0"/>
+    <ctl name="Plgin2Reset1" value="0"/>
+    <ctl name="Plgin2Reset2" value="0"/>
+    <ctl name="Plgin2Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin2Pkg ID" value="none"/>
+    <ctl name="Plgin2inst priority" value="pri1"/>
+    <ctl name="Plgin2Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin2Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin2Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin2Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin2Cr Conf" value="none"/>
+
+    <ctl name="Plgin3Create0" value="0"/>
+    <ctl name="Plgin3Create1" value="0"/>
+    <ctl name="Plgin3Create2" value="0"/>
+    <ctl name="Plgin3Reset0" value="0"/>
+    <ctl name="Plgin3Reset1" value="0"/>
+    <ctl name="Plgin3Reset2" value="0"/>
+    <ctl name="Plgin3Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin3Pkg ID" value="none"/>
+    <ctl name="Plgin3inst priority" value="pri1"/>
+    <ctl name="Plgin3Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin3Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin3Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin3Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin3Cr Conf" value="none"/>
+
+    <ctl name="Plgin4Create0" value="0"/>
+    <ctl name="Plgin4Create1" value="0"/>
+    <ctl name="Plgin4Create2" value="0"/>
+    <ctl name="Plgin4Reset0" value="0"/>
+    <ctl name="Plgin4Reset1" value="0"/>
+    <ctl name="Plgin4Reset2" value="0"/>
+    <ctl name="Plgin4Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin4Pkg ID" value="none"/>
+    <ctl name="Plgin4inst priority" value="pri1"/>
+    <ctl name="Plgin4Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin4Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin4Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin4Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin4Cr Conf" value="none"/>
+
+    <ctl name="Plgin5Create0" value="0"/>
+    <ctl name="Plgin5Create1" value="0"/>
+    <ctl name="Plgin5Create2" value="0"/>
+    <ctl name="Plgin5Reset0" value="0"/>
+    <ctl name="Plgin5Reset1" value="0"/>
+    <ctl name="Plgin5Reset2" value="0"/>
+    <ctl name="Plgin5Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin5Pkg ID" value="none"/>
+    <ctl name="Plgin5inst priority" value="pri1"/>
+    <ctl name="Plgin5Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin5Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin5Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin5Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin5Cr Conf" value="none"/>
+
+    <ctl name="Plgin6Create0" value="0"/>
+    <ctl name="Plgin6Create1" value="0"/>
+    <ctl name="Plgin6Create2" value="0"/>
+    <ctl name="Plgin6Reset0" value="0"/>
+    <ctl name="Plgin6Reset1" value="0"/>
+    <ctl name="Plgin6Reset2" value="0"/>
+    <ctl name="Plgin6Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin6Pkg ID" value="none"/>
+    <ctl name="Plgin6inst priority" value="pri1"/>
+    <ctl name="Plgin6Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin6Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin6Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin6Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin6Cr Conf" value="none"/>
+
+    <ctl name="Plgin7Create0" value="0"/>
+    <ctl name="Plgin7Create1" value="0"/>
+    <ctl name="Plgin7Create2" value="0"/>
+    <ctl name="Plgin7Reset0" value="0"/>
+    <ctl name="Plgin7Reset1" value="0"/>
+    <ctl name="Plgin7Reset2" value="0"/>
+    <ctl name="Plgin7Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin7Pkg ID" value="none"/>
+    <ctl name="Plgin7inst priority" value="pri1"/>
+    <ctl name="Plgin7Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin7Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin7Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin7Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin7Cr Conf" value="none"/>
+
+    <ctl name="Plgin8Create0" value="0"/>
+    <ctl name="Plgin8Create1" value="0"/>
+    <ctl name="Plgin8Create2" value="0"/>
+    <ctl name="Plgin8Reset0" value="0"/>
+    <ctl name="Plgin8Reset1" value="0"/>
+    <ctl name="Plgin8Reset2" value="0"/>
+    <ctl name="Plgin8Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin8Pkg ID" value="none"/>
+    <ctl name="Plgin8inst priority" value="pri1"/>
+    <ctl name="Plgin8Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin8Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin8Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin8Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin8Cr Conf" value="none"/>
+
+    <ctl name="Plgin9Create0" value="0"/>
+    <ctl name="Plgin9Create1" value="0"/>
+    <ctl name="Plgin9Create2" value="0"/>
+    <ctl name="Plgin9Reset0" value="0"/>
+    <ctl name="Plgin9Reset1" value="0"/>
+    <ctl name="Plgin9Reset2" value="0"/>
+    <ctl name="Plgin9Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin9Pkg ID" value="none"/>
+    <ctl name="Plgin9inst priority" value="pri1"/>
+    <ctl name="Plgin9Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin9Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin9Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin9Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin9Cr Conf" value="none"/>
+
+    <ctl name="Plgin10Create0" value="0"/>
+    <ctl name="Plgin10Create1" value="0"/>
+    <ctl name="Plgin10Create2" value="0"/>
+    <ctl name="Plgin10Reset0" value="0"/>
+    <ctl name="Plgin10Reset1" value="0"/>
+    <ctl name="Plgin10Reset2" value="0"/>
+    <ctl name="Plgin10Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin10Pkg ID" value="none"/>
+    <ctl name="Plgin10inst priority" value="pri1"/>
+    <ctl name="Plgin10Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin10Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin10Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin10Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin10Cr Conf" value="none"/>
+
+    <ctl name="Plgin11Create0" value="0"/>
+    <ctl name="Plgin11Create1" value="0"/>
+    <ctl name="Plgin11Create2" value="0"/>
+    <ctl name="Plgin11Reset0" value="0"/>
+    <ctl name="Plgin11Reset1" value="0"/>
+    <ctl name="Plgin11Reset2" value="0"/>
+    <ctl name="Plgin11Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin11Pkg ID" value="none"/>
+    <ctl name="Plgin11inst priority" value="pri1"/>
+    <ctl name="Plgin11Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin11Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin11Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin11Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin11Cr Conf" value="none"/>
+
+    <ctl name="Plgin12Create0" value="0"/>
+    <ctl name="Plgin12Create1" value="0"/>
+    <ctl name="Plgin12Create2" value="0"/>
+    <ctl name="Plgin12Reset0" value="0"/>
+    <ctl name="Plgin12Reset1" value="0"/>
+    <ctl name="Plgin12Reset2" value="0"/>
+    <ctl name="Plgin12Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin12Pkg ID" value="none"/>
+    <ctl name="Plgin12inst priority" value="pri1"/>
+    <ctl name="Plgin12Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin12Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin12Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin12Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin12Cr Conf" value="none"/>
+
+    <ctl name="Plgin13Create0" value="0"/>
+    <ctl name="Plgin13Create1" value="0"/>
+    <ctl name="Plgin13Create2" value="0"/>
+    <ctl name="Plgin13Reset0" value="0"/>
+    <ctl name="Plgin13Reset1" value="0"/>
+    <ctl name="Plgin13Reset2" value="0"/>
+    <ctl name="Plgin13Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin13Pkg ID" value="none"/>
+    <ctl name="Plgin13inst priority" value="pri1"/>
+    <ctl name="Plgin13Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin13Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin13Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin13Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin13Cr Conf" value="none"/>
+
+    <ctl name="Plgin14Create0" value="0"/>
+    <ctl name="Plgin14Create1" value="0"/>
+    <ctl name="Plgin14Create2" value="0"/>
+    <ctl name="Plgin14Reset0" value="0"/>
+    <ctl name="Plgin14Reset1" value="0"/>
+    <ctl name="Plgin14Reset2" value="0"/>
+    <ctl name="Plgin14Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin14Pkg ID" value="none"/>
+    <ctl name="Plgin14inst priority" value="pri1"/>
+    <ctl name="Plgin14Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin14Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin14Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin14Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin14Cr Conf" value="none"/>
+
+    <ctl name="Plgin15Create0" value="0"/>
+    <ctl name="Plgin15Create1" value="0"/>
+    <ctl name="Plgin15Create2" value="0"/>
+    <ctl name="Plgin15Reset0" value="0"/>
+    <ctl name="Plgin15Reset1" value="0"/>
+    <ctl name="Plgin15Reset2" value="0"/>
+    <ctl name="Plgin15Origin Plugin Idx" value="none"/>
+    <ctl name="Plgin15Pkg ID" value="none"/>
+    <ctl name="Plgin15inst priority" value="pri1"/>
+    <ctl name="Plgin15Blk0 Param Id" value="-1"/>
+    <ctl name="Plgin15Blk1 Param Id" value="-1"/>
+    <ctl name="Plgin15Blk2 Param Id" value="-1"/>
+    <ctl name="Plgin15Ip Ep0 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep1 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep2 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep3 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep4 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep5 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep6 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep7 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep8 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep9 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep10 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep11 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep12 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep13 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep14 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Ip Ep15 Conf" value="UNKNOWN"/>
+    <ctl name="Plgin15Cr Conf" value="none"/>
+
+    <ctl name="Plgin0Blk0En" value="0"/>
+    <ctl name="Plgin0Blk1En" value="0"/>
+    <ctl name="Plgin0Blk2En" value="0"/>
+
+    <ctl name="Plgin1Blk0En" value="0"/>
+    <ctl name="Plgin1Blk1En" value="0"/>
+    <ctl name="Plgin1Blk2En" value="0"/>
+
+    <ctl name="Plgin2Blk0En" value="0"/>
+    <ctl name="Plgin2Blk1En" value="0"/>
+    <ctl name="Plgin2Blk2En" value="0"/>
+
+    <ctl name="Plgin3Blk0En" value="0"/>
+    <ctl name="Plgin3Blk1En" value="0"/>
+    <ctl name="Plgin3Blk2En" value="0"/>
+
+    <ctl name="Plgin4Blk0En" value="0"/>
+    <ctl name="Plgin4Blk1En" value="0"/>
+    <ctl name="Plgin4Blk2En" value="0"/>
+
+    <ctl name="Plgin5Blk0En" value="0"/>
+    <ctl name="Plgin5Blk1En" value="0"/>
+    <ctl name="Plgin5Blk2En" value="0"/>
+
+    <ctl name="Plgin6Blk0En" value="0"/>
+    <ctl name="Plgin6Blk1En" value="0"/>
+    <ctl name="Plgin6Blk2En" value="0"/>
+
+    <ctl name="Plgin7Blk0En" value="0"/>
+    <ctl name="Plgin7Blk1En" value="0"/>
+    <ctl name="Plgin7Blk2En" value="0"/>
+
+    <ctl name="Plgin8Blk0En" value="0"/>
+    <ctl name="Plgin8Blk1En" value="0"/>
+    <ctl name="Plgin8Blk2En" value="0"/>
+
+    <ctl name="Plgin9Blk0En" value="0"/>
+    <ctl name="Plgin9Blk1En" value="0"/>
+    <ctl name="Plgin9Blk2En" value="0"/>
+
+    <ctl name="Plgin10Blk0En" value="0"/>
+    <ctl name="Plgin10Blk1En" value="0"/>
+    <ctl name="Plgin10Blk2En" value="0"/>
+
+    <ctl name="Plgin11Blk0En" value="0"/>
+    <ctl name="Plgin11Blk1En" value="0"/>
+    <ctl name="Plgin11Blk2En" value="0"/>
+
+    <ctl name="Plgin12Blk0En" value="0"/>
+    <ctl name="Plgin12Blk1En" value="0"/>
+    <ctl name="Plgin12Blk2En" value="0"/>
+
+    <ctl name="Plgin13Blk0En" value="0"/>
+    <ctl name="Plgin13Blk1En" value="0"/>
+    <ctl name="Plgin13Blk2En" value="0"/>
+
+    <ctl name="Plgin14Blk0En" value="0"/>
+    <ctl name="Plgin14Blk1En" value="0"/>
+    <ctl name="Plgin14Blk2En" value="0"/>
+
+    <ctl name="Plgin15Blk0En" value="0"/>
+    <ctl name="Plgin15Blk1En" value="0"/>
+    <ctl name="Plgin15Blk2En" value="0"/>
+
+    <ctl name="sensor0 En" value="0"/>
+    <ctl name="sensor0 Ip Conf" value="UNKNOWN"/>
+    <ctl name="sensor1 En" value="0"/>
+    <ctl name="sensor1 Ip Conf" value="UNKNOWN"/>
+    <ctl name="sensor2 En" value="0"/>
+    <ctl name="sensor2 Ip Conf" value="UNKNOWN"/>
+    <ctl name="sensor3 En" value="0"/>
+    <ctl name="sensor3 Ip Conf" value="UNKNOWN"/>
+
+    <ctl name="Update Block0 Req" value="0"/>
+    <ctl name="Update Block1 Req" value="0"/>
+    <ctl name="Update Block2 Req" value="0"/>
+
+    <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_NONE"/>
+    <ctl name="PDM Port AudCLK" value="IAXXX_AUD_PORT_NONE"/>
+    <ctl name="CDC DMIC Enable" value="0"/>
+
+    <ctl name="PCM PortA Setup" value="0"/>
+    <ctl name="PCM PortB Setup" value="0"/>
+    <ctl name="PCM PortC Setup" value="0"/>
+    <ctl name="PCM PortD Setup" value="0"/>
+    <ctl name="PCM PortE Setup" value="0"/>
+    <ctl name="PCM PortF Setup" value="0"/>
+
+    <ctl name="PCM PortA Start" value="0"/>
+    <ctl name="PCM PortB Start" value="0"/>
+    <ctl name="PCM PortC Start" value="0"/>
+    <ctl name="PCM PortD Start" value="0"/>
+    <ctl name="PCM PortE Start" value="0"/>
+    <ctl name="PCM PortF Start" value="0"/>
+
+    <ctl name="Pdm PortB DMic0 En" value="0"/>
+    <ctl name="Pdm PortB DMic1 En" value="0"/>
+    <ctl name="Pdm PortB DMic2 En" value="0"/>
+    <ctl name="Pdm PortB DMic3 En" value="0"/>
+
+    <ctl name="Pdm PortC DMic0 En" value="0"/>
+    <ctl name="Pdm PortC DMic1 En" value="0"/>
+    <ctl name="Pdm PortC DMic2 En" value="0"/>
+    <ctl name="Pdm PortC DMic3 En" value="0"/>
+
+    <ctl name="Pdm CDC0 CDC DMic0 En" value="0"/>
+    <ctl name="Pdm CDC0 CDC DMic1 En" value="0"/>
+    <ctl name="Pdm CDC0 CDC DMic2 En" value="0"/>
+    <ctl name="Pdm CDC1 CDC DMic3 En" value="0"/>
+
+    <ctl name="Pdm PortC CDC DMic4 En" value="0"/>
+    <ctl name="Pdm PortC CDC DMic5 En" value="0"/>
+    <ctl name="Pdm PortB CDC DMic6 En" value="0"/>
+    <ctl name="Pdm PortB CDC DMic7 En" value="0"/>
+
+    <ctl name="Pdm PortB DO DMic0 En" value="0"/>
+    <ctl name="Pdm PortB DO DMic1 En" value="0"/>
+    <ctl name="Pdm PortC DO DMic0 En" value="0"/>
+    <ctl name="Pdm PortC DO DMic1 En" value="0"/>
+
+    <ctl name="Pdm PortB Setup" value="0"/>
+    <ctl name="Pdm PortC Setup" value="0"/>
+
+    <ctl name="Pdm CDC Setup" value="0"/>
+    <ctl name="Pdm CDC1 Setup" value="0"/>
+
+    <ctl name="PDM PortB Start" value="0"/>
+    <ctl name="PDM PortC Start" value="0"/>
+
+    <ctl name="PDM CDC0 Start" value="0"/>
+    <ctl name="PDM CDC1 Start" value="0"/>
+
+    <ctl name="PortB MicBias" value="0"/>
+    <ctl name="PortC MicBias" value="0"/>
+    <ctl name="CDC0 MicBias" value="0"/>
+    <ctl name="CDC1 MicBias" value="0"/>
+
+    <ctl name="PDM Hos" value="0"/>
+    <ctl name="Route Status" value="InActive"/>
+
+    <ctl name="Rx0 Mux Port" value="NONE"/>
+    <ctl name="Rx1 Mux Port" value="NONE"/>
+    <ctl name="Rx2 Mux Port" value="NONE"/>
+    <ctl name="Rx3 Mux Port" value="NONE"/>
+    <ctl name="Rx4 Mux Port" value="NONE"/>
+    <ctl name="Rx5 Mux Port" value="NONE"/>
+    <ctl name="Rx6 Mux Port" value="NONE"/>
+    <ctl name="Rx7 Mux Port" value="NONE"/>
+    <ctl name="Rx8 Mux Port" value="NONE"/>
+    <ctl name="Rx9 Mux Port" value="NONE"/>
+    <ctl name="Rx10 Mux Port" value="NONE"/>
+    <ctl name="Rx11 Mux Port" value="NONE"/>
+    <ctl name="Rx12 Mux Port" value="NONE"/>
+    <ctl name="Rx13 Mux Port" value="NONE"/>
+    <ctl name="Rx14 Mux Port" value="NONE"/>
+    <ctl name="Rx15 Mux Port" value="NONE"/>
+
+    <ctl name="Tx0 Mux Port" value="NONE"/>
+    <ctl name="Tx1 Mux Port" value="NONE"/>
+    <ctl name="Tx2 Mux Port" value="NONE"/>
+    <ctl name="Tx3 Mux Port" value="NONE"/>
+    <ctl name="Tx4 Mux Port" value="NONE"/>
+    <ctl name="Tx5 Mux Port" value="NONE"/>
+    <ctl name="Tx6 Mux Port" value="NONE"/>
+    <ctl name="Tx7 Mux Port" value="NONE"/>
+    <ctl name="Tx8 Mux Port" value="NONE"/>
+    <ctl name="Tx9 Mux Port" value="NONE"/>
+    <ctl name="Tx10 Mux Port" value="NONE"/>
+    <ctl name="Tx11 Mux Port" value="NONE"/>
+    <ctl name="Tx12 Mux Port" value="NONE"/>
+    <ctl name="Tx13 Mux Port" value="NONE"/>
+    <ctl name="Tx14 Mux Port" value="NONE"/>
+    <ctl name="Tx15 Mux Port" value="NONE"/>
+
+    <ctl name="Tx0 PortMux En" value="Off"/>
+    <ctl name="Tx1 PortMux En" value="Off"/>
+    <ctl name="Tx2 PortMux En" value="Off"/>
+    <ctl name="Tx3 PortMux En" value="Off"/>
+    <ctl name="Tx4 PortMux En" value="Off"/>
+    <ctl name="Tx5 PortMux En" value="Off"/>
+    <ctl name="Tx6 PortMux En" value="Off"/>
+    <ctl name="Tx7 PortMux En" value="Off"/>
+    <ctl name="Tx8 PortMux En" value="Off"/>
+    <ctl name="Tx9 PortMux En" value="Off"/>
+    <ctl name="Tx10 PortMux En" value="Off"/>
+    <ctl name="Tx11 PortMux En" value="Off"/>
+    <ctl name="Tx12 PortMux En" value="Off"/>
+    <ctl name="Tx13 PortMux En" value="Off"/>
+    <ctl name="Tx14 PortMux En" value="Off"/>
+    <ctl name="Tx15 PortMux En" value="Off"/>
+
+    <ctl name="Plgin0En" value="Off"/>
+    <ctl name="Plgin1En" value="Off"/>
+    <ctl name="Plgin2En" value="Off"/>
+    <ctl name="Plgin3En" value="Off"/>
+    <ctl name="Plgin4En" value="Off"/>
+    <ctl name="Plgin5En" value="Off"/>
+    <ctl name="Plgin6En" value="Off"/>
+    <ctl name="Plgin7En" value="Off"/>
+    <ctl name="Plgin8En" value="Off"/>
+    <ctl name="Plgin9En" value="Off"/>
+    <ctl name="Plgin10En" value="Off"/>
+    <ctl name="Plgin11En" value="Off"/>
+    <ctl name="Plgin12En" value="Off"/>
+    <ctl name="Plgin13En" value="Off"/>
+    <ctl name="Plgin14En" value="Off"/>
+    <ctl name="Plgin15En" value="Off"/>
+
+    <ctl name="Port ApllCLK Src" value="IAXXX_SRC_SYSCLK" />
+
+    <path name="port-c">
+    <!-- Port-C PDM4 -->
+        <ctl name="Route Status" value="Active"/>
+        <ctl name="PortC MicBias" value="1"/>
+        <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/>
+        <ctl name="Pdm CDC Setup" value="1"/>
+        <ctl name="Pdm PortC Setup" value="1"/>
+        <ctl name="Pdm PortC CDC DMic4 En" value="1"/>
+        <ctl name="PDM Hos" value="0x10"/>
+        <ctl name="PDM CDC0 Start" value="0x10"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Ch EpGain" value="40"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+        <ctl name="strm0 ASRC Mode" value="REDBOX_2-1"/>
+        <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm0 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm0 Format Sr" value="RATE_16K"/>
+        <ctl name="strm0 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm0 Dir" value="0"/>
+        <ctl name="strm0 inter strm delay" value="0"/>
+        <ctl name="strm0 Port" value="PDMI4"/>
+        <ctl name="strm0 Port Enc" value="ENCODING_Q23"/>
+        <ctl name="strm0 CH Mask En" value="1"/>
+        <ctl name="Rx0 Mux Port" value="PDMI4"/>
+        <ctl name="strm0 En" value="1"/>
+    </path>
+
+    <path name="port-b">
+    <!-- Port-B PDM6 -->
+        <ctl name="Route Status" value="Active"/>
+        <ctl name="PortB MicBias" value="1"/>
+        <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/>
+        <ctl name="Pdm CDC Setup" value="1"/>
+        <ctl name="Pdm PortB Setup" value="1"/>
+        <ctl name="Pdm PortB CDC DMic6 En" value="1"/>
+        <ctl name="PDM Hos" value="0x40"/>
+        <ctl name="PDM CDC0 Start" value="0x40"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Ch EpGain" value="40"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+        <ctl name="strm0 ASRC Mode" value="REDBOX_2-1"/>
+        <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm0 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm0 Format Sr" value="RATE_16K"/>
+        <ctl name="strm0 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm0 Dir" value="0"/>
+        <ctl name="strm0 inter strm delay" value="0"/>
+        <ctl name="strm0 Port" value="PDMI6"/>
+        <ctl name="strm0 Port Enc" value="ENCODING_Q23"/>
+        <ctl name="strm0 CH Mask En" value="1"/>
+        <ctl name="Rx0 Mux Port" value="PDMI6"/>
+        <ctl name="strm0 En" value="1"/>
+    </path>
+
+    <path name="port-d">
+    <!-- Port-D PDM3 -->
+        <ctl name="Route Status" value="Active"/>
+        <ctl name="CDC0 MicBias" value="1"/>
+        <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/>
+        <ctl name="Pdm CDC Setup" value="1"/>
+        <ctl name="Pdm CDC1 Setup" value="1"/>
+        <ctl name="Pdm CDC1 CDC DMic3 En" value="1"/>
+        <ctl name="PDM Hos" value="0x8"/>
+        <ctl name="PDM CDC0 Start" value="0x8"/>
+        <ctl name="Rx0Ch EpGain" value="40"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+        <ctl name="strm0 ASRC Mode" value="REDBOX_2-1"/>
+        <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm0 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm0 Format Sr" value="RATE_16K"/>
+        <ctl name="strm0 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm0 Dir" value="0"/>
+        <ctl name="strm0 inter strm delay" value="0"/>
+        <ctl name="strm0 Port" value="PDMI3"/>
+        <ctl name="strm0 Port Enc" value="ENCODING_Q23"/>
+        <ctl name="strm0 CH Mask En" value="1" />
+        <ctl name="Rx0 Mux Port" value="PDMI3"/>
+        <ctl name="strm0 En" value="1" />
+    </path>
+
+    <path name="port-cdc">
+    <!-- Port-CDC PDM1 -->
+        <ctl name="Route Status" value="Active"/>
+        <ctl name="CDC0 MicBias" value="1"/>
+        <ctl name="PDM BCLK" value="IAXXX_PDM_CLK_3P_072MHZ"/>
+        <ctl name="Pdm CDC Setup" value="1"/>
+        <ctl name="Pdm CDC1 Setup" value="1"/>
+        <ctl name="Pdm CDC0 CDC DMic1 En" value="1"/>
+        <ctl name="PDM Hos" value="0x2"/>
+        <ctl name="PDM CDC0 Start" value="0x2"/>
+        <ctl name="Rx0Ch EpGain" value="40"/>
+        <ctl name="Rx0Chan GnRmp" value="STEP_2000"/>
+        <ctl name="Rx0Chan Gain En" value="1"/>
+        <ctl name="strm0 ASRC Mode" value="REDBOX_2-1"/>
+        <ctl name="strm0 Master Strm Id" value="STREAMID_0"/>
+        <ctl name="strm0 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm0 Format Sr" value="RATE_16K"/>
+        <ctl name="strm0 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm0 Dir" value="0"/>
+        <ctl name="strm0 inter strm delay" value="0"/>
+        <ctl name="strm0 Port" value="PDMI1"/>
+        <ctl name="strm0 Port Enc" value="ENCODING_Q23"/>
+        <ctl name="strm0 CH Mask En" value="1"/>
+        <ctl name="Rx0 Mux Port" value="PDMI1"/>
+        <ctl name="strm0 En" value="1"/>
+    </path>
+
+    <path name="mic1-route">
+    <!-- main mic -->
+        <path name="port-c"/>
+    </path>
+
+    <path name="mic2-route">
+    <!-- second mic -->
+        <path name="port-b"/>
+    </path>
+
+    <path name="mic3-route">
+    <!-- third mic -->
+        <path name="port-d"/>
+    </path>
+
+    <path name="bargein-route">
+    <!-- use aec mic -->
+        <ctl name="PCM PortE Setup" value="1"/>
+        <ctl name="PCM PortE Start" value="0x1FF"/>
+        <ctl name="strm4 ASRC Mode" value="ASRC_ENABLE"/>
+        <ctl name="strm4 Master Strm Id" value="STREAMID_4"/>
+        <ctl name="strm4 Format FrLn" value="16K_10MS"/>
+        <ctl name="strm4 Format Sr" value="RATE_16K" />
+        <ctl name="strm4 Format Enc" value="ENCODING_AFLOAT"/>
+        <ctl name="strm4 Dir" value="0"/>
+        <ctl name="strm4 inter strm delay" value="0"/>
+        <ctl name="strm4 Port" value="PCM4"/>
+        <ctl name="strm4 Port Enc" value="ENCODING_Q15"/>
+        <ctl name="strm4 CH Mask En" value="0xF0"/>
+        <ctl name="strm4 En" value="1"/>
+        <ctl name="Plgin4Ip Ep0 Conf" value="RX0_ChanMgr"/>
+        <ctl name="Plgin4Ip Ep1 Conf" value="RX4_ChanMgr"/>
+        <ctl name="Plgin4Ip Ep2 Conf" value="RX6_ChanMgr"/>
+        <ctl name="Plgin4En" value="Rx0Plgin4On"/>
+        <ctl name="Plgin4Blk1En" value="1"/>
+    </path>
+
+    <path name="mic-route-external-clock">
+        <ctl name="Port ApllCLK Src" value="IAXXX_EXT_OSC" />
+        <ctl name="PDM Port AudCLK" value="IAXXX_AUD_PORT_32K" />
+        <path name="mic1-route" />
+    </path>
+
+    <path name="mic-route-internal-clock">
+        <ctl name="Port ApllCLK Src" value="IAXXX_INT_OSC" />
+        <ctl name="PDM Port AudCLK" value="IAXXX_AUD_PORT_32K" />
+        <path name="mic1-route" />
+    </path>
+
+    <path name="hotword-route">
+    <!-- enable hotword route -->
+        <ctl name="Plgin0En" value="Rx0Plgin0On"/>
+        <ctl name="Plgin0Blk1En" value="1"/>
+    </path>
+
+    <path name="hotword-route-with-bargein">
+        <ctl name="Plgin0Ip Ep0 Conf" value="plugin4Out0"/>
+        <path name="hotword-route"/>
+    </path>
+
+    <path name="hotword-route-without-bargein">
+        <ctl name="Plgin0Ip Ep0 Conf" value="RX0_ChanMgr"/>
+        <path name="hotword-route"/>
+    </path>
+
+    <path name="ambient-route">
+    <!-- enable ambient route -->
+        <ctl name="Plgin2En" value="Rx0Plgin2On"/>
+        <ctl name="Plgin2Blk1En" value="1"/>
+    </path>
+
+    <path name="ambient-route-with-bargein">
+        <ctl name="Plgin2Ip Ep0 Conf" value="RX12_ChanMgr"/>
+        <path name="ambient-route"/>
+    </path>
+
+    <path name="ambient-route-without-bargein">
+        <ctl name="Plgin2Ip Ep0 Conf" value="RX0_ChanMgr"/>
+        <path name="ambient-route"/>
+    </path>
+
+    <path name="chre-route">
+    <!-- enable chre route -->
+        <ctl name="Plgin5En" value="Rx0Plgin5On"/>
+        <ctl name="Plgin5Blk1En" value="1"/>
+    </path>
+
+    <path name="chre-route-with-bargein">
+        <ctl name="Plgin5Ip Ep0 Conf" value="plugin4Out0"/>
+        <path name="chre-route"/>
+    </path>
+
+    <path name="chre-route-without-bargein">
+        <ctl name="Plgin5Ip Ep0 Conf" value="RX0_ChanMgr"/>
+        <path name="chre-route"/>
+    </path>
+
+    <path name="oslo-route">
+    <!-- enable oslo route -->
+        <ctl name="sensor0 Ip Conf" value="plugin9Out1"/>
+        <ctl name="sensor0 En" value="1"/>
+        <ctl name="Plgin8Ip Ep0 Conf" value="SensorOut0"/>
+        <ctl name="Plgin9Ip Ep0 Conf" value="plugin8Out0"/>
+        <ctl name="Plgin8Blk1En" value="1"/>
+        <ctl name="Plgin9Blk1En" value="1"/>
+    </path>
+
+    <path name="buffer-audio-route">
+        <ctl name="Plgin1En" value="Rx0Plgin1On" />
+        <ctl name="Plgin1Blk1En" value="1" />
+    </path>
+
+    <path name="buffer-route-with-bargein">
+        <ctl name="Plgin1Ip Ep0 Conf" value="plugin4Out0" />
+        <path name="buffer-audio-route" />
+    </path>
+
+    <path name="buffer-route-without-bargein">
+        <ctl name="Plgin1Ip Ep0 Conf" value="RX0_ChanMgr" />
+        <path name="buffer-audio-route" />
+    </path>
+
+    <path name="downlink-audio-route">
+        <ctl name="PCM PortA Setup" value="1" />
+        <ctl name="PCM PortA Start" value="0x3F" />
+        <ctl name="strm6 ASRC Mode" value="ASRC_ENABLE" />
+        <ctl name="strm6 Master Strm Id" value="STREAMID_6" />
+        <ctl name="strm6 Format FrLn" value="16K_10MS" />
+        <ctl name="strm6 Format Sr" value="RATE_16K" />
+        <ctl name="strm6 Format Enc" value="ENCODING_AFLOAT" />
+        <ctl name="strm6 Dir" value="0" />
+        <ctl name="strm6 inter strm delay" value="0" />
+        <ctl name="strm6 Port" value="PCM0" />
+        <ctl name="strm6 Port Enc" value="ENCODING_Q15" />
+        <ctl name="strm6 CH Mask En" value="0x1000" />
+        <ctl name="strm6 En" value="1" />
+        <ctl name="Plgin3Ip Ep0 Conf" value="RX12_ChanMgr" />
+        <ctl name="Plgin3En" value="Rx0Plgin3On" />
+        <ctl name="Plgin3Blk1En" value="1" />
+    </path>
+</mixer>

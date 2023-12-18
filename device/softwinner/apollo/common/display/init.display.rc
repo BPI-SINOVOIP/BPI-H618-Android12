@@ -1,0 +1,21 @@
+on boot
+    # display color enhance
+    chown system system /sys/class/disp/disp/attr/color_temperature
+    chown system system /sys/class/disp/disp/attr/cvbs_enhacne_mode
+    chown system system /sys/class/disp/disp/attr/enhance_mode
+    chown system system /sys/class/disp/disp/attr/enhance_saturation
+    chown system system /sys/class/disp/disp/attr/enhance_bright
+    chown system system /sys/class/disp/disp/attr/enhance_detail
+    chown system system /sys/class/disp/disp/attr/enhance_contrast
+    chown system system /sys/class/disp/disp/attr/enhance_denoise
+    chown system system /sys/class/disp/disp/attr/enhance_edge
+    chown system system /sys/class/hdmi/hdmi/attr/hdcp_enable
+    chown system system /sys/class/hdmi/hdmi/attr/hdcp_type
+    chown system system /sys/class/hdmi/hdmi/attr/hdcp_status
+
+service hdcptool /vendor/bin/hdcptool.sh
+    class main
+    user root
+    group root
+    disabled
+    oneshot

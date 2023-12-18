@@ -1,0 +1,22 @@
+type hal_gnss_qti, domain;
+hal_server_domain(hal_gnss_qti, hal_gnss)
+
+type hal_gnss_qti_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_gnss_qti)
+vndbinder_use(hal_gnss_qti)
+
+r_dir_file(hal_gnss_qti, sysfs_msm_subsys)
+r_dir_file(hal_gnss_qti, sysfs_soc)
+r_dir_file(hal_gnss_qti, sysfs_ssr)
+
+binder_call(hal_gnss_qti, vendor_per_mgr)
+
+hal_client_domain(hal_gnss_qti, hal_health)
+
+allow hal_gnss_qti location:unix_dgram_socket sendto;
+allow hal_gnss_qti location_socket:dir w_dir_perms;
+allow hal_gnss_qti location_socket:sock_file create_file_perms;
+allow hal_gnss_qti vendor_per_mgr_service:service_manager find;
+
+allow hal_gnss_qti self:qipcrtr_socket create_socket_perms_no_ioctl;
+allow hal_gnss_qti location_data_file:dir r_dir_perms;

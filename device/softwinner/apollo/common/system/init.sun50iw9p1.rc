@@ -1,0 +1,114 @@
+import /vendor/etc/init/hw/init.common.rc
+import /vendor/etc/init/hw/init.ram.rc
+
+# import module rc.
+import /vendor/etc/init/hw/init.sun50iw9p1.usb.rc
+
+on early-init
+    chown system system /proc/bootevent
+    chmod 0666 /proc/bootevent
+    write /proc/bootevent "INIT:early-init"
+
+on init
+    # Set permissions for persist partition
+    mkdir /persist 0771 system system
+    mkdir /firmware 0771 system system
+
+    # Support legacy paths
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
+
+    # Setup zram options
+    write /sys/block/zram0/comp_algorithm lz4
+    mkdir /oem 0550 system system
+    export PATH /vendor/xbin:/product/bin:/apex/com.android.runtime/bin:/apex/com.android.art/bin:/system_ext/bin:/system/bin:/system/xbin:/odm/bin:/vendor/bin
+
+on late-init
+    write /proc/bootevent "INIT:late-init"
+
+on early-boot
+    # Update dm-verity state and set partition.*.verified properties
+    verity_update_state
+
+#on early-fs
+#    wait /dev/block/by-name/media_data
+#    mount vfat /dev/block/by-name/media_data /oem ro nosuid nodev utf8,context=u:object_r:oemfs:s0
+
+on fs
+    write /proc/bootevent "INIT:Mount_START"
+    mount_all /vendor/etc/fstab.sun50iw9p1
+    write /proc/bootevent "INIT:Mount_END"
+    swapon_all /vendor/etc/fstab.sun50iw9p1
+    restorecon_recursive /persist
+
+on post-fs
+    write /proc/bootevent "INIT:post-fs"
+
+on late-fs && property:ro.product.first_api_level=30
+    # Wait for keymaster
+    exec_start wait_for_keymaster
+
+on late-fs
+    write /proc/bootevent "INIT:late-fs"
+	insmod /vendor/lib/modules/mali_kbase.ko
+
+on post-fs-data
+    write /proc/bootevent "INIT:post-fs-data"
+    # Set indication (checked by vold) that we have finished this action
+    setprop vold.post_fs_data_done 1
+    chmod 666 /sys/kernel/tracing/trace
+
+on boot
+    write /proc/bootevent "INIT:boot"
+    chown system system /sys/kernel/debug/sync/sw_sync
+    chmod 0660 /sys/kernel/debug/sync/sw_sync
+
+    # Read one page at a time for swap (default is 8)
+    write /proc/sys/vm/page-cluster 0
+
+on post-fs-data
+    # create file for audio dump data
+    mkdir /data/vendor/hardware/audio_d 0777 audio audio
+    mkdir /data/audio_d 0777 media media
+    chown system system /dev/nsi
+    chmod 0660 /dev/nsi
+
+on charger
+    chown system system /dev/alarm
+    chmod 0660 /dev/alarm
+    mkdir /config/usb_gadget/g1 0770 shell shell
+    mkdir /config/usb_gadget/g1/strings/0x409 0770 shell shell
+    write /config/usb_gadget/g1/idVendor 0x18d1
+    write /config/usb_gadget/g1/idProduct 0x0001
+    mkdir /config/usb_gadget/g1/functions/mass_storage.usb0
+    mkdir /config/usb_gadget/g1/configs/c.1
+    write /config/usb_gadget/g1/configs/c.1/bmAttributes 0xc0
+    write /config/usb_gadget/g1/configs/c.1/MaxPower 500
+    mkdir /config/usb_gadget/g1/configs/c.1/strings/0x409
+    symlink /config/usb_gadget/g1/functions/mass_storage.usb0 /config/usb_gadget/g1/configs/c.1/f1
+    write /config/usb_gadget/g1/UDC "5100000.udc-controller"
+
+on boot
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
+    chown system system /sys/class/thermal/thermal_zone0/policy
+    chmod 0660 /sys/class/thermal/thermal_zone0/policy
+
+    chown system system /sys/class/thermal/thermal_zone0/mode
+    chmod 0660 /sys/class/thermal/thermal_zone0/mode
+
+    write /sys/class/disp/disp/attr/runtime_enable 1
+    write /sys/kernel/autohotplug/enable 1
+    write /sys/kernel/autohotplug/boost_all 0
+
+    # Read one page at a time for swap (default is 8)
+    write /proc/sys/vm/page-cluster 0
+
+on property:sys.boot_completed=1
+    insmod /vendor/lib/modules/kheaders.ko
+    write /sys/class/thermal/thermal_zone0/policy power_allocator
+    write /proc/sys/vm/drop_caches 3
+    # Tweak background writeout
+    write /proc/sys/vm/dirty_expire_centisecs 200
+    write /proc/sys/vm/dirty_background_ratio  5

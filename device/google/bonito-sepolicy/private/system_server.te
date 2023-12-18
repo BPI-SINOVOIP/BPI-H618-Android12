@@ -1,0 +1,2 @@
+# b/139283562: Read /sys/kernel/debug/ion/heaps/system.
+allow system_server debugfs_system_ion_heap:file r_file_perms;

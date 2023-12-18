@@ -1,0 +1,3 @@
+on property:debug.launcher3.exit=1
+    # set io scheduler from mq-deadline to bfq on nand flash board
+    write /sys/devices/platform/soc@2900000/block/nand0/queue/scheduler bfq

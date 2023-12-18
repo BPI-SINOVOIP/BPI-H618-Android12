@@ -1,0 +1,6 @@
+type twoshay, domain;
+type twoshay_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(twoshay)
+
+allow twoshay touch_offload_device:chr_file rw_file_perms;

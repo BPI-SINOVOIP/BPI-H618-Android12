@@ -1,0 +1,322 @@
+// Copyright (C) 2020 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+soong_namespace {
+}
+
+cc_prebuilt_library_shared {
+    name: "libhoaeffects_csim",
+    arch: {
+        arm: {
+            srcs: ["libhoaeffects_csim.so"],
+            shared_libs: [
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        arm64: {
+            srcs: ["lib64/libhoaeffects_csim.so"],
+            shared_libs: [
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libimscamera_jni",
+    arch: {
+        arm: {
+            srcs: ["libimscamera_jni.so"],
+            shared_libs: [
+                "libnativehelper",
+                "libcutils",
+                "libutils",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        arm64: {
+            srcs: ["lib64/libimscamera_jni.so"],
+            shared_libs: [
+                "libnativehelper",
+                "libcutils",
+                "libutils",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libimsmedia_jni",
+    arch: {
+        arm: {
+            srcs: ["libimsmedia_jni.so"],
+            shared_libs: [
+                "libnativehelper",
+                "libcutils",
+                "libutils",
+                "libgui",
+                "libbinder",
+                "liblog",
+                "libandroid",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        arm64: {
+            srcs: ["lib64/libimsmedia_jni.so"],
+            shared_libs: [
+                "libnativehelper",
+                "libcutils",
+                "libutils",
+                "libgui",
+                "libbinder",
+                "liblog",
+                "libandroid",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "lib-imsvideocodec",
+    arch: {
+        arm: {
+            srcs: ["lib-imsvideocodec.so"],
+            shared_libs: [
+                // "lib-imsvtutils",
+                // "lib-imsvtextutils",
+                "libcutils",
+                "libutils",
+                "liblog",
+                // "libdiag_system",
+                "libgui",
+                "libandroid",
+                "libnativewindow",
+                "libmediandk",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        arm64: {
+            srcs: ["lib64/lib-imsvideocodec.so"],
+            shared_libs: [
+                // "lib-imsvtutils",
+                // "lib-imsvtextutils",
+                "libcutils",
+                "libutils",
+                "liblog",
+                // "libdiag_system",
+                "libgui",
+                "libandroid",
+                "libnativewindow",
+                "libmediandk",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+    check_elf_files: false,
+}
+
+cc_prebuilt_library_shared {
+    name: "liblistensoundmodel2.qti",
+    arch: {
+        arm: {
+            srcs: ["liblistensoundmodel2.qti.so"],
+            shared_libs: [
+                "libcutils",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        arm64: {
+            srcs: ["lib64/liblistensoundmodel2.qti.so"],
+            shared_libs: [
+                "libcutils",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libmmosal",
+    arch: {
+        arm: {
+            srcs: ["libmmosal.so"],
+            shared_libs: [
+                "libutils",
+                "libcutils",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        arm64: {
+            srcs: ["lib64/libmmosal.so"],
+            shared_libs: [
+                "libutils",
+                "libcutils",
+                "liblog",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libqct_resampler",
+    arch: {
+        arm: {
+            srcs: ["libqct_resampler.so"],
+            shared_libs: [
+                "libcutils",
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "32",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libvr_amb_engine",
+    arch: {
+        arm: {
+            srcs: ["libvr_amb_engine.so"],
+            shared_libs: [
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        arm64: {
+            srcs: ["lib64/libvr_amb_engine.so"],
+            shared_libs: [
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libvr_object_engine",
+    arch: {
+        arm: {
+            srcs: ["libvr_object_engine.so"],
+            shared_libs: [
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+        arm64: {
+            srcs: ["lib64/libvr_object_engine.so"],
+            shared_libs: [
+                "libc++",
+                "libc",
+                "libm",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "both",
+    system_ext_specific: true,
+    strip: {
+        none: true,
+    },
+}

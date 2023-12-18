@@ -1,0 +1,6 @@
+userdebug_or_eng(`
+  allow kernel debugfs_batteryinfo:dir search;
+')
+dontaudit kernel debugfs_batteryinfo:dir search;
+
+allow kernel per_boot_file:file r_file_perms;

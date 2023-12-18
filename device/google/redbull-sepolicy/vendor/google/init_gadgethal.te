@@ -1,0 +1,11 @@
+type init_gadgethal, domain;
+type init_gadgethal_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(init_gadgethal)
+
+allow init_gadgethal vendor_toolbox_exec:file execute_no_trans;
+
+allow init_gadgethal configfs:dir create_dir_perms;
+allow init_gadgethal configfs:file { read setattr getattr };
+allow init_gadgethal configfs:lnk_file { read setattr getattr };
+allow init_gadgethal self:capability chown;

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2015 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<favorites xmlns:launcher="http://schemas.android.com/apk/res-auto/com.android.launcher3">
+    <!-- Google Folder -->
+    <folder
+        launcher:title="@string/naming_is_Google"
+        launcher:screen="0"
+        launcher:x="0"
+        launcher:y="-1" >
+
+<!-- for normal GMS package -->
+        <favorite
+            packageName="com.google.android.googlequicksearchbox"
+            className="com.google.android.googlequicksearchbox.SearchActivity"/>
+        <favorite
+            launcher:packageName="com.android.chrome"
+            launcher:className="com.google.android.apps.chrome.Main" />
+        <favorite
+            launcher:packageName="com.google.android.gm"
+            launcher:className="com.google.android.gm.ConversationListActivityGmail" />
+        <favorite
+            launcher:packageName="com.google.android.apps.maps"
+            launcher:className="com.google.android.maps.MapsActivity" />
+        <favorite
+            launcher:packageName="com.google.android.youtube"
+            launcher:className="com.google.android.youtube.app.honeycomb.Shell$HomeActivity"/>
+        <favorite
+            launcher:packageName="com.google.android.apps.docs"
+            launcher:className="com.google.android.apps.docs.app.NewMainProxyActivity" />
+        <favorite
+            launcher:packageName="com.google.android.music"
+            launcher:className="com.android.music.activitymanagement.TopLevelActivity" />
+        <favorite
+            launcher:packageName="com.google.android.videos"
+            launcher:className="com.google.android.youtube.videos.EntryPoint" />
+        <favorite
+            launcher:className="com.google.android.apps.tachyon.MainActivity"
+            launcher:packageName="com.google.android.apps.tachyon" />
+        <favorite
+            launcher:className="com.google.android.apps.photos.home.HomeActivity"
+            launcher:packageName="com.google.android.apps.photos" />
+    </folder>
+</favorites>

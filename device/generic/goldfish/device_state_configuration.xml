@@ -1,0 +1,18 @@
+<device-state-config>
+  <device-state>
+    <identifier>0</identifier>
+    <conditions>
+      <lid-switch>
+        <open>false</open>
+      </lid-switch>
+    </conditions>
+  </device-state>
+  <device-state>
+    <identifier>1</identifier>
+    <conditions>
+      <lid-switch>
+        <open>true</open>
+      </lid-switch>
+    </conditions>
+  </device-state>
+</device-state-config>

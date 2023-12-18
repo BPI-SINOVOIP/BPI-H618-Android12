@@ -1,0 +1,66 @@
+package {
+    default_applicable_licenses: [
+        "device_generic_vulkan-cereal_third-party_perfetto_license",
+    ],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "device_generic_vulkan-cereal_third-party_perfetto_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "LICENSE",
+    ],
+}
+
+cc_library_static {
+    name: "perfetto-libperfettobase",
+    defaults: [ "gfxstream_defaults" ],
+    srcs: [
+        "src/base/logging.cc",
+        "src/base/metatrace.cc",
+        "src/base/paged_memory.cc",
+        "src/base/string_splitter.cc",
+        "src/base/string_utils.cc",
+        "src/base/string_view.cc",
+        "src/base/subprocess.cc",
+        "src/base/thread_checker.cc",
+        "src/base/time.cc",
+        "src/base/uuid.cc",
+        "src/base/virtual_destructors.cc",
+        "src/base/waitable_event.cc",
+        "src/base/watchdog_posix.cc",
+    ],
+    // liblog isn't statically linked because this lib is part of the
+    // com.android.virt APEX where static linkage to a library having stable C
+    // interface (like liblog) is prohibited.
+    shared_libs: [ "liblog" ],
+    export_include_dirs: [
+        "include",
+        "include/perfetto/base/build_configs/android_tree",
+    ]
+}
+
+cc_library_static {
+    name: "perfetto-libprotozero",
+    defaults: [ "gfxstream_defaults" ],
+    srcs: [
+        "src/protozero/field.cc",
+        "src/protozero/message.cc",
+        "src/protozero/message_arena.cc",
+        "src/protozero/message_handle.cc",
+        "src/protozero/packed_repeated_fields.cc",
+        "src/protozero/proto_decoder.cc",
+        "src/protozero/scattered_heap_buffer.cc",
+        "src/protozero/scattered_stream_null_delegate.cc",
+        "src/protozero/scattered_stream_writer.cc",
+        "src/protozero/static_buffer.cc",
+        "src/protozero/virtual_destructors.cc"
+    ],
+    whole_static_libs: [ "perfetto-libperfettobase" ],
+    export_include_dirs: [ "include" ],
+}

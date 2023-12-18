@@ -1,0 +1,88 @@
+#
+# Copyright (C) 2017 The Android Open-Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+import /vendor/etc/init/hw/init.${ro.boot.hardware.platform}.rc
+
+on property:vendor.all.modules.ready=1
+    chown system system /sys/class/spi_master/spi0/spi0.0/stm_fts_cmd
+    chown system system /sys/class/spi_master/spi0/spi0.0/audio_status
+    chown system system /sys/class/spi_master/spi0/spi0.0/glove_mode
+
+# Toggle glove_mode according to touch_sensitivity_mode
+on property:persist.vendor.touch_sensitivity_mode=0 && property:sys.boot_completed=1
+    write /sys/class/spi_master/spi0/spi0.0/glove_mode 00
+
+on property:persist.vendor.touch_sensitivity_mode=1 && property:sys.boot_completed=1
+    write /sys/class/spi_master/spi0/spi0.0/glove_mode 01
+
+# Route touch_sensitivity_mode to persist
+on property:debug.touch_sensitivity_mode=0
+    setprop persist.vendor.touch_sensitivity_mode 0
+
+on property:debug.touch_sensitivity_mode=1
+    setprop persist.vendor.touch_sensitivity_mode 1
+
+service vendor.mdm_helper /vendor/bin/mdm_helper
+    class core
+    group system wakelock
+
+on early-fs && property:ro.boot.hardware.revision=DEV1.0
+    write /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq 1075200
+    write /sys/devices/virtual/thermal/cdev-by-name/cpu-isolate4/cur_state 1
+    write /sys/devices/virtual/thermal/cdev-by-name/cpu-isolate5/cur_state 1
+    write /sys/devices/virtual/thermal/cdev-by-name/cpu-isolate6/cur_state 1
+    write /sys/devices/virtual/thermal/cdev-by-name/cpu-isolate7/cur_state 1
+
+on init
+    setprop vendor.thermal.config "thermal_info_config_barbet.json"
+    setprop vendor.powerhal.config "powerhint_barbet.json"
+
+on late-init && property:ro.boot.hardware.revision=DEV1.0
+    setprop vendor.thermal.config "thermal_info_config_barbet_evt.json"
+    setprop vendor.powerhal.config "powerhint.json"
+
+on late-init && property:ro.boot.hardware.revision=EVT1.0
+    setprop vendor.thermal.config "thermal_info_config_barbet_evt.json"
+    setprop vendor.powerhal.config "powerhint.json"
+
+on late-init && property:ro.boot.hardware.revision=EVT1.1
+    setprop vendor.thermal.config "thermal_info_config_barbet_evt.json"
+    setprop vendor.powerhal.config "powerhint.json"
+
+on late-init && property:ro.boot.hardware.revision=EVT1.2
+    setprop vendor.thermal.config "thermal_info_config_barbet_evt.json"
+    setprop vendor.powerhal.config "powerhint.json"
+
+on late-init
+    write /sys/devices/virtual/thermal/tz-by-name/skin-sdm/mode enabled
+    write /sys/devices/virtual/thermal/tz-by-name/wifi-sdm/mode enabled
+    write /sys/devices/virtual/thermal/tz-by-name/l-bound-floor/emul_temp 1
+    write /sys/devices/virtual/thermal/tz-by-name/l-bound-floor/mode enabled
+    write /sys/devices/virtual/thermal/tz-by-name/u-bound-ceiling/emul_temp 7000
+    write /sys/devices/virtual/thermal/tz-by-name/u-bound-ceiling/mode enabled
+    write /sys/devices/virtual/thermal/tz-by-name/l-bound/mode enabled
+    write /sys/devices/virtual/thermal/tz-by-name/u-bound/mode enabled
+    write /sys/devices/virtual/thermal/tz-by-name/skin-virt-cpu/mode enabled
+    write /sys/devices/virtual/thermal/tz-by-name/skin-virt/mode enabled
+    write /sys/devices/virtual/thermal/tz-by-name/skin-virt-boot/mode disabled
+    chown system system /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/trip_point_0_temp
+    chown system system /sys/devices/virtual/thermal/tz-by-name/skin-therm-monitor/trip_point_0_hyst
+    chown system system /sys/devices/virtual/thermal/tz-by-name/skin-virt-monitor/trip_point_0_temp
+    chown system system /sys/devices/virtual/thermal/tz-by-name/skin-virt-monitor/trip_point_0_hyst
+    chown system system /sys/devices/virtual/thermal/tz-by-name/usbc-therm-monitor/trip_point_0_temp
+    chown system system /sys/devices/virtual/thermal/tz-by-name/usbc-therm-monitor/trip_point_0_hyst
+    chown system system /sys/devices/virtual/thermal/tz-by-name/usbc-virt-monitor/trip_point_0_temp
+    chown system system /sys/devices/virtual/thermal/tz-by-name/usbc-virt-monitor/trip_point_0_hyst

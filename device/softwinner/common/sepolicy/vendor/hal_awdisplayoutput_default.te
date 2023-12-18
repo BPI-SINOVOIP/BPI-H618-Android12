@@ -1,0 +1,28 @@
+hal_attribute(awdisplayoutput);
+# HwBinder IPC from client to server, and callbacks
+binder_call(hal_awdisplayoutput_client, hal_awdisplayoutput_server)
+binder_call(hal_awdisplayoutput_server, hal_awdisplayoutput_client)
+
+# client finds and uses server via service_manager
+allow hal_awdisplayoutput_client hal_awdisplayoutput_service:service_manager find;
+binder_use(hal_awdisplayoutput_client)
+
+# server adds itself via service_manager
+add_service(hal_awdisplayoutput_server, hal_awdisplayoutput_service)
+binder_call(hal_awdisplayoutput_server, servicemanager)
+
+allow hal_awdisplayoutput_server dumpstate:fifo_file write;
+hal_client_domain(awdisplay, hal_graphics_composer)
+
+type hal_awdisplayoutput_default,domain;
+hal_server_domain(hal_awdisplayoutput_default, hal_awdisplayoutput)
+
+type hal_awdisplayoutput_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_awdisplayoutput_default)
+
+
+allow hal_awdisplayoutput_default vendor_displayconfig_hwservice:hwservice_manager { find };
+#allow hal_awdisplayoutput_default default_android_service:service_manager { add };
+allow hal_awdisplayoutput_default hal_graphics_composer_default:binder {call};
+
+set_prop(hal_awdisplayoutput_default, vendor_awdisplayoutput_prop)

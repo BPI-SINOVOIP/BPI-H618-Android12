@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright 2012, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<!-- These resources are around just to allow their values to be customized
+     for different hardware and product builds. -->
+<resources>
+    <!--  Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">1</integer>
+    <!-- Whether UI for multi user should be shown -->
+    <bool name="config_enableMultiUserUI">false</bool>
+
+    <!-- Low ram device configurations -->
+    <!-- Pinner Service: not recommanded for 512M device -->
+    <string-array translatable="false" name="config_defaultPinnerServiceFiles">
+        <item>"/system/framework/arm/boot.vdex"</item>
+        <item>"/system/framework/arm/boot-framework.vdex"</item>
+    </string-array>
+    <!-- Disable wifi debugging -->
+    <bool translatable="false" name="config_wifi_enable_wifi_firmware_debugging">false</bool>
+    <integer translatable="false" name="config_wifi_logger_ring_buffer_verbose_size_limit_kb">64</integer>
+
+    <!-- Component name for default assistant on this device -->
+    <string name="config_defaultAssistantComponentName">com.google.android.apps.assistant/com.google.android.apps.assistant.go.MainActivity</string>
+
+    <!-- Feature flag to enable memory efficient task snapshots that are used in recents optimized
+         for low memory devices and replace the app transition starting window with the splash
+         screen. -->
+    <bool name="config_lowRamTaskSnapshotsAndRecents">false</bool>
+    <bool name="config_supportsSplitScreenMultiWindow">false</bool>
+
+    <string-array translatable="false" name="config_allowedManagedServicesOnLowRamDevices" >
+        <item>android.permission.cts</item>
+        <item>com.android.cts.deviceowner</item>
+    </string-array>
+
+    <!-- True if the device requires AppWidgetService even if it does not have
+         the PackageManager.FEATURE_APP_WIDGETS feature -->
+    <bool name="config_enableAppWidgetService">true</bool>
+
+    <!-- The amount to scale fullscreen snapshots for Overview and snapshot starting windows. -->
+    <item name="config_highResTaskSnapshotScale" format="float" type="dimen">0.8</item>
+
+    <!-- The amount to scale reduced scale snapshots for Overview and snapshot starting windows.
+         Reduced scale snapshots are loaded before full screen snapshots to improve load times and
+         minimize the chance the user will see an empty task card. If set to 0, reduced scale
+         snapshots are disabled, and snapshots will only be stored at config_highResTaskSnapshotScale
+         -->
+    <item name="config_lowResTaskSnapshotScale" format="float" type="dimen">0.3</item>
+
+    <!-- Feature flag to store TaskSnapshot in 16 bit pixel format to save memory. -->
+    <bool name="config_use16BitTaskSnapshotPixelFormat">true</bool>
+
+    <bool name="config_zramWriteback">true</bool>
+
+</resources>

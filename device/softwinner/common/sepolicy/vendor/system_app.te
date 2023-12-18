@@ -1,0 +1,26 @@
+allow system_app { cache_file cache_recovery_file }:dir create_dir_perms;
+allow system_app { cache_file cache_recovery_file }:file create_file_perms;
+allow system_app unlabeled:filesystem getattr;
+allow system_app fs_bpf:dir search;
+#allow system_app vendor_default_prop:file { open getattr read };
+allow system_app sysfs_extcon:dir { search read };
+allow system_app cedar_device:chr_file { open read write ioctl };
+allow system_app proc_bootevent:file { open write getattr };
+allow system_app sst_storage_device:chr_file {open read ioctl};
+allow system_app systemmix:binder call;
+allow appdomain systemmix:binder call;
+allow platform_app systemmix:binder call;
+#allow system_app apk_data_file:dir write;
+allow system_app hal_awdisplayoutput_default:binder call;
+#allow system_app apk_data_file:dir write;
+allow system_app update_engine:binder { call transfer };
+allow system_app ota_package_file:dir { search write read add_name remove_name setattr getattr create open rmdir };
+allow system_app ota_package_file:file { create open read unlink write getattr map setattr };
+allow system_app update_engine:binder { call transfer };
+allow platform_app self:netlink_kobject_uevent_socket { bind create read setopt };
+
+allow system_app virtual_ab_prop:file { read open getattr map };
+allow system_app i2c_device:file { open read write ioctl};
+allow system_app i2c_device:chr_file { ioctl open read write };
+allow system_app sysfs_axp:file { open read write};
+allow system_app sysfs_axp:file write;

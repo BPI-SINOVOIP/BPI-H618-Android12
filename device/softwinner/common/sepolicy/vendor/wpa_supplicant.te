@@ -1,0 +1,7 @@
+type wpa_supplicant, domain;
+
+type wpa_supplicant_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(wpa_supplicant);
+
+allow wpa_supplicant vendor_shell_exec:file { getattr read };
+allow wpa_supplicant vendor_toolbox_exec:file execute_no_trans;
