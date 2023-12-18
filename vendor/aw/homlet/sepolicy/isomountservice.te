@@ -1,0 +1,30 @@
+type isomountservice, domain;
+type isomountservice_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(isomountservice);
+typeattribute isomountservice coredomain;
+binder_use(isomountservice)
+binder_service(isomountservice)
+allow isomountservice servicemanager:binder { call transfer };
+allow isomountservice softwinner_service:service_manager { add find };
+allow isomountservice tmpfs:dir {write add_name create};
+allow isomountservice bluray:filesystem unmount;
+allow isomountservice loop_device:blk_file getattr;
+allow isomountservice sdcardfs:dir search;
+allow isomountservice sdcardfs:file open;
+allow isomountservice vfat:file { open read write  };
+allow isomountservice loop_device:blk_file { read write  };
+allow isomountservice sdcardfs:file { read write  };
+allow isomountservice self:capability sys_admin;
+allow isomountservice tmpfs:dir mounton;
+allow isomountservice bluray:filesystem mount;
+allow isomountservice loop_device:blk_file { open  };
+allow isomountservice sdcardfs:file getattr;
+allow isomountservice storage_file:dir search;
+allow isomountservice vfat:file getattr;
+allow isomountservice block_device:dir search;
+allow isomountservice loop_device:blk_file ioctl;
+allowxperm isomountservice loop_device:blk_file ioctl { LOOP_GET_STATUS64 LOOP_SET_FD LOOP_CLR_FD};
+allow isomountservice mnt_user_file:dir { search };
+allow isomountservice fuse:dir { search };
+allow isomountservice fuse:file { open read write getattr };
+allow isomountservice system_data_file:file { getattr };

@@ -1,0 +1,7 @@
+
+cc_prebuilt_binary {
+    name: "autoota",
+
+    srcs: ["autoota"],
+    init_rc: ["autoota.rc"],
+}

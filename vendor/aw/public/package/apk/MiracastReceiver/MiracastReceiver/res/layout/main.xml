@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sbackground"
+    android:orientation="vertical"
+    android:id="@+id/layout" >
+
+
+  	<TextView
+  	  android:id="@+id/title"
+      android:layout_width="@dimen/miracast_itemwidth"
+      android:layout_height="@dimen/miracast_margintop"
+      android:layout_gravity="center"
+      android:layout_marginTop="@dimen/miracast_margintop"
+      android:background="@drawable/smiracast"
+      android:gravity="center"
+      android:paddingLeft="@dimen/miracast_paddingleft"
+      android:paddingTop="@dimen/miracast_paddingtop"
+      android:textColor="@android:color/white"
+      android:text="@string/wifi_display"
+      android:textSize="@dimen/miracast_textsize"/>
+
+	<ImageView
+  	    android:id="@+id/slider_backgroud"
+  	    android:layout_width="@dimen/miracast_itemslider_width"
+  	    android:layout_height="@dimen/miracast_itemslider_height"
+  	    android:layout_marginTop="@dimen/miracast_itemslider_margintop"
+  	    android:background="@drawable/sslider_backgroud"
+  	    android:layout_gravity="center"
+  	    android:contentDescription="@string/app_name"
+  	    android:gravity="left" />
+  	  	
+  	<ImageView
+  	    android:id="@+id/slider"
+  	    android:layout_width="@dimen/miracast_itemslider_width"
+  	    android:layout_height="@dimen/miracast_itemslider_height"
+  	    android:layout_marginTop="@dimen/miracast_sliderblock_margintop"
+  	    android:src="@drawable/sslider_block"
+  	    android:layout_gravity="center"
+  	    android:contentDescription="@string/app_name"
+  	    android:gravity="left" />
+  	  	
+	<TextView
+        android:id="@+id/state_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/miracast_name_margintop"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@drawable/white"
+        android:textSize="@dimen/setting_textsize_xmedium" />
+	
+	<Button
+		android:id="@+id/help"
+		android:layout_width="@dimen/miracast_button_width"
+		android:descendantFocusability="blocksDescendants"
+		android:layout_height="@dimen/miracast_button_height"
+		android:background="@drawable/sbutton_unfocus"
+		android:layout_marginTop="@dimen/miracast_button_margintop"
+		android:gravity="center"
+		android:layout_gravity="center"
+		android:text="@string/help_label"
+		android:textSize="@dimen/setting_textsize_xmedium" />
+
+	<android.support.v4.view.ViewPager
+		android:id="@+id/vpager"
+		android:visibility="gone"
+		android:flipInterval="2000"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" >
+	</android.support.v4.view.ViewPager> 
+	
+	<RelativeLayout  
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="@dimen/miracast_dot_margintop" 
+        android:orientation="vertical" >
+        		  	
+        <LinearLayout  
+            android:id="@+id/viewGroup"  
+            android:layout_width="fill_parent"  
+            android:layout_height="wrap_content"  
+            android:layout_alignParentTop="true"  
+            android:gravity="center_horizontal"  
+            android:orientation="horizontal" > 
+                    	
+        </LinearLayout>  
+    </RelativeLayout> 
+
+</LinearLayout>

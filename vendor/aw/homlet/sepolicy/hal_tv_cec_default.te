@@ -1,0 +1,6 @@
+allow hal_tv_cec_default graphics_device:chr_file { read write ioctl open };
+#allow hal_tv_cec_default disp_prop:file {open read getattr};
+#allow hal_tv_cec_default disp_prop:property_service set;
+allow hal_tv_cec_default sysfs_switch:dir {search read open getattr};
+allow hal_tv_cec_default sysfs_hdmi:dir {search read open getattr};
+allow hal_tv_cec_default sysfs_hdmi:file {read open getattr};

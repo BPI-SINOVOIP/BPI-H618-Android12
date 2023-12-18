@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true" >
+
+    <RelativeLayout
+        android:id="@+id/dialog_position_linear"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/launchrer_dialog_bg_height"
+        android:layout_gravity="left"
+        android:background="@drawable/dialog_backg"
+        android:orientation="horizontal" >
+
+        <!-- BOTTOM Dialog  bagin -->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/launcher_dialog_height"
+            android:layout_marginBottom="@dimen/launcher_dialog_TextMargine" >
+
+            <ImageView
+                android:id="@+id/dialog_title_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/dialog_button_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/launcher_dialog_margine"
+                android:layout_marginTop="@dimen/launcher_dialog_top"
+                android:text="@string/launcher_dialog_title"
+                android:textColor="@color/white"
+                android:textSize="@dimen/launcher_dialog_textSize"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/launcher_dialog_height"
+            android:layout_marginBottom="@dimen/launcher_dialog_TextMargine"
+            android:gravity="top"
+            android:paddingTop="@dimen/launcher_dialog_top" >
+            
+            <Button
+                android:id="@+id/dialog_button_hide"
+                android:layout_width="@dimen/launcher_dialog_button_width"
+                android:layout_height="@dimen/launcher_dialog_button_height"
+                android:layout_marginRight="@dimen/launcher_dialog_button_margine"
+                android:layout_toLeftOf="@+id/dialog_button_ok"
+                android:background="@drawable/sw_button_orange_black_corners_selector"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/launcher_dialog_hide"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/launcher_dialog_textSize"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/dialog_button_ok"
+                android:layout_width="@dimen/launcher_dialog_button_width"
+                android:layout_height="@dimen/launcher_dialog_button_height"
+                android:layout_marginRight="@dimen/launcher_dialog_button_margine"
+                android:layout_toLeftOf="@+id/dialog_button_cancel"
+                android:background="@drawable/sw_button_orange_black_corners_selector"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/launcher_dialog_ok"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/launcher_dialog_textSize"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/dialog_button_cancel"
+                android:layout_width="@dimen/launcher_dialog_button_width"
+                android:layout_height="@dimen/launcher_dialog_button_height"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/launcher_dialog_margine_Right"
+                android:background="@drawable/sw_button_orange_black_corners_selector"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/launcher_dialog_cancel"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/launcher_dialog_textSize"
+                android:visibility="gone" />
+        </RelativeLayout>
+        <!-- BOTTOM Dialog  end -->
+
+
+        <!-- TOP Dialog  bagin -->
+
+        <RelativeLayout
+            android:id="@+id/dialog_top_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/launcher_dialog_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/launcher_dialog_TextMargine"
+            android:gravity="center_vertical"
+            android:visibility="gone" >
+
+            <TextView
+                android:id="@+id/dialog_top_notif"
+                android:layout_width="@dimen/launcher_dialog_img_btn_top_width"
+                android:layout_height="@dimen/launcher_dialog_img_btn_top_height"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/divide_1"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:text="@string/dialog_message_centre"
+		        android:textSize="@dimen/sw_textsize_larger"
+                android:gravity="center_vertical"
+				android:paddingLeft="@dimen/recommand_paddingleft2"
+                android:background="@drawable/dialog_top_notif_bg"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/divide_1"
+                android:layout_width="@dimen/launcher_dialog_divide_width"
+                android:layout_height="@dimen/launcher_dialog_divide_height"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/dialog_top_usb"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/dialog_bg_actionbar" />
+
+            <ImageView
+                android:id="@+id/dialog_top_usb"
+                android:layout_width="@dimen/launcher_dialog_img_btn_top_width"
+                android:layout_height="@dimen/launcher_dialog_img_btn_top_height"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/divide_0"
+                android:background="@drawable/dialog_button_selector"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:src="@drawable/dialog_usb_icon"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/divide_0"
+                android:layout_width="@dimen/launcher_dialog_divide_width"
+                android:layout_height="@dimen/launcher_dialog_divide_height"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/dialog_top_wifi"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/dialog_bg_actionbar" />
+
+            <LinearLayout
+                android:id="@+id/dialog_top_wifi"
+                android:layout_width="@dimen/launcher_dialog_button_selector_width"
+                android:layout_height="@dimen/launcher_dialog_button_selector_height"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/dialog_button_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+
+                <ImageView
+                    android:id="@+id/dialog_top_wifi_icon"
+                    android:layout_width="@dimen/launcher_dialog_img_btn_top_width_small"
+                    android:layout_height="@dimen/launcher_dialog_img_btn_top_height_small"
+                    android:layout_gravity="center_vertical"
+                    android:contentDescription="@string/app_name"
+                    android:paddingLeft="@dimen/launcher_dialog_wifi_icon_padding_left" />
+
+                <com.softwinner.animationview.AnimationText
+                    android:id="@+id/dialog_top_wifi_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:paddingLeft="@dimen/launcher_dialog_wifi_name_padding_left"
+                    android:paddingRight="@dimen/launcher_dialog_wifi_name_padding_rigth"
+                    android:singleLine="true"
+                    android:textSize="@dimen/sw_textsize_xxlarger" />
+            </LinearLayout>
+        </RelativeLayout>
+        <!-- TOP Dialog  end -->
+
+
+        <!-- Right Dialog  bagin -->
+
+        <RelativeLayout
+            android:id="@+id/dialog_right_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/launcher_dialog_TextMargine"
+            android:visibility="gone" >
+ 		<!-- @dimen/launcher_dialog_bg_height -->
+
+            <View
+                android:id="@+id/sign_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dialog_right_layout_marging_top" />
+
+            <ImageView
+                android:id="@+id/dialog_right_usb"
+                android:layout_width="@dimen/launcher_dialog_img_btn_right_width"
+                android:layout_height="@dimen/launcher_dialog_img_btn_right_height"
+                android:layout_below="@+id/sign_view"
+                android:contentDescription="@string/app_name"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/dialog_right_sd"
+                android:layout_width="@dimen/launcher_dialog_img_btn_right_width"
+                android:layout_height="@dimen/launcher_dialog_img_btn_right_height"
+				android:layout_below="@+id/dialog_right_usb"
+				android:layout_marginTop="@dimen/dialog_right_layout_marging"
+                android:contentDescription="@string/app_name"
+                android:visibility="gone" />
+        </RelativeLayout>
+        <!-- Right Dialog  end -->
+
+
+        <!-- Left Dialog  begin -->
+
+        <RelativeLayout
+            android:id="@+id/dialog_left_layout"
+            android:layout_width="@dimen/launchrer_dialog_bg_height"
+            android:layout_height="@dimen/launcher_dialog_height"
+            android:layout_marginBottom="@dimen/launcher_dialog_TextMargine"
+            android:gravity="top"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/dialog_left_layout_linear"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="@dimen/launcher_dialog_TextMargine"
+                android:gravity="top" >
+
+                <TextView
+                    android:id="@+id/dialog_left_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dialog_message_centre"
+                    android:textSize="32sp" />
+
+                <Button
+                    android:id="@+id/dialog_left_info_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dialog_message_centre"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <!-- Left Dialog  end -->
+
+    </RelativeLayout>
+
+</RelativeLayout>

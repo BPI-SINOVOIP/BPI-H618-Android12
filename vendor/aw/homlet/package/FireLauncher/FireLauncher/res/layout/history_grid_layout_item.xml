@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/gridview_item_padding_left"
+    android:paddingRight="@dimen/gridview_item_padding_right"
+    android:paddingTop="@dimen/gridview_item_padding_top"
+    android:paddingBottom="@dimen/gridview_item_padding_bottom" >
+    
+ 	<ImageView 
+        android:id="@+id/animation_view"
+        android:layout_width="@dimen/gridlayout_item_width"
+        android:layout_height="@dimen/gridlayout_item_height"
+        android:layout_margin="@dimen/gridview_padding_small"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fail_h" /><!-- centerCrop -->
+        
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+ 	
+ 	<LinearLayout 
+        android:layout_width="@dimen/gridlayout_item_width"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/item_text_minHeight"
+        android:layout_margin="@dimen/gridview_padding_small"
+        android:background="@color/transparent_dark"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
+
+	 	 <TextView
+	        android:id="@+id/item_detail"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingTop="@dimen/gridview_padding_small"
+	        android:paddingLeft="@dimen/gridview_padding_small"
+        	android:gravity="left"
+            android:ellipsize="end"
+            android:marqueeRepeatLimit="marquee_forever"
+	        android:textSize="@dimen/sw_textsize_larger" />
+	 	 
+	 	 <com.softwinner.animationview.AnimationText
+	        android:id="@+id/item_name"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:paddingLeft="@dimen/gridview_padding_small"
+        	android:gravity="left"
+		    android:focusableInTouchMode="true"
+		    android:marqueeRepeatLimit="marquee_forever"
+	        android:ellipsize="end"
+	        android:singleLine="true"
+	        android:textSize="@dimen/app_section_name_textsize" />
+ 	</LinearLayout>
+    
+</FrameLayout>

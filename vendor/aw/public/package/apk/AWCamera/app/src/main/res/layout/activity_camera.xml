@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:id="@+id/root_camera"
+    tools:context=".CameraActivity"
+   >
+<!--    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id = "@+id/previewstub"
+        android:layout="@layout/camerapreviewstub"/>-->
+<FrameLayout
+    android:id="@+id/fl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    >
+
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id = "@+id/previewstub"
+        android:layout="@layout/camerapreviewstub2"/>
+
+    <com.allwinner.camera.views.GridlineView
+        android:id="@+id/gridlineView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <com.allwinner.camera.views.PointView
+        android:id="@+id/pointView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+
+    </com.allwinner.camera.views.PointView>
+    <ImageView
+        android:id="@+id/cover_layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ImageView>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/paper_frament_container">
+    </FrameLayout>
+    <com.allwinner.camera.views.RotateTextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.0x"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/selector_circlebackground"
+        android:textColor="#ffffff"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/iv_capturebg_height"
+        android:layout_margin="@dimen/iv_capture_margin_size"
+        android:layout_gravity="bottom|right">
+
+        <com.allwinner.camera.views.CircleRotateImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="@dimen/thumbnail_size"
+            android:layout_height="@dimen/thumbnail_size"
+            android:layout_marginRight="@dimen/thumbnail_margin_right_size"
+            android:layout_centerInParent="true"
+            android:src="@drawable/iv_circle" />
+    </RelativeLayout>
+
+    <com.allwinner.camera.views.CountDownView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/countdown">
+        <com.allwinner.camera.views.RotateTextView
+            android:id="@+id/countdowntext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="180sp" />
+    </com.allwinner.camera.views.CountDownView>
+    <RelativeLayout
+        android:id="@+id/rl_filter_select"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rl_filter_height"
+        android:layout_gravity="bottom"
+        android:background="#40000000">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            app:tabSelectedTextColor ="#ffffff"
+            app:tabTextColor="#ffffff"
+            >
+
+        </android.support.design.widget.TabLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tab_layout">
+        </android.support.v4.view.ViewPager>
+
+    </RelativeLayout>
+
+
+
+
+
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/intent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        android:visibility="gone"
+
+        >
+        <ImageView
+            android:id="@+id/intent_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"           >
+            <Button
+                android:id="@+id/retry"
+                android:layout_weight="1"
+                android:text="@string/retake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/finish"
+                android:layout_weight="1"
+                android:text="@string/finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </FrameLayout>
+</FrameLayout>

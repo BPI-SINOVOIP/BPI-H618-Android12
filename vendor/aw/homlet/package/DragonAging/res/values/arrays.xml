@@ -1,0 +1,47 @@
+
+<resources>
+	<string-array name="case_battery_info">
+		<item>电池状态:</item>
+		<item>健康情况:</item>
+		<item>是否是当前信息:</item>
+		<item>电量水平:</item>
+		<item>最大电量:</item>
+		<item>插座状态:</item>
+		<item>电压:</item>
+		<item>温度:</item>
+		<item>制作工艺:</item>
+	</string-array>
+
+	<string-array name="case_battery_status">
+		<item>未知</item>
+		<item>充电</item>
+		<item>放电</item>
+		<item>电量已满</item>
+		<item>未充电</item>
+
+
+	</string-array>
+	<string-array name="case_battery_health">
+
+		<item>未知</item>
+		<item>良好</item>
+		<item>过热</item>
+		<item>糟糕</item>
+		<item>电压过高</item>
+		<item>获取信息失败</item>
+		<item>过冷</item>
+	</string-array>
+	<string-array name="case_battery_plugged">
+		<item>没有插入插座</item>
+		<item>插入了交流电</item>
+		<item>接入了USB插座</item>
+
+	</string-array>
+
+	<string-array name="wifi_signal">
+		<item msgid="2245412278046491293">"弱"</item>
+		<item msgid="5615082285463430971">"一般"</item>
+		<item msgid="3565079809875324621">"较强"</item>
+		<item msgid="5702329417707689835">"强"</item>
+	</string-array>
+</resources>

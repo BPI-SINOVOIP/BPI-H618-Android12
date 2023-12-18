@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="#fff">
+    
+    <ImageView
+        android:id="@+id/launcher_home_icon"
+        android:layout_width="48dip"
+        android:layout_height="48dip"
+        android:contentDescription="@string/img_desc"
+        android:src="@drawable/home"
+        android:layout_margin="10dip"
+        />
+    
+    <TextView 
+        android:id="@+id/launcher_home_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:text="@string/home"
+        android:textSize="36sp"
+        android:gravity="center_vertical"
+        android:layout_margin="10dip"
+        android:layout_toRightOf="@+id/launcher_home_icon"
+        />
+    
+    <ImageView 
+     	android:id="@+id/launcher_top_horizontal_line" 
+        android:layout_width="match_parent"
+        android:layout_height="3dip"
+        android:contentDescription="@string/img_desc"
+        android:background="@android:color/black"
+        android:layout_below="@+id/launcher_home_icon"
+        />
+    
+    <FrameLayout 
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@+id/launcher_top_horizontal_line"
+       android:layout_toLeftOf="@+id/launcher_top_center_havling_line"
+       android:layout_above="@+id/launcher_center_havling_line"
+        >
+       <include layout="@layout/reading_now"/> 
+    </FrameLayout>
+    
+   <FrameLayout 
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@+id/launcher_top_horizontal_line"
+       android:layout_toRightOf="@+id/launcher_top_center_havling_line"
+       android:layout_above="@+id/launcher_center_havling_line"
+        >
+       <include layout="@layout/reading_new"/> 
+    </FrameLayout>
+    
+    <ImageView
+        android:id="@+id/launcher_top_center_havling_line" 
+        android:layout_width="0.5dip"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/img_desc"
+        android:background="@android:color/black"
+        android:layout_above="@+id/launcher_center_havling_line"
+        android:layout_below="@+id/launcher_top_horizontal_line"
+        android:layout_centerHorizontal="true"
+        />
+    
+    <ImageView
+        android:id="@+id/launcher_center_havling_line" 
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/img_desc"
+        android:background="@android:color/black"
+        />
+    
+    <FrameLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/launcher_center_havling_line"
+        android:layout_margin="20dip">
+        <include layout="@layout/apps_table" />
+    </FrameLayout>
+	
+</RelativeLayout>

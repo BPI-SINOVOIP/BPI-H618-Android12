@@ -1,0 +1,8 @@
+android_app_import {
+    name: "KeepTesting",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    apk: "KeepTesting-nosign.apk",
+}

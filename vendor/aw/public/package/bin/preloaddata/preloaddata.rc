@@ -1,0 +1,23 @@
+on property:vold.post_fs_data_done=1
+    start preloaddata
+
+on property:sys.boot_completed=1
+    start preloaddata_restorecon
+
+service preloaddata /system/bin/preloaddata
+    oneshot
+    disabled
+    user root
+    group root system shell misc
+    priority -20
+    ioprio rt 0
+    seclabel u:r:toolbox:s0
+
+service preloaddata_restorecon /system/bin/preloaddata_restorecon
+    oneshot
+    disabled
+    user root
+    group root system shell misc
+    priority -20
+    ioprio rt 0
+    seclabel u:r:installd:s0

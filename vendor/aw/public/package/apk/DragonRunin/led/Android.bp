@@ -1,0 +1,20 @@
+// Copyright 2006 The Android Open Source Project
+
+cc_binary {
+    name: "led",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wunused",
+        "-Wunreachable-code",
+    ],
+    srcs: ["led.c"],
+    include_dirs: ["system/core/libutils/include"],
+
+    shared_libs: [
+        "libcutils",
+        "liblog",
+    ],
+
+    init_rc: ["led.rc"],
+}

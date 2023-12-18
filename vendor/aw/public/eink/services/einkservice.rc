@@ -1,0 +1,12 @@
+on boot
+
+on property:sys.boot_completed=1
+    mkdir /data/eink 0771 system graphics
+    start einkservice
+
+service einkservice /system/bin/einkservice
+    class core
+    user system
+    group graphics audio input media_rw sdcard_rw
+    disabled
+    writepid /dev/stune/foreground/tasks

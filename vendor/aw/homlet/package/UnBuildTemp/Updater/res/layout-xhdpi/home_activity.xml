@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fsms="http://schemas.android.com/apk/res/com.softwinner.update"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/btn_back_width"
+            android:layout_height="@dimen/btn_back_height"
+            android:layout_marginLeft="@dimen/update_imagetitle_margin_left"
+            android:layout_marginTop="@dimen/update_imagetitle_margin_top"
+			android:text="@string/system_update"
+			android:gravity="center_vertical"
+			android:paddingLeft="@dimen/title_paddingleft"
+			android:textSize="@dimen/setting_textsize_large"
+			android:textColor="@color/white"
+			android:background="@drawable/ic_title_bg" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" >
+
+        <TextView
+            android:id="@+id/TextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2" />
+
+        <com.softwinner.update.Widget.TextImageButton
+            android:id="@+id/imageButton_online"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/update_home_imagebtn_height"
+            android:layout_weight="5"
+            android:background="@drawable/update_main_btn_online_selector"
+            fsms:text="@string/update_online"
+            fsms:textColor="#FFFFFFFF"
+            fsms:textSize="@dimen/setting_textsize_xmedium" />
+
+        <TextView
+            android:id="@+id/TextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <com.softwinner.update.Widget.TextImageButton
+            android:id="@+id/imageButton_local"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/update_home_imagebtn_height"
+            android:layout_weight="5"
+            android:background="@drawable/update_main_btn_local_selector"
+            fsms:text="@string/update_local"
+            fsms:textColor="#FFFFFFFF"
+            fsms:textSize="@dimen/setting_textsize_xmedium" />
+
+        <TextView
+            android:id="@+id/TextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>

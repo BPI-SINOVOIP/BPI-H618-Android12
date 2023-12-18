@@ -1,0 +1,31 @@
+typeattribute platform_app mlstrustedsubject;
+allow platform_app self:process ptrace;
+# add permissions for fs of external_storage: fuseblk(exfat,ntfs)
+# qw permission for the memtester of DragonAging.
+allow platform_app qw_socket:unix_stream_socket { connectto };
+allow platform_app qw:unix_stream_socket { connectto };
+allow platform_app qw_exec:file rx_file_perms;
+allow platform_app qw_socket:fifo_file rw_file_perms;
+allow platform_app qw_daemon_device:dir search;
+allow platform_app qw_socket:sock_file rw_file_perms;
+##samba
+#allow platform_app cifs:filesystem getattr;
+#allow platform_app cifs:file create_file_perms;
+#allow platform_app cifs:dir create_dir_perms;
+##nfs
+#allow platform_app nfs:dir create_dir_perms;
+#allow platform_app nfs:file create_file_perms;
+#allow platform_app nfs:filesystem getattr;
+##HMID_CTS
+#allow platform_app property_socket:sock_file write;
+##allow platform_app displayd_socket_device:sock_file write;
+##allow platform_app displayd:unix_stream_socket connectto;
+#allow platform_app init:unix_stream_socket connectto;
+##allow platform_app sysfs:file r_file_perms;
+#allow platform_app audio_prop:property_service set;
+##allow platform_app hdmi_prop:property_service set;
+##other
+allow platform_app system_prop:property_service set;
+allow mediaprovider unlabeled:file { open read  };
+allow platform_app tmpfs:dir { add_name create write  };
+##allow platform_app app_data_file:file execute;

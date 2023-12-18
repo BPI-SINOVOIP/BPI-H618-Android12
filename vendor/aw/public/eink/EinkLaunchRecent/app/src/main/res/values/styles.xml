@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+* Copyright (C) 2008 The Android Open Source Project
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*      http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+-->
+
+<resources>
+    <!-- Launcher theme -->
+    <style name="BaseLauncherTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:colorEdgeEffect">#FF757575</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowShowWallpaper">true</item>
+
+    </style>
+
+    <style name="LauncherTheme" parent="@style/BaseLauncherTheme">
+        <item name="android:textColorSecondary">#DE000000</item>
+        <item name="allAppsScrimColor">?android:attr/colorBackgroundFloating</item>
+        <item name="allappsHeaderProtectionColor">@color/popup_color_tertiary_light</item>
+        <item name="allAppsNavBarScrimColor">#66FFFFFF</item>
+        <item name="popupColorPrimary">@color/popup_color_primary_light</item>
+        <item name="popupColorSecondary">@color/popup_color_secondary_light</item>
+        <item name="popupColorTertiary">@color/popup_color_tertiary_light</item>
+        <item name="popupShadeFirst">@color/popup_shade_first_light</item>
+        <item name="popupShadeSecond">@color/popup_shade_second_light</item>
+        <item name="popupShadeThird">@color/popup_shade_third_light</item>
+        <item name="popupNotificationDotColor">@color/popup_notification_dot_light</item>
+        <item name="isMainColorDark">false</item>
+        <item name="isWorkspaceDarkText">false</item>
+        <item name="workspaceTextColor">@color/workspace_text_color_light</item>
+        <item name="workspaceShadowColor">#B0000000</item>
+        <item name="workspaceAmbientShadowColor">#40000000</item>
+        <item name="workspaceKeyShadowColor">#89000000</item>
+        <item name="folderDotColor">@color/folder_dot_color</item>
+        <item name="folderFillColor">@color/folder_background_light</item>
+        <item name="folderIconBorderColor">?android:attr/colorPrimary</item>
+        <item name="folderTextColor">@color/workspace_text_color_dark</item>
+        <item name="isFolderDarkText">true</item>
+        <item name="folderHintColor">@color/folder_hint_text_color_dark</item>
+        <item name="iconOnlyShortcutColor">?android:attr/textColorSecondary</item>
+        <item name="workProfileOverlayTextColor">#FF212121</item>
+        <item name="eduHalfSheetBGColor">?android:attr/colorAccent</item>
+        <item name="workspaceAccentColor">@color/workspace_accent_color_light</item>
+        <item name="dropTargetHoverTextColor">@color/workspace_text_color_dark</item>
+
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">#00000000</item>
+        <item name="android:navigationBarColor">#00000000</item>
+    </style>
+</resources>

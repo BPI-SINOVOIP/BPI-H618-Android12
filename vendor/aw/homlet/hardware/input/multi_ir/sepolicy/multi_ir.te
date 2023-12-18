@@ -1,0 +1,24 @@
+type multi_ir, domain;
+type multi_ir_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(multi_ir)
+typeattribute multi_ir coredomain;
+type proc_ir, fs_type, proc_type;
+
+binder_use(multi_ir)
+binder_service(multi_ir)
+allow multi_ir servicemanager:binder { call transfer };
+allow multi_ir softwinner_service:service_manager { add find };
+allow multi_ir proc_ir:file rw_file_perms;
+#allow multi_ir sysfs:file write;
+allow multi_ir sysfs_devices_system_cpu:file write;
+allow multi_ir rootfs:dir {open read};
+allow multi_ir rootfs:file {open read execute getattr map};
+#allow multi_ir rootfs:file {entrypoint};
+#allow multi_ir self:capability {dac_override net_admin};
+allow multi_ir self:netlink_kobject_uevent_socket {create setopt bind read};
+allow multi_ir uhid_device:chr_file {write open read ioctl};
+allow multi_ir input_device:dir {write open read search getattr watch};
+allow multi_ir input_device:chr_file {write open read ioctl};
+allow multi_ir property_socket:sock_file {write};
+allow multi_ir init:unix_stream_socket connectto;
+allow multi_ir self:capability { net_admin };

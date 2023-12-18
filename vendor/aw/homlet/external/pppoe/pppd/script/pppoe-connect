@@ -1,0 +1,73 @@
+#!/system/bin/sh
+
+#******************************************
+# Usage       :awlog [log_string]
+# Description :Print the log to the anddroid log system
+#              or the shell .
+#******************************************
+function awlog(){
+if [ $# -eq 1 ]
+then
+    echo $1
+    log -t AW-PPPoE $1
+fi
+}
+
+#******************************************
+# Usage       : usage
+# Description : Print the usage of the pppoe-connect
+#               to the shell .
+#******************************************
+function usage(){
+echo "**********************************************"
+echo "Version : 2.0                                 "
+echo "Usage   :                                     "
+echo "          pppoe-connect [interface] [username]"
+echo "**********************************************"
+}
+
+###########################################
+EXIT_CODE=1
+PPPOE_INTERFACE_FILE=/data/misc/pppoe/pppoe-interface
+PPPOE_PARM_INTERFACE=`cat $PPPOE_INTERFACE_FILE`
+PPPOE_PID_FILE=/data/misc/pppoe/${PPPOE_PARM_INTERFACE}_pppd.pid
+
+LINK_STATE=`cat /sys/class/net/${PPPOE_PARM_INTERFACE}/carrier`
+if [ "$LINK_STATE" = "0" ]
+    then
+       awlog "pppoe link out"
+       setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.status" "stopped"
+       setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.ppp-exit" "22"
+       exit 22
+fi
+
+setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.ppp-exit" ""
+setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.interface" ""
+setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.lcpup" "no"
+awlog "Starting pppoe on $PPPOE_PARM_INTERFACE"
+
+# Try to kill the last session , some time it would cause create session failed.
+if [ "$PPPOE_PARM_INTERFACE" = "eth0" ]
+then
+    UINT=0
+else
+    UINT=1
+fi
+/system/bin/pppoe plugin-pppoe nic-$PPPOE_PARM_INTERFACE unit $UINT\
+         +ua /data/misc/pppoe/pppoe-secrets-$PPPOE_PARM_INTERFACE linkinterface $PPPOE_PARM_INTERFACE call pppoe-options
+EXIT_CODE=$?
+awlog "pppoe exited with $EXIT_CODE"
+rm -f $PPPOE_PID_FILE
+
+awlog "PPPoE exit!"
+# Save the exit code
+setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.ppp-exit" "$EXIT_CODE"
+setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.interface" ""
+setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.status" "stopped"
+
+ #set the real reason for pppoe exit
+LINK_STATE=`cat /sys/class/net/${PPPOE_PARM_INTERFACE}/carrier`
+if [ "$LINK_STATE" = "0" ]
+   then
+      setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.ppp-exit" "22"
+fi

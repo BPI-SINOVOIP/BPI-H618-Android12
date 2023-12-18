@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.softwinner.animationview.AnimationText
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tabindicator_height"
+        android:background="@color/transparent_dark"
+        android:gravity="center"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textSize="@dimen/app_section_name_textsize"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/white_boder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/v3_yellow_border"
+        android:contentDescription="@string/app_name"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/shadow_side_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/shadow_side_horizontal_1"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/shadow_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/shadow_center"
+        android:visibility="invisible" />
+    
+    <ImageView
+        android:id="@+id/shadow_center_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/shadow_center_blue"
+        android:visibility="invisible" />
+    
+    <ImageView
+        android:id="@+id/shadow_center_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/shadow_center_orange"
+        android:visibility="invisible" />
+    
+     <ImageView
+        android:id="@+id/trash_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_record_single_cancel"
+        android:visibility="invisible" />
+<!-- 
+    <ImageView
+        android:id="@+id/shadow_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:src="@drawable/shadow_center"
+        android:visibility="invisible" /> -->
+
+</FrameLayout>

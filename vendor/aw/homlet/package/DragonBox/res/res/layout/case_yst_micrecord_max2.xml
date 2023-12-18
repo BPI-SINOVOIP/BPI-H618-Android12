@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/write"
+    android:orientation="vertical" >
+	<TextView android:id="@+id/case_micrecord_alert2"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    />
+	<LinearLayout
+        android:id="@+id/case_micrecord_container2"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/case_micrecord_button_passed2"
+            android:layout_width="wrap_content"
+            android:enabled="false"
+            android:layout_height="wrap_content"
+            android:text="@string/result_passed" />
+
+        <Button
+            android:id="@+id/case_micrecord_button_fail2"
+            android:enabled="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result_failed" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/case_micrecord_leftmic_container"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/case_micrecord_leftmic_button_passed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result_passed" />
+
+        <Button
+            android:id="@+id/case_micrecord_leftmic_button_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result_failed" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/case_micrecord_rightmic_container"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/case_micrecord_rightmic_button_passed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/result_passed" />
+
+        <Button
+            android:id="@+id/case_micrecord_rightmic_button_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/result_failed" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/case_micrecord_bothmic_container"
+        android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/case_micrecord_bothmic_button_passed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/result_passed" />
+
+        <Button
+            android:id="@+id/case_micrecord_bothmic_button_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/result_failed" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,11 @@
+type ethpkt, domain;
+type ethpkt_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(ethpkt);
+typeattribute ethpkt coredomain;
+binder_use(ethpkt)
+binder_service(ethpkt)
+allow ethpkt servicemanager:binder { call transfer };
+allow ethpkt softwinner_service:service_manager { add find };
+allow ethpkt sysfs_gpio_qa:file {open read write };
+allow ethpkt sysfs_gpio_qa:dir { search };
+#allow ethpkt self:capability dac_override;

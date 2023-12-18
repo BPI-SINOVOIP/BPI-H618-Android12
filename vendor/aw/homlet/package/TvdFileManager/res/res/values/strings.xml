@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MainUI!</string>
+    <string name="app_name">FileManager</string>
+    <string name="path">path is</string>
+
+    <string name="sort">sort</string>
+    <string name="copy">copy</string>
+    <string name="paste">paste</string>
+    <string name="cut">cut</string>
+    <string name="delete">delete</string>
+    <string name="mkdir">mkdir</string>
+    <string name="add_new_dev">Add Device</string>
+    <string name="del_dev">Del Devive</string>
+    <string name="umount_dev">umount</string>
+    <string name="umount_internal">can not umount Local Memory</string>
+
+    <string name="directory">directory:</string>
+    <string name="equipment">Device</string>
+    <string name="video">Video</string>
+    <string name="picture">Picture</string>
+    <string name="music">Music</string>
+    <string name="file">File</string>
+    <string name="open_file">Select the type of file</string>
+    <string name="text">Text</string>
+
+    <!-- length of string is 12 -->
+    <string name="target">Target     : </string>
+ <string name="local_disk">Local Memory</string>
+    <string name="sdcard">Sd card</string>
+    <string name="usb">Usb</string>
+    <string name="sata">Sata</string>
+ <string name="flash">Local Memory</string>
+    <string name="used_size">Used size   : </string>
+    <string name="avail_size">Avail size : </string>
+    <string name="samba">Network Neighborhood</string>
+    <string name="nfs">NFS Share</string>
+    <string name="search">search...</string>
+    <string name="login">Login</string>
+    <string name="account">Account:</string>
+    <string name="password">Password:</string>
+    <string name="ok">OK</string>
+
+    <!-- samba出错 -->
+    <string name="smbfile_no_exist">the workgroup/service does not exist</string>
+    <string name="file_does_not_exist">the file does not exist</string>
+    <string name="access_fail">access fail</string>
+    <string name="net_not_connected">Network is not connected</string>
+    <string name="login_fail">Login Fail</string>
+
+    <string name="singer">Singer     : </string>
+    <string name="title">Title      : </string>
+    <string name="duration">Duration   : </string>
+    <string name="size">Size       : </string>
+    <string name="bit_rate">Bit rate   : </string>
+    <string name="resolution">Resolution : </string>
+    <string name="frame_rate">Frame rate : </string>
+
+    <string name="can_not_play">can not play this file</string>
+    <string name="can_not_open">can not open due to permission</string>
+
+    <string name="press_exit">press back again to exit</string>
+    <!-- NFS error -->
+    <string name="mount_fail">Mount Fail: NO Permmision!</string>
+    <!-- 设备热插拔 -->
+    <string name="usb_in">usb in</string>
+    <string name="sdcard_in">sdcard in</string>
+    <string name="flash_in">extern sd in</string>
+    <string name="usb_out">usb out</string>
+    <string name="sdcard_out">sdcard out</string>
+    <string name="flash_out">extern sd out</string>
+
+    <!-- 文件操作情况 -->
+    <string name="scan">scan</string>
+    <string name="create">create</string>
+    <string name="success">success</string>
+    <string name="fail">fail</string>
+    <string name="rename">rename</string>
+    <string name="rename_to"> is rename to </string>
+    <string name="rename_fail">fail to rename</string>
+    <string name="renamed_to_exist_file">" renamed fail,the new name file exist"</string>
+    <string name="cancel">cancel</string>
+    <string name="create_new_file">create new file</string>
+    <string name="copy_fail">fail to copy</string>
+    <string name="cut_fail">fail to cut</string>
+    <string name="delete_fail">fail to delete</string>
+ <string name="delete_message">Sure that delete the file?</string>
+ <string name="sure">Sure</string>
+    <string name="operate_fail_dueto_permission">file operate fail,due to no permission</string>
+    <string name="operate_no_exit_file">the file to operate does not exist</string>
+        <string name="can_not_cut">Can not cut </string>
+    <string name="can_not_copy">Can not copy </string>
+    <string name="can_not_paste">Can not paste</string>
+    <string name="target_equals_src">:target directory equals source directory</string>
+    <string name="target_is_child">:target directory is child of source directory</string>
+    <string name="sure_cover_file">Sure that cover the file:</string>
+    <string name="not_enough_space">not enough space in device</string>
+    <string name="samba_dev">Samba</string>
+    <string name="nfs_dev">NFS</string>
+    <!--搜索结果提示 -->
+    <string name="result_null">Search result is Empty</string>
+
+    <!-- 文件操作进度提示 -->
+    <string name="copy_to_newDir">copy files to new directory...</string>
+    <string name="delete_old_files">delete old files...</string>
+    <string name="delete_files">delete files...</string>
+
+
+    <!-- 排序类型 -->
+    <string name="sort_type">select the sort type</string>
+    <string name="alpha">alpha</string>
+    <string name="modified_time">modified time</string>
+    <string name="by_size">size of file</string>
+    <string name="sorting">sorting...</string>
+
+    <!-- 分区名 -->
+    <string name="partitionA">A</string>
+    <string name="partitionB">B</string>
+    <string name="partitionC">C</string>
+    <string name="partitionD">D</string>
+    <string name="partitionE">E</string>
+    <string name="partitionF">F</string>
+    <string name="partitionG">G</string>
+    <string name="partitionH">H</string>
+    <string name="partitionI">I</string>
+    <string name="partitionJ">J</string>
+    <string name="partitionK">K</string>
+    <string name="partitionL">L</string>
+    <string name="partitionM">M</string>
+    <string name="partitionN">N</string>
+    <string name="partitionO">O</string>
+    <string name="partitionP">P</string>
+    <string name="partitionQ">Q</string>
+    <string name="partitionR">R</string>
+    <string name="partitionS">S</string>
+    <string name="partitionT">T</string>
+    <string name="partitionU">U</string>
+    <string name="partitionV">V</string>
+    <string name="partitionW">W</string>
+    <string name="partitionX">X</string>
+    <string name="partitionY">Y</string>
+    <string name="partitionZ">Z</string>
+    <string name="partitionOther">Other Partition</string>
+
+    <string name="not_app_to_open_the_file">have not install any app to open the file</string>
+    <string name="not_app_to_open_the_pic">have not install any app to open the picture</string>
+    <string name="not_app_to_play_the_video">have not install any app to play the video</string>
+    <string name="not_app_to_play_the_music">have not install any app to play the music</string>
+    <string name="not_app_to_open_the_gif">have not install any app to open the gif</string>
+
+    <string name="try_mount_fail">"Try to mount disk fail, can not open"</string>
+</resources>

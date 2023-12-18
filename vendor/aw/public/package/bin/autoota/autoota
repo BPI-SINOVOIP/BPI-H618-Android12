@@ -1,0 +1,68 @@
+#!/system/bin/sh
+
+ota_wait_time=
+ota_path="/cache/update.zip"
+log_path="/cache/recovery/autoota.log"
+cmd_path="/cache/recovery/command"
+
+function usage()
+{
+    echo "Usage: autoota [ota_count] [ota_wait_time]"
+    echo "   or: autoota help/usage to show this usage"
+    echo ""
+    echo "  1.Put the ota package to $(ota_path) and chmod 777."
+    echo "  2.Execute autoota command to start ota testing."
+    echo "  3.Execute autoota stop to stop ota next time."
+    echo "  4.Autoota log will save at $(log_path)."
+    echo ""
+}
+
+if [ $# -eq 1 ] && [ $1 == "usage" -o $1 == "help" -o $1 == "-h" ]; then
+    usage
+    exit
+fi
+
+function log()
+{
+    printf "$(date '+%m-%d %H:%M:%S') %5d %s\n" $$ "$*" | tee -a $log_path
+}
+
+if [ $# -eq 1 ] && [ $1 == "stop" ]; then
+    log "Stopping autoota"
+    settings delete global ota_count
+    settings delete global ota_wait_time
+    exit
+fi
+
+log "Running autoota $@"
+if [ $# -ge 1 ] && [ $1 -gt 0 ] 2> /dev/null ; then
+    ota_count=$1
+else
+    ota_count=$(settings get global ota_count) 2> /dev/null
+fi
+
+if [ $# -ge 2 ] && [ $2 -gt 0 ] 2> /dev/null; then
+    ota_wait_time=$2
+else
+    ota_wait_time=$(settings get global ota_wait_time) 2> /dev/null
+    if [ -z $ota_wait_time ] || [ $ota_wait_time == "null" ] ; then
+        log "Can't found ota_wait_time, use default"
+        ota_wait_time=20
+    fi
+fi
+
+log "ota_count: $ota_count"
+log "ota_wait_time: $ota_wait_time"
+
+if [ -e $ota_path ] && [ ! -z "$ota_count" ] && [ $ota_count -gt 0 ]; then
+    ota_count=`expr $ota_count - 1`
+    settings put global ota_count $ota_count 2> /dev/null
+    settings put global ota_wait_time $ota_wait_time 2> /dev/null
+    echo "--update_package="$ota_path > $cmd_path
+    log "waiting for $(ota_wait_time)s"
+    sleep $ota_wait_time
+    log "reboot to ota"
+    reboot recovery
+else
+    log "Autoota not starting"
+fi

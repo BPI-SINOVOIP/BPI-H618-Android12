@@ -1,0 +1,30 @@
+<!-- 
+	这里是列表中每一项的布局结构:
+	"类型图" + "文件名"
+ -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/dp_50"
+    android:background = "@drawable/item_bg"
+    android:paddingTop="@dimen/dp_6"
+    android:paddingBottom="@dimen/dp_6" >
+    <ImageView
+        android:src="@drawable/litter_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginRight="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:id="@+id/row_image"/>
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@id/row_image"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/black"
+        android:textSize="@dimen/sp_20"
+        android:singleLine="true"
+        android:ellipsize="marquee" />
+</RelativeLayout>

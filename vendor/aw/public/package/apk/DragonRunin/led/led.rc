@@ -1,0 +1,26 @@
+
+on property:debug.test.runin=start
+    insmod /vendor/lib/modules/gpio-sunxi.ko
+    write /sys/class/gpio_sw/PF3/cfg 1
+    write /sys/class/gpio_sw/PF5/cfg 1
+    start led
+    setprop debug.test.result 1
+
+on property:debug.test.runin=pass
+    setprop debug.test.result 3
+
+on property:debug.test.runin=fail
+    setprop debug.test.result 2
+
+on property:debug.test.runin=pause
+    setprop debug.test.result 0
+
+on property:debug.test.runin=stop
+    setprop debug.test.result 0
+
+service led /system/bin/led
+    oneshot
+    disabled
+    user root
+    group root
+    seclabel u:r:vendor_init:s0

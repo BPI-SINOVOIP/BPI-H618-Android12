@@ -1,0 +1,44 @@
+android_app {
+    name: "EinkLaunchRecent",
+    srcs: [
+        "app/src/main/java/**/*.kt"
+    ],
+    resource_dirs: [
+        "app/src/main/res"
+    ],
+    manifest: "app/src/main/AndroidManifest.xml",
+    certificate: "platform",
+    kotlincflags: ["-Xjvm-default=enable"],
+    dex_preopt: {
+        enabled: false,
+    },
+    platform_apis: true,
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+        enabled: false,
+    },
+    privileged: true,
+    system_ext_specific: true,
+    static_libs: [
+        "kotlinx-coroutines-android",
+        "kotlinx-coroutines-core",
+        "androidx.cardview_cardview",
+        "androidx.core_core",
+        "androidx.appcompat_appcompat",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.lifecycle_lifecycle-extensions",
+        "androidx-constraintlayout_constraintlayout",
+        "SystemUISharedLib",
+        "SystemUI-statsd",
+    ],
+    required: ["privapp_whitelist_com.softwinner.einklaunchrecent"],
+}
+
+prebuilt_etc {
+    name: "privapp_whitelist_com.softwinner.einklaunchrecent",
+    system_ext_specific: true,
+    sub_dir: "permissions",
+    src: "com.softwinner.einklaunchrecent.xml",
+    filename_from_src: true,
+}
+

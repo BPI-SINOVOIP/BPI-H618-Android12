@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_retest"
+        android:title="@string/case_main_menu_retest">
+    </item>
+    <item
+        android:id="@+id/menu_go_dragonsn"
+        android:title="@string/case_main_menu_go_dragonsn">
+    </item>
+    <item
+        android:id="@+id/menu_go_dragonaging"
+        android:title="@string/case_main_menu_go_dragonaging">
+    </item>
+
+</menu>

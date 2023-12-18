@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+  	android:orientation="vertical"
+  	android:layout_width="fill_parent"
+  	android:layout_height="fill_parent">
+  	
+    <com.softwinner.agingdragonbox.DraggableList
+		android:id="@+id/draggable_list"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:layout_above="@+id/save"
+		/>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/configuration_save" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/switch_mode"
+        android:text="@string/configuration_exit" />
+    <CheckBox 
+        android:id="@+id/config_report_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:layout_toRightOf="@+id/exit"
+        android:layout_marginLeft="30dip"
+        android:layout_alignParentBottom="true"
+        android:text="@string/configuration_report"
+        />
+
+    <Button
+        android:id="@+id/switch_mode"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/save"
+        android:visibility="gone"
+        android:text="@string/configuration_edit_usbhost" />
+
+</RelativeLayout>

@@ -1,0 +1,49 @@
+<CaseVersion version="v2.0" display="sugar_ref001-eng 4.2.2 JDQ39 20140604 test-keys" model="SoftwinerEvb" ddr="1" flash="4"></CaseVersion>
+<CaseLed></CaseLed>
+<CaseSpdif></CaseSpdif>
+<CaseVideo></CaseVideo>
+<CaseKey testKey="KEYCODE_DPAD_UP" exitKey="KEYCODE_VOLUME_DOWN"></CaseKey>
+<CasePerformance></CasePerformance>
+<CaseUsbVolume num="2"></CaseUsbVolume>
+<CaseSDVolume></CaseSDVolume>
+<CaseEthernet></CaseEthernet>
+<CaseWifi  maxRSSI="-65" wifiSSID="wifiSSID" wifiPWD="password"></CaseWifi>
+<!--setAgingTime: 设置老化时长,单位:分钟-->
+<CaseWifi  useSFC="false" maxRSSI="-65" wifiSSID="Allwinner-PDl-HK" wifiPWD="12345768" station="FlashSN" url="http://219.133.2.168:81/SFCWEBSERVICETEST1/SFCWebService.asmx" pcname="pc01" setAgingTime="60"></CaseWifi>
+<CaseBluetooth></CaseBluetooth>
+<CaseSpeaker></CaseSpeaker>
+<CaseMicRecord recordtime="5"></CaseMicRecord>
+<!--channel：AudioRecord的传参，录制几个声道，范围：参考AudioFormat：CHANNEL_IN_***-->
+<!--displayChannel：将录制的channel声道数解析成几个波形显示，范围：1~8-->
+<!--sampleRate：AudioRecord的传参，采样率，可选值：16000/48000-->
+<!--source：AudioRecord的传参，录制来源，可选值：1(MIC)、6(VOICE_RECOGNITION)，参考MediaRecorder.AudioSource-->
+<CaseMicRecordGraphic channel="1020" displayChannel="8" sampleRate="16000" source="1"></CaseMicRecordGraphic>
+<CaseHdmi></CaseHdmi>
+<CaseHdmiFool></CaseHdmiFool>
+<CaseCvbs></CaseCvbs>
+<CaseCvbsFool></CaseCvbsFool>
+<CaseRid></CaseRid>
+<!--level:电池剩余电量，单位%，认为剩余电量大于30%时，测试成功 -->
+<!--voltage: 电压,单位mV，认为电压大于3700mV时，测试成功 -->
+<CaseBattery level="30" voltage="3700"></CaseBattery>>
+<CaseHeadSet></CaseHeadSet>
+<CaseTouchScreen></CaseTouchScreen>
+<!--signalstrength:信号强度，单位dBm，认为信号强度大于-90dBm时，测试成功-->
+<CaseSIM signalstrength="-90"></CaseSIM>
+<CaseCamera recordtime="5" recordWidth="1280" recordHeight="720"></CaseCamera>
+<CaseCPU tempThreshold="90"></CaseCPU>
+<!--agingTime:老化时长, 单位分钟-->
+<CaseAging agingTime="120"></CaseAging>
+<CaseGPU utilization="1%"></CaseGPU>
+<CaseResetKey key="4"></CaseResetKey>
+<CaseRF></CaseRF>
+<CaseTMSN></CaseTMSN>
+<CaseCouple></CaseCouple>
+
+<CaseMixPlay></CaseMixPlay>
+<CaseYSTVersion version="5.2.19.04.17" memsize="1024MB" cpufreq="1800MHZ"></CaseYSTVersion>
+<CaseYSTWifi routerIP="192.168.125.1" apName="AndroidAP" apPSW="qqqqqqqq" apSecurity="WPA2" timeout="25000"></CaseYSTWifi>
+<CaseYSTWan routerIP="192.168.125.1" timeout="15000"></CaseYSTWan>
+<CaseYSTLan lan1IP="192.168.125.10" lan2IP="192.168.125.11" timeout="15000"></CaseYSTLan>
+<CaseYSTMicRecord recordtime="5"></CaseYSTMicRecord>
+<CaseYSTMicRecord2 recordtime="5"></CaseYSTMicRecord2>

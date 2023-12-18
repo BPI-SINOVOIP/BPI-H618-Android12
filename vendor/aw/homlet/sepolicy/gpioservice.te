@@ -1,0 +1,11 @@
+type gpioservice, domain;
+type gpioservice_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(gpioservice);
+typeattribute gpioservice coredomain;
+binder_use(gpioservice)
+binder_service(gpioservice)
+allow gpioservice servicemanager:binder { call transfer };
+allow gpioservice softwinner_service:service_manager { add find };
+allow gpioservice sysfs_gpio:file {open read write };
+allow gpioservice sysfs_gpio:dir { search };
+#allow gpioservice self:capability dac_override;

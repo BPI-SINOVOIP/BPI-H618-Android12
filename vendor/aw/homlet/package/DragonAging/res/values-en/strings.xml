@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="main_btn_previous">Previous</string>
+    <string name="main_btn_failed">Failed</string>
+    <string name="main_btn_skip">Skip</string>
+    <string name="main_btn_passed">Pass</string>
+    <string name="uninstall_bash">Uninstall</string>
+    <string name="recovery">Recovery</string>
+    <string name="format_sd">Format SD</string>
+    <string name="result_failed">Failed</string>
+    <string name="result_reset">Not Tested</string>
+    <string name="result_passed">Pass</string>
+    <string name="result_output">Result Output</string>
+    <string name="result_exit">Exit</string>
+    <string name="title_previous">Previous:</string>
+    <string name="title_current">Current:</string>
+    <string name="title_next">Next:</string>
+    <string name="title_no">Empty</string>
+    <string name="use_external_config_file">Configuration File on extsd</string>
+    <string name="use_usbhost_config_file">Configuration File on usbhost</string>
+    <string name="use_internal_config_file">Configuration File on sdcard</string>
+    <string name="use_default_config_file">Default Configuration File</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="reset_device">Please comfirm if format sdcard and recovery?</string>
+    <string name="uninstall_dragonbox_description">Uninstall DragonBox？</string>
+    <string name="title_all_list">All testcase list</string>
+    <string name="action_bar_all_list">Single testing</string>
+    <string name="all_case_list_return">Return</string>
+    <string name="action_bar_audio">Audio output mode</string>
+    <string name="action_bar_video">Video output mode</string>
+
+    <!-- Configuration -->
+    <string name="configuration_title">Configuration DragonBox</string>
+    <string name="configuration_reset">Reset</string>
+    <string name="configuration_save">Save</string>
+    <string name="configuration_suffix">Suffix</string>
+    <string name="configutation_ok">OK</string>
+    <string name="configutation_cancel">Cancel</string>
+    <string name="configuration_write_succeful">Configuration save success</string>
+    <string name="configuration_write_failed">Configuration save failed</string>
+    <string name="configuration_edit_usbhost">Edit configuration file on usbhost</string>
+    <string name="configuration_edit_extsd">Edit configuration file on extsd</string>
+    <string name="configuration_edit_sdcard">Edit configuration file on sdcard</string>
+    <string name="configuration_exit">Exit</string>
+    <string name="configuration_report">Output report</string>
+    <!-- Comprehensive -->
+    
+    <string name="case_comprehensive">[Comprehensive Testing]</string>
+    <string name="case_comprehensive_config_des">Please select sub testcase</string>
+    <string name="case_comprehensive_config_version">Open Version test</string>
+    <string name="case_comprehensive_config_gsensor">Open Gsensor test</string>
+    <string name="case_comprehensive_config_memory">Open Memory test</string>
+    <string name="case_comprehensive_config_camera">Open Camera Preview test</string>
+    <string name="case_comprehensive_config_wifi">Open Wifi test</string>
+    <string name="case_comprehensive_config_elthernet">Open elthernet test</string>
+    <string name="case_comprehensive_config_storage">Open OTG/SD test</string>
+    <string name="case_comprehensive_config_threedimensional">Open ThreeDimensionaltest</string>
+    <string name="case_comprehensive_config_music">Open Music test</string>
+    <string name="case_comprehensive_config_browser">Open Browser test</string>
+    <string name="case_comprehensive_config_video">Open Video test</string>
+    <string name="case_comprehensive_config_backlight">Open Blacklight test</string>
+    <string name="case_comprehensive_config_prefix">Open testcases:</string>
+    <string name="case_comprehensive_config_passable">Anti Idle Setup</string>
+    <string name="case_comprehensive_config_passable_version">Version Test：</string>
+    <string name="case_comprehensive_config_passable_memory">Memory Test：</string>
+    <string name="case_comprehensive_config_passable_memory_min">Input a number for min memory</string>
+    <string name="case_comprehensive_config_passable_mb">MB</string>
+    <string name="case_comprehensive_config_passable_version_detail">Click for get information of device</string>
+    <string name="case_comprehensive_config_passable_version_ok">Success</string>
+
+    <!-- Version -->
+    <string name="case_version_name">[Version Test]</string>
+    <string name="case_version_info">ROM:%1$s\nDevice :%2$s\nVersion:%3$s\nCPU Frequency(Current\\Max\\Min):\n%4$s</string>
+    <string name="case_version_info_fireware">ROM ：</string>
+    <string name="case_version_info_display">Version No：</string>
+    <string name="case_version_info_min_cpu">CPU Min Frequency：</string>
+    <string name="case_version_info_max_cpu">CPU Max Frequency：</string>
+    <string name="case_version_info_model">Device：</string>
+    <!-- Gsensor -->
+    <string name="case_gsensor_name">[GSensor Test]</string>
+    <string name="case_gsensor_axis">GSensor Axes:</string>
+    <string name="case_gsensor_axis_2">2 axes</string>
+    <string name="case_gsensor_axis_3">3 axes</string>
+    <!-- Backlight -->
+    <string name="case_backlight_name">[Backlight Test]</string>
+    <string name="case_backlight_redo">Restart Test</string>
+    <string name="case_backlight_description">The screen brightness will automatically change when is testing.</string>
+    <!-- Memory -->
+    <string name="case_memory_name">[Memory Test]</string>
+    <string name="case_memory_info">Device:%1$s\nTotal:%2$s\nAvailable:%3$s</string>
+    <!-- Wifi -->
+    <string name="case_wifi_name">[Wifi Test]</string>
+    <string name="case_wifi_strength">Signal Strength：</string>
+    <string name="case_wifi_security">Security：</string>
+    <string name="case_wifi_password">Password：</string>
+    <string name="wifi_security_eap">802.1x EAP</string>
+    <string name="wifi_security_wep">WEP</string>
+    <string name="wifi_security_wpa">WPA PSK</string>
+    <string name="wifi_security_wpa2">WPA2 PSK</string>
+    <string name="wifi_security_wpa_wpa2">WPA/WPA2 PSK</string>
+    <string name="wifi_security_psk_generic">@string/wifi_security_wpa_wpa2</string>
+    <string name="wifi_security_short_wep">WEP</string>
+    <string name="wifi_security_short_wpa">WPA</string>
+    <string name="wifi_security_short_wpa2">WPA2</string>
+    <string name="wifi_security_short_wpa_wpa2">WPA/WPA2</string>
+    <string name="wifi_security_short_psk_generic">@string/wifi_security_short_wpa_wpa2</string>
+    <string name="wifi_security_short_eap">802.1x</string>
+    <string name="wifi_security_none">None</string>
+    <string name="wifi_disabled_password_failure">"Identity validation wrong"</string>
+    <string name="wifi_disabled_network_failure">"Disconnect the bad network connection."</string>
+    <string name="wifi_disabled_generic">"Stopped"</string>
+    <string name="case_wifi_strength_default">65</string>
+    <string name="case_comprehensive_config_passable_wifi_db">db</string>
+    <!-- Battery -->
+    <string name="case_battery_name">[Battery test]</string>
+    <!-- HardKey -->
+    <string name="case_hard_key_name">[Hardkey Test]</string>
+    <string name="case_hard_key_home">HOME</string>
+    <string name="case_hard_key_back">BACK</string>
+    <string name="case_hard_key_menu">Menu</string>
+    <string name="case_hard_key_volume_up">volume +</string>
+    <string name="case_hard_key_volume_down">volume -</string>
+    <string name="case_hard_key_search">Search</string>
+    <string name="case_hard_key_description">Please press the follow hardkey.\nIf testing failed,Please click Failed button.</string>
+    <string name="case_hard_key_failed_btn">Failed</string>
+    <string name="case_hard_key_config_des">Please select hardkeys for testing.</string>
+    <string name="case_hard_key_config_prefix">The selected hardkeys:</string>
+    <!-- LCD -->
+    <string name="case_lcd_name">[LCD test]</string>
+    <string name="case_lcd_tips">Please check if bad point on screen</string>
+    <string name="case_lcd_btn_redo">Restart testing</string>
+    <string name="case_lcd_config_des">Please enter a valid pure color change interval time（Unit：ms）</string>
+    <string name="case_lcd_config_prefix">The current set of pure color page changes time interval:</string>
+    <!-- Recorder -->
+    <string name="case_recorder_name">[Recorder test]</string>
+    <string name="case_recorder_accept">Done</string>
+    <string name="case_recorder_discard">Cancel</string>
+    <string name="case_recorder_max_length_reached">More than the maximum capacity</string>
+    <string name="case_recorder_min_available">"Surplus<xliff:g id="MINUTES">%d</xliff:g> min"</string>
+    <string name="case_recorder_sec_available">"Surplus <xliff:g id="SECONDS">%d</xliff:g> sec"</string>
+    <string name="case_recorder_message_recorded">Recorder done</string>
+    <string name="case_recorder_recording_stopped">Stop</string>
+    <string name="case_recorder_recording">"Start"</string>
+    <string name="case_recorder_record_your_message">"Recordering"</string>
+    <string name="case_recorder_review_message">"View message"</string>
+    <string name="case_recorder_timer_format" translatable="false"><xliff:g id="format">%02d:%02d</xliff:g></string>
+    <string name="case_recorder_insert_sd_card">Please insert an SD card</string>
+    <string name="case_recorder_storage_is_full">The memory has been full</string>
+    <string name="case_recorder_error_sdcard_access" product="nosdcard">Can not access sdcard.</string>
+    <string name="case_recorder_error_sdcard_access" product="default">Cant not access memory. </string>
+    <string name="case_recorder_error_app_internal">Internal application error</string>
+    <string name="case_recorder_error_mediadb_new_record">Can not save the audio.</string>
+    <string name="case_recorder_button_ok">OK</string>
+    <string name="case_recorder_config_des">Please enter a availably time for recorder(ms).</string>
+    <string name="case_recorder_config_prefix">Recorder time:</string>
+    <!-- Speaker -->
+    <string name="case_speaker_name">[SPDIF test]</string>
+    <string name="case_speaker_plugged_in">Headset State：</string>
+    <string name="case_speaker_pluged">Headset pluged</string>
+    <string name="case_speaker_btn_redo">Restart testing</string>
+    <string name="case_speaker_headset">Check Headset</string>
+    <string name="case_speaker_spdif">Open SPDIF</string>
+    <string name="case_speaker_spdif_notice">Please put SPDIF-Line into the box and click the "SPDIF" button.</string>
+    <string name="case_cvbs_name">[CVBS test]</string>
+    <string name="case_cvbs_notice">put out HDMI-line，and put in CVBS-line，then click "OK" button.Then choose the state.</string>
+    <string name="case_cvbs_button">OK</string>
+    <string name="case_cvbs_state">CVBS in-line</string>
+    <string name="case_cvbs_state_null">CVBS out-line</string>
+    <string name="case_spdif_true">Sound</string>
+    <string name="case_spdif_false">No Sound</string>
+    <!-- Storage -->
+    <string name="case_storage_name">[OTG/SD test]</string>
+    <string name="case_storage_format_str">Device : %1$s\nRead speed : %2$s\nWrite speed : %3$s</string>
+    <string name="case_storage_no_device">Can not found any storage device.</string>
+    <!-- Camera -->
+    <string name="case_camera_name">[Camera test]</string>
+    <string name="case_camera_switch">Switch Lens</string>
+    <string name="case_camera_alert">The device has one lens!</string>
+    <string name="case_camera_config_des">Please select a camera testing application</string>
+    <string name="case_camera_config_prefix">Selected camera:</string>
+    <string name="case_camera_config_internal">Internal Camera</string>
+    <string name="case_camera_config_external">External Camera</string>
+    <string name="case_camera_open_error">Camera open failed！</string>
+    <string name="case_camera_open_face_front">(Front Camera)</string>
+    <string name="case_camera_open_face_back">(Rear Camera)</string>
+    <string name="case_camera_take_picture">Take Pic</string>
+    <string name="case_carmera_show_picture_btn">Show Photo</string>
+    <string name="case_camera_preview">Start Preview</string>
+    <!-- TP -->
+    <string name="case_touch_point_name">[Touch Point test]</string>
+    <string name="case_touch_point_description">Touch screen</string>
+    <!-- Video -->
+    <string name="case_video_name">[Video test]</string>
+    <string name="case_video_description">Playing media file for testing media playing function</string>
+    <string name="case_video_config_select">Please select a media file</string>
+    <string name="case_video_config_none">No video file</string>
+    <string name="case_video_config_btn_select">Choice</string>
+    <string name="case_video_config_test">Test</string>
+    <string name="case_video_config_reset">Clear</string>
+    <string name="case_video_hdmi_plugged_in">HDMI Plugged</string>
+    <string name="case_video_hdmi_plugged_out">HDMI Unplugged</string>
+    <string name="case_video_custom">Video file path:</string>
+    <string name="case_video_initialize_exception">Initialization not done, please restart testing.</string>
+    <!-- Customs -->
+    <string name="case_custom_default">[Custom TestCase]</string>
+    <string name="case_custom_widget_not_found">Can not find widget, please check configuration.</string>
+    <string name="case_custom_activity_not_found">Can not find applciation, please check configuration</string>
+    <string name="case_custom_widget_input_name">Please enter project name</string>
+    <string name="case_custom_widget_package_name">Please enter package name for widget</string>
+    <string name="case_custom_widget_class_name">Pleaes enter class name for widget</string>
+    <string name="case_custom_activity_input_name">Please enter a Android application name</string>
+    <string name="case_custom_activity_package_name">Please enter a package name of activity</string>
+    <string name="case_custom_activity_class_name">Please enter a Activity Name</string>
+    <string name="case_custom_widget_prefix">configuration is:</string>
+    <string name="case_custom_activity_prefix">configuration is:</string>
+    <string name="case_custom_configuration_add_btn_a">Add Activity</string>
+    <string name="case_custom_configuration_add_btn_w">Add Widget</string>
+    <!-- Browser -->
+    <string name="case_browser">[Internet Test]</string>
+    <string name="case_browser_description">Connect the specified web site for testing Internet connection.</string>
+    <string name="case_browser_config_description">Please enter a address of the web site：</string>
+    <string name="case_browser_wifi_setting">Go Wifi Settings</string>
+    <string name="case_browser_web_site">Connecting web site:</string>
+    <string name="case_browser_network_disconnect_msg">Network disconnect, please check wifi setting.</string>
+    <string name="case_browser_success">Testing success, passed.</string>
+    <string name="case_browser_unsuccess">Testing failed.</string>
+    <!-- Bluetooth -->
+    <string name="case_bluetooth">[Bluetooth Test]</string>
+    <string name="case_bluetooth_redo">Start Test</string>
+    <string name="case_bluetooth_not_found">Bluetooth device not found.</string>
+    <string name="case_bluetooth_found">Nearby bluetooth device found</string>
+    <string name="case_bluetooth_start_search">Start search...</string>
+    <!-- GPS -->
+    <string name="case_gps">[GPS test]</string>
+    <string name="gps_device_not_found">No device found.</string>
+    <string name="latitude_and_longitude">Latitude And Longitude:</string>
+    <string name="height_and_sudu">Height And Speed:</string>
+    <string name="gmt_time">GMT:</string>
+    <string name="visible_satellite">Visible Satellite:</string>
+    <string name="available_satellite">Available Satellite:</string>
+    <string name="time_to_first_fix">First location time:</string>
+    <string name="NMEA_data">NMEA:</string>
+    <string name="State_data">Satellite Data:</string>
+    <string name="hh">h</string>
+    <string name="mm">m</string>
+    <string name="ss">s</string>
+    <string name="sl_no">Satellite No：</string>
+    <string name="sl_elevation"> Satellite Elevation: </string>
+    <string name="sl_azimuth">  Satellite Azimuth: </string>
+    <string name="sign"> Signal: </string>
+    <string name="nn">"\n</string>
+    <string name="high">High: </string>
+    <string name="velocity"> Speed: </string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="err">Can not get Location</string>
+
+    <!-- Vibrator -->
+    <string name="start_vibrator">Start Test</string>
+    <string name="no_vibrator">Can not found Vibartor device</string>
+
+    <!-- Phone -->
+    <string name="case_phone">[Phone test]</string>
+    <string name="phone_sim_state">SIM State:</string>
+    <string name="phone_sim_ready">SIM Ready</string>
+    <string name="phone_sim_exception">SIM Error</string>
+    <string name="phone_sim_not_found">SIM not found</string>
+    <string name="phone_imsi">IMSI:</string>
+    <string name="phone_single_strength">Signal Strength:</string>
+    <string name="phone_single_unit">db</string>
+    <string name="phone_model_not_found">Can not found RIL model</string>
+    <string name="phone_reload">Reload RIL</string>
+    <string name="phone_is_reloading">RIL is restarting...</string>
+
+    <!-- Report -->
+    <string name="report_format_error">Report format error</string>
+    <string name="finish_uninstall">uninstall</string>
+    <string name="finish_exit">exit</string>
+    <string name="finish_hide">hide</string>
+    <string name="finish_change">change display mode</string>
+    <string name="case_spdif_name">[SPDIF test]</string>
+    <string name="case_elthernet_name">[Elthernet测试]</string>
+
+</resources>

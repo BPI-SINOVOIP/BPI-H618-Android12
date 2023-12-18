@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="TitleTheme" parent="Theme.AppCompat">
+        <item name="android:background">#FFFFFF</item>
+    </style>
+    <style name="CameraTheme" parent="Theme.AppCompat">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="TabLayoutTextStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/tablayout_text_fontsize</item>
+    </style>
+</resources>

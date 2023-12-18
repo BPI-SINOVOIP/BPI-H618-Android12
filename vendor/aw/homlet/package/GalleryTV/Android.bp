@@ -1,0 +1,42 @@
+android_app {
+    name: "GalleryTV",
+
+    static_libs: [
+        "android-support-v13",
+        "com.android.gallery3d.commonTv",
+        "xmp_toolkit",
+        "mp4parser"
+    ],
+
+    srcs: [
+        "src/**/*.java",
+        "src_pd/**/*.java"
+    ],
+
+    resource_dirs: ["res"],
+
+    overrides: [
+        "Gallery",
+        "Gallery2",
+        "Gallery3D",
+        "GalleryNew3D",
+    ],
+
+    platform_apis: true,
+    jni_libs: [
+        "libjni_eglfencetv",
+        "libjni_filtershow_filters_tv",
+        "libjni_jpegstreamtv",
+    ],
+
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+
+    libs: ["org.apache.http.legacy"],
+
+    optional_uses_libs: ["com.google.android.media.effects"],
+
+    jarjar_rules: "jarjar-rules.txt"
+}
+

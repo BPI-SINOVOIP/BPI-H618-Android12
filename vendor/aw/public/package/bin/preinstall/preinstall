@@ -1,0 +1,21 @@
+#!/system/bin/sh
+
+FLAG_FILE="/data/local/tmp/preinstalled"
+TMP_APK_FILE="/data/local/tmp/preinstall.apk"
+apks=$(find /*/preinstall -name *.apk 2> /dev/null)
+if [ ! -z "$apks" ]; then
+    if [ ! -f $FLAG_FILE ]; then
+        touch $FLAG_FILE
+    fi
+    for apk in $apks; do
+        result=$(grep "$apk" $FLAG_FILE)
+        echo "search result: "$result
+        if [ -z $result ]; then
+            echo "installing $apk"
+            cp "$apk" $TMP_APK_FILE
+            cmd package install $TMP_APK_FILE
+            echo "$apk" >> $FLAG_FILE
+            rm $TMP_APK_FILE
+        fi
+    done
+fi

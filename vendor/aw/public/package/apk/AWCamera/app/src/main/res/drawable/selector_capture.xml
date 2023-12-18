@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item  android:state_pressed="true">
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval"
+            android:useLevel="false">
+            <solid android:color="#60ffff"/>
+            <size android:width="@dimen/iv_capturebg_width"
+                android:height="@dimen/iv_capturebg_height"/>
+            <stroke android:width="0dp" android:color="@android:color/white" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval"
+            android:useLevel="false">
+            <solid android:color="#60A52A2A"/>
+            <size android:width="@dimen/iv_capturebg_width"
+                android:height="@dimen/iv_capturebg_height"/>
+            <stroke android:width="0dp" android:color="@android:color/white" />
+        </shape>
+    </item>
+    <item >
+        <shape
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="oval"
+            android:useLevel="false">
+            <solid android:color="#60ffffff"/>
+            <size android:width="@dimen/iv_capturebg_width"
+                android:height="@dimen/iv_capturebg_height"/>
+            <stroke android:width="0dp" android:color="@android:color/white" />
+        </shape>
+    </item>
+</selector>

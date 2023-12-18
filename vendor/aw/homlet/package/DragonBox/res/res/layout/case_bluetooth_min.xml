@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPerCaseTheme"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/item_num_text" />
+
+    <include layout="@layout/item_action_button" />
+
+    <TableLayout style="@style/MainPerCaseTabLayout" >
+
+        <TableRow style="@style/MainPerCaseTabRow" >
+
+            <TextView
+                android:id="@+id/case_bt_addr"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_wifi_conn_name" />
+
+            <TextView
+                android:id="@+id/case_bt_status"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_wifi_status_text" />
+
+            <TextView
+                android:id="@+id/case_bt_total_found"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_wifi_ip_addr" />
+
+            <TextView
+                android:id="@+id/case_bt_found_name"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_wifi_conn_strength" />
+        </TableRow>
+    </TableLayout>
+
+    <include layout="@layout/item_result_text" />
+
+</LinearLayout>

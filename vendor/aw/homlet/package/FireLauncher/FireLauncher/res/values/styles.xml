@@ -1,0 +1,108 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    <style name="MasterTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+        <item name="vpiTabPageIndicatorStyle">@style/Widget.NetworkVideoTabPageIndicator</item>
+		<!-- <item name="android:windowBackground">@drawable/bg_all</item> -->
+        <item name="android:windowBackground">@drawable/v3_bg_all</item>
+        <item name="android:windowAnimationStyle">@style/AnimationActivity</item>
+    </style>
+    
+    <style name="Widget.NetworkVideoTabPageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:textAppearance">@style/TextAppearance.TabPageIndicator</item>
+        <item name="android:showDividers">middle</item>
+    </style>
+    
+    <style name="TextAppearance.TabPageIndicator" parent="Widget">
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+        <!-- <item name="android:windowBackground">@android:color/transparent</item>背景透明 -->
+    
+    <style name="LauncherDialog" parent="@android:Theme.Dialog">
+         <item name="android:windowFrame">@null</item><!--边框-->
+       <item name="android:windowBackground">@android:color/transparent</item>背景透明
+        <item name="android:windowNoTitle">true</item> 
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:gravity">top</item>
+        <item name="android:backgroundDimEnabled">true</item>  
+         <item name="android:layout_height">180dp</item>
+    </style>
+
+    <style name="MyProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/player_progress_img</item>
+        <item name="android:minWidth">120px</item>
+        <item name="android:minHeight">120px</item>
+        <item name="android:maxWidth">120px</item>
+        <item name="android:maxHeight">120px</item>
+        <item name="android:gravity">center</item>
+        <item name="android:indeterminate">false</item>
+    </style>
+    
+    <style name="MyProgressBar_text">
+        <item name="android:minWidth">182dp</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:maxWidth">182dp</item>
+        <item name="android:maxHeight">150dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
+    <style name="SimpleDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/sw_bg_transparent_black_shape</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+    
+    <!--    不同position的dialog的动画开始 -->
+     <!-- Bottom -->
+    <style name="dialogWindowAnimBottom" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>        
+    </style>
+    
+     <!-- Top -->
+    <style name="dialogWindowAnimTop" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/dialog_top_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_top_exit_anim</item>        
+    </style>
+    
+    <!-- Left -->
+    <style name="dialogWindowAnimLeft" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/dialog_left_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_left_exit_anim</item>        
+    </style>
+    
+     <!-- Right -->
+    <style name="dialogWindowAnimRight" parent="android:Animation" mce_bogus="1">
+        <item name="android:windowEnterAnimation">@anim/dialog_right_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_right_exit_anim</item>        
+    </style>
+    <!--    不同position的dialog的动画结束 -->
+    <style name="AnimationActivity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@android:anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@android:anim/fade_out</item>
+    </style>
+    
+</resources>

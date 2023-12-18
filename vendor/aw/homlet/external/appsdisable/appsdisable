@@ -1,0 +1,7 @@
+#!/system/bin/sh
+sleep 4
+provisioned=`settings get --user 0 global start_disable`
+if [ $provisioned -ne 1 ]; then
+    pm query-receivers --components -a android.intent.action.BOOT_COMPLETED | grep com.google.android | busybox xargs -n 1 pm disable
+    settings put --user 0 global start_disable 1
+fi

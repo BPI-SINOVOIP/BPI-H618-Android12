@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    > -->
+    <ProgressBar
+    style="@style/MyProgressBar" >
+    
+<!-- <ProgressBar
+    android:id="@+id/MyProgressBar_bar"
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/MyProgressBar" >
+
+</ProgressBar> -->
+
+
+    <TextView
+    style="@style/MyProgressBar_text" >
+<!--     android:id="@+id/MyProgressBar_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_alignBottom="@+id/MyProgressBar_bar"
+    android:text="正在加载中，请稍后..." > -->
+</TextView>
+</ProgressBar>
+<!-- </RelativeLayout> -->

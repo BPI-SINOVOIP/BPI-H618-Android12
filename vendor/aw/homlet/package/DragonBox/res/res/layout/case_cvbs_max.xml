@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/write"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_120"
+            android:layout_weight="1"
+            android:background="@drawable/red"
+            android:gravity="center"
+            android:text="@string/case_hdmi_red_text"
+            android:textColor="@drawable/black" />
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_120"
+            android:layout_weight="1"
+            android:background="@drawable/green"
+            android:gravity="center"
+            android:text="@string/case_hdmi_green_text"
+            android:textColor="@drawable/black" />
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_120"
+            android:layout_weight="1"
+            android:background="@drawable/blue"
+            android:gravity="center"
+            android:text="@string/case_hdmi_blue_text"
+            android:textColor="@drawable/black" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/case_cvbs_status"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/case_cvbs_status_text" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/case_hdmi_confirm_text" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/case_cvbs_alert"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/case_cvbs_left_container"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/case_cvbs_left_button_passed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result_passed" />
+
+        <Button
+            android:id="@+id/case_cvbs_left_button_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/result_failed" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/case_cvbs_right_container"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <Button
+            android:id="@+id/case_cvbs_right_button_passed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/result_passed" />
+
+        <Button
+            android:id="@+id/case_cvbs_right_button_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/result_failed" />
+    </LinearLayout>
+
+</LinearLayout>

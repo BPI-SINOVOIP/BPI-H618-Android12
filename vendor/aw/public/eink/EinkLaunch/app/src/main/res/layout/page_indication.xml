@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    	
+	<TextView 
+	    android:id="@+id/page_inddiv_line"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/page_divider_line"
+	    android:textSize="@dimen/book_title_size"
+	    android:layout_marginLeft="3dip"
+	    android:layout_marginRight="3dip"
+	    android:layout_centerInParent="true"/>
+	
+	<TextView 
+	    android:id="@+id/cur_page_ind"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/page_current"
+	    android:textSize="@dimen/book_title_size"
+	    android:layout_toLeftOf="@id/page_inddiv_line"
+	    android:layout_centerVertical="true"
+	    android:layout_marginRight="3dip"/>
+	
+	<TextView 
+	    android:id="@+id/total_page_ind"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="@string/page_total"
+	    android:textSize="@dimen/book_title_size"
+	    android:layout_toRightOf="@id/page_inddiv_line"
+	    android:layout_centerVertical="true"
+	    android:layout_marginLeft="3dip"/>
+	
+	<ImageView
+	    android:id="@+id/page_prev"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_toLeftOf="@id/cur_page_ind"
+	    android:layout_centerVertical="true"
+	    android:layout_marginRight="@dimen/page_indication_margin"
+	    android:layout_marginLeft="3dip"
+	    android:focusable="true"
+	    android:clickable="true"
+	    android:src="@drawable/page_indication_prev_bg"/>
+		
+	<ImageView
+	    android:id="@+id/page_next"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_toRightOf="@id/total_page_ind"
+	    android:layout_centerVertical="true"
+	    android:layout_marginLeft="@dimen/page_indication_margin"
+	    android:layout_marginRight="3dip"
+	    android:focusable="true"
+	    android:clickable="true"
+	    android:src="@drawable/page_indication_next_bg"/>
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AwlogSettings</string>
+    <!-- Awlog Settings -->
+    <string name="settings_header">Log Settings</string>
+    <string name="enabled">Enabled</string>
+    <string name="logcat">Logcat</string>
+    <string name="kernel_log">Kernel Log</string>
+    <string name="crashdump">Crashdump</string>
+    <string name="atf_log">ATF Log</string>
+    <string name="scp_log">SCP Log</string>
+    <string name="Advanced_header">Advanced</string>
+    <string name="awlog_path">Awlog save path</string>
+    <!-- Logcat Settings -->
+    <string name="logcat_buffer_type">Buffer type</string>
+    <string name="single_log_size">Single log size</string>
+    <string name="log_limit_count">Log limit count</string>
+    <string name="boot_enabled">Boot enabled</string>
+    <string name="boot_enabled_summary">Reboot keep auto running</string>
+</resources>

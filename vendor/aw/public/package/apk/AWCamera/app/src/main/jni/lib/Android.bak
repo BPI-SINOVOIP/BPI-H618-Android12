@@ -1,0 +1,17 @@
+LOCAL_PATH := $(call my-dir)
+#第三方的编译模块
+
+
+include $(CLEAR_VARS)
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE    := libopencv_java3
+LOCAL_CPPFLAGS += -frtti -fexceptions -std=c++14 -lz
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_SRC_FILES := armeabi-v7a/libopencv_java3.so
+LOCAL_PROGUARD_ENABLED := disabled
+LOCAL_PRELINK_MODULE:= false
+#LOCAL_PRODUCT_MODULE := true
+LOCAL_SHARED_LIBRARIES := libc libdl libjnigraphics liblog libm libz libc++
+
+include $(BUILD_PREBUILT)
+

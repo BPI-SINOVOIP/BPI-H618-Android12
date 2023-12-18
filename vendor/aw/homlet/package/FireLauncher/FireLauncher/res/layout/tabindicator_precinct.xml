@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabindicator_precinct"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/tabindicator_height"
+    android:background="@drawable/tabindicator_bg"
+    android:nextFocusDown="@id/precinct_1080p"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tabindicator_name"
+        android:layout_width="wrap_content"
+    	android:layout_height="@dimen/tabindicator_height"
+        android:gravity="center"
+        android:textSize="@dimen/tabindicator_text_size_normal"
+        android:textColor="@color/tabindicator_name_color"
+        android:text="@string/test"/>
+
+</LinearLayout>

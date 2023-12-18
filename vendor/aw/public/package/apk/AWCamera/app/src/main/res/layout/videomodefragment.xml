@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_host_height"
+
+        android:background="#60000000"
+        >
+
+        <com.allwinner.camera.views.RotateImageView
+            android:id="@+id/iv_flash"
+            android:layout_width="@dimen/iv_flash_height"
+            android:layout_height="@dimen/iv_flash_height"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/video_flash_margin_left"
+            android:src="@mipmap/ic_flash_off_normal"/>
+
+        <Chronometer
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format="00:00:00"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/time_text_fontsize"
+            android:layout_centerInParent="true"
+            />
+
+        <com.allwinner.camera.views.RotateImageView
+            android:id="@+id/iv_video_settings"
+            android:layout_width="@dimen/iv_setting_height"
+            android:layout_marginRight="@dimen/video_setting_margin_right"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:layout_height="@dimen/iv_setting_height"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/selector_tabimage_background"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_settings_normal"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_switchVideo"
+        android:layout_gravity="bottom|left"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/iv_capturebg_height"
+        android:layout_margin="@dimen/iv_capture_margin_size"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/switchcamera_left_size"
+            android:background="@drawable/selector_switchcamera"
+            />
+        <com.allwinner.camera.views.CircleRotateImageView
+            android:id="@+id/iv_switchVideo"
+            android:layout_width="@dimen/switchcamera_size"
+            android:layout_height="@dimen/switchcamera_size"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/switchcamera_left_size"
+            android:src="@mipmap/ic_switch_video_facing_holo_light_xlarge" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/record"
+        android:layout_width="@dimen/iv_capturebg_width"
+        android:layout_height="@dimen/iv_capturebg_height"
+        android:layout_margin="@dimen/iv_capture_margin_size"
+        android:layout_gravity="bottom|center"
+        android:background="@drawable/selector_capture"
+        >
+        <com.allwinner.camera.views.CircleRotateImageView
+            android:id="@+id/iv_rotateRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_capture_video" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_video_control"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/iv_capturebg_height"
+        android:layout_margin="@dimen/iv_capture_margin_size"
+        android:visibility="invisible"
+        android:layout_gravity="bottom|right"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_video_control"
+            android:layout_marginRight="@dimen/thumbnail_margin_right_size"
+            android:layout_centerInParent="true"
+            />
+        <com.allwinner.camera.views.CircleRotateImageView
+            android:id="@+id/iv_video_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/play_normal" />
+    </RelativeLayout>
+
+
+</FrameLayout>

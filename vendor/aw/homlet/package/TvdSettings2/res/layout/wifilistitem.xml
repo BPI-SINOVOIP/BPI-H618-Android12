@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="@dimen/applistitemheight"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/wifistatusicon"
+        android:layout_width="@dimen/wifi_status_icon_size"
+        android:layout_height="@dimen/wifi_status_icon_size"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/listitem_padding"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/wifiname"
+        android:layout_width="@dimen/wifi_item_name_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/wifi_horizontal_margin"
+        android:text="@string/test"
+        android:textColor="@drawable/white"
+        android:singleLine="true"
+        android:textSize="@dimen/setting_textsize_xmedium" />
+    
+    <TextView
+        android:id="@+id/wifistat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/wifi_horizontal_margin"
+        android:textColor="@drawable/white"
+        android:textSize="@dimen/setting_textsize_small" />
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="@dimen/listitem_padding"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/netitemicon"
+            android:layout_width="@dimen/net_item_icon_size"
+            android:layout_height="@dimen/net_item_icon_size"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/wifi_signal" />
+
+        <View
+            android:layout_width="@dimen/wifi_line_width"
+            android:layout_height="@dimen/wifi_line_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/wifi_horizontal_margin"
+            android:background="@drawable/white_transparent" />
+
+        <ImageView
+            android:id="@+id/netitemnexticon"
+            android:layout_width="@dimen/net_item_next_icon_size"
+            android:layout_height="@dimen/net_item_next_icon_size"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/wifi_horizontal_margin"
+            android:src="@drawable/right_icon_btn" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="@dimen/btn_back_width"
+        android:layout_height="@dimen/btn_back_height"
+        android:layout_marginLeft="@dimen/title_marginleft"
+        android:layout_marginTop="@dimen/title_margintop"
+		android:text="@string/bluetooth"
+		android:gravity="center_vertical"
+		android:paddingLeft="@dimen/setting_paddingleft"
+		android:textSize="@dimen/setting_textsize_large"
+		android:textColor="@drawable/white"
+        android:background="@drawable/ic_title_bg"/>
+
+    <ListView
+        android:id="@+id/bluetoothsetting"
+        android:layout_width="@dimen/netsettinglistwidth"
+        android:layout_height="@dimen/netsettinglistheight"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/applist_layout_margintop"
+        android:divider="#00000000"
+        android:dividerHeight="@dimen/listitem_Height"
+        android:listSelector="@drawable/list_btn_press"
+        android:scrollbarStyle="insideInset" >
+    </ListView>
+
+</LinearLayout>

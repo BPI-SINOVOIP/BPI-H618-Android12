@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/case_yst_lan_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/case_yst_lan_status" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/case_yst_lan1_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/case_yst_lan1_text" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/case_yst_lan2_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/case_yst_lan2_text" >
+    </TextView>
+
+</LinearLayout>

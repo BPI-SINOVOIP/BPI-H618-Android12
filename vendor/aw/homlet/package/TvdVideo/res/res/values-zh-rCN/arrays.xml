@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen_3d_entries">
+        <item>"2D"</item>
+        <item>"3D"</item>
+    </string-array>
+
+    <string-array name="screen_repeat_entries">
+        <!-- Slide show repeat mode -->
+        <item>"全部循环"</item>
+        <item>"顺序播放"</item>
+        <item>"单曲循环"</item>
+        <item>"随机播放"</item>
+    </string-array>
+
+    <string-array name="screen_track_entries">
+        <!-- Slide show no track -->
+        <item>"无音轨"</item>
+    </string-array>
+
+    <string-array name="screen_zoom_entries">
+        <!-- Slide show zoom mode -->
+        <item>"全屏(按视频比例)"</item>
+        <item>"全屏(按屏幕比例)"</item>
+        <item>"原始大小"</item>
+        <item>"4 / 3"</item>
+        <item>"16 / 9"</item>
+    <item>"画中画"</item>
+    </string-array>
+    <string-array name="screen_zoom_entries_lowmemory">
+        <!-- Slide show zoom mode -->
+        <item>"全屏(按视频比例)"</item>
+        <item>"全屏(按屏幕比例)"</item>
+        <item>"原始大小"</item>
+        <item>"4 / 3"</item>
+        <item>"16 / 9"</item>
+    </string-array>
+
+
+    <string-array name="screen_3d_2d_entries">
+        <item>"2D显示左半图"</item>
+        <item>"2D显示上半图"</item>
+        <item>"2D显示原图"</item>
+    </string-array>
+
+    <string-array name="screen_3d_3d_entries">
+        <item>"3D左右"</item>
+        <item>"3D上下"</item>
+    <!--
+        <item>"3D交错"</item>
+        <item>"3D行交错"</item>
+        <item>"3D列交错"</item>
+        -->
+    </string-array>
+
+
+    <string-array name="screen_3d_anaglagh_entries">
+        <item>"红蓝"</item>
+        <item>"红绿"</item>
+        <item>"红青"</item>
+        <item>"全色"</item>
+        <item>"半色"</item>
+        <item>"最佳"</item>
+        <item>"黄蓝"</item>
+    </string-array>
+
+    <string-array name="screen_subset_entries">
+        <item name="gate_title" >"字幕开关"</item>
+        <item name="select_title" >"字幕选择"</item>
+        <item name="color_title" >"字幕颜色"</item>
+        <item name="charsize_title" >"字幕字体大小"</item>
+        <!--
+        <item name="offset_title" >"字幕偏移"</item>
+        -->
+    </string-array>
+
+    <string-array name="screen_gate_entries">
+        <!-- Slide show no subtitle -->
+        <item>开</item>
+        <item>关</item>
+    </string-array>
+
+    <string-array name="screen_select_entries">
+        <!-- Slide show no subtitle -->
+        <item>无字幕</item>
+    </string-array>
+
+    <!-- Slide show subtitle color -->
+    <string-array name="screen_color_entries">
+        <item >"白色"</item>
+        <item >"灰色"</item>
+        <item >"红色"</item>
+        <item >"绿色"</item>
+        <item >"蓝色"</item>
+        <item >"黑色"</item>
+        <item >"青色"</item>
+        <item >"紫色"</item>
+        <item >"黄色"</item>
+    </string-array>
+
+    <!-- Slide show subtitle char size -->
+    <string-array name="screen_charsize_entries">
+        <item>16</item>
+        <item>24</item>
+        <item>32</item>
+        <item>40</item>
+        <item>48</item>
+    </string-array>
+
+    <!-- Slide show subtitle charset -->
+    <string-array name="screen_charset_entries">
+        <item>"Unicode(UTF-8)"</item>
+        <item>"简体中文(GBK)"</item>
+        <item>"繁体中文(Big5)"</item>
+        <item>"韩文(EUC-KR)"</item>
+        <item>"日文(Shift_JIS)"</item>
+        <item>"泰文(TIS-620)"</item>
+        <item>"西里尔文(KOI8-R)"</item>
+        <item>"西里尔文(ISO-8859-5)"</item>
+        <item>"西里尔文(cp1251)"</item>
+        <item>"Unicode(UTF-16BE)"</item>
+        <item>"Unicode(UTF-16LE)"</item>
+        <item>"西欧语系(ISO-8859-1)"</item>
+        <item>"西欧语系(cp1254)"</item>
+        <item>"中欧语系(ISO-8859-2)"</item>
+        <item>"中欧语系(cp1250)"</item>
+        <item>"南欧语系(ISO-8859-3)"</item>
+        <item>"北欧语系(ISO-8859-4)"</item>
+        <item>"阿拉伯文(ISO-8859-6)"</item>
+        <item>"阿拉伯文(cp1256)"</item>
+        <item>"希腊语(ISO-8859-7)"</item>
+        <item>"希腊语(cp1253)"</item>
+        <item>"希伯来文(ISO-8859-8)"</item>
+        <item>"希伯来文(cp1255)"</item>
+        <item>"土耳其文(ISO-8859-9)"</item>
+        <item>"土耳其文(cp1252)"</item>
+        <item>"越南文(cp1258)"</item>
+    </string-array>
+
+    <!-- Slide show subtitle delay -->
+    <string-array name="screen_delay_entries">
+        <item>-1500</item>
+        <item>-1000</item>
+        <item>-500</item>
+        <item>0</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>1500</item>
+    </string-array>
+
+        <!-- Slide show subtitle offset -->
+    <string-array name="screen_offset_entries">
+        <item>0</item>
+        <item>5</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+    </string-array>
+
+    <string-array name="display_settings_state">
+        <item>关</item>
+        <item>开</item>
+        <item>演示模式</item>
+    </string-array>
+
+    <string-array name="color_settings_state">
+        <item>标准模式</item>
+        <item>柔和模式</item>
+        <item>鲜艳模式</item>
+        <item>自定义模式</item>
+    </string-array>
+   <string-array name="de_2d_noise_mode">
+        <item>关</item>
+        <item>弱</item>
+        <item>中</item>
+        <item>强</item>
+    </string-array>
+    <string-array name="de_3d_noise_mode">
+        <item>关</item>
+        <item>静态</item>
+        <item>动态</item>
+    </string-array>
+    <string-array name="de_3d_noise_strength_mode">
+        <item>强</item>
+        <item>中</item>
+        <item>弱</item>
+    </string-array>
+      <string-array name="movie_mode">
+        <item>关</item>
+        <item>开</item>
+    </string-array>
+</resources>

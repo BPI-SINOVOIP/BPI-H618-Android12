@@ -1,0 +1,13 @@
+optional_subdirs = [
+	"hardware/*/*",
+	"hardware/interface/*/*",
+	"hardware/interface/*/*/*",
+]
+
+prebuilt_etc {
+    name: "privapp-vendor-permissions",
+    sub_dir: "permissions",
+    src: "privapp-vendor-permissions.xml",
+    filename_from_src: true,
+}
+

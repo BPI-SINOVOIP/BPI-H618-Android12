@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fsms="http://schemas.android.com/apk/res/com.softwinner.tvdsetting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.softwinner.tvdsetting.widget.HomeView
+            android:id="@+id/homeview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background"
+            fsms:broderx="@dimen/select_broaderx"
+            fsms:brodery="@dimen/select_broadery" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <com.softwinner.tvdsetting.widget.ExtImageButton
+                    android:id="@+id/networksetting"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:src="@drawable/ic_word_network_settings_btn" />
+
+                <com.softwinner.tvdsetting.widget.ExtImageButton
+                    android:id="@+id/displaysetting"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:src="@drawable/ic_word_display_option_btn" />
+
+                <com.softwinner.tvdsetting.widget.ExtImageButton
+                    android:id="@+id/playersetting"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:src="@drawable/ic_word_common_setting_btn" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <com.softwinner.tvdsetting.widget.ExtImageButton
+                    android:id="@+id/appsetting"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:src="@drawable/ic_word_application_management_btn" />
+
+                <com.softwinner.tvdsetting.widget.ExtImageButton
+                    android:id="@+id/updatesetting"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:src="@drawable/ic_word_update_btn" />
+
+                <com.softwinner.tvdsetting.widget.ExtImageButton
+                    android:id="@+id/advancesetting"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:background="#00000000"
+                    android:src="@drawable/ic_word_advanced_setup_btn" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

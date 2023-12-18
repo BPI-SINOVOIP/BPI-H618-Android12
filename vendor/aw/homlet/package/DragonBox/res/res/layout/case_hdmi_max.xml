@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/write"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_120"
+            android:layout_weight="1"
+            android:background="@drawable/red"
+            android:gravity="center"
+            android:text="@string/case_hdmi_red_text"
+            android:textColor="@drawable/black" />
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_120"
+            android:layout_weight="1"
+            android:background="@drawable/green"
+            android:gravity="center"
+            android:text="@string/case_hdmi_green_text"
+            android:textColor="@drawable/black" />
+
+        <TextView
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_120"
+            android:layout_weight="1"
+            android:background="@drawable/blue"
+            android:gravity="center"
+            android:text="@string/case_hdmi_blue_text"
+            android:textColor="@drawable/black" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/case_hdmi_status"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="@string/case_hdmi_status_text" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/case_hdmi_confirm_text" />
+    </LinearLayout>
+
+</LinearLayout>

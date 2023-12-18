@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fsms="http://schemas.android.com/apk/res/com.softwinner.tvdsetting"
+    android:layout_width="@dimen/appdialog_width"
+    android:layout_height="@dimen/appdialog_height"
+    android:background="@drawable/bg_pop_up_box"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/systemrecoverydialog_text_height"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/appdialog_text1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/wifidialog_horizontal_margin"
+                android:layout_marginRight="@dimen/wifidialog_horizontal_margin"
+                android:layout_weight="1"
+                android:gravity="top"
+				android:textColor="@android:color/black"
+                android:textSize="@dimen/setting_textsize_xmedium" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/wifidialog_line_horizontal_margin"
+                android:layout_marginRight="@dimen/wifidialog_line_horizontal_margin"
+                android:layout_weight="1" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_Height"
+                    android:layout_gravity="center"
+                    android:background="@drawable/dialog_line" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/appdialog_text2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/wifidialog_horizontal_margin"
+                android:layout_marginRight="@dimen/wifidialog_horizontal_margin"
+                android:layout_weight="2"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/setting_textsize_xmedium" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/appdialog_button_width"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1" >
+
+        <com.softwinner.tvdsetting.widget.ExtImageButton
+            android:id="@+id/no"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/appdialog_button_height"
+            android:layout_weight="1"
+            android:background="@drawable/ic_appdetail_dialog_left"
+            fsms:text="@string/cancel"
+            fsms:textColor="@drawable/black"
+            fsms:textSize="@dimen/setting_textsize_xmedium" />
+
+        <com.softwinner.tvdsetting.widget.ExtImageButton
+            android:id="@+id/yes"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/appdialog_button_height"
+            android:layout_weight="1"
+            android:background="@drawable/ic_appdetail_dialog_right"
+            fsms:text="@string/yes"
+            fsms:textColor="@drawable/black"
+            fsms:textSize="@dimen/setting_textsize_xmedium" />
+    </LinearLayout>
+
+</LinearLayout>

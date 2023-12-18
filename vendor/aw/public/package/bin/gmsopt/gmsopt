@@ -1,0 +1,11 @@
+#!/system/bin/sh
+sleep 4
+provisioned=`settings get --user 0 global start_disable`
+if [ $provisioned -ne 1 ]; then
+    pm query-receivers --components -a android.intent.action.BOOT_COMPLETED | grep com.google.android  > /data/local/tmp/bootreceiver.txt
+    sed -i '/com.google.android.permissioncontroller/d' /data/local/tmp/bootreceiver.txt
+    sed -i '/com.google.android.setupwizard/d' /data/local/tmp/bootreceiver.txt
+    cat /data/local/tmp/bootreceiver.txt| busybox xargs -n 1 pm disable
+    rm /data/local/tmp/bootreceiver.txt
+    settings put --user 0 global start_disable 1
+fi

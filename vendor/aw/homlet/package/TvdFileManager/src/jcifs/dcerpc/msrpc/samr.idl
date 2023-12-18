@@ -1,0 +1,56 @@
+[
+	uuid(12345778-1234-abcd-ef00-0123456789ac),
+	version(1.0)
+]
+interface samr
+{
+	import "../rpc.idl";
+	import "lsarpc.idl";
+
+	[op(0x01)]
+	int SamrCloseHandle([in] policy_handle *handle);
+
+	[op(0x39)]
+	int SamrConnect2([in,string,unique] wchar_t *system_name,
+			[in] uint32_t access_mask,
+			[out] policy_handle *handle);
+
+	[op(0x3e)]
+	int SamrConnect4([in,string,unique] wchar_t *system_name,
+			[in] uint32_t unknown,
+			[in] uint32_t access_mask,
+			[out] policy_handle *handle);
+
+	[op(0x07)]
+	int SamrOpenDomain([in] policy_handle *handle,
+			[in] uint32_t access_mask,
+			[in] sid_t *sid,
+			[out] policy_handle *domain_handle);
+
+	typedef struct {
+		uint32_t idx;
+		unicode_string name;
+	} SamrSamEntry;
+
+	typedef struct {
+		uint32_t count;
+		[size_is(count)] SamrSamEntry *entries;
+	} SamrSamArray;
+
+	[op(0x0f)]
+	int SamrEnumerateAliasesInDomain([in] policy_handle *domain_handle,
+			[in,out] uint32_t *resume_handle,
+			[in] uint32_t acct_flags,
+			[out,unique] SamrSamArray *sam,
+			[out] uint32_t num_entries);
+
+	[op(0x1b)]
+	int SamrOpenAlias([in] policy_handle *domain_handle,
+			[in] uint32_t access_mask,
+			[in] uint32_t rid,
+			[out] policy_handle *alias_handle);
+
+	[op(0x21)]
+	int SamrGetMembersInAlias([in] policy_handle *alias_handle,
+			[out] LsarSidArray *sids);
+}

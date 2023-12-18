@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_message_notif_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- style="@style/custom_notification_layout" 
+<ImageView 
+    android:id="@+id/custom_notif_icon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/notif_down_icon_margint_top"
+    android:layout_marginRight="@dimen/notif_down_icon_margint_right"
+    android:layout_marginLeft="@dimen/notif_down_icon_margint_left"
+    android:src="@drawable/icon_download"
+    />--> 
+<TextView 
+    android:id="@+id/custom_notif_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/find_aviable_pack_notification_title"
+    android:layout_toRightOf="@+id/custom_notif_icon"
+    android:layout_marginTop="@dimen/notif_title_text_margin_top"
+    style="@style/custom_notification_title_text"
+    />
+	<ProgressBar 
+		 android:id="@+id/notif_pack_downpb"
+		 android:layout_width="match_parent"
+		 android:layout_height="@dimen/down_progressbar_height"
+		 android:max="0"
+		 android:layout_below="@+id/custom_notif_title"
+		 android:layout_toRightOf="@+id/custom_notif_icon"
+		 android:layout_marginTop="@dimen/notif_down_progressbar_margin_top"
+		 android:layout_marginRight="@dimen/notif_down_progressbar_margin_right"
+		 style="@style/ImageDownloadProgressBar"
+	/>
+<TextView 
+    android:id="@+id/custom_notif_message"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/notif_down_progressbar_margin_top"
+    android:text="@string/cutom_message"
+    android:layout_below="@+id/notif_pack_downpb"
+    android:layout_toRightOf="@+id/custom_notif_icon"
+    style="@style/custom_notification_message_text"
+    />
+</RelativeLayout>

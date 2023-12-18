@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
+
+    <com.allwinner.camera.views.ModeViewPaper
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.allwinner.camera.views.ModeViewPaper>
+
+    <com.allwinner.camera.views.SlideTabHost
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+
+        >
+
+    </com.allwinner.camera.views.SlideTabHost>
+</FrameLayout>

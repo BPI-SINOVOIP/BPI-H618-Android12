@@ -1,0 +1,25 @@
+cc_library_shared {
+    name: "libmultiirservice",
+
+    srcs: ["IMultiirService.cpp"],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "libbinder",
+        "liblog",
+        "libandroid_runtime",
+    ],
+
+    export_include_dirs: [
+        ".",
+    ],
+
+    host_ldlibs: ["-llog"],
+
+}
+
+cc_library_headers {
+    name: "libmultiirservice_headers",
+    export_include_dirs: ["."],
+}

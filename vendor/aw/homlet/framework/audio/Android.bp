@@ -1,0 +1,15 @@
+java_library {
+    name: "softwinner.audio.static",
+    srcs: ["java/**/*.java"],
+    libs: ["services.core"],
+    static_libs: ["softwinner.display.output"],
+}
+
+java_library {
+    name: "softwinner.audio",
+    installable: true,
+    srcs: ["java/**/*.java"],
+
+    libs: ["services.core"],
+    static_libs: ["softwinner.display.output"],
+}

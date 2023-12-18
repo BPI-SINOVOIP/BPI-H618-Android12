@@ -1,0 +1,43 @@
+#!/bin/sh
+cpu_temp="/sys/class/thermal/thermal_zone0/temp"
+
+
+trip1="100000"
+trip2="105000"
+trip3="110000"
+
+temp=`cat $cpu_temp`
+if [ $temp -gt '85000' ]; then
+    sustainable_power=990
+elif [ $temp -gt '75000' ]; then
+    sustainable_power=1030
+elif [ $temp -gt '65000' ]; then
+    sustainable_power=1050
+else
+    sustainable_power=1100
+fi
+
+echo $sustainable_power > /sys/class/thermal/thermal_zone0/sustainable_power
+
+while true
+do
+    temp=`cat $cpu_temp`
+    if [ $temp -gt $trip3 ]; then
+        echo 0 > /sys/devices/system/cpu/cpu3/online
+        echo 0 > /sys/devices/system/cpu/cpu2/online
+        echo 0 > /sys/devices/system/cpu/cpu1/online
+    elif [ $temp -gt $trip2 ]; then
+        echo 0 > /sys/devices/system/cpu/cpu3/online
+        echo 0 > /sys/devices/system/cpu/cpu2/online
+        echo 1 > /sys/devices/system/cpu/cpu1/online
+    elif [ $temp -gt $trip1 ]; then
+        echo 0 > /sys/devices/system/cpu/cpu3/online
+        echo 1 > /sys/devices/system/cpu/cpu2/online
+        echo 1 > /sys/devices/system/cpu/cpu1/online
+    else
+        echo 1 > /sys/devices/system/cpu/cpu3/online
+        echo 1 > /sys/devices/system/cpu/cpu2/online
+        echo 1 > /sys/devices/system/cpu/cpu1/online
+    fi
+    sleep 2
+done

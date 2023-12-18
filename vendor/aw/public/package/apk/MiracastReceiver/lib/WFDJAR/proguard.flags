@@ -1,0 +1,11 @@
+-keep class com.softwinner.wfdsink.WFDSinkView {
+    *;
+}
+
+-keep class com.softwinner.wfdsink.WFDManager {
+    *;
+}
+
+-keep interface com.softwinner.wfdsink.ViewCallback {
+    *;
+}

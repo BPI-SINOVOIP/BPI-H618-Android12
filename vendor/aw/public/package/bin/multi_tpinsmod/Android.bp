@@ -1,0 +1,22 @@
+cc_binary {
+    name: "multi_tpinsmod",
+    init_rc: ["multi_tpinsmod.rc"],
+    relative_install_path: "hw",
+
+    vendor:true,
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+        "libprocessgroup",
+        "libcutils",
+        "libutils",
+    ],
+    srcs: [
+        "multi_tpinsmod.cpp",
+    ],
+}

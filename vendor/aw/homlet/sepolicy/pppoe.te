@@ -1,0 +1,45 @@
+type pppoe_data_file, file_type, data_file_type, core_data_file_type;
+
+#pppoe service
+type pppoe, domain, coredomain;
+type pppoe_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(pppoe)
+type_transition pppoe system_data_file:{ dir file } pppoe_data_file;
+
+#allow options for pppoe
+allow pppoe device:dir search;
+allow pppoe init:fd use;
+allow pppoe init:process sigchld;
+allow pppoe init:unix_stream_socket connectto;
+allow pppoe kernel:system {module_request};
+allow pppoe null_device:chr_file { read write };
+allow pppoe ppp_device:chr_file { open read write ioctl };
+allow pppoe pppoe_data_file:dir  { create write read open getattr };
+allow pppoe pppoe_data_file:file { create write read open getattr unlink };
+allow pppoe pppoe_exec:file { execute_no_trans };
+allow pppoe pppoe:process { sigkill signal };
+allow pppoe property_socket:sock_file { write };
+allow pppoe rootfs:dir { read open };
+allow pppoe self:capability {net_admin net_raw setuid setgid sys_module };
+allow pppoe self:packet_socket { read write create bind setopt ioctl };
+allow pppoe self:pppox_socket { create connect ioctl };
+allow pppoe self:process sigchld;
+allow pppoe self:socket { create connect ioctl };
+allow pppoe self:udp_socket { create ioctl };
+allow pppoe self:unix_dgram_socket { connect create };
+allow pppoe shell_data_file:dir getattr;
+allow pppoe shell_exec:file { read execute getattr open map };
+allow pppoe sysfs_net:dir { r_dir_perms search };
+allow pppoe sysfs_net:file { rw_file_perms read open };
+allow pppoe sysfs_net:lnk_file read;
+allow pppoe system_data_file:dir { write open getattr add_name remove_name };
+allow pppoe system_data_file:file { read open getattr };
+allow pppoe system_file:dir search;
+allow pppoe system_file:file execute_no_trans;
+allow pppoe system_file:lnk_file read;
+allow pppoe system_prop:property_service { set };
+allow pppoe toolbox_exec:file { read execute getattr open execute_no_trans map };
+allowxperm pppoe self:packet_socket ioctl { unpriv_sock_ioctls priv_sock_ioctls ppp_ioctls };
+allowxperm pppoe self:socket ioctl { ppp_ioctls };
+allowxperm pppoe self:pppox_socket ioctl { ppp_ioctls };
+allowxperm pppoe self:udp_socket ioctl { priv_sock_ioctls };

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<style name="Theme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+<!--		<item name="android:windowHideStatusbar">true</item>	-->
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@android:color/black</item>
+	</style>
+    <style name="MediaButton" parent="@android:style/MediaButton">
+        <item name="android:background">@android:drawable/btn_default</item>
+    </style>
+    <style name="MainTheme" parent="@android:style/Theme.Holo.Wallpaper.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    
+    <style name="Theme.WifiDialog" parent="@*android:style/Theme.Holo.Dialog.Alert">
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+</resources>

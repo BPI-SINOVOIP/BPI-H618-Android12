@@ -1,0 +1,14 @@
+allow systemmix cifs:filesystem {mount unmount};
+allow systemmix cifs:file create_file_perms;
+allow systemmix cifs:dir create_dir_perms;
+#nfs
+allow systemmix nfs:filesystem {mount unmount};
+allow systemmix nfs:file create_file_perms;
+allow systemmix nfs:dir create_dir_perms;
+#allow systemmix {nfs app_data_file}:dir {search mounton};
+#DragonBox-hdmi
+allow systemmix sysfs_hpd:file rw_file_perms;
+#DragonBox-CaseGpu
+#allow systemmix debugfs_mali_utilization_gp_pp:file r_file_perms;
+
+allow systemmix sysfs_systemmix:file write;

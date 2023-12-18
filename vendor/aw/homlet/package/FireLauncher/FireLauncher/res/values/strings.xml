@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FireLauncher</string>
+    
+    <!-- master(first level) ui -->
+    <string name="tab_recommand">"   Recommand   "</string>
+    <string name="tab_channel">"  Channel  "</string>
+    <string name="tab_game">"  Game  "</string>
+    <string name="tab_zone">"  Zone  "</string>
+    <string name="tab_app">"  App  "</string>
+    <string name="tab_setting">"  Setting  "</string>
+    
+    <!-- master(second level) ui -->
+    <string name="tv_tracker">tvtracker</string>
+
+    <!-- The format string for Workspace page scroll text [CHAR_LIMIT=none] -->
+    <string name="default_scroll_format">Page %1$d of %2$d</string>
+    
+    <!-- recommend section ui -->
+    <string name="title_no_network">"network request failed"</string>
+    
+    <!-- app section ui -->
+    <string name="all_apps">All apps</string>
+    <string name="no_app">No app</string>
+    
+    
+    <!-- otherwidgets ui -->
+    <string name="launcher_dialog_title">No network connection!! :(</string>
+    <string name="launcher_dialog_ok">Refresh</string>
+    <string name="launcher_dialog_cancel">Go to set</string>
+    <string name="launcher_dialog_hide">Never show</string>
+    
+    <!-- tv tracker ui -->
+    <string name="episode_count1">" Update to "</string>
+    <string name="episode_count2">"Episode"</string>
+    <string name="episode_count_format"> Update to %1$d episode</string>
+    
+    <!-- tv_record -->
+    <string name="delete_all_text">Are you sure to delete all history records？</string>
+    <string name="delete_all_reject">Cancel</string>
+    <string name="delete_all_agree">Ok</string>
+    
+    <!-- install_game -->
+    <string name="uninstall_app_format">Are you sure to uninstall %1$s ？</string>
+    <string name="can_not_download">Sorry,network service loading is not responding！</string>
+    
+    <!-- weacher_info -->
+    <string name="cloudy">阴</string>
+    <string name="partly_cloudy">多云</string>
+    <string name="clear_day">晴</string>
+    <string name="rain_s">小雨</string>
+    <string name="rain_m">中雨</string>
+    <string name="rain_l">大雨</string>
+    <string name="rain_storm_m">暴雨</string>
+    <string name="rain_storm_l">大暴雨</string>
+    <string name="storm_xl">特大暴雨</string>
+    <string name="chance_of_rain_normal">阵雨</string>
+    <string name="chance_of_rain_storm">雷阵雨</string>
+    <string name="snow_s">小雪</string>
+    <string name="snow_m">中雪</string>
+    <string name="snow_l">大雪</string>
+    <string name="snow_xl">暴雪</string>
+    <string name="icy_sleet">冰雹</string>
+    <string name="rain_snow">雨夹雪</string>
+    <string name="windy">风</string>
+    <string name="windy_storm">龙卷风</string>
+    <string name="fog">雾</string>
+    
+    <string name="weather_info_error">Connect failed</string>
+    
+    <string name="media_unmount">media unmount</string>   
+ 
+    <!-- dialog_up -->
+    <string name="ethernet">Ehternet</string>
+    <string name="no_connected">Not connected</string>
+    
+    <!-- launcher mutil language -->
+    <string name="setting_network">Network</string>
+    <string name="setting_update">Update</string>
+    <string name="setting_about">About</string>
+    <string name="setting_plot">Display</string>
+    <string name="setting_system">System</string>
+    <string name="app_manager">App manager</string>
+    <string name="channel_episode">Episode</string>
+    <string name="channel_variety">Variety</string>
+    <string name="channel_carton">Carton</string>
+    <string name="channel_life">Life</string>
+    <string name="channel_tvmusic">TV music</string>
+    <string name="channel_documentary">Document</string>
+	<string name="channel_movie">Movie</string>
+	<string name="channel_education">Education</string>
+	<string name="channel_economics">Economics</string>
+	<string name="channel_sports">Sports</string>
+	<string name="channel_microfilm">Microfilm</string>
+	<string name="recommand_broadcast">Broadcast</string>
+	<string name="recommand_history">History</string>
+	<string name="recommand_search">Search</string>
+	<string name="recommand_collect">Collect</string>
+	<string name="recommand_tracker">Tracker</string>
+	<string name="game_installed">My game</string>
+	<string name="game_hall">Game hall</string>
+	<string name="dialog_message_centre">Message</string>
+	<string name="dialog_message_clear">Clear</string>
+    <string name="test">Test</string>
+    
+	<string name="v3_appsc_setting">Settings</string>
+	<string name="v3_appsc_market">App market</string>
+	<string name="no_app_market_found">No app market found!</string>
+    
+</resources>

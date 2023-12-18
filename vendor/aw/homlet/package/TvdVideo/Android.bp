@@ -1,0 +1,55 @@
+bootstrap_go_package {
+    name: "soong-tvdvideo_config",
+    pkgPath: "android/soong/tvdvideo_config",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-java",
+    ],
+    srcs: [
+        "tvdvideo_config.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+tvdvideo_defaults {
+    name: "tvdvideo_defaults",
+}
+
+android_app {
+    name: "TvdVideo",
+
+    defaults: ["tvdvideo_defaults"],
+
+    srcs: [
+        "src/com/softwinner/TvdVideo/AlwaysMarqueeTextView.java",
+        "src/com/softwinner/TvdVideo/BookmarkService.java",
+        "src/com/softwinner/TvdVideo/DebugConfigs.java",
+        "src/com/softwinner/TvdVideo/IconifiedTextView.java",
+        "src/com/softwinner/TvdVideo/IDisplayController.java",
+        "src/com/softwinner/TvdVideo/MangerDatabase.java",
+        "src/com/softwinner/TvdVideo/MediaButtonReceiver.java",
+        "src/com/softwinner/TvdVideo/MediaController.java",
+        "src/com/softwinner/TvdVideo/MovieViewControl.java",
+        "src/com/softwinner/TvdVideo/SinglechoiceListAdapter.java",
+        "src/com/softwinner/TvdVideo/StbDisplayController.java",
+        "src/com/softwinner/TvdVideo/TvdVideoActivity.java",
+        "src/com/softwinner/TvdVideo/VideoView.java",
+    ],
+
+    certificate: "platform",
+
+    resource_dirs: ["res/res"],
+
+    static_libs: [
+        "softwinner.display.output",
+        "androidx.legacy_legacy-support-v4",
+    ],
+
+    platform_apis: true,
+
+    optimize: {
+        enabled: false,
+    },
+}
+

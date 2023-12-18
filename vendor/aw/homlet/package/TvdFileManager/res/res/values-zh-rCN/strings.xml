@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"文件管理器"</string>
+    <string name="path">"目录"</string>
+
+    <string name="sort">"排序"</string>
+    <string name="copy">"复制"</string>
+    <string name="paste">"粘贴"</string>
+    <string name="cut">"剪切"</string>
+    <string name="delete">"删除"</string>
+    <string name="mkdir">"新目录"</string>
+    <string name="add_new_dev">"添加设备"</string>
+    <string name="del_dev">"删除设备"</string>
+    <string name="umount_dev">"卸载设备"</string>
+    <string name="umount_internal">不能卸载本地存储</string>
+
+    <string name="directory">"目录"</string>
+    <string name="equipment">"设备"</string>
+    <string name="video">"视频"</string>
+    <string name="picture">"图片"</string>
+    <string name="music">"音乐"</string>
+    <string name="file">"全部"</string>
+    <string name="open_file">"选择文件的类型"</string>
+    <string name="text">"文档"</string>
+
+    <!-- length of string is 12 -->
+    <string name="target">"目标: "</string>
+    <string name="local_disk">"本地存储"</string>
+    <string name="sdcard">"SD卡"</string>
+    <string name="usb">"USB设备"</string>
+    <string name="sata">"SATA设备"</string>
+    <string name="flash">"本地存储"</string>
+    <string name="used_size">"已使用空间:"</string>
+    <string name="avail_size">"有用空间:"</string>
+    <string name="samba">"网络邻居"</string>
+    <string name="nfs">"NFS共享"</string>
+    <string name="search">"搜索中......"</string>
+    <string name="login">"登陆"</string>
+    <string name="account">"账号:"</string>
+    <string name="password">"密码:"</string>
+    <string name="ok">"确定"</string>
+
+    <!-- samba出错 -->
+    <string name="smbfile_no_exist">"该域/服务器不存在"</string>
+    <string name="file_does_not_exist">"该文件不存在"</string>
+    <string name="access_fail">"访问失败"</string>
+    <string name="net_not_connected">"网络没连接"</string>
+    <string name="login_fail">"登陆失败"</string>
+
+    <string name="singer">"歌手:"</string>
+    <string name="title">"唱片:"</string>
+    <string name="duration">"时长:"</string>
+    <string name="size">"大小:"</string>
+    <string name="bit_rate">"比特率:"</string>
+    <string name="resolution">"分辨率:"</string>
+    <string name="frame_rate">"帧速度:"</string>
+
+    <string name="can_not_play">"该文件无法播放"</string>
+    <string name="can_not_open">"没权限打开该文件"</string>
+
+    <string name="press_exit">"再次点击back退出"</string>
+    <!-- NFS error -->
+    <string name="mount_fail">"挂载出错,权限不够!"</string>
+    <!-- 设备热插拔 -->
+    <string name="usb_in">"USB设备接入"</string>
+    <string name="sdcard_in">"SD卡设备接入"</string>
+    <string name="flash_in">"外部SD卡接入"</string>
+    <string name="usb_out">"USB设备移除"</string>
+    <string name="sdcard_out">"SD卡设备移除"</string>
+    <string name="flash_out">"外部SD卡移除"</string>
+
+    <!-- 文件操作情况 -->
+ <string name="scan">"扫描中..."</string>
+ <string name="create">"创建"</string>
+ <string name="success">"成功"</string>
+ <string name="fail">"失败"</string>
+    <string name="rename">"重命名"</string>
+    <string name="rename_to">" 被重命名为 "</string>
+    <string name="rename_fail">"重命名失败"</string>
+    <string name="renamed_to_exist_file">" 重命名失败,指定文件与现有文件重名"</string>
+    <string name="cancel">"取消"</string>
+    <string name="create_new_file">"创建新的文件"</string>
+    <string name="copy_fail">"复制失败"</string>
+    <string name="cut_fail">"剪切失败"</string>
+    <string name="delete_fail">"删除失败"</string>
+    <string name="operate_fail_dueto_permission">"文件操作失败,权限不足"</string>
+ <string name="delete_message">确定删除这个文件吗？</string>
+ <string name="sure">确定</string>
+    <string name="operate_no_exit_file">"操作失败,该文件不存在"</string>
+    <string name="can_not_copy">"无法复制 "</string>
+    <string name="can_not_cut">"无法剪切 "</string>
+    <string name="target_equals_src">":目标文件夹与源文件夹相同"</string>
+    <string name="target_is_child">":目标文件夹是源文件夹的子文件夹"</string>
+    <string name="sure_cover_file">"确信要覆盖文件:"</string>
+    <string name="not_enough_space">"磁盘没有足够的空间"</string>
+    <string name="samba_dev">Samba</string>
+    <string name="nfs_dev">NFS</string>
+
+    <!--搜索结果提示 -->
+    <string name="result_null">"搜索结果为空"</string>
+
+ <!-- 文件操作进度提示 -->
+    <string name="copy_to_newDir">"复制文件到新的目录..."</string>
+    <string name="delete_old_files">"删除旧的文件"</string>
+    <string name="delete_files">"删除文件"</string>
+
+    <!-- 排序类型 -->
+    <string name="sort_type">"请选择排序的类型"</string>
+    <string name="alpha">"按字母"</string>
+    <string name="modified_time">"按修改时间"</string>
+ <string name="by_size">"按大小"</string>
+    <string name="sorting">"排序中..."</string>
+
+    <!-- 分区名 -->
+    <string name="partitionA">"A盘"</string>
+    <string name="partitionB">"B盘"</string>
+    <string name="partitionC">"C盘"</string>
+    <string name="partitionD">"D盘"</string>
+    <string name="partitionE">"E盘"</string>
+    <string name="partitionF">"F盘"</string>
+    <string name="partitionG">"G盘"</string>
+    <string name="partitionH">"H盘"</string>
+    <string name="partitionI">"I盘"</string>
+    <string name="partitionJ">"J盘"</string>
+    <string name="partitionK">"K盘"</string>
+    <string name="partitionL">"L盘"</string>
+    <string name="partitionM">"M盘"</string>
+    <string name="partitionN">"N盘"</string>
+    <string name="partitionO">"O盘"</string>
+    <string name="partitionP">"P盘"</string>
+    <string name="partitionQ">"Q盘"</string>
+    <string name="partitionR">"R盘"</string>
+    <string name="partitionS">"S盘"</string>
+    <string name="partitionT">"T盘"</string>
+    <string name="partitionU">"U盘"</string>
+    <string name="partitionV">"V盘"</string>
+    <string name="partitionW">"W盘"</string>
+    <string name="partitionX">"X盘"</string>
+    <string name="partitionY">"Y盘"</string>
+    <string name="partitionZ">"Z盘"</string>
+    <string name="partitionOther">"其他盘"</string>
+
+    <string name="not_app_to_open_the_file">"还没安装打开该文件的应用程序"</string>
+    <string name="not_app_to_open_the_pic">"还没安装查看图片的应用程序"</string>
+    <string name="not_app_to_play_the_video">"还没安装视频播放器"</string>
+    <string name="not_app_to_play_the_music">"还没安装音乐播放器"</string>
+    <string name="not_app_to_oepn_the_gif">"还没安装查看动图的应用程序"</string>
+    <string name="try_mount_fail">"磁盘挂载失败，无法打开"</string>
+</resources>

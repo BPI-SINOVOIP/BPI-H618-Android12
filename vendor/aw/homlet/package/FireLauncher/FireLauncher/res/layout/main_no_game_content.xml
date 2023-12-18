@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.firelauncher.LauncherTabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_content_tabhost">
+
+    <RelativeLayout
+        android:id="@+id/apps_customize_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/content_height" 
+        android:layout_marginTop="@dimen/Tab_margin" >
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:layout_alignParentLeft="true" >
+
+            <com.softwinner.firelauncher.TabContent
+                android:id="@+id/launcher_tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/mainContent_margin" >
+                
+                <include 
+	                layout="@layout/recommend_section" 
+	                android:id="@+id/recommend_section"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent" />
+                
+                <include 
+	                layout="@layout/channel_section" 
+	                android:id="@+id/channel_section"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent" /> 
+                
+                <include 
+	                layout="@layout/apps_section" 
+	                android:id="@+id/apps_section"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent" />
+                
+                <include 
+	                layout="@layout/setting_section" 
+	                android:id="@+id/setting_section"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent" />
+
+            </com.softwinner.firelauncher.TabContent>
+
+            <include
+                android:id="@+id/paged_view_indicator"
+                android:layout_width="@dimen/other_infomation_width"
+                android:layout_height="@dimen/other_infomation_height"
+                layout="@layout/other_infomation"
+                android:visibility="gone" />
+
+        </FrameLayout>
+        
+        <FrameLayout
+            android:id="@+id/tabs_container"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/tabs_paddingleft"
+            android:layout_alignParentTop="true" >
+
+            <com.android.launcher2.FocusOnlyTabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:divider="@null"
+                android:gravity="start"
+                android:focusable="true"
+                android:tabStripEnabled="false" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</com.softwinner.firelauncher.LauncherTabHost>

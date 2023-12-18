@@ -1,0 +1,6 @@
+allow kernel kernel:capability {net_raw net_bind_service};
+allow kernel device:dir create;
+#allow kernel device:blk_file { create setattr getattr unlink };
+#allow kernel block_device:blk_file { open read write };
+allow kernel self:capability net_raw;
+allow kernel isomountservice:fd use;

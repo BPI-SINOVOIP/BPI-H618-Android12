@@ -1,0 +1,37 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="logcat_enabled"
+        app:title="@string/enabled"
+        app:disableDependentsState="true"/>
+
+    <MultiSelectListPreference
+        app:entries="@array/logcat_buffer_type"
+        app:entryValues="@array/logcat_buffer_type"
+        app:dependency="logcat_enabled"
+        app:key="logcat_buffer_type"
+        app:title="@string/logcat_buffer_type" />
+
+    <ListPreference
+        app:entries="@array/logcat_single_file_size_entries"
+        app:entryValues="@array/logcat_single_file_size_values"
+        app:dependency="logcat_enabled"
+        app:key="logcat_single_log_size"
+        app:title="@string/single_log_size"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
+        app:entries="@array/logcat_limit_count"
+        app:entryValues="@array/logcat_limit_count"
+        app:dependency="logcat_enabled"
+        app:key="logcat_log_limit_count"
+        app:title="@string/log_limit_count"
+        app:useSimpleSummaryProvider="true" />
+
+    <SwitchPreferenceCompat
+        app:dependency="logcat_enabled"
+        app:key="logcat_boot_enabled"
+        app:title="@string/boot_enabled"
+        app:summary="@string/boot_enabled_summary"/>
+
+</PreferenceScreen>

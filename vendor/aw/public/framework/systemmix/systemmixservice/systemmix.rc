@@ -1,0 +1,7 @@
+service systemmix /system/bin/systemmixservice
+    class main
+    user root
+    group root audio camera graphics inet net_bt net_bt_admin net_raw everybody
+    seclabel u:r:systemmix:s0
+    ioprio rt 4
+    oneshot

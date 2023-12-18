@@ -1,0 +1,9 @@
+android_app_import {
+    name: "DragonAtt",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    apk: "DragonAtt.apk",
+   // platform_apis: true,
+}

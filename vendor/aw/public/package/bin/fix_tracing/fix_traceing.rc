@@ -1,0 +1,9 @@
+on property:sys.boot_completed=1
+    start fix_traceing
+
+service fix_traceing /system/bin/fix_traceing
+    disabled
+    oneshot
+    user root
+    group shell
+    seclabel u:r:shell:s0

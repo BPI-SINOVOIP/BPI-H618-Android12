@@ -1,0 +1,11 @@
+type sysintf, domain;
+type sysintf_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(sysintf);
+typeattribute sysintf coredomain;
+binder_use(sysintf)
+binder_service(sysintf)
+allow sysintf servicemanager:binder { call transfer };
+allow sysintf softwinner_service:service_manager { add find };
+allow sysintf sysfs_gpio_qa:file {open read write };
+allow sysintf sysfs_gpio_qa:dir { search };
+#allow sysintf self:capability dac_override;

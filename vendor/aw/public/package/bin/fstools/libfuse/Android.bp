@@ -1,0 +1,65 @@
+//
+// Copyright (C) 2008 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+mount_source = [
+    "lib/mount.c",
+    "lib/mount_util.c",
+]
+// mount_util.h
+iconv_source = ["lib/modules/iconv.c"]
+
+LIBFUSE_SRC_FILE = [
+    "lib/buffer.c",
+    "lib/cuse_lowlevel.c",
+    "lib/fuse.c",
+    "lib/fuse_kern_chan.c",
+    //"lib/fuse_log.c",
+    "lib/fuse_loop.c",
+    "lib/fuse_loop_mt.c",
+    "lib/fuse_lowlevel.c",
+    "lib/fuse_mt.c",
+    "lib/fuse_opt.c",
+    "lib/fuse_session.c",
+    "lib/fuse_signals.c",
+    "lib/helper.c",
+    "lib/fuse_pthread.c",
+    "lib/modules/subdir.c",
+] + iconv_source + mount_source
+
+cc_library_static {
+    name: "libfuse-29",
+    recovery_available: true,
+    shared_libs: [
+        "libc",
+        "libcutils",
+    ],
+    cflags: [
+        "-DFUSERMOUNT_DIR=\"/vendor/bin\"",
+        "-D_FILE_OFFSET_BITS=64",
+        "-D_REENTRANT",
+        "-DFUSE_USE_VERSION=29",
+        "-DPACKAGE_VERSION=\"2.9.7\"",
+        "-Werror",
+        "-Wno-unused-parameter",
+        "-Wno-pointer-arith",
+        "-Wno-macro-redefined",
+        "-Wno-typedef-redefinition",
+    ],
+    srcs: LIBFUSE_SRC_FILE,
+    local_include_dirs: ["include"],
+    export_include_dirs: ["include"],
+    export_shared_lib_headers: ["libc", "libcutils"],
+}

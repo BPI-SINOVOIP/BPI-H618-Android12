@@ -1,0 +1,233 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+    <!-- master(first level) ui -->
+
+    <dimen name="logo_width">148dp</dimen>
+    <dimen name="logo_height">43dp</dimen>
+    <dimen name="v3_logo_width">180dp</dimen>
+    <dimen name="v3_logo_height">73dp</dimen>
+    <dimen name="all_margin_top">16dp</dimen>
+    <dimen name="all_margin_left">16dp</dimen>
+    <dimen name="logo_margin">15dp</dimen>
+    <dimen name="Tab_margin">11dp</dimen>
+    <dimen name="mainContent_margin">20dp</dimen>
+    <dimen name="other_infomation_width">800dp</dimen>
+    <dimen name="other_infomation_height">60dp</dimen>
+    <dimen name="other_infomation_margintop">66dp</dimen>
+    <dimen name="v3_other_infomation_margintop">32dp</dimen>
+    
+    <dimen name="indicator_margin_small">5dp</dimen>
+    <dimen name="indicator_margin_medium">10dp</dimen>
+    <dimen name="indicator_margin_large">70dp</dimen>
+    <dimen name="v3_indicator_margin_large">92dp</dimen>
+    <dimen name="v3_dot_group_margin_top">648dp</dimen>
+    <dimen name="indicator_margin_xlarge">150dp</dimen>
+    <dimen name="app_section_margin_top">70dp</dimen>
+    <dimen name="app_section_margin_left">40dp</dimen>
+    
+    <dimen name="content_height">700dp</dimen>
+    
+
+    <!-- textsize ui -->
+    <dimen name="sw_textsize_xxxlarger">48sp</dimen>
+    <dimen name="sw_textsize_xxlarger">31sp</dimen>
+    <dimen name="sw_textsize_xlarger">24sp</dimen>
+    <dimen name="sw_textsize_larger">21sp</dimen>
+    <dimen name="sw_textsize_xmedium">18sp</dimen>
+    <dimen name="sw_textsize_medium">15sp</dimen>
+    <dimen name="sw_textsize_small">12sp</dimen>
+    
+    <!-- TabIndicator -->
+    <dimen name="tabindicator_width">139dp</dimen>
+    <dimen name="tabindicator_height">61dp</dimen>
+    <dimen name="tabindicator_all_width">695dp</dimen>  <!-- tabindicator_width*4 -->
+    <dimen name="tabindicator_no_game_width">556dp</dimen>
+    <dimen name="tabindicator_text_size_normal">35sp</dimen>
+    <dimen name="tabindicator_text_size_big">43sp</dimen>
+    
+   <!-- TabContent(second level) ui -->
+   <dimen name="view_margin_xlarger">30dp</dimen>
+    <dimen name="layout_margin_left">@dimen/indicator_margin_large</dimen>
+    <dimen name="layout_margin_right">@dimen/indicator_margin_large</dimen>
+    <dimen name="layout_margin_top">100dp</dimen>
+    <dimen name="section_width">1000dp</dimen>
+    <dimen name="section_height">315dp</dimen><!-- 累加+放大 < section_width  -->
+    <dimen name="section_third_margin_left">1706dp</dimen>
+    <dimen name="rectangle_vertical_width">275dp</dimen>  <!-- (rectangle_vertical_height/3)*2 = rectangle_vertical_width  -->
+    <dimen name="rectangle_vertical_height">413dp</dimen>
+    <dimen name="v3_rectangle_vertical_width">287dp</dimen> <!-- (rectangle_vertical_height/3)*2 = rectangle_vertical_width -->
+    <dimen name="v3_rectangle_vertical_height">420dp</dimen>
+    <dimen name="v3_rectangle_setting_heght">107dp</dimen>
+    <dimen name="rectangle_horizontal_width">@dimen/rectangle_vertical_height</dimen>
+    <dimen name="rectangle_horizontal_height">203dp</dimen><!-- (rectangle_horizontal_width/3)*1.48 = rectangle_horizontal_height  -->
+    <dimen name="v3_square_side">205dp</dimen>
+    <dimen name="v3_square_side_setting">140dp</dimen>
+    <dimen name="square_side">@dimen/rectangle_horizontal_height</dimen><!-- square_side = rectangle_horizontal_height  -->
+    <dimen name="square_install_icon_side">100dp</dimen>
+    <dimen name="view_margin">9dp</dimen>
+    <dimen name="v3_view_margin_item">14dp</dimen>  
+    <dimen name="v3_view_margin">53dp</dimen>    
+    <dimen name="page_space">50dp</dimen>
+    <dimen name="rolling_broadcast_width">410dp</dimen>
+    <dimen name="rolling_broadcast_height">274dp</dimen>
+    <dimen name="square_side_s">132dp</dimen>
+
+    <!-- otherWidgets ui -->
+    <dimen name="image_size">35dp</dimen>
+    <dimen name="widgets_height">35dp</dimen>
+    
+    <dimen name="digitalClock_width">80dp</dimen>
+    <dimen name="digitalClock_textSize">26dp</dimen>
+    <dimen name="others_textSize">22dp</dimen>
+    
+    <dimen name="wheacher_image_size">35dp</dimen>
+    <dimen name="weacher_image_width">35dp</dimen>
+    <dimen name="weacher_info_width">140dp</dimen>
+    
+    <dimen name="space_width">5dp</dimen>
+    <dimen name="space_height">35dp</dimen>
+    
+    <dimen name="myProgressBar_width">500dp</dimen>
+    <dimen name="myProgressBar_height">500dp</dimen>
+    
+    <dimen name="launcher_dialog_bg_width">400dp</dimen>
+    <dimen name="launchrer_dialog_bg_height">120dp</dimen>
+    <dimen name="launcher_dialog_height">60dp</dimen>
+    <dimen name="launcher_dialog_top">5dp</dimen>
+    <dimen name="launcher_dialog_divide_width">1dp</dimen>
+    <dimen name="launcher_dialog_divide_height">144dp</dimen>
+    
+    	<!-- LauncherDialog image button size mdpi:  bagin-->
+    <dimen name="launcher_dialog_img_btn_top_width">260dp</dimen>
+    <dimen name="launcher_dialog_img_btn_top_height">114dp</dimen>
+    <dimen name="launcher_dialog_img_btn_right_width">388dp</dimen>
+    <dimen name="launcher_dialog_img_btn_right_height">92dp</dimen>
+    
+    
+    <dimen name="launcher_dialog_img_btn_top_width_small">104dp</dimen>
+    <dimen name="launcher_dialog_img_btn_top_height_small">114dp</dimen>
+    	<!-- LauncherDialog image button size mdpi:  end -->
+    
+    <dimen name="launcher_dialog_TextMargine">30dp</dimen>
+    <dimen name="launcher_dialog_margine">132dp</dimen>
+    <dimen name="launcher_dialog_margine_Right">132dp</dimen>
+    <dimen name="launcher_dialog_padding">10dp</dimen>
+    <dimen name="launcher_dialog_textSize">32sp</dimen>
+    <dimen name="launcher_dialog_button_margine">16dp</dimen>
+    <dimen name="launcher_dialog_button_width">159dp</dimen>
+    <dimen name="launcher_dialog_button_height">56dp</dimen>
+    
+    <dimen name="launcher_dialog_button_selector_width">260dp</dimen>
+    <dimen name="launcher_dialog_button_selector_height">114dp</dimen>
+    <dimen name="launcher_dialog_wifi_icon_padding_left">25dp</dimen>
+    <dimen name="launcher_dialog_wifi_name_padding_left">4dp</dimen>
+    <dimen name="launcher_dialog_wifi_name_padding_rigth">15dp</dimen>
+    
+    <dimen name="dialog_right_layout_marging_top">80dp</dimen>
+    <dimen name="dialog_right_layout_marging">10dp</dimen>
+    
+   <!-- app section -->
+    <dimen name="app_section_icon_size">78dp</dimen>
+    <dimen name="v3_app_section_icon_size">180dp</dimen>
+    <dimen name="v3_app_section_market_icon_size">91dp</dimen>
+    <dimen name="app_section_icon_margin_top">45dp</dimen>
+    <dimen name="v3_setting_section_icon_margin_top">80dp</dimen>
+    <dimen name="v3_setting_section_text_margin_bottom">100dp</dimen>
+    <dimen name="v3_setting_section_ic_margin_left">40dp</dimen>
+    <dimen name="v3_app_section_icon_margin_top">67dp</dimen>
+    <dimen name="app_section_name_margin_top">140dp</dimen>
+    <dimen name="app_gridview_icon_margin_top">45dp</dimen>
+    <dimen name="app_gridview_text_margin_top">45dp</dimen>
+    <dimen name="app_gridview_text_margin_bottom">45dp</dimen>
+    <dimen name="app_gridview_text_padding_bottom">30dp</dimen>
+    <dimen name="v3_app_gridview_text_padding_bottom">2dp</dimen>
+    <dimen name="app_section_name_textsize">31sp</dimen>
+    <dimen name="v3_app_section_name_textsize">43sp</dimen>
+    <dimen name="v3_setting_section_name_textsize">44sp</dimen>
+    
+    <!-- Tv Tracker UI -->
+    <dimen name="tab_content_marginTop">51dp</dimen>
+    <dimen name="tab_content_marginLeft">100dp</dimen>
+    <dimen name="gridview_marginTop">140dp</dimen><!-- 139 -->
+    <dimen name="gridview_marginBottom">40dp</dimen>
+    <dimen name="gridview_marginLeft">62dp</dimen>
+    <dimen name="gridview_marginRigth">70dp</dimen>
+    <dimen name="gridview_verticalSpacing">25dp</dimen>
+    <dimen name="gridview_scroll_width">3dp</dimen>
+    <dimen name="item_text_minHeight">70dp</dimen>
+    <dimen name="gridview_padding_xlarger">30dp</dimen>
+    <dimen name="gridview_padding_larger">20dp</dimen>
+    <dimen name="gridview_padding_medium">8dp</dimen>
+    <dimen name="gridview_padding_small">4dp</dimen>
+    
+    <dimen name="gridview_down_space">162dp</dimen>
+    <dimen name="gridview_imageTitle_width">373dp</dimen>
+    <dimen name="gridview_imageTitle_height">101dp</dimen>
+    
+    <dimen name="gridview_image_width">285dp</dimen>
+    <dimen name="gridview_image_height">416dp</dimen>
+    <dimen name="install_game_gridview_image_height">296dp</dimen>
+    <dimen name="gridview_text_height">116dp</dimen>
+    <dimen name="gridview_text_space1">6dp</dimen>
+    <dimen name="gridview_text_space2">8dp</dimen>
+    <dimen name="gridlayout_item_width">270dp</dimen>
+    <dimen name="gridlayout_item_height">394dp</dimen>
+    
+    <!-- history UI -->
+    <dimen name="textImage_title_width">373dp</dimen>
+    <dimen name="textImage_title_height">101dp</dimen>
+    <dimen name="trash_title_width">78dp</dimen>
+    <dimen name="trash_title_height">108dp</dimen>
+    <dimen name="trash_mode_select_width">500dp</dimen>
+    <dimen name="trash_mode_select_margin_top">50dp</dimen>
+    <dimen name="trash_mode_select_margin_right">150dp</dimen>
+    <dimen name="timeline_title_width">206dp</dimen>
+    <dimen name="timeline_title_height">56dp</dimen>
+    <dimen name="ic_record_line_margin_top">23dp</dimen>
+    <dimen name="ic_record_line_margin_left">30dp</dimen>
+    <dimen name="single_trash_margin_left">20dp</dimen>
+    <dimen name="trash_bt_margin_top">@dimen/trash_mode_select_margin_top</dimen>
+    <dimen name="trash_bt_margin_right">@dimen/trash_mode_select_margin_right</dimen>
+    <dimen name="scroll_layout_margin_top">220dp</dimen>
+    <dimen name="grid_layout_content_margin_left">130dp</dimen>
+    <dimen name="grid_layout_content_margin_right">20dp</dimen>
+    <dimen name="grid_layout_content_padding_left">64dp</dimen>
+    <dimen name="time_line_layout_width">320dp</dimen>
+    <dimen name="time_line_layout_margin_top">40dp</dimen>
+    <dimen name="time_line_layout_margin_bottom">40dp</dimen>
+    <dimen name="time_line_margin_right">15dp</dimen>
+    <dimen name="time_line_margin_top">50dp</dimen>
+    <dimen name="time_line_margin_bottom">12dp</dimen>
+    <dimen name="gridview_item_padding_top">30dp</dimen>
+    <dimen name="gridview_item_padding_bottom">@dimen/gridview_item_padding_top</dimen>
+    <dimen name="gridview_item_padding_left">@dimen/gridview_padding_medium</dimen>
+    <dimen name="gridview_item_padding_right">@dimen/gridview_padding_medium</dimen>
+    <dimen name="view_margin_larger">20dp</dimen>
+    <dimen name="view_margin_medium">8dp</dimen>
+    <dimen name="view_margin_small">4dp</dimen>
+    
+        <!-- launcher mutil language -->
+    <dimen name="setting_paddingtop">500dp</dimen>
+    <dimen name="setting_paddingleft">70dp</dimen>
+    <dimen name="setting_paddingtop1">206dp</dimen>
+    <dimen name="setting_paddingleft1">42dp</dimen>
+    <dimen name="channel_paddingtop">508dp</dimen>
+    <dimen name="channel_paddingleft">178dp</dimen>
+    <dimen name="channel_paddingtop1">206dp</dimen>
+    <dimen name="channel_paddingleft1">32dp</dimen>
+    <dimen name="recommand_paddingtop">338dp</dimen>
+    <dimen name="recommand_paddingleft">308dp</dimen>
+    <dimen name="recommand_paddingtop1">133dp</dimen>
+    <dimen name="recommand_paddingleft1">32dp</dimen>
+	<dimen name="recommand_paddingleft2">80dp</dimen>
+	<dimen name="tabs_paddingleft">28dp</dimen>
+	
+	<dimen name="v2_">28dp</dimen>
+    <integer name="v3_dot_size">12</integer>
+    <integer name="v3_dot_padding">8</integer>
+    
+</resources>

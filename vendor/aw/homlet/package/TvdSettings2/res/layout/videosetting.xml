@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="@dimen/btn_back_width"
+        android:layout_height="@dimen/btn_back_height"
+        android:layout_marginLeft="@dimen/title_marginleft"
+        android:layout_marginTop="@dimen/title_margintop"
+        android:background="#00000000"
+        android:src="@drawable/ic_word_play_setting_nor" />
+
+    <ListView
+        android:id="@+id/video_setting_list"
+        android:layout_width="@dimen/netsettinglistwidth"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/applist_layout_margintop"
+        android:divider="@drawable/divider_line"
+        android:dividerHeight="@dimen/divider_Height"
+        android:listSelector="@drawable/list_btn_press" >
+    </ListView>
+
+</LinearLayout>

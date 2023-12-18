@@ -1,0 +1,20 @@
+android_app {
+    name: "SettingsSetup",
+    srcs: ["**/*.java"],
+    certificate: "platform",
+    system_ext_specific: true,
+    platform_apis: true,
+    privileged: true,
+    required: [
+        "privapp-settingssetup",
+    ],
+}
+
+prebuilt_etc {
+    name: "privapp-settingssetup",
+    system_ext_specific: true,
+    sub_dir: "permissions",
+    src: "privapp-settingssetup.xml",
+    filename_from_src: true,
+}
+

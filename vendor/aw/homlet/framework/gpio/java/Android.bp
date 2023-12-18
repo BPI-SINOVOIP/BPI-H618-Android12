@@ -1,0 +1,7 @@
+java_library_static {
+    name: "libgpio",
+    srcs: ["**/*.java"],
+    optimize: {
+        enabled: false,
+    },
+}

@@ -1,0 +1,50 @@
+
+
+cc_binary {
+    name: "displayservice",
+    srcs: [
+        "DisplayService.cpp",
+    ],
+    cppflags: [
+        "-Wall",
+    ],
+    shared_libs: [
+        "vendor.display.config@1.0",
+        "libbase",
+        "libbinder",
+        "libhidlbase",
+        "libutils",
+        "displayservice-aidl-interfaces-V1-cpp"
+    ],
+
+    export_shared_lib_headers: [
+        "libhidlbase",
+    ],
+
+    init_rc: ["displayservice.rc"],
+}
+
+// AwDisplay
+java_library {
+
+    name: "libawdisplay",
+    srcs: [
+        "java/**/*.java",
+    ],
+    static_libs: [
+        "displayservice-aidl-interfaces-V1-java",
+    ],
+    optimize: {
+        enabled: false,
+    },
+
+}
+
+aidl_interface {
+    name: "displayservice-aidl-interfaces",
+    local_include_dir: "aidl",
+    srcs: [
+        "aidl/com/softwinner/IDisplayService.aidl",
+    ],
+    versions: ["1"],
+}

@@ -1,0 +1,48 @@
+<resources>
+    <string-array name="logcat_buffer_type">
+        <item>main</item>
+        <item>system</item>
+        <item>crash</item>
+        <item>events</item>
+        <item>radio</item>
+    </string-array>
+
+    <string-array name="logcat_single_file_size_entries">
+        <item>2M</item>
+        <item>8M</item>
+        <item>32M</item>
+        <item>64M</item>
+    </string-array>
+
+    <string-array name="logcat_single_file_size_values">
+        <item>2048</item>
+        <item>8192</item>
+        <item>32768</item>
+        <item>65536</item>
+    </string-array>
+
+    <string-array name="logcat_limit_count">
+        <item>3</item>
+        <item>8</item>
+        <item>16</item>
+        <item>32</item>
+    </string-array>
+
+    <string-array name="kernel_single_file_size_entries">
+        <item>2M</item>
+        <item>8M</item>
+        <item>32M</item>
+    </string-array>
+
+    <string-array name="kernel_single_file_size_values">
+        <item>2048</item>
+        <item>8192</item>
+        <item>32768</item>
+    </string-array>
+
+    <string-array name="kernel_limit_count">
+        <item>3</item>
+        <item>8</item>
+        <item>16</item>
+    </string-array>
+</resources>

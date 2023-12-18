@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/miracast_help1"
+    android:orientation="vertical"
+    android:id="@+id/layout" >
+    
+	<TextView
+        android:id="@+id/step2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/step_title_margintop"
+        android:layout_marginLeft="@dimen/step_title_marginleft"
+        android:singleLine="true"
+        android:text="@string/step2"
+        android:textColor="@drawable/white"
+        android:textSize="@dimen/step_title_front_size" />
+	
+	<TextView
+        android:id="@+id/step2_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/step_hint_margintop"
+        android:layout_marginLeft="@dimen/step_hint_marginleft"
+        android:singleLine="false"
+        android:maxLines="3"
+        android:text="@string/step2_hint"
+        android:textColor="@drawable/white"
+        android:textSize="@dimen/step_hint_front_size" />
+  	
+	<TextView
+        android:id="@+id/menu_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/menu1_title_margintop"
+        android:layout_marginLeft="@dimen/menu1_title_marginleft"
+        android:singleLine="true"
+        android:text="@string/wifi_display"
+        android:textColor="@color/yellow"
+        android:textSize="@dimen/menu_title_front_size" />
+	
+	<TextView
+        android:id="@+id/wifi_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/wifi_display_margintop"
+        android:layout_marginLeft="@dimen/wifi_display_marginleft"
+        android:singleLine="true"
+        android:text="@string/wifi_display"
+        android:textColor="@drawable/white"
+        android:textSize="@dimen/wifi_display_front_size" />
+	
+	<TextView
+        android:id="@+id/state_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/state_hint_margintop"
+        android:layout_marginLeft="@dimen/state_hint_marginleft"
+        android:singleLine="true"
+        android:text="@string/state_hint"
+        android:textColor="@drawable/white"
+        android:textSize="@dimen/state_hint_front_size" />
+	
+	<TextView
+        android:id="@+id/help_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|top"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/help_label_margintop"
+        android:layout_marginLeft="@dimen/help_label_marginleft"
+        android:singleLine="true"
+        android:text="@string/help_label"
+        android:textColor="@drawable/white"
+        android:textSize="@dimen/help_label_front_size" />
+
+</RelativeLayout>

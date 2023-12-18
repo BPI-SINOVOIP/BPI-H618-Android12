@@ -1,0 +1,19 @@
+android_app {
+    name: "AwlogSettings",
+    srcs: ["app/src/main/**/*.kt"],
+    certificate: "platform",
+    platform_apis: true,
+    manifest: "app/src/main/AndroidManifest.xml",
+    resource_dirs: ["app/src/main/res"],
+    static_libs: [
+        "androidx.core_core",
+        "androidx.appcompat_appcompat",
+        "androidx-constraintlayout_constraintlayout",
+        "androidx.preference_preference",
+    ],
+
+    optimize: {
+        //enabled: false,
+        proguard_flags_files: ["app/proguard-rules.pro"],
+    },
+}

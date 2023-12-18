@@ -1,0 +1,5 @@
+allow system_server display_output_service:service_manager find;
+##allow system_server hdmi_prop:file {read open getattr};
+##allow system_server hdmi_prop:property_service set;
+##allow system_server hdmiavailable_prop:property_service set;
+##allow system_server mediasw_prop:property_service set;

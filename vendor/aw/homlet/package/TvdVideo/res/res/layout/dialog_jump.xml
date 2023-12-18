@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_jump"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/jump_background"
+    >
+    <LinearLayout android:id="@+id/jump_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp_30"
+        android:paddingBottom="@dimen/dp_30">
+
+        <EditText android:id="@+id/jump_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:cursorVisible="true"
+            android:textSize="@dimen/sp_80"
+            android:textColor="#ffffffff"
+            android:maxLength="2"
+            android:textIsSelectable="true" />
+        <EditText android:id="@+id/jump_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:cursorVisible="true"
+            android:textSize="@dimen/sp_80"
+            android:textColor="#ffffffff"
+            android:maxLength="2"
+            android:textIsSelectable="true" />
+        <EditText android:id="@+id/jump_sec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:cursorVisible="true"
+            android:textSize="@dimen/sp_80"
+            android:textColor="#ffffffff"
+            android:maxLength="2"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_4">
+
+        <Button android:id="@+id/jump_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/jump_confirm"
+            android:text="@string/details_confirm"/>
+    </LinearLayout>
+</LinearLayout>

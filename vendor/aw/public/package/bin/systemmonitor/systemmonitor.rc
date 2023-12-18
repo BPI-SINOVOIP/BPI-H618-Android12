@@ -1,0 +1,16 @@
+on property:persist.debug.systemmonitor.enable=*
+    setprop debug.systemmonitor.enable ${persist.debug.systemmonitor.enable}
+
+on property:debug.systemmonitor.enable=true && property:sys.boot_completed=1 && property:persist.debug.logpersistd=true
+    start systemmonitor
+
+on property:debug.systemmonitor.enable=false
+    stop systemmonitor
+
+service systemmonitor /system/bin/sh /system/bin/systemmonitor -t 3000 -f /data/media/awlog/systemmonitor
+    disabled
+    class main
+    user root
+    group shell system media_rw sdcard_rw
+    seclabel u:r:shell:s0
+    writepid /dev/cpuset/system-background/tasks

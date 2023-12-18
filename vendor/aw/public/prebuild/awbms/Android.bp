@@ -1,0 +1,16 @@
+
+java_import {
+    name: "awbms.jar",
+    jars: ["lib/awbms.jar"],
+    required: ["permissions_awbms"],
+    installable: true,
+    stem: "awbms",
+}
+
+prebuilt_etc {
+    name: "permissions_awbms",
+    sub_dir: "permissions",
+    src: "permissions-awbms.xml",
+    filename_from_src: true,
+}
+

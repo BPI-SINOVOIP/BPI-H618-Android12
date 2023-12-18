@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="about_settings" product="tv">"关于电视"</string>
+    <string name="device_status_summary" product="tv" msgid="2599162787451519618">"MAC地址，序列号等"</string>
+
+    <!-- Display output mode -->
+    <string name="display_setting">模式设置</string>
+    <string name="display_output_mode_title">显示输出模式</string>
+    <string name="display_output_mode_summary">设置显示输出模式</string>
+    <string name="display_mode_time_out_title">修改确认</string>
+    <string name="display_mode_before_dialog_title">提示</string>
+    <string name="display_mode_time_out_desc">在 %1$s 秒之后 ，将会恢复到原来的设置.\n请问是否保存当前的修改?</string>
+    <string name="display_mode_before_dialog_content">在 %1$s 秒之后 ，将会设置新的输出模式.\n如果屏幕显示不正常，请不要操作等待10秒或者按恢复默认显示按键</string>
+    <string name="display_mode_auto_detect">自动</string>
+    <string name="display_mode_unsupport">不支持格式</string>
+
+    <string name="output_setting">输出设置</string>
+    <string name="hdmi_setting">HDMI设置</string>
+    <string name="hdmi_output_mode">HDMI输出模式</string>
+    <string name="hdmi_output_mode_summary">设置默认的HDMI输出制式</string>
+    <string name="hdmi_full_screen">HDMI全屏显示</string>
+    <string name="hdmi_full_screen_summary">设置HDMI输出是否全屏显示</string>
+
+   <!-- display percent -->
+    <string name="tv_screen_percent_title">屏幕切边</string>
+    <string name="tv_screen_percent_summary">调整屏幕大小</string>
+    <!-- Sound & notification > Sound section: Audio output mode -->
+       <!-- pip display set -->
+     <string name="pip_screen_set_title">画中画设置</string>
+    <string name="pip_screen_set_summary">调整画中画屏幕位置大小</string>
+
+    <string name="pip_screen_set_postion_title">位置设置</string>
+    <string name="pip_screen_set_postion_summary">画中画屏幕位置调整</string>
+     <string name="pip_screen_set_size_title">大小设置</string>
+    <string name="pip_screen_set_size_summary">画中画屏幕大小调整</string>
+
+    <string name="audio_output_mode_title">音频输出模式</string>
+    <!-- Pass through -->
+    <string name="enable_pass_through_summary">输出原始音频流，只能选择一种音频输出模式</string>
+    <string name="sound_pass_through_title">透传</string>
+    <string name="enable_pass_through">启用音频透传</string>
+
+        <!-- USB0 -->
+    <string name="enable_usb0_device">USB0切换到设备模式</string>
+    <string name="enable_usb0_device_summary">切换USB0到设备模式，便于调试</string>
+    <!-- Begin ethernet configure -->
+    <string name="eth_settings_title">以太网</string>
+    <string name="eth_toggle_title">使用以太网</string>
+    <string name="eth_settings">以太网设置</string>
+    <string name="eth_dhcp_configure">动态IP配置</string>
+    <string name="eth_static_configure">静态IP配置</string>
+    <string name="eth_ip_address">IP地址</string>
+    <string name="eth_ip_string">0.0.0.0</string>
+    <string name="eth_mac_address">物理地址</string>
+    <string name="eth_mac_string">00:00:00:00:00:00</string>
+    <string name="eth_mask_address">网络前缀长度</string>
+    <string name="eth_mask_string">255.255.255.255</string>
+    <string name="eth_dns1_address">DNS1</string>
+    <string name="eth_dns1_string">0.0.0.0</string>
+    <string name="eth_dns2_address">DNS2</string>
+    <string name="eth_dns2_string">0.0.0.0</string>
+    <string name="eth_gw_address">默认网关</string>
+    <string name="eth_gw_string">0.0.0.0</string>
+    <string name="eth_errStaticIp">无效静态IP,请检查!</string>
+    <string name="eth_tips">PPPoE已经连接，请先断开!</string>
+    <string name="eth_dev_summaryoff">未连接</string>
+    <string name="eth_dev_summaryon">已连接 -- 使用设备: </string>
+    <string name="eth_ok">确定</string>
+    <string name="eth_cancel">取消</string>
+    <string name="eth_connect_mode">连接模式</string>
+    <string name="eth_mode_dhcp">DHCP 模式</string>
+    <string name="eth_mode_static">静态IP模式</string>
+    <string name="eth_info">连接信息</string>
+    <string name="eth_off">要查看可用网络，请打开以太网。</string>
+
+    <!-- PPPoE -->
+    <string name="pppoe_settings">PPPoE 设置</string>
+    <string name="pppoe_configure">PPPoE配置</string>
+    <string name="pppoe_setup">PPPoE 设置</string>
+    <string name="pppoe_enable">PPPoE 开关</string>
+    <string name="pppoe_setting_interface">接口名称</string>
+    <string name="pppoe_setting_user">用户名</string>
+    <string name="pppoe_setting_password">密码</string>
+    <string name="pppoe_setting_title">PPPoE</string>
+    <string name="pppoe_tips">请先设置用户名和密码</string>
+    <string name="pppoe_errmsg">PPPoE连接失败,原因:</string>
+    <string name="pppoe_info">连接信息</string>
+    <string name="pppoe_local_address">本地IP</string>
+    <string name="pppoe_local_string">0.0.0.0</string>
+    <string name="pppoe_remote_address">远程服务器IP</string>
+    <string name="pppoe_remote_string">0.0.0.0</string>
+    <string name="pppoe_dns_address">DNS</string>
+    <string name="pppoe_dns_string">0.0.0.0</string>
+
+    <!-- DHCP -->
+    <string name="dhcp_setting_user">用户名</string>
+    <string name="dhcp_setting_password">密码</string>
+    <string name="dhcp_use_ipoe">使用IPoE</string>
+    <!-- End ethernet configure -->
+
+   <string name="hdmi_color_space_and_deep">HDMI颜色空间和色深模式</string>
+   <string name="tv_hdr_mode">电视HDR模式</string>
+   <string name="current_mode_summary">当前模式 <xliff:g id="app">%1$s</xliff:g> </string>
+   <string name="display_support_type">当前电视HDMI输出模式不支持</string>
+   <string name="display_support_type_title">修改提示</string>
+</resources>

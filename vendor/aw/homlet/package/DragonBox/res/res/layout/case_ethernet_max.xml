@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/case_ethernet_line_conn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/case_ethernet_line_conn"
+        android:textSize="16sp" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/case_ethernet_ip_addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/case_ethernet_ip_addr"
+        android:textSize="16sp" >
+    </TextView>
+
+</LinearLayout>

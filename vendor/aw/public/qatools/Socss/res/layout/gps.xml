@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2011-2013, Qualcomm Technologies, Inc. All Rights Reserved.
+  Qualcomm Technologies Proprietary and Confidential.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/gps_hint"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textSize="20.0dip"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:fillViewport="true"
+        android:layout_weight="1">
+        <ListView
+            android:id="@+id/gps_list"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:choiceMode="singleChoice"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+</LinearLayout>

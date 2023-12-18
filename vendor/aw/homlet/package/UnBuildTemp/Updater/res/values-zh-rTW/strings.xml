@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">係統昇級</string>
+	<string name="update_online">在線升級</string>
+	<string name="system_update">系統升級</string>
+	<string name="update_local">本地升級</string>
+	<string name ="currentVersion">當前版本</string>
+    <string name="cuurent_version_is_new">當前版本為最新版本</string>
+    <string name="check_update">检查更新</string>
+    <string name="current_version_is_new">當前已經是最新版本了!</string>
+    <string name="now_checking_update">正在检測昇級...</string>
+    <string name="download_now">立即下載</string>
+    <string name="version_description_title">版本說明</string>
+    <string name="new_pack_aviable_redownload_now">最新版本係統已上線，請重新下載\n新版本更新包。</string>
+	<string name="find_aviable_pack_notification_title">您的係統可以昇級至最新版本</string>
+	<string name="more">查看更多</string>
+	<string name="back">返迴</string>
+	<string name="pause">暫停</string>
+	<string name="cancel">取消</string>
+	<string name="confirum">確定</string>
+	<string name="download_continue">繼續下載</string>
+	<string name="finsh_to_install">立即昇級</string>
+	<string name="downloaded"><xliff:g id="now">%1s</xliff:g> 已下載</string>
+	<string name="connect_time_out_information">網絡異常，检測失敗，請重試。</string>
+	<string name="update_server_title">係統更新服務</string>
+	<string name="update_server_descrption">係統更新服務，停止可能導緻係統收不到更新內容 .</string>
+	<string name="current_downloaded">已下載 : <xliff:g id="now">%1s</xliff:g> / <xliff:g id="total">%2s</xliff:g></string>
+	<string name="connecting_download">正在建立連接</string>
+	<string name="update_help_content">昇級包下載完成，點擊"立即昇級"將重啟並昇級至新版本。</string>
+	<string name="network_not_aviable">未連接網絡，請連接後重試。</string>
+	<string name="now_downloading_pack">正在下載係統昇級包</string>
+	<string name="download_pause_notif">昇級包下載暫停</string>
+	<string name="download_finsh_notif_title">係統昇級包下載完成</string>
+	<string name="download_finsh_notif_content">點擊進行係統昇級</string>
+	<string name="download_fail_connect_error">網絡異常，請检查網絡後繼續下載。</string>
+	<string name="now_use_mobile_network_download_continue">正在使用3G網絡，下載可能會產生流量費用，是否繼續下載？</string>
+	<string name="download_later">稍後下載</string>
+	<string name="update_low_battery_msg">為保證昇級成功，請將平闆充電至30µ量以上或連接充電器後重試。</string>
+	<string name="pack_not_exists">昇級包不存在，請重新下載後再昇級</string>
+	<string name="pack_redown">重新下載</string>
+	<string name="pack_error_redown">昇級包錯誤，請重新下載後再昇級。</string>
+	<string name="sorry_this_pack_url_not_exists">抱歉，昇級包已下架。</string>
+	<string name="update_verifying">正在驗證昇級包 ...</string>
+	<string name="no_free_space">沒有足夠的空間</string>
+  <string name="check_failed">检測失敗，請重試</string>
+	
+  <string name="downloading">正在下載: <xliff:g id="now">%1s</xliff:g> / <xliff:g id="total">%2s</xliff:g></string>
+  <string name="paused">暫停: <xliff:g id="now">%1s</xliff:g> / <xliff:g id="total">%2s</xliff:g></string>
+  
+</resources>

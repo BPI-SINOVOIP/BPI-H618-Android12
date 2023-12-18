@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/case_result"
+    android:layout_width="@dimen/dp_120"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_bg"
+    android:gravity="center"
+    android:textColor="#322D33"
+    android:textSize="@dimen/sp_26"
+    android:text="@string/case_result" >
+
+</TextView>

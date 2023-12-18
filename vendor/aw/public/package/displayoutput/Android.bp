@@ -1,0 +1,40 @@
+java_library_static{
+    name: "softwinner.display.output",
+    srcs: [
+        "java/vendor/display/DisplayOutputManager.java",
+        "java/vendor/display/DefaultDisplayOutputManager.java",
+        "java/vendor/display/HomletDisplayOutputManager.java",
+    ],
+    static_libs: [
+        "vendor.display.output-V2-java",
+        "vendor.display.config-V1.0-java",
+
+    ],
+    optimize: {
+        enabled: false,
+    },
+}
+
+aidl_interface {
+    name: "vendor.display.output",
+    vendor_available: true,
+    srcs: [
+        "vendor/display/output/*.aidl",
+    ],
+    stability: "vintf",
+    backend: {
+        java: {
+            platform_apis: true,
+        },
+        /*ndk: {
+            enabled: true,
+            vndk: {
+                enabled: true,
+            },
+        },*/
+    },
+    versions: [
+        "1",
+        "2",
+    ],
+}

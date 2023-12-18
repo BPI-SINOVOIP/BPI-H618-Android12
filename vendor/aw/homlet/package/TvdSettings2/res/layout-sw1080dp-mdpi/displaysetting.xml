@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="@dimen/btn_back_width"
+        android:layout_height="@dimen/btn_back_height"
+        android:layout_marginLeft="@dimen/title_marginleft"
+        android:layout_marginTop="@dimen/title_margintop"
+		android:text="@string/setting_plot"
+		android:gravity="center_vertical"
+		android:paddingLeft="@dimen/setting_paddingleft"
+		android:textSize="@dimen/setting_textsize_large"
+		android:textColor="@drawable/white"
+        android:background="@drawable/ic_title_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.7" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/displaysetting_imagebutton_margin_left"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <com.softwinner.tvdsetting.widget.ExtImageButton
+                        android:id="@+id/scaleandshift"
+                        android:layout_width="@dimen/displaysetting_imagebutton_width"
+                        android:layout_height="@dimen/displaysetting_imagebutton_height"
+                        android:layout_gravity="center"
+                        android:background="@drawable/displaysetting_btn_scale_selector" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/displaysetting_scalebtn_padding_top"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:layout_width="@dimen/scale_btn_image_size"
+                            android:layout_height="@dimen/scale_btn_image_size"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/displaysetting_scalebtn_text_spacing"
+                            android:gravity="center"
+                            android:text="@string/scale"
+                            android:textColor="#FFFFFFFF"
+                            android:textSize="@dimen/setting_textsize_xmedium" />
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.9" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/displaysetting_imagebutton_horizontal_spacing"
+                android:layout_weight="3.1"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:id="@+id/ic_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#00000000"
+                        android:src="@drawable/displaysetting_arrow_up"
+                        android:visibility="invisible" />
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/displaysetting_resolutionbtn_margin_vertical"
+                        android:layout_marginTop="@dimen/displaysetting_resolutionbtn_margin_vertical" >
+
+                        <com.softwinner.tvdsetting.widget.ExtImageButton
+                            android:id="@+id/resolutionsetting"
+                            android:layout_width="@dimen/displaysetting_imagebutton_width"
+                            android:layout_height="@dimen/displaysetting_imagebutton_height"
+                            android:layout_gravity="center"
+                            android:background="@drawable/displaysetting_btn_selector" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/displaysetting_resolutionbtn_padding_top"
+                            android:orientation="vertical" >
+
+                            <TextView
+                                android:id="@+id/resolutions"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center_horizontal"
+                                android:text="@string/resolution1"
+                                android:textColor="#FFFFFFFF"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/setting_textsize_large" />
+
+                            <TextView
+								android:id="@+id/recommends"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="@dimen/displaysetting_resolutionbtn_text_spacing"
+                                android:gravity="center"
+                                android:text="@string/resolution2"
+                                android:textColor="#FFFFFFFF"
+                                android:textSize="@dimen/setting_textsize_small"
+                                android:visibility="visible" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/ic_down"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="#00000000"
+                        android:src="@drawable/displaysetting_arrow_down"
+                        android:visibility="invisible" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Space
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

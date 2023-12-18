@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="@dimen/tab_content_marginTop"
+    	android:layout_marginLeft="@dimen/tab_content_marginLeft"
+    	android:gravity="center_vertical"
+    	android:orientation="horizontal">
+    	
+        <TextView 
+            android:id="@+id/textImage_title"
+            android:layout_width="@dimen/textImage_title_width"
+            android:layout_height="@dimen/textImage_title_height"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_record_title"
+            android:contentDescription="@string/app_name" 
+			android:text="@string/recommand_history"
+			android:gravity="center_vertical"
+			android:paddingLeft="@dimen/recommand_paddingleft2"
+			android:textSize="@dimen/tabindicator_text_size_big"
+			android:textColor="@color/white"
+			android:background="@drawable/title_bg" />
+        
+        <FrameLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+            
+	        <FrameLayout 
+	            android:id="@+id/trash_mode_select"
+	            android:layout_width="@dimen/trash_mode_select_width"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="right"
+	            android:layout_marginTop="@dimen/trash_mode_select_margin_top"
+	            android:layout_marginRight="@dimen/trash_mode_select_margin_right"
+	            android:visibility="invisible"
+	            android:orientation="horizontal" >
+	            
+		        <ImageView 
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="@dimen/ic_record_line_margin_top"
+		            android:layout_marginLeft="@dimen/ic_record_line_margin_left"
+		            android:src="@drawable/ic_record_line"
+		            android:scaleType="fitXY"
+		            android:contentDescription="@string/app_name"/>
+		        
+		        <ImageView 
+		            android:id="@+id/all_delete_mode"
+		            android:layout_width="@dimen/trash_title_width"
+	            	android:layout_height="@dimen/trash_title_height"
+		            android:layout_gravity="left|center_vertical"
+	                android:clickable="true"
+	                android:focusable="true"
+	                android:focusableInTouchMode="true"
+	                android:contentDescription="@string/app_name"
+	                android:nextFocusLeft="@+id/all_delete_mode"
+	                android:nextFocusRight="@+id/single_delete_mode"
+	                android:nextFocusDown="@+id/grid_layout"
+		            android:src="@drawable/record_delete_all_selector"
+		            android:scaleType="fitXY"/>
+		        
+		        <ImageView 
+		            android:id="@+id/single_delete_mode"
+		            android:layout_width="@dimen/trash_title_width"
+	            	android:layout_height="@dimen/trash_title_height"
+		            android:layout_gravity="center"
+		            android:layout_marginLeft="@dimen/single_trash_margin_left"
+	                android:clickable="true"
+	                android:focusable="true"
+	                android:focusableInTouchMode="true"
+	                android:contentDescription="@string/app_name"
+	                android:nextFocusDown="@+id/grid_layout"
+	                android:nextFocusRight="@+id/trash_bt"
+	                android:nextFocusLeft="@+id/all_delete_mode"
+		            android:src="@drawable/record_delete_single_selector"
+		            android:scaleType="fitXY"/>
+	            
+	        </FrameLayout>
+	        
+	        <ImageView 
+	            android:id="@+id/trash_bt"
+	            android:layout_width="@dimen/trash_title_width"
+	            android:layout_height="@dimen/trash_title_height"
+	            android:layout_gravity="right"
+	            android:layout_marginTop="@dimen/trash_bt_margin_top"
+	            android:layout_marginRight="@dimen/trash_bt_margin_right"
+	            android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:contentDescription="@string/app_name"
+                android:nextFocusRight="@+id/trash_bt"
+                android:nextFocusLeft="@+id/trash_bt"
+                android:nextFocusDown="@+id/grid_layout"
+	            android:scaleType="centerCrop"
+	            android:src="@drawable/record_trash_selector" />
+	        
+        </FrameLayout>
+    </LinearLayout>
+    
+	<ScrollView
+	    android:id="@+id/scroll_layout"
+	    android:layout_width="match_parent" 
+	    android:layout_height="match_parent"
+	    android:layout_marginTop="@dimen/scroll_layout_margin_top"
+    	android:layout_marginBottom="@dimen/gridview_marginBottom"
+    	android:scrollbars="none" >
+	    
+	    <FrameLayout 
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	        
+	       <GridLayout
+		        android:id="@+id/grid_layout_content"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginLeft="@dimen/grid_layout_content_margin_left"
+		        android:layout_marginRight="@dimen/grid_layout_content_margin_right"
+		        android:paddingBottom="@dimen/view_margin_xlarger"
+		        android:paddingLeft="@dimen/grid_layout_content_padding_left"
+		        android:columnCount="5" >
+		        
+		    </GridLayout>
+		    
+	        <FrameLayout 
+		        android:layout_width="@dimen/time_line_layout_width"
+		        android:layout_height="match_parent"
+		        android:layout_marginTop="@dimen/time_line_layout_margin_top"
+		        android:layout_marginBottom="@dimen/time_line_layout_margin_bottom"
+		        android:layout_gravity="left">
+	        
+		        <ImageView 
+		            android:id="@+id/record_time_line"
+		            android:layout_width="wrap_content"
+		            android:layout_height="match_parent"
+		            android:layout_gravity="right"
+		            android:layout_marginRight="@dimen/time_line_margin_right"
+		            android:layout_marginTop="@dimen/time_line_margin_top"
+		            android:layout_marginBottom="@dimen/time_line_margin_bottom"
+		            android:src="@drawable/ic_record_line"
+		            android:scaleType="fitXY"
+		            android:visibility="invisible"
+		            android:contentDescription="@string/app_name"/>
+		        
+		        <ImageView 
+		            android:id="@+id/today_tab"
+		            android:layout_width="@dimen/timeline_title_width"
+		            android:layout_height="@dimen/timeline_title_height"
+		            android:layout_gravity="right"
+		            android:src="@drawable/record_today_selector"
+		            android:scaleType="centerCrop"
+		            android:visibility="invisible"
+		            android:contentDescription="@string/app_name"/>
+		        
+		        <ImageView 
+		            android:id="@+id/yesterday_tab"
+		            android:layout_width="@dimen/timeline_title_width"
+		            android:layout_height="@dimen/timeline_title_height"
+		            android:layout_gravity="right"
+		            android:src="@drawable/record_yesterday_selector"
+		            android:scaleType="centerCrop"
+		            android:visibility="invisible"
+		            android:contentDescription="@string/app_name"/>
+		        
+		        <ImageView 
+		            android:id="@+id/before_yesterday_tab"
+		            android:layout_width="@dimen/timeline_title_width"
+		            android:layout_height="@dimen/timeline_title_height"
+		            android:layout_gravity="right"
+		            android:src="@drawable/record_before_yesterday_selector"
+		            android:scaleType="centerCrop"
+		            android:visibility="invisible"
+		            android:contentDescription="@string/app_name"/>
+		        
+		        <ImageView 
+		            android:id="@+id/curr_week_tab"
+		            android:layout_width="@dimen/timeline_title_width"
+		            android:layout_height="@dimen/timeline_title_height"
+		            android:layout_gravity="right"
+		            android:src="@drawable/record_curr_week_selector"
+		            android:scaleType="centerCrop"
+		            android:visibility="invisible"
+		            android:contentDescription="@string/app_name"/>
+		        
+		        <ImageView 
+		            android:id="@+id/last_week_tab"
+		            android:layout_width="@dimen/timeline_title_width"
+		            android:layout_height="@dimen/timeline_title_height"
+		            android:layout_gravity="right"
+		            android:src="@drawable/record_last_week_selector"
+		            android:scaleType="centerCrop"
+		            android:visibility="invisible"
+		            android:contentDescription="@string/app_name"/>
+		        
+		        <ImageView 
+		            android:id="@+id/early_tab"
+		            android:layout_width="@dimen/timeline_title_width"
+		            android:layout_height="@dimen/timeline_title_height"
+		            android:layout_gravity="right"
+		            android:src="@drawable/record_early_selector"
+		            android:scaleType="centerCrop"
+		            android:visibility="invisible"
+		            android:contentDescription="@string/app_name"/>
+		        
+		        <ImageView 
+		            android:id="@+id/line_end"
+		            android:layout_width="@dimen/timeline_title_height"
+		            android:layout_height="@dimen/timeline_title_height"
+		            android:layout_marginRight="@dimen/view_margin_medium"
+		            android:layout_gravity="bottom|right"
+		            android:src="@drawable/ic_record_node_normal"
+		            android:scaleType="centerCrop"
+		            android:visibility="invisible"
+		            android:contentDescription="@string/app_name"/>
+		        
+	    	</FrameLayout>
+	    	
+	        <include
+		        android:id="@+id/animation_layout"
+		        layout="@layout/animation_view_layout"
+		        android:layout_width="match_parent"
+        		android:layout_height="match_parent"
+		        android:layout_marginLeft="@dimen/grid_layout_content_margin_left"
+		        android:layout_marginRight="@dimen/grid_layout_content_margin_right"
+		        android:paddingBottom="@dimen/view_margin_xlarger"
+		        android:paddingLeft="@dimen/grid_layout_content_padding_left"
+		        android:verticalSpacing="@dimen/gridview_verticalSpacing"
+		        android:visibility="visible" />
+	    
+		</FrameLayout>
+	    
+	</ScrollView>
+		
+</FrameLayout>

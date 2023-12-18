@@ -1,0 +1,44 @@
+## property for hdmi cts apk
+#hdmi_cts.hpdreport                u:object_r:hdmi_prop:s0
+#hdmi_cts.cecstandby               u:object_r:hdmi_prop:s0
+#hdmi_cts.hdcp_enable              u:object_r:hdmi_prop:s0
+#hdmi_cts.one_touch_play           u:object_r:hdmi_prop:s0
+#
+## property for audio
+audio.hdmi.expected               u:object_r:system_prop:s0
+mediasw.sft.rawdata               u:object_r:system_prop:s0
+audio.hdmi.available              u:object_r:system_prop:s0
+#vendor.audio.output.active        u:object_r:audio_hal_prop:s0
+#vendor.mediasw.sft.rawdata        u:object_r:audio_hal_prop:s0
+#vendor.audio.input.active         u:object_r:audio_hal_prop:s0
+#
+## property for display output control
+#persist.disp.device_config.hdmi   u:object_r:disp_prop:s0
+#persist.disp.margin.hdmi          u:object_r:disp_prop:s0
+#persist.disp.dataspace.hdmi       u:object_r:disp_prop:s0
+#persist.disp.pixelformat.hdmi     u:object_r:disp_prop:s0
+#persist.disp.aspectratio.hdmi     u:object_r:disp_prop:s0
+#persist.disp.device_config.cvbs   u:object_r:disp_prop:s0
+#persist.disp.margin.cvbs          u:object_r:disp_prop:s0
+#persist.disp.dataspace.cvbs       u:object_r:disp_prop:s0
+#persist.disp.pixelformat.cvbs     u:object_r:disp_prop:s0
+#persist.disp.aspectratio.cvbs     u:object_r:disp_prop:s0
+#vendor.sys.disp_config            u:object_r:disp_prop:s0
+#vendor.sys.disp_rsl_fex           u:object_r:disp_prop:s0
+#vendor.sys.tv_vdid_fex            u:object_r:disp_prop:s0
+#persist.display.policy            u:object_r:disp_prop:s0
+
+## property for hdmi-cec
+#hdmi.cec.debug                    u:object_r:disp_prop:s0
+
+## property for gralloc
+#debug.gralloc.showmsg             u:object_r:disp_prop:s0
+#ro.sys.gralloc_carveout_enable    u:object_r:disp_prop:s0
+#ro.sys.ion_flush_cache_range      u:object_r:disp_prop:s0
+
+
+#add for usb.
+persist.vendor.usb0device         u:object_r:system_prop:s0
+#add for DragonBox
+dragonbox.sys.rmfile              u:object_r:system_prop:s0
+#persist.sys.hdmistrategy          u:object_r:disp_prop:s0

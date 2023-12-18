@@ -1,0 +1,13 @@
+on boot
+   chmod 777 /sys/class/axp/axp_num
+   chmod 777 /sys/class/axp/axp_reg
+   chmod 777 /dev/i2c-0
+   chmod 777 /dev/i2c-1
+   chmod 777 /dev/i2c-2
+   chmod 777 /dev/i2c-3
+   chmod 777 /dev/i2c-4
+   chmod 777 /dev/i2c-5
+   chmod 777 /dev/i2c-6
+   chmod 777 /dev/i2c-7
+   chmod 777 /dev/i2c-8
+   chmod 777 /dev/i2c-9

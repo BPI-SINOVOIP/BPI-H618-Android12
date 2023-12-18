@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fsms="http://schemas.android.com/apk/res/com.softwinner.tvdsetting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="@dimen/btn_back_width"
+        android:layout_height="@dimen/btn_back_height"
+        android:layout_marginLeft="@dimen/title_marginleft"
+        android:layout_marginTop="@dimen/title_margintop"
+		android:text="@string/softap"
+		android:gravity="center_vertical"
+		android:paddingLeft="@dimen/setting_paddingleft"
+		android:textSize="@dimen/setting_textsize_large"
+		android:textColor="@drawable/white"
+        android:background="@drawable/ic_title_bg" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/ssid_layout"
+            android:layout_width="@dimen/applistwidth"
+            android:layout_height="@dimen/applistitemheight"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/applist_layout_margintop"
+            android:background="@drawable/list_btn_nor"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="@dimen/softapsetting_textview_width"
+                android:layout_height="fill_parent"
+                android:paddingStart="@dimen/listitem_padding"
+                android:text="@string/network_ssid"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xmedium" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/ssid"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/silver"
+                    android:gravity="center"
+                    android:textColor="@drawable/white"
+                    android:textSize="@dimen/setting_textsize_xmedium" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/security_layout"
+            android:layout_width="@dimen/applistwidth"
+            android:layout_height="@dimen/applistitemheight"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/softapsetting_margin_top"
+            android:background="@drawable/list_btn_nor"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/listitem_vertical_padding"
+            android:paddingTop="@dimen/listitem_vertical_padding" >
+
+            <TextView
+                android:layout_width="@dimen/softapsetting_textview_width"
+                android:layout_height="fill_parent"
+                android:paddingStart="@dimen/listitem_padding"
+                android:text="@string/security"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xmedium" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal" >
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_previous_item" />
+
+                    <com.softwinner.tvdsetting.widget.ItemSelectView
+                        android:id="@+id/security"
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="5"
+                        android:background="@drawable/silver"
+                        fsms:entries="@array/softap_security"
+                        fsms:isPosition="1"
+                        fsms:isTextColor="@drawable/white"
+                        fsms:isTextSize="@dimen/setting_textsize_xmedium" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_next_item" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/passwd_layout"
+            android:layout_width="@dimen/applistwidth"
+            android:layout_height="@dimen/applistitemheight"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/softapsetting_margin_top"
+            android:background="@drawable/list_btn_nor"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/listitem_vertical_padding"
+            android:paddingTop="@dimen/listitem_vertical_padding" >
+
+            <TextView
+                android:layout_width="@dimen/softapsetting_textview_width"
+                android:layout_height="fill_parent"
+                android:paddingStart="@dimen/listitem_padding"
+                android:text="@string/passwd"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xmedium" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/passwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/silver"
+                    android:gravity="center"
+                    android:textColor="@drawable/white"
+                    android:textSize="@dimen/setting_textsize_xmedium" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submmit"
+            android:layout_width="@dimen/netsetting_button_width"
+            android:layout_height="@dimen/netsetting_button_height"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/softapsetting_submmitbtn_margin_top"
+            android:background="@drawable/btn_selector"
+            android:text="@string/submit"
+            android:textColor="@drawable/white"
+            android:textSize="@dimen/setting_textsize_xmedium" />
+    </LinearLayout>
+
+</LinearLayout>

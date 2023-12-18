@@ -1,0 +1,36 @@
+##
+## add rules for HWCPrivateService
+##
+#allow hal_graphics_composer_default hwc_private_service:service_manager {add};
+#allow hal_graphics_composer_default vndservicemanager:binder            {call transfer};
+#
+#allow vndservicemanager hal_graphics_composer_default:dir     {search};
+#allow vndservicemanager hal_graphics_composer_default:file    {read open};
+#allow vndservicemanager hal_graphics_composer_default:process {getattr};
+
+allow hal_graphics_composer_default sysfs_disp:file { write open read};
+allow hal_graphics_composer_default sysfs_disp:dir search;
+
+# rules for access into /Reserve0/disp_rsl.fex
+allow hal_graphics_composer_default vfat:dir { search add_name write };
+allow hal_graphics_composer_default vfat:file { create open read write };
+
+#allow hal_graphics_composer_default disp_prop:file {open read getattr};
+allow hal_graphics_composer_default sysfs_switch:dir search;
+#allow hal_graphics_composer_default disp_prop:property_service set;
+
+#
+# genfs_contexts will create tags for sysfs_edid/sysfs_hdmi/sysfs_cvbs,
+# so we should add the following rules for composer to access those file nodes.
+#
+allow hal_graphics_composer_default sysfs_edid:file { getattr open read };
+allow hal_graphics_composer_default sysfs_hdmi:file { read open getattr };
+allow hal_graphics_composer_default sysfs_cvbs:file { read open getattr };
+allow hal_graphics_composer_default sysfs_hdmi:dir  { search };
+allow hal_graphics_composer_default sysfs_cvbs:dir  { search };
+
+# allow composer to config hdcp
+allow hal_graphics_composer_default graphics_device:chr_file { getattr read write ioctl open };
+# allow composer to visit chipinfo node
+allow hal_graphics_composer_default sunxi_soc_device:chr_file { getattr read ioctl open };
+

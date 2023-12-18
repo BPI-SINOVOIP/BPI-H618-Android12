@@ -1,0 +1,268 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_main_bg"
+    tools:context=".UpdateMain" >
+
+    <!-- Begin Banner Views -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <RelativeLayout
+            android:id="@+id/rly_banner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/banner_ly_height"
+            android:background="@drawable/banner768x360" >
+            
+
+            <ImageView
+                android:id="@+id/banner_left_icon_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/banner_left_icon_margin_left"
+                android:layout_marginTop="@dimen/banner_left_icon_margin_top"
+                android:src="@drawable/icon_upgrade" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/banner_left_text_margin_left"
+                android:layout_marginTop="@dimen/banner_left_text_margin_top"
+                android:layout_toRightOf="@+id/banner_left_icon_iv"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/banner_left_text_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/banner_left_icon_iv"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/banner_logo_margin_top"
+                android:src="@drawable/logo" />
+        </RelativeLayout>
+        <!-- End Banner Views -->
+        <!-- Begin Content Views -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rly_banner"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/gray_main_bg" >
+
+            <!-- Begin Version information Views -->
+
+            <RelativeLayout
+                android:id="@+id/version_content_info"
+                android:layout_width="@dimen/contetn_version_ly_width"
+                android:layout_height="@dimen/contetn_version_ly_height"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/content_version_ly_margin_top"
+                android:clickable="false"
+                android:background="@drawable/backgroud_img" >
+
+                <ImageView
+                    android:id="@+id/update_info_ver_logo_img"
+                    android:layout_width="@dimen/icon_update_size"
+                    android:layout_height="@dimen/icon_update_size"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="12dp"
+                    android:background="@drawable/icon_set" />
+
+                <RelativeLayout
+                    android:id="@+id/version_content_top_info"
+                    android:layout_width="@dimen/contetn_version_ly_width"
+                    android:layout_height="@dimen/contetn_version_ly_height"
+                    android:layout_marginLeft="65dp" >
+
+                    <TextView
+                        android:id="@+id/content_versio_info_tv"
+                        android:layout_width="@dimen/contetn_version_tv_width"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="@dimen/content_version_info_tv_margin_left"
+                        android:layout_marginTop="@dimen/content_version_info_tv_margin_top"
+                        android:text="@string/jianui"
+                        android:textSize="@dimen/content_version_info_tv_font_size" />
+
+                    <ImageView
+                        android:id="@+id/arrow_more_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/arrow_img" />
+
+                    <TextView
+                        android:id="@+id/content_versio_info_content_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/content_versio_info_tv"
+                        android:layout_marginLeft="@dimen/content_version_info_tv_margin_left"
+                        android:layout_marginTop="@dimen/content_version_info_content_tv_margin_top"
+                        android:text="@string/cuurent_version_is_new"
+                        android:textColor="@color/gray_version_content"
+                        android:textSize="@dimen/content_version_info_content_tv_font_size" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/version_content_top_download"
+                    android:layout_width="@dimen/contetn_version_ly_width"
+                    android:layout_height="@dimen/contetn_version_ly_height"
+                    android:layout_marginLeft="70dp"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/download_versio_name"
+                        android:layout_width="@dimen/contetn_version_tv_width"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="@dimen/content_version_info_tv_margin_left"
+                        android:layout_marginTop="@dimen/content_version_info_tv_margin_top"
+                        android:text="@string/jianui"
+                        android:textSize="@dimen/content_version_info_tv_font_size" />
+
+                    <TextView
+                        android:id="@+id/download_finsh_info_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/download_versio_name"
+                        android:layout_marginLeft="@dimen/content_version_info_tv_margin_left"
+                        android:layout_marginTop="@dimen/content_version_info_content_tv_margin_top"
+                        android:text="@string/cuurent_version_is_new"
+                        android:textColor="@color/gray_version_content"
+                        android:textSize="@dimen/content_version_info_content_tv_font_size"
+                        android:visibility="gone" />
+
+                    <ProgressBar
+                        android:id="@+id/pack_downpb"
+                        style="@style/ImageDownloadProgressBar"
+                        android:layout_width="fill_parent"
+                        android:layout_height="@dimen/down_progressbar_height"
+                        android:layout_below="@+id/download_versio_name"
+                        android:layout_marginLeft="@dimen/down_pb_margin_left"
+                        android:layout_marginRight="@dimen/down_pb_margin_right"
+                        android:layout_marginTop="@dimen/down_pb_margin_top"
+                        android:max="0" />
+                    
+                    <TextView
+                        android:id="@+id/download_file_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pack_downpb"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="@dimen/content_version_info_tv_margin_left"
+                        android:layout_marginTop="@dimen/content_version_info_content_margin_top"
+                        android:text="@string/current_downloaded"
+                        android:textColor="@color/gray_version_content"
+                        android:textSize="@dimen/content_version_info_content_tv_font_size" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/version_content_info_description"
+                android:layout_width="@dimen/contetn_version_ly_width"
+                android:layout_height="@dimen/contetn_version_ly_height"
+                android:layout_below="@+id/version_content_info"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/background_next"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/content_versio_info_descrption_tv"
+                    android:layout_width="@dimen/contetn_version_info_description_tv_width"
+                    android:layout_height="@dimen/content_version_info_description_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/content_version_info_tv_margin_left"
+                    android:layout_marginTop="@dimen/content_version_info_content_tv_margin_top"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="@string/description"
+                    android:textColor="@color/gray_version_content"
+                    android:textSize="@dimen/content_version_info_content_tv_font_size" />
+
+                <Button
+        			android:id="@+id/content_versio_info_descrption_more_tv"
+       				android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:layout_marginRight="@dimen/content_version_info_tv_margin_left"
+                    android:layout_marginTop="@dimen/content_version_info_description_more_tv_margin_top"
+        			android:layout_alignParentRight="true"
+        			android:layout_centerVertical="true"
+        			android:background="@drawable/topic_button_more"
+        			android:textSize="@dimen/content_version_info_content_tv_font_size"
+        			android:text="@string/more"
+        			android:textColor="@color/button_text_color" />
+                
+               <!--  <TextView
+                    android:id="@+id/content_versio_info_descrption_more_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/content_version_info_tv_margin_left"
+                    android:layout_marginTop="@dimen/content_version_info_description_more_tv_margin_top"
+                    android:gravity="bottom"
+                    android:text="@string/more"
+                    android:textColor="@color/gray_version_content"
+                    android:textSize="@dimen/content_version_info_content_tv_font_size" /> -->
+            </RelativeLayout>
+            <!-- End Version information Views -->
+            <!-- Begin Version Check Button Views -->
+
+            <RelativeLayout
+                android:id="@+id/version_content_check_btn"
+                android:layout_width="@dimen/contetn_version_ly_width"
+                android:layout_height="@dimen/contetn_version_check_btn_height"
+                android:layout_below="@+id/version_content_info_description"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/content_version_ly_margin_top" >
+
+                <Button
+                    android:id="@+id/version_check_btn"
+                    android:layout_width="@dimen/contetn_version_ly_width"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_green_bg"
+                    android:text="@string/check_update"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/content_version_info_check_btn_font_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/update_button_help_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/version_content_check_btn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/content_version_ly_margin_top"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/update_button_help_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/update_description_help_tv_margin_top"
+                    android:gravity="bottom"
+                    android:text="@string/update_help_content"
+                    android:textColor="@color/gray_version_content"
+                    android:textSize="@dimen/content_version_info_content_tv_font_size" />
+            </RelativeLayout>
+            <!-- End Version Check Button Views -->
+        </RelativeLayout>
+            
+        </LinearLayout>
+        
+    </ScrollView>
+    <!-- End Content Views -->
+
+</RelativeLayout>

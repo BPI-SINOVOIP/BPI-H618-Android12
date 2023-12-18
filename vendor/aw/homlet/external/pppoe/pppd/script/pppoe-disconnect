@@ -1,0 +1,36 @@
+#!/system/bin/sh
+
+#******************************************
+# Usage       :awlog [log_string]
+# Description :Print the log to the anddroid log system 
+#              or the shell .
+#******************************************
+function awlog(){
+if [ $# -eq 1 ]
+then
+    echo $1
+    log -t AW-PPPoE $1
+fi
+}
+
+PPPOE_INTERFACE_FILE=/data/misc/pppoe/pppoe-interface
+PPPOE_PARM_INTERFACE=`cat $PPPOE_INTERFACE_FILE`
+PPPD_PID_FILE=/data/misc/pppoe/${PPPOE_PARM_INTERFACE}_pppd.pid
+LINK_STATE=`cat /sys/class/net/${PPPOE_PARM_INTERFACE}/carrier`
+
+awlog "Stopping pppoe on $PPPOE_PARM_INTERFACE"
+
+# Kill pppd, which should in turn kill pppoe
+PPPD_PID=`cat $PPPD_PID_FILE`
+if [ $? -eq 0 ] && [ $PPPD_PID -gt 0 ]
+then
+    awlog "Killing pppoe ($PPPD_PID)"
+    if [ "1" = "$LINK_STATE" ] || [ "$PPPOE_PARM_INTERFACE" = "wlan0" ]
+    then
+        kill -15 $PPPD_PID > /dev/null 2>&1
+    else
+        kill -9 $PPPD_PID > /dev/null 2>&1
+    fi
+else
+setprop "net.${PPPOE_PARM_INTERFACE}-pppoe.status" "stopped"
+fi

@@ -1,0 +1,40 @@
+
+    <resources>
+        <string-array name="case_battery_info">
+            <item >Battery State:</item>
+            <item >Health State:</item>
+            <item >Real-time Info:</item>
+            <item >:</item>
+            <item >Electricity Level:</item>
+            <item >Plug set:</item>
+            <item >Voltage:</item>
+            <item >Temperature:</item>
+            <item >Production Process:</item>
+        </string-array>
+        
+        <string-array name="case_battery_status">
+            <item>Unknow</item>
+            <item >Charge</item>
+            <item >Discharge</item>
+            <item >Electricity Full</item>
+            <item >No Electricity</item>
+            
+            
+        </string-array>
+        <string-array name="case_battery_health">
+            
+            <item>Unknow</item>
+            <item>Good</item>            
+            <item>Overheating</item>
+            <item>Bad</item>
+            <item>Voltage too Hight</item>            
+            <item>Getting Info failed</item>
+            <item>Too cold</item>
+        </string-array>
+        <string-array name="case_battery_plugged">
+            <item >No Plug</item>
+            <item >Aalternating current</item>
+            <item >Usb plugged</item>
+            
+        </string-array>
+    </resources>

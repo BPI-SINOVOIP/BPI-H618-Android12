@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <com.softwinner.agingdragonbox.MainView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <com.softwinner.agingdragonbox.SystemKeyButton
+            android:id="@+id/previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/main_btn_previous" />
+
+        <com.softwinner.agingdragonbox.SystemKeyButton
+            android:id="@+id/passed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/main_btn_passed" />
+
+        <com.softwinner.agingdragonbox.SystemKeyButton
+            android:id="@+id/failed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/previous"
+            android:text="@string/main_btn_failed" />
+
+    </com.softwinner.agingdragonbox.MainView>

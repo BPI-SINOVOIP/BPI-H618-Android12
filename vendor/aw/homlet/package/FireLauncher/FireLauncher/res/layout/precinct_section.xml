@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.firelauncher.section.PrecinctSection xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <FrameLayout 
+                android:id="@+id/precinct_1080p"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_marginLeft="@dimen/layout_margin_left"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" 
+                android:nextFocusRight="@+id/precinct_blu_ray"
+                android:nextFocusLeft="@id/education">
+	            <ImageView
+	                android:id="@+id/precinct_1080p_image"
+	                android:layout_width="@dimen/rectangle_vertical_width"
+	                android:layout_height="@dimen/rectangle_vertical_height"
+	                android:scaleType="centerCrop"
+	                android:contentDescription="@string/app_name"
+	                android:src="@drawable/fail_h" />
+	            <ImageView 
+	                android:id="@+id/precinct_1080p_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:scaleType="centerCrop"
+	                android:layout_gravity="bottom"
+	                android:src="@drawable/title_1080p"/>
+            </FrameLayout>
+            
+           <!--  android:nextFocusRight="@id/precinct_3d" -->
+            <FrameLayout 
+                android:id="@+id/precinct_blu_ray"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_toRightOf="@+id/precinct_1080p"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:nextFocusRight="@id/precinct_1080p" 
+                android:nextFocusLeft="@id/precinct_1080p"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+	             <ImageView
+	                android:id="@+id/precinct_blu_ray_image"
+	                android:layout_width="@dimen/rectangle_vertical_width"
+	                android:layout_height="@dimen/rectangle_vertical_height"
+	                android:scaleType="centerCrop"
+	                android:contentDescription="@string/app_name"
+	                android:src="@drawable/fail_h" />
+	             <ImageView 
+	                android:id="@+id/precinct_blu_ray_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:scaleType="centerCrop"
+	                android:layout_gravity="bottom"
+	                android:src="@drawable/title_blueray"/>
+             </FrameLayout>
+
+            <ImageView
+                android:id="@+id/precinct_3d"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/precinct_blu_ray"
+                android:background="@drawable/bg_purple_hor"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/precinct_blu_ray"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_blueray" />
+            
+            <ImageView
+                android:id="@+id/precinct_mango"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_marginRight="@dimen/indicator_margin_xlarge"
+                android:layout_below="@+id/precinct_3d"
+                android:layout_toRightOf="@+id/precinct_blu_ray"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name"
+                android:background="@drawable/bg_yellow_hor"
+                android:src="@drawable/ic_mango" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toRightOf="@+id/precinct_mango" />
+        </RelativeLayout>
+
+        <!-- 必须在FrameLayout布局中添加 -->
+
+        <include
+            android:id="@+id/animation_layout"
+            layout="@layout/animation_view_layout"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</com.softwinner.firelauncher.section.PrecinctSection>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/grid_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="#aed056"
+    android:contentDescription="@string/app_name" ><!-- @dimen/square_side -->
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="@dimen/v3_app_section_icon_size"
+        android:layout_height="@dimen/v3_app_section_icon_size"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/v3_app_section_icon_margin_top"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY" />
+        
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="@dimen/v3_rectangle_vertical_width"
+        android:layout_height="@dimen/v3_rectangle_setting_heght"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="0dp"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:background="@drawable/v3_setting_bottom"
+        android:textSize="@dimen/v3_app_section_name_textsize" />
+    	<!--android:layout_marginBottom="@dimen/v3_app_gridview_text_padding_bottom"-->
+
+</FrameLayout>

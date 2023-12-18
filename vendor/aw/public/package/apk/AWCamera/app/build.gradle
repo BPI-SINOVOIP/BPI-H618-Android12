@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    buildToolsVersion = '28.0.3'
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.allwinner.camera"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.1.0"
+        externalNativeBuild {
+//            cmake {
+//
+////                cppFlags "-frtti -fexceptions -std=c++11 -fopenmp -w"
+////                arguments "-DANDROID_STL =c++_shared"
+////                cppFlags ""
+//                cppFlags "-std=c++14 -frtti -fexceptions -lz"
+//                abiFilters 'armeabi-v7a'
+//            }
+        }
+        ndk{
+            abiFilters 'armeabi-v7a'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
+
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:25.0.0'
+    implementation 'com.android.support:recyclerview-v7:25.0.0'
+    implementation 'com.android.support:cardview-v7:25.0.0'
+    implementation 'com.android.support:design:23.4.0'
+    implementation 'com.android.support:support-v4:23.4.0'
+    implementation 'com.android.support:support-v13:23.4.0'
+    implementation(name:'portraitsegmentation-0.0.6', ext:'aar')
+    implementation(name:'handgesturedetection-0.0.6', ext:'aar')
+    implementation(name:'facedetection-0.0.5', ext:'aar')
+    implementation(name:'aliyun-log-android-sdk-2.0.0', ext:'aar')
+    implementation(name:'core-0.0.5', ext:'aar')
+    implementation(name:'mnn-0.0.4', ext:'aar')
+//    implementation 'com.alibaba.android.mnnkit:facedetection:0.0.5'
+//    implementation 'com.alibaba.android.mnnkit:handgesturedetection:0.0.6'
+//    implementation 'com.alibaba.android.mnnkit:portraitsegmentation:0.0.6'
+  //  implementation project(path: ':opencv-java')
+
+}

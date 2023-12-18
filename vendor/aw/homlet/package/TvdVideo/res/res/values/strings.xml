@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TvdVideo</string>
+    <string name="loading_video">Loading video ...</string>
+    <string name="replaying_title">Replay video</string>
+    <string name="replaying_message">Replaying the video ?</string>
+    <string name="details_jump">Jump</string>
+    <string name="details_confirm">Confirm</string>
+    <string name="details_cancel">Cancel</string>
+    <string name="overflow_toast">The time is max than </string>
+    <string name="playlist_miss">No play list</string>
+    <string name="play_finish">Device ejected, video finish</string>
+    <string name="not_support">The display device not support 3D</string>
+    <string name="not_hdmi">Current ouput is not HDMI, do not support 3D</string>
+    <string name="not_support_video">Do not support this video!</string>
+    <string name="out_of_memory">There is not enough memory!</string>
+    <string name="unknown_error">There is a unknown error!</string>
+    <string name="media_default_error">Media error!</string>
+    <string name="mediaserver_died">MediaServer die!</string>
+    <string name="io_error">There is an IO error!</string>
+    <string name="timeout">Time out error!</string>
+    <string name="not_valid_for_progressive_playback">The video is streamed and its container is not valid for progressive playback!</string>
+    <string name="error_malformed">TBitstream is not conforming to the related coding standard or file spec!</string>
+    <string name="video_effect_adjuest">Video Effect Adjuest</string>
+    <string name="video_effect">Video Effect</string>
+    <string name="display_enhance">Display enhance</string>
+    <string name="brightness">brightness</string>
+    <string name="contrast">contrast</string>
+    <string name="saturation">saturation</string>
+    <string name="de_noise">de-noise</string>
+    <string name="detail_enhance">detail-en</string>
+    <string name="edge_sharpening">edge-sharp</string>
+    <string name="enable">enable</string>
+    <string name="disable">disable</string>
+    <string name="demo">demo</string>
+    <string name="de-2d-noise">2d-de-noise</string>
+    <string name="de-3d-noise">3d-de-noise</string>
+    <string name="de-3d-noisestrength">3d-noisestrength</string>
+    <string name="movie">movie</string>
+    <string name="none">none</string>
+
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/btn_back_width"
+            android:layout_height="@dimen/btn_back_height"
+            android:layout_marginLeft="@dimen/title_marginleft"
+            android:layout_marginTop="@dimen/title_margintop"
+			android:text="@string/recovery_local_update"
+			android:gravity="center_vertical"
+			android:paddingLeft="@dimen/title_paddingleft"
+			android:textSize="@dimen/setting_textsize_large"
+			android:textColor="@drawable/white"
+			android:background="@drawable/ic_title_bg" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/content_field"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textSize="@dimen/setting_textsize_small"
+        android:layout_weight="3" >
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/TextView0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/btn_selector"
+            android:text="@android:string/cancel"
+            android:textColor="@drawable/white"
+            android:textSize="@dimen/sys_textsize_large" />
+
+        <TextView
+            android:id="@+id/TextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:background="@drawable/btn_selector"
+            android:text="@android:string/ok"
+            android:textColor="@drawable/white"
+            android:textSize="@dimen/sys_textsize_large" />
+
+        <TextView
+            android:id="@+id/TextView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2" />
+    </LinearLayout>
+
+</LinearLayout>

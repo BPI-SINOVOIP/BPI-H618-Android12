@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="@dimen/tab_content_marginTop"
+    	android:layout_marginLeft="@dimen/tab_content_marginLeft"
+    	android:gravity="center_vertical"
+    	android:orientation="horizontal">
+    	
+        <TextView 
+            android:id="@+id/textImage_title"
+            android:layout_width="@dimen/gridview_imageTitle_width"
+            android:layout_height="@dimen/gridview_imageTitle_height"
+            android:scaleType="centerCrop"
+			android:gravity="center_vertical"
+			android:paddingLeft="@dimen/recommand_paddingleft2"
+			android:textSize="@dimen/tabindicator_text_size_big"
+			android:textColor="@color/white"
+			android:background="@drawable/title_bg" />
+        
+    </LinearLayout>
+
+    
+     <GridView
+        android:id="@+id/functional_zone_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    	android:layout_marginTop="@dimen/gridview_down_space"
+    	android:layout_marginBottom="@dimen/gridview_marginBottom"
+    	android:layout_marginLeft="@dimen/gridview_marginLeft"
+    	android:layout_marginRight="@dimen/gridview_marginRigth"
+        android:padding="@dimen/gridview_padding_xlarger"
+        android:verticalSpacing="@dimen/gridview_verticalSpacing"
+		android:clickable="true"
+		android:focusable="true"
+        android:focusableInTouchMode="true" 
+        android:listSelector="@android:color/transparent"
+        android:numColumns="5"
+        android:stretchMode="columnWidth"
+		android:choiceMode="singleChoice"
+		android:scrollbars="none"
+        /> 
+		
+     <include
+        android:id="@+id/animation_layout"
+        layout="@layout/animation_view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    	android:layout_marginTop="@dimen/gridview_down_space"
+    	android:layout_marginBottom="@dimen/gridview_marginBottom"
+    	android:layout_marginLeft="@dimen/gridview_marginLeft"
+    	android:layout_marginRight="@dimen/gridview_marginRigth"
+        android:padding="@dimen/gridview_padding_xlarger"
+        android:visibility="visible" />
+    
+</FrameLayout>

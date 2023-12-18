@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPerCaseTheme"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/item_num_text" />
+
+    <include layout="@layout/item_action_button" />
+
+    <TableLayout style="@style/MainPerCaseTabLayout" >
+
+        <TableRow style="@style/MainPerCaseTabRow" >
+
+            <TextView
+                android:id="@+id/case_yst_wifi_conn_name"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_yst_wifi_conn_name" />
+
+            <TextView
+                android:id="@+id/case_yst_wifi_strength"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_yst_wifi_conn_streagth" />
+
+            <TextView
+                android:id="@+id/case_yst_wifi_status"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_yst_wifi_conn_status" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/case_yst_wifi_result"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_yst_wifi_text" >
+            </TextView>
+        </TableRow>
+    </TableLayout>
+
+    <include layout="@layout/item_result_text" />
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="0dp"
+    android:background="#ffffffff" >
+
+    <TextView
+        android:id="@+id/message_txt"
+        android:layout_width="301dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center"
+        android:text="@string/install_power_message"
+        android:textColor="#ff000000"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/divider_v"
+        android:layout_width="301dp"
+        android:layout_height="1dp"
+        android:layout_below="@+id/message_txt"
+        android:background="#BEBEBE" />
+
+    <TextView
+        android:id="@+id/divider_h"
+        android:layout_width="1dp"
+        android:layout_height="49dp"
+        android:layout_toRightOf="@+id/dialog_cancel"
+        android:layout_below="@+id/divider_v"
+        android:background="#BEBEBE" />
+
+    <TextView
+        android:id="@+id/dialog_cancel"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/divider_v"
+        android:background="@drawable/main_button_style"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/dialog_cancel"
+        android:textColor="#ff000000"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/dialog_confirm"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:layout_below="@+id/divider_v"
+        android:layout_toRightOf="@+id/divider_h"
+        android:background="@drawable/main_button_style"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/dialog_confirm"
+        android:textColor="#ff000000"
+        android:textSize="20sp" />
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+html{
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+  color:#fff;
+  font: 1em Arial;
+  overflow: hidden;
+}
+title{
+  position: absolute;
+  font: 4em/4em Arial;
+  top: 50%;
+  left: 50%;
+  height: 1em;
+  margin: -3em 0 0 -2em;
+  text-shadow: 1px 1px 1px#000
+}
+head,title{display:block;}
+p{opacity:.7;}
+
+/* increase font for higher resolution displays */
+@media only screen and (min-device-width: 768px) {
+  title{
+    font: 8em/8em Arial;
+    margin: -4em 0 0 -2em;
+  }
+}

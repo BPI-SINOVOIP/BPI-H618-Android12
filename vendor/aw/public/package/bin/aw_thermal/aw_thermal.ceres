@@ -1,0 +1,29 @@
+#!/bin/sh
+cpu_temp="/sys/class/thermal/thermal_zone0/temp"
+
+trip1="97000"
+trip2="101000"
+trip3="105000"
+
+while true
+do
+    temp=`cat $cpu_temp`
+    if [ $temp -gt $trip3 ]; then
+        echo 0 > /sys/devices/system/cpu/cpu3/online
+        echo 0 > /sys/devices/system/cpu/cpu2/online
+        echo 0 > /sys/devices/system/cpu/cpu1/online
+    elif [ $temp -gt $trip2 ]; then
+        echo 0 > /sys/devices/system/cpu/cpu3/online
+        echo 0 > /sys/devices/system/cpu/cpu2/online
+        echo 1 > /sys/devices/system/cpu/cpu1/online
+    elif [ $temp -gt $trip1 ]; then
+        echo 0 > /sys/devices/system/cpu/cpu3/online
+        echo 1 > /sys/devices/system/cpu/cpu2/online
+        echo 1 > /sys/devices/system/cpu/cpu1/online
+    else
+        echo 1 > /sys/devices/system/cpu/cpu3/online
+        echo 1 > /sys/devices/system/cpu/cpu2/online
+        echo 1 > /sys/devices/system/cpu/cpu1/online
+    fi
+    sleep 2
+done

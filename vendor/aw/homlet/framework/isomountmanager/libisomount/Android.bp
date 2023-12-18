@@ -1,0 +1,27 @@
+cc_library_headers {
+    name: "libisomountmanagerservice_headers",
+    export_include_dirs: ["include"],
+}
+
+cc_library_shared {
+
+    srcs: [
+        "IISOMountManagerService.cpp",
+        "ISOMountManagerService.cpp",
+    ],
+
+    export_include_dirs: ["include"],
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libbinder",
+        "libandroid_runtime",
+    ],
+
+    name: "libisomountmanagerservice",
+
+    host_ldlibs: ["-llog"],
+
+}
+

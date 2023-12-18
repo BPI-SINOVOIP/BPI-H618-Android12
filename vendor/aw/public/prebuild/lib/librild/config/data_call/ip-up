@@ -1,0 +1,24 @@
+#!/vendor/bin/sh
+case $1 in
+	ppp1)
+		/android/bin/iptables --flush;
+		/android/bin/iptables --table nat --flush;
+		/android/bin/iptables --delete-chain;
+		/android/bin/iptables --table nat --append POSTROUTING --out-interface ppp0 -j MASQUERADE;
+		/android/bin/iptables --append FORWARD --in-interface ppp1 -j ACCEPT;
+		echo 0 > /proc/sys/net/ipv4/ip_forward;
+		echo 1 > /proc/sys/net/ipv4/ip_forward;
+		;;
+	ppp0)
+		/vendor/bin/setprop "vendor.ril.interfaces.defaultroute" "gprs";
+		;;
+esac
+
+# Use interface name if linkname is not available
+NAME=${LINKNAME:-"$1"}
+
+/vendor/bin/setprop "vendor.ril.$NAME.dns1" "$DNS1"
+/vendor/bin/setprop "vendor.ril.$NAME.dns2" "$DNS2"
+/vendor/bin/setprop "vendor.ril.$NAME.local-ip" "$IPLOCAL"
+/vendor/bin/setprop "vendor.ril.$NAME.remote-ip" "$IPREMOTE"
+

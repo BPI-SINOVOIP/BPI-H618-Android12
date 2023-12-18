@@ -1,0 +1,19 @@
+android_app {
+    name: "Screenshot",
+    certificate: "platform",
+    srcs: ["**/*.java"],
+    platform_apis: true,
+    system_ext_specific: true,
+    privileged: true,
+    required: [
+        "privapp_screenshot",
+    ],
+}
+
+prebuilt_etc {
+    name: "privapp_screenshot",
+    system_ext_specific: true,
+    sub_dir: "permissions",
+    src: "com.softwinner.screenshot.xml",
+    filename_from_src: true,
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/memory_result_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:layout_marginLeft="@dimen/margin_h"
+        android:layout_marginRight="@dimen/margin_h"
+        android:textSize="50px"
+        android:gravity="bottom"
+        android:text="@string/memory_testing" />
+    <ProgressBar
+        android:id="@+id/memory_buffer_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_h"
+        android:layout_marginRight="@dimen/margin_h" />
+
+    
+
+	<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"        
+        android:id="@+id/sv_meminfo"
+        >
+
+        <TextView
+            android:id="@+id/output_window"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
+    </ScrollView> 
+</LinearLayout>

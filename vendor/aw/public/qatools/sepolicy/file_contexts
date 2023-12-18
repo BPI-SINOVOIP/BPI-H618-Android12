@@ -1,0 +1,5 @@
+## label graphics device with a new type, we need
+## to allow write operation from appdomain
+#
+/system/bin/ethpkt     u:object_r:ethpkt_exec:s0
+/system/bin/sysintfservice u:object_r:sysintf_exec:s0

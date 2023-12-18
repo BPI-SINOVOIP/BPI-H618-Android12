@@ -1,0 +1,71 @@
+<!-- Copyright (C) 2018 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <string name="app_name">AB升级</string>
+    <string name="action_reload">重载</string>
+    <string name="unknown">未知</string>
+    <string name="close">关闭</string>
+    <string name="switch_slot">切换插槽</string>
+    <string name="finish_update_info">请按下完成更新</string>
+    <string name="select_file_title">本地安装包</string>
+
+    <!-- index activity -->
+    <string name="index_title">本地JSON文件选择</string>
+    <string name="index_update_package_title">本地更新包选择</string>
+    <string name="index_select">选择</string>
+    <string name="index_user_know">用户须知</string>
+    <string name="index_user_know_title">注意事项</string>
+    <string name="index_confirm">我知道了</string>
+    <string name="index_select_json">选择JSON</string>
+    <string name="index_select_update_package">选择压缩包</string>
+    <string name="index_copy_tips">复制OTA包中</string>
+    <string name="index_enter">开始更新</string>
+    <string name="index_select_error">当前选择文件无效，请再次选择JSON文件</string>
+    <string name="index_select_update_package_error">当前选择文件无效，请再次选择更新包</string>
+    <string name="index_user_know_content">
+        1. 请推入JSON文件和更新包到 SD卡 \n
+        2. 选择JSON文件 \n
+        3. 选择更新报 \n
+        4. 进入到更新界面后，选择对应的更新 \n
+        5. 应用更新 \n
+        6. 等待切换插槽 \n
+        7. 更新成功，重启后生效 \n
+    </string>
+    <string name="main_reboot_tips">现在可以重启了，或者重置当前更新</string>
+    <string name="back">返回</string>
+    <string name="icon_warning">警告</string>
+    <string name="local_update_title">本地升级</string>
+    <string name="local_update_tips">
+        1. 请推入更新包到 SD 卡
+        2. 选择升级包后,选择确认开始升级 \n
+        3. 升级完成后，选择重启则会立即重启 \n
+    </string>
+    <string name="local_update_package_select_error">前选择文件无效,请再次选择</string>
+    <string name="local_update_title_confirm">更新确认</string>
+    <string name="local_update_content_info">即将更新，您确认码?</string>
+    <string name="local_update_content_confirm">我明白了!</string>
+    <string name="local_update_content_cancel">不. 我还需要考虑一下</string>
+    <string name="local_update_package_select">请选择升级包!</string>
+    <string name="local_update_progress_copy">复制文件中</string>
+    <string name="local_update_progress_unzip">解压中</string>
+    <string name="local_update_progress_verify">验证中</string>
+    <string name="local_update_progress_apply">应用中</string>
+    <string name="local_update_progress_update">更新进度:</string>
+    <string name="local_update_progress_reboot">重启</string>
+    <string name="local_update_progress_reboot_content">您想现在重启吗?</string>
+    <string name="local_update_progress_reboot_confirm">是的</string>
+    <string name="local_update_progress_reboot_cancel">不，我稍后重启</string>
+</resources>

@@ -1,0 +1,32 @@
+cc_binary {
+    srcs: ["kmsgd.cpp"],
+    name: "kmsgd",
+    shared_libs: [
+        "libbase",
+        "libutils",
+    ],
+    cflags: [
+        "-Wall",
+        "-Wno-unused-parameter",
+        "-Werror",
+    ]
+}
+
+cc_binary {
+    name: "awlogd",
+    init_rc: ["awlogd.rc"],
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+    shared_libs: [
+        "libbase",
+        "libprocessgroup",
+    ],
+    static_libs: ["liblog"],
+    srcs: [
+        "awlogd.cpp",
+    ],
+}

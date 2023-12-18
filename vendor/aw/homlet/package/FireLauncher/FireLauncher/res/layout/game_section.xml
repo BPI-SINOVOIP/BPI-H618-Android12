@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.firelauncher.section.GameSection xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+            
+            <FrameLayout 
+                android:id="@+id/poster_0"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_marginLeft="@dimen/layout_margin_left"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@+id/microfilm"
+                android:nextFocusRight="@+id/poster_1" >
+			    <include
+		            android:id="@+id/poster_0_item"
+		            layout="@layout/game_item_layout_h" />
+
+			</FrameLayout>
+			
+            <FrameLayout 
+                android:id="@+id/poster_1"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/poster_0"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusDown="@+id/install_game"
+                android:nextFocusLeft="@id/poster_0"
+                android:nextFocusRight="@+id/poster_2" >
+			    <include
+		            android:id="@+id/poster_1_item"
+		            layout="@layout/game_item_layout_w" />
+			</FrameLayout>
+
+            <TextView
+                android:id="@+id/install_game"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/poster_1"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/poster_0"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+				android:text="@string/game_installed"
+				android:paddingTop="@dimen/channel_paddingtop1"
+				android:paddingLeft="@dimen/channel_paddingleft1"
+				android:textSize="@dimen/tabindicator_text_size_normal"
+				android:textColor="@color/white"
+				android:background="@drawable/game_installed_bg"/>
+
+            <TextView
+                android:id="@+id/game_market"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/poster_1"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/install_game"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+				android:text="@string/game_hall"
+				android:paddingTop="@dimen/channel_paddingtop1"
+				android:paddingLeft="@dimen/channel_paddingleft1"
+				android:textSize="@dimen/tabindicator_text_size_normal"
+				android:textColor="@color/white"
+				android:background="@drawable/game_hall_bg" />
+
+            <FrameLayout 
+                android:id="@+id/poster_2"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/poster_1"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/poster_1"
+                android:nextFocusRight="@+id/poster_4" >
+			    <include
+		            android:id="@+id/poster_2_item"
+		            layout="@layout/game_item_layout_z" />
+			</FrameLayout>
+
+            <FrameLayout 
+                android:id="@+id/poster_4"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/poster_2"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/poster_2"
+                android:nextFocusRight="@+id/poster_5" >
+			    <include
+		            android:id="@+id/poster_4_item"
+		            layout="@layout/game_item_layout_z" />
+			</FrameLayout>
+ 
+            <FrameLayout 
+                android:id="@+id/poster_3"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_below="@+id/poster_2"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/game_market"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+			    <include
+		            android:id="@+id/poster_3_item"
+		            layout="@layout/game_item_layout_w" />
+			</FrameLayout>
+
+            <!-- ##################第二版面#################### -->
+            <FrameLayout 
+                android:id="@+id/poster_5"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/poster_3"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@+id/poster_4"
+                android:nextFocusRight="@+id/poster_6">
+			    <include
+		            android:id="@+id/poster_5_item"
+		            layout="@layout/game_item_layout_h" />
+			</FrameLayout>
+			
+            <FrameLayout 
+                android:id="@+id/poster_6"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/poster_5"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/poster_5"
+                android:nextFocusRight="@+id/poster_8">
+			    <include
+		            android:id="@+id/poster_6_item"
+		            layout="@layout/game_item_layout_z" />
+			</FrameLayout>
+
+            <FrameLayout 
+                android:id="@+id/poster_8"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/layout_margin_right"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/poster_6"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/poster_6"
+                android:nextFocusRight="@+id/poster_9">
+			    <include
+		            android:id="@+id/poster_8_item"
+		            layout="@layout/game_item_layout_z" />
+			</FrameLayout>
+
+            <FrameLayout 
+                android:id="@+id/poster_7"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_below="@+id/poster_6"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/poster_5"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusUp="@+id/poster_6">
+			    <include
+		            android:id="@+id/poster_7_item"
+		            layout="@layout/game_item_layout_w" />
+			</FrameLayout>
+
+            <FrameLayout 
+                android:id="@+id/poster_9"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginRight="@dimen/layout_margin_right"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/poster_7"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusDown="@+id/poster_10"
+                android:nextFocusLeft="@id/poster_8" >
+			    <include
+		            android:id="@+id/poster_9_item"
+		            layout="@layout/game_item_layout_w" />
+			</FrameLayout>
+
+            <FrameLayout 
+                android:id="@+id/poster_10"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/poster_9"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/poster_7"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+			    <include
+		            android:id="@+id/poster_10_item"
+		            layout="@layout/game_item_layout_z" />
+			</FrameLayout>
+
+            <FrameLayout 
+                android:id="@+id/poster_11"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/poster_9"
+                android:layout_marginRight="@dimen/layout_margin_right"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/poster_10"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true" >
+			    <include
+		            android:id="@+id/poster_11_item"
+		            layout="@layout/game_item_layout_z" />
+			</FrameLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toRightOf="@+id/poster_11" />
+        </RelativeLayout>
+
+        <!-- 必须在FrameLayout布局中添加 -->
+
+        <include
+            android:id="@+id/animation_layout"
+            layout="@layout/animation_view_layout"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</com.softwinner.firelauncher.section.GameSection>

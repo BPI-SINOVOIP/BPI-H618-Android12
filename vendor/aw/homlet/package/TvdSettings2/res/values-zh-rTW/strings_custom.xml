@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">設置</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="allow_notify">顯示通知</string>
+	<string name="storage">存儲</string>
+	<string name="total">總共</string>
+	<string name="application">應用</string>
+	<string name="cache_storage">緩存</string>
+	<string name="sdcard_storage">SD卡存儲</string>
+	<string name="data_storage">數據</string>
+	<string name="stopapp">強制停止</string>
+	<string name="uninstallapp">卸載</string>
+	<string name="cleardata">清除數據</string>
+	<string name="clearcache">清除緩存</string>
+	<string name="toforcestopapp">強制停止此應用嗎?</string>
+	<string name="touninstallapp">要卸載此應用嗎?</string>
+	<string name="touncleanappdata">確認刪除此應用數據嗎?</string>
+	<string name="yes">確定</string>
+	<string name="cancel">取消</string>
+	<string name="wireless">無線網絡</string>
+	<string name="ethernet">有線網絡</string>
+	<string name="softap">無線熱點</string>
+	<string name="bluetooth">藍牙</string>
+	<string name="netinfo">網絡信息</string>
+	<string name="nettype">網絡類型</string>
+	<string name="macaddress">mac地址</string>
+	<string name="ipaddress">IP地址</string>
+	<string name="defaultgate">默認網關</string>
+	<string name="dnsserver">DNS服務器</string>
+	<string name="subnetmask">子網掩碼</string>
+	<string name="test">XXXXXXXX</string>
+    <string-array name = "wirelinkmode">
+            <item> DHCP模式 </item>
+            <item> 靜態IP模式 </item>
+            <item> PPPOE模式 </item>
+   </string-array> 
+    <string name="eth_settings_title">以太網</string>
+    <string name="eth_toggle_title">使用以太網</string>
+    <string name="eth_settings">以太網設置</string>
+    <string name="eth_dhcp_configure">動態IP配置</string>
+    <string name="eth_static_configure">靜態IP配置</string>
+    <string name="eth_pppoe_configure">PPPoE配置</string>
+    <string name="eth_ip_address">IP地址</string>
+    <string name="eth_ip_string">0.0.0.0</string>
+    <string name="eth_mac_address">物理地址</string>
+    <string name="eth_mac_string">00:00:00:00:00:00</string>
+    <string name="eth_mask_address">子網掩碼</string>
+    <string name="eth_mask_string">255.255.255.255</string>
+    <string name="eth_dns1_address">DNS</string>
+    <string name="eth_dns1_string">0.0.0.0</string>
+    <string name="eth_dns2_address">DNS2</string>
+    <string name="eth_dns2_string">0.0.0.0</string>
+    <string name="eth_gw_address">默認網關</string>
+    <string name="eth_gw_string">0.0.0.0</string>
+    <string name="eth_dev_summaryoff">未連接</string>
+    <string name="eth_dev_summaryon">已連接 -- 使用設備: </string>
+    <string name="eth_ok">確定</string>
+    <string name="eth_cancel">取消</string>
+    <string name="eth_connect_mode">連接模式</string>
+    <string name="eth_mode_dhcp">DHCP 模式</string>
+    <string name="eth_mode_static">靜態IP模式</string>
+    <string name="eth_mode_pppoe">PPPoE 模式</string>
+    <string name="eth_info">連接信息</string>
+    <string name="eth_off">要查看可用網絡，請打開以太網。</string>
+
+    <!-- PPPoE -->
+    <string name="pppoe_setting_user">用戶名</string>
+    <string name="pppoe_setting_password">密碼</string>
+
+    <!-- DHCP -->
+    <string name="dhcp_setting_user">用戶名</string>
+    <string name="dhcp_setting_password">密碼</string>
+    <string name="dhcp_use_ipoe">使用IPOE</string>
+   <string name="start_softap">開啟WIFI熱點</string>
+   <string name="close">關閉</string>
+   <string name="open">打開</string>
+   <string name="opening">正在打開</string>
+   <string name="closing">正在關閉</string>
+   <string name="set_softap">設置WIFI熱點</string>
+   <string name="softap_subtext">"<xliff:g id="NETWORK_SSID">%1$s</xliff:g><xliff:g id="NETWORK_SECURITY">%2$s</xliff:g>便攜式 WLAN 熱點"</string>
+   <string name="network_ssid">網絡SSID</string>
+   <string name="security">安全性</string>
+   <string name="passwd">密碼</string>
+   <string name="passwd_subtext">密碼至少包含八個字符</string>
+   <string name="submit">提交</string>
+   <string name="scale">縮放</string>
+   <string name="resolution1">720P 50Hz</string>
+   <string name="resolution2">1920*1080 (推薦)</string>
+   <string name="dispchanged">確認修改為 %s嗎？</string>
+   <string name="changedverify">在%s秒後，將恢復到原來的設置，是否保持更改？</string>
+   <string name="start_bt">開啟藍牙</string>
+   <string name="start_direction">開放檢測</string>
+   <string name="search_device">搜索設備</string>
+   <string name="connect_wifi">連接無線網絡</string>
+   <string-array name="softap_security">
+    	<item>無</item>
+    	<item>WPA PSK</item>
+    	<item>WPA2 PSK</item>
+    </string-array>
+    <string name="bluetooth_paired">"已配對"</string>
+    <string name="bluetooth_unpaired">"可用"</string>
+    <string name="ethernet_connected">"以太網"</string>
+    <string name="wifi_connected">"WIFI"</string>
+    <string name="non_connected">"無連接"</string>
+    <string name="display_percent">%</string>
+    <string name="display_setting1">因為不同的電視對於視頻信號處理的差異可能導致畫面有不完整的現象</string>
+    <string name="display_setting2">請調整縮放比例，直至屏幕四面的警示色區域移出屏幕外</string>
+    <string name="use_display_setting">按 “確認” 鍵應用設置</string>
+    <string name="cancel_display_setting">按 “返回” 鍵取消設置</string>
+    <string name="video_quality">清晰度</string>
+    <string name="auto">自動</string>
+    <string name="manual">手動</string>
+    <string name="video_size">畫面比例</string>
+    <string name="self_adaption">自適應</string>
+    <string name="video_jump">跳過片頭片尾</string>
+    <string name="video_jump_open">開</string>
+    <string name="video_jump_close">關</string>
+    <string name="video_subtext_display">顯示彈幕</string>
+    <string name="video_scale_dynamic">動態範圍輸出</string>
+    <string name="audio_output">數字音頻輸出</string>
+    <string name="stereo_mode">立體聲模式</string>
+    <string name="disconnect_bt">斷開連接</string>
+    <string name="enable_suspend">休眠開關</string>
+    <string name="wether_location">天氣與位置</string>
+    <string name="install_application">允許安裝第三方應用</string>
+    <string name="factory_recovery">恢復出廠設置</string>
+    <string name="senior_setting">高級設置</string>
+    <string name="warning">提示</string>
+    <string name="system_reocvery">確認要恢復出廠設置嗎？請註意，該操作確認後無法撤銷！</string>
+    <string name="select_and_connect">選擇可用的無線網絡並連接</string>
+	<string name="today">今天：</string>
+	<string name="temp">氣溫：</string>
+	<string name="kaze">風力：</string>
+	<string name="tomorrow">明天：</string>
+	<string name="weather">天氣：</string>
+	<string name="beijing">北京</string>
+    <string name="allow_install_apk">允許</string>
+    <string name="not_allow_install_apk">不允許</string>
+    <string name="about_product">關於</string>
+    <string name="device_name">設備名稱</string>
+    <string name="product_model">產品型號</string>
+    <string name="soft_release">軟件版本</string>
+    <string name="name_your_deivce">命名您的設備</string>
+    <string name="sitting_room">客廳的盒子</string>
+    <string name="bedroom">臥室的盒子</string>
+    <string name="study">書房的盒子</string>
+    <string name="office">辦公室的盒子</string>
+    <string name="user_defined">自定義</string>
+    <string name="wifiworning">溫馨提示</string>
+    <string name="currentwifistat">當前wifi熱點打開，是否關閉wifi熱點</string>
+	<string name="unsupport">抱歉，您的電視不支持這個模式</string>
+	<string name="setting_network">網絡設置</string>
+	<string name="setting_common">通用設置</string>
+	<string name="setting_weather">位置天氣</string>
+	<string name="setting_plot">畫面設置</string>
+	<string name="setting_scale">畫面縮放</string>
+	<string name="setting_about">關於</string>
+	<string name="setting_name">設置名稱</string>
+	<string name="setting_appmanager">應用管理</string>
+	<string name="setting_appinfo">應用詳情</string>
+</resources>

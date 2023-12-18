@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+    
+     <TextView
+            android:id="@+id/title"
+            android:layout_width="@dimen/btn_back_width"
+            android:layout_height="@dimen/btn_back_height"
+            android:layout_marginLeft="@dimen/title_marginleft"
+            android:layout_marginTop="@dimen/title_margintop"
+			android:text="@string/setting_name"
+			android:gravity="center_vertical"
+			android:paddingLeft="@dimen/setting_paddingleft"
+			android:textSize="@dimen/setting_textsize_large"
+			android:textColor="@drawable/white"
+	        android:background="@drawable/ic_title_bg"/>  
+            
+     <TextView
+         android:id="@+id/sub_title"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="@dimen/deivce_name_marginleft"
+         android:text="@string/name_your_deivce"
+         android:textSize="@dimen/subtitle_text_size"
+         android:textColor="#ffffff"
+         />
+    
+    <ListView
+        android:id="@+id/device_name_setting_list"
+        android:layout_width="@dimen/netsettinglistwidth"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/deivce_name_margintop"
+        android:divider="@drawable/divider_line"
+        android:dividerHeight="@dimen/divider_Height"
+        android:listSelector="@drawable/list_btn_press"
+        android:scrollbarStyle="insideInset" >
+    </ListView>
+    
+</LinearLayout>

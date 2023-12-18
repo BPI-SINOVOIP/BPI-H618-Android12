@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@android:color/white">
+    
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    >
+	    <ImageView 
+	        android:layout_width="48dip"
+	        android:layout_height="48dip"
+	        android:src="@drawable/ic_library"
+	        android:contentDescription="@string/img_desc"
+	        android:layout_margin="10dip"
+	        />
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:textColor="@android:color/black"
+	        android:textSize="28sp"
+	        android:text="@string/libraries"
+	        android:gravity="center"
+	        />
+	</LinearLayout>
+	
+	<ImageView
+	    android:layout_width="match_parent"
+	    android:layout_height="3dip"
+	    android:background="@android:color/black"
+	    android:contentDescription="@string/img_desc"
+	    />
+	
+	<TableLayout 
+	    android:id="@+id/book_libraries_table"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dip"
+	    android:layout_weight="1"
+	    android:layout_marginBottom="10dip"
+	    />
+	
+	<include layout="@layout/page_switcher"/>
+	
+	<ImageView 
+	    android:layout_width="match_parent"
+	    android:layout_height="10dip"
+	    android:contentDescription="@string/img_desc"
+	    />
+</LinearLayout>

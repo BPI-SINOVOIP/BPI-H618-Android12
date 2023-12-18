@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="jianui">JIANUIV1.0</string>
+    <string name="description">Description</string>
+	<string name="cutom_message">Custom notification message</string>
+	<string name ="currentVersion">Current version</string>
+	<string name="ssss">ssssssssssssssssssssssss</string>
+	<string name="utoast_text">UToast text</string>
+    <string name="update_online">Online update</string>
+	<string name="system_update">System update</string>
+    <string name="update_local">Local update</string>
+    <string name="app_name">System update</string>
+    <string name="cuurent_version_is_new">Your system is up to date</string>
+    <string name="check_update">Check now</string>
+    <string name="current_version_is_new">Your system is up to date！</string>
+	<string name="now_checking_update">Checking for update...</string>
+    <string name="download_now">Download</string>
+    <string name="version_description_title">Description</string>
+    <string name="new_pack_aviable_redownload_now">There is another newer version for update, please redownload it now.</string>
+	<string name="find_aviable_pack_notification_title">There is a newer version</string>
+	<string name="more">[More]</string>
+	<string name="back">Back</string>
+	<string name="pause">Pause</string>
+	<string name="cancel">Cancel</string>
+	<string name="confirum">OK</string>
+	<string name="download_continue">Continue</string>
+	<string name="finsh_to_install">Update</string>
+	<string name="downloaded"><xliff:g id="now">%1s</xliff:g> Downloaded</string>
+	<string name="connect_time_out_information">Network Error.Check Fail.Please retry!</string>
+	<string name="update_server_title">System Update Serivce</string>
+	<string name="update_server_descrption">System update serivce.Force stopping it may cause to fail to update system.</string>
+	<string name="current_downloaded">Downloading: <xliff:g id="now">%1s</xliff:g> / <xliff:g id="total">%2s</xliff:g></string>
+	<string name="connecting_download">Connecting...</string>
+	<string name="update_help_content">Download complete! Press "Update"to reboot and update to the newest version.</string>
+	<string name="network_not_aviable">Network disconnected.Please retry after connected.</string>
+	<string name="now_downloading_pack">The update package is downloading</string>
+	<string name="download_pause_notif">Download paused</string>
+	<string name="download_finsh_notif_title">Update package download complete!</string>
+	<string name="download_finsh_notif_content">Press to update.</string>
+	<string name="download_fail_connect_error">Network Error!Please retry later.</string>
+	<string name="now_use_mobile_network_download_continue">Do your want to use the cellular data to download the package?
+</string>
+	<string name="download_later">Later</string>
+	<string name="update_low_battery_msg">To ensure a successful update，please make sure that the battery is more than 30% or your device is charging.</string>
+	<string name="pack_not_exists">The downloading package is unavailable. Please redownload the newest package.</string>
+	<string name="pack_redown">Redownload</string>
+	<string name="pack_error_redown">Package Error! Please redownload it!</string>
+	<string name="sorry_this_pack_url_not_exists">Sorry, the update package is unavailable now!</string>
+	<string name="update_verifying">Verifying the update package...
+</string>
+	<string name="no_free_space">Internal storage is not enough!</string>
+    <string name="check_failed">Connect failed, please try again</string>
+  
+  <string name="downloading">Downloading: <xliff:g id="now">%1s</xliff:g> / <xliff:g id="total">%2s</xliff:g></string>
+  <string name="paused">Paused: <xliff:g id="now">%1s</xliff:g> / <xliff:g id="total">%2s</xliff:g></string>
+  <string name="not_support_local_update">Not support local update</string>
+  <string name="haveupdate">Got a newer version!</string>
+	
+</resources>

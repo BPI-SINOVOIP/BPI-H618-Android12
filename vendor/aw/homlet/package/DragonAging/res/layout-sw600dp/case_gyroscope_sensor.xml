@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/case_gyroscope_sensor_name"
+        android:textColor="@android:color/white"
+	    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/case_gyroscope_sensor_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1"
+        android:ems="6" />
+
+    <TextView
+        android:id="@+id/case_gyroscope_sensor_y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/case_gyroscope_sensor_x"
+        android:ems="6" />
+
+    <TextView
+        android:id="@+id/case_gyroscope_sensor_z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/case_gyroscope_sensor_y"
+        android:ems="6" />
+
+</RelativeLayout>

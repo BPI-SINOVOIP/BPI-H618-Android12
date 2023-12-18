@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+	<style name="Theme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@android:color/black</item>
+	</style>
+
+    <style name="MediaButton">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">@dimen/dp_93</item>
+        <item name="android:layout_height">@dimen/dp_93</item>
+        <item name="android:layout_margin">@dimen/dp_20</item>
+    </style>
+
+    <style name="MediaButton.Mode3D">
+        <item name="android:src">@drawable/media_button_3d</item>
+    </style>
+
+    <style name="MediaButton.Repeat">
+        <item name="android:src">@drawable/media_button_repeat</item>
+    </style>
+
+    <style name="MediaButton.Track">
+        <item name="android:src">@drawable/media_button_track</item>
+    </style>
+
+    <style name="MediaButton.Previous">
+        <item name="android:src">@drawable/media_button_prev</item>
+    </style>
+
+    <style name="MediaButton.Play">
+        <item name="android:src">@drawable/media_button_play</item>
+    </style>
+
+    <style name="MediaButton.Next">
+        <item name="android:src">@drawable/media_button_next</item>
+    </style>
+
+    <style name="MediaButton.Pause">
+        <item name="android:src">@drawable/media_button_pause</item>
+    </style>
+
+    <style name="MediaButton.Zoom">
+        <item name="android:src">@drawable/media_button_zoom</item>
+    </style>
+
+    <style name="MediaButton.SubSet">
+        <item name="android:src">@drawable/media_button_set</item>
+    </style>
+
+    <style name="MenuButton">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">@dimen/dp_40</item>
+        <item name="android:layout_height">@dimen/dp_40</item>
+    </style>
+
+    <style name="MenuButton.prev">
+        <item name="android:src">@drawable/ic_prev_item</item>
+    </style>
+
+    <style name="MenuButton.next">
+        <item name="android:src">@drawable/ic_next_item</item>
+    </style>
+
+    <style name="tv_MenuButton_prev">
+        <item name="android:src">@drawable/ic_baseline_arrow_left</item>
+    </style>
+
+    <style name="tv_MenuButton_next">
+        <item name="android:src">@drawable/ic_baseline_arrow_right</item>
+    </style>
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">  <!-- 在系统Dialog样式基础上，相当于继承系统样式 -->
+        <item name="android:windowFrame">@null</item>  <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>  <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">false</item>  <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>  <!-- 是否显示title -->
+        <!-- <item name="android:windowBackground">@drawable/dia_bg</item> --> <!-- 设置dialog的背景 -->
+        <item name="android:backgroundDimEnabled">false</item>  <!-- 背景是否模糊显示 -->
+    </style>
+
+      <style name="menu" parent="@android:style/Theme.Dialog">  <!-- 在系统Dialog样式基础上，相当于继承系统样式 -->
+        <item name="android:windowFrame">@null</item>  <!-- Dialog的windowFrame框为无 -->
+        <item name="android:windowIsFloating">true</item>  <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>  <!-- 是否半透明 -->
+        <item name="android:windowNoTitle">true</item>  <!-- 是否显示title -->
+        <item name="android:windowBackground">@android:color/transparent</item> <!-- 设置dialog的背景 -->
+        <item name="android:backgroundDimEnabled">false</item>  <!-- 背景是否模糊显示 -->
+    </style>
+
+    <style name="jump" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+	<style name="Theme.notAnimation" >
+        <item name="android:windowAnimationStyle">@style/notAnimation</item>
+	</style>
+
+	<style name="notAnimation" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+		<item name="android:windowBackground">@android:color/black</item>
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:taskOpenEnterAnimation">@null</item>
+        <item name="android:taskOpenExitAnimation">@null</item>
+        <item name="android:taskCloseEnterAnimation">@null</item>
+        <item name="android:taskCloseExitAnimation">@null</item>
+        <item name="android:taskToFrontEnterAnimation">@null</item>
+        <item name="android:taskToFrontExitAnimation">@null</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
+	</style>
+</resources>

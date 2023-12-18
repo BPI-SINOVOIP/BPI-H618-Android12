@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HDMI_CTS</string>
+    <string name="action_settings">Settings</string>
+    <string name="get_hdmi_info">获取HDMI信息</string>
+    <!-- hdmi mode -->
+    <string name="device_type">Device Type：</string>
+    <string name="device_type_hdmi">HDMI</string>
+    <string name="device_type_dvi">DVI</string>
+    <!-- HDMI output mode value -->
+    <string name="hdmi_output_mode">HDMI Output Mode：</string>
+    <string name="button_hdmi_output_mode">选择</string>
+    <!-- <string name="480I">480I</string>
+    <string name="576I">576I</string>
+    <string name="480P">480p</string>
+    <string name="576P">576P</string>
+    <string name="720P_50HZ">720P_50HZ</string>
+    <string name="720P_60HZ">720P_60HZ</string>
+    <string name="1080I_50HZ">1080I_50HZ</string>
+    <string name="1080I_60HZ">1080I_60HZ</string>
+    <string name="1080P_24HZ">1080_24HZ</string>
+    <string name="1080P_50HZ">1080_50HZ</string>
+    <string name="1080P_60HZ">1080_60HZ</string> -->
+    <!-- color space -->
+    <string name="color_space">Color Space：</string>
+    <string name="color_space_RGB888">RGB888</string>
+    <string name="color_space_YUV444">YUV444</string>
+    <string name="color_space_YUV422">YUV422</string>
+    <string name="color_space_YUV420">YUV420</string>
+    <!-- color depth -->
+    <string name="color_depth">Color Depth：</string>
+    <string name="color_depth_24">24bit</string>
+    <string name="color_depth_30">30bit</string>
+    <string name="color_depth_36">36bit</string>
+    <!-- colorimetry -->
+    <string name="colorimetry">Colorimetry</string>
+    <string name="colorimetry_bt601">BT601</string>
+    <string name="colorimetry_bt709">BT709</string>
+    <string name="colorimetry_bt2020">BT2020</string>
+    <!-- value range -->
+    <string name="value_range">Value Range：</string>
+    <string name="value_range_full">Full</string>
+    <string name="value_range_limit">Limit</string>
+    <string name="value_range_default">Default</string>
+    <!-- scan mode -->
+    <string name="scan_mode">Scan Mode：</string>
+    <string name="scan_mode_default">No Data</string>
+    <string name="scan_mode_over">Over Scan</string>
+    <string name="scan_mode_under">Under Scan</string>
+    <!-- hdr mode -->
+    <string name="hdr_mode">HDR Mode：</string>
+    <string name="hdr_mode_sdr">SDR</string>
+    <string name="hdr_mode_hdr">HDR</string>
+    <string name="hdr_mode_hlg">HLG</string>
+    <!-- aspect radio -->
+    <string name="aspect_radio">Aspect Ratio</string>
+    <string name="aspect_radio_same_as_picture_aspect_ratio">same as picture aspect ratio</string>
+    <string name="aspect_radio_4_3">4:3</string>
+    <string name="aspect_radio_16_9">16:9</string>
+    <string name="aspect_radio_14_9">14:9</string>
+
+    <string name="hdcp_tips">HDCP</string>
+    <string name="hdcp_false">关闭HDCP</string>
+    <string name="hdcp_true">开启HDCP</string>
+
+    <string name="ok">确定</string>
+    <string name="default_value">default</string>
+    <string name="dialog_title">选择HDMI输出模式</string>
+
+    <string name="music_type">透传</string>
+    <string name="music_false">非透传</string>
+    <string name="music_true">透传</string>
+    <string name="music_path_tips">音频路径:</string>
+    <string name="music_path">default music path</string>
+    <string name="music">选择音乐</string>
+    <string name="start_music">开始播放</string>
+    <string name="stop_music">结束播放</string>
+    <!-- HPD -->
+    <string name="hpd">HPD</string>
+    <string name="hpd_enable">Enable</string>
+    <string name="hpd_disable">Disable</string>
+
+    <!-- HPD -->
+    <string name="cecstandby">CEC Standby</string>
+    <string name="cecstandby_enable">Enable</string>
+    <string name="cecstandby_disable">Disable</string>
+
+    <string name="no_music">当前未选择音频文件，请选择后再执行播放操作</string>
+</resources>

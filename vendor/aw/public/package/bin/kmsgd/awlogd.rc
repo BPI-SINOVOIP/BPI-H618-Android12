@@ -1,0 +1,62 @@
+#
+# init scriptures for awlogd persistent logging.
+#
+
+# awlog for all
+on property:vold.post_fs_data_done=1 && property:persist.debug.logpersistd=true
+    mkdir /data/media/awlog 0770 media_rw media_rw
+
+on property:vold.post_fs_data_done=1 && property:persist.debug.logpersistd=clear
+    exec - logd media_rw -- /system/bin/awlogd -c -f /data/media/awlog
+    setprop persist.debug.logpersistd false
+
+# logcat
+on property:persist.debug.logcat.enable=*
+    setprop debug.logcat.enable ${persist.debug.logcat.enable}
+
+on property:vold.post_fs_data_done=1 && property:persist.debug.logpersistd=true && property:debug.logcat.enable=true
+    mkdir /data/media/awlog/logcat 0770 media_rw media_rw
+    start awlog_logcatd
+
+on property:vold.post_fs_data_done=1 && property:debug.logcat.enable=false
+    stop awlog_logcatd
+
+# logcat service
+service awlog_logcatd /system/bin/awlogd -b ${persist.debug.logcat.buffer:-default} -v threadtime -v usec -v printable -D -f /data/media/awlog/logcat/logcat -r ${persist.debug.logcat.size:-32768} -n ${persist.debug.logcat.limit:-8} --id=${ro.build.id}
+    disabled
+    user logd
+    group media_rw log
+    writepid /dev/cpuset/system-background/tasks
+    oom_score_adjust -600
+
+# kernel log
+on property:persist.debug.kernel_log.enable=*
+    setprop debug.kernel_log.enable ${persist.debug.kernel_log.enable}
+
+on property:vold.post_fs_data_done=1 && property:persist.debug.logpersistd=true && property:debug.kernel_log.enable=true
+    mkdir /data/media/awlog/kernel 0770 media_rw media_rw
+    start awlog_kmsgd
+
+on property:vold.post_fs_data_done=1 && property:debug.kernel_log.enable=false
+    stop awlog_kmsgd
+
+# kmsgd service
+service awlog_kmsgd /system/bin/kmsgd -f /data/media/awlog/kernel/kmsg -r ${persist.debug.kernel_log.size:-8192} -n ${persist.debug.kernel_log.limit:-8}
+    disabled
+    file /dev/kmsg r
+    user root
+    group media_rw sdcard_rw log
+    writepid /dev/cpuset/system-background/tasks
+    oom_score_adjust -600
+
+# crashdump
+on property:persist.debug.crashdump.enable=*
+    setprop debug.crashdump.enable ${persist.debug.crashdump.enable}
+
+on property:debug.crashdump.enable=true
+    write /proc/sys/kernel/sunxi_dump 1
+    write /sys/module/kernel/parameters/panic 0
+
+on property:debug.crashdump.enable=false
+    write /proc/sys/kernel/sunxi_dump 0
+    write /sys/module/kernel/parameters/panic 5

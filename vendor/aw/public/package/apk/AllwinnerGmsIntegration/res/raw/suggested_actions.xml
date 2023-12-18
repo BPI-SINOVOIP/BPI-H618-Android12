@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<array
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:suw="http://schemas.android.com/apk/res/com.google.android.setupwizard">
+
+    <action android:category="com.android.settings.suggested.category.EMAIL" />
+
+    <!-- Increase font-size, display size etc -->
+    <action android:category="com.android.settings.suggested.category.DISPLAY_SETTINGS" />
+
+    <!-- For things like change wallpaper -->
+    <action android:category="com.android.settings.suggested.category.PERSONALIZE"
+            android:isRepeatable="true" />
+
+    <action android:category="com.android.settings.suggested.category.PAI"
+            suw:lifecycle="default" />
+
+    <action android:category="com.android.settings.suggested.category.LOCK_SCREEN_REDACTION" />
+
+    <!-- Action to enroll more fingerprints, even if existing lock screen is set -->
+    <action android:category="com.android.settings.suggested.category.FINGERPRINT_ENROLL" />
+
+</array>

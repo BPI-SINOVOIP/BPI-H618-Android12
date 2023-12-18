@@ -1,0 +1,10 @@
+android_library {
+
+    name: "ScreenrecordLib",
+
+    resource_dirs: ["res"],
+
+    srcs: ["src/**/*.java"],
+
+    manifest: "AndroidManifest.xml",
+}

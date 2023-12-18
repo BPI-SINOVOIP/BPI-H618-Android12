@@ -1,0 +1,7 @@
+#!/system/bin/sh
+
+if [ "$2" != "enablecrypto" ] ; then
+    exec /system/bin/vdc "$@"
+else
+    echo ""
+fi

@@ -1,0 +1,30 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="kernel_log_enabled"
+        app:title="@string/enabled"
+        app:disableDependentsState="true"/>
+
+    <ListPreference
+        app:entries="@array/kernel_single_file_size_entries"
+        app:entryValues="@array/kernel_single_file_size_values"
+        app:dependency="kernel_log_enabled"
+        app:key="kernel_log_single_log_size"
+        app:title="@string/single_log_size"
+        app:useSimpleSummaryProvider="true" />
+
+    <ListPreference
+        app:entries="@array/kernel_limit_count"
+        app:entryValues="@array/kernel_limit_count"
+        app:dependency="kernel_log_enabled"
+        app:key="kernel_log_log_limit_count"
+        app:title="@string/log_limit_count"
+        app:useSimpleSummaryProvider="true" />
+
+    <SwitchPreferenceCompat
+        app:dependency="kernel_log_enabled"
+        app:key="kernel_log_boot_enabled"
+        app:title="@string/boot_enabled"
+        app:summary="@string/boot_enabled_summary"/>
+
+</PreferenceScreen>

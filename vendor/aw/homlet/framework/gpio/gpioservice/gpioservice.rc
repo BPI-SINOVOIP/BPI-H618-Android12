@@ -1,0 +1,8 @@
+# start gpio service
+service gpio /system/bin/gpioservice
+    class main
+    user root
+    seclabel u:r:gpioservice:s0
+    group root audio camera graphics inet net_bt net_bt_admin net_raw
+    ioprio rt 4
+

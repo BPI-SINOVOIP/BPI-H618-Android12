@@ -1,0 +1,71 @@
+<!-- Copyright (C) 2018 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <string name="app_name">ABUpdater</string>
+    <string name="action_reload">Reload</string>
+    <string name="unknown">Unknown</string>
+    <string name="close">CLOSE</string>
+    <string name="switch_slot">Switch Slot</string>
+    <string name="finish_update_info">To finish the update press the button below</string>
+    <string name="select_file_title">Local install package</string>
+
+    <!-- index activity -->
+    <string name="index_title">Local update JSON select</string>
+    <string name="index_update_package_title">Local update package select</string>
+    <string name="index_select">Select</string>
+    <string name="index_user_know">USER MUST KNOW</string>
+    <string name="index_user_know_title">User notice</string>
+    <string name="index_confirm">I got it</string>
+    <string name="index_select_json">Select Json</string>
+    <string name="index_select_update_package">Select zip</string>
+    <string name="index_copy_tips">Copying ota package</string>
+    <string name="index_enter">Start Update</string>
+    <string name="index_select_error">Please select json file again, this file is invalid.</string>
+    <string name="index_select_update_package_error">Please select ota package file again, this file is invalid.</string>
+    <string name="index_user_know_content">
+        1. Please push the ota package and json file to /sdcard. \n
+        2. add the json file. \n
+        3. add update package. \n
+        4. select the correct json. \n
+        5. Apply the update. \n
+        6. Wait for switch slot. \n
+        7. reboot the machine. \n
+    </string>
+    <string name="main_reboot_tips">You can reboot now, Or reset this apply.</string>
+    <string name="back">Back</string>
+    <string name="icon_warning">warning</string>
+    <string name="local_update_title">Local Update</string>
+    <string name="local_update_tips">
+        1. Please push the ota package to /sdcard. \n
+        2. After selecting the upgrade package, select Confirm to start the upgrade. \n
+        3. After the upgrade is complete, select restart to restart immediately. \n
+    </string>
+    <string name="local_update_package_select_error">Please select file again, this file is invalid!</string>
+    <string name="local_update_title_confirm">Update Confirm</string>
+    <string name="local_update_content_info">Update soon, do you confirm?</string>
+    <string name="local_update_content_confirm">I got it</string>
+    <string name="local_update_content_cancel">No, I need to think about it</string>
+    <string name="local_update_package_select">Please select update package!</string>
+    <string name="local_update_progress_copy">Copying file...</string>
+    <string name="local_update_progress_unzip">Unzipping file...</string>
+    <string name="local_update_progress_verify">Verifying file...</string>
+    <string name="local_update_progress_apply">Applying file...</string>
+    <string name="local_update_progress_update">Updating:</string>
+    <string name="local_update_progress_reboot">Reboot</string>
+    <string name="local_update_progress_reboot_content">Do you want to reboot now?</string>
+    <string name="local_update_progress_reboot_confirm">Yes</string>
+    <string name="local_update_progress_reboot_cancel">No, I will reboot later</string>
+</resources>

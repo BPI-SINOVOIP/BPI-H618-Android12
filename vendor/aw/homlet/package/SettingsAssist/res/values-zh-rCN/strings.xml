@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="recovery_title">系统恢复/升级</string>
+    <string name="recovery_des">您可以使用从网上下载的升级包，手动恢复/升级您的系统。\n下载和使用说明请阅读您的产品说明书。</string>
+    <string name="recovery_button_select">选择文件</string>
+    <string name="recovery_verifying">正在校验</string>
+    <string name="recovery_copying">正在拷贝</string>
+    <string name="recovery_verify_error_failed">校验升级包 %1$s 失败！</string>
+    <string name="recovery_copy_error_failed">拷贝升级包 %1$s 失败！</string>
+    <string name="recovery_ready_to_reboot">准备重启系统</string>
+    <string name="recovery_activity_not_found">找不到应用程序</string>
+    <string name="ota_accept">"确定"</string>
+    <string name="ota_reject">"取消"</string>
+    <string name="ota_error">"U盘中未发现名为update.zip的升级包"</string>
+    <string name="ota_error_title">"错误提示"</string>
+</resources>

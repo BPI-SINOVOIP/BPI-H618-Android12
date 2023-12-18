@@ -1,0 +1,38 @@
+package {
+    default_applicable_licenses: ["EinkProvision_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "EinkProvision_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+prebuilt_etc {
+    name: "einkprovision-permissions.xml",
+    system_ext_specific: true,
+    sub_dir: "permissions",
+    src: "einkprovision-permissions.xml",
+    filename_from_src: true,
+}
+
+android_app {
+    name: "EinkProvision",
+    srcs: ["**/*.java"],
+    platform_apis: true,
+    system_ext_specific: true,
+    certificate: "platform",
+    privileged: true,
+    required: ["einkprovision-permissions.xml"],
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+    overrides: ["Provision"],
+}

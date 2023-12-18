@@ -1,0 +1,18 @@
+on boot
+    chown system system /sys/class/disp/disp/attr/color_temperature
+    chown system system /sys/class/disp/disp/attr/cvbs_enhacne_mode
+    chown system system /sys/class/disp/disp/attr/disp
+    chown system system /sys/class/disp/disp/attr/enhance_bright
+    chown system system /sys/class/disp/disp/attr/enhance_contrast
+    chown system system /sys/class/disp/disp/attr/enhance_denoise
+    chown system system /sys/class/disp/disp/attr/enhance_detail
+    chown system system /sys/class/disp/disp/attr/enhance_edge
+    chown system system /sys/class/disp/disp/attr/enhance_mode
+    chown system system /sys/class/disp/disp/attr/enhance_saturation
+
+service display.output-service /vendor/bin/display.output-service
+    class hal
+    user system
+    group system graphics audio
+    shutdown critical
+    writepid /dev/stune/foreground/tasks

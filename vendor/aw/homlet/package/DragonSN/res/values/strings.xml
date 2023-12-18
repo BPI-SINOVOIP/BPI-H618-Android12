@@ -1,0 +1,52 @@
+<resources>
+
+    <string name="app_name">DragonSN</string>
+    <string name="title_activity_main">DragonSN!</string>
+	<string name="app_version">DragonSN 版本号：</string>
+
+    <string name="show_input_info">"主键为 [%s] 请输入:"</string>
+    <string name="local_data">"本地数据"</string>
+    <string name="remote_data">"远程数据"</string>
+	<string name="hint_input_value">"等待写入"</string>
+	<string name="hint_input">"请输入"</string>
+	
+	<string name="show_alert_str">"配置文件或网络未准备好\n"</string>
+	<string name="show_alert_exit_str">"配置文件或网络未准备好,准备退出"</string>
+	
+	<string name="show_network_ready">"网络已开启，可进行测试\n"</string>
+	
+	<string name="show_getting_remote">"正在向服务器获取数据\n"</string>
+	<string name="show_getting_remote_success">"向服务器获取数据成功\n"</string>
+	<string name="show_getting_remote_fail">"向服务器获取数据失败\n"</string>
+	
+	<string name="show_remote_invalid">"获取数据校验失败，请检查输入号码和服务器端是否有效且对应\n"</string>
+	
+	<string name="show_setting_local">"正在向本地分区写入数据\n"</string>
+	<string name="show_setting_local_success">"向本地分区写入数据成功\n"</string>
+	<string name="show_setting_local_fail">"向本地分区写入数据失败\n"</string>
+	
+	<string name="show_getting_local">"正在向本地分区读取数据\n"</string>
+	<string name="show_getting_local_success">"向本地分区读取数据成功\n"</string>
+	<string name="show_getting_local_fail">"向本地分区读取数据失败\n"</string>
+	
+	<string name="show_check_data_valid">"正在校验本地数据与远程数据是否匹配\n"</string>
+	<string name="show_check_data_valid_success">"校验数据成功\n"</string>
+	<string name="show_check_data_valid_fail">"校验数据失败\n"</string>
+	
+	<string name="show_setting_remote">"正在向服务器写入结果\n"</string>
+	<string name="show_setting_remote_success">"向服务器写入结果成功\n"</string>
+	<string name="show_setting_remote_fail">"向服务器写入结果失败\n"</string>
+	
+	<string name="show_check_all_success">"烧写流程已成功，可结束\n"</string>
+	<string name="show_check_all_fail">"烧写流程已失败，请重烧\n"</string>
+	
+	<string name="show_need_input_text">"数据长度或格式不正确，请重新输入\n"</string>
+	
+	<string name="show_control_hint">"输入menu键重新烧写"</string>
+	<string name="show_re_burn">"请输入号码,重新烧写\n"</string>
+	
+	<string name="result_key_title">"以下是烧写结果字段，不写入private分区"</string>
+	
+	
+	
+</resources>

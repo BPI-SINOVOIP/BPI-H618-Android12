@@ -1,0 +1,33 @@
+# qw: root program
+type qw, domain, coredomain, mlstrustedsubject;
+type qw_exec, exec_type, file_type, system_file_type;
+type qw_socket,file_type,coredomain_socket,mlstrustedobject;
+
+init_daemon_domain(qw);
+file_type_auto_trans(qw, device, qw_daemon_device);
+file_type_auto_trans(qw,qw_daemon_device,qw_socket);
+
+allow qw qw_daemon_device:dir create_dir_perms;
+allow qw qw_socket:sock_file create_file_perms;
+#allow qw qw:capability { chown fowner setuid setgid ipc_lock dac_override};
+allow qw qw:capability { chown fowner setuid setgid ipc_lock};
+allow qw qw_socket:fifo_file create_file_perms;
+allow qw device:dir create_dir_perms;
+allow qw shell_exec:file rx_file_perms;
+allow qw system_file:file rx_file_perms;
+allow qw logcat_exec:file rx_file_perms;
+allow qw logdr_socket:sock_file write;
+allow qw logd:unix_stream_socket connectto;
+allow qw storage_file:dir search;
+allow qw self:capability sys_nice;
+allow qw storage_file:lnk_file read;
+allow qw mnt_user_file:dir search;
+allow qw mnt_user_file:lnk_file read;
+allow qw fuse:dir rw_dir_perms;
+allow qw fuse:file create_file_perms;
+allow qw sdcardfs:dir rw_dir_perms;
+allow qw sdcardfs:file create_file_perms;
+allow qw wifi_data_file:dir search;
+allow qw media_rw_data_file:dir rw_dir_perms;
+allow qw media_rw_data_file:file create_file_perms;
+allow qw toolbox_exec:file rx_file_perms;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <include 
+                layout="@layout/recommend_section" 
+                android:id="@+id/section_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            
+        </FrameLayout>     
+
+        <!-- 必须在FrameLayout布局中添加 -->
+
+        <include
+            android:id="@+id/animation_layout"
+            layout="@layout/animation_view_layout"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</HorizontalScrollView>

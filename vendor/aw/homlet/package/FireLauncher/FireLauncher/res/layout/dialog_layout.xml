@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="450dp"
+        android:layout_height="200dp"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/disclaimer_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="80dp"
+            android:textSize="@dimen/sw_textsize_xlarger" />
+    </RelativeLayout>
+
+    <!-- OK/cancel Button -->
+
+    <LinearLayout
+        android:id="@+id/disclaimer_id_bottom_layout"
+        android:layout_width="450dp"
+        android:layout_height="50dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#D6D6D6" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/delete_all_ok"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/update_button_left_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:text="@string/delete_all_agree"
+                android:textSize="@dimen/sw_textsize_xlarger" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#D6D6D6" />
+
+            <Button
+                android:id="@+id/delete_all_reject"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/update_button_right_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:text="@string/delete_all_reject"
+                android:textSize="@dimen/sw_textsize_xlarger" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

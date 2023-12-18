@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root"
+    android:layout_marginTop="@dimen/all_margin_top"
+    android:paddingLeft="@dimen/all_margin_left">
+     
+    <ImageView 
+        android:id="@+id/logo"
+        android:layout_height="@dimen/v3_logo_height"
+        android:layout_width="@dimen/v3_logo_width"  
+        android:layout_alignParentLeft="true"
+    	android:layout_alignParentTop="true" 
+    	android:layout_marginLeft="@dimen/indicator_margin_medium"
+        android:layout_marginTop="@dimen/indicator_margin_small"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/v3_ic_logo" />
+      
+    <include
+        layout="@layout/other_infomation" 
+        android:layout_height="@dimen/other_infomation_height"
+        android:layout_width="@dimen/other_infomation_width"  
+        android:layout_alignParentRight="true"
+    	android:layout_alignParentTop="true"
+    	android:layout_marginTop="@dimen/v3_other_infomation_margintop"
+        android:layout_marginRight="@dimen/indicator_margin_small" />
+      
+    <com.softwinner.firelauncher.launcherViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="@dimen/v3_indicator_margin_large"
+        />
+    
+	<LinearLayout  
+	    android:id="@+id/dot_group"  
+	    android:layout_width="fill_parent"  
+	    android:layout_height="wrap_content"  
+	    android:layout_marginTop="@dimen/v3_dot_group_margin_top"
+	    android:gravity="center_horizontal"  
+	    android:orientation="horizontal" > 
+	</LinearLayout>  
+	
+</RelativeLayout>

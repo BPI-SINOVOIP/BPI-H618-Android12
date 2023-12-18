@@ -1,0 +1,48 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="awlog_enabled"
+        app:title="@string/enabled" />
+
+    <PreferenceCategory app:title="@string/settings_header"
+        app:dependency="awlog_enabled">
+
+        <Preference
+            app:key="logcat"
+            app:title="@string/logcat"
+            app:fragment="com.softwinner.awlogsettings.LogcatSettings"/>
+
+        <Preference
+            app:key="kernel_log"
+            app:title="@string/kernel_log"
+            app:fragment="com.softwinner.awlogsettings.KernelLogSettings"/>
+
+        <Preference
+            app:key="crashdump"
+            app:title="@string/crashdump"
+            app:fragment="com.softwinner.awlogsettings.CrashdumpSettings"/>
+
+        <Preference
+            app:key="atf_log"
+            app:title="@string/atf_log"
+            app:isPreferenceVisible="false"
+            app:fragment="com.softwinner.awlogsettings.ATFLogSettings"/>
+
+        <Preference
+            app:key="scp_log"
+            app:title="@string/scp_log"
+            app:isPreferenceVisible="false"
+            app:fragment="com.softwinner.awlogsettings.SCPLogSettings"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/Advanced_header">
+
+        <Preference
+            app:key="awlog_path"
+            app:title="@string/awlog_path"
+            app:summary="/data/media/awlog" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

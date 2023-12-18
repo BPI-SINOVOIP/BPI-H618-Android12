@@ -1,0 +1,18 @@
+
+java_library {
+    name: "systemmonitor.jar",
+    installable: true,
+    srcs: ["src/**/*.java",],
+    stem: "systemmonitor",
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+cc_prebuilt_binary {
+    name: "systemmonitor",
+    srcs: ["systemmonitor"],
+    init_rc: ["systemmonitor.rc"],
+
+    required: ["systemmonitor.jar"],
+}

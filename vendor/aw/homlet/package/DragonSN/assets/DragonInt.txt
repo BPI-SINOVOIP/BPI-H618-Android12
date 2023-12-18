@@ -1,0 +1,16 @@
+﻿{
+"dbserver":"192.168.123.1:1433",
+"dbname":"allwinnertech",
+"dbtable":"shenzhen",
+"dbaccount":"sa",
+"dbpassword":"123456",
+"colume":[
+    {"show_name":"SN号码"     ,"colname":"SN"          ,"type":"prim"  ,"burnname":"sn",   "len":"18"},
+    {"show_name":"PN号码"     ,"colname":"PN"          ,"type":"priv"  ,"burnname":"pn",   "len":"14"},
+    {"show_name":"32位串号"   ,"colname":"IMEI"        ,"type":"priv"  ,"burnname":"imei", "len":"32"},
+    {"show_name":"广电号"     ,"colname":"TID"         ,"type":"priv"  ,"burnname":"tid",  "len":"15"},
+    {"show_name":"以太网地址" ,"colname":"EMAC"        ,"type":"priv"  ,"burnname":"mac",  "len":"17"},
+    {"show_name":"WIFI地址"   ,"colname":"WMAC"        ,"type":"priv"  ,"burnname":"wmac", "len":"17"},
+    {"show_name":"烧写结果"   ,"colname":"CodeBurningResult"  ,"type":"result" ,           "len":"1"}
+]
+}

@@ -1,0 +1,199 @@
+<resources>
+
+	<!-- Default screen margins, per the Android Design guidelines. -->
+	<dimen name="activity_horizontal_margin">8dp</dimen>
+	<dimen name="activity_vertical_margin">8dp</dimen>
+	<dimen name="select_broaderx">18dp</dimen>
+	<dimen name="select_broadery">19dp</dimen>
+	<dimen name="applistwidth">660dp</dimen>
+	<dimen name="applistheight">305dp</dimen>
+	<dimen name="appname_text_size">24dp</dimen>
+	<dimen name="subtitle_text_size">18dp</dimen>
+	<dimen name="appsize_text_size">12dp</dimen>
+	<dimen name="applistitemheight">60dp</dimen>
+	<dimen name="applist_layout_margintop">62dp</dimen>
+	<dimen name="title_marginleft">45dp</dimen>
+	<dimen name="title_margintop">42dp</dimen>
+	<dimen name="netsettinglistwidth">660dp</dimen>
+	<dimen name="netsettinglistheight">250dp</dimen>
+	<dimen name="netsetting_button_width">142dp</dimen>
+	<dimen name="netsetting_button_height">50dp</dimen>
+	<dimen name="divider_Height">1dp</dimen>
+	<dimen name="divider_width">1dp</dimen>
+	<dimen name="listitem_Height">20dp</dimen>
+	<dimen name="listitem_padding">15dp</dimen>
+	<dimen name="listitem_vertical_padding">9dp</dimen>
+	<dimen name="state_select_view_width">150dp</dimen>
+
+	<!-- textsize -->
+	<dimen name="setting_textsize_xxlarge">65sp</dimen>
+	<dimen name="setting_textsize_xlarge">36sp</dimen>
+	<dimen name="setting_textsize_large">32sp</dimen>
+	<dimen name="setting_textsize_xmedium">28sp</dimen>
+	<dimen name="setting_textsize_medium">26sp</dimen>
+	<dimen name="setting_textsize_xsmall">20sp</dimen>
+	<dimen name="setting_textsize_small">16sp</dimen>
+	<dimen name="setting_textsize_min">13sp</dimen>
+
+	<!-- app setting -->
+	<dimen name="appdetail_horizontal_margin">150dp</dimen>
+	<dimen name="appdetail_vertical_margin">32dp</dimen>
+	<dimen name="appdetail_line_margin">10dp</dimen>
+	<dimen name="appdetail_line_width">200dp</dimen>
+	<dimen name="appdetail_line_height">1dp</dimen>
+	<dimen name="appdetial_icon_big_size">65dp</dimen>
+	<dimen name="appdetial_icon_medium_size">49dp</dimen>
+	<dimen name="appdetial_icon_small_size">45dp</dimen>
+	<dimen name="appdetail_message_margin_top">12dp</dimen>
+	<dimen name="appdetail_button_margin_top">30dp</dimen>
+	<dimen name="appdetail_button_textsize">24sp</dimen>
+	<dimen name="appdetail_button_height">36dp</dimen>
+	<dimen name="appdetail_button_width">102dp</dimen>
+	<dimen name="appdetail_button_spacing">31dp</dimen>
+	<dimen name="appdetail_checkbox_padding_left">5dp</dimen>
+	<dimen name="appdetail_padding_start">10dp</dimen>
+	<dimen name="appdialog_width">600dp</dimen>
+	<dimen name="appdialog_height">290dp</dimen>
+	<dimen name="appdialog_icon_margin_left">46dp</dimen>
+	<dimen name="appdialog_text_height">65dp</dimen>
+	<dimen name="appdialog_button_height">59dp</dimen>
+	<dimen name="appdialog_button_width">561dp</dimen>
+
+	<!-- bluetooth setting -->
+	<dimen name="bluetooth_icon_size">40dp</dimen>
+
+	<!-- display setting -->
+	<dimen name="displayscale_smalldivider_width">2dp</dimen>
+	<dimen name="displayscale_smalldivider_height">32dp</dimen>
+	<dimen name="displayscale_longdivider_width">715dp</dimen>
+	<dimen name="displayscale_longdivider_height">1dp</dimen>
+	<dimen name="displayscale_longdivider_margin_top">19dp</dimen>
+	<dimen name="displayscale_percent_margin_top">65dp</dimen>
+	<dimen name="displayscale_percent_margin_left">5dp</dimen>
+	<dimen name="displayscale_seekbar_margin_top">35dp</dimen>
+	<dimen name="displayscale_seekbar_width">615dp</dimen>
+	<dimen name="displayscale_seekbar_height">39dp</dimen>
+	<dimen name="displayscale_select_margin_top">32dp</dimen>
+	<dimen name="displayscale_message1_margin_top">50dp</dimen>
+	<dimen name="displayscale_message2_margin_top">13dp</dimen>
+	<dimen name="displaysetting_imagebutton_width">22dp</dimen>
+	<dimen name="displaysetting_imagebutton_height">150dp</dimen>
+	<dimen name="displaysetting_imagebutton_margin_left">200dp</dimen>
+	<dimen name="displaysetting_imagebutton_horizontal_spacing">50dp</dimen>
+	<dimen name="displaysetting_imagebutton_padding_top">2dp</dimen>
+	<dimen name="displaysetting_scalebtn_padding_top">25dp</dimen>
+	<dimen name="displaysetting_scalebtn_text_spacing">10dp</dimen>
+	<dimen name="displaysetting_resolutionbtn_padding_top">50dp</dimen>
+	<dimen name="displaysetting_resolutionbtn_text_spacing">25dp</dimen>
+	<dimen name="displaysetting_resolutionbtn_margin_vertical">9dp</dimen>
+	<dimen name="displaydialog_text_height">97dp</dimen>
+
+	<!-- ethernet setting -->
+	<dimen name="ethernetsetting_list_height">50dp</dimen>
+	<dimen name="ethernetsetting_margin_top">36dp</dimen>
+	<dimen name="ethernetsetting_list_margin_top">15dp</dimen>
+	<dimen name="ethernetsetting_textview_width">143dp</dimen>
+	<dimen name="ethernetsetting_btn1_margin_top">60dp</dimen>
+	<dimen name="ethernetsetting_btn2_margin_top">20dp</dimen>
+	<dimen name="ethernetsetting_btn3_margin_top">90dp</dimen>
+
+	<!-- softap setting -->
+	<dimen name="softaplist_padding_start">5dp</dimen>
+	<dimen name="softapsetting_margin_top">20dp</dimen>
+	<dimen name="softapsetting_submmitbtn_margin_top">57dp</dimen>
+	<dimen name="softapsetting_textview_width">143dp</dimen>
+
+	<!-- net setting -->
+	<dimen name="wifi_status_icon_size">32dp</dimen>
+	<dimen name="net_item_icon_size">32dp</dimen>
+	<dimen name="net_item_next_icon_size">26dp</dimen>
+	<dimen name="wifi_line_width">1dp</dimen>
+	<dimen name="wifi_line_height">30dp</dimen>
+	<dimen name="wifi_horizontal_margin">15dp</dimen>
+	<dimen name="wifilink_summitbtn_margin_top">114dp</dimen>
+	<dimen name="wifidisconnect_summitbtn_margin_top">97dp</dimen>
+	<dimen name="wifidialog_top_margin">15dp</dimen>
+	<dimen name="wifidialog_horizontal_margin">35dp</dimen>
+	<dimen name="wifidialog_line_horizontal_margin">20dp</dimen>
+	<dimen name="bluetooth_line_width">1dp</dimen>
+	<dimen name="bluetooth_line_height">30dp</dimen>
+	<dimen name="bluetooth_horizontal_margin">15dp</dimen>
+	<dimen name="netstat_scrollview_height">304dp</dimen>
+
+	<!-- system setting -->
+	<dimen name="systemrecoverydialog_text_height">150dp</dimen>
+	<dimen name="weather_message_text_width">275dp</dimen>
+	<dimen name="weather_message_text_height">230dp</dimen>
+	<dimen name="weather_message_text_margin_top">14dp</dimen>
+	<dimen name="location_wheelview_width">124dp</dimen>
+	<dimen name="location_wheelview_height">96dp</dimen>
+	<dimen name="location_btn_width">124dp</dimen>
+	<dimen name="location_btn_height">32dp</dimen>
+	<dimen name="location_btn_textsize">21sp</dimen>
+
+	<!-- about setting -->
+	<dimen name="deivce_name_marginleft">80dp</dimen>
+	<dimen name="deivce_name_margintop">37dp</dimen>
+	<dimen name="deivce_name_marginright">15dp</dimen>
+	<dimen name="deivce_name_paddingstart">15dp</dimen>
+	<dimen name="deivce_name_width">24dp</dimen>
+	<dimen name="deivce_name_height">24dp</dimen>
+	<dimen name="userdefined_marginleft">80dp</dimen>
+
+	<!-- weather setting -->
+	<dimen name="weather_margintop">36dp</dimen>
+	<dimen name="weather_paddingstart">96dp</dimen>
+	<dimen name="weather_message_height">200dp</dimen>
+	<dimen name="img_width">120dp</dimen>
+	<dimen name="img_height">120dp</dimen>
+	<!-- miracast  -->
+	<dimen name="miracast_margintop">93dp</dimen>
+	<dimen name="miracast_itemwidth">349dp</dimen>
+	<dimen name="miracast_paddingleft">100dp</dimen>
+	<dimen name="miracast_paddingtop">27dp</dimen>
+	<dimen name="miracast_textsize">22sp</dimen>
+	<dimen name="miracast_itemslider_margintop">62dp</dimen>
+	<dimen name="miracast_itemslider_height">20dp</dimen>
+	<dimen name="miracast_itemslider_width">261dp</dimen>
+	<dimen name="miracast_name_margintop">18dp</dimen>
+	<dimen name="miracast_button_margintop">67dp</dimen>
+	<dimen name="miracast_button_height">45dp</dimen>
+	<dimen name="miracast_button_width">130dp</dimen>
+	<dimen name="miracast_dot_margintop">-509dp</dimen>
+	<dimen name="miracast_sliderblock_margintop">-20dp</dimen>
+	<integer name="miracast_sliderblock_shift">104</integer>
+	<integer name="miracast_dot">14</integer>
+	<integer name="miracast_dot_pading">10</integer>
+
+	<dimen name="title_front_size">15sp</dimen>
+
+	<dimen name="step_title_margintop">135dp</dimen>
+	<dimen name="step_title_marginleft">45dp</dimen>
+	<dimen name="step_title_front_size">45sp</dimen>
+
+	<dimen name="step_hint_margintop">225dp</dimen>
+	<dimen name="step_hint_marginleft">90dp</dimen>
+	<dimen name="step_hint_front_size">18sp</dimen>
+
+	<dimen name="menu_title_margintop">328dp</dimen>
+	<dimen name="menu_title_marginleft">441dp</dimen>
+	<dimen name="menu_title_front_size">7sp</dimen>
+
+	<dimen name="menu1_title_margintop">289dp</dimen>
+	<dimen name="menu1_title_marginleft">435dp</dimen>
+
+	<dimen name="menu2_title_margintop">286dp</dimen>
+	<dimen name="menu2_title_marginleft">441dp</dimen>
+
+	<dimen name="wifi_display_margintop">168dp</dimen>
+	<dimen name="wifi_display_marginleft">661dp</dimen>
+	<dimen name="wifi_display_front_size">15sp</dimen>
+
+	<dimen name="state_hint_margintop">243dp</dimen>
+	<dimen name="state_hint_marginleft">583dp</dimen>
+	<dimen name="state_hint_front_size">10sp</dimen>
+
+	<dimen name="help_label_margintop">291dp</dimen>
+	<dimen name="help_label_marginleft">646dp</dimen>
+	<dimen name="help_label_front_size">10sp</dimen>
+</resources>

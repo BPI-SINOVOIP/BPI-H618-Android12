@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    
+
+    
+    <RelativeLayout
+        android:id="@+id/menu_field"
+        android:layout_width="match_parent"
+        android:layout_height="211dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/main_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="#BEBEBE" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/main_divider"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/update_online"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/main_button_style"
+                android:clickable="true" >
+
+                <TextView
+                    android:id="@+id/online_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:background="#00ffffff" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/online_divider"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="66dp"
+                    android:text="@string/update_online"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/version_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/online_divider"
+                    android:layout_marginLeft="66dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/app_name"
+                    android:textColor="#666666"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/new_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/textView3"
+                    android:layout_marginLeft="21dp"
+                    android:layout_toRightOf="@+id/textView3"
+                    android:src="@drawable/ic_new"
+                    android:contentDescription="@string/app_name" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#BEBEBE" />
+
+            <RelativeLayout
+                android:id="@+id/update_local"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/main_button_style"
+                android:clickable="true" >
+
+                <TextView
+                    android:id="@+id/locale_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerVertical="true"
+                    android:background="#00ffffff" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/locale_divider"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="66dp"
+                    android:text="@string/update_local"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/locale_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/locale_divider"
+                    android:layout_marginLeft="66dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/app_name"
+                    android:textColor="#666666"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/check_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp" >
+        
+   <ImageButton
+        android:id="@+id/checkout_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/check_button_style"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/current_version_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkout_btn"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:textColor="#ff000000"
+        android:text="@string/current_version" />
+
+  
+    <TextView
+        android:id="@+id/last_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/current_version_tv"
+        android:layout_below="@+id/current_version_tv"
+        android:textSize="20sp"
+        android:textColor="#666666"
+        android:text="@string/last_update_time"  />     
+        
+    </RelativeLayout>
+    
+</RelativeLayout>

@@ -1,0 +1,7 @@
+-keep class com.softwinner.wfdsink.** {
+    *;
+}
+
+-keep class android.support.v4.** {
+    *;
+}

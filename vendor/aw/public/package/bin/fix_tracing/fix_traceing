@@ -1,0 +1,7 @@
+#!/system/bin/sh
+sleep 1
+#bugfix 62800
+#临时解决方案，因为storaged.rc文件打开了/d/mmc0/mmc0:0001/ext_csd(seliunx 打开的情况下是没有权限打开的，H618默认关闭了selinux)
+#导致 init-debug.rc 文件里 umount /sys/kernel/debug 失败，最终导致sys/kernel/tracing 目录权限错误(为什么权限错误，还需要看下traceing的内核实现)
+#本身根本原因是storaged.rc为什么要打开ext_csd文件，这个后续和google沟通下，暂时我们先在这里临时规避下
+chmod 0755 /sys/kernel/tracing

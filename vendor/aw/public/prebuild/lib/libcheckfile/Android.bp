@@ -1,0 +1,16 @@
+cc_prebuilt_library_shared {
+    name: "libcheckfile",
+    multilib: {
+        lib32: {
+            srcs: ["lib/libcheckfile.so"],
+        },
+        lib64: {
+            srcs: ["lib64/libcheckfile.so"],
+        },
+    },
+    compile_multilib: "both",
+    strip: {
+        none:true,
+    },
+    shared_libs: ["libc++", "libc", "libcutils", "libdl", "liblog", "libm"],
+}

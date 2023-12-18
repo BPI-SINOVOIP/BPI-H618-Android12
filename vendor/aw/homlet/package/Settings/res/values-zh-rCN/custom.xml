@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="cpu_type" msgid="410C2A9B00B122B8310">"处理器类型"</string>
+	<string name="software_version" msgid="610C2A9B00B12356310">"固件版本号"</string>
+    <!-- hdmi -->
+    <string name="hdmi_setting">HDMI设置</string>
+    <string name="hdmi_output_mode">HDMI输出模式</string>
+    <string name="hdmi_output_mode_summary">设置默认的HDMI输出制式</string>
+    <string name="hdmi_fullscreen">HDMI全屏显示</string>
+    <string name="hdmi_fullscreen_summary">设置HDMI输出是否全屏显示</string>
+    <string name="hdmi_width_scale">HDMI输出宽度缩放</string>
+    <string name="hdmi_height_scale">HDMI输出高度缩放</string>
+    <!-- Begin ethernet configure -->
+    <string name="eth_settings_title">以太网</string>
+    <string name="eth_toggle_title">使用以太网</string>
+    <string name="eth_settings">以太网设置</string>
+    <string name="eth_dhcp_configure">动态IP配置</string>
+    <string name="eth_static_configure">静态IP配置</string>
+    <string name="eth_ip_address">IP地址</string>
+    <string name="eth_ip_string">0.0.0.0</string>
+    <string name="eth_mac_address">物理地址</string>
+    <string name="eth_mac_string">00:00:00:00:00:00</string>
+    <string name="eth_mask_address">网络前缀长度</string>
+    <string name="eth_mask_string">255.255.255.255</string>
+    <string name="eth_dns1_address">DNS1</string>
+    <string name="eth_dns1_string">0.0.0.0</string>
+    <string name="eth_dns2_address">DNS2</string>
+    <string name="eth_dns2_string">0.0.0.0</string>
+    <string name="eth_gw_address">默认网关</string>
+    <string name="eth_gw_string">0.0.0.0</string>
+    <string name="eth_errStaticIp">无效静态IP,请检查!</string>
+    <string name="eth_dev_summaryoff">未连接</string>
+    <string name="eth_dev_summaryon">已连接 -- 使用设备: </string>
+    <string name="eth_ok">确定</string>
+    <string name="eth_cancel">取消</string>
+    <string name="eth_connect_mode">连接模式</string>
+    <string name="eth_mode_dhcp">DHCP 模式</string>
+    <string name="eth_mode_static">静态IP模式</string>
+    <string name="eth_info">连接信息</string>
+    <string name="eth_off">要查看可用网络，请打开以太网。</string>
+
+    <!-- DHCP -->
+    <string name="dhcp_setting_user">用户名</string>
+    <string name="dhcp_setting_password">密码</string>
+    <string name="dhcp_use_ipoe">使用IPoE</string>
+    <!-- End ethernet configure -->
+    <!-- color enhance -->
+    <string name="color_enhance">丽色系统</string>
+    <string name="color_enhance_summary">丽色系统用于玩游戏,观看视频图片,效果更佳</string>
+    <string name="color_enhance_demo">演示模式</string>
+    <string name="color_enhance_demo_summary">只对半个屏幕有效,便于看出效果</string>
+    <string name="smart_backlight">智能背光</string>
+    <string name="smart_backlight_demo">演示模式</string>
+    <string name="smart_backlight_demo_summary">只对半个屏幕有效,便于看出效果</string>
+    <string name="reading_mode">护眼模式</string>
+    <string name="reading_mode_summary">适合长时间阅读时使用，减少屏幕蓝光对眼睛的损害</string>
+    <string name="reading_mode_strength_scale">护眼效果调节</string>
+    <string name="color_temperature_scale">色温调节</string>
+
+    <!-- gesture screenshot -->
+    <string name="title_gesture_screenshot">手势截屏</string>
+    <string name="title_gesture_screenshot_summary">用两根手指从屏幕右侧最边缘向内滑动一段距离触发截屏功能</string>
+    <!-- gesture screenrecord -->
+    <string name="title_gesture_screenrecord">手势录像</string>
+    <string name="title_gesture_screenrecord_summary">用三根手指从屏幕右侧最边缘向内滑动一段距离触发屏幕录制功能，再次滑动停止录制</string>
+    <!-- recovery mode -->
+    <string name="reboot_recovery_title">Recovery模式</string>
+    <string name="reboot_recovery_desc">现在重启进入Recovery?</string>
+    <string name="reboot_recovery_button">立即重启</string>
+</resources>

@@ -1,0 +1,19 @@
+noipdefault
+noauth
+default-asyncmap
+nodefaultroute
+hide-password
+nodetach
+usepeerdns
+mtu 1492
+mru 1492
+noaccomp
+nodeflate
+nopcomp
+novj
+novjccomp
+lcp-echo-interval 6
+lcp-echo-failure 10
+linkname pppoe
+persist
+maxfail 0

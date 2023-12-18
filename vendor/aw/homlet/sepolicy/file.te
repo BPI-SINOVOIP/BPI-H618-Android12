@@ -1,0 +1,15 @@
+type bluray, sdcard_type, fs_type, mlstrustedobject;
+type cifs, fs_type, sdcard_type, mlstrustedobject;
+type nfs, fs_type, sdcard_type, mlstrustedobject;
+type sysfs_systemmix, fs_type, sysfs_type;
+type sysfs_disp, fs_type, sysfs_type;
+type sysfs_gpio, fs_type, sysfs_type;
+type sysfs_edid, fs_type, sysfs_type;
+type sysfs_hdmi, fs_type, sysfs_type;
+#type sysfs_cvbs, fs_type, sysfs_type;
+type sysfs_hpd, fs_type, sysfs_type;
+type sysfs_temp, fs_type, sysfs_type;
+type sysfs_cvbs, fs_type, sysfs_type;
+#type sysfs_usb_device, sysfs_type, fs_type;
+type debugfs_mali_utilization_gp_pp, fs_type, debugfs_type;
+type proc_partitions, fs_type, proc_type;

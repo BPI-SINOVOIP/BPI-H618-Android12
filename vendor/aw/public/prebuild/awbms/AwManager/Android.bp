@@ -1,0 +1,21 @@
+android_app {
+    name: "AwManager",
+
+    srcs: ["src/**/*.java"],
+
+    platform_apis: true,
+    certificate: "platform",
+    privileged: true,
+    dex_preopt: {
+        enabled: false,
+    },
+
+    aaptflags: ["--auto-add-overlay"],
+
+    optimize: {
+        enabled: false,
+    },
+
+    required: ["permissions_awbms"],
+
+}

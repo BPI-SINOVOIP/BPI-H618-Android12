@@ -1,0 +1,23 @@
+##allow mediacodec cedar_device:chr_file rw_file_perms;
+##allow mediacodec system_file:dir r_file_perms;
+##allow mediacodec appdomain:dir r_dir_perms;
+##allow mediacodec appdomain:file r_file_perms;
+##allow mediacodec googlevp9_device:chr_file rw_file_perms;
+##allow mediacodec tee_device:chr_file { open read write ioctl };
+##allow mediacodec deinterlace_device:chr_file rw_file_perms;
+##allow mediacodec mediaserver:dir { search };
+##allow mediacodec mediaserver:file { read open };
+##allow mediacodec property_socket:sock_file { write };
+##allow mediacodec sunxi_soc_info_device:chr_file { read write open ioctl };
+##allow mediacodec init:unix_stream_socket { connectto };
+##allow mediacodec system_prop:property_service set;
+#
+##============= mediacodec ==============
+##allow mediacodec cedar_device:chr_file rw_file_perms;
+##allow mediacodec system_file:dir r_file_perms;
+##allow mediacodec googlevp9_device:chr_file rw_file_perms;
+##allow mediacodec deinterlace_device:chr_file rw_file_perms;
+##allow mediacodec mediaserver:dir { search };
+##allow mediacodec mediaserver:file { read open };
+##allow mediacodec sunxi_soc_info_device:chr_file { read write open ioctl };
+#

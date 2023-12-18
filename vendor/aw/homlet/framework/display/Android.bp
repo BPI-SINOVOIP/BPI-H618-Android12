@@ -1,0 +1,38 @@
+java_library_static {
+    name: "vendor.displayd",
+    srcs: [
+        "java/com/softwinner/display/DisplaydClient.java",
+    ],
+    static_libs: [
+        "android.hidl.manager-V1.0-java",
+        "vendor.display.config-V1.0-java",
+    ],
+}
+
+java_library_static {
+    name: "softwinner.display",
+    srcs: [
+        "java/android/os/DisplayOutputManager.java",
+        "java/android/os/DisplayOutputManagerService.java",
+    ],
+    static_libs: [
+        "displayoutputmanager-aidl-interfaces-java",
+        "vendor.displayd",
+    ],
+    optimize: {
+        enabled: false,
+    },
+}
+
+aidl_interface {
+    name: "displayoutputmanager-aidl-interfaces",
+    local_include_dir: "aidl",
+    srcs: [
+        "aidl/com/softwinner/IDisplayOutputManager.aidl",
+    ],
+    unstable: true,
+    vendor_available: true,
+    double_loadable: true,
+    //api_dir: "aidl/api",
+    //versions: ["1"],
+}

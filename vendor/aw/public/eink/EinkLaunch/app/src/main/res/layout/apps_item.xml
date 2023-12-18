@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.eink.launcher.PagedViewIcon 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:launcher="http://schemas.android.com/apk/res-auto"
+    
+    style="@style/ApplicationIcon.Portrait.AppsCustomize"
+    
+    android:id="@+id/application_icon"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+
+    launcher:blurColor="#FF000000"
+    launcher:outlineColor="#FF000000"
+
+    android:focusable="true"
+    android:background="@drawable/focusable_view_bg" />

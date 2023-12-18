@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="about_settings" product="tv">"about TV"</string>
+    <string name="device_status_summary" product="tv">"MAC and serialno"</string>
+
+    <!-- Sound & notification > Sound section: Audio output mode -->
+    <string name="audio_output_mode_title">Audio output mode</string>
+	
+	<!-- Pass through -->
+    <string name="enable_pass_through_summary">Output the audio with raw data, can only select one audio output mode</string>
+    <string name="sound_pass_through_title">Pass through</string>
+    <string name="enable_pass_through">Enable pass through</string>
+
+    <!-- USB0 -->
+    <string name="enable_usb0_device">USB0 device mode enable</string>
+    <string name="enable_usb0_device_summary">Enable USB0 device mode to debug</string>
+    <!-- Begin ethernet configure -->
+    <string name="eth_settings_title">Ethernet</string>
+    <string name="eth_toggle_title">Use ethernet</string>
+    <string name="eth_settings">Ethernet settings</string>
+    <string name="eth_dhcp_configure">DHCP configure</string>
+    <string name="eth_static_configure">Static configure</string>
+    <string name="eth_ip_address">IP address</string>
+    <string name="eth_ip_string">0.0.0.0</string>
+    <string name="eth_mac_address">MAC address</string>
+    <string name="eth_mac_string">00:00:00:00:00:00</string>
+    <string name="eth_mask_address">Network prefix length</string>
+    <string name="eth_mask_string">255.255.255.255</string>
+    <string name="eth_dns1_address">DNS1</string>
+    <string name="eth_dns1_string">0.0.0.0</string>
+    <string name="eth_dns2_address">DNS2</string>
+    <string name="eth_dns2_string">0.0.0.0</string>
+    <string name="eth_gw_address">Gateway</string>
+    <string name="eth_gw_string">0.0.0.0</string>
+    <string name="eth_errStaticIp">invalid static Ip,please check!</string>
+    <string name="eth_tips">PPPoE already connected,Please disconnect first!</string>
+    <string name="eth_dhcp_choice">DHCP</string>
+    <string name="eth_dev_summaryoff">Disconnected</string>
+    <string name="eth_dev_summaryon">Connected -- used device: </string>
+    <string name="eth_ok">Ok</string>
+    <string name="eth_cancel">Cancel</string>
+    <string name="eth_connect_mode">Connect mode</string>
+    <string name="eth_mode_dhcp">DHCP</string>
+    <string name="eth_mode_static">Static IP</string>
+    <string name="eth_info">Network info</string>
+    <string name="eth_off">To see available networks, turn Ethernet on.</string>
+    <!-- PPPoE -->
+    <string name="pppoe_settings">PPPoE Settings</string>
+    <string name="pppoe_configure">PPPoE configure</string>
+    <string name="pppoe_setup">PPPoE Setup</string>
+    <string name="pppoe_enable">PPPoE Enable</string>
+    <string name="pppoe_settings_interface">Interface</string>
+    <string name="pppoe_setting_user">User</string>
+    <string name="pppoe_setting_password">Password</string>
+    <string name="pppoe_setting_title">PPPOE</string>
+    <string name="pppoe_tips">please setup user and password first</string>
+    <string name="pppoe_errmsg">PPPoE connect failed,reason:"</string>
+    <string name="pppoe_info">Network Info</string>
+    <string name="pppoe_local_address">Local Address</string>
+    <string name="pppoe_local_string">0.0.0.0</string>
+    <string name="pppoe_remote_address">Remote Address</string>
+    <string name="pppoe_remote_string">0.0.0.0</string>
+    <string name="pppoe_dns_address">DNS</string>
+    <string name="pppoe_dns_string">0.0.0.0</string>
+    <string name="pppoe_setting_interface">Interface</string>
+    <!-- DHCP -->
+    <string name="dhcp_setting_user">User</string>
+    <string name="dhcp_setting_password">Password</string>
+    <string name="dhcp_use_ipoe">Use IPoE</string>
+    <!-- End ethernet configure -->
+
+    <!-- HDMI settings -->
+    <string name="output_setting">display output setting</string>
+    <string name="hdmi_setting">HDMI setting</string>
+    <string name="hdmi_output_mode">HDMI output mode</string>
+    <string name="hdmi_output_mode_summary">Set the default HDMI output standard.</string>
+    <string name="hdmi_full_screen">HDMI full screen mode</string>
+	<string name="hdmi_full_screen_summary">Set true to show HDMI in full screen mode.</string>
+
+    <!-- hdmi array -->
+    <string-array name="hdmi_output_mode_entries">
+        <item>HDMI 720P 60HZ</item>
+        <item>HDMI 1080P 60HZ</item>
+    </string-array>
+    <string-array name="hdmi_output_mode_values" translatable="false">
+        <!-- Do not translate. -->
+        <item>5</item>
+        <!-- Do not translate. -->
+        <item>10</item>
+    </string-array>
+
+    <!-- Display output mode -->
+    <string name="display_setting">Mode setting</string>
+    <string name="display_output_mode_title">Display output mode</string>
+    <string name="display_output_mode_summary">Display output mode</string>
+    <string name="display_mode_time_out_title">Modifying comfirmation</string>
+    <string name="display_mode_before_dialog_title">Tips</string>
+    <string name="display_mode_time_out_desc">After %1$s s , it will restore to original preset.\nDo you want to save this change?</string>
+    <string name="display_mode_before_dialog_content">After %1$s s , it will set new output mode.\nIf screen can not display normally,please wait 10s without any operation or click DisplayMode Button.</string>
+    <string name="display_mode_auto_detect">Auto detect</string>
+    <string name="display_mode_unsupport">Unsupport mode</string>
+
+       <!-- pip display set -->
+     <string name="pip_screen_set_title">PIP Setting</string>
+    <string name="pip_screen_set_summary">adjuest PIP size</string>
+
+    <string name="pip_screen_set_postion_title">PIP position setting</string>
+    <string name="pip_screen_set_postion_summary">PIP position adjuest</string>
+     <string name="pip_screen_set_size_title">PIP size setting</string>
+    <string name="pip_screen_set_size_summary">PIP screen size setting</string>
+
+    <!-- Display percent -->
+    <string name="tv_screen_percent_title">Screen percent</string>
+    <string name="tv_screen_percent_summary">Adjust the size of Screen </string>
+
+   <string name="hdmi_color_space_and_deep">HDMI color space and depth</string>
+   <string name="tv_hdr_mode">TV HDR mode</string>
+   <string name="current_mode_summary">Current Mode <xliff:g id="app">%1$s</xliff:g></string>
+
+</resources>

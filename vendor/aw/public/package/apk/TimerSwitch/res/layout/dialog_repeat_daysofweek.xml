@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_bottom_dialog"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:id="@+id/cb_monday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/MONDAY"
+        android:layoutDirection="rtl"
+        android:background="@drawable/background_selector"
+        android:textColor="#666666"
+        android:textSize="18sp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <CheckBox
+        android:id="@+id/cb_tuesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/TUESDAY"
+        android:layoutDirection="rtl"
+        android:background="@drawable/background_selector"
+        android:textColor="#666666"
+        android:textSize="18sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <CheckBox
+        android:id="@+id/cb_wednesday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/WEDNESDAY"
+        android:layoutDirection="rtl"
+        android:background="@drawable/background_selector"
+        android:textColor="#666666"
+        android:textSize="18sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <CheckBox
+        android:id="@+id/cb_thursday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/THURSDAY"
+        android:layoutDirection="rtl"
+        android:background="@drawable/background_selector"
+        android:textColor="#666666"
+        android:textSize="18sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <CheckBox
+        android:id="@+id/cb_friday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/FRIDAY"
+        android:layoutDirection="rtl"
+        android:background="@drawable/background_selector"
+        android:textColor="#666666"
+        android:textSize="18sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <CheckBox
+        android:id="@+id/cb_saturday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/SATURDAY"
+        android:layoutDirection="rtl"
+        android:background="@drawable/background_selector"
+        android:textColor="#666666"
+        android:textSize="18sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <CheckBox
+        android:id="@+id/cb_sunday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/SUNDAY"
+        android:layoutDirection="rtl"
+        android:background="@drawable/background_selector"
+        android:textColor="#666666"
+        android:textSize="18sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+
+       <Button
+           android:id="@+id/bt_cancel"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:clickable="true"
+           android:gravity="center"
+           android:padding="16dp"
+           android:text="@string/cancel"
+           android:layout_weight="1"
+           android:textColor="#666666"
+           android:textSize="18sp"/>
+
+       <Button
+           android:id="@+id/bt_confirm"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:clickable="true"
+           android:gravity="center"
+           android:padding="16dp"
+           android:layout_weight="1"
+           android:text="@string/confirm"
+           android:textColor="#666666"
+           android:textSize="18sp"/>
+   </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+
+</LinearLayout>

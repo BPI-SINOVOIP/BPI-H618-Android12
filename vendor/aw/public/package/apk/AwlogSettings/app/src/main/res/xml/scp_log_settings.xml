@@ -1,0 +1,14 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="scp_log_enabled"
+        app:title="@string/enabled"
+        app:disableDependentsState="true"/>
+
+    <SwitchPreferenceCompat
+        app:dependency="scp_log_enabled"
+        app:key="scp_log_boot_enabled"
+        app:title="@string/boot_enabled"
+        app:summary="@string/boot_enabled_summary"/>
+
+</PreferenceScreen>

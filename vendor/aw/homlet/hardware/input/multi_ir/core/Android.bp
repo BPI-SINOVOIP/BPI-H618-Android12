@@ -1,0 +1,46 @@
+cc_binary {
+    name: "multi_ir",
+    recovery_available: true,
+    srcs: [
+        "multiir.cpp",
+        "virtual_input.cpp",
+        "uevent_utils.cpp",
+        "MultiirService.cpp",
+    ],
+
+    init_rc: ["multi_ir.rc"],
+
+    shared_libs: [
+        "libcutils",
+ //       "libc",
+        "liblog",
+        "libutils",
+        "libbinder",
+        "libandroid_runtime",
+        "libmultiirservice",
+    ],
+
+    include_dirs: [
+        "system/core/libutils/include",
+    ],
+
+    cflags: [
+        "-DLOG_TAG=\"multiir\"",
+        "-DCEC_ONE_TOUCH_PLAY",
+        "-llog",
+    ],
+
+    target: {
+        recovery: {
+            exclude_shared_libs: [
+                "libbinder",
+                "libandroid_runtime",
+                "libmultiirservice",
+            ],
+
+            exclude_srcs: ["MultiirService.cpp"],
+            cflags: ["-DBUILD_TARGET_RECOVERY"],
+        },
+
+    }
+}

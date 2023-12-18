@@ -1,0 +1,15 @@
+cc_binary {
+    name: "radio_monitor",
+    init_rc: ["radio_monitor.rc"],
+    relative_install_path: "hw",
+    vendor: true,
+    srcs: [
+        "UEventFramework.c",
+        "radio_monitor.c",
+    ],
+    shared_libs: [
+        "liblog",
+        "libutils",
+        "libcutils",
+    ],
+}

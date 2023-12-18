@@ -1,0 +1,9 @@
+on property:sys.boot_completed=1
+    start preinstall
+
+service preinstall /system/bin/preinstall
+    oneshot
+    disabled
+    user shell
+    group shell
+    seclabel u:r:shell:s0

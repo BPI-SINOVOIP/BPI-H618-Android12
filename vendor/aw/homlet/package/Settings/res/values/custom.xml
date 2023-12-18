@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- cpu type & firmware verison-->
+	<string name="cpu_type">Processor type</string>
+	<string name="software_version">Firmware version</string>
+    <!-- hdmi -->
+    <string name="hdmi_setting">hdmi setting</string>
+    <string name="hdmi_output_mode">hdmi output mode</string>
+    <string name="hdmi_output_mode_summary">Set the default HDMI output standard.</string>
+    <string name="hdmi_fullscreen">hdmi fullscreen mode</string>
+    <string name="hdmi_fullscreen_summary">Set true to show HDMI in fullscreen mode.</string>
+    <string name="hdmi_width_scale">HDMI output width scale</string>
+    <string name="hdmi_height_scale">HDMI output height scale</string>
+    <!-- hdmi array -->
+    <string-array name="hdmi_output_mode_entries">
+        <item>HDMI 720P 60HZ</item>
+        <item>HDMI 1080P 60HZ</item>
+    </string-array>
+    <string-array name="hdmi_output_mode_values" translatable="false">
+        <!-- Do not translate. -->
+        <item>5</item>
+        <!-- Do not translate. -->
+        <item>10</item>
+    </string-array>
+    <!-- Begin ethernet configure -->
+    <string name="eth_settings_title">Ethernet</string>
+    <string name="eth_toggle_title">Use ethernet</string>
+    <string name="eth_settings">Ethernet settings</string>
+    <string name="eth_dhcp_configure">DHCP configure</string>
+    <string name="eth_static_configure">Static configure</string>
+    <string name="eth_ip_address">IP address</string>
+    <string name="eth_ip_string">0.0.0.0</string>
+    <string name="eth_mac_address">MAC address</string>
+    <string name="eth_mac_string">00:00:00:00:00:00</string>
+    <string name="eth_mask_address">Network prefix length</string>
+    <string name="eth_mask_string">255.255.255.255</string>
+    <string name="eth_dns1_address">DNS1</string>
+    <string name="eth_dns1_string">0.0.0.0</string>
+    <string name="eth_dns2_address">DNS2</string>
+    <string name="eth_dns2_string">0.0.0.0</string>
+    <string name="eth_gw_address">Gateway</string>
+    <string name="eth_gw_string">0.0.0.0</string>
+    <string name="eth_errStaticIp">invalid static Ip,please check!</string>
+    <string name="eth_dhcp_choice">DHCP</string>
+    <string name="eth_dev_summaryoff">Disconnected</string>
+    <string name="eth_dev_summaryon">Connected -- used device: </string>
+    <string name="eth_ok">Ok</string>
+    <string name="eth_cancel">Cancel</string>
+    <string name="eth_connect_mode">Connect mode</string>
+    <string name="eth_mode_dhcp">DHCP</string>
+    <string name="eth_mode_static">Static IP</string>
+    <string name="eth_info">Network info</string>
+    <string name="eth_off">To see available networks, turn Ethernet on.</string>
+    <!-- DHCP -->
+    <string name="dhcp_setting_user">User</string>
+    <string name="dhcp_setting_password">Password</string>
+    <string name="dhcp_use_ipoe">Use IPoE</string>
+    <!-- End ethernet configure -->
+	
+    <!-- color enhance -->
+    <string name="color_enhance">Color Enhance</string>
+    <string name="color_enhance_summary">It is better for playing games and video and picture.</string>
+    <string name="color_enhance_demo">Demo mode</string>
+    <string name="color_enhance_demo_summary">Only half of the screen is effective, in order to show the effect easily.</string>
+    <string name="smart_backlight">Smart backlight</string>
+    <string name="smart_backlight_demo">Demo mode</string>
+    <string name="smart_backlight_demo_summary">Only half of the screen is effective, in order to show the effect easily.</string>
+    <string name="reading_mode">Reading Mode</string>
+    <string name="reading_mode_summary">Reduce display\'s background glare.</string>
+    <string name="reading_mode_strength_scale">Strength</string>
+    <string name="color_temperature_scale">Color Temperature Adjustment.</string>
+
+    <!-- gesture screenshot -->
+    <string name="title_gesture_screenshot">Gesture screenshot</string>
+    <string name="title_gesture_screenshot_summary">Sliding from the right side of the screen with two fingers.</string>
+    <!-- gesture screenrecord -->
+    <string name="title_gesture_screenrecord">Gesture screenrecord</string>
+    <string name="title_gesture_screenrecord_summary">Sliding from the right side of the screen with three fingers, and stop with the same gesture.</string>
+    <!-- recovery mode -->
+    <string name="reboot_recovery_title">Recovery mode</string>
+    <string name="reboot_recovery_desc">Reboot to recovery mode now?</string>
+    <string name="reboot_recovery_button">REBOOT NOW</string>
+</resources>

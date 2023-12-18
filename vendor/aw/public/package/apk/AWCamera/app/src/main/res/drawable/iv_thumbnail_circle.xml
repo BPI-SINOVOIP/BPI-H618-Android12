@@ -1,0 +1,9 @@
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    android:useLevel="false">
+    <solid android:color="#00ffffff"/>
+    <size android:width="@dimen/iv_capturebg_width"
+        android:height="@dimen/iv_capturebg_height"/>
+    <stroke android:width="0dp" android:color="@android:color/white" />
+</shape>

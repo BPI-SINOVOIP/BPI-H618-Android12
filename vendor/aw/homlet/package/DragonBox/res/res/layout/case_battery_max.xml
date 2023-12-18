@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+        <TextView
+            android:id="@+id/case_battery_present"
+            style="@style/CaseVersionMax"
+            android:text="@string/BatteryInfo_present_textview" />
+
+        <TextView
+            android:id="@+id/case_battery_status"
+            style="@style/CaseVersionMax"
+            android:text="@string/BatteryInfo_status_textview" />
+
+        <TextView
+            android:id="@+id/case_battery_health"
+            style="@style/CaseVersionMax"
+            android:text="@string/BatteryInfo_health_textview" />
+
+        <TextView
+            android:id="@+id/case_battery_level"
+            style="@style/CaseVersionMax"
+            android:text="@string/BatteryInfo_level_textview" />
+
+        <TextView
+            android:id="@+id/case_battery_plugged"
+            style="@style/CaseVersionMax"
+            android:text="@string/BatteryInfo_plugged_textview" />
+
+        <TextView
+            android:id="@+id/case_battery_voltage"
+            style="@style/CaseVersionMax"
+            android:text="@string/BatteryInfo_voltage_textview"/>
+
+        <TextView
+            android:id="@+id/case_battery_temperature"
+            style="@style/CaseVersionMax"
+            android:text="@string/BatteryInfo_temperature_textview"/>
+
+        <TextView
+            android:id="@+id/case_battery_technology"
+            style="@style/CaseVersionMax"
+            android:text="@string/BatteryInfo_technology_textview"/>
+
+</LinearLayout>

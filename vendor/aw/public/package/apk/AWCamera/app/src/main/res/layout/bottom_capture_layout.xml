@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rl_switchCamera"
+        android:layout_gravity="bottom|left"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/iv_capturebg_height"
+        android:layout_margin="@dimen/iv_capture_margin_size"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/switchcamera_left_size"
+            android:background="@drawable/selector_switchcamera"
+            />
+        <com.allwinner.camera.views.CircleRotateImageView
+            android:id="@+id/iv_switchCamera"
+            android:layout_width="@dimen/switchcamera_size"
+            android:layout_height="@dimen/switchcamera_size"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/switchcamera_left_size"
+            android:src="@mipmap/ic_switch_photo_facing_holo_light_xlarge" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="@dimen/iv_capturebg_width"
+        android:id="@+id/rl_capture"
+        android:layout_height="@dimen/iv_capturebg_height"
+        android:layout_margin="@dimen/iv_capture_margin_size"
+        android:layout_gravity="bottom|center"
+        android:background="@drawable/selector_capture"
+        >
+        <com.allwinner.camera.views.CircleRotateImageView
+            android:id="@+id/iv_rotateCapture"
+            android:layout_width="@dimen/iv_capture_width"
+            android:layout_height="@dimen/iv_capture_height"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_camera_normal" />
+    </RelativeLayout>
+
+</FrameLayout>
+
+

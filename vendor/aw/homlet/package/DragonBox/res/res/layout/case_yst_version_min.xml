@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPerCaseTheme"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/item_num_text" />
+
+    <include layout="@layout/item_action_button" />
+
+    <TableLayout
+        style="@style/MainPerCaseTabLayout"
+        android:stretchColumns="*" >
+
+        <TableRow style="@style/MainPerCaseTabRow" >
+
+            <TextView
+                android:id="@+id/case_version_version"
+                style="@style/MainPerCaseDetailTextView"
+                android:layout_weight="1"
+                android:text="@string/case_version_info_android_ver" />
+
+            <TextView
+                android:id="@+id/case_version_memsize"
+                style="@style/MainPerCaseDetailTextView"
+                android:layout_weight="1"
+                android:text="@string/case_version_other_info_ddr" />
+
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/case_version_cpufreq"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_version_info_cpufreq" />
+        </TableRow>
+    </TableLayout>
+
+    <include layout="@layout/item_result_text" />
+
+</LinearLayout>

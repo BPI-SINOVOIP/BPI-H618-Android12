@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="horizontal"
+  android:background="@drawable/pop_background2"
+  android:layout_width="match_parent"
+  android:minHeight="@dimen/cdialog_height"
+  android:minWidth="@dimen/cdialog_width"
+  android:layout_height="@dimen/cdialog_height">
+      <ProgressBar
+        android:id="@+id/UCheckingProgsessBar"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/cdialog_progress_margin_left"
+        android:indeterminateDrawable="@drawable/custom_checking_progress"
+        android:layout_height="wrap_content" />
+ <TextView
+  android:layout_height="wrap_content"
+  android:textColor="@color/white"
+  android:layout_width="fill_parent"
+  android:text="@string/now_checking_update"
+  android:textSize="@dimen/utoast_font_size"
+  android:layout_marginTop="@dimen/cdialog_text_margin_top"
+  android:layout_marginLeft="@dimen/utoast_content_margin_left"
+  android:layout_marginRight="@dimen/utoast_content_margin_left"
+  android:gravity="center_vertical"
+  android:id="@+id/UToastText" />
+</LinearLayout>

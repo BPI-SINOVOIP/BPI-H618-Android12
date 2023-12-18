@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.softwinner.timerswitch">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.SHUTDOWN"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.BootActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".ui.ShutDownActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".ui.AlarmCreateOrUpdateActivity"
+            android:exported="true">
+        </activity>
+
+        <activity android:name=".ui.TimerSwitchActivity"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+
+   <intent-filter>
+                <action android:name="com.softwinner.timerswitch.ui.TimerSwitchActivity" />
+                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            </intent-filter>
+
+            <meta-data android:name="com.android.settings.category"
+                android:value="com.android.settings.category.system" />
+            <meta-data android:name="com.android.settings.title"
+                android:resource="@string/app_name" />
+            <meta-data android:name="com.android.settings.summary"
+                android:resource="@string/summary" />
+            <meta-data android:name="com.android.settings.icon"
+                android:resource="@drawable/icon" />
+            <meta-data android:name="com.android.settings.PRIMARY_PROFILE_CONTROLLED"
+                android:value="true" />
+        </activity>
+
+        <receiver android:name=".AlarmReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="action_boot" />
+                <action android:name="action_shutdown" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name=".data.AlarmContentProvider"
+            android:authorities="com.softwinner.timerswitch"
+            android:exported="false" />
+    </application>
+
+</manifest>

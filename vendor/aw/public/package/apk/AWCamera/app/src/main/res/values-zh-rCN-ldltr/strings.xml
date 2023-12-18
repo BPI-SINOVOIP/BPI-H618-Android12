@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">相机</string>
+    <string name="settings">设置</string>
+    <string name="squareMode">正方形</string>
+    <string name="professionMode">专业</string>
+    <string name="autoMode">拍照</string>
+    <string name="videoMode">录像</string>
+    <string name="panoMode">全景</string>
+    <string name="camera_error_title">相机错误</string>
+    <string name="error_permissions">该应用程序没有运行所需的关键权限，请检查您的权限设置。</string>
+    <string name="dialog_dismiss">取消</string>
+    <string name="photograph_setting">拍照设置</string>
+    <string name="disable">禁用</string>
+    <string name="enable">启用</string>
+    <string name="defaults">默认</string>
+    <string name="custom">自定义</string>
+    <string name="voice_control">拍照声音</string>
+    <string name="gridlines">参考线</string>
+    <string name="back_photo_ratio">后置拍照比例</string>
+    <string name="front_photo_ratio">前置拍照比例</string>
+    <string name="back_video_ratio">后置录像质量</string>
+    <string name="front_video_ratio">前置录像质量</string>
+    <string name="camera_settings">相机设置</string>
+    <string name="save_location">保存位置信息</string>
+    <string name="time_watersign">时间水印</string>
+    <string name="model_watersign">机型水印</string>
+    <string name="off">关</string>
+    <string name="filter_normal">原图</string>
+    <string name="filter_bw">黑白</string>
+    <string name="filter_amber">明珀</string>
+    <string name="filter_bleak">无望</string>
+    <string name="filter_film">胶片</string>
+    <string name="filter_white">漂白</string>
+    <string name="filter_green_orange">青橙</string>
+    <string name="filter_autumn">秋色</string>
+    <string name="filter_sunset">日落</string>
+    <string name="filter_green">炫绿</string>
+    <string name="filter_blue">蓝调</string>
+    <string name="filter_beauty">美颜</string>
+    <string name="retake">重拍</string>
+    <string name="finish">完成</string>
+    <string name="spaceIsLow_content" >SD卡空间不足。请更改画质设置，或删除部分图片或其他文件。</string>
+    <string name="no_storage">使用相机前请先插入SD卡。</string>
+    <string name="preparing_sd">正在准备SD卡…</string>
+    <string name="access_sd_fail">无法使用SD卡。</string>
+    <string name="video_reach_size_limit" >已达文件大小上限。</string>
+    <string name="click_too_frequently_tips">点击太频繁了。</string>
+    <string name="location_setting">位置设置</string>
+    <string name="location_open_wifi_or_gps_tips">请打开WiFi或者GPS, 开启后前往设置Google 位置信息精确度!</string>
+    <string name="location_open_activity">立即前往</string>
+    <string name="location_got_it">好的, 我知道了!</string>
+    <string name="save">确定</string>
+    <string name="cancel">取消</string>
+    <string name="stickers">贴纸</string>
+    <string name="filters">滤镜</string>
+    <string name="stickers_sheep">小羊</string>
+    <string name="stickers_fairy">小仙女</string>
+    <string name="stickers_rabbit">小兔子</string>
+    <string name="stickers_none">无</string>
+    <string name="smooth">磨皮</string>
+    <string name="whitening">美白</string>
+    <string name="bigeye">大眼</string>
+    <string name="slimmer_face">瘦脸</string>
+    <string name="custom_watersign_hint">请输入自定义水印</string>
+    <string name="battery_remain_too_low">电池电量过低，相机将要关闭。</string>
+    <string-array name="model_type">
+        <item>@string/off</item>
+        <item>@string/defaults</item>
+        <item>@string/custom</item>
+    </string-array>
+</resources>

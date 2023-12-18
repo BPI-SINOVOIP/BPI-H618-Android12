@@ -1,0 +1,6 @@
+#allow shell displayd:binder call;
+#allow shell sunxi_displayd_hwservice:hwservice_manager find;
+allow shell pppoe_exec:file getattr;
+allow shell display_output_service:service_manager add;
+allow shell hal_graphics_composer_default:binder call;
+allow shell vendor_displayconfig_hwservice:hwservice_manager find;

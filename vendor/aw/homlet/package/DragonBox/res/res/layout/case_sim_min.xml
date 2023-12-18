@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPerCaseTheme"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/item_num_text" />
+    <include layout="@layout/item_action_button" />
+
+    <TableLayout
+        style="@style/MainPerCaseTabLayout"
+        android:stretchColumns="*" >
+        <TableRow style="@style/MainPerCaseTabRow" >
+           <TextView
+                android:id="@+id/case_s_state"
+                style="@style/MainPerCaseDetailTextView"
+                android:layout_weight="1"
+                android:text="@string/phone_sim_state" />
+            <TextView
+                android:id="@+id/case_s_signal_strength"
+                style="@style/MainPerCaseDetailTextView"
+                android:layout_weight="1"
+                android:text="@string/phone_signal_strength" />
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/case_s_operator_name"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/phone_sim_operator_name" />
+        </TableRow>
+
+       <TableRow style="@style/MainPerCaseTabRow" >
+           <TextView
+                android:layout_weight="1"
+                android:id="@+id/case_s_phone_number"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/phone_sim_phone_number" />
+            <TextView
+                android:id="@+id/case_s_imsi"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/phone_sim_imsi" />
+            <TextView
+                android:id="@+id/case_s_serial_number"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/phone_sim_serial_number" />
+        </TableRow>
+    </TableLayout>
+
+    <include layout="@layout/item_result_text" />
+
+</LinearLayout>

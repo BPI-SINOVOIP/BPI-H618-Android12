@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:background="@drawable/title_bg"
+  android:layout_width="@dimen/message_dialog_width"
+  android:layout_height="@dimen/message_dialog_height">
+ <TextView
+  android:layout_height="wrap_content"
+  android:textColor="@color/black"
+  android:layout_width="wrap_content"
+  android:text="@string/new_pack_aviable_redownload_now"
+  android:textSize="@dimen/utoast_font_size"
+  android:layout_marginTop="@dimen/message_dialog_message_margin_top"
+  android:layout_marginLeft="@dimen/message_dialog_message_margin_left"
+  android:layout_marginRight="@dimen/message_dialog_message_margin_left"
+  android:gravity="center_vertical"
+  android:lineSpacingExtra="5dp"
+  android:id="@+id/message_dialog_text" />
+<RelativeLayout 
+  android:orientation="horizontal"
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/message_dialog_button_height"
+  android:layout_below="@+id/message_dialog_text"
+  android:layout_alignParentBottom="true"
+    >
+ <TextView 
+     android:id="@+id/message_dialog_btn"
+     android:layout_height="wrap_content"
+     android:layout_width="fill_parent"
+     android:text="@string/download_now"
+     android:textColor="@color/green"
+     android:clickable="true"
+     android:background="@drawable/normal_all"
+     android:gravity="center"
+     />
+</RelativeLayout>
+</RelativeLayout>

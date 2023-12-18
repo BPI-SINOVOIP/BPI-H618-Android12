@@ -1,0 +1,16 @@
+on init
+   mkdir /Reserve0 0550 system system
+
+on early-fs
+    wait /dev/block/by-name/Reserve0
+    start format_device
+
+on property:sys.format_device=Reserve0
+    mount vfat /dev/block/by-name/Reserve0 /Reserve0 rw nosuid nodev utf8
+
+service format_device /system/bin/format_device /dev/block/by-name/Reserve0 Reserve0
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:e2fs:s0

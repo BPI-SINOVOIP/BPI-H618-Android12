@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <PreferenceCategory
+        android:key="video"
+        android:title="@string/photograph_setting">
+        <SwitchPreference
+            android:key="reference_line"
+            android:summaryOff="@string/disable"
+            android:summaryOn="@string/enable"
+            android:title="@string/gridlines" />
+        <ListPreference
+            android:title="@string/back_video_ratio"
+            android:key="back_video_scale"
+            android:entries="@array/video_rate"
+            android:entryValues="@array/video_rate_value"
+            android:summary="@string/defaults" />
+        <ListPreference
+            android:title="@string/front_video_ratio"
+            android:key="front_video_scale"
+            android:entries="@array/video_rate"
+            android:entryValues="@array/video_rate_value"
+            android:summary="@string/defaults" />
+
+
+    </PreferenceCategory>
+</PreferenceScreen>

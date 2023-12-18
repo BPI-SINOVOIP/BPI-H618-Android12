@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.firelauncher.section.RecommendSection xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+            
+            <FrameLayout
+                android:id="@+id/rolling_broadcast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/layout_margin_left"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" 
+                android:nextFocusLeft="@+id/rolling_broadcast" 
+                android:nextFocusRight="@+id/featured_poster_0"
+                android:nextFocusDown="@+id/history"
+                android:contentDescription="@string/app_name" >
+	            <ImageView
+	                android:id="@+id/rolling_broadcast_image"
+	                android:layout_width="@dimen/rolling_broadcast_width"
+	                android:layout_height="@dimen/rolling_broadcast_height"
+	                android:scaleType="centerCrop"
+	                android:contentDescription="@string/app_name"
+	                android:src="@drawable/fail_r"/>
+	            <TextView 
+	                android:id="@+id/rolling_broadcast_name"
+	                android:layout_width="@dimen/rolling_broadcast_width"
+	                android:layout_height="@dimen/rolling_broadcast_height"
+	                android:scaleType="centerCrop"
+	                android:contentDescription="@string/app_name"
+	                android:text="@string/recommand_broadcast"
+	                android:paddingTop="@dimen/recommand_paddingtop"
+	                android:paddingLeft="@dimen/recommand_paddingleft"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"
+	                android:background="@drawable/title_rolling_broadcast"/>
+            </FrameLayout>
+            
+            <TextView
+                android:id="@+id/history"
+                android:layout_width="@dimen/square_side_s"
+                android:layout_height="@dimen/square_side_s"
+                android:layout_below="@+id/rolling_broadcast"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_marginLeft="@dimen/layout_margin_left"
+                android:layout_marginRight="@dimen/view_margin"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/history"
+                android:nextFocusRight="@+id/search"
+                android:scaleType="centerCrop"
+                android:text="@string/recommand_history"
+                android:paddingTop="@dimen/recommand_paddingtop1"
+                android:paddingLeft="@dimen/recommand_paddingleft1"
+	        android:textSize="@dimen/sw_textsize_xxlarger"
+	        android:textColor="@color/white"
+                android:background="@drawable/recommand_history_bg" />
+            
+             <TextView
+                android:id="@+id/search"
+                android:layout_width="@dimen/square_side_s"
+                android:layout_height="@dimen/square_side_s"
+                android:layout_below="@+id/rolling_broadcast"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_toRightOf="@+id/history"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/history"
+                android:nextFocusRight="@+id/collect"
+                android:scaleType="centerCrop"
+                android:text="@string/recommand_search"
+                android:paddingTop="@dimen/recommand_paddingtop1"
+                android:paddingLeft="@dimen/recommand_paddingleft1"
+	        android:textSize="@dimen/sw_textsize_xxlarger"
+	        android:textColor="@color/white"
+                android:background="@drawable/recommand_search_bg" />
+             
+             <TextView
+                android:id="@+id/collect"
+                android:layout_width="@dimen/square_side_s"
+                android:layout_height="@dimen/square_side_s"
+                android:layout_below="@+id/rolling_broadcast"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_toRightOf="@+id/search"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@+id/featured_poster_0"
+                android:scaleType="centerCrop"
+                android:text="@string/recommand_collect"
+                android:paddingTop="@dimen/recommand_paddingtop1"
+                android:paddingLeft="@dimen/recommand_paddingleft1"
+	        android:textSize="@dimen/sw_textsize_xxlarger"
+	        android:textColor="@color/white"
+                android:background="@drawable/recommand_collect_bg" />
+
+            <ImageView
+                android:id="@+id/featured_poster_0"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_toRightOf="@+id/rolling_broadcast"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/rolling_broadcast"
+                android:nextFocusRight="@+id/featured_poster_1"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_h" />
+
+            <ImageView
+                android:id="@+id/featured_poster_1"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/featured_poster_0"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusDown="@+id/mango"
+                android:nextFocusLeft="@id/featured_poster_0"
+                android:nextFocusRight="@+id/featured_poster_2"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_w" />
+
+            <ImageView
+                android:id="@+id/mango"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/featured_poster_1"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/featured_poster_0"
+                android:background="@drawable/bg_orange"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_logo_white" />
+
+            <TextView
+                android:id="@+id/tv_tracker"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/featured_poster_1"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/mango"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:text="@string/recommand_tracker"
+                android:paddingTop="@dimen/channel_paddingtop1"
+                android:paddingLeft="@dimen/channel_paddingleft1"
+	        android:textSize="@dimen/tabindicator_text_size_normal"
+	        android:textColor="@color/white"
+                android:background="@drawable/recommand_tracker_bg" />
+
+            <ImageView
+                android:id="@+id/featured_poster_2"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/featured_poster_1"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/featured_poster_1"
+                android:nextFocusRight="@+id/featured_poster_3"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_z" />
+
+            <ImageView
+                android:id="@+id/featured_poster_3"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/featured_poster_2"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/featured_poster_2"
+                android:nextFocusRight="@+id/featured_poster_5"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_z" />
+ 
+            <ImageView
+                android:id="@+id/featured_poster_4"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_below="@+id/featured_poster_2"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/tv_tracker"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_w" />
+
+            <!-- ##################第二版面#################### -->
+
+            <ImageView
+                android:id="@+id/featured_poster_5"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/featured_poster_3"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@+id/featured_poster_3"
+                android:nextFocusRight="@+id/featured_poster_6"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_h" />
+
+            <ImageView
+                android:id="@+id/featured_poster_6"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/featured_poster_5"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/featured_poster_5"
+                android:nextFocusRight="@+id/featured_poster_7"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_z" />
+
+            <ImageView
+                android:id="@+id/featured_poster_7"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/featured_poster_6"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/featured_poster_6"
+                android:nextFocusRight="@+id/featured_poster_9"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_z" />
+
+            <ImageView
+                android:id="@+id/featured_poster_8"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_below="@+id/featured_poster_6"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/featured_poster_5"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusUp="@+id/featured_poster_6"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_w" />
+
+            <ImageView
+                android:id="@+id/featured_poster_9"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginRight="@dimen/layout_margin_right"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/featured_poster_7"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusDown="@+id/featured_poster_10"
+                android:nextFocusLeft="@id/featured_poster_7"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_w" />
+
+            <ImageView
+                android:id="@+id/featured_poster_10"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/featured_poster_9"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/featured_poster_8"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_z" />
+
+            <ImageView
+                android:id="@+id/featured_poster_11"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/featured_poster_9"
+                android:layout_marginRight="@dimen/layout_margin_right"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/featured_poster_10"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fail_z" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toRightOf="@+id/featured_poster_9" />
+        </RelativeLayout>
+
+        <!-- 必须在FrameLayout布局中添加 -->
+
+        <include
+            android:id="@+id/animation_layout"
+            layout="@layout/animation_view_layout"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</com.softwinner.firelauncher.section.RecommendSection>

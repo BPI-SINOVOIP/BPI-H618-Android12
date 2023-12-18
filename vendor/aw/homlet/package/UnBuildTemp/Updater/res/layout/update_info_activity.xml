@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+<RelativeLayout 
+    android:id="@+id/ud_toply"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/update_description_windo_title_height"
+    android:background="@drawable/navigation_background"
+    >
+    <ImageView 
+        android:id="@+id/ud_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_back_bg"
+        android:layout_marginTop="@dimen/update_description_windo_title_back_btn_mtop"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/update_description_windo_title_back_btn_mleft"
+        />
+    <TextView 
+        android:id="@+id/update_log_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/version_description_title"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/ud_back"
+        android:textSize="@dimen/update_description_windo_title_font_size"
+        />
+</RelativeLayout>
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/ud_toply"
+	    android:layout_marginTop="@dimen/update_description_web_margin_top"
+	    android:layout_marginLeft="@dimen/update_description_web_margin_left_right"
+	    android:layout_marginRight="@dimen/update_description_web_margin_left_right"
+	    android:layout_marginBottom="@dimen/update_description_web_margin_button"
+    >
+    <RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:background="@drawable/background"
+        >
+    <WebView 
+        android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:layout_margin="@dimen/update_description_webview_margin"
+    	android:id="@+id/ud_webview"
+        />
+    </RelativeLayout>
+</RelativeLayout>
+
+</RelativeLayout>

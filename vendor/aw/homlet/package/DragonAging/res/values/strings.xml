@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">AgingDragonBox-v2</string>
+    <string name="main_btn_previous">上一项</string>
+    <string name="main_btn_failed">失败</string>
+    <string name="main_btn_skip">跳过</string>
+    <string name="main_btn_passed">通过</string>
+    <string name="uninstall_bash">卸载</string>
+    <string name="recovery">恢复出厂</string>
+    <string name="format_sd">擦除SD卡</string>
+    <string name="result_failed">失败</string>
+    <string name="result_reset">未测试</string>
+    <string name="result_passed">通过</string>
+    <string name="result_output">结果输出</string>
+    <string name="result_exit">退出</string>
+    <string name="title_previous">上一项:</string>
+    <string name="title_current">当前项:</string>
+    <string name="title_next">下一项:</string>
+    <string name="title_no">无</string>
+    <string name="use_external_config_file">使用外部存储的配置文件</string>
+    <string name="use_usbhost_config_file">使用usbhost配置文件</string>
+    <string name="use_internal_config_file">使用内置sd卡存储的配置文件</string>
+    <string name="use_default_config_file">使用默认配置文件</string>
+    <string name="str_confirm">确认</string>
+    <string name="reset_device">是否擦除Sdcard，并恢复出厂设置？</string>
+    <string name="uninstall_dragonbox_description">是否卸载DragonBox？</string>
+    <string name="title_all_list">所有测试项目</string>
+    <string name="action_bar_all_list">单项测试</string>
+    <string name="action_bar_audio">音频输出模式</string>
+    <string name="action_bar_video">视频输出模式</string>
+    <string name="all_case_list_return">返回</string>
+    <string name="case_retest">重新测试</string>
+    <!-- Configuration -->
+    <string name="configuration_title">配置AgingDragonBox</string>
+    <string name="configuration_reset">重置</string>
+    <string name="configuration_save">保存</string>
+    <string name="configuration_suffix">配置</string>
+    <string name="configutation_ok">确认</string>
+    <string name="configutation_cancel">取消</string>
+    <string name="configutation_delete">删除</string>
+    <string name="configuration_write_succeful">写入配置成功</string>
+    <string name="configuration_write_failed">写入配置失败</string>
+    <string name="configuration_edit_usbhost">编辑UsbHost上的配置</string>
+    <string name="configuration_edit_extsd">编辑ExtSD上的配置</string>
+    <string name="configuration_edit_sdcard">编辑SDCARD上的配置</string>
+    <string name="configuration_exit">退出</string>
+    <string name="configuration_report">输出报表</string>
+    <!-- Comprehensive -->
+    <string name="case_comprehensive">[综合测试]</string>
+    <string name="case_comprehensive_config_des">请选择所需的测试项</string>
+    <string name="case_comprehensive_config_version">启用版本测试</string>
+    <string name="case_comprehensive_config_gsensor">启用gsensor测试</string>
+    <string name="case_comprehensive_config_lsensor">启用lsensor测试</string>
+    <string name="case_comprehensive_config_psensor">启用psensor测试</string>
+    <string name="case_comprehensive_config_gyrosensor">启用gyrosensor测试</string>
+    <string name="case_comprehensive_config_memory">启用老化内存测试</string>
+    <string name="case_comprehensive_config_camera">启动Camera预览测试</string>
+    <string name="case_comprehensive_config_wifi">启用wifi测试</string>
+    <string name="case_comprehensive_config_elthernet">启用elthernet测试</string>
+    <string name="case_comprehensive_config_storage">启用OTG/SD测试</string>
+    <string name="case_comprehensive_config_threedimensional">启用老化3D测试</string>
+    <string name="case_comprehensive_config_music">启用音乐测试</string>
+    <string name="case_comprehensive_config_browser">启用浏览器测试</string>
+    <string name="case_comprehensive_config_video">启用老化视频测试</string>
+    <string name="case_comprehensive_config_backlight">启用背光测试</string>
+    <string name="case_comprehensive_config_prefix">启用的测试项:</string>
+    <string name="case_comprehensive_config_passable">防怠设置</string>
+    <string name="case_comprehensive_config_passable_version">版本测试：</string>
+    <string name="cse_comprehensive_config_passable_fireware">固件版本:</string>
+    <string name="cse_comprehensive_config_passable_tpfw">TPFW版本:</string>
+    <string name="case_comprehensive_config_passable_memory">存储容量测试：</string>
+    <string name="case_comprehensive_config_passable_memory_min">输入最小容量</string>
+    <string name="case_comprehensive_config_passable_mb">MB</string>
+    <string name="case_comprehensive_config_passable_version_detail">点击获取设备信息</string>
+    <string name="case_comprehensive_config_passable_version_ok">获取成功</string>
+    <string name="case_comprehensive_config_spdif">启用SPDIF测试</string>
+    <string name="case_comprehensive_config_cvbs">启用CVBS测试</string>
+
+
+
+    <!-- Version -->
+    <string name="case_version_name">[版本测试]</string>
+    <string name="case_version_info">固件版本:%1$s\n设备型号:%2$s\n版本:%3$s\nCPU频率(当前\\最大\\最小):\n%4$s</string>
+    <string name="case_version_info_fireware">固件版本：</string>
+    <string name="case_version_info_display">版本号：</string>
+    <string name="case_version_info_min_cpu">CPU最小频率：</string>
+    <string name="case_version_info_max_cpu">CPU最大频率：</string>
+    <string name="case_version_info_model">设备型号：</string>
+    <!-- Gsensor -->
+    <string name="case_gsensor_name">[GSensor测试]</string>
+    <string name="case_gsensor_selfttest">校准中，请稍候…</string>
+    <string name="case_gsensor_selftest_name">自动校准</string>
+    <string name="case_gsensor_axis">GSensor轴数:</string>
+    <string name="case_gsensor_axis_2">2轴</string>
+    <string name="case_gsensor_axis_3">3轴</string>
+    <string name="case_gsensor_min_gravity">最小加速度</string>
+    <string name="case_gsensor_gravity_default">9</string>
+    <string name="case_gsensor_gravity_unit">㎡/s</string>
+    <!-- Backlight -->
+    <string name="case_backlight_name">[背光测试]</string>
+    <string name="case_backlight_redo">重新测试</string>
+    <string name="case_backlight_description">测试过程中，屏幕亮度会自动发生改变。</string>
+    <!-- Memory -->
+    <string name="case_memory_name">[老化内存测试]</string>
+    <string name="case_memory_info">设备名:%1$s\n总量:%2$s\n剩余:%3$s</string>
+    <!-- Wifi -->
+    <string name="case_wifi_name_1">[Wifi模块测试]</string>
+    <string name="case_wifi_name">[Wifi测试]</string>
+    <string name="case_wifi_strength">强度：</string>
+    <string name="case_wifi_security">安全性：</string>
+    <string name="case_wifi_password">密码：</string>
+    <string name="wifi_security_eap">802.1x EAP</string>
+    <string name="wifi_security_wep">WEP</string>
+    <string name="wifi_security_wpa">WPA PSK</string>
+    <string name="wifi_security_wpa2">WPA2 PSK</string>
+    <string name="wifi_security_wpa_wpa2">WPA/WPA2 PSK</string>
+    <string name="wifi_security_psk_generic">@string/wifi_security_wpa_wpa2</string>
+    <string name="wifi_security_short_wep">WEP</string>
+    <string name="wifi_security_short_wpa">WPA</string>
+    <string name="wifi_security_short_wpa2">WPA2</string>
+    <string name="wifi_security_short_wpa_wpa2">WPA/WPA2</string>
+    <string name="wifi_security_short_psk_generic">@string/wifi_security_short_wpa_wpa2</string>
+    <string name="wifi_security_short_eap">802.1x</string>
+    <string name="wifi_security_none">None</string>
+    <string name="wifi_disabled_password_failure">"身份验证出现问题"</string>
+    <string name="wifi_disabled_network_failure">"已停用状况不佳的互联网连接"</string>
+    <string name="wifi_disabled_generic">"已停用"</string>
+    <string name="case_wifi_strength_default">65</string>
+    <string name="case_comprehensive_config_passable_wifi_db">db</string>
+    <!-- Battery -->
+    <string name="case_battery_name">[电池测试]</string>
+    <!-- HardKey -->
+    <string name="case_hard_key_name">[按键测试]</string>
+    <string name="case_hard_key_home">HOME 键</string>
+    <string name="case_hard_key_back">BACK 键</string>
+    <string name="case_hard_key_menu">Menu 键</string>
+    <string name="case_hard_key_volume_up">音量 + 键 </string>
+    <string name="case_hard_key_volume_down">音量 - 键</string>
+    <string name="case_hard_key_search">搜索 键</string>
+    <string name="case_hard_key_description">当前我们进入了按键测试,\n请按下面列出的按键以通过测试,\n如果测试失败 ,请点击"按键测试失败"按钮.</string>
+    <string name="case_hard_key_failed_btn">按键测试失败</string>
+    <string name="case_hard_key_config_des">请为设备选择正确的物理按键</string>
+    <string name="case_hard_key_config_prefix">你为设备所配置的按键为：</string>
+    <!-- LCD -->
+    <string name="case_lcd_name">[LCD测试]</string>
+    <string name="case_lcd_tips">请检查屏幕是否有坏点</string>
+    <string name="case_lcd_btn_redo">重新测试</string>
+    <string name="case_lcd_config_des">请输入一个有效的纯色变化的间隔时间（单位：ms）</string>
+    <string name="case_lcd_config_prefix">当前设置的纯色页面的变化间隔时间:</string>
+    <string name="case_lcd_config_need_click">需要单击切换颜色</string>
+    <!-- Recorder -->
+    <string name="case_recorder_name">[录音测试]</string>
+    <string name="case_recorder_accept">完成</string>
+    <string name="case_recorder_discard">取消</string>
+    <string name="case_recorder_max_length_reached">已超过最大容量</string>
+    <string name="case_recorder_min_available">"还剩 <xliff:g id="MINUTES">%d</xliff:g> 分钟"</string>
+    <string name="case_recorder_sec_available">"还剩 <xliff:g id="SECONDS">%d</xliff:g> 秒"</string>
+    <string name="case_recorder_message_recorded">信息已录制</string>
+    <string name="case_recorder_recording_stopped">录音停止</string>
+    <string name="case_recorder_recording">"录音"</string>
+    <string name="case_recorder_record_your_message">"录下您的留言"</string>
+    <string name="case_recorder_review_message">"查看信息"</string>
+    <string name="case_recorder_timer_format" translatable="false"><xliff:g id="format">%02d:%02d</xliff:g></string>
+    <string name="case_recorder_insert_sd_card">Please insert an SD card</string>
+    <string name="case_recorder_storage_is_full">"存储空间已满"</string>
+    <string name="case_recorder_error_sdcard_access" product="nosdcard">"无法访问存储设备"</string>
+    <string name="case_recorder_error_sdcard_access" product="default">"无法访问存储设备"</string>
+    <string name="case_recorder_error_app_internal">"内部应用程序错误"</string>
+    <string name="case_recorder_error_mediadb_new_record">"无法保存录制的音频"</string>
+    <string name="case_recorder_button_ok">"确定"</string>
+    <string name="case_recorder_config_des">请输入一个有效的录音时间（单位：ms）.</string>
+    <string name="case_recorder_config_prefix">你为设备所配置的录音时间为:</string>
+    <!-- Speaker -->
+    <string name="case_speaker_name">[SPDIF测试]</string>
+    <string name="case_speaker_plugged_in">当前耳机插入状态：</string>
+    <string name="case_speaker_pluged">耳机插入</string>
+    <string name="case_speaker_btn_redo">重新测试</string>
+    <string name="case_speaker_headset">测试耳机</string>
+    <string name="case_speaker_spdif">打开SPDIF</string>
+    <string name="case_speaker_spdif_notice">请把SPDIF线插上，并点击“打开SPDIF”按钮,然后选择声音状态</string>
+    <string name="case_cvbs_name">[CVBS插口测试]</string>
+    <string name="case_cvbs_state">CVBS插口已接入</string>
+    <string name="case_cvbs_state_null">CVBS插口未接入</string>
+    <string name="case_cvbs_notice">请拔出HDMI线，并把CVBS线插上，然后点击“确定”</string>
+    <string name="case_cvbs_button">确定</string>
+    <string name="case_spdif_name">[SPDIF测试]</string>
+    <string name="case_spdif_true">有声音</string>
+    <string name="case_spdif_false">没声音</string>
+
+    <!-- Storage -->
+    <string name="case_storage_name">[OTG/SD 测试]</string>
+    <string name="case_storage_format_str">设备名称 : %1$s\n读取速度 : %2$s\n写入速度 : %3$s</string>
+    <string name="case_storage_no_device">不能检测到任何存储设备.</string>
+    <!-- Camera -->
+    <string name="case_camera_name">[相机测试]</string>
+    <string name="case_camera_switch">切换镜头</string>
+    <string name="case_camera_alert">当前设备只有一个镜头!</string>
+    <string name="case_camera_config_des">请选择一个相机测试程序</string>
+    <string name="case_camera_config_prefix">你为设备所使用的相机是 :</string>
+    <string name="case_camera_config_internal">DragonBox内置相机</string>
+    <string name="case_camera_config_external">外部相机</string>
+    <string name="case_camera_open_error">相机打开失败！</string>
+    <string name="case_camera_open_face_front">(前置接线)</string>
+    <string name="case_camera_open_face_back">(后置接线)</string>
+    <string name="case_camera_take_picture">拍照</string>
+    <string name="case_carmera_show_picture_btn">查看照片</string>
+    <string name="case_camera_preview">开始预览</string>
+    <!-- TP -->
+    <string name="case_touch_point_name">[触摸点测试]</string>
+    <string name="case_touch_point_description">触摸屏幕显示触摸点，以测试触摸功能</string>
+    <string name="case_touch_point_type_shi">十字</string>
+    <string name="case_touch_point_type_tian">田字</string>
+    <string name="case_touch_point_type_title">请选择测试图形</string>
+    <string name="case_touch_point_shape_raduis_title">半径: </string>
+    <!-- Video -->
+    <string name="case_video_name">[老化视频测试]</string>
+    <string name="case_video_description">播放多媒体文件，以测试视频媒体的播放能力.</string>
+    <string name="case_video_config_select">请选择一个媒体文件</string>
+    <string name="case_video_config_none">未设定视频文件</string>
+    <string name="case_video_config_btn_select">选择</string>
+    <string name="case_video_config_test">测试</string>
+    <string name="case_video_config_reset">清除</string>
+    <string name="case_video_hdmi_plugged_in">HDMI已插入</string>
+    <string name="case_video_hdmi_plugged_out">HDMI已拔出</string>
+    <string name="case_video_custom">自定义视频为:</string>
+    <string name="case_video_initialize_exception">初始化未完成，请点击重新测试</string>
+    <string name="case_video_output_mode">输出模式</string>
+    <string name="case_video_output_hdmi">HDMI</string>
+    <string name="case_video_output_vga">VGA</string>
+    <string name="case_video_output_tv">TV</string>
+    <!-- Customs -->
+    <string name="case_custom_default">[自定义测试]</string>
+    <string name="case_custom_widget_not_found">找不到正确的小部件，请检查你的参数.</string>
+    <string name="case_custom_activity_not_found">找不到正确的应用程序，请检查你的参数.</string>
+    <string name="case_custom_widget_input_name">请输入测试项目的名称</string>
+    <string name="case_custom_widget_package_name">请输入小部件的包名</string>
+    <string name="case_custom_widget_class_name">请输入小部件的类名</string>
+    <string name="case_custom_activity_input_name">请输入测试项目的名称</string>
+    <string name="case_custom_activity_package_name">请输入你的Activity的包名</string>
+    <string name="case_custom_activity_class_name">请输入你的Activity的类名</string>
+    <string name="case_custom_widget_prefix">你的配置为:</string>
+    <string name="case_custom_activity_prefix">你的配置为:</string>
+    <string name="case_custom_configuration_add_btn_a">添加Activity</string>
+    <string name="case_custom_configuration_add_btn_w">添加Widget</string>
+    <string name="case_custom_configuration_add_btn_empty">添加暂停</string>
+    <!-- Browser -->
+    <string name="case_browser">[浏览器测试]</string>
+    <string name="case_browser_description">打开指定网页，测试网络连接状况.</string>
+    <string name="case_browser_config_description">请输入网址：</string>
+    <string name="case_browser_wifi_setting">设置wifi</string>
+    <string name="case_browser_web_site">正在连接测试网站:</string>
+    <string name="case_browser_network_disconnect_msg">没有连接Internet，请检查wifi设置。</string>
+    <string name="case_browser_success">连接成功，通过!</string>
+    <string name="case_browser_unsuccess">测试失败</string>
+    <!-- Bluetooth -->
+    <string name="case_bluetooth">[蓝牙测试]</string>
+    <string name="case_bluetooth_redo">重新测试</string>
+    <string name="case_bluetooth_not_found">无法找到蓝牙设备</string>
+    <string name="case_bluetooth_found">找到附近的蓝牙设备.</string>
+    <string name="case_bluetooth_start_search">开始搜索...</string>
+    <!-- GPS -->
+    <string name="case_gps">[GPS测试]</string>
+    <string name="gps_device_not_found">没有发现GPS设备.</string>
+    <string name="latitude_and_longitude">经纬度:</string>
+    <string name="height_and_sudu">高度和速度:</string>
+    <string name="gmt_time">GMT时间:</string>
+    <string name="visible_satellite">可见卫星:</string>
+    <string name="available_satellite">可用卫星:</string>
+    <string name="time_to_first_fix">首次定位时间:</string>
+    <string name="NMEA_data">NMEA数据:</string>
+    <string name="State_data">卫星信号数据:</string>
+    <string name="hh">时</string>
+    <string name="mm">分</string>
+    <string name="ss">秒</string>
+    <string name="sl_no">卫星编号：</string>
+    <string name="sl_elevation"> 卫星仰角: </string>
+    <string name="sl_azimuth">  卫星方位角: </string>
+    <string name="sign"> 讯号噪声比: </string>
+    <string name="nn">"\n</string>
+    <string name="high">高度: </string>
+    <string name="velocity"> 速度: </string>
+    <string name="latitude">维度:</string>
+    <string name="longitude">经度:</string>
+    <string name="err">无法获取地理信息</string>
+    <string name="case_gps_btn_redo">重新测试</string>
+    <string name="case_gps_timeout">定位超时时间（单位：ms）：</string>
+    <string name="case_gps_area">定位范围：</string>
+
+    <!-- Vibrator -->
+    <string name="start_vibrator">开始震动</string>
+    <string name="no_vibrator">没有检测到可用的震动马达</string>
+
+    <!-- Phone -->
+    <string name="case_phone">[电话测试]</string>
+    <string name="phone_sim_state">SIM卡状态:</string>
+    <string name="phone_sim_ready">正常</string>
+    <string name="phone_sim_exception">异常</string>
+    <string name="phone_sim_not_found">无SIM卡</string>
+    <string name="phone_imsi">IMSI:</string>
+    <string name="phone_single_strength">信号强度:</string>
+    <string name="phone_single_unit">db</string>
+    <string name="phone_model_not_found">没有找到电话模块</string>
+    <string name="phone_reload">重载RIL</string>
+    <string name="phone_is_reloading">正在重启RIL...</string>
+    <string name="phone_factory_test">开启Loopback</string>
+    <string name="phone_normal">关闭Loopback</string>
+
+    <!-- snsn -->
+    <string name="case_threedimensional_name">[老化3D测试]</string>
+    <string name="snsn_info">sn:%1$s\nbt.mac:%2$s\</string>
+    <string name="sn_not_found">找不到sn.txt文件</string>
+    <string name="bt_mac_not_found">找不到bt.mac文件</string>
+
+    <!-- Report -->
+    <string name="report_format_error">报表格式异常.</string>
+
+    <!-- Elthernet -->
+    <string name="case_elthernet">[以太网测试]</string>
+
+    <!-- Light sensor -->
+    <string name="case_lsensor_name">[光线传感器]</string>
+    <string name="case_lsensor_dim">流明值：</string>
+    <string name="case_lsensor_dim_default">10</string>
+    <string name="case_lsensor_lux">lux</string>
+
+    <!-- Proximity sensor -->
+    <string name="case_psensor_name">[距离传感器]</string>
+    <string name="case_psensor_far">远</string>
+    <string name="case_psensor_near">近</string>
+
+    <!-- Gyroscope sensor -->
+    <string name="case_gyroscope_sensor_name">[陀螺仪测试]</string>
+    <string name="case_gyroscope_min_velocity">最小转速</string>
+    <string name="case_gyroscope_velocity_default">10</string>
+    <string name="case_gyroscope_velocity_unit">rad/s</string>
+
+    <!-- Pause -->
+    <string name="case_pause_name">[暂停]</string>
+    <string name="case_pause_tip">本测试阶段结束，请交给下一阶段测试</string>
+    <string name="case_pause_next">下一测试</string>
+
+    <!-- failed -->
+    <string name="test_failed_tip">失败次数过多</string>
+    <string name="finish_title">测试完成</string>
+    <string name="finish_text">请拔出所有外部连接设备</string>
+    <string name="finish_failed">测试失败，请检查相关配置</string>
+    <string name="finish_uninstall">卸载</string>
+    <string name="finish_exit">退出</string>
+    <string name="finish_hide">隐藏</string>
+    <string name="finish_change">切换视频模式</string>
+    
+    <string name="memory_testing">内存测试中</string>
+
+    <string name="case_elthernet_name">[Elthernet test]</string>
+</resources>

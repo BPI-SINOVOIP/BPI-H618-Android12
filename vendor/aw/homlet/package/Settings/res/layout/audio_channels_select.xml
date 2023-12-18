@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+	<CheckBox 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/check_audio_selected"
+	    android:layout_alignParentRight="true"
+	    android:focusable="false"
+	    android:focusableInTouchMode="false"
+	    android:clickable="false"
+	    />
+	<TextView 
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:textSize="20sp"
+	    android:id="@+id/audio_channel_name"
+	    android:layout_toLeftOf="@+id/check_audio_selected"
+	    android:layout_alignParentLeft="true"
+	    />
+</RelativeLayout>

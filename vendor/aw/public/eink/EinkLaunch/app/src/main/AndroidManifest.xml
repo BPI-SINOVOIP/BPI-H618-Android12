@@ -1,0 +1,49 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.softwinner.einklaunch">
+
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <application
+        android:name="com.eink.launcher.LauncherApplication"
+        android:icon="@drawable/home"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo.NoActionBar"
+        android:directBootAware="true">
+        <activity
+            android:name=".LaunchActivity"
+            android:launchMode="singleTask"
+            android:label="@string/app_name"
+            android:exported="true"
+            android:configChanges="keyboard|navigation|touchscreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.MONKEY"/>
+                <category android:name="android.intent.category.LAUNCHER_APP" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".BookLibrariesActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+           </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.eink.launcher.Launcher"
+            android:exported="true"
+            android:configChanges="locale|layoutDirection"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

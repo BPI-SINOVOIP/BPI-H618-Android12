@@ -1,0 +1,20 @@
+LOCAL_PATH := $(call my-dir)
+
+ifeq (,$(wildcard vendor/aw/private/lib/softwinner-ril))
+
+RIL_LIB_VERSION  ?= 11.0
+RIL_LIB_BASENAME ?= libsoftwinner-ril-$(RIL_LIB_VERSION)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := $(RIL_LIB_BASENAME)
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_SRC_FILES_32 := lib32/$(RIL_LIB_BASENAME).so
+LOCAL_SRC_FILES_64 := lib64/$(RIL_LIB_BASENAME).so
+LOCAL_MULTILIB:= both
+LOCAL_MODULE_TAGS := optional
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_CHECK_ELF_FILES := false
+include $(BUILD_PREBUILT)
+
+endif

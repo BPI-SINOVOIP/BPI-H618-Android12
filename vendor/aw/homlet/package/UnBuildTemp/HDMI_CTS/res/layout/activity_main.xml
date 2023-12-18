@@ -1,0 +1,457 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="com.softwinner.hdmi_cts.MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <!-- device type -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/device_type" />
+
+                <RadioGroup
+                    android:id="@+id/rg_device_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_device_type_hdmi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/device_type_hdmi" />
+
+                    <RadioButton
+                        android:id="@+id/rb_device_type_dvi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/device_type_dvi" />
+                </RadioGroup>
+            </TableRow>
+
+            <!-- hdmi output mode -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/hdmi_output_mode" />
+
+                <Button
+                    android:id="@+id/bt_get_hdmi_output_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_hdmi_output_mode" />
+            </TableRow>
+
+            <!-- color space -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/color_space" />
+
+                <RadioGroup
+                    android:id="@+id/rg_color_space"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_color_space_rgb888"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/color_space_RGB888" />
+
+                    <RadioButton
+                        android:id="@+id/rb_color_space_yuv444"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/color_space_YUV444" />
+
+                    <RadioButton
+                        android:id="@+id/rb_color_space_yuv422"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/color_space_YUV422" />
+
+                    <RadioButton
+                        android:id="@+id/rb_color_space_yuv420"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/color_space_YUV420" />
+                </RadioGroup>
+            </TableRow>
+
+            <!-- color depth -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/color_depth" />
+
+                <RadioGroup
+                    android:id="@+id/rg_color_depth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_color_depth_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/color_depth_24" />
+
+                    <RadioButton
+                        android:id="@+id/rb_color_depth_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+						android:text="@string/color_depth_30" />
+                    <RadioButton
+                        android:id="@+id/rb_color_depth_36"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/color_depth_36" />
+                </RadioGroup>
+            </TableRow>
+
+            <!-- colorimetry -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/colorimetry" />
+
+                <RadioGroup
+                    android:id="@+id/rg_colorimetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_colorimetry_bt601"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colorimetry_bt601" />
+
+                    <RadioButton
+                        android:id="@+id/rb_colorimetry_bt709"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colorimetry_bt709" />
+
+                    <RadioButton
+                        android:id="@+id/rb_colorimetry_bt2020"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/colorimetry_bt2020" />
+                </RadioGroup>
+            </TableRow>
+
+            <!-- value range -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/value_range" />
+
+                <RadioGroup
+                    android:id="@+id/rg_value_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_value_range_default"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/value_range_default" />
+
+                    <RadioButton
+                        android:id="@+id/rb_value_range_full"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/value_range_full" />
+
+                    <RadioButton
+                        android:id="@+id/rb_value_range_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/value_range_limit" />
+                </RadioGroup>
+            </TableRow>
+
+            <!-- scan mode -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/scan_mode" />
+
+                <RadioGroup
+                    android:id="@+id/rg_scan_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_scan_mode_default"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/scan_mode_default" />
+
+                    <RadioButton
+                        android:id="@+id/rb_scan_mode_over"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/scan_mode_over" />
+
+                    <RadioButton
+                        android:id="@+id/rb_scan_mode_under"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/scan_mode_under" />
+                </RadioGroup>
+            </TableRow>
+
+            <!-- hdr mode -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/hdr_mode" />
+
+                <RadioGroup
+                    android:id="@+id/rg_hdr_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_hdr_mode_sdr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hdr_mode_sdr" />
+
+                    <RadioButton
+                        android:id="@+id/rb_hdr_mode_hdr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hdr_mode_hdr" />
+
+                    <RadioButton
+                        android:id="@+id/rb_hdr_mode_hlg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hdr_mode_hlg" />
+                </RadioGroup>
+            </TableRow>
+
+            <!-- aspect ratio -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/aspect_radio" />
+
+                <RadioGroup
+                    android:id="@+id/rg_aspect_ratio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_aspect_ratio_same_as_picture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aspect_radio_same_as_picture_aspect_ratio" />
+
+                    <RadioButton
+                        android:id="@+id/rb_aspect_ratio_4_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aspect_radio_4_3" />
+
+                    <RadioButton
+                        android:id="@+id/rb_aspect_ratio_16_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aspect_radio_16_9" />
+
+                    <RadioButton
+                        android:id="@+id/rb_aspect_ratio_14_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/aspect_radio_14_9" />
+                </RadioGroup>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/hdcp_tips" />
+
+                <RadioGroup
+                    android:id="@+id/rg_hdcp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_hdcp_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hdcp_false" />
+
+                    <RadioButton
+                        android:id="@+id/rb_hdcp_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hdcp_true" />
+                </RadioGroup>
+            </TableRow>
+
+            <Button
+                android:id="@+id/bt_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ok" />
+
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/music_type" />
+
+                <RadioGroup
+                    android:id="@+id/music_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/music_radio_false"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/music_false" />
+
+                    <RadioButton
+                        android:id="@+id/music_radio_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/music_true" />
+                </RadioGroup>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/music_path_tips" />
+                <TextView
+                    android:id="@+id/music_showpath"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/myborder"
+                    android:hint="@string/music_path" />
+
+            </TableRow>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/bt_music"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:text="@string/music" />
+
+                <Button
+                    android:id="@+id/bt_start_stop_music"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:text="@string/start_music" />
+            </LinearLayout>
+
+            <TableRow>
+                <!-- hpd config -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/hpd" />
+
+                <RadioGroup
+                    android:id="@+id/rg_hpd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_hpd_enable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hpd_enable" />
+
+                    <RadioButton
+                        android:id="@+id/rb_hpd_disable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hpd_disable" />
+                </RadioGroup>
+
+                <!-- cec standby config -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/cecstandby" />
+
+                <RadioGroup
+                    android:id="@+id/rg_cecstandby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/rb_cecstandby_enable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cecstandby_enable" />
+
+                    <RadioButton
+                        android:id="@+id/rb_cecstandby_disable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cecstandby_disable" />
+				</RadioGroup>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</ScrollView>

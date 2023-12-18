@@ -1,0 +1,39 @@
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:launcher="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+	
+	<include layout="@layout/wait_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+   		android:layout_height="match_parent"
+   		android:orientation="vertical" >
+        <com.eink.launcher.AppsPagedView
+		    android:id="@+id/apps_content"
+		    android:layout_width="match_parent"
+		    android:layout_height="0dip"
+		    android:layout_weight="1"
+		    launcher:pageLayoutWidthGap="@dimen/apps_customize_pageLayoutWidthGap"
+	        launcher:pageLayoutHeightGap="@dimen/apps_customize_pageLayoutHeightGap"
+	        launcher:pageLayoutPaddingTop="@dimen/apps_customize_pageLayoutPaddingTop"
+	        launcher:pageLayoutPaddingBottom="@dimen/apps_customize_pageLayoutPaddingBottom"
+	        launcher:pageLayoutPaddingLeft="@dimen/apps_customize_pageLayoutPaddingLeft"
+	        launcher:pageLayoutPaddingRight="@dimen/apps_customize_pageLayoutPaddingRight"
+		    />
+		
+		<View 
+	        android:layout_width="match_parent"
+	        android:layout_height="2dip"
+	        android:background="@android:color/black"/>
+		
+		<include layout="@layout/page_indication"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>

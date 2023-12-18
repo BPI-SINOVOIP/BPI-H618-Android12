@@ -1,0 +1,17 @@
+on boot
+    chown shell shell /sys/devices/system/cpu/cpu3/online
+    chmod 0660 /sys/devices/system/cpu/cpu3/online
+    chown shell shell /sys/devices/system/cpu/cpu2/online
+    chmod 0660 /sys/devices/system/cpu/cpu2/online
+    chown shell shell /sys/devices/system/cpu/cpu1/online
+    chmod 0660 /sys/devices/system/cpu/cpu1/online
+    chown shell shell /sys/class/thermal/thermal_zone0/sustainable_power
+
+on property:sys.boot_completed=1
+    start aw_thermal
+
+service aw_thermal /system/bin/aw_thermal
+    disabled
+    user shell
+    group shell
+    seclabel u:r:shell:s0

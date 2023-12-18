@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="@dimen/btn_back_width"
+        android:layout_height="@dimen/btn_back_height"
+        android:layout_marginLeft="@dimen/title_marginleft"
+        android:layout_marginTop="@dimen/title_margintop"
+        android:background="#00000000"
+        android:src="@drawable/wether_location_nor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/applist_layout_margintop"
+        android:layout_weight="3"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="@dimen/weather_message_text_width"
+                android:layout_height="@dimen/weather_message_text_height"
+                android:layout_gravity="right"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/today_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_weather_chance_of_rain_ml" />
+
+                <TextView
+                    android:id="@id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/weather_message_text_margin_top"
+                    android:textColor="@drawable/white"
+                    android:textSize="@dimen/setting_textsize_xsmall" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/location_line" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="@dimen/weather_message_text_width"
+                android:layout_height="@dimen/weather_message_text_height"
+                android:layout_gravity="left"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/tomorrow_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_weather_chance_of_rain_ml" />
+
+                <TextView
+                    android:id="@id/text3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/weather_message_text_margin_top"
+                    android:textColor="@drawable/white"
+                    android:textSize="@dimen/setting_textsize_xsmall" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:orientation="horizontal" >
+
+            <com.softwinner.tvdsetting.widget.WheelView
+                android:id="@+id/provicelist"
+                android:layout_width="@dimen/location_wheelview_width"
+                android:layout_height="@dimen/location_wheelview_height"
+                android:layout_gravity="right|center_vertical"
+                android:background="@drawable/wetherlistbox" />
+
+            <Button
+                android:id="@+id/provice"
+                android:layout_width="@dimen/location_btn_width"
+                android:layout_height="@dimen/location_btn_height"
+                android:layout_gravity="right|center_vertical"
+                android:background="@drawable/location_btn_selector"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/location_btn_textsize" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="@dimen/location_btn_height"
+                android:background="@drawable/location_line" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.9"
+            android:orientation="horizontal" >
+
+            <com.softwinner.tvdsetting.widget.WheelView
+                android:id="@+id/citylist"
+                android:layout_width="@dimen/location_wheelview_width"
+                android:layout_height="@dimen/location_wheelview_height"
+                android:layout_gravity="left|center_vertical"
+                android:background="@drawable/wetherlistbox" />
+
+            <Button
+                android:id="@+id/city"
+                android:layout_width="@dimen/location_btn_width"
+                android:layout_height="@dimen/location_btn_height"
+                android:layout_gravity="left|center_vertical"
+                android:background="@drawable/location_btn_selector"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/location_btn_textsize" />
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

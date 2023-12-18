@@ -1,0 +1,7 @@
+##type cedar_device, dev_type;
+##type disp_device, dev_type;
+##type sunxi_soc_info_device, dev_type;
+##type deinterlace_device, dev_type;
+type qw_daemon_device,coredomain_socket,dev_type;
+##type googlevp9_device, dev_type;
+##type bt_device, dev_type;

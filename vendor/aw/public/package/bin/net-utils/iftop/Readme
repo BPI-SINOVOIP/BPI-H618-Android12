@@ -1,0 +1,365 @@
+iftop-android: iftop for android platform
+download from    : https://github.com/dove0rz/iftop-android.git
+current branch   : master
+current reversion: 0c1aea510fbada02d06c655f9681dcdf4e4683b7
+support patch    :
+
+From 2c55c1c602786784fe24f7c12492bebc93e8a6d1 Mon Sep 17 00:00:00 2001
+From: zhaoyouyi <zhaoyouyi@allwinnertech.com>
+Date: Tue, 15 Jun 2021 20:30:43 +0800
+Subject: [PATCH] Fix build error for androidr.
+
+Signed-off-by: zhaoyouyi <zhaoyouyi@allwinnertech.com>
+---
+ Android.mk     |  6 ++--
+ if_nameindex.h |  2 ++
+ net/if_dl.h    | 88 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 94 insertions(+), 2 deletions(-)
+ create mode 100644 net/if_dl.h
+
+diff --git a/Android.mk b/Android.mk
+index b5b50df..0e69bca 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -3,13 +3,15 @@ include $(CLEAR_VARS)
+
+ LOCAL_CFLAGS:=-O2 -g -DHAVE_CONFIG_H
+ LOCAL_C_INCLUDES += \
++       vendor/aw/public/package/bin/iftop/android_external_libncurses/include \
+        external/libpcap \
+        external/libncurses/include
+
+ LOCAL_MODULE:= iftop
+-LOCAL_MODULE_TAGS:= eng
++LOCAL_MODULE_TAGS:= optional
++LOCAL_PROPRIETARY_MODULE := true
+ #LOCAL_SYSTEM_SHARED_LIBRARIES := libc
+-LOCAL_LDLIBS += -lpthread -ldl -lm
++#LOCAL_LDLIBS += -lpthread -ldl -lm
+ LOCAL_SHARED_LIBRARIES := libncurses
+ LOCAL_STATIC_LIBRARIES += libpcap
+ #LOCAL_PRELINK_MODULE := false
+diff --git a/if_nameindex.h b/if_nameindex.h
+index de06dbe..a64028f 100644
+--- a/if_nameindex.h
++++ b/if_nameindex.h
+@@ -9,10 +9,12 @@
+
+ #define   AF_LINK         18              /* Link layer interface */
+
++#if 0
+ struct if_nameindex {
+     unsigned int   if_index;  /* 1, 2, ... */
+     char          *if_name;   /* null terminated line name */
+ };
++#endif
+
+ struct ifaddrs
+ {
+diff --git a/net/if_dl.h b/net/if_dl.h
+new file mode 100644
+index 0000000..12873fc
+--- /dev/null
++++ b/net/if_dl.h
+@@ -0,0 +1,88 @@
++/*
++* Copyright (c) 1990, 1993
++* The Regents of the University of California.  All rights reserved.
++*
++* Redistribution and use in source and binary forms, with or without
++* modification, are permitted provided that the following conditions
++* are met:
++* 1. Redistributions of source code must retain the above copyright
++*    notice, this list of conditions and the following disclaimer.
++* 2. Redistributions in binary form must reproduce the above copyright
++*    notice, this list of conditions and the following disclaimer in the
++*    documentation and/or other materials provided with the distribution.
++* 3. All advertising materials mentioning features or use of this software
++*    must display the following acknowledgement:
++* This product includes software developed by the University of
++* California, Berkeley and its contributors.
++* 4. Neither the name of the University nor the names of its contributors
++*    may be used to endorse or promote products derived from this software
++*    without specific prior written permission.
++*
++* THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
++* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++* ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
++* FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++* OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++* HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++* LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++* OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++* SUCH DAMAGE.
++*
++* @(#)if_dl.h 8.1 (Berkeley) 6/10/93
++* $FreeBSD: src/sys/net/if_dl.h,v 1.10 2000/03/01 02:46:25 archie Exp $
++*/
++
++#ifndef _NET_IF_DL_H_
++#define _NET_IF_DL_H_
++
++/*
++* A Link-Level Sockaddr may specify the interface in one of two
++* ways: either by means of a system-provided index number (computed
++* anew and possibly differently on every reboot), or by a human-readable
++* string such as "il0" (for managerial convenience).
++*
++* Census taking actions, such as something akin to SIOCGCONF would return
++* both the index and the human name.
++*
++* High volume transactions (such as giving a link-level ``from'' address
++* in a recvfrom or recvmsg call) may be likely only to provide the indexed
++* form, (which requires fewer copy operations and less space).
++*
++* The form and interpretation  of the link-level address is purely a matter
++* of convention between the device driver and its consumers; however, it is
++* expected that all drivers for an interface of a given if_type will agree.
++*/
++
++/*
++* Structure of a Link-Level sockaddr:
++*/
++struct sockaddr_dl {
++u_char sdl_len; /* Total length of sockaddr */
++u_char sdl_family; /* AF_LINK */
++u_short sdl_index; /* if != 0, system given index for interface */
++u_char sdl_type; /* interface type */
++u_char sdl_nlen; /* interface name length, no trailing 0 reqd. */
++u_char sdl_alen; /* link level address length */
++u_char sdl_slen; /* link layer selector length */
++char sdl_data[12]; /* minimum work area, can be larger;
++   contains both if name and ll address */
++u_short sdl_rcf; /* source routing control */
++u_short sdl_route[16]; /* source routing information */
++};
++
++#define LLADDR(s) ((caddr_t)((s)->sdl_data + (s)->sdl_nlen))
++
++#ifndef _KERNEL
++
++#include <sys/cdefs.h>
++
++__BEGIN_DECLS
++void link_addr __P((const char *, struct sockaddr_dl *));
++char *link_ntoa __P((const struct sockaddr_dl *));
++__END_DECLS
++
++#endif /* !_KERNEL */
++
++#endif
+--
+2.29.0
+
+android_external_libncurses: libncurses for android platform
+download from    : https://github.com/CyanogenMod/android_external_libncurses.git
+current branch   : cm-14.1
+current reversion: 067ae32f7e4b45bb1cb7ba37d0ffe618905e049f
+support patch    :
+
+From 91b1b928f20e7b374d547fe31c2c3a8a56221b2d Mon Sep 17 00:00:00 2001
+From: zhaoyouyi <zhaoyouyi@allwinnertech.com>
+Date: Wed, 9 Jun 2021 08:58:58 +0800
+Subject: [PATCH] Fix build error for androidr.
+
+Signed-off-by: zhaoyouyi <zhaoyouyi@allwinnertech.com>
+---
+ Android.mk            | 48 +++++++++++++++++++++++++++++++++----------
+ Makefile              |  2 +-
+ edit_man.sh           |  2 +-
+ include/ncurses_cfg.h |  4 ++--
+ man/ncurses6-config.1 |  4 ++--
+ misc/Makefile         |  2 +-
+ misc/ncurses-config   |  4 ++--
+ misc/run_tic.sh       |  2 +-
+ ncurses/Makefile      |  2 +-
+ 9 files changed, 48 insertions(+), 22 deletions(-)
+
+diff --git a/Android.mk b/Android.mk
+index bb4841e..adc25d2 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -27,7 +27,9 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH) \
+                $(LOCAL_PATH)/include \
+                $(LOCAL_PATH)/ncurses \
+
+-LOCAL_MODULE_TAGS := eng
++LOCAL_MODULE_TAGS := optional
++LOCAL_PROPRIETARY_MODULE := true
++LOCAL_REQUIRED_MODULES := terminfo-package
+ LOCAL_MODULE := libncurses
+
+ include $(BUILD_SHARED_LIBRARY)
+@@ -42,13 +44,37 @@ TERMINFO_FILES := \
+        v/vt220 v/vt52 x/xterm x/xterm-xfree86 x/xterm-color x/xterm-r5 x/xterm-r6 \
+        x/xterm-vt220 x/xterm-256color w/wsvt25 w/wsvt25m
+
+-TERMINFO_SOURCE := $(LOCAL_PATH)/lib/terminfo/
+-TERMINFO_TARGET := $(TARGET_OUT_ETC)/terminfo
+-$(TERMINFO_TARGET): $(ACP)
+-               @echo "copy terminfo to /etc/"
+-               @mkdir -p $@
+-               @$(foreach TERMINFO_FILE,$(TERMINFO_FILES), \
+-                       mkdir -p $@/$(dir $(TERMINFO_FILE)); \
+-                       $(ACP) $(TERMINFO_SOURCE)/$(TERMINFO_FILE) $@/$(TERMINFO_FILE); \
+-               )
+-ALL_DEFAULT_INSTALLED_MODULES += $(TERMINFO_TARGET)
++TERMINFO_SOURCE := lib/terminfo
++
++define terminfo
++include $$(CLEAR_VARS)
++LOCAL_SRC_FILES := $$(TERMINFO_SOURCE)/$1
++LOCAL_MODULE := $$(shell basename $1)
++LOCAL_MODULE_TAGS := optional
++LOCAL_MODULE_CLASS := ETC
++LOCAL_MODULE_PATH :=  $$(TARGET_OUT_VENDOR_ETC)/terminfo/$$(shell dirname $1)
++include $$(BUILD_PREBUILT)
++endef
++
++define all-terminfo
++$(foreach f,$(1),\
++    $(eval $(call terminfo,$(f))) \
++)
++endef
++
++define all-terminfo-name
++$(eval __name :=) \
++$(foreach f,$(1),\
++    $(eval __name += $(shell basename $(f)))) \
++$(__name)
++)
++endef
++
++$(call all-terminfo,$(TERMINFO_FILES))
++
++include $(CLEAR_VARS)
++LOCAL_MODULE := terminfo-package
++LOCAL_MODULE_OWNER := google
++LOCAL_MODULE_TAGS := optional
++LOCAL_REQUIRED_MODULES += $(call all-terminfo-name,$(TERMINFO_FILES))
++include $(BUILD_PHONY_PACKAGE)
+diff --git a/Makefile b/Makefile
+index 20de6db..9bda3c9 100644
+--- a/Makefile
++++ b/Makefile
+@@ -52,7 +52,7 @@ exec_prefix   = ${prefix}
+ datarootdir    = ${prefix}/share
+
+ bindir         = ${exec_prefix}/bin
+-ticdir         = /system/etc/terminfo
++ticdir         = /vendor/etc/terminfo
+ includedir     = ${prefix}/include
+ includesubdir  = /ncurses
+ libdir         = ${exec_prefix}/lib
+diff --git a/edit_man.sh b/edit_man.sh
+index 058beff..75a0977 100755
+--- a/edit_man.sh
++++ b/edit_man.sh
+@@ -10,7 +10,7 @@ NCURSES_MINOR="0"
+ NCURSES_PATCH="20150808"
+
+ NCURSES_OSPEED="short"
+-TERMINFO="/system/etc/terminfo"
++TERMINFO="/vendor/etc/terminfo"
+
+ INSTALL="/usr/bin/install -c"
+ INSTALL_DATA="${INSTALL} -m 644"
+diff --git a/include/ncurses_cfg.h b/include/ncurses_cfg.h
+index c13d399..597f05a 100644
+--- a/include/ncurses_cfg.h
++++ b/include/ncurses_cfg.h
+@@ -55,8 +55,8 @@ void exit (int);
+ #endif
+ #define HAVE_LONG_FILE_NAMES 1
+ #define MIXEDCASE_FILENAMES 1
+-#define TERMINFO_DIRS "/system/etc/terminfo"
+-#define TERMINFO "/system/etc/terminfo"
++#define TERMINFO_DIRS "/vendor/etc/terminfo"
++#define TERMINFO "/vendor/etc/terminfo"
+ #define PURE_TERMINFO 1
+ #define USE_HOME_TERMINFO 1
+ #define USE_ROOT_ENVIRON 1
+diff --git a/man/ncurses6-config.1 b/man/ncurses6-config.1
+index 2131dc7..37f5b58 100644
+--- a/man/ncurses6-config.1
++++ b/man/ncurses6-config.1
+@@ -77,13 +77,13 @@ echos the directory containing ncurses manpages
+ \fB\-\-terminfo\fR
+ echos the $TERMINFO terminfo database path, e.g.,
+ .RS
+-/system/etc/terminfo
++/vendor/etc/terminfo
+ .RE
+ .TP
+ \fB\-\-terminfo\-dirs\fR
+ echos the $TERMINFO_DIRS directory list, e.g.,
+ .RS
+-/system/etc/terminfo
++/vendor/etc/terminfo
+ .RE
+ .TP
+ \fB\-\-termpath\fR
+diff --git a/misc/Makefile b/misc/Makefile
+index 960575c..9f3adc7 100644
+--- a/misc/Makefile
++++ b/misc/Makefile
+@@ -63,7 +63,7 @@ includesubdir = /ncurses
+ INCLUDEDIR     = $(DESTDIR)$(includedir)$(includesubdir)
+
+ tabsetdir      = $(datadir)/tabset
+-ticdir         = /system/etc/terminfo
++ticdir         = /vendor/etc/terminfo
+ ticfile                = $(ticdir).db
+ source         = ${top_srcdir}/misc/terminfo.src
+
+diff --git a/misc/ncurses-config b/misc/ncurses-config
+index 657ea53..6b4fbbb 100644
+--- a/misc/ncurses-config
++++ b/misc/ncurses-config
+@@ -154,10 +154,10 @@ ENDECHO
+                echo "${mandir}"
+                ;;
+        --terminfo)
+-               echo "/system/etc/terminfo"
++               echo "/vendor/etc/terminfo"
+                ;;
+        --terminfo-dirs)
+-               echo "/system/etc/terminfo"
++               echo "/vendor/etc/terminfo"
+                ;;
+        --termpath)
+                echo ""
+diff --git a/misc/run_tic.sh b/misc/run_tic.sh
+index 20251c3..41a396e 100644
+--- a/misc/run_tic.sh
++++ b/misc/run_tic.sh
+@@ -51,7 +51,7 @@ echo '** Building terminfo database, please wait...'
+ : ${datarootdir:=${prefix}/share}
+ : ${datadir:=${datarootdir}}
+ : ${TIC_PATH:=/usr/bin/tic}
+-: ${ticdir:=/system/etc/terminfo}
++: ${ticdir:=/vendor/etc/terminfo}
+ : ${source:=${top_srcdir}/misc/terminfo.src}
+ : ${LN_S:="ln -s -f"}
+ : ${cross_compiling:=no}
+diff --git a/ncurses/Makefile b/ncurses/Makefile
+index 528f13f..b926811 100644
+--- a/ncurses/Makefile
++++ b/ncurses/Makefile
+@@ -156,7 +156,7 @@ FALLBACK_LIST       =
+ USE_BIG_STRINGS        = 1
+ TERMINFO_CAPS  = $(top_srcdir)/include/Caps
+
+-TERMINFO       = /system/etc/terminfo
++TERMINFO       = /vendor/etc/terminfo
+ TERMINFO_SRC   = ${top_srcdir}/misc/terminfo.src
+ TIC_PATH       = /usr/bin/tic
+
+--
+2.29.0
+
+
+
+

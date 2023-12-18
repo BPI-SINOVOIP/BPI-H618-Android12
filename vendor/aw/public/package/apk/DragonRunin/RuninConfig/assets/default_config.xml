@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root test="false" cycle="20">
+    <Foreground>
+        <VideoTest duration="1800000">
+            <src>/mnt/sdcard/runin/video</src>
+        </VideoTest>
+        <ThreeDimensionalTest duration="1800000" />
+        <MemtesterTest repeat="150" />
+        <SleepwakeTest open="6000" close="24000" repeat="60" />
+        <RebootTest repeat="25">
+            <reason>runintest</reason>
+        </RebootTest>
+    </Foreground>
+    <Background>
+    </Background>
+</Root>

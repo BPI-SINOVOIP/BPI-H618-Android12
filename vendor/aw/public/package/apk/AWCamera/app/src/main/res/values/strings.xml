@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">Camera</string>
+    <string name="settings">Settings</string>
+    <string name="squareMode">square</string>
+    <string name="professionMode">profession</string>
+    <string name="autoMode">auto</string>
+    <string name="videoMode">video</string>
+    <string name="panoMode">panoramic</string>
+    <string name="camera_error_title">Camera error</string>
+    <string name="error_permissions">The app does not have critical permissions needed to run. Please check your permissions settings.</string>
+    <string name="dialog_dismiss">Dismiss</string>
+    <string name="photograph_setting">Photograph setting</string>
+    <string name="disable">disable</string>
+    <string name="enable">enable</string>
+    <string name="defaults">default</string>
+    <string name="off">off</string>
+    <string name="custom">custom</string>
+    <string name="voice_control">Camera sounds</string>
+    <string name="gridlines">Gridlines</string>
+    <string name="back_photo_ratio">Back photo aspect ratio</string>
+    <string name="front_photo_ratio">Front photo aspect ratio</string>
+    <string name="back_video_ratio">Back video size</string>
+    <string name="front_video_ratio">Front video size</string>
+    <string name="camera_settings">Camera Settigs</string>
+    <string name="save_location">Save location information</string>
+    <string name="time_watersign">Date stamp</string>
+    <string name="model_watersign">Device Watermark</string>
+
+    <string name="filter_normal">normal</string>
+    <string name="filter_bw">bw</string>
+    <string name="filter_amber">amber</string>
+    <string name="filter_bleak">bleak</string>
+    <string name="filter_film">filmstock</string>
+    <string name="filter_white">bleach</string>
+    <string name="filter_green_orange">tealorange</string>
+    <string name="filter_autumn">fallcolor</string>
+    <string name="filter_sunset">sunset</string>
+    <string name="filter_green">green</string>
+    <string name="filter_blue">dropBlues</string>
+    <string name="filter_beauty">beauty</string>
+    <string name="retake">retake</string>
+    <string name="finish">finish</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="filters">Filterts</string>
+    <string name="stickers">Stickers</string>
+    <string name="stickers_sheep">Sheep</string>
+    <string name="stickers_fairy">Fairy</string>
+    <string name="stickers_rabbit">Rabbit</string>
+    <string name="stickers_none">None</string>
+    <string name="smooth">Smooth</string>
+    <string name="whitening">Whitening</string>
+    <string name="bigeye">Big eye</string>
+    <string name="slimmer_face">Slimmer face</string>
+    <string name="custom_watersign_hint">Please enter a custom watermark</string>
+    <string name="spaceIsLow_content" >Your SD card is running out of space. Change the quality setting or delete some images or other files.</string>
+    <!-- alert to the user that an SD card must be installed before using the camera -->
+    <string name="no_storage" >Insert an SD card before using the camera.</string>
+
+    <!-- alert to the user that the SD card is being disk-checked -->
+    <string name="preparing_sd" >Preparing SD card\u2026</string>
+
+    <!-- alert to the user that the camera fails to read or write the SD card. -->
+    <string name="access_sd_fail" >Couldn\'t access SD card.</string>
+    <string name="video_reach_size_limit">Size limit reached.</string>
+    <string name="click_too_frequently_tips">Click too frequently.</string>
+    <string name="location_setting">Location Setting</string>
+    <string name="location_open_wifi_or_gps_tips">Please open WiFi or GPS, then go to set Google Location Accuracy after opening!</string>
+    <string name="location_open_activity">Go now!</string>
+    <string name="location_got_it">Yes, I got it!</string>
+    
+    <!-- alert to the user that power is too low, can not use camera -->
+    <string name="battery_remain_too_low">The battery is too low, camera will close.</string>
+
+    <string-array name="picture_rate">
+        <item>4:3</item>
+        <item>16:9</item>
+    </string-array>
+    <string-array name="picture_rate_value">
+        <item>4:3</item>
+        <item>16:9</item>
+    </string-array>
+    <string-array name="video_rate">
+        <item>480P (4:3)</item>
+        <item>720P (16:9)</item>
+    </string-array>
+    <string-array name="video_rate_value">
+        <item>480P (4:3)</item>
+        <item>720P (16:9)</item>
+    </string-array>
+    <string-array name="model_type">
+        <item>@string/off</item>
+        <item>@string/defaults</item>
+        <item>@string/custom</item>
+    </string-array>
+    <string-array name="model_type_value">
+        <item>off</item>
+        <item>default</item>
+        <item>custom</item>
+    </string-array>
+</resources>

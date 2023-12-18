@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <PreferenceCategory android:title="@string/photograph_setting">
+        <SwitchPreference
+            android:key="sound_capture"
+            android:summaryOff="@string/disable"
+            android:summaryOn="@string/enable"
+            android:title="@string/voice_control" />
+        <SwitchPreference
+            android:key="reference_line"
+            android:summaryOff="@string/disable"
+            android:summaryOn="@string/enable"
+            android:title="@string/gridlines" />
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/camera_settings">
+        <SwitchPreference
+            android:key="save_position"
+            android:summaryOff="@string/disable"
+            android:summaryOn="@string/enable"
+            android:title="@string/save_location" />
+    </PreferenceCategory>
+</PreferenceScreen>

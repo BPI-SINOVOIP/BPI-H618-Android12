@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    
+    
+
+    <string name="app_name">settings</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="allow_notify">Allow notify</string>
+	<string name="storage">Storage</string>
+	<string name="total">Total</string>
+	<string name="application">Application</string>
+	<string name="cache_storage">Cache</string>
+	<string name="sdcard_storage">SD card</string>
+	<string name="data_storage">Data</string>
+	<string name="stopapp">Force stop</string>
+	<string name="uninstallapp">Uninstall</string>
+	<string name="cleardata">Clear data</string>
+	<string name="clearcache">Clear cache</string>
+	<string name="toforcestopapp">Force stop app?</string>
+	<string name="touninstallapp">Uninstall this app?</string>
+	<string name="touncleanappdata">Clear app data?</string>
+	<string name="yes">OK</string>
+	<string name="cancel">Cancel</string>
+	<string name="wireless">Wi-Fi</string>
+	<string name="ethernet">Ethernet</string>
+	<string name="softap">Wi-Fi hotspots</string>
+	<string name="bluetooth">Bluetooth</string>
+	<string name="netinfo">Network info</string>
+	<string name="nettype">Network type</string>
+	<string name="macaddress">MAC address</string>
+	<string name="ipaddress">IP address</string>
+	<string name="defaultgate">Gateway</string>
+	<string name="dnsserver">DNS</string>
+	<string name="subnetmask">Subnet mask</string>
+	<string name="test">XXXXXXXX</string>
+    <string-array name = "wirelinkmode">
+            <item> DHCP</item>
+            <item> Static IP</item>
+            <item> PPPoE</item>
+   </string-array> 
+    <string name="eth_settings_title">Ethernet</string>
+    <string name="eth_toggle_title">Use ethernet</string>
+    <string name="eth_settings">Ethernet config</string>
+    <string name="eth_dhcp_configure">Dynamic IP</string>
+    <string name="eth_static_configure">Static IP</string>
+    <string name="eth_pppoe_configure">PPPoE</string>
+    <string name="eth_ip_address">IP address</string>
+    <string name="eth_ip_string">0.0.0.0</string>
+    <string name="eth_mac_address">Mac address</string>
+    <string name="eth_mac_string">00:00:00:00:00:00</string>
+    <string name="eth_mask_address">Mask</string>
+    <string name="eth_mask_string">255.255.255.255</string>
+    <string name="eth_dns1_address">DNS</string>
+    <string name="eth_dns1_string">0.0.0.0</string>
+    <string name="eth_dns2_address">DNS2</string>
+    <string name="eth_dns2_string">0.0.0.0</string>
+    <string name="eth_gw_address">Gateway</string>
+    <string name="eth_gw_string">0.0.0.0</string>
+    <string name="eth_dev_summaryoff">off</string>
+    <string name="eth_dev_summaryon">on -- device: </string>
+    <string name="eth_ok">OK</string>
+    <string name="eth_cancel">Cancel</string>
+    <string name="eth_connect_mode">Mode</string>
+    <string name="eth_mode_dhcp">DHCP</string>
+    <string name="eth_mode_static">Static IP</string>
+    <string name="eth_mode_pppoe">PPPoE</string>
+    <string name="eth_info">Ehernet info</string>
+    <string name="eth_off">Please activate ethernet first</string>
+    <string name="eth_connect_successed">Ethernet connect sucessed</string>
+    <string name="eth_connect_failed">Ethernet connect failed</string>
+    <string name="eth_disconnect_successed">Ethernet disconnect successed</string>
+
+    <!-- PPPoE -->
+    <string name="pppoe_setting_user">User</string>
+    <string name="pppoe_setting_password">Password</string>
+
+    <!-- DHCP -->
+    <string name="dhcp_setting_user">User</string>
+    <string name="dhcp_setting_password">Password</string>
+    <string name="dhcp_use_ipoe">Use IPOE</string>
+   <string name="start_softap">Start Wi-Fi hotspots</string>
+   <string name="close">Close</string>
+   <string name="open">Open</string>
+   <string name="opening">Opening</string>
+   <string name="closing">Closing</string>
+   <string name="set_softap">Set Wi-Fi hotspots</string>
+   <string name="softap_subtext">"<xliff:g id="NETWORK_SSID">%1$s</xliff:g><xliff:g id="NETWORK_SECURITY">%2$s</xliff:g> Wi-Fi hotspot"</string>
+   <string name="network_ssid">SSID</string>
+   <string name="security">Security</string>
+   <string name="passwd">Password</string>
+   <string name="passwd_subtext">8 letters at least</string>
+   <string name="submit">Submit</string>
+   <string name="scale">Screen</string>
+   <string name="resolution1">720P 50Hz</string>
+   <string name="resolution2">1920*1080 (recommand)</string>
+   <string name="dispchanged">Change to %s？</string>
+   <string name="changedverify">It will undo in %ss.save change？</string>
+   <string name="start_bt">Bluetooth on</string>
+   <string name="start_direction">Visible</string>
+   <string name="search_device">Search</string>
+   <string name="connect_wifi">Connect to wifi</string>
+   <string-array name="softap_security">
+    	<item>Null</item>
+    	<item>WPA PSK</item>
+    	<item>WPA2 PSK</item>
+    </string-array>
+    <string name="bluetooth_paired">"Paired"</string>
+    <string name="bluetooth_unpaired">"Available"</string>
+    <string name="ethernet_connected">"Ethernet"</string>
+    <string name="wifi_connected">"Wi-Fi"</string>
+    <string name="non_connected">"Unconnected"</string>
+    <string name="display_percent">%</string>
+    <string name="display_setting1">The display screen size may not adjust some televisions\' screen size.</string>
+    <string name="display_setting2">Scale the display sreen size to adjust your tv.</string>
+    <string name="use_display_setting">Press “ok” to confirm</string>
+    <string name="cancel_display_setting">Press “back” to cancel</string>
+    <string name="video_quality">Quality</string>
+    <string name="auto">Auto</string>
+    <string name="manual">Manual</string>
+    <string name="video_size">Scale</string>
+    <string name="self_adaption">Adjust</string>
+    <string name="video_jump">Skip pre/end</string>
+    <string name="video_jump_open">Open</string>
+    <string name="video_jump_close">Close</string>
+    <string name="video_subtext_display">Subtext</string>
+    <string name="video_scale_dynamic">Scale out</string>
+    <string name="audio_output">Audio out</string>
+    <string name="stereo_mode">Stereo</string>
+    <string name="disconnect_bt">Disconnect</string>
+    <string name="enable_suspend">Screen saving</string>
+    <string name="wether_location">Weather &amp; location</string>
+    <string name="install_application">Unknown sources</string>
+    <string name="factory_recovery">Factory data reset</string>
+    <string name="senior_setting">Advanced settings</string>
+    <string name="warning">Warning</string>
+    <string name="system_reocvery">Reset to factory？Take it carefully,it cannot be undone！</string>
+    <string name="select_and_connect">Select and connect</string>
+	<string name="today">Today：</string>
+	<string name="temp">Temp：</string>
+	<string name="kaze">Kaze：</string>
+	<string name="tomorrow">Tomorrow：</string>
+	<string name="weather">Weather：</string>
+	<string name="beijing">Beijing</string>
+    <string name="allow_install_apk">Allow</string>
+    <string name="not_allow_install_apk">Deny</string>
+    <string name="about_product">About</string>
+    <string name="device_name">Device name</string>
+    <string name="product_model">Product model</string>
+    <string name="soft_release">Firmware version</string>
+    <string name="name_your_deivce">Name your device</string>
+    <string name="sitting_room">Box of sitting room</string>
+    <string name="bedroom">Box of bedroom</string>
+    <string name="study">Box of study</string>
+    <string name="office">Box of office</string>
+    <string name="user_defined">Customize</string>
+    <string name="wifiworning">Warning</string>
+    <string name="currentwifistat">Wi-Fi is open,go to close?</string>
+	<string name="unsupport">Sorry, tv unsupport</string>
+	<!-- setting mutilanguage  -->
+	<string name="setting_network">Network</string>
+	<string name="setting_common">General settings</string>
+	<string name="setting_weather">Weather &amp; location</string>
+	<string name="setting_plot">Display</string>
+	<string name="setting_scale">Screen</string>
+	<string name="setting_about">About</string>
+	<string name="setting_name">Device name</string>
+	<string name="setting_appmanager">App manager</string>
+	<string name="setting_appinfo">App info</string>
+	
+</resources>

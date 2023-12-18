@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/case_min_num"
+    android:layout_width="@dimen/dp_40"
+    android:layout_height="fill_parent"
+    android:background="@drawable/main_bg"
+    android:gravity="center"
+    android:padding="@dimen/case_item_min_row_padding" />

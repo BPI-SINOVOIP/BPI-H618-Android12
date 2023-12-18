@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/grid_item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:contentDescription="@string/app_name" ><!-- @dimen/square_side -->
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="@dimen/v3_square_side"
+        android:layout_height="@dimen/v3_square_side"
+        android:layout_gravity="center"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY" />
+        
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="@dimen/square_side"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/app_gridview_text_padding_bottom"
+        android:ellipsize="end"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/app_section_name_textsize"
+        android:visibility="gone" />
+
+</FrameLayout>

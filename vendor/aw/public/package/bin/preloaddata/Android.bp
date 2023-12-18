@@ -1,0 +1,14 @@
+
+sh_binary {
+    name: "preloaddata",
+
+    src: "preloaddata.sh",
+    init_rc: ["preloaddata.rc"],
+    required: ["preloaddata_restorecon"],
+}
+
+sh_binary {
+    name: "preloaddata_restorecon",
+
+    src: "preloaddata_restorecon.sh",
+}

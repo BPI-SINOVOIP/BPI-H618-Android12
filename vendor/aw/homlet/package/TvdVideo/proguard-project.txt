@@ -1,0 +1,6 @@
+# keep SystemMix all method in apk
+
+-keepclassmembers class com.softwinner.SystemMix{
+    public *;
+    private *;
+}

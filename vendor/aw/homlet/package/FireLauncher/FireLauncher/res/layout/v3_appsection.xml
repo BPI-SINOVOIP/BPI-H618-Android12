@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.firelauncher.section.v3_AppSection xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:id="@+id/app_section">
+    
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+        
+       <GridLayout
+	        android:id="@+id/app_section_grid_layout"
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+            android:paddingTop="@dimen/app_section_margin_top"
+	        android:paddingBottom="@dimen/view_margin_xlarger"
+	        android:paddingRight="@dimen/layout_margin_right"
+	        android:paddingLeft="@dimen/app_section_margin_left" >
+	        
+	    </GridLayout>
+
+        <!-- 必须在FrameLayout布局中添加 -->
+
+        <include
+            android:id="@+id/animation_layout"
+            layout="@layout/animation_view_layout"
+            android:paddingTop="@dimen/app_section_margin_top"
+	        android:paddingBottom="@dimen/view_margin_xlarger"
+	        android:paddingRight="@dimen/layout_margin_right"
+	        android:paddingLeft="@dimen/app_section_margin_left"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</com.softwinner.firelauncher.section.v3_AppSection>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPerCaseTheme"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/item_num_text" />
+
+    <include layout="@layout/item_action_button" />
+
+    <TableLayout style="@style/MainPerCaseTabLayout" >
+
+        <TableRow style="@style/MainPerCaseTabRow" >
+
+            <TextView
+                android:id="@+id/case_cvbs_status_text"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_cvbs_status_text" />
+
+            <TextView
+                android:id="@+id/case_cvbs_left"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_cvbs_left" />
+
+            <TextView
+                android:id="@+id/case_cvbs_right"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_cvbs_right" />
+        </TableRow>
+    </TableLayout>
+
+    <include layout="@layout/item_result_text" />
+
+</LinearLayout>

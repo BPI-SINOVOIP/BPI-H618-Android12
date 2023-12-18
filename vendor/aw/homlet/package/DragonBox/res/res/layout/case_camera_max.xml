@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/write"
+    android:orientation="vertical" >
+        <TextView
+            android:id="@+id/case_camera_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawable="@drawable/result_fail_bg"
+            android:layout_alignParentBottom="true"
+            android:text="@string/case_camera_name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <SurfaceView
+            android:id="@+id/case_camera_surface"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/case_camera_info"
+            android:visibility="visible" >
+        </SurfaceView>
+</LinearLayout>

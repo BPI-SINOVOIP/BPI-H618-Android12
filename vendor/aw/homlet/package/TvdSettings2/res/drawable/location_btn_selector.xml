@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/location_btn_normal" android:state_enabled="false"></item>
+    <item android:drawable="@drawable/location_btn_selected" android:state_pressed="true"></item>
+    <item android:drawable="@drawable/location_btn_selected" android:state_selected="true"></item>
+    <item android:drawable="@drawable/location_btn_selected" android:state_focused="true"></item>
+
+</selector>

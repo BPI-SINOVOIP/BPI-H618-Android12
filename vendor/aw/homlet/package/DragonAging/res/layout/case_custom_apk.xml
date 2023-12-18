@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <View
+        android:id="@+id/case_custom_apk_state"
+        android:layout_width="match_parent"
+        android:layout_height="25dip"
+        android:background="#f00" />
+
+    <ListView
+        android:id="@+id/case_custom_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/case_custom_apk_state"
+        android:layout_marginTop="5dip" />
+
+    <Button
+        android:id="@+id/btn_redo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/case_retest" />
+
+</RelativeLayout>

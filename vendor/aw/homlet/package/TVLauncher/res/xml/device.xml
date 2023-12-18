@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- <Preference
+        android:icon="@drawable/aw_wifi_icon"
+        android:key="network"
+        android:title="@string/connectivity_network" >
+        <intent
+            android:targetClass="com.android.tv.launcher.connectivity.NetworkActivity"
+            android:targetPackage="com.android.tv.launcher" />
+    </Preference>
+    -->
+<!--
+    <Preference
+        android:icon="@drawable/aw_bluetooth_icon"
+        android:key="bluetooth"
+        android:title="@string/accessory_bluetooth" >
+        <intent
+            android:targetClass="com.android.tv.launcher.device.bluetooth.BluetoothActivity"
+            android:targetPackage="com.android.tv.launcher" />
+    </Preference>
+-->
+   <!--<Preference
+        android:icon="@drawable/aw_show_icon"
+        android:key="display"
+        android:title="@string/device_display" >
+        <intent
+            android:targetClass="com.android.tv.launcher.device.display.DisplayActivity2"
+            android:targetPackage="com.android.tv.launcher" />
+    </Preference>
+   --> 
+    <Preference
+        android:icon="@drawable/aw_setting_icon"
+        android:key="settings"
+        android:title="@string/settings_app_name" >
+        <intent
+            android:targetClass="com.android.tv.settings.MainSettings"
+            android:targetPackage="com.android.tv.settings" />
+    </Preference>     
+
+    <Preference
+        android:icon="@drawable/aw_apps_icon"
+        android:key="apps"
+        android:title="@string/device_apps" >
+        <intent
+            android:targetClass="com.android.tv.launcher.device.apps.AppsActivity"
+            android:targetPackage="com.android.tv.launcher" />
+    </Preference>
+
+
+  
+</PreferenceScreen>

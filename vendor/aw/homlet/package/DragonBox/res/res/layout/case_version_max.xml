@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="0,1,2">
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_type"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_type_system"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_type_conf"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_android_ver" />
+
+            <TextView
+                android:id="@+id/case_max_version_android_ver"
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_android_ver" />
+
+            <TextView
+                android:id="@+id/case_max_version_android_ver_conf"
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_android_ver" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_display" />
+
+            <TextView
+                android:id="@+id/case_version_display"
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_display" />
+
+            <TextView
+                android:id="@+id/case_version_display_conf"
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_display" />
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_model" />
+
+            <TextView
+                android:id="@+id/case_version_model"
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_model" />
+
+            <TextView
+                android:id="@+id/case_version_model_conf"
+                style="@style/CaseVersionMax"
+                android:text="@string/case_version_info_model" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_gravity="left"
+        android:paddingTop="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/case_version_wifi_mac"
+            style="@style/CaseVersionMax"
+            android:text="@string/case_version_other_info_wifi_mac" />
+
+        <TextView
+            android:id="@+id/case_version_eth_mac"
+            style="@style/CaseVersionMax"
+            android:text="@string/case_version_other_info_eth_mac" />
+
+        <TextView
+            android:id="@+id/case_version_ddr"
+            style="@style/CaseVersionMax"
+            android:text="@string/case_version_other_info_ddr" />
+
+        <TextView
+            android:id="@+id/case_version_nand"
+            style="@style/CaseVersionMax"
+            android:text="@string/case_version_other_info_nand" />
+    </LinearLayout>
+
+</LinearLayout>

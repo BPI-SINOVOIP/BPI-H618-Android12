@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.update.ui.InstallPackage xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="500dp"
+    android:layout_height="350dp"
+    android:background="@drawable/block_drawable_blue"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/descriptor"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="@android:color/darker_gray"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:text="@string/install_ota_help" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ProgressBar
+            android:id="@+id/verify_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp" />
+
+        <LinearLayout
+            android:id="@+id/output_field"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/block_drawable_white"
+            android:layout_alignLeft="@+id/verify_progress"
+            android:layout_alignRight="@+id/verify_progress"
+            android:layout_below="@+id/verify_progress"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical" >
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/confirm_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight = "@+id/output_field"
+            android:layout_below="@+id/output_field"
+            android:layout_marginTop="30dp"
+            android:text="@string/confirm_update" />
+
+        <Button
+            android:id="@+id/confirm_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft = "@+id/output_field"
+            android:layout_below="@+id/output_field"
+            android:layout_marginTop="30dp"
+            android:text="@string/confirm_cancel" />
+
+    </RelativeLayout>
+
+</com.softwinner.update.ui.InstallPackage>

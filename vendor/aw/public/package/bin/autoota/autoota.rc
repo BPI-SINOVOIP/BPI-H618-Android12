@@ -1,0 +1,9 @@
+on property:sys.boot_completed=1
+    start autoota
+
+service autoota /system/bin/autoota
+    oneshot
+    disabled
+    user shell
+    group shell cache
+    seclabel u:r:shell:s0

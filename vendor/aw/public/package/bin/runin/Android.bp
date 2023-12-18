@@ -1,0 +1,15 @@
+
+cc_prebuilt_binary {
+    name: "runin.sh",
+
+    srcs: ["runin.sh"],
+    init_rc: ["runin.rc"],
+    required: ["runin_config"],
+}
+
+prebuilt_etc {
+    name: "runin_config",
+
+    owner: "runin.sh",
+    src: "runin_config",
+}

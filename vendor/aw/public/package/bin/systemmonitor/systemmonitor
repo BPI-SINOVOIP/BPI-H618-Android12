@@ -1,0 +1,7 @@
+# Script to start "preinstall" on the device, which has a very rudimentary
+# shell.
+#
+base=/system
+export CLASSPATH=$base/framework/systemmonitor.jar
+exec app_process $base/bin com.softwinner.systemmonitor.SystemMonitor "$@"
+

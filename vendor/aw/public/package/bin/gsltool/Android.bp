@@ -1,0 +1,12 @@
+cc_binary_host {
+    name: "gsltool",
+    srcs: [
+        "gsltool.c"
+    ],
+    local_include_dirs: [
+        "include",
+    ],
+    cflags: [
+        "-Wmissing-braces"
+    ],
+}

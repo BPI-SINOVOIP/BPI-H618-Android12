@@ -1,0 +1,12 @@
+#!/vendor/bin/sh
+case $1 in
+    ppp1)
+	echo 0 > /proc/sys/net/ipv4/ip_forward;
+	;;
+esac
+
+# Use interface name if linkname is not available
+NAME=${LINKNAME:-"$1"}
+
+/vendor/bin/setprop "vendor.ril.$NAME.local-ip" ""
+/vendor/bin/setprop "vendor.ril.$NAME.remote-ip" ""

@@ -1,0 +1,23 @@
+set line /dev/ttyUSB0
+set speed 115200
+set carrier-watch off
+set handshake none
+set flow-control none
+robust
+set file type bin
+set file name lit
+set rec pack 1000
+set send pack 1000
+set window 5
+set session-log TIMESTAMPED-TEXT
+echo ""
+echo "  _                       _ _      "
+echo " | | _____ _ __ _ __ ___ (_) |_    "
+echo " | |/ / _ \\ '__| '_ ` _ \\| | __| "
+echo " |   <  __/ |  | | | | | | | |_    "
+echo " |_|\\_\\___|_|  |_| |_| |_|_|\\__|"
+echo ""
+mkdir /data/log
+cd /data/log
+log session \v(ndate)-\v(hour)\flpad(\feval(\v(ntime)/60%60),2,0)\flpad(\feval(\v(ntime)%60),2,0).log
+c

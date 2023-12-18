@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPerCaseTheme"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/item_num_text" />
+
+    <include layout="@layout/item_action_button" />
+
+    <TableLayout
+        style="@style/MainPerCaseTabLayout"
+        android:stretchColumns="*" >
+
+        <TableRow style="@style/MainPerCaseTabRow" >
+           <TextView
+                android:id="@+id/case_b_present"
+                style="@style/MainPerCaseDetailTextView"
+                android:layout_weight="1"
+                android:text="@string/BatteryInfo_present_textview" />
+            <TextView
+                android:id="@+id/case_b_status"
+                style="@style/MainPerCaseDetailTextView"
+                android:layout_weight="1"
+                android:text="@string/BatteryInfo_status_textview" />
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/case_b_health"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/BatteryInfo_health_textview" />
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/case_b_level"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/BatteryInfo_level_textview" />
+        </TableRow>
+
+        <TableRow style="@style/MainPerCaseTabRow" >
+            <TextView
+                android:id="@+id/case_b_plugged"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/BatteryInfo_plugged_textview" />
+            <TextView
+                android:id="@+id/case_b_voltage"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/BatteryInfo_voltage_textview" />
+            <TextView
+                android:id="@+id/case_b_temperature"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/BatteryInfo_temperature_textview" />
+            <TextView
+                android:id="@+id/case_b_technology"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/BatteryInfo_technology_textview" />
+        </TableRow>
+    </TableLayout>
+
+    <include layout="@layout/item_result_text" />
+
+</LinearLayout>

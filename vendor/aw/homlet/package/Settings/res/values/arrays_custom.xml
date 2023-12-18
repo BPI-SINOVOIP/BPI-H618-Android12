@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="hdmi_color_entries">
+        <item>RGB888_8BIT</item>
+        <item>YUV444_8BIT</item>
+        <item>YUV420_10BIT</item>
+        <item>YUV422</item>
+        <item>AUTO</item>
+    </string-array>
+    <string-array name="hdmi_color_values">
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <string-array name="hdmi_hdr_entries">
+        <item>SDR</item>
+        <item>HDR</item>
+        <item>AUTO</item>
+    </string-array>
+    <string-array name="hdmi_hdr_values">
+        <item>3</item>
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+   <string-array name="pip_screen_set_postion_name">
+        <item>left-up</item>
+        <item>right-up</item>
+        <item>center</item>
+        <item>left-down</item>
+        <item>right-down</item>
+   </string-array>
+  <string-array name="pip_screen_set_postion_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+  </string-array>
+
+
+</resources>
+

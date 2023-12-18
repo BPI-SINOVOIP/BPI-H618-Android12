@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+**
+** Copyright 2007 The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+<resources>
+
+    <array name="fileEndingVideo">
+        <item>avi</item>
+        <item>rmvb</item>
+        <item>mkv</item>
+        <item>m2ts</item>
+        <item>ts</item>
+        <item>dat</item>
+        <item>mp4</item>
+        <item>mpeg</item>
+        <item>vob</item>
+        <item>wmv</item>
+        <item>mov</item>
+        <item>mpg</item>
+        <item>m4v</item>
+        <item>rm</item>
+        <item>flv</item>
+        <item>pmp</item>
+        <item>asf</item>
+        <item>psr</item>
+        <item>3gp</item>
+        <item>ram</item>
+        <item>divx</item>
+        <item>m4p</item>
+        <item>m4b</item>
+        <item>f4v</item>
+        <item>3gpp</item>
+        <item>3g2</item>
+        <item>3gpp2</item>
+        <item>webm</item>
+        <item>tp</item>
+        <item>3dv</item>
+        <item>3dm</item>
+    </array>
+
+    <!-- subtitle setting.  The select subtitle. -->
+    <string-array name="screen_select_values">
+        <item>0</item>
+    </string-array>
+
+    <!-- subtitle setting.  The color of subtitle to show. -->
+    <integer-array name="screen_color_values">
+        <item>-1</item>         <!-- WHITE -->
+        <item>-7829368</item>   <!-- GRAY -->
+        <item>-65536</item>     <!-- RED -->
+        <item>-16711936</item>  <!-- GREEN -->
+        <item>-16776961</item>  <!-- BLUE -->
+        <item>-16777216</item>  <!-- BLACK -->
+        <item>-16711681</item>  <!-- CYAN -->
+        <item>-65281</item>     <!-- MAGENTA -->
+        <item>-256</item>       <!-- YELLOW -->
+    </integer-array>
+
+    <!-- subtitle setting.  The char size of subtitle to show. -->
+    <integer-array name="screen_charsize_values">
+        <item>16</item>
+        <item>24</item>
+        <item>32</item>
+        <item>40</item>
+        <item>48</item>
+    </integer-array>
+
+    <!-- subtitle setting.  The charset of subtitle to show. -->
+    <string-array name="screen_charset_values">
+        <item>"UTF-8"</item>
+        <item>"GBK"</item>
+        <item>"Big5"</item>
+        <item>"EUC-KR"</item>
+        <item>"Shift_JIS"</item>
+        <item>"TIS-620"</item>
+        <item>"KOI8-R"</item>
+        <item>"ISO-8859-5"</item>
+        <item>"windows-1251"</item>
+        <item>"UTF-16BE"</item>
+        <item>"UTF-16LE"</item>
+        <item>"ISO-8859-1"</item>
+        <item>"windows-1254"</item>
+        <item>"ISO-8859-2"</item>
+        <item>"windows-1250"</item>
+        <item>"ISO-8859-3"</item>
+        <item>"ISO-8859-4"</item>
+        <item>"ISO-8859-6"</item>
+        <item>"windows-1256"</item>
+        <item>"ISO-8859-7"</item>
+        <item>"windows-1253"</item>
+        <item>"ISO-8859-8"</item>
+        <item>"windows-1255"</item>
+        <item>"ISO-8859-9"</item>
+        <item>"windows-1252"</item>
+        <item>"windows-1258"</item>
+    </string-array>
+
+    <!-- subtitle setting.  The delay of subtitle to show. -->
+    <integer-array name="screen_delay_values">
+        <item>-1500</item>
+        <item>-1000</item>
+        <item>-500</item>
+        <item>0</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>1500</item>
+    </integer-array>
+
+    <!-- subtitle setting.  The offset of subtitle to show. -->
+    <integer-array name="screen_offset_values">
+        <item>0</item>
+        <item>5</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+    </integer-array>
+
+    <!-- zoom setting.  set the zoom mode. -->
+    <integer-array name="screen_zoom_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <!-- 3D setting.  set the 3d mode. -->
+    <integer-array name="screen_3d_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </integer-array>
+
+    <!-- repeat setting.  set the repeat mode. -->
+    <integer-array name="screen_repeat_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <!-- track setting.  The track select. -->
+    <string-array name="screen_track_values">
+        <item>0</item>
+    </string-array>
+
+
+    <!-- 3D setting.  set the anaglagh type. -->
+    <integer-array name="screen_3d_anaglagh_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </integer-array>
+
+    <integer name="min_value_subdelay">-2000</integer>
+    <integer name="max_step_subdelay">4000</integer>
+    <integer name="min_value_suboffset">0</integer>
+    <integer name="max_step_suboffset">100</integer>
+    <integer name="min_value_charsize">16</integer>
+    <integer name="max_step_charsize">16</integer>
+
+    <string-array name="screen_3d_entries">
+        <item>2D</item>
+        <item>3D</item>
+    </string-array>
+
+    <string-array name="screen_repeat_entries">
+    <!-- Slide show repeat mode -->
+        <item>Repeat all</item>
+        <item>Sequence play</item>
+        <item>Repeat one</item>
+        <item>Random play</item>
+    </string-array>
+    <string-array name="screen_track_entries">
+    <!-- Slide show no track -->
+        <item>No track</item>
+    </string-array>
+
+    <string-array name="screen_zoom_entries">
+    <!-- Slide show zoom mode -->
+        <item>Full screen video ratio</item>
+        <item>Full screen screen ratio</item>
+        <item>Origin size</item>
+        <item>4/3</item>
+        <item>16/9</item>
+    <item>Picture in Pircture</item>
+    </string-array>
+    <string-array name="screen_zoom_entries_lowmemory">
+    <!-- Slide show zoom mode -->
+        <item>Full screen video ratio</item>
+        <item>Full screen screen ratio</item>
+        <item>Origin size</item>
+        <item>4/3</item>
+        <item>16/9</item>
+    </string-array>
+    <string-array name="screen_3d_2d_entries">
+        <item>2D show half of left</item>
+        <item>2D show half of top</item>
+        <item>2D show origin</item>
+    </string-array>
+
+    <string-array name="screen_3d_3d_entries">
+        <item>3D left and right</item>
+        <item>3D top and bottom</item>
+        <!--
+    <item>3D interlace</item>
+        <item>3D line interlace</item>
+        <item>3D row interlace</item>
+        -->
+    </string-array>
+
+    <string-array name="screen_3d_anaglagh_entries">
+        <item>red blue</item>
+        <item>red green</item>
+        <item>red cyan</item>
+        <item>full color</item>
+        <item>half color</item>
+        <item>the best</item>
+        <item>yellow blue</item>
+    </string-array>
+    <string-array name="screen_subset_entries">
+        <item name="gate_title" >Subtilte gate</item>
+        <item name="select_title" >Subtilte select</item>
+        <item name="color_title" >Subtitle color</item>
+        <item name="charsize_title" >Subtilte char size</item>
+        <!--
+        <item name="offset_title" >Subtilte offset</item>
+        -->
+    </string-array>
+
+    <string-array name="screen_gate_entries">
+    <!-- Slide show no subtitle -->
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
+    <string-array name="screen_select_entries">
+    <!-- Slide show no subtitle -->
+        <item>No subtitle</item>
+    </string-array>
+
+    <!-- Slide show subtitle color -->
+    <string-array name="screen_color_entries">
+        <item >WHITE</item>
+        <item >GRAY</item>
+        <item >RED</item>
+        <item >GREEN</item>
+        <item >BLUE</item>
+        <item >BLACK</item>
+        <item >CYAN</item>
+        <item >MAGENTA</item>
+        <item >YELLOW</item>
+    </string-array>
+
+    <!-- Slide show subtitle char size -->
+    <string-array name="screen_charsize_entries">
+        <item>16</item>
+        <item>24</item>
+        <item>32</item>
+        <item>40</item>
+        <item>48</item>
+    </string-array>
+
+    <!-- Slide show subtitle charset -->
+    <string-array name="screen_charset_entries">
+        <item>Unicode(UTF-8)</item>
+        <item>Simplified Chinese(GBK)</item>
+        <item>Traditional Chinese(Big5)</item>
+        <item>Korean(EUC-KR)</item>
+        <item>Japanese(Shift_JIS)</item>
+        <item>Thai(TIS-620)</item>
+        <item>Cyrillic(KOI8-R)</item>
+        <item>Cyrillic(ISO-8859-5)</item>
+        <item>Cyrillic(cp1251)</item>
+        <item>Unicode(UTF-16BE)</item>
+        <item>Unicode(UTF-16LE)</item>
+        <item>Western Europe(ISO-8859-1)</item>
+        <item>Western language(cp1254)</item>
+        <item>Central Europe(ISO-8859-2)</item>
+        <item>Central Europe(cp1250)</item>
+        <item>Southern Europe(ISO-8859-3)</item>
+        <item>Northern Europe(ISO-8859-4)</item>
+        <item>Arabic(ISO-8859-6)</item>
+        <item>Arabic(cp1256)</item>
+        <item>Greek(ISO-8859-7)</item>
+        <item>Greek(cp1253)</item>
+        <item>Hebrew(ISO-8859-8)</item>
+        <item>Hebrew(cp1255)</item>
+        <item>Turkish(ISO-8859-9)</item>
+        <item>Turkish(cp1252)</item>
+        <item>Vietnamese(cp1258)</item>
+    </string-array>
+
+    <!-- Slide show subtitle delay -->
+    <string-array name="screen_delay_entries">
+        <item>-1500</item>
+        <item>-1000</item>
+        <item>-500</item>
+        <item>0</item>
+        <item>500</item>
+        <item>1000</item>
+        <item>1500</item>
+    </string-array>
+
+    <!-- Slide show subtitle offset -->
+    <string-array name="screen_offset_entries">
+        <item>0</item>
+        <item>5</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+    </string-array>
+    <!-- Slide show subtitle delay -->
+    <string-array name="display_settings_state">
+        <item>disable</item>
+        <item>enable</item>
+        <item>demo</item>
+    </string-array>
+
+    <string-array name="color_settings_state">
+        <item>standard</item>
+        <item>soft</item>
+        <item>vivid</item>
+        <item>custom</item>
+    </string-array>
+    <string-array name="demo_mode">
+        <item>disable</item>
+        <item>up</item>
+        <item>down</item>
+        <item>left</item>
+        <item>right</item>
+    </string-array>
+    <string-array name="de_2d_noise_mode">
+        <item>disable</item>
+        <item>low</item>
+        <item>middle</item>
+        <item>high</item>
+    </string-array>
+    <string-array name="de_3d_noise_mode">
+        <item>disable</item>
+        <item>static</item>
+        <item>non-static</item>
+    </string-array>
+    <string-array name="de_3d_noise_strength_mode">
+        <item>high</item>
+        <item>middle</item>
+        <item>low</item>
+    </string-array>
+      <string-array name="movie_mode">
+        <item>disable</item>
+        <item>on</item>
+    </string-array>
+
+</resources>

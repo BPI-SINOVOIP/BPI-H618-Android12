@@ -1,0 +1,38 @@
+package {
+    default_applicable_licenses: ["packages_apps_AwTvProvision_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "packages_apps_AwTvProvision_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+android_app {
+    name: "AwTvProvision",
+    srcs: ["**/*.java"],
+    platform_apis: true,
+    overrides: ["Provision"],
+    system_ext_specific: true,
+    certificate: "platform",
+    privileged: true,
+    required: ["privapp_whitelist_com.android.provision"],
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}
+
+prebuilt_etc {
+    name: "provision-permissions",
+    system_ext_specific: true,
+    sub_dir: "permissions",
+    src: "provision-permissions.xml",
+    filename_from_src: true,
+}

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.firelauncher.section.SettingSection xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/network_settings"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_marginLeft="@dimen/layout_margin_left"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="fitEnd"
+                android:contentDescription="@string/app_name"
+                android:text="@string/setting_network"
+                android:paddingTop="@dimen/setting_paddingtop"
+                android:paddingLeft="@dimen/setting_paddingleft"
+		        android:textSize="@dimen/tabindicator_text_size_big"
+		        android:textColor="@color/white"
+                android:background="@drawable/setting_network_bg"/>
+            
+             <TextView
+                android:id="@+id/system_update"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_toRightOf="@+id/network_settings"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@+id/system_setting"
+                android:nextFocusLeft="@id/network_settings"
+                android:scaleType="fitEnd"
+                android:contentDescription="@string/app_name"
+                android:text="@string/setting_update"
+                android:paddingTop="@dimen/setting_paddingtop"
+                android:paddingLeft="@dimen/setting_paddingleft"
+		        android:textSize="@dimen/tabindicator_text_size_big"
+		        android:textColor="@color/white"
+		        android:background="@drawable/setting_update_bg"/>
+
+            <TextView
+                android:id="@id/system_setting"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/system_update"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusDown="@+id/plot_setting"
+                android:nextFocusLeft="@id/system_update"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name"
+                android:text="@string/setting_system"
+                android:paddingTop="@dimen/setting_paddingtop1"
+                android:paddingLeft="@dimen/setting_paddingleft1"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"
+		        android:background="@drawable/setting_system_bg"/>
+            
+            <TextView
+                android:id="@+id/plot_setting"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/system_setting"
+                android:layout_toRightOf="@+id/system_update"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name"
+                android:text="@string/setting_plot"
+                android:paddingTop="@dimen/setting_paddingtop1"
+                android:paddingLeft="@dimen/setting_paddingleft1"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"
+		        android:background="@drawable/setting_plot_bg"/>
+                        
+            <TextView
+                android:id="@+id/about_us"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/system_setting"
+                android:layout_toRightOf="@+id/plot_setting"
+                android:layout_marginRight="@dimen/indicator_margin_xlarge"
+                android:layout_marginTop="@dimen/view_margin"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/app_name" 
+                android:text="@string/setting_about"
+                android:paddingTop="@dimen/setting_paddingtop1"
+                android:paddingLeft="@dimen/setting_paddingleft1"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"
+		        android:background="@drawable/setting_about_bg"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toRightOf="@+id/about_us" />
+        </RelativeLayout>
+
+        <!-- 必须在FrameLayout布局中添加 -->
+
+        <include
+            android:id="@+id/animation_layout"
+            layout="@layout/animation_view_layout"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</com.softwinner.firelauncher.section.SettingSection>

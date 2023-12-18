@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="@dimen/btn_back_width"
+        android:layout_height="@dimen/btn_back_height"
+        android:layout_marginLeft="@dimen/title_marginleft"
+        android:layout_marginTop="@dimen/title_margintop"
+		android:text="@string/netinfo"
+		android:gravity="center_vertical"
+		android:paddingLeft="@dimen/setting_paddingleft"
+		android:textSize="@dimen/setting_textsize_large"
+		android:textColor="@drawable/white"
+        android:background="@drawable/ic_title_bg" />
+
+    <ScrollView
+        android:layout_width="1600dp"
+        android:layout_height="@dimen/netstat_scrollview_height"
+        android:layout_marginTop="@dimen/applist_layout_margintop"
+        android:layout_gravity="center"
+        android:overScrollMode="never"
+        android:fadingEdge="vertical"
+        android:scrollbars="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/applistitemheight"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingStart="@dimen/listitem_padding"
+                        android:text="@string/nettype"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+
+                    <TextView
+                        android:id="@+id/net_type"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/divider_Height"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/divider_line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/applistitemheight"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingStart="@dimen/listitem_padding"
+                        android:text="@string/macaddress"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+
+                    <TextView
+                        android:id="@+id/mac_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/divider_Height"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/divider_line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/applistitemheight"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingStart="@dimen/listitem_padding"
+                        android:text="@string/ipaddress"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+
+                    <TextView
+                        android:id="@+id/ip_address"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/divider_Height"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/divider_line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/applistitemheight"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingStart="@dimen/listitem_padding"
+                        android:text="@string/subnetmask"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+
+                    <TextView
+                        android:id="@+id/netmask"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/divider_Height"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/divider_line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/applistitemheight"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingStart="@dimen/listitem_padding"
+                        android:text="@string/defaultgate"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+
+                    <TextView
+                        android:id="@+id/gateway"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/divider_Height"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/divider_line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="@dimen/applistwidth"
+                    android:layout_height="@dimen/applistitemheight"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:paddingStart="@dimen/listitem_padding"
+                        android:text="@string/dnsserver"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+
+                    <TextView
+                        android:id="@+id/dns"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:textColor="@drawable/white"
+                        android:textSize="@dimen/setting_textsize_xmedium" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,34 @@
+
+
+android_app {
+    name: "HandWrittenDemo",
+
+    static_libs: [
+        "android-support-v7-appcompat",
+        "libeink",
+    ],
+
+    srcs: [
+        "app/src/main/java/**/*.java",
+    ],
+    asset_dirs: [
+        "app/src/main/assets",
+    ],
+
+    resource_dirs: ["app/src/main/res"],
+    manifest: "app/src/main/AndroidManifest.xml",
+
+    platform_apis: true,
+
+    aaptflags: ["--auto-add-overlay"],
+
+    optimize: {
+        enabled: false,
+    },
+    certificate: "platform",
+
+    //sdk_version: sdk_version must have a value
+    //when the module is located at vendor or product
+    //product_specific: true,
+    system_ext_specific: true,
+}

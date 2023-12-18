@@ -1,0 +1,2 @@
+allow vold softwinner_service:service_manager add;
+allow vold sysfs_usb_device:file rw_file_perms;

@@ -1,0 +1,15 @@
+LOCAL_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := vdc_vendor
+LOCAL_SRC_FILES := vdc
+LOCAL_MODULE_CLASS := EXECUTABLES
+LOCAL_MODULE_TAGS := optional
+LOCAL_PROPRIETARY_MODULE := true
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR)/xbin
+
+LOCAL_POST_INSTALL_CMD := $(hide)  \
+    ln -sf ./vdc_vendor $(TARGET_OUT_VENDOR)/xbin/vdc
+
+
+include $(BUILD_PREBUILT)

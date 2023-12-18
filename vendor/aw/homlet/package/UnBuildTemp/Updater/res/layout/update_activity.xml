@@ -1,0 +1,152 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fsms="http://schemas.android.com/apk/res/com.softwinner.update"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="0dp"
+    android:background="@drawable/mainbg"
+    android:orientation="vertical"
+    tools:context=".HomeActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.4"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/btn_back_width"
+            android:layout_height="@dimen/btn_back_height"
+            android:layout_marginLeft="@dimen/update_imagetitle_margin_left"
+            android:layout_marginTop="@dimen/update_imagetitle_margin_top"
+			android:text="@string/update_online"
+			android:gravity="center_vertical"
+			android:paddingLeft="@dimen/title_paddingleft"
+			android:textSize="@dimen/setting_textsize_large"
+			android:textColor="@color/white"
+			android:background="@drawable/ic_title_bg" />
+
+        <TextView
+            android:id="@+id/currentVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/current_version_text_margin_left"
+            android:text="@string/currentVersion"
+            android:textColor="#FFFFFFFF"
+            android:textSize="@dimen/setting_textsize_small" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.3"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/btn_prev"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:focusable="false"
+            android:scaleType="center" />
+        <!-- android:src="@drawable/prev__selector" -->
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4" >
+
+            <TextView
+                android:id="@+id/updateinfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:textColor="#FFFFFFFF"
+                android:textSize="@dimen/setting_textsize_medium" />
+
+            <ProgressBar
+                android:id="@+id/homebar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:indeterminateDrawable="@drawable/progressbg" />
+
+            <WebView
+                android:id="@+id/homesite"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="#00000000"
+            android:focusable="false"
+            android:scaleType="center" />
+        <!-- android:src="@drawable/next__selector" -->
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" >
+
+        <Button
+            android:id="@+id/imagebutton_info"
+            android:layout_width="@dimen/update_btn_width"
+            android:layout_height="@dimen/update_btn_height"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_ota_selector"
+            android:text="@string/version_description_title"
+            android:textColor="#FFFFFFFF"
+            android:textAllCaps="false"
+            android:textSize="@dimen/setting_textsize_xmedium" />
+
+        <Button
+            android:id="@+id/imagebutton_download"
+            android:layout_width="@dimen/update_btn_width"
+            android:layout_height="@dimen/update_btn_height"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_ota_selector"
+            android:text="@string/download_now"
+            android:textColor="#FFFFFFFF"
+            android:textSize="@dimen/setting_textsize_xmedium" />
+
+        <Button
+            android:id="@+id/imagebutton_install"
+            android:layout_width="@dimen/update_btn_width"
+            android:layout_height="@dimen/update_btn_height"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_ota_selector"
+            android:text="@string/finsh_to_install"
+            android:textColor="#FFFFFFFF"
+            android:textSize="@dimen/setting_textsize_xmedium" />
+
+        <ProgressBar
+            android:id="@+id/download_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="@dimen/download_progress"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/downloadstatus"
+            android:layout_width="@dimen/download_status_text_width"
+            android:layout_height="@dimen/download_status_text_height"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/download_status_text_margin_bottom"
+            android:textColor="#FFFFFFFF"
+            android:textSize="@dimen/setting_textsize_medium" />
+    </FrameLayout>
+
+</LinearLayout>

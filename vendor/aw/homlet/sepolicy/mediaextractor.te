@@ -1,0 +1,3 @@
+allow mediaextractor vfat:file { getattr read };
+allow mediaextractor unlabeled:file { read };
+allow mediaextractor unlabeled:file getattr;

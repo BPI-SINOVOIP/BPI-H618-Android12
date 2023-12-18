@@ -1,0 +1,9 @@
+on property:sys.boot_completed=1
+    start gmsopt
+
+service gmsopt /system/bin/gmsopt
+    disabled
+    oneshot
+    user root
+    group shell
+    seclabel u:r:shell:s0

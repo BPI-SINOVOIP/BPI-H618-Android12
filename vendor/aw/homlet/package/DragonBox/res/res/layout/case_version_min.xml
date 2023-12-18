@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MainPerCaseTheme"
+    android:orientation="horizontal" >
+
+    <include layout="@layout/item_num_text" />
+
+    <include layout="@layout/item_action_button" />
+
+    <TableLayout
+        style="@style/MainPerCaseTabLayout"
+        android:stretchColumns="*" >
+
+        <TableRow style="@style/MainPerCaseTabRow" >
+
+            <TextView
+                android:id="@+id/case_min_version_android_ver"
+                style="@style/MainPerCaseDetailTextView"
+                android:layout_weight="1"
+                android:text="@string/case_version_info_android_ver" />
+
+            <TextView
+                android:id="@+id/case_version_display"
+                style="@style/MainPerCaseDetailTextView"
+                android:layout_weight="2"
+                android:text="@string/case_version_info_display" />
+
+            <TextView
+                android:layout_weight="1"
+                android:id="@+id/case_version_model"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_version_info_model" />
+        </TableRow>
+
+        <TableRow style="@style/MainPerCaseTabRow" >
+
+            <TextView
+                android:id="@+id/case_version_wifi_mac"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_version_other_info_wifi_mac" />
+
+            <TextView
+                android:id="@+id/case_version_eth_mac"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_version_other_info_eth_mac" />
+
+            <TextView
+                android:id="@+id/case_version_ddr"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_version_other_info_ddr" />
+
+            <TextView
+                android:id="@+id/case_version_nand"
+                style="@style/MainPerCaseDetailTextView"
+                android:text="@string/case_version_other_info_nand" />
+        </TableRow>
+    </TableLayout>
+
+    <include layout="@layout/item_result_text" />
+
+</LinearLayout>

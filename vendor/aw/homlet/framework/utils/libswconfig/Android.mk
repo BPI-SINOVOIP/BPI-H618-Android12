@@ -1,0 +1,35 @@
+LOCAL_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES:= \
+    swconfig.cpp
+
+PLATFORM_CMCCWASU=0x08
+PLATFORM_ALIYUN=0x09
+PLATFORM_TVD=0x0A
+PLATFORM_IPTV=0x0B
+
+ifdef TARGET_BUSINESS_PLATFORM  
+    ifeq (cmccwasu , $(TARGET_BUSINESS_PLATFORM))
+        #这里做一些该业务平台的编译定义操作
+        LOCAL_CFLAGS += -DBUSINESS_PLATFORM=$(PLATFORM_CMCCWASU)
+    endif
+    ifeq (tvd , $(TARGET_BUSINESS_PLATFORM))
+        LOCAL_CFLAGS += -DBUSINESS_PLATFORM=$(PLATFORM_TVD)
+    endif
+    ifeq (aliyun , $(TARGET_BUSINESS_PLATFORM))
+        LOCAL_CFLAGS += -DBUSINESS_PLATFORM=$(PLATFORM_ALIYUN)
+    endif
+    ifeq (iptv , $(TARGET_BUSINESS_PLATFORM))
+        LOCAL_CFLAGS += -DBUSINESS_PLATFORM=$(PLATFORM_IPTV)
+    endif
+endif
+
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_MODULE:= libswconfig
+
+LOCAL_PRELINK_MODULE:= false
+
+include $(BUILD_SHARED_LIBRARY)
+

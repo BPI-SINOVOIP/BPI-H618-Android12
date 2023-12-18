@@ -1,0 +1,3 @@
+base=/system
+export CLASSPATH=$base/framework/DisplayDaemon.jar
+exec app_process $base/bin com.softwinner.display.DisplayDaemon "$@"

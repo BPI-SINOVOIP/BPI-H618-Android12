@@ -1,0 +1,6 @@
+##============= bootanim ==============
+#allow bootanim proc_asound:file { open read };
+#allow bootanim proc_asound:dir search;
+#allow bootanim system_data_file:file { open read };
+#allow bootanim mediaserver_service:service_manager find;
+#allow bootanim mediaserver:binder { call transfer };

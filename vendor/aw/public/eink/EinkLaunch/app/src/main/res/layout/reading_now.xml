@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    >
+    <TextView
+        android:id="@+id/reading_now_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:text="@string/reading_now"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="5dip"
+        android:layout_marginRight="5dip"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        />
+    
+    <TextView
+        android:id="@+id/reading_now_havling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/havling_line"
+        android:lines="1"
+        android:layout_below="@+id/reading_now_title"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        />
+    
+   <TextView
+        android:id="@+id/reading_now_book_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reading_now_havling"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:ems="8"
+        android:lines="1"
+        android:textStyle="bold"
+        />
+    <FrameLayout
+        android:id="@+id/reading_now_book_cover_container"
+        android:layout_width="160dip"
+        android:layout_height="200dip"
+        android:layout_margin="8dip"
+        android:layout_below="@+id/reading_now_book_name"
+        android:background="@android:color/black"
+        android:padding="2dip"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="5dip"
+        android:layout_marginLeft="10dip"
+        >
+        <ImageView 
+        android:id="@+id/reading_now_book_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/img_desc"
+        android:src="@drawable/book_coverdefault"
+        android:background="@android:color/white"
+        android:scaleType="fitCenter"
+        />
+
+    </FrameLayout>
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/reading_now_book_cover_container"
+        android:layout_alignTop="@+id/reading_now_book_cover_container"
+        android:layout_alignBottom="@+id/reading_now_book_cover_container"
+        >
+       <TextView
+        android:id="@+id/reading_now_book_page_number_pre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/reading_now_book_page_number"
+        android:text="@string/reading_now_page_pre" 
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:minWidth="30dip"
+        android:gravity="center"
+        android:layout_alignLeft="@+id/reading_now_book_page_number"
+        android:layout_marginBottom="10dip"
+        />
+     
+      <TextView
+        android:id="@+id/reading_now_book_page_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:ems="2"
+        />
+      
+      <TextView
+        android:id="@+id/reading_now_book_page_number_after"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reading_now_book_page_number"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:text="@string/reading_now_page_after"
+        android:gravity="center"
+        android:minWidth="50dip"
+        android:layout_alignRight="@+id/reading_now_book_page_number"
+        />
+        
+    </RelativeLayout>
+
+</RelativeLayout>

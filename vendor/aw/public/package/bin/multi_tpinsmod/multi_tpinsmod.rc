@@ -1,0 +1,9 @@
+on property:sys.boot_completed=1
+    start multi_tpinsmod
+
+service multi_tpinsmod /vendor/bin/hw/multi_tpinsmod
+    disabled
+    user root
+    group shell root
+    oneshot
+    capabilities SYS_MODULE

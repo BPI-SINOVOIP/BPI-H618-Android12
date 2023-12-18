@@ -1,0 +1,5 @@
+allow init sysfs_disp:file {write getattr open read setattr };
+allow init root_block_device:blk_file write;
+#allow init sunxi_soc_info_device:chr_file rw_file_perms;
+allow init pppoe_exec:file getattr;
+allow init proc:file write;

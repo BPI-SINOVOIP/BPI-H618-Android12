@@ -1,0 +1,45 @@
+##allow system_app hdmi_prop:file {read open getattr};
+##allow system_app hdmiavailable_prop:file {read open getattr};
+##allow system_app hdmi_prop:property_service set;
+##allow system_app hdmiavailable_prop:property_service set;
+##allow system_app mediasw_prop:property_service set;
+allow system_app sysfs:dir r_dir_perms;
+#allow system_app sysfs:file r_file_perms;
+#
+#allow Dragonbox to save log on the /sdcard
+allow system_app qw_exec:file rx_file_perms;
+allow system_app qw_daemon_device:dir search;
+allow system_app qw_socket:sock_file rw_file_perms;
+allow system_app qw:unix_stream_socket { connectto };
+allow system_app qw_socket:fifo_file rw_file_perms;
+allow system_app block_device:dir r_dir_perms;
+# qw permission for the memtester of DragonAging.
+allow system_app qw_socket:unix_stream_socket { connectto };
+allow system_app qw:unix_stream_socket { connectto };
+allow system_app qw_exec:file rx_file_perms;
+allow system_app qw_socket:fifo_file rw_file_perms;
+allow system_app qw_daemon_device:dir search;
+allow system_app qw_socket:sock_file rw_file_perms;
+
+allow system_app system_prop:property_service set;
+allow system_app sysfs_switch:dir r_dir_perms;
+allow system_app sysfs_hdmi:file r_file_perms;
+allow system_app sysfs_hdmi:dir r_dir_perms;
+#allow system_app sysfs_cvbs:file r_file_perms;
+#allow system_app sysfs_cvbs:dir r_dir_perms;
+allow system_app sysfs_net:dir search;
+allow system_app sysfs_net:file { open read getattr };
+allow system_app sysfs_net:dir { search open read getattr };
+allow system_app overlay_prop:file { read open getattr };
+#Dragonbox-read /proc/meminfo
+allow system_app proc_meminfo:file r_file_perms;
+#Dragonbox-read /proc/partitions
+allow system_app proc_partitions:file r_file_perms;
+#DragonBox-read temperature-cpu
+allow system_app sysfs_temp:file r_file_perms;
+#DragonBox-get cvbs connection state
+allow system_app sysfs_cvbs:file r_file_perms;
+
+allow system_app proc_net:file { open read getattr };
+#DragonBox control led
+allow system_app sysfs_gpio:dir r_dir_perms;

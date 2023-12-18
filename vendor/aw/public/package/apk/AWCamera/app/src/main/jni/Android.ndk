@@ -1,0 +1,29 @@
+LOCAL_PATH := $(call my-dir)
+#第三方的编译模块
+#include $(CLEAR_VARS)
+#LOCAL_MODULE    := libopencv_java3
+#LOCAL_SRC_FILES := lib/$(TARGET_ARCH_ABI)/libopencv_java3.so
+#include $(PREBUILT_SHARED_LIBRARY)
+
+#include $(CLEAR_VARS)
+#LOCAL_MODULE := libjni_panoramiclib
+#LOCAL_SRC_FILES := native-lib.cpp CroppImg.cpp ImgStitcher.cpp
+#LOCAL_C_INCLUDES += include
+#LOCAL_SHARED_LIBRARIES := \
+#    libopencv_java3
+#LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -llog -ljnigraphics
+#include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE    := libyuv
+LOCAL_SRC_FILES := yuvutils/YUVLIB/lib/$(TARGET_ARCH_ABI)/libyuv.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := yuvutil
+LOCAL_SRC_FILES := yuvutils/yuv_util.cpp
+LOCAL_C_INCLUDES += yuvutils/YUVLIB/include
+LOCAL_SHARED_LIBRARIES := \
+    libyuv
+LOCAL_LDLIBS := -L$(SYSROOT)/usr/lib -llog
+include $(BUILD_SHARED_LIBRARY)

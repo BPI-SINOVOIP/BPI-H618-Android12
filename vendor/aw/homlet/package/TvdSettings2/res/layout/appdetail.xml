@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fsms="http://schemas.android.com/apk/res/com.softwinner.tvdsetting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="@dimen/btn_back_width"
+        android:layout_height="@dimen/btn_back_height"
+        android:layout_marginLeft="@dimen/title_marginleft"
+        android:layout_marginTop="@dimen/title_margintop"
+		android:text="@string/setting_appinfo"
+		android:gravity="center_vertical"
+		android:paddingLeft="@dimen/setting_paddingleft"
+		android:textSize="@dimen/setting_textsize_large"
+		android:textColor="@drawable/white"
+        android:background="@drawable/ic_title_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/appdetail_horizontal_margin"
+            android:layout_marginRight="@dimen/appdetail_horizontal_margin"
+            android:layout_marginTop="@dimen/appdetail_vertical_margin"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/appdetialicon"
+                android:layout_width="@dimen/appdetial_icon_medium_size"
+                android:layout_height="@dimen/appdetial_icon_medium_size"
+                android:src="@drawable/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/appdetail_padding_start"
+                android:layout_toRightOf="@+id/appdetialicon"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/appdetialname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@drawable/white"
+                    android:textSize="@dimen/setting_textsize_medium" />
+
+                <TextView
+                    android:id="@+id/appdetialversion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@drawable/white"
+                    android:textSize="@dimen/setting_textsize_small" />
+            </LinearLayout>
+
+            <CheckBox
+                android:id="@+id/allownotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:button="@drawable/checkbox_btn_selector"
+                android:gravity="center"
+                android:paddingLeft="@dimen/appdetail_checkbox_padding_left"
+                android:text="@string/allow_notify"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/appdetail_horizontal_margin"
+            android:layout_marginRight="@dimen/appdetail_horizontal_margin"
+            android:layout_marginTop="@dimen/appdetail_message_margin_top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/storage"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_medium" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/appdetail_line_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/appdetail_line_margin"
+                android:background="?android:attr/listDivider" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/appdetail_horizontal_margin"
+            android:layout_marginRight="@dimen/appdetail_horizontal_margin"
+            android:layout_marginTop="@dimen/appdetail_message_margin_top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/total"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+
+            <View
+                android:layout_width="@dimen/appdetail_line_width"
+                android:layout_height="@dimen/appdetail_line_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/appdetail_line_margin"
+                android:layout_marginRight="@dimen/appdetail_line_margin"
+                android:layout_toLeftOf="@+id/total_size_text"
+                android:layout_toRightOf="@id/text1"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/total_size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/appdetail_horizontal_margin"
+            android:layout_marginRight="@dimen/appdetail_horizontal_margin"
+            android:layout_marginTop="@dimen/appdetail_message_margin_top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/application"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+
+            <View
+                android:layout_width="@dimen/appdetail_line_width"
+                android:layout_height="@dimen/appdetail_line_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/appdetail_line_margin"
+                android:layout_marginRight="@dimen/appdetail_line_margin"
+                android:layout_toLeftOf="@+id/application_size_text"
+                android:layout_toRightOf="@id/text2"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/application_size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/appdetail_horizontal_margin"
+            android:layout_marginRight="@dimen/appdetail_horizontal_margin"
+            android:layout_marginTop="@dimen/appdetail_message_margin_top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cache_storage"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+
+            <View
+                android:layout_width="@dimen/appdetail_line_width"
+                android:layout_height="@dimen/appdetail_line_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/appdetail_line_margin"
+                android:layout_marginRight="@dimen/appdetail_line_margin"
+                android:layout_toLeftOf="@+id/cache_size_text"
+                android:layout_toRightOf="@id/text3"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/cache_size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/appdetail_horizontal_margin"
+            android:layout_marginRight="@dimen/appdetail_horizontal_margin"
+            android:layout_marginTop="@dimen/appdetail_message_margin_top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/data_storage"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+
+            <View
+                android:layout_width="@dimen/appdetail_line_width"
+                android:layout_height="@dimen/appdetail_line_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/appdetail_line_margin"
+                android:layout_marginRight="@dimen/appdetail_line_margin"
+                android:layout_toLeftOf="@+id/data_size_text"
+                android:layout_toRightOf="@id/text4"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/data_size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/appdetail_horizontal_margin"
+            android:layout_marginRight="@dimen/appdetail_horizontal_margin"
+            android:layout_marginTop="@dimen/appdetail_message_margin_top"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/text5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sdcard_storage"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+
+            <View
+                android:layout_width="@dimen/appdetail_line_width"
+                android:layout_height="@dimen/appdetail_line_height"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/appdetail_line_margin"
+                android:layout_marginRight="@dimen/appdetail_line_margin"
+                android:layout_toLeftOf="@+id/external_data_size_text"
+                android:layout_toRightOf="@id/text5"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/external_data_size_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/setting_textsize_xsmall" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/appdetail_horizontal_margin"
+            android:layout_marginTop="@dimen/appdetail_button_margin_top" >
+
+            <Button
+                android:id="@+id/stopapp"
+                android:layout_width="@dimen/netsetting_button_width"
+                android:layout_height="@dimen/netsetting_button_height"
+                android:background="@drawable/btn_selector"
+                android:text="@string/stopapp"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/appdetail_button_textsize" />
+
+            <Button
+                android:id="@+id/uninstallapp"
+                android:layout_width="@dimen/netsetting_button_width"
+                android:layout_height="@dimen/netsetting_button_height"
+                android:layout_marginLeft="@dimen/appdetail_button_spacing"
+                android:background="@drawable/btn_selector"
+                android:text="@string/uninstallapp"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/appdetail_button_textsize" />
+
+            <Button
+                android:id="@+id/cleardata"
+                android:layout_width="@dimen/netsetting_button_width"
+                android:layout_height="@dimen/netsetting_button_height"
+                android:layout_marginLeft="@dimen/appdetail_button_spacing"
+                android:background="@drawable/btn_selector"
+                android:text="@string/cleardata"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/appdetail_button_textsize" />
+
+            <Button
+                android:id="@+id/clearcache"
+                android:layout_width="@dimen/netsetting_button_width"
+                android:layout_height="@dimen/netsetting_button_height"
+                android:layout_marginLeft="@dimen/appdetail_button_spacing"
+                android:background="@drawable/btn_selector"
+                android:text="@string/clearcache"
+                android:textColor="@drawable/white"
+                android:textSize="@dimen/appdetail_button_textsize" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

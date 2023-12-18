@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="MediaButton" parent="@android:style/MediaButton">
+        <item name="android:background">@android:drawable/btn_default</item>
+    </style>
+
+    <style name="MainTheme" parent="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:textSize">@dimen/sp_22</item>
+    </style>
+
+    <style name="Theme.WifiDialog" parent="@*android:style/Theme.Holo.Dialog.Alert">
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="DialogFullscreen">
+        <item name="android:windowBackground">@drawable/write</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="MainPerCaseTheme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/main_bg</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MainPerCaseActionView">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">@dimen/dp_180</item>
+        <item name="android:layout_height">@dimen/case_item_normal_height</item>
+    </style>
+
+    <style name="MainPerCaseNumTextView">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/main_bg</item>
+        <item name="android:padding">@dimen/case_item_min_row_padding</item>
+    </style>
+
+    <style name="MainPerCaseDetailTextView">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">@dimen/dp_0</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/case_item_normal_height</item>
+        <item name="android:textColor">#322D33</item>
+        <item name="android:textSize">@dimen/sp_22</item>
+        <item name="android:background">@drawable/case_item_detail_bg</item>
+        <item name="android:padding">@dimen/case_item_min_row_padding</item>
+    </style>
+
+    <style name="MainPerCaseTabLayout">
+        <item name="android:padding">@dimen/case_item_min_row_padding</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">@dimen/dp_0</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:stretchColumns">*</item>
+    </style>
+
+    <style name="MainPerCaseTabRow">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">@dimen/case_item_normal_height</item>
+    </style>
+
+    <style name="CaseVersionMax">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp_22</item>
+    </style>
+
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <PreferenceCategory
+        android:key="auto"
+        android:title="@string/photograph_setting">
+        <SwitchPreference
+            android:key="sound_capture"
+            android:summaryOff="@string/disable"
+            android:summaryOn="@string/enable"
+            android:visibility="gone"
+            android:title="@string/voice_control" />
+        <SwitchPreference
+            android:key="reference_line"
+            android:summaryOff="@string/disable"
+            android:summaryOn="@string/enable"
+            android:title="@string/gridlines" />
+        <SwitchPreference
+            android:key="time_watersign"
+            android:summaryOff="@string/disable"
+            android:summaryOn="@string/enable"
+            android:title="@string/time_watersign" />
+        <ListPreference
+            android:title="@string/model_watersign"
+            android:key="model_watersign"
+            android:entries="@array/model_type"
+            android:entryValues="@array/model_type_value"
+            android:summary="@string/off" />
+        <ListPreference
+            android:title="@string/back_photo_ratio"
+            android:key="back_picture_scale"
+            android:entries="@array/picture_rate"
+            android:entryValues="@array/picture_rate_value"
+            android:summary="@string/defaults" />
+        <ListPreference
+            android:title="@string/front_photo_ratio"
+            android:key="front_picture_scale"
+            android:entries="@array/picture_rate"
+            android:entryValues="@array/picture_rate_value"
+            android:summary="@string/defaults" />
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/camera_settings">
+        <SwitchPreference
+            android:key="save_position"
+            android:summaryOff="@string/disable"
+            android:summaryOn="@string/enable"
+            android:title="@string/save_location" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,107 @@
+<resources>
+    
+    <string name="app_name">FireLauncher</string>
+    
+    <!-- master(first level) ui -->
+    <string name="tab_recommand">"  推荐  "</string>
+    <string name="tab_channel">"  频道  "</string>
+    <string name="tab_game">"  游戏  "</string>
+    <string name="tab_zone">"  专区  "</string>
+    <string name="tab_app">"  应用  "</string>
+    <string name="tab_setting">"  设置  "</string>
+    <string name="media_unmount">磁盘挂载失败，无法打开</string>
+    
+    <!-- master(second level) ui -->
+    <string name="tv_tracker">追剧</string>
+
+    <!-- The format string for Workspace page scroll text [CHAR_LIMIT=none] -->
+    <string name="default_scroll_format"> %1$d (%2$d)</string>
+    
+    <!-- recommend section ui -->
+    <string name="title_no_network">"网络请求失败"</string>
+    
+    <!-- app section ui -->
+    <string name="all_apps">所有应用</string>
+    <string name="no_app">（未添加）</string>
+	
+    <!-- first start dialog -->
+    <string name="launcher_dialog_title">哇呜！网络加载失败了哟！</string>
+    <string name="launcher_dialog_ok">刷新</string>
+    <string name="launcher_dialog_cancel">网络设置</string>
+    <string name="launcher_dialog_hide">不再提示</string>
+    
+    <!-- tv_tracker -->
+    <string name="episode_count1">" 已更新至 "</string>
+    <string name="episode_count2">"集"</string>
+    <string name="episode_count_format"> 已更新至 %1$d集</string>
+    
+    <!-- tv_record -->
+    <string name="delete_all_text">确定要删除全部历史播放记录？</string>
+    <string name="delete_all_reject">取消</string>
+    <string name="delete_all_agree">确定</string>
+    
+    <!-- install_game -->
+    <string name="uninstall_app_format">确定要卸载 %1$s ？</string>
+    <string name="can_not_download">抱歉，网络服务加载未响应！</string>
+    
+    <!-- weacher_info -->
+    <string name="cloudy">阴</string>
+    <string name="partly_cloudy">多云</string>
+    <string name="clear_day">晴</string>
+    <string name="rain_s">小雨</string>
+    <string name="rain_m">中雨</string>
+    <string name="rain_l">大雨</string>
+    <string name="rain_storm_m">暴雨</string>
+    <string name="rain_storm_l">大暴雨</string>
+    <string name="storm_xl">特大暴雨</string>
+    <string name="chance_of_rain_normal">阵雨</string>
+    <string name="chance_of_rain_storm">雷阵雨</string>
+    <string name="snow_s">小雪</string>
+    <string name="snow_m">中雪</string>
+    <string name="snow_l">大雪</string>
+    <string name="snow_xl">暴雪</string>
+    <string name="icy_sleet">冰雹</string>
+    <string name="rain_snow">雨夹雪</string>
+    <string name="windy">风</string>
+    <string name="windy_storm">龙卷风</string>
+    <string name="fog">雾</string>
+    
+    <string name="weather_info_error">天气网出错</string>
+    
+    <!-- dialog_up -->
+    <string name="ethernet">有线网络</string>
+    <string name="no_connected">没有网络</string>
+    
+    <!-- launcher mutil language -->
+    <string name="setting_network">网络设置</string>
+    <string name="setting_update">系统升级</string>
+    <string name="setting_about">关于</string>
+    <string name="setting_plot">画面设置</string>
+    <string name="setting_system">通用设置</string>
+    <string name="app_manager">应用管理</string>
+    <string name="channel_episode">连续剧</string>
+    <string name="channel_variety">综艺</string>
+    <string name="channel_carton">动漫</string>
+    <string name="channel_life">生活</string>
+    <string name="channel_tvmusic">音乐</string>
+    <string name="channel_documentary">纪实</string>
+	<string name="channel_movie">电影</string>
+	<string name="channel_education">教育</string>
+	<string name="channel_economics">财经</string>
+	<string name="channel_sports">体育</string>
+	<string name="channel_microfilm">微电影</string>
+	<string name="recommand_broadcast">轮播</string>
+	<string name="recommand_history">历史</string>
+	<string name="recommand_search">搜索</string>
+	<string name="recommand_collect">收藏</string>
+	<string name="recommand_tracker">追剧</string>
+	<string name="game_installed">我的游戏</string>
+	<string name="game_hall">游戏大厅</string>
+	<string name="dialog_message_centre">消息中心</string>
+	<string name="dialog_message_clear">消除</string>
+	
+	<string name="v3_appsc_setting">设　置</string>
+	<string name="v3_appsc_market">应用市场</string>
+	<string name="no_app_market_found">找不到应用市场!</string>
+	
+</resources>

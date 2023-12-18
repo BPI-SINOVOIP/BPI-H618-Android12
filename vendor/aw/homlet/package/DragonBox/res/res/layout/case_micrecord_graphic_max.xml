@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <SurfaceView
+        android:id="@+id/case_mic_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible" >
+    </SurfaceView>
+
+    <Button
+        android:id="@+id/record_or_pase"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:ems="1"
+        android:padding="@dimen/dp_1"
+        android:singleLine="false"
+        android:text="@string/case_micrecord_record"
+        android:textSize="@dimen/sp_12" />
+
+    <LinearLayout
+        android:id="@+id/case_ll_play_mic"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:drawable/screen_background_light"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_0" >
+    </LinearLayout>
+
+</LinearLayout>

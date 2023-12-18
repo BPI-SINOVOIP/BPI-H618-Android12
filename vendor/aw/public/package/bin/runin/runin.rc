@@ -1,0 +1,20 @@
+on property:sys.boot_completed=1
+    start runin_test
+
+on property:debug.runin.restart=1
+    setprop debug.runin.restart 0
+    start runin_test_restart
+
+service runin_test /system/bin/runin.sh
+    oneshot
+    disabled
+    user root
+    group root shell system media_rw wakelock
+    seclabel u:r:shell:s0
+
+service runin_test_restart /system/bin/runin.sh restart
+    oneshot
+    disabled
+    user root
+    group root shell system media_rw wakelock
+    seclabel u:r:shell:s0

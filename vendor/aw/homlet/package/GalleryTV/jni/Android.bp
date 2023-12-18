@@ -1,0 +1,69 @@
+cc_defaults {
+    name: "gallerytv_jni_defaults",
+
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-error=constant-conversion",
+        "-Wno-unused-parameter",
+        "-Wno-unused-function",
+        "-Wno-unused-variable",
+        "-Wno-implicit-function-declaration"
+    ],
+    header_libs: ["jni_headers"],
+    sdk_version: "9",
+    shared_libs: ["liblog"],
+}
+
+cc_library_shared {
+    name: "libjni_eglfencetv",
+
+    defaults: ["gallerytv_jni_defaults"],
+
+    cflags: ["-DEGL_EGLEXT_PROTOTYPES"],
+    srcs: ["jni_egl_fence.cpp"],
+    shared_libs: ["libEGL"],
+}
+
+// Filtershow
+cc_library_shared {
+    name: "libjni_filtershow_filters_tv",
+    defaults: ["gallerytv_jni_defaults"],
+
+    sdk_version: "9",
+    srcs: [
+        "filters/gradient.c",
+        "filters/saturated.c",
+        "filters/exposure.c",
+        "filters/edge.c",
+        "filters/contrast.c",
+        "filters/hue.c",
+        "filters/shadows.c",
+        "filters/highlight.c",
+        "filters/hsv.c",
+        "filters/vibrance.c",
+        "filters/geometry.c",
+        "filters/negative.c",
+        "filters/redEyeMath.c",
+        "filters/fx.c",
+        "filters/wbalance.c",
+        "filters/redeye.c",
+        "filters/bwfilter.c",
+        "filters/tinyplanet.cc",
+        "filters/kmeans.cc",
+    ],
+
+    cflags: [
+        "-ffast-math",
+        "-O3",
+        "-funroll-loops",
+    ],
+    shared_libs: ["libjnigraphics"],
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+}

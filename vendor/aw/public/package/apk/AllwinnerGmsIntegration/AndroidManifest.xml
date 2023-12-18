@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2017 Google Inc. All Rights Reserved. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.allwinnertech.gmsintegration">
+    <application android:label="@string/app_label">
+        <!-- This isn't a real receiver, it's only used as a marker interface. -->
+        <receiver android:name=".SuwCustomizationReceiver">
+            <intent-filter>
+                <action android:name="com.android.setupwizard.action.PARTNER_CUSTOMIZATION" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

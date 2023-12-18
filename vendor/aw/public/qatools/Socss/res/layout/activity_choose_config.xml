@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/info_all_config"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_def_config" />
+
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Switch
+            android:id="@+id/enable_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/auto_test" />
+        <Switch
+            android:id="@+id/auto_test_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/self_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/tfcard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tfcard_video" />
+
+            <TextView
+                android:id="@+id/tfcard_video_path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/usbhost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/usbhost_video" />
+
+            <TextView
+                android:id="@+id/usbhost_video_path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/ethtest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ethtest" />
+
+        <Switch
+            android:id="@+id/enable_ethtest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/cameratest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cameratest" />
+
+        <Switch
+            android:id="@+id/enable_cameratest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/bluetoothtest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bluetoothtest" />
+
+        <Switch
+            android:id="@+id/enable_bluetoothtest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/wifitest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wifitest" />
+
+        <Switch
+            android:id="@+id/enable_wifitest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/gpstest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gpstest" />
+
+        <Switch
+            android:id="@+id/enable_gpstest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/gputest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gputest" />
+
+        <Switch
+            android:id="@+id/enable_gputest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/automaptest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/automaptest" />
+
+        <Switch
+            android:id="@+id/enable_automaptest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/automapdata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mapdatacopy" />
+
+        <TextView
+            android:id="@+id/cpuid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cpuidtest" />
+
+        <Switch
+            android:id="@+id/enable_cpuid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save" />
+    </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

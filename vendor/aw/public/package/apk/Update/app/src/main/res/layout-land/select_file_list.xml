@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="48dp"
+		android:layout_marginRight="48dp"
+        android:background="@drawable/main_button_style"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+			android:layout_centerVertical="true"
+            android:background="@drawable/ic_back"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+			android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/back_icon"
+			android:layout_marginRight="10dp"
+            android:text="@string/select_file_title"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/back_btn"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:background="#BEBEBE" />
+
+    <ListView
+        android:id="@+id/file_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/divider"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:divider="#BEBEBE"
+        android:dividerHeight="1dp">
+    </ListView>
+
+</RelativeLayout>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.firelauncher.section.v3_SettingSection xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+            
+			<FrameLayout 
+                android:id="@+id/network_settings"
+                android:layout_width="@dimen/v3_rectangle_vertical_width"
+                android:layout_height="@dimen/v3_rectangle_vertical_height"
+                android:layout_marginLeft="@dimen/layout_margin_left"
+                android:layout_marginRight="@dimen/v3_view_margin_item"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="#2e96ef" >
+			
+			    <ImageView
+			        android:layout_width="@dimen/v3_square_side_setting"
+			        android:layout_height="@dimen/v3_square_side_setting"
+			        android:layout_gravity="center_horizontal"
+			        android:layout_marginTop="@dimen/v3_setting_section_icon_margin_top"
+			        android:contentDescription="@string/app_name"
+			        android:src="@drawable/v3_ic_net_setting"
+			        android:scaleType="fitXY" />
+			        
+			    <TextView
+			        android:layout_width="@dimen/v3_rectangle_vertical_width"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="bottom"
+			        android:gravity="center_horizontal"
+			        android:paddingBottom="@dimen/v3_setting_section_text_margin_bottom"
+			        android:ellipsize="end"
+			        android:marqueeRepeatLimit="marquee_forever"
+			        android:singleLine="true"
+			        android:textColor="@color/white"
+			        android:text="@string/setting_network"
+			        android:textSize="@dimen/v3_setting_section_name_textsize" />
+			
+			</FrameLayout>
+			
+			<FrameLayout 
+                android:id="@+id/system_setting"
+                android:layout_width="@dimen/v3_rectangle_vertical_width"
+                android:layout_height="@dimen/v3_rectangle_vertical_height"
+                android:layout_toRightOf="@+id/network_settings"
+                android:layout_marginRight="@dimen/v3_view_margin_item"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@id/system_update"
+                android:nextFocusLeft="@id/network_settings"
+		        android:background="#c9316d" >
+			
+			    <ImageView
+			        android:layout_width="@dimen/v3_square_side_setting"
+			        android:layout_height="@dimen/v3_square_side_setting"
+			        android:layout_gravity="center_horizontal"
+			        android:layout_marginTop="@dimen/v3_setting_section_icon_margin_top"
+			        android:contentDescription="@string/app_name"
+			        android:src="@drawable/v3_ic_system_setting"
+			        android:scaleType="fitXY" />
+			        
+			    <TextView
+			        android:layout_width="@dimen/v3_rectangle_vertical_width"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="bottom"
+			        android:gravity="center_horizontal"
+			        android:paddingBottom="@dimen/v3_setting_section_text_margin_bottom"
+			        android:ellipsize="end"
+			        android:marqueeRepeatLimit="marquee_forever"
+			        android:singleLine="true"
+			        android:textColor="@color/white"
+					android:text="@string/setting_system"
+			        android:textSize="@dimen/v3_setting_section_name_textsize" />
+			
+			</FrameLayout>
+			           
+			<FrameLayout 
+                android:id="@+id/system_update"
+                android:layout_width="@dimen/v3_rectangle_vertical_height"
+                android:layout_height="@dimen/v3_square_side"
+                android:layout_marginRight="@dimen/v3_view_margin_item"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@id/system_setting"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusDown="@+id/plot_setting"
+                android:nextFocusLeft="@id/system_setting"
+                android:nextFocusRight="@id/system_update"
+		        android:background="#a8c758" >
+			
+			    <ImageView
+			        android:layout_width="@dimen/v3_square_side_setting"
+			        android:layout_height="@dimen/v3_square_side_setting"
+			        android:layout_gravity="center_vertical"
+			        android:layout_marginLeft="@dimen/v3_setting_section_ic_margin_left"
+			        android:contentDescription="@string/app_name"
+			        android:src="@drawable/v3_ic_update_setting"
+			        android:scaleType="fitXY" />
+			        
+			    <TextView
+			        android:layout_width="@dimen/v3_square_side"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="right|center_vertical"
+			        android:layout_marginRight="@dimen/v3_setting_section_ic_margin_left"
+			        android:gravity="center_horizontal"
+			        android:ellipsize="end"
+			        android:marqueeRepeatLimit="marquee_forever"
+			        android:singleLine="true"
+			        android:textColor="@color/white"
+					android:text="@string/setting_update"
+			        android:textSize="@dimen/v3_setting_section_name_textsize" />
+			
+			</FrameLayout>
+
+			<FrameLayout
+                android:id="@+id/plot_setting"
+                android:layout_width="@dimen/v3_square_side"
+                android:layout_height="@dimen/v3_square_side"
+                android:layout_below="@id/system_update"
+                android:layout_toRightOf="@id/system_setting"
+                android:layout_marginRight="@dimen/v3_view_margin_item"
+                android:layout_marginTop="@dimen/v3_view_margin_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+		        android:background="#e68d21" >
+			
+			    <ImageView
+			        android:layout_width="@dimen/app_section_icon_size"
+			        android:layout_height="@dimen/app_section_icon_size"
+			        android:layout_gravity="center_horizontal"
+			        android:layout_marginTop="@dimen/app_section_icon_margin_top"
+			        android:contentDescription="@string/app_name"
+			        android:src="@drawable/v3_ic_plot_setting"
+			        android:scaleType="fitXY" />
+			        
+			    <TextView
+			        android:layout_width="@dimen/square_side"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="bottom"
+			        android:gravity="center_horizontal"
+			        android:paddingBottom="@dimen/app_gridview_text_padding_bottom"
+			        android:ellipsize="end"
+			        android:marqueeRepeatLimit="marquee_forever"
+			        android:singleLine="true"
+					android:text="@string/setting_plot"
+			        android:textColor="@color/white"
+			        android:textSize="@dimen/app_section_name_textsize" />
+			
+			</FrameLayout>
+			
+			<FrameLayout
+                android:id="@+id/about_us"
+                android:layout_width="@dimen/v3_square_side"
+                android:layout_height="@dimen/v3_square_side"
+                android:layout_below="@+id/system_update"
+                android:layout_toRightOf="@+id/plot_setting"
+                android:layout_marginTop="@dimen/v3_view_margin_item"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+		        android:background="#a130e4" >
+			
+			    <ImageView
+			        android:layout_width="@dimen/app_section_icon_size"
+			        android:layout_height="@dimen/app_section_icon_size"
+			        android:layout_gravity="center_horizontal"
+			        android:layout_marginTop="@dimen/app_section_icon_margin_top"
+			        android:contentDescription="@string/app_name"
+			        android:src="@drawable/v3_ic_about_setting"
+			        android:scaleType="fitXY" />
+			        
+			    <TextView
+			        android:layout_width="@dimen/square_side"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="bottom"
+			        android:gravity="center_horizontal"
+			        android:paddingBottom="@dimen/app_gridview_text_padding_bottom"
+			        android:ellipsize="end"
+			        android:marqueeRepeatLimit="marquee_forever"
+			        android:singleLine="true"
+                	android:text="@string/setting_about"
+			        android:textColor="@color/white"
+			        android:textSize="@dimen/app_section_name_textsize" />
+			
+			</FrameLayout>
+			
+			<View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toRightOf="@+id/about_us" />
+                   
+        </RelativeLayout>
+
+        <!-- 必须在FrameLayout布局中添加 -->
+
+        <include
+            android:id="@+id/animation_layout"
+            layout="@layout/animation_view_layout"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</com.softwinner.firelauncher.section.v3_SettingSection>

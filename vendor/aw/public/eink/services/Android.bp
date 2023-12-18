@@ -1,0 +1,90 @@
+
+
+cc_binary {
+    name: "einkservice",
+    srcs: [
+        "EinkService.cpp",
+        "Handwriting.cpp",
+        "SurfaceUpdater.cpp",
+        "DisplayConfigHal.cpp",
+        "DrawThread.cpp",
+        "EventQueue.cpp",
+        "EventHandler.cpp",
+        "IonAlloc.cpp",
+        "SkRenderer.cpp",
+        "events.cpp",
+        "Bitmap.cpp",
+        "AutoTestThread.cpp",
+        ":eink_aidl",
+    ],
+    aidl: {
+        include_dirs: [
+            "frameworks/native/aidl/gui",
+            "vendor/aw/public/eink/services/aidl2",
+        ],
+    },
+    include_dirs: [
+        "frameworks/base/libs/hwui",
+    ],
+    defaults: [
+        "skia_deps",
+    ],
+    cppflags: [
+        "-Wall",
+    ],
+    static_libs: [
+        "libhwui_static",
+        "libEGL_blobCache",
+    ],
+    shared_libs: [
+        "vendor.display.config@1.0",
+        "libbase",
+        "libbinder",
+        "libcutils",
+        "libhidlbase",
+        "libhidltransport",
+        "liblog",
+        "libutils",
+        "libui",
+        "libgui",
+        "libminikin",
+        "libharfbuzz_ng",
+        "libinput",
+        "libnativedisplay",
+        "libcrypto",
+        "libion",
+    ],
+
+    export_shared_lib_headers: [
+        "vendor.display.config@1.0",
+        "libhidlbase",
+        "libhidltransport",
+    ],
+
+    init_rc: ["einkservice.rc"],
+}
+
+java_library {
+    name: "libeink",
+    srcs: [
+        "java/**/*.java",
+        ":eink_aidl",
+    ],
+    aidl: {
+        include_dirs: [
+            "frameworks/native/aidl/gui",
+        ],
+    },
+    optimize: {
+        enabled: false,
+    },
+}
+
+filegroup {
+    name: "eink_aidl",
+    srcs: [
+        "aidl/com/softwinner/IEinkMode.aidl",
+        "aidl/com/softwinner/IEinkService.aidl",
+    ],
+    path: "aidl",
+}

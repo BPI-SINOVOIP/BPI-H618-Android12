@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.softwinner.firelauncher.section.ChannelSection xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+            
+            <FrameLayout
+                android:id="@+id/tv_serial"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_marginLeft="@dimen/layout_margin_left"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" 
+                android:nextFocusLeft="@+id/featured_poster_9" 
+                android:nextFocusRight="@+id/variety"
+                android:contentDescription="@string/app_name">
+	            <ImageView
+	                android:id="@+id/tv_serial_image"
+	                android:layout_width="@dimen/rectangle_vertical_width"
+	                android:layout_height="@dimen/rectangle_vertical_height"
+	                android:scaleType="centerCrop"
+	                android:src="@drawable/fail_h" />
+	            <TextView 
+	                android:id="@+id/tv_serial_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:scaleType="centerCrop"
+	                android:text="@string/channel_episode"
+	                android:paddingTop="@dimen/channel_paddingtop"
+	                android:paddingLeft="@dimen/channel_paddingleft"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"
+	                android:background="@drawable/title_tv_serial"/>
+            </FrameLayout>
+            
+            <FrameLayout
+                android:id="@+id/variety"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/tv_serial"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusDown="@+id/cartoon"
+                android:nextFocusRight="@+id/IVmusic"
+                android:nextFocusLeft="@id/tv_serial" >
+                <ImageView
+                    android:id="@+id/variety_image"
+                    android:layout_width="@dimen/rectangle_horizontal_width"
+                    android:layout_height="@dimen/rectangle_horizontal_height"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/fail_w" />
+                <TextView
+	                android:id="@+id/variety_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:scaleType="centerCrop"
+	                android:text="@string/channel_variety"
+	                android:paddingTop="@dimen/channel_paddingtop1"
+	                android:paddingLeft="@dimen/channel_paddingleft1"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"
+	                android:background="@drawable/title_variety"/>
+            </FrameLayout>
+            
+            <TextView
+                android:id="@+id/cartoon"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/variety"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/tv_serial"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:text="@string/channel_carton"
+                android:paddingTop="@dimen/channel_paddingtop1"
+                android:paddingLeft="@dimen/channel_paddingleft1"
+	        android:textSize="@dimen/tabindicator_text_size_normal"
+	        android:textColor="@color/white"
+                android:background="@drawable/channel_carton_bg"/>
+           
+            <TextView
+                android:id="@+id/documentary"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/variety"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/cartoon"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:text="@string/channel_documentary"
+                android:paddingTop="@dimen/channel_paddingtop1"
+                android:paddingLeft="@dimen/channel_paddingleft1"
+	        android:textSize="@dimen/tabindicator_text_size_normal"
+	        android:textColor="@color/white"
+                android:background="@drawable/channel_documentary_bg" />
+
+            <!-- film -->
+            <TextView
+                android:id="@+id/IVmusic"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/variety"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@+id/life"
+                android:nextFocusLeft="@id/variety"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_documentary"
+                android:text="@string/channel_tvmusic"
+                android:paddingTop="@dimen/channel_paddingtop1"
+                android:paddingLeft="@dimen/channel_paddingleft1"
+	        android:textSize="@dimen/tabindicator_text_size_normal"
+	        android:textColor="@color/white"
+                android:background="@drawable/channel_tvmusic_bg" />
+
+             <!-- variety -->
+            <TextView
+                android:id="@+id/life"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/IVmusic"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@+id/hd1080p"
+                android:nextFocusLeft="@id/IVmusic"
+                android:scaleType="centerCrop"
+                android:text="@string/channel_life"
+                android:paddingTop="@dimen/channel_paddingtop1"
+                android:paddingLeft="@dimen/channel_paddingleft1"
+	        android:textSize="@dimen/tabindicator_text_size_normal"
+	        android:textColor="@color/white"
+                android:background="@drawable/channel_life_bg"/>
+
+            <FrameLayout
+                android:id="@+id/movie"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_below="@+id/IVmusic"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/documentary"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                 android:nextFocusUp="@+id/IVmusic"
+                android:focusableInTouchMode="true">
+	            <ImageView
+	                android:id="@+id/movie_image"
+	                android:layout_width="@dimen/rectangle_horizontal_width"
+	                android:layout_height="@dimen/rectangle_horizontal_height"
+	                android:scaleType="centerCrop"
+	                android:src="@drawable/fail_w" />
+            	 <TextView 
+	                android:id="@+id/movie_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:scaleType="centerCrop"
+	                android:background="@drawable/title_movie"
+	                android:text="@string/channel_movie"
+	                android:paddingTop="@dimen/channel_paddingtop1"
+	                android:paddingLeft="@dimen/channel_paddingleft1"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"/>
+            </FrameLayout>
+
+            <!-- ##################第二版面#################### -->
+            
+            <FrameLayout 
+                android:id="@+id/hd1080p"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/life"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusRight="@+id/education"
+                android:nextFocusLeft="@id/life"
+                android:scaleType="centerCrop">
+	             <ImageView
+	                android:id="@+id/hd1080p_image"
+	                android:layout_width="@dimen/rectangle_vertical_width"
+	                android:layout_height="@dimen/rectangle_vertical_height"
+	                android:scaleType="centerCrop"
+	                android:contentDescription="@string/app_name"
+	                android:src="@drawable/fail_h" />
+	              <ImageView 
+	                android:id="@+id/hd1080p_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:scaleType="centerCrop"
+	                android:src="@drawable/title_1080p"/>
+			</FrameLayout>
+
+            <!-- android:nextFocusRight="@+id/education" -->
+            <!-- android:nextFocusDown="@+id/economics" -->
+            <!--  android:layout_marginRight="@dimen/view_margin" -->
+			<FrameLayout 
+			    android:id="@+id/education"
+                android:layout_width="@dimen/rectangle_horizontal_width"
+                android:layout_height="@dimen/rectangle_horizontal_height"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginLeft="@dimen/view_margin"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_toRightOf="@+id/hd1080p"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:nextFocusDown="@+id/economics"
+                android:nextFocusLeft="@id/hd1080p" >
+	            <ImageView
+	                android:id="@+id/education_image"
+	                android:layout_width="@dimen/rectangle_horizontal_width"
+	                android:layout_height="@dimen/rectangle_horizontal_height"
+	                android:scaleType="centerCrop"
+	                android:src="@drawable/fail_w" />
+	             <TextView 
+	                android:id="@+id/education_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:scaleType="centerCrop"
+	                android:text="@string/channel_education"
+	                android:paddingTop="@dimen/channel_paddingtop1"
+	                android:paddingLeft="@dimen/channel_paddingleft1"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"
+	                android:background="@drawable/title_education"/>
+			</FrameLayout>
+			
+            <TextView
+                android:id="@+id/economics"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/education"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginLeft="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/hd1080p"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:text="@string/channel_economics"
+                android:paddingTop="@dimen/channel_paddingtop1"
+                android:paddingLeft="@dimen/channel_paddingleft1"
+	        android:textSize="@dimen/tabindicator_text_size_normal"
+	        android:textColor="@color/white"
+                android:background="@drawable/channel_economics_bg" />
+
+            <TextView
+                android:id="@+id/sports"
+                android:layout_width="@dimen/square_side"
+                android:layout_height="@dimen/square_side"
+                android:layout_below="@+id/education"
+                android:layout_marginRight="@dimen/view_margin"
+                android:layout_marginTop="@dimen/view_margin"
+                android:layout_toRightOf="@+id/economics"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:scaleType="centerCrop"
+                android:text="@string/channel_sports"
+                android:paddingTop="@dimen/channel_paddingtop1"
+                android:paddingLeft="@dimen/channel_paddingleft1"
+	        android:textSize="@dimen/tabindicator_text_size_normal"
+	        android:textColor="@color/white"
+                android:background="@drawable/channel_sports_bg" />
+            
+            <FrameLayout 
+                android:id="@+id/microfilm"
+                android:layout_width="@dimen/rectangle_vertical_width"
+                android:layout_height="@dimen/rectangle_vertical_height"
+                android:layout_marginTop="@dimen/layout_margin_top"
+                android:layout_marginRight="@dimen/layout_margin_right"
+                android:layout_toRightOf="@id/education"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:nextFocusLeft="@id/education"
+                android:scaleType="centerCrop">
+	             <ImageView
+	                android:id="@+id/microfilm_image"
+	                android:layout_width="@dimen/rectangle_vertical_width"
+	                android:layout_height="@dimen/rectangle_vertical_height"
+	                android:scaleType="centerCrop"
+	                android:contentDescription="@string/app_name"
+	                android:src="@drawable/fail_h" />
+	              <TextView 
+	                android:id="@+id/microfilm_name"
+	                android:layout_width="match_parent"
+	                android:layout_height="match_parent"
+	                android:scaleType="centerCrop"
+	                android:text="@string/channel_microfilm"
+	                android:paddingTop="@dimen/channel_paddingtop"
+	                android:paddingLeft="@dimen/channel_paddingleft"
+		        android:textSize="@dimen/tabindicator_text_size_normal"
+		        android:textColor="@color/white"
+	                android:background="@drawable/title_microfilm"/>
+			</FrameLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toRightOf="@+id/microfilm" />
+        </RelativeLayout>
+
+        <!-- 必须在FrameLayout布局中添加 -->
+
+        <include
+            android:id="@+id/animation_layout"
+            layout="@layout/animation_view_layout"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</com.softwinner.firelauncher.section.ChannelSection>
