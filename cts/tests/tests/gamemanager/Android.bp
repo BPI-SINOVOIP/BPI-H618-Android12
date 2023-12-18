@@ -1,0 +1,32 @@
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_test {
+    name: "CtsGameManagerTestCases",
+    defaults: ["cts_defaults"],
+
+    test_suites: [
+        "cts",
+        "general-tests",
+    ],
+
+    libs: [
+        "android.test.base",
+        "android.test.runner"
+    ],
+
+    static_libs: [
+        "androidx.test.core",
+        "ctsdeviceutillegacy-axt",
+        "ctstestrunner-axt",
+        "ctstestserver",
+        "junit",
+        "truth-prebuilt",
+    ],
+
+    srcs: ["src/**/*.java"],
+
+    sdk_version: "test_current",
+}

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 27): `AdbUserParser31`"
+        errorLine1="            return new AdbUserParser31(testApis);"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/users/AdbUserParser.java"
+            line="37"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 27): `AdbUserParser30`"
+        errorLine1="            return new AdbUserParser30(testApis);"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/users/AdbUserParser.java"
+            line="40"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 27): `android.app.UiAutomation#adoptShellPermissionIdentity`"
+        errorLine1="            ShellCommandUtils.uiAutomation().adoptShellPermissionIdentity("
+        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/permissions/Permissions.java"
+            line="196"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 27): `android.app.UiAutomation#dropShellPermissionIdentity`"
+        errorLine1="            ShellCommandUtils.uiAutomation().dropShellPermissionIdentity();"
+        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/permissions/Permissions.java"
+            line="240"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 27): `android.app.UiAutomation#adoptShellPermissionIdentity`"
+        errorLine1="            ShellCommandUtils.uiAutomation().adoptShellPermissionIdentity();"
+        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/permissions/Permissions.java"
+            line="242"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 27): `android.app.UiAutomation#adoptShellPermissionIdentity`"
+        errorLine1="            ShellCommandUtils.uiAutomation().adoptShellPermissionIdentity("
+        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/permissions/Permissions.java"
+            line="244"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 27): `android.app.UiAutomation#executeShellCommandRw`"
+        errorLine1="        ParcelFileDescriptor[] fds = uiAutomation().executeShellCommandRw(command);"
+        errorLine2="                                                    ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/utils/ShellCommandUtils.java"
+            line="156"
+            column="53"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 27): `java.util.Set#of`"
+        errorLine1="        managedProfileMutableUserType.mBaseType = Set.of(UserType.BaseType.PROFILE);"
+        errorLine2="                                                      ~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/users/Users.java"
+            line="213"
+            column="55"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 27): `java.util.Set#of`"
+        errorLine1="                Set.of(UserType.BaseType.FULL, UserType.BaseType.SYSTEM);"
+        errorLine2="                    ~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/users/Users.java"
+            line="224"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 27): `java.util.Set#of`"
+        errorLine1="        managedProfileMutableUserType.mBaseType = Set.of(UserType.BaseType.FULL);"
+        errorLine2="                                                      ~~">
+        <location
+            file="cts/common/device-side/bedstead/nene/src/main/java/com/android/bedstead/nene/users/Users.java"
+            line="234"
+            column="55"/>
+    </issue>
+
+</issues>

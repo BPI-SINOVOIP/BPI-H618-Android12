@@ -1,0 +1,32 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_library {
+    name: "MetricsRecorder",
+    sdk_version: "test_current",
+    srcs: [
+        "src/main/java/**/*.java"
+    ],
+    manifest: "src/main/AndroidManifest.xml",
+    static_libs: [
+        "compatibility-device-util-axt",
+        "Nene",
+        "Queryable",
+        "statsdprotonano_mapped"
+    ],
+    min_sdk_version: "27"
+}
+
+// Rewrite the proto packages for use by MetricsRecorder
+java_library {
+    name: "statsdprotonano_mapped",
+    static_libs: [
+        "statsdprotonano",
+    ],
+    target: {
+        android: {
+            jarjar_rules: "jarjar-rules.txt",
+        },
+    }
+}

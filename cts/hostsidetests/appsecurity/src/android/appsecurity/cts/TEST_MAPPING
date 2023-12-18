@@ -1,0 +1,22 @@
+{
+  "presubmit": [
+    {
+      "name": "CtsAppSecurityHostTestCases",
+      "options": [
+        {
+          "include-filter": "android.appsecurity.cts.SplitTests"
+        }
+      ],
+      "file_patterns": ["SplitTests\\.java"]
+    },
+    {
+      "name": "CtsAppSecurityHostTestCases",
+      "options": [
+        {
+          "include-filter": "android.appsecurity.cts.IsolatedSplitsTests"
+        }
+      ],
+      "file_patterns": ["IsolatedSplitsTests\\.java"]
+    }
+  ]
+}

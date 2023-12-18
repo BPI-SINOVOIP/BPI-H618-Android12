@@ -1,0 +1,82 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "cts_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    //   SPDX-license-identifier-CC-BY
+    default_applicable_licenses: ["cts_license"],
+}
+
+filegroup {
+    name: "CtsVerifierMockVrListenerServiceFiles",
+    srcs: ["src/com/android/cts/verifier/vr/MockVrListenerService.java"],
+}
+
+android_test {
+    name: "CtsVerifier",
+    defaults: ["cts_error_prone_rules_tests"],
+    additional_manifests: ["AndroidManifest-common.xml"],
+
+    compile_multilib: "both",
+
+    srcs: [
+        "src/**/*.java",
+        "src/**/I*.aidl",
+    ],
+
+    aidl: {
+        include_dirs: ["frameworks/native/aidl/gui"],
+    },
+
+    static_libs: [
+        "android-ex-camera2",
+        "compatibility-common-util-devicesidelib",
+        "cts-sensors-tests",
+        "cts-camera-performance-tests",
+        "ctstestrunner-axt",
+        "apache-commons-math",
+        "androidplot",
+        "ctsverifier-opencv",
+        "core-tests-support",
+        "androidx.legacy_legacy-support-v4",
+        "mockito-target-minus-junit4",
+        "mockwebserver",
+        "compatibility-device-util-axt",
+        "platform-test-annotations",
+        "cts-security-test-support-library",
+        "cts-midi-lib",
+        "cbor-java",
+        "CtsCameraUtils",
+        "androidx.legacy_legacy-support-v4",
+        "CtsForceStopHelper-constants",
+        "ctsmediautil",
+        "DpmWrapper"
+    ],
+
+    libs: ["telephony-common"] + ["android.test.runner.stubs"] + ["android.test.base.stubs"] + ["android.test.mock.stubs"] + ["android.car"] + ["voip-common"] + ["truth-prebuilt"],
+
+    platform_apis: true,
+
+    jni_libs: [
+        "libctsverifier_jni",
+        "libctsnativemidi_jni",
+        "libaudioloopback_jni",
+        "libmegaaudio_jni",
+    ],
+
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+
+    dex_preopt: {
+        enabled: false,
+    },
+}
+
+// opencv library
+java_import {
+    name: "ctsverifier-opencv",
+    jars: ["libs/opencv3-android.jar"],
+}

@@ -1,0 +1,28 @@
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_test {
+    name: "CtsSettingsTestCases",
+    defaults: ["cts_defaults"],
+
+    test_suites: [
+        "cts",
+        "general-tests",
+    ],
+
+    libs: ["android.test.runner"],
+
+    static_libs: [
+        "androidx.slice_slice-core",
+        "androidx.slice_slice-view",
+        "ctstestrunner-axt",
+        "junit",
+        "truth-prebuilt",
+    ],
+
+    srcs: ["src/**/*.java"],
+
+    sdk_version: "test_current",
+}

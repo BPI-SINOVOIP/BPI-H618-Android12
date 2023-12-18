@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="`&lt;vector>` requires API level 21 (current min is 14) or building with Android Gradle plugin 1.4 or higher"
+        errorLine1="&lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2=" ~~~~~~">
+        <location
+            file="cts/tests/app/res/drawable/ic_android.xml"
+            line="17"
+            column="2"/>
+    </issue>
+
+</issues>

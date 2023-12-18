@@ -1,0 +1,17 @@
+#  Android EngProd Approvers
+guangzhu@google.com
+fdeng@google.com
+moonk@google.com
+jdesprez@google.com
+
+# Android Partner Eng Approvers
+aaronholden@google.com
+yuji@google.com
+nickrose@google.com
+
+# File Specific Approvers
+per-file Backup* = file:platform/frameworks/base:/services/backup/OWNERS
+per-file cts-meerkat.xml = alanstokes@google.com, brufino@google.com, lus@google.com, rickywai@google.com
+per-file cts-on-csi*.xml = ycchen@google.com, hsinyichen@google.com, tyanh@google.com
+per-file csi-*.xml = ycchen@google.com, hsinyichen@google.com, tyanh@google.com
+

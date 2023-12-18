@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2021 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<configuration description="Excluded tests depending on APKs not in gsi_$arch">
+
+    <!-- No Calendar -->
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testCalendarAddAppointment" />
+
+    <!-- No Contacts -->
+    <option name="compatibility:exclude-filter" value="CtsContactsProviderTestCases android.provider.cts.contacts.ContactsContractIntentsTest#testPickContactDir" />
+    <option name="compatibility:exclude-filter" value="CtsContactsProviderTestCases android.provider.cts.contacts.ContactsContractIntentsTest#testViewContactDir" />
+    <option name="compatibility:exclude-filter" value="CtsContactsProviderTestCases android.provider.cts.contacts.ContactsContract_ContactsTest#testContentUri" />
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testContactsCallLogs" />
+
+    <!-- No DeskClock -->
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testAlarmClockDismissAlarm" />
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testAlarmClockSetAlarm" />
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testAlarmClockSetTimer" />
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testAlarmClockShowAlarms" />
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testAlarmClockShowTimers" />
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testAlarmClockSnoozeAlarm" />
+
+    <!-- No Gallery2 -->
+    <option name="compatibility:exclude-filter" value="CtsAppSecurityHostTestCases android.appsecurity.cts.ExternalStorageHostTest#testSystemGalleryExists" />
+    <option name="compatibility:exclude-filter" value="CtsOsTestCases android.os.cts.StrictModeTest#testFileUriExposure" />
+    <option name="compatibility:exclude-filter" value="CtsOsTestCases android.os.cts.StrictModeTest#testVmPenaltyListener" />
+    <option name="compatibility:exclude-filter" value="CtsOsTestCases android.os.cts.StrictModeTest#testContentUriWithoutPermission" />
+    <option name="compatibility:exclude-filter" value="CtsOsTestCases android.os.cts.AutoRevokeTest" />
+
+    <!-- No Gallery2, Music -->
+    <option name="compatibility:exclude-filter" value="CtsProviderTestCases android.provider.cts.media.MediaStoreIntentsTest" />
+
+    <!-- No Music -->
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testMusicPlayback" />
+
+    <!-- No QuickSearchBox -->
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testWebSearchNormalUrl" />
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testWebSearchPlainText" />
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testWebSearchSecureUrl" />
+
+    <!-- No SettingsIntelligence -->
+    <option name="compatibility:exclude-filter" value="CtsContentTestCases android.content.cts.AvailableIntentsTest#testSettingsSearchIntent" />
+
+    <!-- No AccessibilityService -->
+    <option name="compatibility:exclude-filter" value="CtsAccessibilityServiceTestCases android.accessibilityservice.cts" />
+
+    <!-- No Statsd -->
+    <option name="compatibility:exclude-filter" value="CtsStatsdHostTestCases" />
+
+    <!-- No AppOps -->
+    <option name="compatibility:exclude-filter" value="CtsStatsdAtomHostTestCases android.cts.statsdatom.appops.AppOpsTests" />
+
+    <!-- b/183654427 Remove CtsTelecomTestCases from cts-on-gsi -->
+    <option name="compatibility:exclude-filter" value="CtsTelecomTestCases" />
+
+    <!-- b/183234756, b/80388296, b/110260628, b/159295445, b/159294948 CtsDevicePolicyManagerTestCases -->
+    <option name="compatibility:exclude-filter" value="CtsDevicePolicyManagerTestCases" />
+
+    <!-- b/183985653 -->
+    <option name="compatibility:module-arg" value="CtsDeqpTestCases:include-filter:dEQP-EGL.*" />
+    <option name="compatibility:module-arg" value="CtsDeqpTestCases:include-filter:dEQP-GLES2.functional.prerequisite#*" />
+    <option name="compatibility:module-arg" value="CtsDeqpTestCases:include-filter:dEQP-GLES3.functional.prerequisite#*" />
+    <option name="compatibility:module-arg" value="CtsDeqpTestCases:include-filter:dEQP-VK.api.smoke#*" />
+
+    <!-- b/183659262 Remove CtsPreferenceTestCases from cts-on-gsi -->
+    <option name="compatibility:exclude-filter" value="CtsPreferenceTestCases" />
+
+    <!-- b/183636777 Remove CtsShortcutManagerPackage4 from cts-on-gsi -->
+    <option name="compatibility:exclude-filter" value="CtsShortcutManagerPackage4" />
+
+    <!-- b/185451791. Can't have single overlay package for both AOSP version and Google-signed mainline modules -->
+    <option name="compatibility:exclude-filter" value="CtsWifiTestCases android.net.wifi.cts.ConcurrencyTest#testPersistentGroupOperation" />
+    <option name="compatibility:exclude-filter" value="CtsWifiTestCases android.net.wifi.cts.ConcurrencyTest#testRequestNetworkInfo" />
+
+    <!-- b/192916298, b/192013761, b/193544088  CtsAppCloningHostTest from cts-on-gsi -->
+    <option name="compatibility:exclude-filter" value="CtsAppCloningHostTest android.scopedstorage.cts.host.AppCloningHostTest#testCreateCloneUserFile" />
+
+    <!-- b/194146521 -->
+    <option name="compatibility:exclude-filter" value="CtsPermission3TestCases android.permission3.cts.PermissionTest23#testNoResidualPermissionsOnUninstall" />
+
+</configuration>

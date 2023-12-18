@@ -1,0 +1,42 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_library {
+    name: "EventLib",
+    sdk_version: "test_current",
+    srcs: [
+        "src/main/java/**/*.java",
+        "src/main/aidl/**/I*.aidl",
+    ],
+    static_libs: [
+        "Nene",
+        "Queryable"
+    ],
+    manifest: "src/main/AndroidManifest.xml",
+    min_sdk_version: "27"
+}
+
+android_test {
+    name: "EventLibTest",
+    srcs: [
+        "src/test/java/**/*.java"
+    ],
+    test_suites: [
+        "general-tests",
+    ],
+    static_libs: [
+        "EventLib",
+        "ActivityContext",
+        "androidx.test.ext.junit",
+        "ctstestrunner-axt",
+        "truth-prebuilt",
+        "testng", // for assertThrows
+        "mockito-target-minus-junit4", // TODO(scottjonathan): Remove once we can get rid of mocks
+        "compatibility-device-util-axt", // used for SystemUtil.runShellCommandOrThrow
+    ],
+    resource_dirs: ["src/test/res"],
+    data: [":EventLibTestApp"],
+    manifest: "src/test/AndroidManifest.xml",
+    min_sdk_version: "27"
+}

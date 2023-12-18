@@ -1,0 +1,13 @@
+{
+    "id": 1,
+    "type": "uinput",
+    "command": "register",
+    "name": "Test Gamepad (USB)",
+    "vid": 0x18d1,
+    "pid": 0xabcd,
+    "bus": "usb",
+    "configuration":[
+        {"type": 100, "data": [1]},  // UI_SET_EVBIT : EV_KEY
+        {"type": 101, "data": [304]}   // UI_SET_KEYBIT : KEY_GAMEPAD
+    ]
+}

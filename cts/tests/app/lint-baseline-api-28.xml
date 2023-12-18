@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="`@android:style/Theme.Material.Dialog` requires API level 21 (current min is 14)"
+        errorLine1="    &lt;style name=&quot;DialogTheme_Test&quot; parent=&quot;@android:style/Theme.Material.Dialog&quot;>"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="cts/tests/app/app/res/values/styles.xml"
+            line="168"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="View requires API level 21 (current min is 14): `&lt;Toolbar>`"
+        errorLine1="&lt;Toolbar android:id=&quot;@+id/toolbar&quot;"
+        errorLine2=" ~~~~~~~">
+        <location
+            file="cts/tests/app/app/res/layout/toolbar_activity.xml"
+            line="23"
+            column="2"/>
+    </issue>
+
+</issues>

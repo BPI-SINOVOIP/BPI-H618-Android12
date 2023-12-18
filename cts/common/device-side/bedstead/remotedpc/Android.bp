@@ -1,0 +1,104 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_library {
+    name: "RemoteDPC_Communication",
+    sdk_version: "test_current",
+    srcs: [
+        "src/communication/main/java/**/*.java"
+    ],
+    static_libs: [
+        "Nene",
+        "ConnectedAppsSDK",
+        "ConnectedAppsSDK_Annotations",
+        "androidx.annotation_annotation",
+        "RemoteDPC_Annotations"
+    ],
+    manifest: "src/communication/main/AndroidManifest.xml",
+    min_sdk_version: "27",
+    plugins: ["ConnectedAppsSDK_Processor", "RemoteDPC_Processor"],
+}
+
+android_library {
+    name: "RemoteDPC",
+    sdk_version: "test_current",
+    srcs: [
+        "src/library/main/java/**/*.java"
+    ],
+    static_libs: [
+        "Nene",
+        "RemoteDPC_Communication",
+        "ConnectedAppsSDK",
+    ],
+    manifest: "src/library/main/AndroidManifest.xml",
+    min_sdk_version: "27",
+    resource_zips: [":RemoteDPC_Apps"],
+}
+
+android_test_helper_app {
+    name: "RemoteDPC_DPC",
+    static_libs: [
+        "DeviceAdminApp",
+        "RemoteDPC_Communication",
+    ],
+    manifest: "src/dpc/main/AndroidManifest.xml",
+    min_sdk_version: "27"
+}
+
+java_genrule {
+    name: "RemoteDPC_Apps",
+    srcs: [":RemoteDPC_DPC"],
+    out: ["RemoteDPC_Apps.res.zip"],
+    tools: ["soong_zip"],
+    cmd: "mkdir -p $(genDir)/res/raw"
+         + " && cp $(location :RemoteDPC_DPC) $(genDir)/res/raw"
+         + " && $(location soong_zip) -o $(out) -C $(genDir)/res -D $(genDir)/res/raw"
+}
+
+android_test {
+    name: "RemoteDPCTest",
+    srcs: [
+        "src/library/test/java/**/*.java"
+    ],
+    test_suites: [
+        "general-tests",
+    ],
+    static_libs: [
+        "RemoteDPC",
+        "Nene",
+        "Harrier",
+        "TestApp",
+        "EventLib",
+        "androidx.test.ext.junit",
+        "compatibility-device-util-axt",
+        "truth-prebuilt",
+        "testng" // for assertThrows
+    ],
+    manifest: "src/library/test/AndroidManifest.xml",
+    min_sdk_version: "28"
+}
+
+java_library {
+    name: "RemoteDPC_Annotations",
+    srcs: [
+        "src/processor/main/java/com/android/bedstead/remotedpc/processor/annotations/*.java"
+    ],
+    host_supported: true
+}
+
+java_plugin {
+    name: "RemoteDPC_Processor",
+    processor_class: "com.android.bedstead.remotedpc.processor.Processor",
+    static_libs: [
+        "javapoet",
+        "auto_service_annotations",
+        "RemoteDPC_Annotations",
+        "ConnectedAppsSDK_Annotations"
+    ],
+    srcs: [
+        "src/processor/main/java/com/android/bedstead/remotedpc/processor/Processor.java"
+    ],
+    plugins: ["auto_service_plugin"],
+    generates_api: true,
+}

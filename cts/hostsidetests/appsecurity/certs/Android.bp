@@ -1,0 +1,13 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_app_certificate {
+    name: "cts-testkey1",
+    certificate: "cts-testkey1",
+}
+
+android_app_certificate {
+    name: "cts-testkey2",
+    certificate: "cts-testkey2",
+}

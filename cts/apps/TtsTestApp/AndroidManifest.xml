@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.android.cts.tts.helper">
+<application
+  android:label="TTS CTS Test Helper App">
+  <service
+    android:name=".TTSHelperService"
+    android:exported="true">
+    <intent-filter android:priority="100">
+      <action android:name="android.intent.action.TTS_SERVICE" />
+      <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+  </service>
+</application>
+</manifest>

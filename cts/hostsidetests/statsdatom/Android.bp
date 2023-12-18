@@ -1,0 +1,86 @@
+// Copyright (C) 2020 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_test_host {
+    name: "CtsStatsdAtomHostTestCases",
+    defaults: ["cts_defaults"],
+    srcs: [
+        "src/**/alarm/*.java",
+        "src/**/apphibernation/*.java",
+        "src/**/appops/*.java",
+        "src/**/appexit/*.java",
+        "src/**/appstart/*.java",
+        "src/**/batterycycle/*.java",
+        "src/**/batterystats/*.java",
+        "src/**/binderstats/*.java",
+        "src/**/bluetooth/*.java",
+        "src/**/cpu/*.java",
+        "src/**/devicepower/*.java",
+        "src/**/gnss/*.java",
+        "src/**/jobscheduler/*.java",
+        "src/**/integrity/*.java",
+        "src/**/memory/*.java",
+        "src/**/net/*.java",
+        "src/**/notification/*.java",
+        "src/**/perfetto/*.java",
+        "src/**/permissionstate/*.java",
+        "src/**/settingsstats/*.java",
+        "src/**/statsd/*.java",
+        "src/**/telephony/*.java",
+        "src/**/wifi/*.java",
+        "src/**/incremental/*.java",
+    ],
+
+    test_suites: [
+        "cts",
+        "general-tests",
+    ],
+
+    libs: [
+        "compatibility-host-util",
+        "core_cts_test_resources",
+        "cts-tradefed",
+        "host-libprotobuf-java-full",
+        "platformprotos",
+        "tradefed",
+        "truth-prebuilt",
+    ],
+
+    static_libs: [
+        "cts-statsd-atom-host-test-utils",
+        "perfetto_config-full",
+    ],
+
+    data: [
+        ":CtsStatsdAtomApp",
+        ":CtsStatsdApp", //TODO(b/163546661): Remove once migration to new lib is complete.
+    ]
+}
+
+java_library_host {
+    name: "cts-statsd-atom-host-test-utils",
+    srcs: ["src/**/lib/*.java"],
+    libs: [
+        "compatibility-host-util",
+        "cts-tradefed",
+        "host-libprotobuf-java-full",
+        "platformprotos",
+        "tradefed",
+        "truth-prebuilt",
+    ],
+}
