@@ -1,0 +1,8 @@
+# Hard-coded product_variables until product product_variables is available.
+load(":product_variables.bzl", "product_variables_providing_rule")
+
+package(default_visibility = ["//visibility:public"])
+
+product_variables_providing_rule(
+    name = "android_product_variables",
+)

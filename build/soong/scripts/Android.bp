@@ -1,0 +1,267 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+python_binary_host {
+    name: "check_boot_jars",
+    main: "check_boot_jars/check_boot_jars.py",
+    srcs: [
+        "check_boot_jars/check_boot_jars.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+}
+
+python_binary_host {
+    name: "manifest_fixer",
+    main: "manifest_fixer.py",
+    srcs: [
+        "manifest_fixer.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+    libs: [
+        "manifest_utils",
+    ],
+}
+
+python_test_host {
+    name: "manifest_fixer_test",
+    main: "manifest_fixer_test.py",
+    srcs: [
+        "manifest_fixer_test.py",
+        "manifest_fixer.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+    libs: [
+        "manifest_utils",
+    ],
+    test_options: {
+        unit_test: true,
+    },
+}
+
+python_library_host {
+    name: "manifest_utils",
+    srcs: [
+        "manifest.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+}
+
+python_binary_host {
+    name: "manifest_check",
+    main: "manifest_check.py",
+    srcs: [
+        "manifest_check.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+    libs: [
+        "manifest_utils",
+    ],
+}
+
+python_test_host {
+    name: "manifest_check_test",
+    main: "manifest_check_test.py",
+    srcs: [
+        "manifest_check_test.py",
+        "manifest_check.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+    libs: [
+        "manifest_utils",
+    ],
+    test_options: {
+        unit_test: true,
+    },
+}
+
+python_binary_host {
+    name: "jsonmodify",
+    main: "jsonmodify.py",
+    srcs: [
+        "jsonmodify.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+}
+
+python_binary_host {
+    name: "test_config_fixer",
+    main: "test_config_fixer.py",
+    srcs: [
+        "test_config_fixer.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+    libs: [
+        "manifest_utils",
+    ],
+}
+
+python_test_host {
+    name: "test_config_fixer_test",
+    main: "test_config_fixer_test.py",
+    srcs: [
+        "test_config_fixer_test.py",
+        "test_config_fixer.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+    libs: [
+        "manifest_utils",
+    ],
+    test_suites: ["general-tests"],
+}
+
+python_binary_host {
+    name: "construct_context",
+    main: "construct_context.py",
+    srcs: [
+        "construct_context.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+    libs: [
+        "manifest_utils",
+    ],
+}
+
+python_test_host {
+    name: "construct_context_test",
+    main: "construct_context_test.py",
+    srcs: [
+        "construct_context_test.py",
+        "construct_context.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+    libs: [
+        "manifest_utils",
+    ],
+    test_suites: ["general-tests"],
+}
+
+python_library_host {
+    name: "ninja_rsp",
+    srcs: ["ninja_rsp.py"],
+}
+
+python_binary_host {
+    name: "lint_project_xml",
+    main: "lint_project_xml.py",
+    srcs: [
+        "lint_project_xml.py",
+    ],
+    libs: ["ninja_rsp"],
+}
+
+python_test_host {
+    name: "lint_project_xml_test",
+    main: "lint_project_xml_test.py",
+    srcs: [
+        "lint_project_xml_test.py",
+        "lint_project_xml.py",
+    ],
+    libs: ["ninja_rsp"],
+    test_suites: ["general-tests"],
+}
+
+python_binary_host {
+    name: "gen-kotlin-build-file.py",
+    main: "gen-kotlin-build-file.py",
+    srcs: [
+        "gen-kotlin-build-file.py",
+    ],
+    libs: ["ninja_rsp"],
+}
+
+python_binary_host {
+    name: "conv_linker_config",
+    srcs: [
+        "conv_linker_config.py",
+    ],
+    version: {
+        py2: {
+            enabled: false,
+        },
+        py3: {
+            enabled: true,
+            embedded_launcher: true,
+        },
+    },
+    libs: [
+        "linker_config_proto",
+    ],
+}

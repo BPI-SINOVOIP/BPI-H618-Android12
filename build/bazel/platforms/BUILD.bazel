@@ -1,0 +1,110 @@
+# Common target platforms for Android Platform builds.
+#
+# Platforms represent distinct hardware environments:
+#
+#   - CPU architecture
+#   - Hardware capabilities
+#   - Firmware differences
+#
+# Platforms do NOT represent different software packages, that is the
+# reposibility of the top-level targets being built.
+#
+# These model after the arch and OS definitions in build/soong/android/arch.go.
+
+package(default_visibility = ["//visibility:public"])
+
+# Linux is the OS
+# for the Linux kernel plus the glibc runtime.
+platform(
+    name = "linux_x86",
+    constraint_values = [
+        "//build/bazel/platforms/arch:x86",
+        "//build/bazel/platforms/os:linux",
+    ],
+)
+
+platform(
+    name = "linux_x86_64",
+    constraint_values = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:linux",
+    ],
+)
+
+# linux_bionic is the OS for the Linux kernel plus the Bionic libc runtime, but
+# without the rest of Android.
+platform(
+    name = "linux_bionic_arm64",
+    constraint_values = [
+        "//build/bazel/platforms/arch:arm64",
+        "//build/bazel/platforms/os:linux_bionic",
+    ],
+)
+
+platform(
+    name = "linux_bionic_x86_64",
+    constraint_values = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:linux_bionic",
+    ],
+)
+
+# Darwin is the OS for MacOS host machines.
+platform(
+    name = "darwin_x86_64",
+    constraint_values = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:osx",
+    ],
+)
+
+# Windows is the OS for Windows host machines.
+platform(
+    name = "windows_x86",
+    constraint_values = [
+        "//build/bazel/platforms/arch:x86",
+        "//build/bazel/platforms/os:windows",
+    ],
+)
+
+platform(
+    name = "windows_x86_64",
+    constraint_values = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:windows",
+    ],
+)
+
+# Android is the OS for target devices that run all of Android, including the Linux kernel
+# and the Bionic libc runtime.
+platform(
+    name = "android_arm",
+    constraint_values = [
+        "//build/bazel/platforms/arch:arm",
+        "//build/bazel/platforms/os:android",
+    ],
+)
+
+platform(
+    name = "android_arm64",
+    constraint_values = [
+        "//build/bazel/platforms/arch:arm64",
+        "//build/bazel/platforms/os:android",
+    ],
+)
+
+platform(
+    name = "android_x86",
+    constraint_values = [
+        "//build/bazel/platforms/arch:x86",
+        "//build/bazel/platforms/os:android",
+    ],
+)
+
+platform(
+    name = "android_x86_64",
+    constraint_values = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:android",
+    ],
+)

@@ -1,0 +1,127 @@
+//
+// Copyright (C) 2018 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "art_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["art_license"],
+}
+
+python_binary_host {
+    name: "generate_operator_out",
+    srcs: [
+        "generate_operator_out.py",
+    ],
+    version: {
+        py2: {
+            enabled: true,
+        },
+        py3: {
+            enabled: false,
+        },
+    },
+}
+
+soong_config_module_type_import {
+    from: "art/build/SoongConfig.bp",
+    module_types: [
+        "art_module_sh_binary",
+    ],
+}
+
+// Copy the art shell script to the host and target's bin directory
+art_module_sh_binary {
+    name: "art-script",
+
+    // Disable this script in prebuilt mode since it depends on dalvikvm which
+    // isn't a prebuilt.
+    // TODO(b/172480617): Clean up when sources are gone from the platform tree
+    // and we no longer need to support sources present when prebuilts are used.
+    enabled: false,
+    soong_config_variables: {
+        source_build: {
+            enabled: true,
+        },
+    },
+
+    host_supported: true,
+    src: "art",
+    filename_from_src: true,
+    target: {
+        host: {
+            // On device we require the ART APEX, but its Soong module name may
+            // be different depending on branch, and it's always present anyway,
+            // so we leave it out.
+            required: [
+                "dalvikvm",
+                "dex2oat",
+            ],
+        },
+        darwin: {
+            enabled: false,
+        },
+        windows: {
+            // When the module is enabled globally in the soong_config_variables
+            // stanza above, it gets enabled on windows too. Hence we need to
+            // disable it explicitly.
+            // TODO(b/172480617): Clean up with that.
+            enabled: false,
+        },
+    },
+}
+
+sh_binary {
+    name: "dex2oat-script",
+    host_supported: true,
+    src: "dex2oat_wrapper",
+    filename_from_src: true,
+    target: {
+        host: {
+            // On device we require the ART APEX, but its Soong module name may
+            // be different depending on branch, and it's always present anyway,
+            // so we leave it out.
+            required: [
+                "dex2oat",
+            ],
+        },
+        darwin: {
+            enabled: false,
+        },
+    },
+}
+
+python_binary_host {
+    name: "art-run-test-checker",
+    srcs: [
+        "checker/**/*.py",
+    ],
+    main: "checker/checker.py",
+    version: {
+        py2: {
+            enabled: false,
+        },
+        py3: {
+            enabled: true,
+        },
+    },
+    test_suites: [
+        "general-tests",
+        "mts",
+    ],
+}

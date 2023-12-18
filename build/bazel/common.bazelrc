@@ -1,0 +1,82 @@
+# Platforms and toolchains for AOSP.
+#
+# Set a default target platform for builds.
+build --platforms //build/bazel/platforms:android_x86_64
+
+# # Use toolchain resolution to find the cc toolchain.
+build --incompatible_enable_cc_toolchain_resolution
+
+# Ensure that the host_javabase always use @local_jdk, the checked-in JDK.
+build --tool_java_runtime_version=local_jdk
+
+# Lock down the PATH variable in actions to /usr/bin and /usr/local/bin.
+build --experimental_strict_action_env
+
+# Explicitly allow unresolved symlinks (it's an experimental Bazel feature)
+build --experimental_allow_unresolved_symlinks
+
+# Enable usage of cc_shared_library build APIs
+build --experimental_cc_shared_library
+
+# Do not tokenize copts, other than strings that consist of a single Make
+# variable.  This prevents the need to double-escape characters like backslashes
+# and quotes in copts.
+build --features no_copts_tokenization
+
+# Disable middleman actions
+build --noexperimental_enable_aggregating_middleman
+
+# Disable local cpp toolchain detection, as it is explicitly declared in AOSP.
+build --action_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
+
+# Disable sandboxing for CppCompile actions, as headers are not fully specified.
+# TODO(b/186116353): This is a temporary fix, as appropriately-sandboxed actions
+# are a long term goal.
+build --strategy=CppCompile=standalone
+
+# Enable building targets in //external:__subpackages__.
+common --experimental_sibling_repository_layout
+common --experimental_disable_external_package
+
+# Enable toplevel_output_directories and Ninja executor in Bazel
+common --experimental_ninja_actions
+
+# Increase refresh rate of command line UI for improved perceived responsiveness.
+common --show_progress_rate_limit=0.05
+
+# These are disabled when running under soong_ui (default = auto). Force enable them here.
+common --color=yes
+common --curses=yes
+
+# Show the full set of flags for observability and debuggability.
+common --announce_rc
+
+# Run bazel query from the workspace, without cd'ing into out/soong/queryview
+# Note that this hardcodes the output dir. It will not work if $OUT_DIR != out.
+common:queryview --package_path=%workspace%/out/soong/queryview
+
+# Run bazel query from the workspace, without cd'ing into out/soong/workspace
+# Note that this hardcodes the output dir. It will not work if $OUT_DIR != out.
+common:bp2build --package_path=%workspace%/out/soong/workspace
+
+# Support a local user-specific bazelrc file.
+try-import %workspace%/user.bazelrc
+
+build --android_sdk=//prebuilts/sdk:android_sdk
+build --experimental_enable_android_migration_apis
+build --experimental_google_legacy_api
+build --incompatible_java_common_parameters
+build --android_databinding_use_v3_4_args
+build --experimental_android_databinding_v2
+
+# Developer instance for result storage. This only works if you have access
+# to the Bazel GCP project. Follow the GCP gcloud client's auth instructions to
+# use --google_default_credentials.
+build:results --remote_instance_name=projects/bazel-untrusted/instances/default_instance
+build:results --project_id=bazel-untrusted
+build:results --remote_timeout=600
+build:results --google_default_credentials
+build:results --test_summary=detailed
+build:results --bes_backend=buildeventservice.googleapis.com
+build:results --bes_results_url=https://source.cloud.google.com/results/invocations
+build:results --show_progress_rate_limit=5

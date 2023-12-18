@@ -1,0 +1,118 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+subdirs = [
+    "androidmk",
+    "bpfix",
+    "cmd/*",
+    "fs",
+    "finder",
+    "jar",
+    "zip",
+    "third_party/zip",
+    "ui/*",
+]
+
+bootstrap_go_package {
+    name: "soong",
+    pkgPath: "android/soong",
+    deps: [
+        "blueprint",
+    ],
+    srcs: [
+        "doc.go",
+    ],
+}
+
+//
+// Defaults to enable various configurations of host bionic
+//
+
+cc_defaults {
+    name: "linux_bionic_supported",
+    host_supported: true,
+    target: {
+        host: {
+            enabled: false,
+        },
+        linux_bionic: {
+            enabled: true,
+        },
+    },
+}
+
+//
+// C static libraries extracted from the gcc toolchain
+//
+
+toolchain_library {
+    name: "libwinpthread",
+    host_supported: true,
+    enabled: false,
+    target: {
+        windows: {
+            enabled: true,
+        },
+        windows_x86: {
+            src: "prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8/x86_64-w64-mingw32/lib32/libwinpthread.a",
+        },
+        windows_x86_64: {
+            src: "prebuilts/gcc/linux-x86/host/x86_64-w64-mingw32-4.8/x86_64-w64-mingw32/lib/libwinpthread.a",
+        },
+    },
+    notice: ":mingw-libwinpthread-notice",
+}
+
+kernel_headers {
+    name: "device_kernel_headers",
+    vendor: true,
+    recovery_available: true,
+}
+
+cc_genrule {
+    name: "host_bionic_linker_asm",
+    host_supported: true,
+    device_supported: false,
+    target: {
+        linux_bionic: {
+            enabled: true,
+        },
+        linux_glibc: {
+            enabled: false,
+        },
+        darwin: {
+            enabled: false,
+        },
+    },
+    tools: ["extract_linker"],
+    cmd: "$(location) -s $(out) $(in)",
+    srcs: [":linker"],
+    out: ["linker.s"],
+}
+
+cc_genrule {
+    name: "host_bionic_linker_flags",
+    host_supported: true,
+    device_supported: false,
+    target: {
+        linux_bionic: {
+            enabled: true,
+        },
+        linux_glibc: {
+            enabled: false,
+        },
+        darwin: {
+            enabled: false,
+        },
+    },
+    tools: ["extract_linker"],
+    cmd: "$(location) -f $(out) $(in)",
+    srcs: [":linker"],
+    out: ["linker.flags"],
+}
+
+// Instantiate the dex_bootjars singleton module.
+dex_bootjars {
+    name: "dex_bootjars",
+}

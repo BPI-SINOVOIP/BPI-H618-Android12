@@ -1,0 +1,171 @@
+// Shared library for target
+// ========================================================
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "art_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["art_license"],
+}
+
+cc_defaults {
+    name: "libnativeloader-defaults",
+    defaults: ["art_defaults"],
+    header_libs: ["libnativeloader-headers"],
+    export_header_lib_headers: ["libnativeloader-headers"],
+}
+
+art_cc_library {
+    name: "libnativeloader",
+    defaults: ["libnativeloader-defaults"],
+    visibility: [
+        "//frameworks/base/cmds/app_process",
+        // TODO(b/133140750): Clean this up.
+        "//frameworks/base/native/webview/loader",
+    ],
+    apex_available: [
+        "com.android.art",
+        "com.android.art.debug",
+    ],
+    host_supported: true,
+    srcs: [
+        "native_loader.cpp",
+    ],
+    header_libs: [
+        "libnativehelper_header_only",
+    ],
+    shared_libs: [
+        "liblog",
+        "libnativebridge",
+        "libbase",
+    ],
+    target: {
+        // Library search path needed for running host tests remotely (from testcases directory).
+        linux_glibc_x86: {
+            ldflags: [
+                "-Wl,-rpath,$ORIGIN/../art_common/out/host/linux-x86/lib",
+                "-Wl,--enable-new-dtags",
+            ],
+        },
+        linux_glibc_x86_64: {
+            ldflags: [
+                "-Wl,-rpath,$ORIGIN/../art_common/out/host/linux-x86/lib64",
+                "-Wl,--enable-new-dtags",
+            ],
+        },
+        android: {
+            srcs: [
+                "library_namespaces.cpp",
+                "native_loader_namespace.cpp",
+                "public_libraries.cpp",
+            ],
+            shared_libs: [
+                "libdl_android",
+            ],
+            static_libs: [
+                "PlatformProperties",
+            ],
+        },
+    },
+    stubs: {
+        symbol_file: "libnativeloader.map.txt",
+        versions: ["1"],
+    },
+}
+
+// TODO(b/124250621) eliminate the need for this library
+cc_library {
+    name: "libnativeloader_lazy",
+    defaults: ["libnativeloader-defaults"],
+    visibility: [
+        "//frameworks/base/core/jni",
+        "//frameworks/native/opengl/libs",
+        "//frameworks/native/vulkan/libvulkan",
+    ],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.media",
+        "com.android.media.swcodec",
+    ],
+    host_supported: false,
+    srcs: ["native_loader_lazy.cpp"],
+    runtime_libs: ["libnativeloader"],
+    shared_libs: ["liblog"],
+}
+
+cc_library_headers {
+    name: "libnativeloader-headers",
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.art",
+        "com.android.art.debug",
+        "com.android.media",
+    ],
+    min_sdk_version: "S",
+    visibility: [
+        "//art:__subpackages__",
+        // TODO(b/133140750): Clean this up.
+        "//frameworks/av/media/libstagefright",
+        "//frameworks/native/libs/graphicsenv",
+        "//frameworks/native/vulkan/libvulkan",
+    ],
+    host_supported: true,
+    export_include_dirs: ["include"],
+    header_libs: ["jni_headers"],
+    export_header_lib_headers: ["jni_headers"],
+}
+
+cc_defaults {
+    name: "libnativeloader-test-defaults",
+    defaults: [
+        "art_module_source_build_defaults",
+        "art_test_defaults",
+    ],
+    host_supported: false,
+
+    cflags: ["-DANDROID"],
+
+    // The tests mock libdl_android and libnativebridge symbols, so export them
+    // to override the ones loaded from their libs.
+    ldflags: [
+        "-Wl,--export-dynamic-symbol=android_*",
+        "-Wl,--export-dynamic-symbol=NativeBridge*",
+    ],
+
+    header_libs: [
+        "libnativebridge-headers",
+        "libnativehelper_header_only",
+    ],
+    static_libs: [
+        "libgmock",
+    ],
+    shared_libs: [
+        "libbase",
+    ],
+
+    test_suites: ["device-tests"],
+}
+
+art_cc_test {
+    name: "libnativeloader_test",
+    defaults: ["libnativeloader-test-defaults"],
+    srcs: [
+        "native_loader_api_test.c",
+        "native_loader_test.cpp",
+    ],
+    shared_libs: [
+        "libnativeloader",
+    ],
+}
+
+art_cc_test {
+    name: "libnativeloader_lazy_test",
+    defaults: ["libnativeloader-test-defaults"],
+    srcs: [
+        "native_loader_lazy_test.cpp",
+    ],
+    static_libs: [
+        "libnativeloader_lazy",
+    ],
+}
