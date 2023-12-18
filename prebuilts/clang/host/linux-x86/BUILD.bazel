@@ -1,0 +1,227 @@
+# NOTE: THIS FILE IS EXPERIMENTAL FOR THE BAZEL MIGRATION AND NOT USED FOR
+# YOUR BUILDS CURRENTLY.
+#
+# It is not yet the source of truth for your build. If you're looking to modify
+# the build file, modify the Android.bp file instead. Do *not* modify this file
+# unless you have coordinated with the team managing the Soong to Bazel
+# migration.
+
+package(default_visibility = ["//visibility:public"])
+
+# Toolchain config
+filegroup(name = "empty")
+
+load(":cc_toolchain_config.bzl", "android_cc_toolchain", "clang_version")
+load(":clang_version.bzl", "DEFAULT_SHORT_VERSION", "DEFAULT_VERSION")
+
+# Different clang versions are configured here.
+clang_version(
+    name = "clang",
+    directory = DEFAULT_VERSION,
+    includes = [
+        "lib64/clang/%s/include" % DEFAULT_SHORT_VERSION,
+    ],
+)
+
+# x86_64 toolchain definition.
+android_cc_toolchain(
+    name = "cc_toolchain_x86_64",
+    clang_version = ":clang",
+    clang_version_directory = DEFAULT_VERSION,
+    target_flags = [
+        "-m64",
+        "-march=x86-64",
+        "--target=x86_64-linux-android10000",
+        "-mssse3",
+        "-msse4",
+        "-msse4.1",
+        "-msse4.2",
+        "-mpopcnt",
+    ],
+    toolchain_identifier = "x86_64-toolchain",
+)
+
+toolchain(
+    name = "cc_toolchain_x86_64_def",
+    exec_compatible_with = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:linux",
+    ],
+    target_compatible_with = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:android",
+    ],
+    toolchain = ":cc_toolchain_x86_64",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+# Toolchain to compile for the linux host.
+# TODO(b/186628704): automatically generate from Soong.
+android_cc_toolchain(
+    name = "cc_toolchain_x86_64_linux_host",
+    clang_version = ":clang",
+    clang_version_directory = DEFAULT_VERSION,
+    target_flags = [
+        "-m64",
+        "-fdiagnostics-color",
+        "-Wa,--noexecstack",
+        "-fPIC",
+        "-U_FORTIFY_SOURCE",
+        "-D_FORTIFY_SOURCE=2",
+        "-fstack-protector",
+        # Workaround differences in inttypes.h between host and target.
+        # See bug 12708004.
+        "-D__STDC_FORMAT_MACROS",
+        "-D__STDC_CONSTANT_MACROS",
+    ],
+    linker_flags = [
+        "-m64",
+        "-Wl,-z,noexecstack",
+        "-Wl,-z,relro",
+        "-Wl,-z,now",
+        "-Wl,--no-undefined-version",
+    ],
+    toolchain_identifier = "x86_64-toolchain",
+)
+
+# TODO(b/181803350): Fix linux toolchain flag set, as the current flags are for android.
+toolchain(
+    name = "cc_toolchain_x86_64_linux_host_def",
+    exec_compatible_with = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:linux",
+    ],
+    target_compatible_with = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:linux",
+    ],
+    toolchain = ":cc_toolchain_x86_64_linux_host",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+# x86 toolchain definition.
+android_cc_toolchain(
+    name = "cc_toolchain_x86",
+    clang_version = ":clang",
+    clang_version_directory = DEFAULT_VERSION,
+    linker_flags = [
+        "-Wl,-dynamic-linker,/system/bin/linker",
+    ],
+    target_flags = [
+        "--target=i686-linux-android10000",
+        "-m32",
+        "-march=prescott",
+        "-msse3",
+        "-mstackrealign",
+    ],
+    toolchain_identifier = "x86-toolchain",
+)
+
+toolchain(
+    name = "cc_toolchain_x86_def",
+    exec_compatible_with = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:linux",
+    ],
+    target_compatible_with = [
+        "//build/bazel/platforms/arch:x86",
+        "//build/bazel/platforms/os:android",
+    ],
+    toolchain = ":cc_toolchain_x86",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+# arm64 toolchain definition.
+android_cc_toolchain(
+    name = "cc_toolchain_arm64",
+    clang_version = ":clang",
+    clang_version_directory = DEFAULT_VERSION,
+    linker_flags = [
+        # Obtained from build/soong/rust/config/arm64_device.go
+        "-Wl,--icf=safe",
+        "-Wl,-z,max-page-size=4096",
+        "-Wl,--execute-only",
+        "-Wl,-z,separate-code",
+    ],
+    target_flags = [
+        "--target=aarch64-linux-android10000",
+        "-march=armv8-a",
+    ],
+    toolchain_identifier = "arm64-toolchain",
+)
+
+toolchain(
+    name = "cc_toolchain_arm64_def",
+    exec_compatible_with = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:linux",
+    ],
+    target_compatible_with = [
+        "//build/bazel/platforms/arch:arm64",
+        "//build/bazel/platforms/os:android",
+    ],
+    toolchain = ":cc_toolchain_arm64",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+# arm32 toolchain definition.
+android_cc_toolchain(
+    name = "cc_toolchain_arm32",
+    clang_version = ":clang",
+    clang_version_directory = DEFAULT_VERSION,
+    linker_flags = [
+        "-Wl,-dynamic-linker,/system/bin/linker",
+    ],
+    target_flags = [
+        "--target=armv7a-linux-androideabi10000",
+        "-march=armv7-a",
+        "-mfpu=neon",
+        "-msoft-float",
+        "-mfloat-abi=softfp",
+        "-mthumb",
+        "-fomit-frame-pointer",
+    ],
+    toolchain_identifier = "arm-toolchain",
+)
+
+toolchain(
+    name = "cc_toolchain_arm32_def",
+    exec_compatible_with = [
+        "//build/bazel/platforms/arch:x86_64",
+        "//build/bazel/platforms/os:linux",
+    ],
+    target_compatible_with = [
+        "//build/bazel/platforms/arch:arm",
+        "//build/bazel/platforms/os:android",
+    ],
+    toolchain = ":cc_toolchain_arm32",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+cc_toolchain_suite(
+    name = "android_toolchain_suite",
+    toolchains = {
+        "x86_64": "cc_toolchain_x86_64",
+        "x86": "cc_toolchain_x86",
+        "arm64": "cc_toolchain_arm64",
+        "arm32": "cc_toolchain_arm32",
+    },
+)
+
+_LIBCLANG_RT_PREFIX = "%s/lib64/clang/%s/lib/linux" % (DEFAULT_VERSION, DEFAULT_SHORT_VERSION)
+
+cc_import(
+    name = "libclang_rt",
+    static_library = select({
+        "//build/bazel/platforms/arch:arm": _LIBCLANG_RT_PREFIX + "/libclang_rt.builtins-arm-android.a",
+        "//build/bazel/platforms/arch:arm64": _LIBCLANG_RT_PREFIX + "/libclang_rt.builtins-aarch64-android.a",
+        "//build/bazel/platforms/arch:x86": _LIBCLANG_RT_PREFIX + "/libclang_rt.builtins-i386.a",
+        "//build/bazel/platforms/arch:x86_64": _LIBCLANG_RT_PREFIX + "/libclang_rt.builtins-x86_64-android.a",
+    }),
+)
+
+alias(
+    name = "llvm-ar",
+    actual = DEFAULT_VERSION + "/bin/llvm-ar",
+    visibility = ["//visibility:public"],
+)
