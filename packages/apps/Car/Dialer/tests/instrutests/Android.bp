@@ -1,0 +1,31 @@
+//############################################################
+// Car Dialer Instrumented test target.                      #
+//############################################################
+// Install CarDialerAppForTesting target before running this test.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_test {
+    name: "CarDialerInstruTests",
+
+    srcs: ["src/**/*.java"],
+
+    test_suites:["device-tests"],
+
+    static_libs: [
+        "androidx.test.ext.junit",
+        "androidx.test.runner",
+        "androidx.test.rules",
+        "androidx.test.espresso.core",
+        "androidx.test.espresso.contrib",
+        "androidx.test.espresso.intents",
+        "hilt_android_testing",
+        "mockito-target-extended",
+    ],
+
+    jni_libs: ["libstaticjvmtiagent"],
+
+    instrumentation_for: "CarDialerAppForTesting",
+}

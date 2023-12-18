@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.os.Parcel#writeBoolean`"
+        errorLine1="        dest.writeBoolean(mIsStarred);"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-telephony-common/src/com/android/car/telephony/common/Contact.java"
+            line="577"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.os.Parcel#writeBoolean`"
+        errorLine1="        dest.writeBoolean(mIsVoiceMail);"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-telephony-common/src/com/android/car/telephony/common/Contact.java"
+            line="580"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.os.Parcel#readBoolean`"
+        errorLine1="        contact.mIsStarred = source.readBoolean();"
+        errorLine2="                                    ~~~~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-telephony-common/src/com/android/car/telephony/common/Contact.java"
+            line="622"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.os.Parcel#readBoolean`"
+        errorLine1="        contact.mIsVoiceMail = source.readBoolean();"
+        errorLine2="                                      ~~~~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-telephony-common/src/com/android/car/telephony/common/Contact.java"
+            line="625"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.os.Parcel#writeBoolean`"
+        errorLine1="        dest.writeBoolean(mIsPrimary);"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-telephony-common/src/com/android/car/telephony/common/PhoneNumber.java"
+            line="241"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.os.Parcel#writeBoolean`"
+        errorLine1="        dest.writeBoolean(mIsFavorite);"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-telephony-common/src/com/android/car/telephony/common/PhoneNumber.java"
+            line="246"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.os.Parcel#readBoolean`"
+        errorLine1="            boolean isPrimary = source.readBoolean();"
+        errorLine2="                                       ~~~~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-telephony-common/src/com/android/car/telephony/common/PhoneNumber.java"
+            line="256"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.os.Parcel#readBoolean`"
+        errorLine1="            phoneNumber.setIsFavorite(source.readBoolean());"
+        errorLine2="                                             ~~~~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-telephony-common/src/com/android/car/telephony/common/PhoneNumber.java"
+            line="263"
+            column="46"/>
+    </issue>
+
+</issues>

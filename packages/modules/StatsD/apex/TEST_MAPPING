@@ -1,0 +1,24 @@
+{
+  "mainline-presubmit" : [
+    {
+      "name" : "FrameworkStatsdTest[com.google.android.os.statsd.apex]"
+    }
+  ],
+  "presubmit" : [
+    {
+      "name" : "FrameworkStatsdTest"
+    },
+    {
+      "name" : "LibStatsPullTests"
+    }
+  ],
+
+  "postsubmit" : [
+    {
+      "name" : "CtsStatsdHostTestCases"
+    },
+    {
+      "name" : "GtsStatsdHostTestCases"
+    }
+  ]
+}

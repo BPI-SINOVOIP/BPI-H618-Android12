@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (c) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hvac_min_text" msgid="866677328637088715">"Ελάχ."</string>
+    <string name="hvac_max_text" msgid="7627950157128770380">"Μεγ."</string>
+    <string name="voice_recognition_toast" msgid="7579725862117020349">"Φωνητική αναγνωση από συνδεδεμένη συσκευή Bluetooth"</string>
+    <string name="car_guest" msgid="768913000117469596">"Επισκέπτης"</string>
+    <string name="start_guest_session" msgid="2759367183497948650">"Επισκέπτης"</string>
+    <string name="car_add_user" msgid="8660226923614358478">"Προσθήκη χρήστη"</string>
+    <string name="car_new_user" msgid="304628168515673432">"Νέος χρήστης"</string>
+    <string name="user_add_user_message_setup" msgid="2130987756494836929">"Κατά την προσθήκη ενός νέου χρήστη, αυτός θα πρέπει να ρυθμίσει τον χώρο του."</string>
+    <string name="user_add_user_message_update" msgid="1001907075316748931">"Οποιοσδήποτε χρήστης μπορεί να ενημερώσει τις εφαρμογές για όλους τους άλλους χρήστες."</string>
+    <string name="car_loading_profile" msgid="458961191993686065">"Φόρτωση"</string>
+    <string name="car_loading_profile_developer_message" msgid="737810794567935702">"Φόρτωση χρήστη (από <xliff:g id="FROM_USER">%1$d</xliff:g> έως <xliff:g id="TO_USER">%2$d</xliff:g>)"</string>
+    <string name="mic_privacy_chip_off_content" msgid="4989623700063721557">"Το μικρόφωνο είναι απενεργοποιημένο."</string>
+    <string name="mic_privacy_chip_mic_enabled" msgid="5667789064187849349">"Το μικρόφωνο είναι ενεργοποιημένο"</string>
+    <string name="mic_privacy_chip_mic_enabled_subtext" msgid="815124399469247109">"Οι εφαρμογές μπορούν να αποκτήσουν πρόσβαση στο μικρόφωνο"</string>
+    <string name="mic_privacy_chip_mic_disabled" msgid="2709173475947157320">"Το μικρόφωνο είναι απενεργοποιημένο"</string>
+    <string name="mic_privacy_chip_mic_disabled_subtext" msgid="9059745506470016701">"Καμία εφαρμογή δεν έχει πρόσβαση στο μικρόφωνο"</string>
+    <string name="mic_privacy_chip_privacy_settings" msgid="719293067082198224">"Ρυθμίσεις απορρήτου"</string>
+    <string name="mic_privacy_chip_app_using_mic_suffix" msgid="8355462601492180023">"Η εφαρμ. <xliff:g id="APP">%s</xliff:g> χρησιμοπ. το μικρόφ."</string>
+    <string name="mic_privacy_chip_apps_using_mic_suffix" msgid="6656026041668305817">"Οι εφαρμογές <xliff:g id="APP_LIST">%s</xliff:g> χρησιμ. το μικρόφ."</string>
+    <string name="mic_privacy_chip_app_recently_used_mic_suffix" msgid="1819299821245419382">"Η εφαρμογή <xliff:g id="APP">%s</xliff:g> χρησιμοποίησε πρόσφατα το μικρόφωνο"</string>
+    <string name="mic_privacy_chip_on_toast" msgid="7003896860896586181">"Το μικρόφωνο ενεργοποιήθηκε"</string>
+    <string name="mic_privacy_chip_off_toast" msgid="8718743873640788032">"Το μικρόφωνο απενεργοποιήθηκε"</string>
+    <string name="mic_privacy_chip_dialog_title_mic" msgid="3782090299882049010">"Πρόσφατη χρήση μικροφώνου"</string>
+    <string name="mic_privacy_chip_dialog_ok" msgid="2298690833121720237">"ΟΚ"</string>
+</resources>

@@ -1,0 +1,77 @@
+// Copyright (C) 2021 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_library {
+    name: "car-rotary-lib",
+
+    sdk_version: "current",
+    min_sdk_version: "28",
+    target_sdk_version: "30",
+
+    manifest: "src/main/AndroidManifest.xml",
+    srcs: ["src/main/java/**/*.java"],
+    resource_dirs: [
+        "src/main/res",
+        "src/main/res-overlayable",
+    ],
+    optimize: {
+        enabled: false,
+    },
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.recyclerview_recyclerview",
+    ],
+    apex_available: [
+        "com.android.permission",
+        "//apex_available:platform",
+    ],
+}
+
+android_test {
+    name: "CarRotaryLibUnitTests",
+    certificate: "platform",
+    libs: [
+        "android.test.runner",
+        "android.test.base",
+        "android.car-stubs",
+        "android.test.mock.stubs"
+    ],
+    manifest: "src/androidTest/AndroidManifest.xml",
+    resource_dirs: ["src/androidTest/res"],
+    // Include all test java files.
+    srcs: ["src/androidTest/java/**/*.java"],
+    static_libs: [
+        "androidx.test.rules",
+        "androidx.test.espresso.core",
+        "androidx.test.espresso.contrib",
+        "androidx.test.ext.junit",
+        "car-rotary-lib",
+        "car-ui-lib",
+        "platform-test-annotations",
+        "mockito-target-inline-minus-junit4",
+        "truth-prebuilt",
+    ],
+    jni_libs: [
+        // For mockito extended
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
+    ],
+
+    platform_apis: true,
+    test_suites: ["device-tests"],
+}

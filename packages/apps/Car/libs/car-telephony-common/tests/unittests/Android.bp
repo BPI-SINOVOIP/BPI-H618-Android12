@@ -1,0 +1,23 @@
+//############################################################
+// Car car-telephony-common test target.                              #
+//############################################################
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_test {
+    name: "CarTelephonyLibTests",
+
+    srcs: ["src/**/*.java"],
+
+    static_libs: [
+        "androidx.test.core",
+        "androidx.test.rules",
+        "androidx.test.runner",
+        "androidx.test.ext.junit",
+        "truth-prebuilt",
+        "mockito-target-minus-junit4",
+    ],
+
+    instrumentation_for: "CarTelephonyLibTestsApp",
+}

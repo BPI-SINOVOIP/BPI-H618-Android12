@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2020 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Message history -->
+    <style name="TextAppearance.MessageHistoryTitle" parent="TextAppearance.Body1" />
+
+    <style name="TextAppearance.MessageHistorySubtitle" parent="TextAppearance.Body3">
+        <item name="android:textColor">@color/secondary_text_color</item>
+    </style>
+    <!-- Customized text color for unread messages can be added here -->
+    <style name="TextAppearance.MessageHistoryUnreadTitle"
+        parent="TextAppearance.MessageHistoryTitle">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.MessageHistoryUnreadSubtitle"
+        parent="TextAppearance.MessageHistorySubtitle">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.Button" parent="android:Widget.DeviceDefault.Button">
+        <item name="android:ellipsize">none</item>
+        <item name="android:requiresFadingEdge">horizontal</item>
+    </style>
+
+    <style name="LoadingInfoMessageStyle" parent="FullScreenErrorMessageStyle">
+        <item name="android:textAppearance">@style/TextAppearance.Display3</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="LoadingInfoSecondaryMessageStyle" parent="FullScreenErrorMessageStyle">
+        <item name="android:textAppearance">@style/TextAppearance.Body2</item>
+    </style>
+
+    <style name="LoadingInfoActionButtonStyle" parent="FullScreenErrorButtonStyle">
+        <item name="android:textAppearance">@style/TextAppearance.Body3</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- Styles for text. Sub1-3 are not included here as their use should be exceptional -->
+    <style name="TextAppearance">
+        <item name="android:fontFamily">roboto-regular</item>
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="TextAppearance.Display3" parent="TextAppearance">
+        <item name="android:textSize">36sp</item>
+        <item name="android:letterSpacing">@dimen/letter_spacing_display3</item>
+    </style>
+
+    <style name="TextAppearance.Body1" parent="TextAppearance">
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">@dimen/letter_spacing_body1</item>
+    </style>
+
+    <style name="TextAppearance.Body2" parent="TextAppearance">
+        <item name="android:textSize">28sp</item>
+        <item name="android:letterSpacing">@dimen/letter_spacing_body2</item>
+    </style>
+
+    <style name="TextAppearance.Body3" parent="TextAppearance">
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">@dimen/letter_spacing_body3</item>
+    </style>
+
+    <!-- Styles for ControlBar -->
+    <style name="FullScreenErrorMessageStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Body1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxWidth">@dimen/dialog_max_width</item>
+    </style>
+
+    <style name="FullScreenErrorButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/hero_button_height</item>
+        <item name="android:textAppearance">@style/TextAppearance.Body1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:maxWidth">@dimen/hero_button_max_width</item>
+        <item name="android:minWidth">@dimen/hero_button_min_width</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/hero_button_background</item>
+        <item name="android:textColor">@color/hero_button_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingHorizontal">@dimen/hero_button_corner_radius</item>
+    </style>
+</resources>

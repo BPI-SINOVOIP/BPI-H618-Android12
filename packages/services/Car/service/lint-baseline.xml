@@ -1,0 +1,1698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.view.WindowManager#getCurrentWindowMetrics`"
+        errorLine1="                .getCurrentWindowMetrics()"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="229"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.view.WindowMetrics#getWindowInsets`"
+        errorLine1="                .getWindowInsets()"
+        errorLine2="                 ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="230"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.view.WindowInsets#getInsets`"
+        errorLine1="                .getInsets(WindowInsets.Type.systemBars());"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="231"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.view.WindowInsets.Type#systemBars`"
+        errorLine1="                .getInsets(WindowInsets.Type.systemBars());"
+        errorLine2="                                             ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="231"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.view.WindowManager#getCurrentWindowMetrics`"
+        errorLine1="        Rect displayBounds = getWindowManager().getCurrentWindowMetrics().getBounds();"
+        errorLine2="                                                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="233"
+            column="49"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.view.WindowMetrics#getBounds`"
+        errorLine1="        Rect displayBounds = getWindowManager().getCurrentWindowMetrics().getBounds();"
+        errorLine2="                                                                          ~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="233"
+            column="75"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#left`"
+        errorLine1="        int leftX = systemBarInsets.left;"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="235"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#right`"
+        errorLine1="        int rightX = displayBounds.width() - systemBarInsets.right;"
+        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="236"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#top`"
+        errorLine1="        int topY = systemBarInsets.top;"
+        errorLine2="                   ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="237"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#bottom`"
+        errorLine1="        int bottomY = displayBounds.height() - systemBarInsets.bottom;"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/ActivityBlockingActivity.java"
+            line="238"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.content.Context#bindServiceAsUser`"
+        errorLine1="        mContext.bindServiceAsUser(intent, this, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT,"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/AppBlockingPolicyProxy.java"
+            line="83"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="            if (mFocusOwners.contains(appType)) {"
+        errorLine2="                             ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/AppFocusService.java"
+            line="211"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="            if (mFocusOwners.contains(appType)) {"
+        errorLine2="                             ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/AppFocusService.java"
+            line="281"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.String#join`"
+        errorLine1="            Slog.d(TAG, String.join(&quot; &quot;, msgParts));"
+        errorLine2="                               ~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/BluetoothDeviceConnectionPolicy.java"
+            line="416"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.os.Handler#postDelayed`"
+        errorLine1="            mHandler.postDelayed(() -> {"
+        errorLine2="                     ~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/BluetoothProfileDeviceManager.java"
+            line="662"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.os.Handler#postDelayed`"
+        errorLine1="                mHandler.postDelayed("
+        errorLine2="                         ~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/BluetoothProfileInhibitManager.java"
+            line="521"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `new android.app.Notification.Builder`"
+        errorLine1="                new Notification.Builder(mContext, NotificationChannel.DEFAULT_CHANNEL_ID)"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CanBusErrorNotifier.java"
+            line="91"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="        return mAudioDeviceInfo.getAddress();"
+        errorLine2="                                ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioDeviceInfo.java"
+            line="82"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="        return &quot;address: &quot; + mAudioDeviceInfo.getAddress()"
+        errorLine2="                                              ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioDeviceInfo.java"
+            line="225"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="        writer.printf(&quot;CarAudioDeviceInfo Device(%s)\n&quot;, mAudioDeviceInfo.getAddress());"
+        errorLine2="                                                                          ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioDeviceInfo.java"
+            line="235"
+            column="75"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Class requires API level 26 (current min is 25): `android.media.AudioManager.AudioPlaybackCallback`"
+        errorLine1="final class CarAudioPlaybackCallback extends AudioManager.AudioPlaybackCallback {"
+        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioPlaybackCallback.java"
+            line="37"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `android.media.AudioPlaybackConfiguration#getAudioDeviceInfo`"
+        errorLine1="                    .isAudioDeviceInfoValidForZone(configuration.getAudioDeviceInfo())) {"
+        errorLine2="                                                                 ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioPlaybackCallback.java"
+            line="116"
+            column="66"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="                        configuration.getAudioDeviceInfo().getAddress(), configuration);"
+        errorLine2="                                                           ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioPlaybackCallback.java"
+            line="118"
+            column="60"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `android.media.AudioPlaybackConfiguration#getAudioDeviceInfo`"
+        errorLine1="                        configuration.getAudioDeviceInfo().getAddress(), configuration);"
+        errorLine2="                                      ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioPlaybackCallback.java"
+            line="118"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioManager#getStreamMinVolume`"
+        errorLine1="                return mAudioManager.getStreamMinVolume("
+        errorLine2="                                     ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioService.java"
+            line="492"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.media.AudioManager#registerAudioPlaybackCallback`"
+        errorLine1="        mAudioManager.registerAudioPlaybackCallback(mCarAudioPlaybackCallback, null);"
+        errorLine2="                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioService.java"
+            line="652"
+            column="23"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="                        String address = info.getAddress();"
+        errorLine2="                                              ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioService.java"
+            line="742"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="            if (sourceAddress.equals(info.getAddress())) {"
+        errorLine2="                                          ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioService.java"
+            line="779"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.media.AudioManager#getActivePlaybackConfigurations`"
+        errorLine1="                .getActivePlaybackConfigurations();"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioService.java"
+            line="954"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="            return mCarAudioZones.contains(zoneId);"
+        errorLine2="                                  ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioService.java"
+            line="1505"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="        Preconditions.checkArgument(mCarAudioZones.contains(zoneId),"
+        errorLine2="                                                   ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioService.java"
+            line="1523"
+            column="52"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `android.media.AudioPlaybackConfiguration#getAudioDeviceInfo`"
+        errorLine1="                if (isAudioDeviceInfoValidForZone(configuration.getAudioDeviceInfo())) {"
+        errorLine2="                                                                ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZone.java"
+            line="216"
+            column="65"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.media.AudioPlaybackConfiguration#getAudioAttributes`"
+        errorLine1="                            configuration.getAudioAttributes().getSystemUsage()));"
+        errorLine2="                                          ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZone.java"
+            line="220"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="                &amp;&amp; info.getAddress() != null"
+        errorLine2="                        ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZone.java"
+            line="229"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="                &amp;&amp; !info.getAddress().isEmpty()"
+        errorLine2="                         ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZone.java"
+            line="230"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="                &amp;&amp; containsDeviceAddress(info.getAddress());"
+        errorLine2="                                              ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZone.java"
+            line="231"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.media.AudioDeviceInfo#getAddress`"
+        errorLine1="                deviceAddressToInputDeviceMap.put(device.getAddress(), device);"
+        errorLine2="                                                         ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZonesHelper.java"
+            line="185"
+            column="58"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="        if (newZone.getId() == PRIMARY_AUDIO_ZONE &amp;&amp; zones.contains(PRIMARY_AUDIO_ZONE)) {"
+        errorLine2="                                                           ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZonesHelper.java"
+            line="244"
+            column="60"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="        if (!zones.contains(PRIMARY_AUDIO_ZONE)) {"
+        errorLine2="                   ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZonesHelper.java"
+            line="251"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.Integer#parseUnsignedInt`"
+        errorLine1="            return Integer.parseUnsignedInt(integerString);"
+        errorLine2="                           ~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarAudioZonesHelper.java"
+            line="329"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.os.RemoteCallbackList#getRegisteredCallbackItem`"
+        errorLine1="                        mDrivingStateClients.getRegisteredCallbackItem(i);"
+        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarDrivingStateService.java"
+            line="130"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.String#join`"
+        errorLine1="                String.join(&quot;, &quot;, mAddressesToDuck));"
+        errorLine2="                       ~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarDuckingInfo.java"
+            line="67"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.String#join`"
+        errorLine1="                String.join(&quot;, &quot;, mAddressesToUnduck));"
+        errorLine2="                       ~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarDuckingInfo.java"
+            line="69"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.content.Context#bindServiceAsUser`"
+        errorLine1="            return mContext.bindServiceAsUser(intent, mServiceConnection,"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarExperimentalFeatureServiceController.java"
+            line="167"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.telecom.TelecomManager#acceptRingingCall`"
+        errorLine1="            mTelecomManager.acceptRingingCall();"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarInputService.java"
+            line="611"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.telecom.TelecomManager#endCall`"
+        errorLine1="            mTelecomManager.endCall();"
+        errorLine2="                            ~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarInputService.java"
+            line="620"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `android.os.UserManager#isHeadlessSystemUserMode`"
+        errorLine1="                    if (UserManager.isHeadlessSystemUserMode()"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="124"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `android.os.UserManager#isHeadlessSystemUserMode`"
+        errorLine1="        return UserManager.isHeadlessSystemUserMode()"
+        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="290"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#hasVerticalAccuracy`"
+        errorLine1="                    if (location.hasVerticalAccuracy()) {"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="336"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#getVerticalAccuracyMeters`"
+        errorLine1="                                location.getVerticalAccuracyMeters());"
+        errorLine2="                                         ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="338"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#hasSpeedAccuracy`"
+        errorLine1="                    if (location.hasSpeedAccuracy()) {"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="340"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#getSpeedAccuracyMetersPerSecond`"
+        errorLine1="                                location.getSpeedAccuracyMetersPerSecond());"
+        errorLine2="                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="342"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#hasBearingAccuracy`"
+        errorLine1="                    if (location.hasBearingAccuracy()) {"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="344"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#getBearingAccuracyDegrees`"
+        errorLine1="                                location.getBearingAccuracyDegrees());"
+        errorLine2="                                         ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="346"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#setVerticalAccuracyMeters`"
+        errorLine1="                        location.setVerticalAccuracyMeters((float) reader.nextDouble());"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="417"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#setSpeedAccuracyMetersPerSecond`"
+        errorLine1="                        location.setSpeedAccuracyMetersPerSecond((float) reader.nextDouble());"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="420"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.location.Location#setBearingAccuracyDegrees`"
+        errorLine1="                        location.setBearingAccuracyDegrees((float) reader.nextDouble());"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarLocationService.java"
+            line="423"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="            if (!mOccupantsConfig.contains(occupantZoneId)) {"
+        errorLine2="                                  ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarOccupantZoneService.java"
+            line="520"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="            if (!mOccupantsConfig.contains(occupantZoneId)) {"
+        errorLine2="                                  ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarOccupantZoneService.java"
+            line="638"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="            if (mOccupantsConfig.contains(zoneId)) {"
+        errorLine2="                                 ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarOccupantZoneService.java"
+            line="944"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="            if (!mOccupantsConfig.contains(zoneId)) {"
+        errorLine2="                                  ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarOccupantZoneService.java"
+            line="1026"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="            if (mDisplayConfigs.contains(port)) {"
+        errorLine2="                                ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarOccupantZoneService.java"
+            line="1030"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `com.google.android.collect.Sets#newArraySet`"
+        errorLine1="    private final Set&lt;String> mPackageManagerActions = Sets.newArraySet("
+        errorLine2="                                                            ~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/CarPackageManagerService.java"
+            line="157"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.String#join`"
+        errorLine1="            writer.println(&quot;Display Restrictions:\n&quot; + String.join(&quot;\n&quot;, restrictions));"
+        errorLine2="                                                              ~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/pm/CarPackageManagerService.java"
+            line="1015"
+            column="63"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.content.Context#bindServiceAsUser`"
+        errorLine1="        mContext.bindServiceAsUser(serviceIntent, mConnection, Context.BIND_AUTO_CREATE,"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="226"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.app.ActivityOptions#setLaunchDisplayId`"
+        errorLine1="            activityOptions.setLaunchDisplayId(displayId);"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="556"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.net.wifi.WifiManager.LocalOnlyHotspotReservation#getSoftApConfiguration`"
+        errorLine1="            sendApStarted(mLocalOnlyHotspotReservation.getSoftApConfiguration());"
+        errorLine2="                                                       ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="642"
+            column="56"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.net.wifi.WifiManager#startLocalOnlyHotspot`"
+        errorLine1="        mWifiManager.startLocalOnlyHotspot(new LocalOnlyHotspotCallback() {"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="647"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Cast to `LocalOnlyHotspotCallback` requires API level 26 (current min is 25)"
+        errorLine1="        mWifiManager.startLocalOnlyHotspot(new LocalOnlyHotspotCallback() {"
+        errorLine2="                                           ^">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="647"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Class requires API level 26 (current min is 25): `android.net.wifi.WifiManager.LocalOnlyHotspotCallback`"
+        errorLine1="        mWifiManager.startLocalOnlyHotspot(new LocalOnlyHotspotCallback() {"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="647"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.net.wifi.WifiManager.LocalOnlyHotspotReservation#getSoftApConfiguration`"
+        errorLine1="                sendApStarted(reservation.getSoftApConfiguration());"
+        errorLine2="                                          ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="654"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.net.MacAddress#fromString`"
+        errorLine1="                .setBssid(MacAddress.fromString(mApBssid))"
+        errorLine2="                                     ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="713"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.net.wifi.SoftApConfiguration#getSsid`"
+        errorLine1="                + localSoftApConfig.getSsid()"
+        errorLine2="                                    ~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="719"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.net.wifi.SoftApConfiguration#getBssid`"
+        errorLine1="                + &quot;, bssid: &quot; + localSoftApConfig.getBssid());"
+        errorLine2="                                                  ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarProjectionService.java"
+            line="722"
+            column="51"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.app.ActivityOptions#setLaunchDisplayId`"
+        errorLine1="        options.setLaunchDisplayId(displayId);"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarShellCommand.java"
+            line="867"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.io.File#toPath`"
+        errorLine1="                    new String(Files.readAllBytes(mLifetimeWriteFile.toPath())));"
+        errorLine2="                                                                     ~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarStorageMonitoringService.java"
+            line="460"
+            column="70"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.nio.file.Files#readAllBytes`"
+        errorLine1="                    new String(Files.readAllBytes(mLifetimeWriteFile.toPath())));"
+        errorLine2="                                     ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarStorageMonitoringService.java"
+            line="460"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.content.Context#bindServiceAsUser`"
+        errorLine1="        boolean bound = mContext.bindServiceAsUser(mServiceIntent, mUiServiceConnection,"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/user/CarUserNoticeService.java"
+            line="353"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `android.content.pm.PackageManager#isDeviceUpgrading`"
+        errorLine1="        if (mContext.getPackageManager().isDeviceUpgrading()) {"
+        errorLine2="                                         ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/user/CarUserService.java"
+            line="860"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `android.os.UserManager#isHeadlessSystemUserMode`"
+        errorLine1="        if (UserManager.isHeadlessSystemUserMode()) {"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/user/CarUserService.java"
+            line="1757"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.io.File#toPath`"
+        errorLine1="        Path stagedConfig = getFile(CONFIG_FILENAME_STAGED).toPath();"
+        errorLine2="                                                            ~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarUxRestrictionsManagerService.java"
+            line="303"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.nio.file.Files#exists`"
+        errorLine1="                &amp;&amp; Files.exists(stagedConfig)) {"
+        errorLine2="                         ~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarUxRestrictionsManagerService.java"
+            line="310"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.io.File#toPath`"
+        errorLine1="            Path prod = getFile(CONFIG_FILENAME_PRODUCTION).toPath();"
+        errorLine2="                                                            ~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarUxRestrictionsManagerService.java"
+            line="312"
+            column="61"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.nio.file.Files#move`"
+        errorLine1="                Files.move(stagedConfig, prod, REPLACE_EXISTING);"
+        errorLine2="                      ~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarUxRestrictionsManagerService.java"
+            line="315"
+            column="23"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 26 (current min is 25): `java.nio.file.StandardCopyOption#REPLACE_EXISTING`"
+        errorLine1="                Files.move(stagedConfig, prod, REPLACE_EXISTING);"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarUxRestrictionsManagerService.java"
+            line="315"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.os.RemoteCallbackList#getRegisteredCallbackItem`"
+        errorLine1="                ICarUxRestrictionsChangeListener client = mUxRClients.getRegisteredCallbackItem(i);"
+        errorLine2="                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/CarUxRestrictionsManagerService.java"
+            line="359"
+            column="71"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.String#join`"
+        errorLine1="                + &quot; addresses: &quot; + String.join(&quot;, &quot;, getAddresses());"
+        errorLine2="                                          ~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/CarVolumeGroup.java"
+            line="314"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `android.graphics.Insets#of`"
+        errorLine1="                        insets = Insets.of("
+        errorLine2="                                        ~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/hal/ClusterHalService.java"
+            line="194"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#left`"
+        errorLine1="        request.value.int32Values.add(insets.left);"
+        errorLine2="                                      ~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/hal/ClusterHalService.java"
+            line="236"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#top`"
+        errorLine1="        request.value.int32Values.add(insets.top);"
+        errorLine2="                                      ~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/hal/ClusterHalService.java"
+            line="237"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#right`"
+        errorLine1="        request.value.int32Values.add(insets.right);"
+        errorLine2="                                      ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/hal/ClusterHalService.java"
+            line="238"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#bottom`"
+        errorLine1="        request.value.int32Values.add(insets.bottom);"
+        errorLine2="                                      ~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/hal/ClusterHalService.java"
+            line="239"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 29 (current min is 25): `android.graphics.Insets#NONE`"
+        errorLine1="    private Insets mInsets = Insets.NONE;"
+        errorLine2="                             ~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/cluster/ClusterHomeService.java"
+            line="82"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.app.ActivityOptions#setLaunchDisplayId`"
+        errorLine1="                .setLaunchDisplayId(mClusterDisplayId);"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/cluster/ClusterHomeService.java"
+            line="137"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.app.ActivityOptions#setLaunchDisplayId`"
+        errorLine1="        activityOptions.setLaunchDisplayId(mClusterDisplayId);"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/cluster/ClusterHomeService.java"
+            line="275"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `new android.bluetooth.le.AdvertisingSetParameters.Builder`"
+        errorLine1="        mAdvertisingSetParameters = new AdvertisingSetParameters.Builder()"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="85"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#setLegacyMode`"
+        errorLine1="                .setLegacyMode(true)"
+        errorLine2="                 ~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="86"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#setInterval`"
+        errorLine1="                .setInterval(AdvertisingSetParameters.INTERVAL_LOW)"
+        errorLine2="                 ~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="87"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#setScannable`"
+        errorLine1="                .setScannable(true)"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="88"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#setConnectable`"
+        errorLine1="                .setConnectable(true)"
+        errorLine2="                 ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="89"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#build`"
+        errorLine1="                .build();"
+        errorLine2="                 ~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="90"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `new android.bluetooth.le.AdvertisingSetParameters.Builder`"
+        errorLine1="        mAdvertisingSetParameters = new AdvertisingSetParameters.Builder()"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="106"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#setLegacyMode`"
+        errorLine1="                .setLegacyMode(true)"
+        errorLine2="                 ~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="107"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#setInterval`"
+        errorLine1="                .setInterval(AdvertisingSetParameters.INTERVAL_MEDIUM)"
+        errorLine2="                 ~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="108"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#setScannable`"
+        errorLine1="                .setScannable(true)"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="109"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#setConnectable`"
+        errorLine1="                .setConnectable(true)"
+        errorLine2="                 ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="110"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetParameters.Builder#build`"
+        errorLine1="                .build();"
+        errorLine2="                 ~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="111"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.BluetoothLeAdvertiser#stopAdvertisingSet`"
+        errorLine1="        mBluetoothLeAdvertiser.stopAdvertisingSet(mAdvertisingSetCallback);"
+        errorLine2="                               ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="129"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.bluetooth.le.BluetoothLeAdvertiser#startAdvertisingSet`"
+        errorLine1="            mBluetoothLeAdvertiser.startAdvertisingSet(mAdvertisingSetParameters, mData, null, null,"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="160"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Class requires API level 26 (current min is 25): `android.bluetooth.le.AdvertisingSetCallback`"
+        errorLine1="    private AdvertisingSetCallback mAdvertisingSetCallback = new AdvertisingSetCallback() {"
+        errorLine2="                                                                 ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairAdvertiser.java"
+            line="166"
+            column="66"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.Byte#toUnsignedInt`"
+        errorLine1="        int passkey = Byte.toUnsignedInt(decryptedRequest[1]) * 65536"
+        errorLine2="                           ~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairGattServer.java"
+            line="521"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.Byte#toUnsignedInt`"
+        errorLine1="                + Byte.toUnsignedInt(decryptedRequest[2]) * 256"
+        errorLine2="                       ~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairGattServer.java"
+            line="522"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.Byte#toUnsignedInt`"
+        errorLine1="                + Byte.toUnsignedInt(decryptedRequest[3]);"
+        errorLine2="                       ~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairGattServer.java"
+            line="523"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.lang.Integer#toUnsignedLong`"
+        errorLine1="                    long k = Integer.toUnsignedLong(byteBuffer.getInt()) % (size * 8);"
+        errorLine2="                                     ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/FastPairUtils.java"
+            line="76"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="        Preconditions.checkArgument(mHalFocusRequestsByZoneAndUsage.contains(zoneId),"
+        errorLine2="                                                                    ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/hal/HalAudioFocus.java"
+            line="90"
+            column="69"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="        Preconditions.checkArgument(mHalFocusRequestsByZoneAndUsage.contains(zoneId),"
+        errorLine2="                                                                    ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/hal/HalAudioFocus.java"
+            line="115"
+            column="69"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.media.AudioManager#abandonAudioFocusRequest`"
+        errorLine1="        int result = mAudioManager.abandonAudioFocusRequest(currentRequest.mAudioFocusRequest);"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/hal/HalAudioFocus.java"
+            line="202"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `new android.media.AudioFocusRequest.Builder`"
+        errorLine1="        return new AudioFocusRequest.Builder(focusGain)"
+        errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/hal/HalAudioFocus.java"
+            line="232"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.media.AudioFocusRequest.Builder#setAudioAttributes`"
+        errorLine1="                .setAudioAttributes(attributes)"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/hal/HalAudioFocus.java"
+            line="233"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.media.AudioFocusRequest.Builder#setOnAudioFocusChangeListener`"
+        errorLine1="                .setOnAudioFocusChangeListener((int focusChange) -> {"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/hal/HalAudioFocus.java"
+            line="234"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.media.AudioFocusRequest.Builder#build`"
+        errorLine1="                .build();"
+        errorLine2="                 ~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/hal/HalAudioFocus.java"
+            line="237"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.media.AudioManager#requestAudioFocus`"
+        errorLine1="        int requestResult = mAudioManager.requestAudioFocus(audioFocusRequest);"
+        errorLine2="                                          ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/audio/hal/HalAudioFocus.java"
+            line="259"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `android.os.UserManager#isHeadlessSystemUserMode`"
+        errorLine1="        if (UserManager.isHeadlessSystemUserMode()) {"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/user/InitialUserSetter.java"
+            line="774"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `java.util.Set#of`"
+        errorLine1="    private static final Set&lt;Integer> VALID_INPUT_TYPES = Set.of("
+        errorLine2="                                                              ~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/InputCaptureClientController.java"
+            line="92"
+            column="63"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `java.util.Set#of`"
+        errorLine1="    private static final Set&lt;Integer> VALID_ROTARY_TYPES = Set.of("
+        errorLine2="                                                               ~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/InputCaptureClientController.java"
+            line="101"
+            column="64"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `java.util.List#of`"
+        errorLine1="    private static final List&lt;Integer> SUPPORTED_DISPLAY_TYPES = List.of("
+        errorLine2="                                                                      ~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/InputCaptureClientController.java"
+            line="106"
+            column="71"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.app.ActivityOptions#getLaunchDisplayId`"
+        errorLine1="                            options.getLaunchDisplayId(), userId);"
+        errorLine2="                                    ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/cluster/InstrumentClusterService.java"
+            line="194"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.content.Context#bindServiceAsUser`"
+        errorLine1="        return mContext.bindServiceAsUser(intent, mRendererServiceConnection,"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/cluster/InstrumentClusterService.java"
+            line="348"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 25): `android.location.LocationManager#isLocationEnabled`"
+        errorLine1="        return mLocationManager.isLocationEnabled();"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/LocationManagerProxy.java"
+            line="47"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.app.NotificationManager#createNotificationChannel`"
+        errorLine1="        notificationMgr.createNotificationChannel("
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/admin/NotificationHelper.java"
+            line="65"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `new android.app.NotificationChannel`"
+        errorLine1="                new NotificationChannel(importanceId, importanceName, importance));"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/admin/NotificationHelper.java"
+            line="66"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `new android.app.Notification.Builder`"
+        errorLine1="        return new Notification.Builder(context, importanceId).addExtras(extras);"
+        errorLine2="               ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/admin/NotificationHelper.java"
+            line="72"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.content.Context#bindServiceAsUser`"
+        errorLine1="            boolean bindSuccess = mContext.bindServiceAsUser(startIntent, mUserServiceConnection,"
+        errorLine2="                                           ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/PerUserCarServiceHelper.java"
+            line="160"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `new android.util.ArraySet`"
+        errorLine1="    private static final Set&lt;String> VALID_VERSIONS = new ArraySet&lt;>(Arrays.asList(&quot;1.0&quot;));"
+        errorLine2="                                                      ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/power/PolicyReader.java"
+            line="82"
+            column="55"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `new android.util.ArraySet`"
+        errorLine1="            new ArraySet&lt;>(Arrays.asList(PowerComponent.BLUETOOTH, PowerComponent.NFC,"
+        errorLine2="            ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/power/PolicyReader.java"
+            line="124"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.io.File#toPath`"
+        errorLine1="    private static Path DEFAULT_STATS_FILE = new File(&quot;/proc/uid_io/stats&quot;).toPath();"
+        errorLine2="                                                                            ~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/storagemonitoring/ProcfsUidIoStatsProvider.java"
+            line="40"
+            column="77"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.nio.file.Files#readAllLines`"
+        errorLine1="            lines = Files.readAllLines(mStatsFile);"
+        errorLine2="                          ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/storagemonitoring/ProcfsUidIoStatsProvider.java"
+            line="59"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 25): `android.util.SparseArray#contains`"
+        errorLine1="        return mHalPropIdToVehiclePropConfig.contains(halPropId);"
+        errorLine2="                                             ~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/hal/PropertyHalService.java"
+            line="104"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.io.File#toPath`"
+        errorLine1="            datalines = Files.readAllLines(writefile.toPath());"
+        errorLine2="                                                     ~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/storagemonitoring/SysfsLifetimeWriteInfoProvider.java"
+            line="70"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.nio.file.Files#readAllLines`"
+        errorLine1="            datalines = Files.readAllLines(writefile.toPath());"
+        errorLine2="                              ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/storagemonitoring/SysfsLifetimeWriteInfoProvider.java"
+            line="70"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `android.app.ActivityOptions#setLaunchDisplayId`"
+        errorLine1="        options.setLaunchDisplayId(displayId);"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/SystemActivityMonitoringService.java"
+            line="408"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.io.File#toPath`"
+        errorLine1="            lifetimeData = java.nio.file.Files.readAllLines(mFile.toPath());"
+        errorLine2="                                                                  ~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/storagemonitoring/UfsWearInformationProvider.java"
+            line="65"
+            column="67"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.nio.file.Files#readAllLines`"
+        errorLine1="            lifetimeData = java.nio.file.Files.readAllLines(mFile.toPath());"
+        errorLine2="                                               ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/storagemonitoring/UfsWearInformationProvider.java"
+            line="65"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `com.google.android.collect.Lists#newArrayList`"
+        errorLine1="        onPropertyEvent(Lists.newArrayList(v));"
+        errorLine2="                              ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/hal/VehicleHal.java"
+            line="791"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 31 (current min is 25): `com.google.android.collect.Lists#newArrayList`"
+        errorLine1="                    onPropertyEvent(Lists.newArrayList(v));"
+        errorLine2="                                          ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/hal/VehicleHal.java"
+            line="829"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 27 (current min is 25): `android.os.SharedMemory#getSize`"
+        errorLine1="            deliverToSubscribers(clientToken, providerId, layer, packet.getSize(),"
+        errorLine2="                                                                        ~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/vms/VmsBrokerService.java"
+            line="222"
+            column="73"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `new android.util.ArraySet`"
+        errorLine1="            mOfferings.put(providerId, new ArraySet&lt;>(offerings));"
+        errorLine2="                                       ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/vms/VmsClientInfo.java"
+            line="117"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `new android.util.ArraySet`"
+        errorLine1="                result.add(new VmsLayersOffering(new ArraySet&lt;>(providerOfferings), providerId));"
+        errorLine2="                                                 ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/vms/VmsClientInfo.java"
+            line="131"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `new android.util.ArraySet`"
+        errorLine1="                            associatedLayer -> new ArraySet&lt;>(associatedLayer.getProviderIds())));"
+        errorLine2="                                               ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/vms/VmsClientInfo.java"
+            line="153"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `new android.util.ArraySet`"
+        errorLine1="            return new ArraySet&lt;>(mLayerSubscriptions);"
+        errorLine2="                   ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/vms/VmsClientInfo.java"
+            line="159"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 25): `new android.util.ArraySet`"
+        errorLine1="                entry -> new ArraySet&lt;>(entry.getValue())));"
+        errorLine2="                         ~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/vms/VmsClientInfo.java"
+            line="233"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.io.File#toPath`"
+        errorLine1="        JSONObject jsonObject = new JSONObject(new String(Files.readAllBytes(in.toPath())));"
+        errorLine2="                                                                                ~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/storagemonitoring/WearHistory.java"
+            line="65"
+            column="81"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 25): `java.nio.file.Files#readAllBytes`"
+        errorLine1="        JSONObject jsonObject = new JSONObject(new String(Files.readAllBytes(in.toPath())));"
+        errorLine2="                                                                ~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/src/com/android/car/storagemonitoring/WearHistory.java"
+            line="65"
+            column="65"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="`android:paddingHorizontal` requires API level 26 (current min is 25)"
+        errorLine1="        &lt;item name=&quot;android:paddingHorizontal&quot;>@dimen/action_button_padding_horizontal&lt;/item>"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/services/Car/service/res/values/styles.xml"
+            line="42"
+            column="15"/>
+    </issue>
+
+</issues>

@@ -1,0 +1,15 @@
+{
+  "presubmit": [
+    {
+      "name": "TeleServiceTests",
+      "options": [
+        {
+          "exclude-annotation": "androidx.test.filters.FlakyTest"
+        }
+      ]
+    },
+    {
+      "name": "CarrierAppIntegrationTestCases"
+    }
+  ]
+}

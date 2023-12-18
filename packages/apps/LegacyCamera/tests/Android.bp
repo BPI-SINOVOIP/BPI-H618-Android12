@@ -1,0 +1,24 @@
+package {
+    // http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // the below license kinds from "packages_apps_LegacyCamera_license":
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["packages_apps_LegacyCamera_license"],
+}
+
+android_test {
+    name: "LegacyCameraTests",
+
+    libs: [
+        "android.test.runner",
+        "android.test.base",
+    ],
+    static_libs: ["junit"],
+
+    srcs: ["src/**/*.java"],
+
+    platform_apis: true,
+
+    instrumentation_for: "LegacyCamera",
+
+}

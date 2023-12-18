@@ -1,0 +1,37 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_app_certificate {
+    name: "car-ui-lib-sharedlibrary-certificate",
+    certificate: "chassis_upload_key"
+}
+
+android_app {
+    name: "car-ui-lib-sharedlibrary",
+
+    min_sdk_version: "28",
+    target_sdk_version: "30",
+    sdk_version: "current",
+
+    manifest: "src/main/AndroidManifest.xml",
+    srcs: ["src/main/java/**/*.java"],
+    resource_dirs: ["src/main/res"],
+
+    static_libs: [
+        "car-ui-lib-oem-apis",
+        "androidx.annotation_annotation",
+        "androidx.appcompat_appcompat",
+        "androidx-constraintlayout_constraintlayout",
+        "androidx.preference_preference",
+        "androidx.recyclerview_recyclerview",
+        "androidx-constraintlayout_constraintlayout-solver",
+        "androidx.asynclayoutinflater_asynclayoutinflater",
+    ],
+
+    optimize: {
+        enabled: false,
+    },
+
+    certificate: ":car-ui-lib-sharedlibrary-certificate",
+}

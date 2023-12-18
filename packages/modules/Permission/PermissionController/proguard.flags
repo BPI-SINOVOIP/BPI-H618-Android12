@@ -1,0 +1,28 @@
+# The support library contains references to newer platform versions.
+# Don't warn about those in case this app is linking against an older
+# platform version.  We know about them, and they are safe.
+
+-keep class androidx.preference.Preference* {
+    *;
+}
+-dontwarn androidx.core.**
+
+# Keep classes that implements RoleBehavior, which are used by reflection.
+-keep class * implements com.android.permissioncontroller.role.model.RoleBehavior {
+    *;
+}
+
+-keep class com.android.car.ui.** {*;}
+
+# Keep as this is only used by instrumentation tests for now. This can be removed once the class is
+# used from code
+-keep class com.android.permissioncontroller.permission.data.AttributionLabelLiveData* {
+    *;
+}
+
+# for proto names for Proto.toString
+-keepclassmembers class * extends com.google.protobuf.GeneratedMessageLite {
+  *** get*();
+  *** set*(***);
+  *** has*();
+}

@@ -1,0 +1,132 @@
+
+package {
+    default_applicable_licenses: ["packages_providers_MediaProvider_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "packages_providers_MediaProvider_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+android_app {
+    name: "MediaProvider",
+    manifest: "AndroidManifest.xml",
+
+    static_libs: [
+        "androidx.appcompat_appcompat",
+        "androidx.core_core",
+        "guava",
+        "modules-utils-build",
+    ],
+
+    libs: [
+        "unsupportedappusage",
+        "app-compat-annotations",
+        "framework-annotations-lib",
+        "framework-mediaprovider.impl",
+        "framework-media.stubs.module_lib",
+        "framework-statsd",
+    ],
+
+    jni_libs: [
+        "libfuse_jni",
+        "libfuse"
+    ],
+
+    resource_dirs: [
+        "res",
+    ],
+    srcs: [
+        ":mediaprovider-sources",
+    ],
+
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+
+    plugins: [
+        "java_api_finder",
+        "error_prone_mediaprovider",
+    ],
+
+    sdk_version: "module_current",
+    min_sdk_version: "30",
+    target_sdk_version: "30",
+
+    certificate: "media",
+    privileged: true,
+
+    aaptflags: ["--custom-package com.android.providers.media"],
+
+    errorprone: {
+        javacflags: [
+            "-Xep:FallThrough:ERROR",
+            "-Xep:GuardedBy:ERROR",
+            "-Xep:StreamResourceLeak:ERROR",
+
+            // Local checkers specific to this module
+            "-Xep:MediaProviderLocaleRoot:ERROR",
+            "-Xep:MediaProviderMimeType:ERROR",
+        ],
+    },
+
+    required: ["preinstalled-packages-com.android.providers.media.module.xml"],
+}
+
+// Used by MediaProvider and MediaProviderTests
+filegroup {
+    name: "mediaprovider-sources",
+    srcs: [
+        "src/**/*.aidl",
+        "src/**/*.java",
+        ":mediaprovider-database-sources",
+        ":statslog-mediaprovider-java-gen",
+    ],
+}
+
+// This is defined to give LegacyMediaProvider the bare minimum it needs
+// to keep the legacy database schema working while also building
+// against "system_current"
+filegroup {
+    name: "mediaprovider-database-sources",
+    srcs: [
+        "src/com/android/providers/media/DatabaseHelper.java",
+        "src/com/android/providers/media/util/BackgroundThread.java",
+        "src/com/android/providers/media/util/DatabaseUtils.java",
+        "src/com/android/providers/media/util/FileUtils.java",
+        "src/com/android/providers/media/util/ForegroundThread.java",
+        "src/com/android/providers/media/util/HandlerExecutor.java",
+        "src/com/android/providers/media/util/Logging.java",
+        "src/com/android/providers/media/util/MimeUtils.java",
+        "src/com/android/providers/media/playlist/*.java",
+    ],
+}
+
+platform_compat_config {
+    name: "media-provider-platform-compat-config",
+    src: ":MediaProvider",
+}
+
+genrule {
+    name: "statslog-mediaprovider-java-gen",
+    tools: ["stats-log-api-gen"],
+    cmd: "$(location stats-log-api-gen) --java $(out) --module mediaprovider" +
+         " --javaPackage com.android.providers.media --javaClass MediaProviderStatsLog" +
+         " --minApiLevel 30",
+    out: ["com/android/providers/media/MediaProviderStatsLog.java"],
+}
+
+prebuilt_etc {
+      name: "preinstalled-packages-com.android.providers.media.module.xml",
+      src: "preinstalled-packages-com.android.providers.media.module.xml",
+      sub_dir: "sysconfig",
+}
+

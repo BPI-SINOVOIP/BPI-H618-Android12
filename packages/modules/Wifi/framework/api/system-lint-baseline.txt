@@ -1,0 +1,15 @@
+// Baseline format: 1.0
+MissingGetterMatchingBuilder: android.net.wifi.rtt.RangingRequest.Builder#addResponder(android.net.wifi.rtt.ResponderConfig):
+    
+
+
+MissingNullability: android.net.wifi.rtt.RangingRequest.Builder#addResponder(android.net.wifi.rtt.ResponderConfig):
+    
+
+
+MutableBareField: android.net.wifi.WifiConfiguration#carrierMerged:
+    
+MutableBareField: android.net.wifi.WifiConfiguration#lastConnectUid:
+    Bare field lastConnectUid must be marked final, or moved behind accessors if mutable
+MutableBareField: android.net.wifi.WifiConfiguration#subscriptionId:
+    Bare field subscriptionId must be marked final, or moved behind accessors if mutable

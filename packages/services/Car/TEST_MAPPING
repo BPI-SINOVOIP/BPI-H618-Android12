@@ -1,0 +1,17 @@
+{
+  "auto-service-experimental-code-presubmit": [
+    {
+      "name": "ExperimentalCarServiceTests"
+    }
+  ],
+  "auto-postsubmit": [
+    {
+      "name": "AndroidCarApiTest",
+      "options": [
+        {
+          "include-filter": "android.car.apitest.PreInstalledPackagesTest"
+        }
+      ]
+    }
+  ]
+}

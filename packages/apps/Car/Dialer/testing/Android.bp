@@ -1,0 +1,31 @@
+//############################################################
+// Car Dialer unit test target.                              #
+//############################################################
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_library {
+    name: "car-dialer-testing",
+
+    sdk_version: "system_current",
+
+    srcs: ["src/**/*.java"],
+
+    resource_dirs: ["res"],
+
+    libs: ["android.car-system-stubs"],
+
+    static_libs: [
+        "androidx.lifecycle_lifecycle-extensions",
+        "androidx.test.espresso.core",
+        "androidx.test.espresso.contrib",
+        "hilt_android",
+        "mockito-target-extended-minus-junit4",
+    ],
+
+    optimize: {
+        enabled: false,
+    },
+
+}

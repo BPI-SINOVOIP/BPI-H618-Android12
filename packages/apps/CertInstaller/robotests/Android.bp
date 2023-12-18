@@ -1,0 +1,21 @@
+//############################################################
+// CertInstaller Robolectric test target.                    #
+//############################################################
+
+package {
+    // http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // the below license kinds from "packages_apps_CertInstaller_license":
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["packages_apps_CertInstaller_license"],
+}
+
+android_robolectric_test {
+    name: "CertInstallerRoboTests",
+
+    srcs: ["src/**/*.java"],
+
+    java_resource_dirs: ["config"],
+
+    instrumentation_for: "CertInstaller",
+}

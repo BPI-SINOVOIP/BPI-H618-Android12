@@ -1,0 +1,159 @@
+# Copyright (C) 2021 The Android Open Source Project
+#
+# init.rc for microdroid. This contains a minimal script plus basic service definitions (e.g. apexd)
+# needed for microdroid to run.
+# TODO(b/179340780): support APEX init scripts
+#
+# IMPORTANT: Do not create world writable files or directories.
+# This is a common source of Android security bugs.
+#
+
+import /init.environ.rc
+
+# Cgroups are mounted right before early-init using list from /etc/cgroups.json
+on early-init
+
+    # TODO(b/185991357) eliminate bootstrap mount namespace
+    # Set up linker config subdirectories based on mount namespaces
+    mkdir /linkerconfig/bootstrap 0755
+    mkdir /linkerconfig/default 0755
+
+    # Generate ld.config.txt for early executed processes
+    exec -- /system/bin/bootstrap/linkerconfig --target /linkerconfig/bootstrap
+    chmod 644 /linkerconfig/bootstrap/ld.config.txt
+    copy /linkerconfig/bootstrap/ld.config.txt /linkerconfig/default/ld.config.txt
+    chmod 644 /linkerconfig/default/ld.config.txt
+
+    # Mount bootstrap linker configuration as current
+    mount none /linkerconfig/bootstrap /linkerconfig bind rec
+
+    start ueventd
+
+    # Run apexd-bootstrap so that APEXes that provide critical libraries
+    # become available. Note that this is executed as exec_start to ensure that
+    # the libraries are available to the processes started after this statement.
+    exec_start apexd-bootstrap
+
+    # Generate linker config based on apex mounted in bootstrap namespace
+    update_linker_config
+
+on init
+    # Mount binderfs
+    mkdir /dev/binderfs
+    mount binder binder /dev/binderfs stats=global
+    chmod 0755 /dev/binderfs
+
+    symlink /dev/binderfs/binder /dev/binder
+    symlink /dev/binderfs/hwbinder /dev/hwbinder
+    symlink /dev/binderfs/vndbinder /dev/vndbinder
+
+    chmod 0666 /dev/binderfs/hwbinder
+    chmod 0666 /dev/binderfs/binder
+    chmod 0666 /dev/binderfs/vndbinder
+
+    # Start logd before any other services run to ensure we capture all of their logs.
+    start logd
+
+    start servicemanager
+
+on load_persist_props_action
+    start logd
+    start logd-reinit
+
+# Mount filesystems and start core system services.
+on late-init
+    trigger early-fs
+
+    # Mount fstab in init.{$device}.rc by mount_all command. Optional parameter
+    # '--early' can be specified to skip entries with 'latemount'.
+    # /system and /vendor must be mounted by the end of the fs stage,
+    # while /data is optional.
+    trigger fs
+    trigger post-fs
+
+    # Mount fstab in init.{$device}.rc by mount_all with '--late' parameter
+    # to only mount entries with 'latemount'. This is needed if '--early' is
+    # specified in the previous mount_all command on the fs stage.
+    # With /system mounted and properties form /system + /factory available,
+    # some services can be started.
+    trigger late-fs
+
+    trigger post-fs-data
+
+    # Load persist properties and override properties (if enabled) from /data.
+    trigger load_persist_props_action
+
+    # Should be before netd, but after apex, properties and logging is available.
+    trigger load_bpf_programs
+
+    # Now we can start zygote for devices with file based encryption
+    trigger zygote-start
+
+    # Remove a file to wake up anything waiting for firmware.
+    trigger firmware_mounts_complete
+
+    trigger early-boot
+    trigger boot
+
+on post-fs
+    # Once everything is setup, no need to modify /.
+    # The bind+remount combination allows this to work in containers.
+    mount rootfs rootfs / remount bind ro nodev
+
+    enter_default_mount_ns
+
+    # Start apexd in the VM mode to avoid unnecessary overhead of session management.
+    exec - root system -- /system/bin/apexd --vm
+
+    perform_apex_config
+
+    exec_start derive_sdk
+
+    start adbd
+
+on post-fs-data
+    mount_all /vendor/etc/fstab --late
+    restorecon /data
+
+    mkdir /data/vendor 0771 root root encryption=Require
+    mkdir /data/vendor_ce 0771 root root encryption=None
+    mkdir /data/vendor_de 0771 root root encryption=None
+    mkdir /data/vendor/hardware 0771 root root
+
+    # Start tombstoned early to be able to store tombstones.
+    # microdroid doesn't have anr, but tombstoned requires it
+    mkdir /data/anr 0775 system system encryption=Require
+    mkdir /data/tombstones 0771 system system encryption=Require
+    mkdir /data/vendor/tombstones 0771 root root
+
+    start tombstoned
+
+    # For security reasons, /data/local/tmp should always be empty.
+    # Do not place files or directories in /data/local/tmp
+    mkdir /data/local 0751 root root encryption=Require
+    mkdir /data/local/tmp 0771 shell shell
+
+service ueventd /system/bin/ueventd
+    class core
+    critical
+    seclabel u:r:ueventd:s0
+    shutdown critical
+
+service console /system/bin/sh
+    class core
+    console
+    disabled
+    user shell
+    group shell log readproc
+    seclabel u:r:shell:s0
+    setenv HOSTNAME console
+
+on fs
+    write /dev/event-log-tags "# content owned by logd
+"
+    chown logd logd /dev/event-log-tags
+    chmod 0644 /dev/event-log-tags
+
+on property:sys.boot_completed=1
+    start logd-auditctl
+

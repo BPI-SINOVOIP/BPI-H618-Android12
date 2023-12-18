@@ -1,0 +1,21 @@
+//############################################################
+// Car Dialer Robolectric test target.                       #
+//############################################################
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_robolectric_test {
+    name: "CarDialerRoboTests",
+
+    srcs: ["src/**/*.java"],
+
+    java_resource_dirs: ["config"],
+
+    // Include the testing libraries
+    libs: [
+        "android.car",
+    ],
+
+    instrumentation_for: "CarDialerAppForTesting",
+}

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `new android.hardware.camera2.params.InputConfiguration`"
+        errorLine1="                InputConfiguration inputConfig = new InputConfiguration(mCameraInfoCache.getYuvStream1Size().getWidth(),"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="445"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.hardware.camera2.CameraDevice#createReprocessableCaptureSession`"
+        errorLine1="                mCameraDevice.createReprocessableCaptureSession(inputConfig, outputSurfaces,"
+        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="447"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.hardware.camera2.CameraCaptureSession#isReprocessable`"
+        errorLine1="            if (session.isReprocessable()) {"
+        errorLine2="                        ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="469"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.hardware.camera2.CameraCaptureSession#getInputSurface`"
+        errorLine1="                mImageWriter = ImageWriter.newInstance(session.getInputSurface(), IMAGEWRITER_SIZE);"
+        errorLine2="                                                               ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="470"
+            column="64"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.media.ImageWriter#newInstance`"
+        errorLine1="                mImageWriter = ImageWriter.newInstance(session.getInputSurface(), IMAGEWRITER_SIZE);"
+        errorLine2="                                           ~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="470"
+            column="44"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.media.ImageWriter#setOnImageReleasedListener`"
+        errorLine1="                mImageWriter.setOnImageReleasedListener("
+        errorLine2="                             ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="471"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Cast to `OnImageReleasedListener` requires API level 23 (current min is 21)"
+        errorLine1="                        new ImageWriter.OnImageReleasedListener() {"
+        errorLine2="                        ^">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="472"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Class requires API level 23 (current min is 21): `android.media.ImageWriter.OnImageReleasedListener`"
+        errorLine1="                        new ImageWriter.OnImageReleasedListener() {"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="472"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.media.ImageWriter#queueInputImage`"
+        errorLine1="        mImageWriter.queueInputImage(mYuv1LastReceivedImage);"
+        errorLine2="                     ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="589"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.hardware.camera2.CameraDevice#createReprocessCaptureRequest`"
+        errorLine1="            CaptureRequest.Builder b1 = mCameraDevice.createReprocessCaptureRequest(mLastTotalCaptureResult);"
+        errorLine2="                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/Api2Camera.java"
+            line="592"
+            column="55"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.hardware.camera2.params.StreamConfigurationMap#getInputFormats`"
+        errorLine1="            int[] formats = map.getInputFormats();"
+        errorLine2="                                ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/CameraDeviceReport.java"
+            line="183"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.hardware.camera2.params.StreamConfigurationMap#getInputSizes`"
+        errorLine1="                Size[] sizes = map.getInputSizes(formats[i]);"
+        errorLine2="                                   ~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/CameraDeviceReport.java"
+            line="186"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.ContextWrapper#checkSelfPermission`"
+        errorLine1="        if ((checkSelfPermission(Manifest.permission.CAMERA)"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/DevCameraActivity.java"
+            line="328"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.ContextWrapper#checkSelfPermission`"
+        errorLine1="            || (checkSelfPermission(Manifest.permission.RECORD_AUDIO)"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/DevCameraActivity.java"
+            line="330"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.ContextWrapper#checkSelfPermission`"
+        errorLine1="            || (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/DevCameraActivity.java"
+            line="332"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.Activity#requestPermissions`"
+        errorLine1="            requestPermissions(new String[] {"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/DevCamera/src/com/android/devcamera/DevCameraActivity.java"
+            line="335"
+            column="13"/>
+    </issue>
+
+</issues>

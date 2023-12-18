@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2021 Allwinner Technology
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- second screen -->
+    <string name="second_screen_setting">second screen setting</string>
+    <string name="second_screen_output_mode">second screen output mode</string>
+    <string name="second_screen_output_mode_summary">Set the default second screen output standard.</string>
+    <string name="hdmi_fullscreen">hdmi fullscreen mode</string>
+    <string name="hdmi_fullscreen_summary">Set true to show HDMI in fullscreen mode.</string>
+    <string name="second_screen_width_scale">second screen output width scale</string>
+    <string name="second_screen_height_scale">second screen output height scale</string>
+    <!-- hdmi array -->
+    <string-array name="hdmi_output_mode_entries">
+        <item>HDMI 720P 60HZ</item>
+        <item>HDMI 1080P 60HZ</item>
+    </string-array>
+    <string-array name="hdmi_output_mode_values" translatable="false">
+        <!-- Do not translate. -->
+        <item>5</item>
+        <!-- Do not translate. -->
+        <item>10</item>
+    </string-array>
+    <!-- cvbs array -->
+    <string-array name="cvbs_output_mode_entries">
+        <item>PAL</item>
+        <item>NTSC</item>
+    </string-array>
+    <string-array name="cvbs_output_mode_values" translatable="false">
+        <!-- Do not translate. -->
+        <item>11</item>
+        <!-- Do not translate. -->
+        <item>14</item>
+    </string-array>
+
+    <!-- color enhance -->
+    <string name="color_enhance">Color Enhance</string>
+    <string name="color_enhance_summary">It is better for playing games and video and picture.</string>
+    <string name="color_enhance_demo">Demo mode</string>
+    <string name="color_enhance_demo_summary">Only half of the screen is effective, in order to show the effect easily.</string>
+    <string name="color_bright_setting">Color Bright</string>
+    <string name="contrast_setting">Contrast</string>
+    <string name="saturation_setting">Saturation</string>
+    <string name="smart_backlight">Smart backlight</string>
+    <string name="smart_backlight_summary">Smart backlight is only for video layers </string>
+    <string name="smart_backlight_demo">Demo mode</string>
+    <string name="smart_backlight_demo_summary">Only half of the screen is effective, in order to show the effect easily.</string>
+    <string name="reading_mode">Reading Mode</string>
+
+    <string name="reading_mode_summary">Reduce display\'s background glare.</string>
+    <string name="reading_mode_strength_scale">Strength</string>
+    <string name="color_temperature_scale">Color Temperature Adjustment.</string>
+
+    <!-- gesture screenshot -->
+    <string name="title_gesture_screenshot">Gesture screenshot</string>
+    <string name="title_gesture_screenshot_summary">Sliding from the right side of the screen with two fingers.</string>
+
+    <!-- gesture screenrecord -->
+    <string name="title_gesture_screenrecord">Gesture screenrecord</string>
+    <string name="title_gesture_screenrecord_summary">Sliding from the left side of the screen with two fingers, and stop with the same gesture.</string>
+
+    <!-- display settings screen, Black-White Mode title -->
+    <string name="black_white_mode">Black-White Mode</string>
+    <string name="black_white_mode_summary">Forbidden to adjust saturation when Black-White mode on</string>
+</resources>

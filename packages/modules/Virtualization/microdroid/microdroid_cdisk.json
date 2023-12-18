@@ -1,0 +1,44 @@
+{
+  "partitions": [
+    {
+      "label": "misc",
+      "path": "misc.img"
+    },
+    {
+      "label": "boot_a",
+      "path": "microdroid_boot-5.10.img"
+    },
+    {
+      "label": "boot_b",
+      "path": "microdroid_boot-5.10.img"
+    },
+    {
+      "label": "vendor_boot_a",
+      "path": "microdroid_vendor_boot-5.10.img"
+    },
+    {
+      "label": "vendor_boot_b",
+      "path": "microdroid_vendor_boot-5.10.img"
+    },
+    {
+      "label": "vbmeta_a",
+      "path": "microdroid_vbmeta.img"
+    },
+    {
+      "label": "vbmeta_b",
+      "path": "microdroid_vbmeta.img"
+    },
+    {
+      "label": "vbmeta_system_a",
+      "path": "microdroid_vbmeta_system.img"
+    },
+    {
+      "label": "vbmeta_system_b",
+      "path": "microdroid_vbmeta_system.img"
+    },
+    {
+      "label": "super",
+      "path": "microdroid_super.img"
+    }
+  ]
+}

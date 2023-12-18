@@ -1,0 +1,18 @@
+{
+  "presubmit-large": [
+    {
+      "name": "CtsHostsideNetworkTests",
+      "options": [
+        {
+          "include-filter": "com.android.cts.net.HostsideRestrictBackgroundNetworkTests"
+        },
+        {
+          "exclude-annotation": "androidx.test.filters.FlakyTest"
+        },
+        {
+          "exclude-annotation": "android.platform.test.annotations.FlakyTest"
+        }
+      ]
+    }
+  ]
+}

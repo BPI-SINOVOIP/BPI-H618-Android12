@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (c) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hvac_min_text" msgid="866677328637088715">"最小"</string>
+    <string name="hvac_max_text" msgid="7627950157128770380">"最大"</string>
+    <string name="voice_recognition_toast" msgid="7579725862117020349">"Bluetooth 接続デバイスで音声認識が処理されるようになりました"</string>
+    <string name="car_guest" msgid="768913000117469596">"ゲスト"</string>
+    <string name="start_guest_session" msgid="2759367183497948650">"ゲスト"</string>
+    <string name="car_add_user" msgid="8660226923614358478">"ユーザーを追加"</string>
+    <string name="car_new_user" msgid="304628168515673432">"新しいユーザー"</string>
+    <string name="user_add_user_message_setup" msgid="2130987756494836929">"新しいユーザーを追加したら、そのユーザーは自分のスペースをセットアップする必要があります。"</string>
+    <string name="user_add_user_message_update" msgid="1001907075316748931">"どのユーザーも他のすべてのユーザーに代わってアプリを更新できます。"</string>
+    <string name="car_loading_profile" msgid="458961191993686065">"読み込んでいます"</string>
+    <string name="car_loading_profile_developer_message" msgid="737810794567935702">"ユーザーを読み込んでいます（<xliff:g id="FROM_USER">%1$d</xliff:g>～<xliff:g id="TO_USER">%2$d</xliff:g>）"</string>
+    <string name="mic_privacy_chip_off_content" msgid="4989623700063721557">"マイクは OFF です。"</string>
+    <string name="mic_privacy_chip_mic_enabled" msgid="5667789064187849349">"マイクは有効です"</string>
+    <string name="mic_privacy_chip_mic_enabled_subtext" msgid="815124399469247109">"アプリはマイクにアクセスできます"</string>
+    <string name="mic_privacy_chip_mic_disabled" msgid="2709173475947157320">"マイクは無効です"</string>
+    <string name="mic_privacy_chip_mic_disabled_subtext" msgid="9059745506470016701">"マイクにアクセスできるアプリはありません"</string>
+    <string name="mic_privacy_chip_privacy_settings" msgid="719293067082198224">"プライバシー設定"</string>
+    <string name="mic_privacy_chip_app_using_mic_suffix" msgid="8355462601492180023">"<xliff:g id="APP">%s</xliff:g> がマイクを使用しています"</string>
+    <string name="mic_privacy_chip_apps_using_mic_suffix" msgid="6656026041668305817">"<xliff:g id="APP_LIST">%s</xliff:g> がマイクを使用しています"</string>
+    <string name="mic_privacy_chip_app_recently_used_mic_suffix" msgid="1819299821245419382">"<xliff:g id="APP">%s</xliff:g> アプリが最近マイクを使用しました"</string>
+    <string name="mic_privacy_chip_on_toast" msgid="7003896860896586181">"マイクを ON にしました"</string>
+    <string name="mic_privacy_chip_off_toast" msgid="8718743873640788032">"マイクを OFF にしました"</string>
+    <string name="mic_privacy_chip_dialog_title_mic" msgid="3782090299882049010">"マイクの最近の使用状況"</string>
+    <string name="mic_privacy_chip_dialog_ok" msgid="2298690833121720237">"OK"</string>
+</resources>

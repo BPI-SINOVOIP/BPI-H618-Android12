@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (c) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hvac_min_text" msgid="866677328637088715">"Najn."</string>
+    <string name="hvac_max_text" msgid="7627950157128770380">"Najv."</string>
+    <string name="voice_recognition_toast" msgid="7579725862117020349">"Prepoznavanje glasu zdaj izvaja povezana naprava Bluetooth"</string>
+    <string name="car_guest" msgid="768913000117469596">"Gost"</string>
+    <string name="start_guest_session" msgid="2759367183497948650">"Gost"</string>
+    <string name="car_add_user" msgid="8660226923614358478">"Dodaj uporabnika"</string>
+    <string name="car_new_user" msgid="304628168515673432">"Nov uporabnik"</string>
+    <string name="user_add_user_message_setup" msgid="2130987756494836929">"Ko dodate novega uporabnika, mora ta nastaviti svoj prostor."</string>
+    <string name="user_add_user_message_update" msgid="1001907075316748931">"Vsak uporabnik lahko posodobi aplikacije za vse druge uporabnike."</string>
+    <string name="car_loading_profile" msgid="458961191993686065">"Nalaganje"</string>
+    <string name="car_loading_profile_developer_message" msgid="737810794567935702">"Nalaganje uporabnika (od uporabnika <xliff:g id="FROM_USER">%1$d</xliff:g> do uporabnika <xliff:g id="TO_USER">%2$d</xliff:g>)"</string>
+    <string name="mic_privacy_chip_off_content" msgid="4989623700063721557">"Mikrofon je izklopljen."</string>
+    <string name="mic_privacy_chip_mic_enabled" msgid="5667789064187849349">"Mikrofon je omogočen."</string>
+    <string name="mic_privacy_chip_mic_enabled_subtext" msgid="815124399469247109">"Aplikacije lahko dostopajo do mikrofona."</string>
+    <string name="mic_privacy_chip_mic_disabled" msgid="2709173475947157320">"Mikrofon je onemogočen."</string>
+    <string name="mic_privacy_chip_mic_disabled_subtext" msgid="9059745506470016701">"Nobena aplikacija nima dostopa do mikrofona."</string>
+    <string name="mic_privacy_chip_privacy_settings" msgid="719293067082198224">"Nastavitve zasebnosti"</string>
+    <string name="mic_privacy_chip_app_using_mic_suffix" msgid="8355462601492180023">"<xliff:g id="APP">%s</xliff:g> uporablja mikrofon."</string>
+    <string name="mic_privacy_chip_apps_using_mic_suffix" msgid="6656026041668305817">"<xliff:g id="APP_LIST">%s</xliff:g> uporabljajo mikrofon."</string>
+    <string name="mic_privacy_chip_app_recently_used_mic_suffix" msgid="1819299821245419382">"Aplikacija <xliff:g id="APP">%s</xliff:g> je nedavno uporabljala mikrofon."</string>
+    <string name="mic_privacy_chip_on_toast" msgid="7003896860896586181">"Mikrofon je vklopljen."</string>
+    <string name="mic_privacy_chip_off_toast" msgid="8718743873640788032">"Mikrofon je izklopljen."</string>
+    <string name="mic_privacy_chip_dialog_title_mic" msgid="3782090299882049010">"Nedavna uporaba mikrofona"</string>
+    <string name="mic_privacy_chip_dialog_ok" msgid="2298690833121720237">"V redu"</string>
+</resources>

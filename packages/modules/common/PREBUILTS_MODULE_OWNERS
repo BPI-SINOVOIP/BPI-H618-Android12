@@ -1,0 +1,14 @@
+# This file is intended to be included in the OWNERS file for mainline modules
+# prebuilts.  The goal is to allow the mainline modularization and release team
+# to update the prebuilts in bulk and on a regular basis without being blocked
+# on approvals.  classes of change within mainline modules and their build
+# rules.
+#
+# It should be included in a prebuilt module OWNERS file via:
+# include platform/packages/modules/common:/PREBUILTS_MODULES_OWNERS
+#
+# See go/mainline-owners-policy for more details.
+
+include platform/packages/modules/common:/MODULES_OWNERS
+aseaton@google.com #{LAST_RESORT_SUGGESTION}
+dariofreni@google.com #{LAST_RESORT_SUGGESTION}

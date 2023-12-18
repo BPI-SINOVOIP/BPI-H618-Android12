@@ -1,0 +1,4 @@
+service neuralnetworks_hal_service_aidl_sample_quant /vendor/bin/hw/android.hardware.neuralnetworks-service-sample-quant
+    class hal
+    user system
+    group system

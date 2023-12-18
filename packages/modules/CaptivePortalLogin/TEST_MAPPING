@@ -1,0 +1,12 @@
+{
+  "postsubmit": [
+    {
+      "name": "CaptivePortalLoginTests"
+    }
+  ],
+  "mainline-postsubmit": [
+    {
+      "name": "CaptivePortalLoginTests[CaptivePortalLoginGoogle.apk+NetworkStackGoogle.apk+com.google.android.resolv.apex+com.google.android.tethering.apex]"
+    }
+  ]
+}

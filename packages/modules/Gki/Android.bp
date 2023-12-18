@@ -1,0 +1,199 @@
+//
+// Copyright (C) 2020 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+python_defaults {
+    name: "gki_python_defaults",
+    libs: [
+        "releasetools_ota_from_target_files",
+    ],
+    version: {
+        py3: {
+            embedded_launcher: true,
+        },
+    },
+    target: {
+        darwin: {
+            // required module "brillo_update_payload" is disabled on darwin
+            enabled: false,
+        },
+    },
+}
+
+python_binary_host {
+    name: "ota_from_raw_image",
+    defaults: ["gki_python_defaults"],
+    srcs: ["ota_from_raw_image.py"],
+    required: [
+        "brillo_update_payload",
+    ],
+}
+
+python_binary_host {
+    name: "extract_img_from_apex",
+    defaults: ["gki_python_defaults"],
+    srcs: ["extract_img_from_apex.py"],
+    required: [
+        "debugfs",
+        "delta_generator",
+    ],
+}
+
+apex_key {
+    name: "com.android.gki.key",
+    public_key: "com.android.gki.avbpubkey",
+    private_key: "com.android.gki.pem",
+}
+
+// Use cc_prebuilt_binary because sh_binary does not support product_specific.
+// TODO(b/169954965): Change to sh_binary when product_specific is supported.
+cc_prebuilt_binary {
+    name: "com.android.gki.preinstall",
+    product_specific: true,
+    srcs: ["preinstall.sh"],
+    apex_available: ["com.android.gki.*"],
+    strip: {
+        none: true,
+    },
+}
+
+// Common defaults for all GKI APEXes.
+apex_defaults {
+    name: "com.android.gki_defaults",
+    product_specific: true,
+    binaries: [
+        "update_engine_stable_client",
+        "com.android.gki.preinstall",
+    ],
+    file_contexts: ":com.android.gki-file_contexts",
+    // Key to sign apex_payload.img
+    key: "com.android.gki.key",
+    // Key to sign APEX. Left empty to use defaults.
+    certificate: "",
+    updatable: false,
+}
+
+// Helper binary to build APEX manifest for GKI.
+cc_binary_host {
+    name: "build_gki_apex_manifest",
+    srcs: [
+        "build_gki_apex_manifest.cpp",
+    ],
+    static_libs: [
+        "libbase",
+        "libgflags",
+        "libjsoncpp",
+        "libkver",
+        "liblog",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+}
+
+// Build GKI APEX 5.4-android12-0 from $(PRODUCT_OUT)/boot.img.
+// Also generate test packages.
+gki_apex {
+    name: "com.android.gki.kmi_5_4_android12_0",
+    installable: true,
+    kmi_version: "5.4-android12-0",
+    product_out_path: "boot.img",
+    gen_test: true,
+}
+
+// Build GKI APEX 5.10-android12-0 from $(PRODUCT_OUT)/boot.img.
+// Also generate test packages.
+// TODO(b/186647770): Delete when no devices install it.
+gki_apex {
+    name: "com.android.gki.kmi_5_10_android12_0",
+    installable: true,
+    kmi_version: "5.10-android12-0",
+    product_out_path: "boot.img",
+    gen_test: true,
+}
+
+// Build GKI APEX 5.10-android12-1 from $(PRODUCT_OUT)/boot.img.
+// Also generate test packages.
+// TODO(b/186647770): Delete when no devices install it.
+gki_apex {
+    name: "com.android.gki.kmi_5_10_android12_1",
+    installable: true,
+    kmi_version: "5.10-android12-1",
+    product_out_path: "boot.img",
+    gen_test: true,
+}
+
+// Build GKI APEX 5.10-android12-unstable from $(PRODUCT_OUT)/boot.img.
+// Also generate test packages.
+gki_apex {
+    name: "com.android.gki.kmi_5_10_android12_unstable",
+    installable: true,
+    kmi_version: "5.10-android12-unstable",
+    product_out_path: "boot.img",
+    gen_test: true,
+}
+
+// Build GKI APEX 5.4-android12-0 from $(PRODUCT_OUT)/boot-5.4.img
+gki_apex {
+    name: "com.android.gki.kmi_5_4_android12_0_boot-5.4",
+    installable: false,
+    kmi_version: "5.4-android12-0",
+    product_out_path: "boot-5.4.img",
+}
+
+// Build GKI APEX 5.10-android12-0 from $(PRODUCT_OUT)/boot-5.10.img
+// TODO(b/186647770): Delete when no devices install it.
+gki_apex {
+    name: "com.android.gki.kmi_5_10_android12_0_boot-5.10",
+    installable: false,
+    kmi_version: "5.10-android12-0",
+    product_out_path: "boot-5.10.img",
+}
+
+// Build GKI APEX 5.10-android12-1 from $(PRODUCT_OUT)/boot-5.10.img
+// TODO(b/186647770): Delete when no devices install it.
+gki_apex {
+    name: "com.android.gki.kmi_5_10_android12_1_boot-5.10",
+    installable: false,
+    kmi_version: "5.10-android12-1",
+    product_out_path: "boot-5.10.img",
+}
+
+// Build GKI APEX 5.10-android12-unstable from $(PRODUCT_OUT)/boot-5.10.img
+gki_apex {
+    name: "com.android.gki.kmi_5_10_android12_unstable_boot-5.10",
+    installable: false,
+    kmi_version: "5.10-android12-unstable",
+    product_out_path: "boot-5.10.img",
+}
+
+// List of all test APEXes for GkiInstallTest. Append "_test_high" and "_test_low" for each
+// gki_apex with gen_test:true.
+filegroup {
+    name: "gki_install_test_files",
+    srcs: [
+        ":com.android.gki.kmi_5_4_android12_0_test_high",
+        ":com.android.gki.kmi_5_4_android12_0_test_low",
+        ":com.android.gki.kmi_5_10_android12_0_test_high",
+        ":com.android.gki.kmi_5_10_android12_0_test_low",
+        ":com.android.gki.kmi_5_10_android12_unstable_test_high",
+        ":com.android.gki.kmi_5_10_android12_unstable_test_low",
+    ],
+}

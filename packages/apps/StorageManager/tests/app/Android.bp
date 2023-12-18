@@ -1,0 +1,25 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_test {
+    name: "StorageManagerAppTests",
+
+    libs: ["android.test.runner"],
+
+    static_libs: [
+        "androidx.test.rules",
+        "mockito-target",
+        "androidx.test.espresso.core",
+        "androidx.test.espresso.contrib-nodeps",
+        "androidx.test.espresso.intents-nodeps",
+        "truth-prebuilt",
+    ],
+
+    // Include all test java files.
+    srcs: ["src/**/*.java"],
+
+    platform_apis: true,
+
+    instrumentation_for: "StorageManager",
+}

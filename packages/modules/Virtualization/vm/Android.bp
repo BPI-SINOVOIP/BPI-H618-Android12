@@ -1,0 +1,21 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+rust_binary {
+    name: "vm",
+    crate_name: "vm",
+    srcs: ["src/main.rs"],
+    edition: "2018",
+    rustlibs: [
+        "android.system.virtmanager-rust",
+        "libanyhow",
+        "libenv_logger",
+        "liblibc",
+        "liblog_rust",
+        "libstructopt",
+    ],
+    apex_available: [
+        "com.android.virt",
+    ],
+}

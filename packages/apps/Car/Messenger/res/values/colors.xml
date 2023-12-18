@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright (C) 2020 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <array name="letter_tile_colors">
+        <item>#db4437</item>
+        <item>#e91e63</item>
+        <item>#9c27b0</item>
+        <item>#673ab7</item>
+        <item>#3f51b5</item>
+        <item>#4285f4</item>
+        <item>#039be5</item>
+        <item>#0097a7</item>
+        <item>#008577</item>
+        <item>#0f9d58</item>
+        <item>#689f38</item>
+        <item>#ef6c00</item>
+        <item>#ff5722</item>
+        <item>#757575</item>
+    </array>
+    <color name="divider_color">@color/divider_color_light</color>
+    <color name="divider_color_light">#38FFFFFF</color>
+    <color name="primary_icon_color">@color/icon_tint</color>
+    <color name="letter_tile_default_color">#cccccc</color>
+    <color name="unread_dot_color">#66B5FF</color>
+
+    <color name="letter_tile_font_color">#ffffff</color>
+
+    <color name="icon_tint">@color/car_grey_50</color>
+
+    <color name="primary_text_color">#FFFFFFFF</color>
+    <color name="secondary_text_color">#B8FFFFFF</color>
+
+    <color name="car_card_ripple_background">#17000000</color>
+
+    <color name="background_image_30p_black">#4D000000</color>
+
+    <color name="uxr_button_text_color">@color/primary_text_color</color>
+    <color name="uxr_button_text_disabled_color">#80FFFFFF</color>
+
+    <color name="hero_button_background_color">@color/car_grey_868</color>
+    <color name="hero_button_text_color">@color/uxr_button_text_color_selector</color>
+
+    <!--
+        Color palette for cars.
+        Those values are NOT part of the car-ui-lib "resource API", they are just constants used in
+        various places to give a default value to the attributes of the "api".
+     -->
+    <color name="car_grey_868">#ff282a2d</color>
+    <color name="car_grey_50">#fff8f9fa</color>
+
+    <color name="car_red_500a">#ffd50000</color>
+
+    <color name="group_avatar_stroke_color">@android:color/transparent</color>
+    <color name="group_avatar_background_color">@android:color/transparent</color>
+</resources>

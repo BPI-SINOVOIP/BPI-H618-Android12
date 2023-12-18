@@ -1,0 +1,42 @@
+{
+  "mainline-presubmit": [
+    {
+      "name": "FrameworksIkeTests[com.google.android.ipsec.apex]"
+    },
+    {
+      "name": "CtsIkeTestCases[com.google.android.ipsec.apex]"
+    }
+  ],
+  "presubmit": [
+    {
+      "name": "FrameworksIkeTests"
+    },
+    {
+      "name": "CtsIkeTestCases"
+    },
+    {
+      "name": "CtsNetTestCases",
+      "options": [
+        {
+          "include-filter": "android.net.cts.Ikev2VpnTest"
+        }
+      ]
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "FrameworksIkeTests"
+    },
+    {
+      "name": "CtsIkeTestCases"
+    },
+    {
+      "name": "CtsNetTestCases",
+      "options": [
+        {
+          "include-filter": "android.net.cts.Ikev2VpnTest"
+        }
+      ]
+    }
+  ]
+}

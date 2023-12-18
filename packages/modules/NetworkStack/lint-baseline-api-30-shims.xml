@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.LinkProperties#getNat64Prefix`"
+        errorLine1="        return lp.getNat64Prefix();"
+        errorLine2="                  ~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/apishim/30/com/android/networkstack/apishim/api30/NetworkInformationShimImpl.java"
+            line="85"
+            column="19"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.LinkProperties#setNat64Prefix`"
+        errorLine1="        lp.setNat64Prefix(prefix);"
+        errorLine2="           ~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/apishim/30/com/android/networkstack/apishim/api30/NetworkInformationShimImpl.java"
+            line="90"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.LinkProperties#setDhcpServerAddress`"
+        errorLine1="        lp.setDhcpServerAddress(serverAddress);"
+        errorLine2="           ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/apishim/30/com/android/networkstack/apishim/api30/NetworkInformationShimImpl.java"
+            line="109"
+            column="12"/>
+    </issue>
+
+</issues>

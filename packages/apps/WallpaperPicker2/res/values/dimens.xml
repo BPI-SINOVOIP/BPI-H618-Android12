@@ -1,0 +1,208 @@
+<!--
+     Copyright (C) 2017 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="grid_padding">4dp</dimen>
+    <dimen name="grid_padding_desktop">8dp</dimen>
+
+    <!-- Dimensions for all grid item tiles. -->
+    <dimen name="grid_item_all_radius">28dp</dimen>
+    <dimen name="grid_item_all_radius_small">20dp</dimen>
+
+    <!-- Dimensions for "category" tiles. -->
+    <dimen name="grid_item_category_label_padding_top">6dp</dimen>
+    <dimen name="grid_item_category_label_minimum_height">16dp</dimen>
+    <dimen name="grid_item_category_padding_horizontal">6dp</dimen>
+    <dimen name="grid_item_category_padding_bottom">12dp</dimen>
+    <dimen name="grid_tile_aspect_height">340dp</dimen>
+    <dimen name="grid_tile_aspect_width">182dp</dimen>
+    <dimen name="category_grid_edge_space">18dp</dimen>
+    <dimen name="category_grid_padding_top">32dp</dimen>
+
+    <!-- Dimensions for featured "category" tiles. -->
+    <dimen name="grid_item_featured_category_padding_bottom">16dp</dimen>
+
+    <!-- Dimensions for individual wallpaper tiles. -->
+    <dimen name="grid_item_individual_padding_horizontal">4dp</dimen>
+    <dimen name="grid_item_individual_padding_bottom">8dp</dimen>
+    <dimen name="grid_item_individual_label_padding_top">6dp</dimen>
+    <dimen name="grid_item_individual_label_padding_bottom">4dp</dimen>
+    <dimen name="wallpaper_grid_edge_space">20dp</dimen>
+    <dimen name="wallpaper_grid_padding_top">32dp</dimen>
+
+    <!-- Dimensions for featured individual wallpaper tiles. -->
+    <dimen name="grid_item_featured_individual_padding_horizontal">6dp</dimen>
+    <dimen name="grid_item_featured_individual_padding_bottom">12dp</dimen>
+    <dimen name="featured_wallpaper_grid_edge_space">18dp</dimen>
+
+    <!-- Dimensions for individual wallpaper wallpaper tiles' badge -->
+    <dimen name="grid_item_badge_size">24dp</dimen>
+    <dimen name="grid_item_badge_indicator_size">16dp</dimen>
+    <dimen name="grid_item_badge_margin_small">8dp</dimen>
+    <dimen name="grid_item_badge_margin">12dp</dimen>
+
+    <!-- Dimensions for "permissions needed" tile. -->
+    <dimen name="permissions_needed_metadata_content_margin_top">16dp</dimen>
+    <dimen name="permissions_needed_metadata_warning_icon_margin_sides">16dp</dimen>
+    <dimen name="permissions_needed_metadata_warning_icon_margin_top">8dp</dimen>
+    <dimen name="permissions_needed_metadata_description_margin_end">16dp</dimen>
+    <dimen name="permissions_needed_metadata_allow_access_button_margin_end">2dp</dimen>
+    <dimen name="permissions_needed_metadata_allow_access_button_margin_top">6dp</dimen>
+
+    <!-- Dimensions for "loading indicator" configuration. -->
+    <dimen name="categories_loading_indicator_margin_top">16dp</dimen>
+
+    <!-- Dimensions for wallpaper tiles in individual picker when in desktop mode. -->
+    <dimen name="tile_desktop_progress_bar_size">40dp</dimen>
+
+    <!-- Dimensions for "daily refresh" rotation tile in individual picker when in desktop mode. -->
+    <dimen name="rotation_tile_desktop_label_padding">16dp</dimen>
+    <dimen name="rotation_tile_desktop_label_text_size">13sp</dimen>
+
+    <!-- Dimensions for the attribution pane. -->
+    <dimen name="preview_attribution_pane_horizontal_padding">24dp</dimen>
+
+    <!-- Dimensions for the "start rotation" dialog. -->
+    <dimen name="start_rotation_dialog_subhead_margin_top">19dp</dimen>
+    <dimen name="start_rotation_dialog_subhead_margin_bottom">16dp</dimen>
+    <dimen name="start_rotation_dialog_checkbox_margin_right">10dp</dimen>
+    <dimen name="start_rotation_dialog_checkbox_min_height">48dp</dimen>
+    <dimen name="start_rotation_dialog_checkbox_area_margin_left">18dp</dimen>
+    <dimen name="start_rotation_dialog_checkbox_area_margin_bottom">12dp</dimen>
+
+    <!-- Dimensions for the "Set wallpaper" destination dialog. -->
+    <dimen name="set_wallpaper_dialog_padding">24dp</dimen>
+    <dimen name="set_wallpaper_dialog_item_min_height">56dp</dimen>
+    <dimen name="set_wallpaper_dialog_item_min_width">300dp</dimen>
+    <dimen name="set_wallpaper_dialog_item_outer_corner_radius">12dp</dimen>
+    <dimen name="set_wallpaper_dialog_item_inner_corner_radius">4dp</dimen>
+    <dimen name="set_wallpaper_dialog_icon_size">32dp</dimen>
+
+    <!-- Dimensions for the "wallpaper disabled by administrator" UI. -->
+    <dimen name="wallpaper_disabled_asset_margin_bottom">26dp</dimen>
+    <dimen name="wallpaper_disabled_message_side_margin_sides">84dp</dimen>
+
+    <!-- Dimensions for various instances of the "Explore" button (in category picker metadata pane
+         and preview fragment metadata pane. -->
+    <dimen name="explore_button_drawable_padding">8dp</dimen>
+
+    <!-- Dimensions for the "current wallpaper" BottomSheet shown in desktop mode for the individual
+         picker. -->
+    <dimen name="current_wallpaper_bottom_sheet_layout_height">132dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_presentation_mode_margin_top">10dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_presentation_mode_text_size">14sp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_title_margin_top">6dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_title_text_size">16sp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_subtitle_margin_top">6dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_subtitle_text_size">10sp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_explore_button_margin_top">12dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_explore_button_margin_start">3dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_explore_button_margin_end">12dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_explore_button_text_size">12sp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_thumb_height">114dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_thumb_margin">8dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_margin_sides">16dp</dimen>
+    <dimen name="current_wallpaper_bottom_sheet_wallpaper_position_drawable_padding">8dp</dimen>
+
+    <!-- Dimensions for the category tabs in desktop mode. -->
+    <dimen name="category_tab_text_size">14sp</dimen>
+
+    <!-- Dimensions for the offline UI in desktop mode. -->
+    <dimen name="offline_mode_image_size">100dp</dimen>
+    <dimen name="offline_mode_message_text_size">13sp</dimen>
+
+    <!-- Dimensions for the "disabled by admin" UI in desktop mode. -->
+    <dimen name="disabled_by_admin_desktop_message_text_size">13sp</dimen>
+    <dimen name="preview_bottom_sheet_corner_radius">12dp</dimen>
+
+    <!-- Dimensions for PreviewPager and PageIndicator. -->
+    <dimen name="preview_indicator_width">16dp</dimen>
+    <dimen name="preview_indicator_height">8dp</dimen>
+    <dimen name="indicator_container_height">48dp</dimen>
+    <dimen name="indicator_arrow_size">24dp</dimen>
+    <dimen name="indicator_arrow_touch_area_size">48dp</dimen>
+    <dimen name="indicator_arrow_container_margin_horizontal">4dp</dimen>
+    <dimen name="preview_page_gap">16dp</dimen>
+    <dimen name="preview_page_horizontal_margin">56dp</dimen>
+    <dimen name="preview_page_top_margin">24dp</dimen>
+    <dimen name="preview_page_bottom_margin">24dp</dimen>
+    <dimen name="preview_card_padding">20dp</dimen>
+    <dimen name="preview_pager_max_height">450dp</dimen>
+    <dimen name="preview_pager_min_height">350dp</dimen>
+    <!-- The maximum height ratio of PreviewPager and its parent view. -->
+    <item name="preview_pager_maximum_height_ratio" format="float" type="dimen">0.7</item>
+
+    <!-- Dimensions for full preview page -->
+    <dimen name="full_preview_page_default_padding_top">24dp</dimen>
+    <dimen name="full_preview_page_default_padding_bottom">32dp</dimen>
+
+    <!-- Dimensions for the bottom bar. -->
+    <dimen name="bottom_actions_height">84dp</dimen>
+    <dimen name="bottom_actions_top_padding">24dp</dimen>
+    <dimen name="bottom_actions_bottom_padding">12dp</dimen>
+    <dimen name="bottom_action_button_width">72dp</dimen>
+    <dimen name="bottom_action_button_height">48dp</dimen>
+    <dimen name="bottom_action_button_padding_horizontal">26dp</dimen>
+    <dimen name="bottom_action_button_radius">100dp</dimen>
+
+    <!-- Whenever updating this file, ensure that
+         bottom_actions_plus_separated_tabs == bottom_actions_height + separated_tabs_height -->
+    <dimen name="bottom_actions_plus_separated_tabs">144dp</dimen>
+
+    <dimen name="bottom_sheet_margin">24dp</dimen>
+    <dimen name="wallpaper_info_pane_padding">24dp</dimen>
+    <dimen name="wallpaper_info_pane_subtitle1_top_margin">4dp</dimen>
+    <dimen name="wallpaper_info_pane_subtitle2_top_margin">24dp</dimen>
+    <dimen name="wallpaper_info_pane_explore_button_top_margin">50dp</dimen>
+
+    <dimen name="option_border_width">2dp</dimen>
+    <dimen name="option_selected_border_width">3dp</dimen>
+    <dimen name="option_title_font_text_size">14sp</dimen>
+    <dimen name="option_title_line_height">20dp</dimen>
+
+    <!-- Dimensions for the separated tabs. -->
+    <dimen name="separated_tabs_height">56dp</dimen>
+    <dimen name="separated_tabs_corner_radius">12dp</dimen>
+    <dimen name="separated_tabs_inset_horizontal">4dp</dimen>
+    <!--  Default page horizontal margin (24dp) - separated tabs inset horizontal (4dp) -->
+    <dimen name="separated_tabs_horizontal_margin">20dp</dimen>
+
+    <!-- Whenever updating this file, ensure that
+         fullscreen_preview_button_margin == - separated_tabs_height -->
+    <dimen name="fullscreen_preview_button_margin">-60dp</dimen>
+    <dimen name="fullscreen_preview_button_margin_between">15dp</dimen>
+    <dimen name="fullscreen_preview_button_margin_bottom">28dp</dimen>
+    <dimen name="fullscreen_preview_buttons_horizontal_margin">24dp</dimen>
+
+    <!-- The size of lock screen widget on the full screen. -->
+    <dimen name="smartspace_preview_key_ambient_shadow_blur">1.5dp</dimen>
+    <dimen name="lock_screen_preview_date_text_size">20dp</dimen>
+    <dimen name="lock_screen_preview_date_line_height">24dp</dimen>
+    <dimen name="lock_screen_preview_time_text_size">150dp</dimen>
+
+    <!-- Common dimensions for option sections -->
+    <dimen name="section_container_vertical_margin">24dp</dimen>
+    <dimen name="section_horizontal_padding">24dp</dimen>
+    <dimen name="section_vertical_padding">24dp</dimen>
+    <dimen name="section_top_padding">16dp</dimen>
+    <dimen name="section_bottom_padding">16dp</dimen>
+
+    <!-- For the wallpaper section -->
+    <dimen name="wallpaper_preview_margin_top">24dp</dimen>
+    <dimen name="wallpaper_picker_entry_drawable_padding">8dp</dimen>
+    <dimen name="wallpaper_picker_entry_horizontal_padding">16dp</dimen>
+    <dimen name="wallpaper_picker_entry_margin_vertical">18dp</dimen>
+</resources>

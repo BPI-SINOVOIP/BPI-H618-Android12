@@ -1,0 +1,78 @@
+/*
+ * Copyright (C) 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+syntax = "proto2";
+
+package com.android.car.telemetry;
+
+option java_package = "com.android.car.telemetry";
+option java_outer_classname = "TelemetryProto";
+
+// A metrics configuration.
+//
+// The metrics configuration describes a metric that is collected from a device.
+// It includes a declarative part that configures the metric and the data publisher
+// and a data handler to process the data and create a statistic.
+// The latter is written in Lua language.
+message MetricsConfig {
+  // Required.
+  // The name of the configuration. Must be unique within a device.
+  // Only alphanumeric and _ characters are allowed. Minimum length is 3 chars.
+  optional string name = 1;
+
+  // Required.
+  // Version number of the configuration.
+  optional int32 version = 2;
+
+  // Required.
+  // A script that is executed in devices. Must contain all the handler functions
+  // defined in the listeners below.
+  // The script functions must be `pure` functions.
+  optional string script = 3;
+
+  // Required.
+  repeated Subscriber subscribers = 4;
+}
+
+// Parameters for Vehicle Properties publisher.
+// See https://source.android.com/devices/automotive/vhal/properties
+message VehiclePropertyPublisher {
+  // Required.
+  // See packages/services/Car/car-lib/src/android/car/VehiclePropertyIds.java
+  optional int32 vehicle_property_id = 1;
+
+  // See
+  // packages/services/Car/car-lib/src/android/car/hardware/property/CarPropertyManager.java
+  // look for constants SENSOR_RATE_*;
+  optional float read_rate = 2;
+}
+
+// Specifies data publisher and its parameters.
+message Publisher {
+  oneof publisher {
+    VehiclePropertyPublisher vehicle_property = 1;
+  }
+}
+
+// Specifies publisher with its parameters and the handler function that's invoked
+// when data is received. The format of the data depends on the Publisher.
+message Subscriber {
+  // Name of the script function that's invoked when this subscriber is triggered.
+  optional string handler = 1;
+
+  // Publisher and its parameters.
+  optional Publisher publisher = 2;
+}

@@ -1,0 +1,127 @@
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+soong_config_module_type_import {
+    from: "packages/modules/common/Android.bp",
+    module_types: [
+        "module_apex",
+    ],
+}
+
+module_apex {
+    name: "com.android.os.statsd",
+    defaults: ["com.android.os.statsd-defaults"],
+    manifest: "apex_manifest.json",
+    enabled: false,
+    soong_config_variables: {
+        module_build_from_source: {
+            enabled: true,
+        },
+    },
+}
+
+apex_defaults {
+    bootclasspath_fragments: ["com.android.os.statsd-bootclasspath-fragment"],
+    jni_libs: [
+        "libstats_jni",
+    ],
+    native_shared_libs: [
+        "libstatspull",
+        "libstatssocket",
+    ],
+    binaries: ["statsd"],
+    java_libs: [
+        "service-statsd",
+    ],
+    compile_multilib: "both",
+    prebuilts: [
+        "com.android.os.statsd.init.rc",
+        "current_sdkinfo",
+    ],
+    name: "com.android.os.statsd-defaults",
+    updatable: true,
+    min_sdk_version: "30",
+    key: "com.android.os.statsd.key",
+    certificate: ":com.android.os.statsd.certificate",
+}
+
+apex_key {
+    name: "com.android.os.statsd.key",
+    public_key: "com.android.os.statsd.avbpubkey",
+    private_key: "com.android.os.statsd.pem",
+}
+
+android_app_certificate {
+    name: "com.android.os.statsd.certificate",
+    // This will use com.android.os.statsd.x509.pem (the cert) and
+    // com.android.os.statsd.pk8 (the private key)
+    certificate: "com.android.os.statsd",
+}
+
+prebuilt_etc {
+    name: "com.android.os.statsd.init.rc",
+    src: "statsd.rc",
+    filename: "init.rc",
+    installable: false,
+}
+
+// ==========================================================
+// Make libstatssocket available to unbundled modules
+// ==========================================================
+sdk {
+    name: "statsd-module-sdk",
+    bootclasspath_fragments: ["com.android.os.statsd-bootclasspath-fragment"],
+    native_shared_libs: [
+        "libstatssocket",
+    ],
+}
+
+// TODO(b/180769414): ART should be able to use the statsd-module-sdk entry,
+// but unfortunately that conflicts with internal builds. Make a special copy
+// for ART for the time being.
+sdk {
+    name: "statsd-module-sdk-for-art",
+    native_shared_libs: [
+        "libstatssocket",
+    ],
+}
+
+// Encapsulate the contributions made by the com.android.os.statsd to the bootclasspath.
+bootclasspath_fragment {
+    name: "com.android.os.statsd-bootclasspath-fragment",
+    contents: ["framework-statsd"],
+    apex_available: ["com.android.os.statsd"],
+
+    // The bootclasspath_fragments that provide APIs on which this depends.
+    fragments: [
+        {
+            apex: "com.android.art",
+            module: "art-bootclasspath-fragment",
+        },
+    ],
+
+    // Additional stubs libraries that this fragment's contents use which are
+    // not provided by another bootclasspath_fragment.
+    additional_stubs: [
+        "android-non-updatable",
+    ],
+
+    hidden_api: {
+        max_target_o_low_priority: ["hiddenapi/hiddenapi-max-target-o-low-priority.txt"],
+    },
+}

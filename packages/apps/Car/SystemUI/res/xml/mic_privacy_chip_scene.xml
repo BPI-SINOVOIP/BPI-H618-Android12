@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2021 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <Transition
+        android:id="@+id/micOffFromInvisible"
+        motion:constraintSetStart="@id/invisible"
+        motion:constraintSetEnd="@id/mic_off"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration"/>
+
+    <Transition
+        android:id="@+id/activeInitFromInvisible"
+        motion:constraintSetStart="@id/invisible"
+        motion:constraintSetEnd="@id/active_init"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration"/>
+
+    <Transition
+        android:id="@+id/micOffFromActiveInit"
+        motion:constraintSetStart="@id/active_init"
+        motion:constraintSetEnd="@id/mic_off"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration"/>
+
+    <Transition
+        android:id="@+id/activeInitFromInactive"
+        motion:constraintSetStart="@id/inactive"
+        motion:constraintSetEnd="@id/active_init"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration"/>
+
+    <Transition
+        android:id="@+id/activeFromActiveInit"
+        motion:constraintSetStart="@id/active_init"
+        motion:constraintSetEnd="@id/active"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration"/>
+
+    <Transition
+        android:id="@+id/micOffFromActive"
+        motion:constraintSetStart="@id/active"
+        motion:constraintSetEnd="@id/mic_off"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration"/>
+
+    <Transition
+        android:id="@+id/invisibleFromInactive"
+        motion:constraintSetStart="@id/inactive"
+        motion:constraintSetEnd="@id/invisible"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration" />
+
+    <Transition
+        android:id="@+id/micOffFromInactive"
+        motion:constraintSetStart="@id/inactive"
+        motion:constraintSetEnd="@id/mic_off"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration"/>
+
+    <Transition
+        android:id="@+id/invisibleFromMicOff"
+        motion:constraintSetStart="@id/mic_off"
+        motion:constraintSetEnd="@id/invisible"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration" />
+
+    <Transition
+        android:id="@+id/inactiveFromActive"
+        motion:constraintSetStart="@id/active"
+        motion:constraintSetEnd="@id/inactive"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration" />
+
+    <Transition
+        android:id="@+id/activeInitFromMicOff"
+        motion:constraintSetStart="@id/mic_off"
+        motion:constraintSetEnd="@id/active_init"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration" />
+
+    <Transition
+        android:id="@+id/inactiveFromActiveInit"
+        motion:constraintSetStart="@id/active_init"
+        motion:constraintSetEnd="@id/inactive"
+        motion:motionInterpolator="decelerate"
+        motion:duration="@integer/privacy_chip_animation_transition_duration" />
+
+    <ConstraintSet android:id="@+id/invisible">
+        <Constraint
+            android:id="@id/inactive_background"
+            android:alpha="0.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/active_background"
+            android:alpha="0.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/light_muted_icon"
+            android:src="@drawable/ic_mic_off_light"
+            android:visibility="gone"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/light_icon"
+            android:src="@drawable/ic_mic_light"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/dark_icon"
+            android:src="@drawable/ic_mic_dark"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/focus_view"
+            android:visibility="gone"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/active_init">
+        <Constraint
+            android:id="@id/inactive_background"
+            android:alpha="1.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/active_background"
+            android:alpha="1.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/light_muted_icon"
+            android:src="@drawable/ic_mic_off_light"
+            android:visibility="gone"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/light_icon"
+            android:src="@drawable/ic_mic_light"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/dark_icon"
+            android:src="@drawable/ic_mic_dark"
+            android:alpha="1.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/focus_view"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/active">
+        <Constraint
+            android:id="@id/inactive_background"
+            android:alpha="1.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/active_background"
+            android:alpha="1.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/circular_active_indicator_vertical_guideline"
+            motion:layout_constraintTop_toTopOf="@id/circular_active_indicator_horizontal_guideline" />
+        <Constraint
+            android:id="@id/light_muted_icon"
+            android:src="@drawable/ic_mic_off_light"
+            android:visibility="gone"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/light_icon"
+            android:src="@drawable/ic_mic_light"
+            android:alpha="1.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/dark_icon"
+            android:src="@drawable/ic_mic_dark"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/focus_view"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/inactive">
+        <Constraint
+            android:id="@id/inactive_background"
+            android:alpha="1.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/active_background"
+            android:alpha="0.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/light_muted_icon"
+            android:src="@drawable/ic_mic_off_light"
+            android:visibility="gone"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/light_icon"
+            android:src="@drawable/ic_mic_light"
+            android:alpha="1.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/dark_icon"
+            android:src="@drawable/ic_mic_dark"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/focus_view"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/mic_off">
+        <Constraint
+            android:id="@id/inactive_background"
+            android:alpha="1.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/active_background"
+            android:alpha="0.0"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="parent"
+            motion:layout_constraintTop_toBottomOf="parent" />
+        <Constraint
+            android:id="@id/light_muted_icon"
+            android:src="@drawable/ic_mic_off_light"
+            android:visibility="visible"
+            android:alpha="1.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/light_icon"
+            android:src="@drawable/ic_mic_light"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/dark_icon"
+            android:src="@drawable/ic_mic_dark"
+            android:alpha="0.0"
+            android:layout_width="@dimen/privacy_chip_icon_size"
+            android:layout_height="@dimen/privacy_chip_icon_size"
+            android:gravity="center"
+            android:scaleType="fitCenter"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@id/focus_view"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/max_width_guideline"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+</MotionScene>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (c) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hvac_min_text" msgid="866677328637088715">"मि"</string>
+    <string name="hvac_max_text" msgid="7627950157128770380">"कमाल"</string>
+    <string name="voice_recognition_toast" msgid="7579725862117020349">"आता कनेक्ट केलेले ब्लूटूथ डिव्हाइस व्हॉइस रेकग्निशन हाताळते"</string>
+    <string name="car_guest" msgid="768913000117469596">"अतिथी"</string>
+    <string name="start_guest_session" msgid="2759367183497948650">"अतिथी"</string>
+    <string name="car_add_user" msgid="8660226923614358478">"वापरकर्ता जोडा"</string>
+    <string name="car_new_user" msgid="304628168515673432">"नवीन वापरकर्ता"</string>
+    <string name="user_add_user_message_setup" msgid="2130987756494836929">"तुम्ही नवीन वापरकर्ता जोडता तेव्हा त्या व्यक्तीने त्यांची जागा सेट करणे आवश्यक असते."</string>
+    <string name="user_add_user_message_update" msgid="1001907075316748931">"कोणताही वापरकर्ता इतर सर्व वापरकर्त्यांसाठी अ‍ॅप्स अपडेट करू शकतो."</string>
+    <string name="car_loading_profile" msgid="458961191993686065">"लोड करत आहे"</string>
+    <string name="car_loading_profile_developer_message" msgid="737810794567935702">"वापरकर्ता लोड करत आहे (<xliff:g id="FROM_USER">%1$d</xliff:g> पासून <xliff:g id="TO_USER">%2$d</xliff:g> पर्यंत)"</string>
+    <string name="mic_privacy_chip_off_content" msgid="4989623700063721557">"मायक्रोफोन बंद आहे."</string>
+    <string name="mic_privacy_chip_mic_enabled" msgid="5667789064187849349">"मायक्रोफोन सुरू आहे"</string>
+    <string name="mic_privacy_chip_mic_enabled_subtext" msgid="815124399469247109">"ॲप्स मायक्रोफोन अ‍ॅक्सेस करू शकतात"</string>
+    <string name="mic_privacy_chip_mic_disabled" msgid="2709173475947157320">"मायक्रोफोन बंद आहे"</string>
+    <string name="mic_privacy_chip_mic_disabled_subtext" msgid="9059745506470016701">"कोणत्याही ॲप्सना मायक्रोफोनचा अ‍ॅक्सेस नाही"</string>
+    <string name="mic_privacy_chip_privacy_settings" msgid="719293067082198224">"गोपनीयता सेटिंग्ज"</string>
+    <string name="mic_privacy_chip_app_using_mic_suffix" msgid="8355462601492180023">"<xliff:g id="APP">%s</xliff:g> माइक वापरत आहे"</string>
+    <string name="mic_privacy_chip_apps_using_mic_suffix" msgid="6656026041668305817">"<xliff:g id="APP_LIST">%s</xliff:g> माइक वापरत आहेत"</string>
+    <string name="mic_privacy_chip_app_recently_used_mic_suffix" msgid="1819299821245419382">"<xliff:g id="APP">%s</xliff:g> ने अलीकडे माइक वापरला"</string>
+    <string name="mic_privacy_chip_on_toast" msgid="7003896860896586181">"मायक्रोफोन सुरू केला"</string>
+    <string name="mic_privacy_chip_off_toast" msgid="8718743873640788032">"मायक्रोफोन बंद केला"</string>
+    <string name="mic_privacy_chip_dialog_title_mic" msgid="3782090299882049010">"मायक्रोफोनचा अलीकडील वापर"</string>
+    <string name="mic_privacy_chip_dialog_ok" msgid="2298690833121720237">"ओके"</string>
+</resources>

@@ -1,0 +1,95 @@
+// Copyright (C) 2020 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+kernel_version = "5.10"
+
+kernel_stem = "kernel_prebuilts-" + kernel_version
+kernel_modules_stem = "virt_device_prebuilts_kernel_modules-" + kernel_version
+
+cc_test {
+    name: "VirtualizationTestCases",
+    test_suites: ["device-tests"],
+    srcs: [
+        "common.cc",
+        "vsock_test.cc",
+    ],
+    local_include_dirs: ["include"],
+    data: [
+        ":virt_test_kernel",
+        ":virt_test_initramfs",
+        "vsock_config.json",
+    ],
+    static_libs: [
+        // The existence of the library in the system partition is not guaranteed.
+        // Let's have our own copy of it.
+        "android.system.virtmanager-cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "liblog",
+        "libutils",
+    ],
+}
+
+cc_defaults {
+    name: "virt_test_guest_binary",
+    static_libs: [
+        "libbase",
+        "liblog",
+    ],
+    static_executable: true,
+    installable: false,
+}
+
+cc_binary {
+    name: "virt_test_vsock_guest",
+    srcs: ["vsock_guest.cc"],
+    stem: "vsock_client",
+    defaults: ["virt_test_guest_binary"],
+}
+
+prebuilt_etc {
+    name: "virt_test_kernel",
+    src: "nofile",
+    arch: {
+        arm64: {
+            src: ":" + kernel_stem + "-arm64",
+        },
+        x86_64: {
+            src: ":" + kernel_stem + "-x86_64",
+        },
+    },
+}
+
+android_filesystem {
+    name: "virt_test_initramfs",
+    arch: {
+        arm64: {
+            deps: [kernel_modules_stem + "-arm64"],
+        },
+        x86_64: {
+            deps: [kernel_modules_stem + "-x86_64"],
+        },
+    },
+    deps: [
+        "virt_test_guest_init",
+        "virt_test_vsock_guest",
+    ],
+    type: "cpio",
+}

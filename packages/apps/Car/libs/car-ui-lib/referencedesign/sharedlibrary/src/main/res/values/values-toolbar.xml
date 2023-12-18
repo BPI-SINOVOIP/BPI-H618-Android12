@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="toolbar_title_and_tabs_mutually_exclusive">true</bool>
+    <bool name="toolbar_logo_fills_nav_icon_space">true</bool>
+    <bool name="toolbar_nav_icon_space_reserved">true</bool>
+
+    <dimen name="toolbar_margin">112dp</dimen>
+    <dimen name="toolbar_row_height">96dp</dimen>
+    <dimen name="toolbar_menu_item_icon_ripple_radius">48dp</dimen>
+    <dimen name="toolbar_search_icon_container_width">76dp</dimen>
+    <dimen name="toolbar_search_close_icon_container_width">76dp</dimen>
+
+    <style name="TextAppearance.CarUi.Widget.Toolbar.Tab" parent="TextAppearance.CarUi.Body3">
+        <item name="android:textColor">@color/toolbar_tab_item_selector</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textFontWeight">400</item>
+    </style>
+
+    <style name="TextAppearance.CarUi.Widget.Toolbar.Tab.Selected">
+        <item name="android:textFontWeight">500</item>
+    </style>
+
+    <style name="Toolbar.MenuItem.Text"
+        parent="android:Widget.Material.Button">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:maxWidth">350dp</item>
+    </style>
+
+    <style name="Toolbar.MenuItem.Text.Borderless"
+        parent="android:Widget.Material.Button.Borderless.Colored">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:maxWidth">350dp</item>
+    </style>
+</resources>

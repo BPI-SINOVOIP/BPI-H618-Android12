@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2020 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Application name [CHAR LIMIT=30] -->
+    <plurals name="new_message">
+        <item quantity="one" translatable="false">New message</item>
+        <item quantity="other" translatable="false">
+            <xliff:g example="2" id="count">%d</xliff:g> messages</item>
+    </plurals>
+
+    <!-- Button text for when disconnected from Bluetooth [CHAR LIMIT=40] -->
+    <string name="app_name" translatable="false">Car Messenger</string>
+
+    <!-- Button text for connecting to Bluetooth [CHAR LIMIT=40] -->
+    <string name="bluetooth_disconnected" translatable="false">Bluetooth disconnected</string>
+
+    <!-- Status when no new messages[CHAR LIMIT=40] -->
+    <string name="connect_bluetooth_button_text" translatable="false">Connect to Bluetooth</string>
+
+    <!-- Status when replied [CHAR LIMIT=40] -->
+    <string name="no_new_messages" translatable="false">No new messages</string>
+
+    <!-- Dot separator [CHAR LIMIT=1] -->
+    <string name="replied" translatable="false">Replied</string>
+    <string name="dot" translatable="false">·</string>
+    <string name="action_reply" translatable="false">Reply</string>
+    <string name="action_mute" translatable="false">Mute</string>
+
+    <!-- The message service channel name [CHAR LIMIT=40] -->
+    <string name="action_mark_as_read" translatable="false">Mark As Read</string>
+    <!-- The message service channel description [CHAR LIMIT=40] -->
+    <string name="app_running_msg_notification_title">Messaging service is active</string>
+    <!-- The message channel name [CHAR LIMIT=40] -->
+    <string name="app_running_msg_notification_content">Receiving Messages on car</string>
+    <!-- The message channel description [CHAR LIMIT=40] -->
+    <string name="message_channel_name">Message Channel</string>
+    <!-- New Message String [CHAR LIMIT=40] -->
+    <string name="message_channel_description">Phone Message Receiver Service</string>
+
+    <!-- Status when there is a new message [CHAR LIMIT=40] -->
+    <string name="new_message">New Message</string>
+
+    <!--  Content Descriptions-->
+    <!-- An icon indicating that this is unread [CHAR LIMIT=40] -->
+    <string name="cd_unread">Unread</string>
+    <!-- Conversation Icon [CHAR LIMIT=40] -->
+    <string name="cd_conversation_icon">Conversation Icon</string>
+    <!-- Subtitle Text Icon [CHAR LIMIT=40] -->
+    <string name="cd_icon_indicating_the_last_action">Subtitle Text Icon</string>
+    <!-- Mute button [CHAR LIMIT=40] -->
+    <string name="cd_mute_button">Mute Button</string>
+    <!-- Mute button [CHAR LIMIT=40] -->
+    <string name="cd_loading_info_icon">Loading Info Icon</string>
+    <!-- Mute button [CHAR LIMIT=40] -->
+    <string name="cd_reply_action_button">Reply Action Button</string>
+</resources>

@@ -1,0 +1,50 @@
+package {
+    default_applicable_licenses: ["packages_apps_DeskClock_license"],
+}
+
+// Added automatically by a large-scale-change
+// http://go/android-license-faq
+license {
+    name: "packages_apps_DeskClock_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+android_app {
+    name: "DeskClock",
+    resource_dirs: ["res"],
+    sdk_version: "current",
+    overrides: [
+        "AlarmClock",
+    ],
+    srcs: [
+        "src/**/*.kt",
+        "gen/**/*.java",
+    ],
+    product_specific: true,
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "androidx.arch.core_core-common",
+        "androidx.lifecycle_lifecycle-common",
+        "com.google.android.material_material",
+        "androidx.lifecycle_lifecycle-runtime",
+        "androidx.percentlayout_percentlayout",
+        "androidx.transition_transition",
+        "androidx.core_core",
+        "androidx.legacy_legacy-support-core-ui",
+        "androidx.media_media",
+        "androidx.legacy_legacy-support-v13",
+        "androidx.preference_preference",
+        "androidx.appcompat_appcompat",
+        "androidx.gridlayout_gridlayout",
+        "androidx.recyclerview_recyclerview",
+    ],
+
+    aaptflags: ["--legacy"],
+}

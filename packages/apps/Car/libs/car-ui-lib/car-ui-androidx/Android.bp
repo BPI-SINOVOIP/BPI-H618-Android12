@@ -1,0 +1,604 @@
+//
+// Copyright (C) 2020 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_library {
+    name: "car-ui-lib-androidx",
+    srcs: [],
+    resource_dirs: [],
+    sdk_version: "system_current",
+    optimize: {
+        enabled: false,
+    },
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-activity",
+        "car-ui-androidx-appcompat",
+        "car-ui-androidx-appcompat-resources",
+        "car-ui-androidx-asynclayoutinflater",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-constraintlayout",
+        "car-ui-androidx-constraintlayout-solver",
+        "car-ui-androidx-core",
+        "car-ui-androidx-core-common",
+        "car-ui-androidx-core-runtime",
+        "car-ui-androidx-customview",
+        "car-ui-androidx-drawerlayout",
+        "car-ui-androidx-fragment",
+        "car-ui-androidx-lifecycle-common",
+        "car-ui-androidx-lifecycle-livedata-core",
+        "car-ui-androidx-lifecycle-runtime",
+        "car-ui-androidx-lifecycle-viewmodel",
+        "car-ui-androidx-loader",
+        "car-ui-androidx-preference",
+        "car-ui-androidx-recyclerview",
+        "car-ui-androidx-savedstate",
+        "car-ui-androidx-vectordrawable",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-constraintlayout-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx-constraintlayout_constraintlayout-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-constraintlayout.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-constraintlayout",
+    aars: [":car-ui-androidx-constraintlayout-nodeps"],
+    static_libs: [
+        "car-ui-androidx-appcompat",
+        "car-ui-androidx-core",
+        "car-ui-androidx-constraintlayout-solver",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-constraintlayout-solver-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx-constraintlayout_constraintlayout-solver-nodeps{.jar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-constraintlayout-solver.jar"],
+}
+
+java_import {
+    name: "car-ui-androidx-constraintlayout-solver",
+    jars: [":car-ui-androidx-constraintlayout-solver-nodeps"],
+}
+
+genrule {
+    name: "car-ui-androidx-preference-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.preference_preference-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-preference.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-preference",
+    aars: [":car-ui-androidx-preference-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-appcompat",
+        "car-ui-androidx-core",
+        "car-ui-androidx-fragment",
+        "car-ui-androidx-recyclerview",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-recyclerview-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.recyclerview_recyclerview-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-recyclerview.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-recyclerview",
+    aars: [":car-ui-androidx-recyclerview-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-core",
+        "car-ui-androidx-customview",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-asynclayoutinflater-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.asynclayoutinflater_asynclayoutinflater-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-asynclayoutinflater.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-asynclayoutinflater",
+    aars: [":car-ui-androidx-asynclayoutinflater-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-core",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-appcompat-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.appcompat_appcompat-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-appcompat.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-appcompat",
+    aars: [":car-ui-androidx-appcompat-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-core",
+        "car-ui-androidx-cursoradapter",
+        "car-ui-androidx-activity",
+        "car-ui-androidx-fragment",
+        "car-ui-androidx-appcompat-resources",
+        "car-ui-androidx-drawerlayout",
+        "car-ui-androidx-savedstate",
+        "car-ui-androidx-lifecycle-runtime",
+        "car-ui-androidx-lifecycle-viewmodel",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-cursoradapter-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.cursoradapter_cursoradapter-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-cursoradapter.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-cursoradapter",
+    aars: [":car-ui-androidx-cursoradapter-nodeps"],
+    static_libs: [
+        "androidx.annotation_annotation",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-fragment-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.fragment_fragment-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-fragment.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-fragment",
+    aars: [":car-ui-androidx-fragment-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-core",
+        "car-ui-androidx-viewpager",
+        "car-ui-androidx-loader",
+        "car-ui-androidx-activity",
+        "car-ui-androidx-lifecycle-livedata-core",
+        "car-ui-androidx-lifecycle-viewmodel",
+        "car-ui-androidx-lifecycle-viewmodel-savedstate",
+        "car-ui-androidx-savedstate",
+        // "androidx.annotation_annotation-experimental",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-loader-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.loader_loader-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-loader.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-loader",
+    aars: [":car-ui-androidx-loader-nodeps"],
+    static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "androidx.lifecycle_lifecycle-viewmodel",
+        "androidx.core_core",
+        "androidx.lifecycle_lifecycle-livedata-core",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-viewpager-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.viewpager_viewpager-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-viewpager.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-viewpager",
+    aars: [":car-ui-androidx-viewpager-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-customview",
+        "car-ui-androidx-core",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-activity-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.activity_activity-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-activity.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-activity",
+    aars: [":car-ui-androidx-activity-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-core",
+        "car-ui-androidx-lifecycle-runtime",
+        "car-ui-androidx-lifecycle-viewmodel",
+        "car-ui-androidx-savedstate",
+        "car-ui-androidx-lifecycle-viewmodel-savedstate",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-lifecycle-viewmodel-savedstate-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.lifecycle_lifecycle-viewmodel-savedstate-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-lifecycle-viewmodel-savedstate.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-lifecycle-viewmodel-savedstate",
+    aars: [":car-ui-androidx-lifecycle-viewmodel-savedstate-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-savedstate",
+        "car-ui-androidx-lifecycle-livedata-core",
+        "car-ui-androidx-lifecycle-viewmodel",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-drawerlayout-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.drawerlayout_drawerlayout-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-drawerlayout.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-drawerlayout",
+    aars: [":car-ui-androidx-drawerlayout-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-core",
+        "car-ui-androidx-customview",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-customview-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.customview_customview-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-customview.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-customview",
+    aars: [":car-ui-androidx-customview-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-core",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-savedstate-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.savedstate_savedstate-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-savedstate.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-savedstate",
+    aars: [":car-ui-androidx-savedstate-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-core-common",
+        "car-ui-androidx-lifecycle-common",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-appcompat-resources-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.appcompat_appcompat-resources-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-appcompat-resources.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-appcompat-resources",
+    aars: [":car-ui-androidx-appcompat-resources-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-core",
+        "car-ui-androidx-vectordrawable",
+        // "car-ui-androidx-vectordrawable-animated",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-vectordrawable-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.vectordrawable_vectordrawable-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-vectordrawable.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-vectordrawable",
+    aars: [":car-ui-androidx-vectordrawable-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-core",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-core-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.core_core-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-core.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-core",
+    aars: [":car-ui-androidx-core-nodeps"],
+    static_libs: [
+        "car-ui-androidx-annotation",
+        "car-ui-androidx-collection",
+        "car-ui-androidx-lifecycle-runtime",
+        //"car-ui-androidx-versionedparcelable"
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-lifecycle-livedata-core-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.lifecycle_lifecycle-livedata-core-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-lifecycle-livedata-core.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-lifecycle-livedata-core",
+    aars: [":car-ui-androidx-lifecycle-livedata-core-nodeps"],
+    static_libs: [
+        "car-ui-androidx-lifecycle-common",
+        "car-ui-androidx-core-common",
+        "car-ui-androidx-core-runtime",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-lifecycle-viewmodel-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.lifecycle_lifecycle-viewmodel-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-lifecycle-viewmodel.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-lifecycle-viewmodel",
+    aars: [":car-ui-androidx-lifecycle-viewmodel-nodeps"],
+    sdk_version: "current",
+    static_libs: [
+        "car-ui-androidx-annotation",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-lifecycle-runtime-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.lifecycle_lifecycle-runtime-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-lifecycle-runtime.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-lifecycle-runtime",
+    aars: [":car-ui-androidx-lifecycle-runtime-nodeps"],
+    sdk_version: "current",
+    static_libs: [
+        "car-ui-androidx-lifecycle-common",
+        "car-ui-androidx-core-runtime",
+        "car-ui-androidx-core-common",
+        "car-ui-androidx-annotation",
+    ],
+}
+
+genrule {
+    name: "car-ui-androidx-lifecycle-common-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.lifecycle_lifecycle-common-nodeps{.jar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-lifecycle-common.jar"],
+}
+
+java_import {
+    name: "car-ui-androidx-lifecycle-common",
+    jars: [":car-ui-androidx-lifecycle-common-nodeps"],
+    sdk_version: "current",
+}
+
+genrule {
+    name: "car-ui-androidx-core-runtime-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.arch.core_core-runtime-nodeps{.aar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-core-runtime.aar"],
+}
+
+android_library_import {
+    name: "car-ui-androidx-core-runtime",
+    aars: [":car-ui-androidx-core-runtime-nodeps"],
+    sdk_version: "current",
+}
+
+genrule {
+    name: "car-ui-androidx-core-common-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.arch.core_core-common-nodeps{.jar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-core-common.aar"],
+}
+
+java_import {
+    name: "car-ui-androidx-core-common",
+    jars: [":car-ui-androidx-core-common-nodeps"],
+    sdk_version: "current",
+}
+
+java_genrule {
+    name: "car-ui-androidx-annotation-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.annotation_annotation-nodeps{.jar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-annotation.jar"],
+    host_supported: true,
+}
+
+java_import {
+    name: "car-ui-androidx-annotation",
+    jars: [":car-ui-androidx-annotation-nodeps"],
+    sdk_version: "current",
+    host_supported: true,
+}
+
+genrule {
+    name: "car-ui-androidx-collection-nodeps",
+    tools: ["jetifier"],
+    srcs: [
+        ":androidx.collection_collection-nodeps{.jar}",
+        "car-ui-jetifier-reverse.cfg",
+    ],
+    cmd: "$(location jetifier) -i $(in) -o $(out) -r -c $(location car-ui-jetifier-reverse.cfg)",
+    out: ["car-ui-androidx-collection.jar"],
+}
+
+java_import {
+    name: "car-ui-androidx-collection",
+    jars: [":car-ui-androidx-collection-nodeps"],
+    sdk_version: "current",
+}

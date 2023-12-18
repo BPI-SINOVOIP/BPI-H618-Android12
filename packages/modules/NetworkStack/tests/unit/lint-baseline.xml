@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="    private val EMPTY_CAPABILITIES = NetworkCapabilities()"
+        errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/com/android/networkstack/NetworkStackNotifierTest.kt"
+            line="134"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="    private val VALIDATED_CAPABILITIES = NetworkCapabilities()"
+        errorLine2="                                         ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/com/android/networkstack/NetworkStackNotifierTest.kt"
+            line="135"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `new android.net.NetworkCapabilities`"
+        errorLine1="            new NetworkCapabilities()"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/com/android/networkstack/metrics/NetworkValidationMetricsTest.java"
+            line="57"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `new android.net.NetworkCapabilities`"
+        errorLine1="        NetworkCapabilities nc = new NetworkCapabilities();"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/com/android/networkstack/metrics/NetworkValidationMetricsTest.java"
+            line="109"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `new android.net.NetworkCapabilities`"
+        errorLine1="        nc = new NetworkCapabilities();"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/com/android/networkstack/metrics/NetworkValidationMetricsTest.java"
+            line="117"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `new android.net.NetworkCapabilities`"
+        errorLine1="        nc = new NetworkCapabilities();"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/com/android/networkstack/metrics/NetworkValidationMetricsTest.java"
+            line="123"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `new android.net.NetworkCapabilities`"
+        errorLine1="        nc = new NetworkCapabilities();"
+        errorLine2="             ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/com/android/networkstack/metrics/NetworkValidationMetricsTest.java"
+            line="129"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="        mCallback.onCapabilitiesChanged(net2097, NetworkCapabilities())"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/android/net/testutils/TestableNetworkCallbackTest.kt"
+            line="59"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="        mCallback.onCapabilitiesChanged(net2098, NetworkCapabilities())"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/android/net/testutils/TestableNetworkCallbackTest.kt"
+            line="71"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="        val meteredNc = NetworkCapabilities()"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/android/net/testutils/TestableNetworkCallbackTest.kt"
+            line="108"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="        val unmeteredNc = NetworkCapabilities().addCapability(NOT_METERED)"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/android/net/testutils/TestableNetworkCallbackTest.kt"
+            line="109"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="        val netCaps = NetworkCapabilities().addTransportType(CELLULAR)"
+        errorLine2="                      ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/android/net/testutils/TestableNetworkCallbackTest.kt"
+            line="130"
+            column="23"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="        val netCaps = NetworkCapabilities().addCapability(NOT_METERED).addTransportType(WIFI)"
+        errorLine2="                      ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/android/net/testutils/TestableNetworkCallbackTest.kt"
+            line="152"
+            column="23"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.NetworkCapabilities()`"
+        errorLine1="            &quot;CapabilitiesChanged&quot; -> cb.onCapabilitiesChanged(net, NetworkCapabilities())"
+        errorLine2="                                                                   ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/unit/src/android/net/testutils/TestableNetworkCallbackTest.kt"
+            line="279"
+            column="68"/>
+    </issue>
+
+</issues>

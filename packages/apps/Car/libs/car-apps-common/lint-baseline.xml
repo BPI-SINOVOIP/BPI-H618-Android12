@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 29 (current min is 28): `android.content.res.Resources#getFloat`"
+        errorLine1="                    getResources().getFloat(R.dimen.background_bitmap_blur_percent));"
+        errorLine2="                                   ~~~~~~~~">
+        <location
+            file="packages/apps/Car/libs/car-apps-common/src/com/android/car/apps/common/BackgroundImageView.java"
+            line="64"
+            column="36"/>
+    </issue>
+
+</issues>

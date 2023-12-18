@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <integer name="setup_fade_in_duration">250</integer>
+    <integer name="setup_fade_out_duration">250</integer>
+    <integer name="action_title_max_lines">3</integer>
+    <integer name="dialog_animation_duration">150</integer>
+
+    <string name="additional_system_update" translatable="false" />
+    <string name="additional_system_update_menu" translatable="false" />
+
+    <!-- Display additional System Update menu if true -->
+    <bool name="config_additional_system_update_setting_enable">false</bool>
+    <!-- Whether to show a preference item for the manual in About phone -->
+    <bool name="config_show_manual">false</bool>
+    <!-- Whether to show a preference item for regulatory information in About phone -->
+    <bool name="config_show_regulatory_info">false</bool>
+    <!-- Whether to show a preference item for allowing turning screen off during media playback -->
+    <bool name="config_show_standby_timeout">false</bool>
+
+    <!-- Determines whether the entire "Quick Settings" section is available or not. -->
+    <bool name="config_quick_settings_enabled" translatable="false">true</bool>
+
+    <!-- Determines whether the "Take bug report" option is shown in quick settings. -->
+    <bool name="config_quick_settings_show_take_bugreport" translatable="false">true</bool>
+
+    <!-- Flavor of TvSettings. -->
+    <string name="config_tvSettingsFlavor" translatable="false">Classic</string>
+
+    <!-- Allow overlay to specify known/official device names using the return value of
+        BluetoothDevice # getName() so that it is hidden from the generic bluetooth accessories
+        section and is only visible in OEM-implemented Slice. -->
+    <string-array name="known_bluetooth_device_labels" translatable="false">
+    </string-array>
+
+    <!-- Whether to show the bluetooth toggle. Please be very careful with this config as setting it
+        to true would surface a toggle in Remotes & Accessories settings that allows the user to
+        turn off Bluetooth. Without an IR remote or some other form of connection, the user may not
+        be able to turn it back on and have to perform FDR. -->
+    <bool name="show_bluetooth_toggle">false</bool>
+
+    <!-- The list of supported HDR formats. This list is overlaid by OEMs to specify
+         the HDR formats supported by their device. -->
+    <integer-array name="config_deviceSupportedHdrFormats">
+        <item>@integer/dolby_vision</item>
+        <item>@integer/hdr10</item>
+        <item>@integer/hlg</item>
+        <item>@integer/hdr10plus</item>
+    </integer-array>
+
+    <!-- The integer value for HDR format Dolby Vision. This should match
+            android.view.Display.HdrCapabilities.HDR_TYPE_DOLBY_VISION -->
+    <integer name="dolby_vision">1</integer>
+    <!-- The integer value for HDR format HDR 10. This should match
+            android.view.Display.HdrCapabilities.HDR_TYPE_HDR10 -->
+    <integer name="hdr10">2</integer>
+    <!-- The integer value for HDR format HLG. This should match
+            android.view.Display.HdrCapabilities.HDR_TYPE_HLG -->
+    <integer name="hlg">3</integer>
+    <!-- The integer value for HDR format HDR10+. This should match
+            android.view.Display.HdrCapabilities.HDR_TYPE_HDR10_PLUS -->
+    <integer name="hdr10plus">4</integer>
+
+</resources>

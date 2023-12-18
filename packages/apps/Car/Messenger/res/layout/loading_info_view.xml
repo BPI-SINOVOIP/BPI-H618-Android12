@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2020 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/loading_info_action_button"
+        style="@style/LoadingInfoActionButtonStyle"
+        android:layout_marginTop="@dimen/loading_info_button_margin_top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loading_info_secondary_message" />
+
+    <ImageView
+        android:id="@+id/loading_info_icon"
+        android:layout_width="@dimen/loading_info_icon_size"
+        android:layout_height="@dimen/loading_info_icon_size"
+        android:layout_marginBottom="@dimen/loading_info_icon_margin_bottom"
+        android:contentDescription="@string/cd_loading_info_icon"
+        app:layout_constraintBottom_toTopOf="@id/loading_info_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:tint="@color/primary_icon_color" />
+
+    <TextView
+        android:id="@+id/loading_info_secondary_message"
+        style="@style/LoadingInfoSecondaryMessageStyle"
+        app:layout_constraintBottom_toTopOf="@id/loading_info_action_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loading_info_message" />
+
+    <TextView
+        android:id="@+id/loading_info_message"
+        style="@style/LoadingInfoMessageStyle"
+        app:layout_constraintBottom_toTopOf="@id/loading_info_secondary_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loading_info_icon" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,57 @@
+/*
+ * Copyright (C) 2020 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Library-level build file
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 28
+        targetSdkVersion 30
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // In order to adb install a new version of an app over it's preinstalled version, the new
+    // version must be signed with the same key as the preinstalled version. If you don't specify
+    // a certificate in the Android.bp file, the default certificate that will
+    // be used is build/target/product/security/testkey.{pk8,x509.pem}. Android studio doesn't
+    // support signing apps using individual pk8 and x509.pem files, it requires a keystore file.
+    signingConfigs {
+        debug {
+            storeFile file('chassis_upload_key.pepk')
+            storePassword 'chassis'
+            keyAlias 'chassis'
+            keyPassword 'chassis'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':oem-apis')
+    api 'androidx.annotation:annotation:1.2.0'
+    api 'androidx.appcompat:appcompat:1.3.0'
+    api 'androidx.constraintlayout:constraintlayout:2.0.4'
+    api 'androidx.preference:preference:1.1.1'
+    api 'androidx.recyclerview:recyclerview:1.2.0'
+    api 'androidx.core:core:1.5.0'
+}

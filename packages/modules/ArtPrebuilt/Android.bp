@@ -1,0 +1,52 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+prebuilt_apex {
+    name: "com.android.art.debug",
+    arch: {
+        arm: {
+            src: "com.android.art.debug-arm.apex",
+        },
+        arm64: {
+            src: "com.android.art.debug-arm64.apex",
+        },
+        x86: {
+            src: "com.android.art.debug-x86.apex",
+        },
+        x86_64: {
+            src: "com.android.art.debug-x86_64.apex",
+        },
+    },
+}
+
+prebuilt_apex {
+    name: "com.android.art",
+
+    // TODO(b/192006406): There is currently no good way to control which
+    // prebuilt APEX (com.google.android.art or com.android.art) gets picked for
+    // deapexing to provide dex jars for hiddenapi and dexpreopting. Instead the
+    // AOSP APEX is completely disabled, and we build from source for AOSP
+    // products.
+    enabled: false,
+
+    arch: {
+        arm: {
+            src: "com.android.art-arm.apex",
+        },
+        arm64: {
+            src: "com.android.art-arm64.apex",
+        },
+        x86: {
+            src: "com.android.art-x86.apex",
+        },
+        x86_64: {
+            src: "com.android.art-x86_64.apex",
+        },
+    },
+
+    // Make fragment related files from the apex file available for use by the
+    // build when using prebuilts, e.g. for running the boot jars package check
+    // and hidden API flag validation among other uses.
+    exported_bootclasspath_fragments: ["art-bootclasspath-fragment"],
+}

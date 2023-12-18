@@ -1,0 +1,25 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "packages_providers_CallLogProvider_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["packages_providers_CallLogProvider_license"],
+}
+
+android_test {
+    name: "CallLogBackupTests",
+    static_libs: ["mockito-target"],
+    libs: [
+        "android.test.runner",
+        "android.test.base",
+    ],
+    // Only compile source java files in this apk.
+    srcs: ["src/**/*.java"],
+    platform_apis: true,
+    instrumentation_for: "CallLogBackup",
+    certificate: "shared",
+    optimize: {
+        enabled: false,
+    },
+}

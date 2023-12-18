@@ -1,0 +1,75 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+rust_defaults {
+    name: "authfs_defaults",
+    crate_name: "authfs",
+    srcs: [
+        "src/main.rs",
+    ],
+    edition: "2018",
+    rustlibs: [
+        "authfs_aidl_interface-rust",
+        "libandroid_logger",
+        "libanyhow",
+        "libauthfs_crypto_bindgen",
+        "libcfg_if",
+        "libfuse_rust",
+        "liblibc",
+        "liblog_rust",
+        "libstructopt",
+        "libthiserror",
+    ],
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    shared_libs: ["libcrypto"],
+    defaults: ["crosvm_defaults"],
+}
+
+// TODO(b/172687320): remove once there is a canonical bindgen.
+rust_bindgen {
+    name: "libauthfs_crypto_bindgen",
+    wrapper_src: "src/crypto.hpp",
+    crate_name: "authfs_crypto_bindgen",
+    source_stem: "bindings",
+    shared_libs: [
+        "libcrypto",
+    ],
+    bindgen_flags: ["--size_t-is-usize"],
+    cflags: ["-D BORINGSSL_NO_CXX"],
+    apex_available: ["com.android.virt"],
+}
+
+rust_binary {
+    name: "authfs",
+    defaults: ["authfs_defaults"],
+    apex_available: ["com.android.virt"],
+}
+
+rust_test {
+    name: "authfs_device_test_src_lib",
+    defaults: ["authfs_defaults"],
+    test_suites: ["device-tests"],
+    data: [":authfs_test_files"],
+}
+
+filegroup {
+    name: "authfs_test_files",
+    srcs: [
+        "testdata/cert.der",
+        "testdata/input.4k",
+        "testdata/input.4k.fsv_sig",
+        "testdata/input.4k.merkle_dump",
+        "testdata/input.4k1",
+        "testdata/input.4k1.fsv_sig",
+        "testdata/input.4k1.merkle_dump",
+        "testdata/input.4m",
+        "testdata/input.4m.fsv_sig",
+        "testdata/input.4m.merkle_dump",
+        "testdata/input.4m.merkle_dump.bad",
+    ],
+}

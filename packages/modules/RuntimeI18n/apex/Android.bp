@@ -1,0 +1,149 @@
+//
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// i18n APEX is intended as a home for ICU as of July 2019.
+// Various parts and dependencies of ICU would be gradually moved into this APEX,
+// and the below build rules should reflect the latest status.
+// TODO(b/138434658): Move the apex declaration back to external/icu
+// The apex is declared in libcore/ to workaround new dependency from external/icu
+// to system/sepolicy in a downstream branch.
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+apex {
+    name: "com.android.i18n",
+    defaults: ["com.android.i18n-defaults"],
+    certificate: ":com.android.i18n.certificate",
+}
+
+apex_defaults {
+    name: "com.android.i18n-defaults",
+    compile_multilib: "both",
+    manifest: "manifest.json",
+    prebuilts: ["apex_icu.dat"],
+    key: "com.android.i18n.key",
+    native_shared_libs: [
+        "libandroidicu",
+        "libicu",
+        "libicui18n",
+        "libicuuc",
+        // libicu_jni is not in jni_libs, but native_shared_libs because it's required to bootstrap
+        // the Java method System.loadLibrary.
+        "libicu_jni",
+    ],
+    bootclasspath_fragments: [
+        "i18n-bootclasspath-fragment",
+    ],
+    updatable: false,
+    generate_hashtree: false,
+}
+
+apex_key {
+    name: "com.android.i18n.key",
+    public_key: "com.android.i18n.avbpubkey",
+    private_key: "com.android.i18n.pem",
+}
+
+android_app_certificate {
+    name: "com.android.i18n.certificate",
+    certificate: "com.android.i18n",
+}
+
+// The com.android.i18n's contribution to the bootclasspath.
+bootclasspath_fragment {
+    name: "i18n-bootclasspath-fragment",
+    contents: [
+        "core-icu4j",
+    ],
+    apex_available: [
+        "com.android.i18n",
+    ],
+    // The bootclasspath_fragments that provide APIs on which this depends.
+    fragments: [
+        {
+            apex: "com.android.art",
+            module: "art-bootclasspath-fragment",
+        },
+    ],
+    api: {
+        stub_libs: [
+            "i18n.module.public.api",
+        ],
+    },
+    core_platform_api: {
+        stub_libs: [
+            "legacy.i18n.module.platform.api",
+        ],
+    },
+    hidden_api: {
+        max_target_o_low_priority: [
+            "hiddenapi/hiddenapi-max-target-o-low-priority.txt",
+        ],
+    },
+}
+
+// SDK exposed by the ICU module.
+sdk {
+    name: "i18n-module-sdk",
+    host_supported: true,
+    target: {
+        android: {
+            bootclasspath_fragments: ["i18n-bootclasspath-fragment"],
+            java_sdk_libs: [
+                "i18n.module.intra.core.api",
+                "legacy.i18n.module.platform.api",
+                "stable.i18n.module.platform.api",
+                "i18n.module.public.api",
+            ],
+        },
+    },
+    native_header_libs: [
+        "libandroidicu_headers",
+        "libicuuc_headers",
+    ],
+    native_shared_libs: [
+        "libandroidicu",
+        "libicu",
+    ],
+}
+
+module_exports {
+    name: "i18n-module-host-exports",
+    host_supported: true,
+    device_supported: false,
+    java_libs: [
+        "timezone-host",
+    ],
+}
+
+// Additional prebuilts for running ART tests on host and device.
+module_exports {
+    name: "i18n-module-test-exports",
+    host_supported: true,
+    target: {
+        android: {
+            java_libs: [
+                // For use by robolectric and ART tests.
+                "core-icu4j-for-host",
+            ],
+        },
+    },
+    native_shared_libs: [
+        "libicui18n",
+        "libicuuc",
+        "libicu_jni",
+    ],
+}

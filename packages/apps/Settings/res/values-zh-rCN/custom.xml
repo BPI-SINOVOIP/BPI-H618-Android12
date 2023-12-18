@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2021 Allwinner Technology
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- second screen -->
+    <string name="second_screen_setting">副屏设置</string>
+    <string name="second_screen_output_mode">副屏输出模式</string>
+    <string name="second_screen_output_mode_summary">设置默认的副屏输出制式</string>
+    <string name="hdmi_fullscreen">HDMI全屏显示</string>
+    <string name="hdmi_fullscreen_summary">设置HDMI输出是否全屏显示</string>
+    <string name="second_screen_width_scale">副屏输出宽度缩放</string>
+    <string name="second_screen_height_scale">副屏出高度缩放</string>
+    <!-- color enhance -->
+    <string name="color_enhance">丽色系统</string>
+    <string name="color_enhance_summary">丽色系统用于玩游戏,观看视频图片,效果更佳</string>
+    <string name="color_enhance_demo">演示模式</string>
+    <string name="color_enhance_demo_summary">只对半个屏幕有效,便于看出效果</string>
+    <string name="color_bright_setting">色度</string>
+    <string name="contrast_setting">对比度</string>
+    <string name="saturation_setting">饱和度</string>
+    <string name="smart_backlight">智能背光</string>
+    <string name="smart_backlight_summary">智能背光只针对视频图层</string>
+    <string name="smart_backlight_demo">演示模式</string>
+    <string name="smart_backlight_demo_summary">只对半个屏幕有效,便于看出效果</string>
+    <string name="reading_mode">护眼模式</string>
+    <string name="reading_mode_summary">适合长时间阅读时使用，减少屏幕蓝光对眼睛的损害</string>
+    <string name="reading_mode_strength_scale">护眼效果调节</string>
+    <string name="color_temperature_scale">色温调节</string>
+
+    <!-- gesture screenshot -->
+    <string name="title_gesture_screenshot">手势截屏</string>
+    <string name="title_gesture_screenshot_summary">用两根手指从屏幕右侧最边缘向内滑动一段距离触发截屏功能</string>
+    <!-- gesture screenrecord -->
+    <string name="title_gesture_screenrecord">手势录像</string>
+    <string name="title_gesture_screenrecord_summary">用两根手指从屏幕左侧最边缘向内滑动一段距离触发屏幕录制功能，再次滑动停止录制</string>
+
+    <string name="black_white_mode">黑白模式</string>
+    <string name="black_white_mode_summary">黑白模式开启后禁止调节饱和度</string>
+</resources>
+

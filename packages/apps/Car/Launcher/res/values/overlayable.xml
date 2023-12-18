@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright (C) 2021 The Android Open Source Project
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+  http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.-->
+<!--
+THIS FILE WAS AUTO GENERATED, DO NOT EDIT MANUALLY.
+REGENERATE USING packages/apps/Car/tests/tools/rro/generate-overlayable.py
+-->
+<resources>
+  <overlayable name="CarLauncher">
+    <policy type="system|product|signature">
+      <item type="array" name="config_homeCardModuleClasses"/>
+      <item type="array" name="config_homeCardPreferredMapActivities"/>
+      <item type="array" name="hidden_apps"/>
+      <item type="color" name="card_background_scrim"/>
+      <item type="color" name="date_divider_bar_color"/>
+      <item type="color" name="dialer_button_icon_color"/>
+      <item type="color" name="dialer_end_call_button_color"/>
+      <item type="color" name="icon_tint"/>
+      <item type="color" name="minimized_progress_bar_background"/>
+      <item type="color" name="recent_apps_line_divider_color"/>
+      <item type="color" name="tap_for_more_text_color"/>
+      <item type="dimen" name="app_bar_height"/>
+      <item type="dimen" name="app_grid_header_margin"/>
+      <item type="dimen" name="app_grid_row_margin"/>
+      <item type="dimen" name="app_grid_touch_target_size"/>
+      <item type="dimen" name="app_icon_description_margin"/>
+      <item type="dimen" name="app_icon_opacity"/>
+      <item type="dimen" name="app_icon_opacity_unavailable"/>
+      <item type="dimen" name="app_icon_ripple_radius"/>
+      <item type="dimen" name="app_touch_target_margin"/>
+      <item type="dimen" name="app_touch_target_padding"/>
+      <item type="dimen" name="button_outline_thickness"/>
+      <item type="dimen" name="button_tap_target_icon_padding"/>
+      <item type="dimen" name="button_tap_target_size"/>
+      <item type="dimen" name="button_trio_margin"/>
+      <item type="dimen" name="card_background_image_blur_radius"/>
+      <item type="dimen" name="card_background_scrim_alpha"/>
+      <item type="dimen" name="card_content_image_margin"/>
+      <item type="dimen" name="card_content_image_size"/>
+      <item type="dimen" name="card_content_margin"/>
+      <item type="dimen" name="card_icon_size"/>
+      <item type="dimen" name="card_name_margin_start"/>
+      <item type="dimen" name="card_width"/>
+      <item type="dimen" name="contextual_screen_percentage"/>
+      <item type="dimen" name="descriptive_text_margin_top"/>
+      <item type="dimen" name="descriptive_text_only_top_margin"/>
+      <item type="dimen" name="descriptive_text_with_controls_top_margin"/>
+      <item type="dimen" name="home_card_button_size"/>
+      <item type="dimen" name="horizontal_border_size"/>
+      <item type="dimen" name="icon_size"/>
+      <item type="dimen" name="launcher_card_corner_radius"/>
+      <item type="dimen" name="main_screen_widget_margin"/>
+      <item type="dimen" name="media_top_margin"/>
+      <item type="dimen" name="panel_margin"/>
+      <item type="dimen" name="playback_controls_margin"/>
+      <item type="dimen" name="recent_apps_divider_margin"/>
+      <item type="dimen" name="recent_apps_row_height"/>
+      <item type="dimen" name="search_bar_drawable_text_padding"/>
+      <item type="dimen" name="search_bar_margin"/>
+      <item type="dimen" name="search_box_height"/>
+      <item type="dimen" name="search_item_width"/>
+      <item type="dimen" name="search_result_margin"/>
+      <item type="dimen" name="search_result_text_margin"/>
+      <item type="dimen" name="secondary_text_margin_top"/>
+      <item type="dimen" name="tap_text_margin"/>
+      <item type="dimen" name="text_block_top_margin"/>
+      <item type="dimen" name="vertical_border_size"/>
+      <item type="drawable" name="car_button_background"/>
+      <item type="drawable" name="ic_apps_black"/>
+      <item type="drawable" name="ic_arrow_back_black"/>
+      <item type="drawable" name="ic_call_end"/>
+      <item type="drawable" name="ic_call_end_button"/>
+      <item type="drawable" name="ic_clear_black"/>
+      <item type="drawable" name="ic_dialpad"/>
+      <item type="drawable" name="ic_mic_off"/>
+      <item type="drawable" name="ic_search_black"/>
+      <item type="id" name="app_icon"/>
+      <item type="id" name="app_item"/>
+      <item type="id" name="app_name"/>
+      <item type="id" name="apps_grid"/>
+      <item type="id" name="bottom_card"/>
+      <item type="id" name="bottom_edge"/>
+      <item type="id" name="bottom_line"/>
+      <item type="id" name="button_center"/>
+      <item type="id" name="button_left"/>
+      <item type="id" name="button_right"/>
+      <item type="id" name="button_trio"/>
+      <item type="id" name="card_background"/>
+      <item type="id" name="card_background_image"/>
+      <item type="id" name="card_background_scrim"/>
+      <item type="id" name="card_icon"/>
+      <item type="id" name="card_name"/>
+      <item type="id" name="card_view"/>
+      <item type="id" name="descriptive_text_layout"/>
+      <item type="id" name="descriptive_text_with_controls_layout"/>
+      <item type="id" name="divider"/>
+      <item type="id" name="divider_horizontal"/>
+      <item type="id" name="end_edge"/>
+      <item type="id" name="focus_area"/>
+      <item type="id" name="maps_card"/>
+      <item type="id" name="media_descriptive_text"/>
+      <item type="id" name="media_layout"/>
+      <item type="id" name="media_playback_controls_bar"/>
+      <item type="id" name="optional_image"/>
+      <item type="id" name="optional_timer"/>
+      <item type="id" name="optional_timer_separator"/>
+      <item type="id" name="primary_text"/>
+      <item type="id" name="recent_apps_row"/>
+      <item type="id" name="secondary_text"/>
+      <item type="id" name="start_edge"/>
+      <item type="id" name="tap_for_more_text"/>
+      <item type="id" name="text_block"/>
+      <item type="id" name="text_block_layout"/>
+      <item type="id" name="top_card"/>
+      <item type="id" name="top_edge"/>
+      <item type="id" name="top_line"/>
+      <item type="id" name="vertical_barrier"/>
+      <item type="integer" name="car_app_selector_column_number"/>
+      <item type="integer" name="card_content_text_block_max_lines"/>
+      <item type="integer" name="playback_controls_bar_columns"/>
+      <item type="layout" name="app_grid_activity"/>
+      <item type="layout" name="app_item"/>
+      <item type="layout" name="button_trio"/>
+      <item type="layout" name="car_launcher"/>
+      <item type="layout" name="car_launcher_multiwindow"/>
+      <item type="layout" name="card_content_descriptive_text_only"/>
+      <item type="layout" name="card_content_descriptive_text_with_controls"/>
+      <item type="layout" name="card_content_media"/>
+      <item type="layout" name="card_content_text_block"/>
+      <item type="layout" name="card_fragment"/>
+      <item type="layout" name="descriptive_text"/>
+      <item type="layout" name="recent_apps_row"/>
+      <item type="layout" name="tap_for_more_text"/>
+      <item type="layout" name="text_block"/>
+      <item type="plurals" name="projection_devices"/>
+      <item type="string" name="app_launcher_title_all_apps"/>
+      <item type="string" name="app_launcher_title_media_only"/>
+      <item type="string" name="app_title"/>
+      <item type="string" name="driving_toast_text"/>
+      <item type="string" name="fake_weather_footer_text"/>
+      <item type="string" name="fake_weather_main_text"/>
+      <item type="string" name="hide_debug_apps"/>
+      <item type="string" name="ongoing_call_duration_text_separator"/>
+      <item type="string" name="ongoing_call_text"/>
+      <item type="string" name="projected_launch_text"/>
+      <item type="string" name="projected_onclick_launch_error_toast_text"/>
+      <item type="string" name="show_debug_apps"/>
+      <item type="string" name="tap_for_more_info_text"/>
+      <item type="string" name="tap_to_launch_text"/>
+      <item type="string" name="weather_app_name"/>
+      <item type="style" name="CardViewStyle"/>
+      <item type="style" name="ContextualSpace"/>
+      <item type="style" name="HorizontalLineDivider"/>
+      <item type="style" name="Theme.Launcher"/>
+      <item type="style" name="Theme.Launcher.AppGridActivity"/>
+      <item type="style" name="TitleText"/>
+    </policy>
+  </overlayable>
+</resources>

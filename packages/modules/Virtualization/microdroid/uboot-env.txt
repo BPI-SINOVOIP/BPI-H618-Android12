@@ -1,0 +1,7 @@
+# Static u-boot environment variables for microdroid. See b/180481192
+
+# Boot the device following the Android boot procedure
+bootcmd=avb init virtio 0 && avb verify _a && boot_android virtio 0#misc
+
+bootdelay=0
+fdtaddr=0x80000000

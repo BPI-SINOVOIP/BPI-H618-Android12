@@ -1,0 +1,108 @@
+//
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+apex {
+    name: "com.android.tethering",
+    compile_multilib: "both",
+    updatable: true,
+    min_sdk_version: "30",
+    bootclasspath_fragments: [
+        "com.android.tethering-bootclasspath-fragment",
+    ],
+    java_libs: [
+        "service-connectivity",
+    ],
+    multilib: {
+        first: {
+            jni_libs: ["libservice-connectivity"],
+        },
+        both: {
+            jni_libs: ["libframework-connectivity-jni"],
+        },
+    },
+    bpfs: [
+        "offload.o",
+        "test.o",
+    ],
+    apps: [
+        "ServiceConnectivityResources",
+        "Tethering",
+    ],
+    prebuilts: ["current_sdkinfo"],
+    manifest: "manifest.json",
+    key: "com.android.tethering.key",
+    // Indicates that pre-installed version of this apex can be compressed.
+    // Whether it actually will be compressed is controlled on per-device basis.
+    compressible: true,
+
+    androidManifest: "AndroidManifest.xml",
+}
+
+apex_key {
+    name: "com.android.tethering.key",
+    public_key: "com.android.tethering.avbpubkey",
+    private_key: "com.android.tethering.pem",
+}
+
+android_app_certificate {
+    name: "com.android.tethering.certificate",
+    certificate: "com.android.tethering",
+}
+
+// Encapsulate the contributions made by the com.android.tethering to the bootclasspath.
+bootclasspath_fragment {
+    name: "com.android.tethering-bootclasspath-fragment",
+    contents: [
+        "framework-connectivity",
+        "framework-tethering",
+    ],
+    apex_available: ["com.android.tethering"],
+
+    // The bootclasspath_fragments that provide APIs on which this depends.
+    fragments: [
+        {
+            apex: "com.android.art",
+            module: "art-bootclasspath-fragment",
+        },
+    ],
+
+    // Additional stubs libraries that this fragment's contents use which are
+    // not provided by another bootclasspath_fragment.
+    additional_stubs: [
+        "android-non-updatable",
+    ],
+
+    // Additional hidden API flag files to override the defaults. This must only be
+    // modified by the Soong or platform compat team.
+    hidden_api: {
+        max_target_o_low_priority: ["hiddenapi/hiddenapi-max-target-o-low-priority.txt"],
+        unsupported: ["hiddenapi/hiddenapi-unsupported.txt"],
+    },
+}
+
+override_apex {
+    name: "com.android.tethering.inprocess",
+    base: "com.android.tethering",
+    package_name: "com.android.tethering.inprocess",
+    apps: [
+        "ServiceConnectivityResources",
+        "InProcessTethering",
+    ],
+}

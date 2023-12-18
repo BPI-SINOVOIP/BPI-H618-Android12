@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Copyright (C) 2018 The Android Open Source Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_title" msgid="1995858460392177468">"Menú d\'aplicacions del cotxe"</string>
+    <string name="app_launcher_title_all_apps" msgid="3215107396036838217">"Totes les aplicacions"</string>
+    <string name="app_launcher_title_media_only" msgid="4400886555907422816">"Aplicacions multimèdia"</string>
+    <string name="driving_toast_text" msgid="149483091947120092">"No es pot utilitzar <xliff:g id="APP_NAME">%1$s</xliff:g> mentre es condueix."</string>
+    <string name="tap_for_more_info_text" msgid="2043549383814415585">"Toca la targeta per veure més informació"</string>
+    <string name="tap_to_launch_text" msgid="6910695705119260847">"Toca la targeta per iniciar"</string>
+    <string name="ongoing_call_duration_text_separator" msgid="6019453854809413561">" • "</string>
+    <string name="ongoing_call_text" msgid="2394626676478708070">"Trucada en curs"</string>
+    <string name="projected_launch_text" msgid="5809132353957907500">"Inicia Android Auto"</string>
+    <string name="projected_onclick_launch_error_toast_text" msgid="7462478007773137082">"No es pot iniciar Android Auto. No s\'ha trobat cap activitat."</string>
+    <plurals name="projection_devices" formatted="false" msgid="4740612230451956299">
+      <item quantity="other"><xliff:g id="COUNT_1">%d</xliff:g> dispositius</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%d</xliff:g> dispositiu</item>
+    </plurals>
+    <string name="weather_app_name" msgid="8048146303519139993">"Temps"</string>
+    <string name="fake_weather_main_text" msgid="8117240999340284429">"--° Principalment assolellat"</string>
+    <string name="fake_weather_footer_text" msgid="4570172025869749926">"Mountain View • Màx.: --° Mín.: --°"</string>
+    <string name="hide_debug_apps" msgid="6128313544379622475">"Amaga les aplicacions de depuració"</string>
+    <string name="show_debug_apps" msgid="4521073121286325786">"Mostra les aplicacions de depuració"</string>
+</resources>

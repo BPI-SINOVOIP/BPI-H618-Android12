@@ -1,0 +1,195 @@
+//
+// Copyright (C) 2015 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+common_libs = ["android.car-system-stubs"]
+
+common_static_libs = [
+    "car-apps-common",
+    "car-arch-common",
+    "car-telephony-common",
+    "car-ui-lib",
+    "car-uxr-client-lib",
+    "guava",
+    "glide-prebuilt",
+    "hilt_android",
+    "libphonenumber",
+    "androidx-constraintlayout_constraintlayout",
+    "androidx-constraintlayout_constraintlayout-solver",
+    "androidx.cardview_cardview",
+    "androidx.legacy_legacy-support-v4",
+    "androidx.lifecycle_lifecycle-extensions",
+    "androidx.preference_preference",
+    "androidx.recyclerview_recyclerview",
+    "androidx.room_room-runtime",
+    "androidx.sqlite_sqlite",
+    "androidx.sqlite_sqlite-framework",
+]
+
+android_app {
+    name: "CarDialerApp",
+
+    srcs: ["src/**/*.java"],
+
+    resource_dirs: ["res"],
+
+    sdk_version: "system_current",
+
+    required: ["allowed_privapp_com.android.car.dialer"],
+
+    certificate: "platform",
+
+    overrides: ["Dialer"],
+
+    libs: common_libs,
+
+    static_libs: [
+        "car-dialer-framework-dep",
+    ] + common_static_libs,
+
+    plugins: [
+        "androidx.room_room-compiler-plugin",
+    ],
+
+    optimize: {
+        enabled: false,
+    },
+
+    privileged: true,
+
+    dex_preopt: {
+        enabled: false,
+    },
+
+    product_variables: {
+        pdk: {
+            enabled: false,
+        },
+    },
+}
+
+//##################################################################################
+// Duplicate of CarDialerApp which includes testing only resources for Robolectric #
+//##################################################################################
+
+android_app {
+    name: "CarDialerAppForTesting",
+
+    srcs: ["src/**/*.java"],
+
+    exclude_srcs: ["src/com/android/car/dialer/inject/BluetoothSingleHfpModule.java"],
+
+    resource_dirs: [
+        "res",
+        "tests/robotests/res",
+    ],
+
+    sdk_version: "system_current",
+
+    required: ["allowed_privapp_com.android.car.dialer"],
+
+    certificate: "platform",
+
+    overrides: ["Dialer"],
+
+    libs: common_libs,
+
+    static_libs: [
+        "car-dialer-fake-framework-dep",
+        "car-dialer-testing",
+    ] + common_static_libs,
+
+    plugins: [
+        "androidx.room_room-compiler-plugin",
+    ],
+
+    optimize: {
+        enabled: false,
+    },
+
+    privileged: true,
+
+    dex_preopt: {
+        enabled: false,
+    },
+
+    product_variables: {
+        pdk: {
+            enabled: false,
+        },
+    },
+
+    // runtime cc library which is used by mockito-target-extended.
+    jni_libs: [
+        // For mockito extended
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
+    ],
+
+    // Enforce the jni libraries to be grouped into the APK file.
+    use_embedded_native_libs: true,
+}
+
+//##################################################################################
+
+android_app {
+    name: "CarDialerAppEmulatorBuild",
+
+    srcs: ["src/**/*.java", "framework/emulator/src/**/*.java"],
+
+    exclude_srcs: [
+        "src/com/android/car/dialer/inject/HfpDataModules.java",
+        "src/com/android/car/dialer/inject/BluetoothSingleHfpModule.java"
+    ],
+
+    resource_dirs: ["res"],
+
+    sdk_version: "system_current",
+
+    required: ["allowed_privapp_com.android.car.dialer"],
+
+    certificate: "platform",
+
+    overrides: ["Dialer"],
+
+    libs: common_libs,
+
+    static_libs: [
+        "car-dialer-framework-dep",
+    ] + common_static_libs,
+
+    plugins: [
+        "androidx.room_room-compiler-plugin",
+    ],
+
+    optimize: {
+        enabled: false,
+    },
+
+    privileged: true,
+
+    dex_preopt: {
+        enabled: false,
+    },
+
+    product_variables: {
+        pdk: {
+            enabled: false,
+        },
+    },
+}

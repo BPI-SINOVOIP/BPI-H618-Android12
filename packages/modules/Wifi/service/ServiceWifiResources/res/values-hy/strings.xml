@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2019 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="wifiResourcesAppLabel" product="default" msgid="3120115613525263696">"Համակարգի Wi-Fi ռեսուրսներ"</string>
+    <string name="wifi_available_title" msgid="3899472737467127635">"Միացեք բաց Wi‑Fi ցանցին"</string>
+    <string name="wifi_available_title_connecting" msgid="7233590022728579868">"Միացում Wi‑Fi ցանցին"</string>
+    <string name="wifi_available_title_connected" msgid="6329493859989844201">"Միացել է Wi‑Fi ցանցին"</string>
+    <string name="wifi_available_title_failed_to_connect" msgid="4840833680513368639">"Չհաջողվեց միանալ Wi‑Fi ցանցին"</string>
+    <string name="wifi_available_content_failed_to_connect" msgid="4330035988269701861">"Հպեք՝ բոլոր ցանցերը տեսնելու համար"</string>
+    <string name="wifi_available_action_connect" msgid="5636634933476946222">"Միանալ"</string>
+    <string name="wifi_available_action_all_networks" msgid="8491109932336522211">"Բոլոր ցանցերը"</string>
+    <string name="notification_channel_network_status" msgid="1631786866932924838">"Ցանցի կարգավիճակ"</string>
+    <string name="notification_channel_network_alerts" msgid="1391603215241200880">"Ցանցային զգուշացումներ"</string>
+    <string name="notification_channel_network_available" msgid="8454366142428864948">"Ցանցը հասանելի է"</string>
+    <string name="wifi_suggestion_title" msgid="2564179935989099139">"Թույլատրե՞լ առաջարկվող Wi‑Fi ցանցերի օգտագործումը"</string>
+    <string name="wifi_suggestion_content" msgid="6985149577828091835">"<xliff:g id="NAME">%s</xliff:g> հավելվածի առաջարկվող ցանցեր: Սարքը կարող է ավտոմատ միանալ:"</string>
+    <string name="wifi_suggestion_action_allow_app" msgid="7757859972144671588">"Թույլատրել"</string>
+    <string name="wifi_suggestion_action_disallow_app" msgid="4565857699629860726">"Ոչ, շնորհակալություն"</string>
+    <string name="wifi_suggestion_imsi_privacy_title" msgid="8969261812845304079">"Միանա՞լ <xliff:g id="CARRIERNAME">%s</xliff:g> Wi-Fi ցանցին"</string>
+    <string name="wifi_suggestion_imsi_privacy_content" msgid="4266931269306079184">"Այս ցանցերը ստանում են SIM քարտի ID, որը կարող է օգտագործվել սարքի տեղադրությունը հետագծելու համար։"</string>
+    <string name="wifi_suggestion_action_allow_imsi_privacy_exemption_carrier" msgid="3888538126440442636">"Միանալ"</string>
+    <string name="wifi_suggestion_action_disallow_imsi_privacy_exemption_carrier" msgid="3225397664735676024">"Չմիանալ"</string>
+    <string name="wifi_suggestion_imsi_privacy_exemption_confirmation_title" msgid="4407415300707014525">"Հաստատե՞լ միացումը"</string>
+    <string name="wifi_suggestion_imsi_privacy_exemption_confirmation_content" msgid="9211241189147807136">"Միանալու դեպքում <xliff:g id="CARRIERNAME">%s</xliff:g>-ի Wi‑Fi ցանցերը կարող են ստանալ ձեր SIM քարտի հետ կապված եզակի ID-ն կամ կիսվել դրանով։ Դա հնարավորություն կտա հետագծել ձեր սարքի տեղադրությունը։"</string>
+    <string name="wifi_suggestion_action_allow_imsi_privacy_exemption_confirmation" msgid="2168947026413431603">"Միանալ"</string>
+    <string name="wifi_suggestion_action_disallow_imsi_privacy_exemption_confirmation" msgid="5156881939985876066">"Չմիանալ"</string>
+    <string name="wifi_wakeup_onboarding_title" msgid="3868826648004934540">"Wi‑Fi-ն ավտոմատ կմիանա"</string>
+    <string name="wifi_wakeup_onboarding_subtext" msgid="5705886295837387430">"Լավ ազդանշանով պահված ցանցի տարածքում գտնվելիս"</string>
+    <string name="wifi_wakeup_onboarding_action_disable" msgid="6209706680391785825">"Նորից չմիացնել"</string>
+    <string name="wifi_wakeup_enabled_title" msgid="5043486751612595850">"Wi‑Fi-ը միացել է ավտոմատ կերպով"</string>
+    <string name="wifi_wakeup_enabled_content" msgid="3911262526267025882">"Դուք գտնվում եք պահված ցանցի մոտակայքում՝ <xliff:g id="NETWORK_SSID">%1$s</xliff:g>"</string>
+    <string name="wifi_watchdog_network_disabled" msgid="5769226742956006362">"Չհաջողվեց միանալ Wi-Fi-ին"</string>
+    <string name="wifi_watchdog_network_disabled_detailed" msgid="1725243835135539125">" ինտերնետային կապը թույլ է:"</string>
+    <string name="wifi_connect_alert_title" msgid="2368200646665663612">"Թույլատրե՞լ կապը:"</string>
+    <string name="wifi_connect_alert_message" msgid="7226456300982080746">"%1$s հավելվածը ցանկանում է միանալ %2$s Wifi ցանցին"</string>
+    <string name="wifi_connect_default_application" msgid="8917703737222707062">"Հավելված"</string>
+    <string name="accept" msgid="8346431649376483879">"Ընդունել"</string>
+    <string name="decline" msgid="4172251727603762084">"Մերժել"</string>
+    <string name="ok" msgid="847575529546290102">"Լավ"</string>
+    <string name="wifi_p2p_invitation_sent_title" msgid="6552639940428040869">"Հրավերն ուղարկված է"</string>
+    <string name="wifi_p2p_invitation_to_connect_title" msgid="8917157937652519251">"Միացման հրավեր"</string>
+    <string name="wifi_p2p_from_message" msgid="5921308150192756898">"Ուղարկող`"</string>
+    <string name="wifi_p2p_to_message" msgid="3809923305696994787">"Ում`"</string>
+    <string name="wifi_p2p_enter_pin_message" msgid="5200220251738047620">"Մուտքագրեք պահանջվող PIN-ը:"</string>
+    <string name="wifi_p2p_show_pin_message" msgid="1000091690967930798">"PIN-ը՝"</string>
+    <string name="wifi_p2p_frequency_conflict_message" product="tablet" msgid="2875937871590955304">"Գրասալիկը ժամանակավորապես կանջատվի Wi-Fi-ից, քանի դեռ այն կապակցված է <xliff:g id="DEVICE_NAME">%1$s</xliff:g>-ին"</string>
+    <string name="wifi_p2p_frequency_conflict_message" product="tv" msgid="9133053225387001827">"Ձեր Android TV սարքը ժամանակավորապես կանջատվի Wi-Fi-ից, քանի դեռ այն միացված է <xliff:g id="DEVICE_NAME">%1$s</xliff:g>-ին"</string>
+    <string name="wifi_p2p_frequency_conflict_message" product="default" msgid="2226863827636191980">"Հեռախոսը ժամանակավորապես կանջատվի Wi-Fi-ից, քանի դեռ այն միացված է <xliff:g id="DEVICE_NAME">%1$s</xliff:g>-ին"</string>
+    <string name="dlg_ok" msgid="254496739491689405">"Եղավ"</string>
+    <string name="wifi_cannot_connect_with_randomized_mac_title" msgid="2344570489693915253">"Չհաջողվեց միանալ <xliff:g id="SSID">%1$s</xliff:g> սարքին"</string>
+    <string name="wifi_cannot_connect_with_randomized_mac_message" msgid="4834133226521813352">"Հպեք՝ գաղտնիության կարգավորումները փոփոխելու և նորից փորձելու համար։"</string>
+    <string name="wifi_disable_mac_randomization_dialog_title" msgid="2054540994993681606">"Փոխե՞լ գաղտնիության կարգավորումը"</string>
+    <string name="wifi_disable_mac_randomization_dialog_message" msgid="8874064864332248988">"Միանալու համար <xliff:g id="SSID">%1$s</xliff:g> ցանցը պետք է օգտագործի ձեր սարքի MAC հասցեն (եզակի նույնացուցիչը)։ Ներկայումս այս ցանցի ձեր գաղտնիության կարգավորումն օգտագործում է պատահական նույնացուցիչ։ \n\nՄոտակայքում գտնվող սարքերը կկարողանան հետագծել ձեր սարքի տեղադրությունը։"</string>
+    <string name="wifi_disable_mac_randomization_dialog_confirm_text" msgid="6954419863076751626">"Փոխել կարգավորումը"</string>
+    <string name="wifi_disable_mac_randomization_dialog_success" msgid="5849155828154391387">"Կարգավորումը թարմացվեց։ Փորձեք նորից միանալ։"</string>
+    <string name="wifi_disable_mac_randomization_dialog_failure" msgid="2894643619143813096">"Չհաջողվեց փոփոխել գաղտնիության կարգավորումները"</string>
+    <string name="wifi_disable_mac_randomization_dialog_network_not_found" msgid="7359256966900782004">"Ցանցը չի գտնվել"</string>
+    <string name="wifi_eap_error_message_code_32760" msgid="5258191595973470188">"<xliff:g id="SSID">%1$s</xliff:g> : EAP նույնականացման սխալ 32760"</string>
+    <string name="wifi_eap_error_message_code_32761" msgid="3962610712123291591">"<xliff:g id="SSID">%1$s</xliff:g> : EAP նույնականացման սխալ 32761"</string>
+    <string name="wifi_eap_error_message_code_32762" msgid="2381670648753465737">"<xliff:g id="SSID">%1$s</xliff:g> : EAP նույնականացման սխալ 32762"</string>
+    <string name="wifi_eap_error_message_code_32763" msgid="4467733260757049969">"<xliff:g id="SSID">%1$s</xliff:g> : EAP նույնականացման սխալ 32763"</string>
+    <string name="wifi_eap_error_message_code_32764" msgid="7349538467012877101">"<xliff:g id="SSID">%1$s</xliff:g> : EAP նույնականացման սխալ 32764"</string>
+    <string name="wifi_eap_error_message_code_32765" msgid="2167528358066037980">"<xliff:g id="SSID">%1$s</xliff:g> : EAP նույնականացման սխալ 32765"</string>
+    <string name="wifi_eap_error_message_code_32766" msgid="2335996367705677670">"<xliff:g id="SSID">%1$s</xliff:g> : EAP նույնականացման սխալ 32766"</string>
+    <string name="wifi_softap_auto_shutdown_timeout_expired_title" msgid="4896534374569504484">"Թեժ կետն անջատված է"</string>
+    <string name="wifi_softap_auto_shutdown_timeout_expired_summary" msgid="7975476698140267728">"Կապված սարքեր չկան։ Հպեք՝ փոփոխելու համար։"</string>
+    <string name="wifi_sim_required_title" msgid="2262227800991155459">"Wi-Fi-ն անջատված է"</string>
+    <string name="wifi_sim_required_message" msgid="284812212346125745">"<xliff:g id="SSID">%1$s</xliff:g> ցանցին միանալու համար տեղադրեք <xliff:g id="CARRIER_NAME">%2$s</xliff:g> օպերատորի SIM քարտը"</string>
+</resources>

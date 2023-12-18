@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (c) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hvac_min_text" msgid="866677328637088715">"குறைந்தபட்சம்"</string>
+    <string name="hvac_max_text" msgid="7627950157128770380">"அதிகபட்சம்"</string>
+    <string name="voice_recognition_toast" msgid="7579725862117020349">"இணைக்கப்பட்ட புளூடூத் சாதனத்தால் \'குரல் அறிதல்\' கையாளப்படுகிறது"</string>
+    <string name="car_guest" msgid="768913000117469596">"கெஸ்ட்"</string>
+    <string name="start_guest_session" msgid="2759367183497948650">"கெஸ்ட்"</string>
+    <string name="car_add_user" msgid="8660226923614358478">"பயனரைச் சேருங்கள்"</string>
+    <string name="car_new_user" msgid="304628168515673432">"புதிய பயனர்"</string>
+    <string name="user_add_user_message_setup" msgid="2130987756494836929">"புதிய பயனரைச் சேர்க்கும்போது அவர் தனக்கான சேமிப்பிடத்தை அமைக்க வேண்டும்."</string>
+    <string name="user_add_user_message_update" msgid="1001907075316748931">"எந்தப் பயனரும் பிற பயனர்கள் சார்பாக ஆப்ஸைப் புதுப்பிக்க முடியும்."</string>
+    <string name="car_loading_profile" msgid="458961191993686065">"ஏற்றுகிறது"</string>
+    <string name="car_loading_profile_developer_message" msgid="737810794567935702">"பயனர் தகவலை ஏற்றுகிறது (<xliff:g id="FROM_USER">%1$d</xliff:g>லிருந்து <xliff:g id="TO_USER">%2$d</xliff:g> வரை)"</string>
+    <string name="mic_privacy_chip_off_content" msgid="4989623700063721557">"மைக்ரோஃபோன் முடக்கத்தில் உள்ளது."</string>
+    <string name="mic_privacy_chip_mic_enabled" msgid="5667789064187849349">"மைக்ரோஃபோன் இயக்கப்பட்டுள்ளது"</string>
+    <string name="mic_privacy_chip_mic_enabled_subtext" msgid="815124399469247109">"ஆப்ஸால் மைக்ரோஃபோனை அணுக முடியும்"</string>
+    <string name="mic_privacy_chip_mic_disabled" msgid="2709173475947157320">"மைக்ரோஃபோன் முடக்கப்பட்டுள்ளது"</string>
+    <string name="mic_privacy_chip_mic_disabled_subtext" msgid="9059745506470016701">"மைக்ரோஃபோனை அணுக எந்த ஆப்ஸிற்கும் அனுமதியில்லை"</string>
+    <string name="mic_privacy_chip_privacy_settings" msgid="719293067082198224">"தனியுரிமை அமைப்புகள்"</string>
+    <string name="mic_privacy_chip_app_using_mic_suffix" msgid="8355462601492180023">"<xliff:g id="APP">%s</xliff:g> ஆப்ஸ் மைக்ரோஃபோனை உபயோகிக்கிறது"</string>
+    <string name="mic_privacy_chip_apps_using_mic_suffix" msgid="6656026041668305817">"<xliff:g id="APP_LIST">%s</xliff:g> மைக்ரோஃபோனை உபயோகிக்கின்றன"</string>
+    <string name="mic_privacy_chip_app_recently_used_mic_suffix" msgid="1819299821245419382">"<xliff:g id="APP">%s</xliff:g> ஆப்ஸ் சமீபத்தில் மைக்ரோஃபோனை உபயோகித்தது"</string>
+    <string name="mic_privacy_chip_on_toast" msgid="7003896860896586181">"மைக்ரோஃபோன் இயக்கப்பட்டது"</string>
+    <string name="mic_privacy_chip_off_toast" msgid="8718743873640788032">"மைக்ரோஃபோன் முடக்கப்பட்டது"</string>
+    <string name="mic_privacy_chip_dialog_title_mic" msgid="3782090299882049010">"சமீபத்தில் மைக்ரோஃபோனைப் பயன்படுத்தியது"</string>
+    <string name="mic_privacy_chip_dialog_ok" msgid="2298690833121720237">"சரி"</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (C) 2020 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <!-- A list of package names that provide the cards to display on the home screen -->
+    <string-array name="config_homeCardModuleClasses" translatable="false">
+        <item>com.android.car.carlauncher.homescreen.assistive.AssistiveCard</item>
+        <item>com.android.car.carlauncher.homescreen.audio.AudioCard</item>
+    </string-array>
+
+    <!--
+        A list of preferred intents to use for displaying the maps card. Intents
+        are formatted according to Intent.URI_ANDROID_APP_SCHEME.
+        This list will be used as follows:
+
+        * Pick the first item that is in the same package as the default handler
+          for CATEGORY_APP_MAPS.
+        * Pick the default handler if no such item is in the list.
+        * Pick the first item from the list if there is no default handler.
+    -->
+    <string-array name="config_homeCardPreferredMapActivities" translatable="false">
+    <!--
+        <item>android-app://com.example.map#Intent;category=android.intent.category.GADGET;end</item>
+        <item>android-app://com.example.nav#Intent;component=com.example.nav/.MapsCardActivity;end</item>
+    -->
+    </string-array>
+</resources>

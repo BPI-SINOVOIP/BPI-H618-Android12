@@ -1,0 +1,129 @@
+// MAP API module
+
+package {
+    default_applicable_licenses: ["packages_apps_Bluetooth_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+// See: http://go/android-license-faq
+license {
+    name: "packages_apps_Bluetooth_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-BSD",
+    ],
+    // large-scale-change unable to identify any license_text files
+}
+
+java_library {
+    name: "bluetooth.mapsapi",
+
+    srcs: ["lib/mapapi/**/*.java"],
+}
+
+// Bluetooth JNI
+
+cc_library_shared {
+    name: "libbluetooth_jni",
+    srcs: ["jni/**/*.cpp"],
+    header_libs: [
+        "jni_headers",
+        "libbluetooth_headers",
+    ],
+    include_dirs: [
+        "system/bt/types",
+    ],
+    shared_libs: [
+        "libbase",
+        "libchrome",
+        "liblog",
+        "libnativehelper",
+    ],
+    static_libs: [
+        "libbluetooth-types",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-Wno-unused-parameter",
+    ],
+    sanitize: {
+        scs: true,
+    },
+}
+
+// Bluetooth APK
+
+android_app {
+    name: "Bluetooth",
+    defaults: ["platform_app_defaults"],
+
+    srcs: [
+        "src/**/*.java",
+        ":statslog-bluetooth-java-gen",
+    ],
+    platform_apis: true,
+    certificate: "platform",
+
+    jni_libs: ["libbluetooth_jni"],
+    libs: [
+        "javax.obex",
+        "services.net",
+    ],
+    static_libs: [
+        "com.android.vcard",
+        "bluetooth.mapsapi",
+        "sap-api-java-static",
+        "services.net",
+        "libprotobuf-java-lite",
+        "bluetooth-protos-lite",
+        "androidx.core_core",
+        "androidx.legacy_legacy-support-v4",
+        "androidx.lifecycle_lifecycle-livedata",
+        "androidx.room_room-runtime",
+        "guava",
+    ],
+
+    plugins: [
+        "androidx.room_room-compiler-plugin",
+    ],
+
+    // Add in path to Bluetooth directory because local path does not exist
+    javacflags: ["-Aroom.schemaLocation=packages/apps/Bluetooth/tests/unit/src/com/android/bluetooth/btservice/storage/schemas"],
+
+    optimize: {
+        enabled: false,
+    },
+    required: ["libbluetooth"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.bluetooth.updatable",
+    ],
+    errorprone: {
+        javacflags: [
+            // "-Xep:AndroidFrameworkRequiresPermission:ERROR",
+        ],
+    },
+}
+
+genrule {
+    name: "statslog-bluetooth-java-gen",
+    tools: ["stats-log-api-gen"],
+    cmd: "$(location stats-log-api-gen) --java $(out) --module bluetooth"
+        + " --javaPackage com.android.bluetooth --javaClass BluetoothStatsLog --worksource",
+    out: ["com/android/bluetooth/BluetoothStatsLog.java"],
+}

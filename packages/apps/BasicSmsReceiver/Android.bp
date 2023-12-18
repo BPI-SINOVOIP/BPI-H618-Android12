@@ -1,0 +1,27 @@
+// Copyright 2007-2011 The Android Open Source Project
+package {
+    default_applicable_licenses: ["packages_apps_BasicSmsReceiver_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "packages_apps_BasicSmsReceiver_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+android_app {
+    name: "BasicSmsReceiver",
+    libs: ["telephony-common"],
+    srcs: ["src/**/*.java"],
+    platform_apis: true,
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}

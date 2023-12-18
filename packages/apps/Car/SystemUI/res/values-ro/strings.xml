@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (c) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hvac_min_text" msgid="866677328637088715">"Min"</string>
+    <string name="hvac_max_text" msgid="7627950157128770380">"Max"</string>
+    <string name="voice_recognition_toast" msgid="7579725862117020349">"Recunoașterea vocală acum gestionată de dispozitivul Bluetooth conectat"</string>
+    <string name="car_guest" msgid="768913000117469596">"Invitat"</string>
+    <string name="start_guest_session" msgid="2759367183497948650">"Invitat"</string>
+    <string name="car_add_user" msgid="8660226923614358478">"Adăugați un utilizator"</string>
+    <string name="car_new_user" msgid="304628168515673432">"Utilizator nou"</string>
+    <string name="user_add_user_message_setup" msgid="2130987756494836929">"Când adăugați un utilizator nou, acesta trebuie să-și configureze spațiul."</string>
+    <string name="user_add_user_message_update" msgid="1001907075316748931">"Orice utilizator poate actualiza aplicațiile pentru toți ceilalți utilizatori."</string>
+    <string name="car_loading_profile" msgid="458961191993686065">"Se încarcă"</string>
+    <string name="car_loading_profile_developer_message" msgid="737810794567935702">"Se încarcă utilizatorul (de la <xliff:g id="FROM_USER">%1$d</xliff:g> la <xliff:g id="TO_USER">%2$d</xliff:g>)"</string>
+    <string name="mic_privacy_chip_off_content" msgid="4989623700063721557">"Microfonul este dezactivat."</string>
+    <string name="mic_privacy_chip_mic_enabled" msgid="5667789064187849349">"Microfonul este activat"</string>
+    <string name="mic_privacy_chip_mic_enabled_subtext" msgid="815124399469247109">"Aplicațiile pot accesa microfonul"</string>
+    <string name="mic_privacy_chip_mic_disabled" msgid="2709173475947157320">"Microfonul este dezactivat"</string>
+    <string name="mic_privacy_chip_mic_disabled_subtext" msgid="9059745506470016701">"Nicio aplicație nu are acces la microfon"</string>
+    <string name="mic_privacy_chip_privacy_settings" msgid="719293067082198224">"Setări de confidențialitate"</string>
+    <string name="mic_privacy_chip_app_using_mic_suffix" msgid="8355462601492180023">"<xliff:g id="APP">%s</xliff:g> folosește microfonul"</string>
+    <string name="mic_privacy_chip_apps_using_mic_suffix" msgid="6656026041668305817">"<xliff:g id="APP_LIST">%s</xliff:g> folosesc microfonul"</string>
+    <string name="mic_privacy_chip_app_recently_used_mic_suffix" msgid="1819299821245419382">"<xliff:g id="APP">%s</xliff:g> a folosit recent microfonul"</string>
+    <string name="mic_privacy_chip_on_toast" msgid="7003896860896586181">"Microfonul a fost activat"</string>
+    <string name="mic_privacy_chip_off_toast" msgid="8718743873640788032">"Microfonul a fost dezactivat"</string>
+    <string name="mic_privacy_chip_dialog_title_mic" msgid="3782090299882049010">"Folosirea recentă a microfonului"</string>
+    <string name="mic_privacy_chip_dialog_ok" msgid="2298690833121720237">"OK"</string>
+</resources>

@@ -1,0 +1,28 @@
+//############################################################
+// StorageManager Robolectric test target.                   #
+//############################################################
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_robolectric_test {
+    name: "StorageManagerRoboTests",
+
+    srcs: ["src/**/*.java"],
+
+    java_resource_dirs: ["config"],
+
+    libs: [
+        "robolectric_android-all-stub",
+        "Robolectric_all-target",
+        "mockito-robolectric-prebuilt",
+        "truth-prebuilt",
+    ],
+
+    instrumentation_for: "StorageManager",
+
+    test_options: {
+        timeout: 36000,
+    },
+}

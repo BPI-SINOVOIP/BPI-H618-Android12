@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  ~ Copyright (c) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+   -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="hvac_min_text" msgid="866677328637088715">"Mín."</string>
+    <string name="hvac_max_text" msgid="7627950157128770380">"Máx."</string>
+    <string name="voice_recognition_toast" msgid="7579725862117020349">"Reconhecimento de voz agora através do disp. Bluetooth lig."</string>
+    <string name="car_guest" msgid="768913000117469596">"Convidado"</string>
+    <string name="start_guest_session" msgid="2759367183497948650">"Convidado"</string>
+    <string name="car_add_user" msgid="8660226923614358478">"Adicionar utilizador"</string>
+    <string name="car_new_user" msgid="304628168515673432">"Novo utilizador"</string>
+    <string name="user_add_user_message_setup" msgid="2130987756494836929">"Ao adicionar um novo utilizador, essa pessoa tem de configurar o respetivo espaço."</string>
+    <string name="user_add_user_message_update" msgid="1001907075316748931">"Qualquer utilizador pode atualizar apps para todos os outros utilizadores."</string>
+    <string name="car_loading_profile" msgid="458961191993686065">"A carregar…"</string>
+    <string name="car_loading_profile_developer_message" msgid="737810794567935702">"A carregar o utilizador (de <xliff:g id="FROM_USER">%1$d</xliff:g> para <xliff:g id="TO_USER">%2$d</xliff:g>)…"</string>
+    <string name="mic_privacy_chip_off_content" msgid="4989623700063721557">"O microfone está desativado."</string>
+    <string name="mic_privacy_chip_mic_enabled" msgid="5667789064187849349">"O microfone está ativado"</string>
+    <string name="mic_privacy_chip_mic_enabled_subtext" msgid="815124399469247109">"As apps podem aceder ao microfone"</string>
+    <string name="mic_privacy_chip_mic_disabled" msgid="2709173475947157320">"O microfone está desativado"</string>
+    <string name="mic_privacy_chip_mic_disabled_subtext" msgid="9059745506470016701">"Nenhuma app tem acesso ao microfone"</string>
+    <string name="mic_privacy_chip_privacy_settings" msgid="719293067082198224">"Definições de privacidade"</string>
+    <string name="mic_privacy_chip_app_using_mic_suffix" msgid="8355462601492180023">"<xliff:g id="APP">%s</xliff:g> está a utilizar o microfone"</string>
+    <string name="mic_privacy_chip_apps_using_mic_suffix" msgid="6656026041668305817">"<xliff:g id="APP_LIST">%s</xliff:g> estão a utilizar o microfone"</string>
+    <string name="mic_privacy_chip_app_recently_used_mic_suffix" msgid="1819299821245419382">"<xliff:g id="APP">%s</xliff:g> utilizou o microfone recentemente"</string>
+    <string name="mic_privacy_chip_on_toast" msgid="7003896860896586181">"Microfone ativado"</string>
+    <string name="mic_privacy_chip_off_toast" msgid="8718743873640788032">"Microfone desativado"</string>
+    <string name="mic_privacy_chip_dialog_title_mic" msgid="3782090299882049010">"Utilização recente do microfone"</string>
+    <string name="mic_privacy_chip_dialog_ok" msgid="2298690833121720237">"OK"</string>
+</resources>

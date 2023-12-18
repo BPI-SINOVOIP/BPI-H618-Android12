@@ -1,0 +1,4 @@
+# Mounting requires root privilege. The fuse library in crosvm doesn't support
+# fusermount yet.
+[target.x86_64-unknown-linux-gnu]
+runner = 'unshare -mUr'

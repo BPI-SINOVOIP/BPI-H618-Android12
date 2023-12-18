@@ -1,0 +1,2 @@
+# Allow surfaceflinger to perform binder IPC to hal_evs_driver
+binder_call(surfaceflinger, hal_evs_driver)

@@ -1,0 +1,17 @@
+# Keep class's integer static field for MessageUtils to parsing their name.
+-keep class com.android.networkstack.tethering.Tethering$TetherMainSM {
+    static final int CMD_*;
+    static final int EVENT_*;
+}
+
+-keep class com.android.networkstack.tethering.BpfMap {
+    native <methods>;
+}
+
+-keepclassmembers public class * extends com.android.networkstack.tethering.util.Struct {
+    *;
+}
+
+-keepclassmembers class android.net.ip.IpServer {
+    static final int CMD_*;
+}

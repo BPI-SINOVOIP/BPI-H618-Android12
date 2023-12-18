@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 24 (current min is 23): `android.media.tv.TvContract.RecordedPrograms#CONTENT_URI`"
+        errorLine1="                        context, TvContract.RecordedPrograms.CONTENT_URI)) {"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/AsyncDbTask.java"
+            line="137"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Field requires API level 24 (current min is 23): `android.media.tv.TvContract.RecordedPrograms#CONTENT_URI`"
+        errorLine1="                        context, TvContract.RecordedPrograms.CONTENT_URI)) {"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/AsyncDbTask.java"
+            line="143"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `updateAndStartServiceIfNeeded`"
+        errorLine1="            scheduler.updateAndStartServiceIfNeeded();"
+        errorLine2="                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/receiver/BootCompletedReceiver.java"
+            line="90"
+            column="23"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="        if (!TvContract.isChannelUriForPassthroughInput(uri)) {"
+        errorLine2="                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/data/ChannelImpl.java"
+            line="444"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#canRecord`"
+        errorLine1="                if (info.canRecord()) {"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/menu/ChannelsRowAdapter.java"
+            line="255"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.session.MediaController.TransportControls#prepare`"
+        errorLine1="        getActivity().getMediaController().getTransportControls().prepare();"
+        errorLine2="                                                                  ~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/dvr/ui/playback/DvrPlaybackOverlayFragment.java"
+            line="448"
+            column="67"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvView#timeShiftPlay`"
+        errorLine1="            mTvView.timeShiftPlay(mInputId, mRecordedProgramUri);"
+        errorLine2="                    ~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/dvr/DvrTvView.java"
+            line="77"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#loadCustomLabel`"
+        errorLine1="        CharSequence customLabel = input.loadCustomLabel(getContext());"
+        errorLine2="                                         ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/ui/InputBannerView.java"
+            line="75"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#canRecord`"
+        errorLine1="            tunerCount = mInput.canRecord() ? mInput.getTunerCount() : 0;"
+        errorLine2="                                ~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/dvr/recorder/InputTaskScheduler.java"
+            line="310"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#getTunerCount`"
+        errorLine1="            tunerCount = mInput.canRecord() ? mInput.getTunerCount() : 0;"
+        errorLine2="                                                     ~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/dvr/recorder/InputTaskScheduler.java"
+            line="310"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="                TvContract.isChannelUriForPassthroughInput(getIntent().getData());"
+        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/MainActivity.java"
+            line="534"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="            if (TvContract.isChannelUriForPassthroughInput(mInitChannelUri)) {"
+        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/MainActivity.java"
+            line="1002"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="        if ((channelUri == null || !TvContract.isChannelUriForPassthroughInput(channelUri))"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/MainActivity.java"
+            line="1029"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="                TvContract.isChannelUriForPassthroughInput(channelUri)"
+        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/MainActivity.java"
+            line="1037"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="            if (TvContract.isChannelUriForPassthroughInput(channelUri)) {"
+        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/MainActivity.java"
+            line="1065"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="            } else if (TvContract.isChannelUriForPassthroughInput(mInitChannelUri)) {"
+        errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/MainActivity.java"
+            line="1544"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Method reference requires API level 24 (current min is 23): `MainActivity.super::enterPictureInPictureMode`"
+        errorLine1="            mHandler.post(MainActivity.super::enterPictureInPictureMode);"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/MainActivity.java"
+            line="2402"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="        return TvContract.isChannelUriForPassthroughInput(uri)"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/MainActivity.java"
+            line="2813"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 23): `android.media.tv.TvInputManager#getBlockedRatings`"
+        errorLine1="            for (TvContentRating tvContentRating : mTvInputManager.getBlockedRatings()) {"
+        errorLine2="                                                                   ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/parental/ParentalControlSettings.java"
+            line="74"
+            column="68"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 23): `android.media.tv.TvInputManager#getBlockedRatings`"
+        errorLine1="        mRatings = new HashSet&lt;>(mTvInputManager.getBlockedRatings());"
+        errorLine2="                                                 ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/parental/ParentalControlSettings.java"
+            line="89"
+            column="50"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 23): `android.media.tv.TvInputManager#getBlockedRatings`"
+        errorLine1="        Set&lt;TvContentRating> removed = new HashSet&lt;>(mTvInputManager.getBlockedRatings());"
+        errorLine2="                                                                     ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/parental/ParentalControlSettings.java"
+            line="93"
+            column="70"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 28 (current min is 23): `android.media.tv.TvInputManager#getBlockedRatings`"
+        errorLine1="        added.removeAll(mTvInputManager.getBlockedRatings());"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/parental/ParentalControlSettings.java"
+            line="100"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="            if (TvContract.isChannelUriForPassthroughInput(channelUri)) {"
+        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/SelectInputActivity.java"
+            line="69"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#isHidden`"
+        errorLine1="                if (!input.isHidden(getContext())) {"
+        errorLine2="                           ~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/ui/SelectInputView.java"
+            line="253"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#loadCustomLabel`"
+        errorLine1="        CharSequence customLabel = input.loadCustomLabel(getContext());"
+        errorLine2="                                         ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/ui/SelectInputView.java"
+            line="287"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvView#tune`"
+        errorLine1="            mTvView.tune(mInputInfo.getId(), mCurrentChannel.getUri(), params);"
+        errorLine2="                    ~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/ui/TunableTvView.java"
+            line="671"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#getTunerCount`"
+        errorLine1="                                input.getTunerCount(),"
+        errorLine2="                                      ~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/ui/TunableTvView.java"
+            line="1174"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `createScheduler`"
+        errorLine1="                mRecordingScheduler = RecordingScheduler.createScheduler(this);"
+        errorLine2="                                                         ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/TvApplication.java"
+            line="216"
+            column="58"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#isHidden`"
+        errorLine1="                if (!input.isHidden(this)) {"
+        errorLine2="                           ~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/TvApplication.java"
+            line="402"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#loadCustomLabel`"
+        errorLine1="                        CharSequence inputCustomLabel = info.loadCustomLabel(mContext);"
+        errorLine2="                                                             ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/TvInputManagerHelper.java"
+            line="216"
+            column="62"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#loadCustomLabel`"
+        errorLine1="                    CharSequence inputCustomLabel = info.loadCustomLabel(mContext);"
+        errorLine2="                                                         ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/TvInputManagerHelper.java"
+            line="257"
+            column="58"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputManager.TvInputCallback#onInputUpdated`"
+        errorLine1="                        callback.onInputUpdated(inputId);"
+        errorLine2="                                 ~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/TvInputManagerHelper.java"
+            line="265"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#loadCustomLabel`"
+        errorLine1="                    CharSequence inputCustomLabel = inputInfo.loadCustomLabel(mContext);"
+        errorLine2="                                                              ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/TvInputManagerHelper.java"
+            line="279"
+            column="63"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputManager.TvInputCallback#onTvInputInfoUpdated`"
+        errorLine1="                        callback.onTvInputInfoUpdated(inputInfo);"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/TvInputManagerHelper.java"
+            line="284"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#loadCustomLabel`"
+        errorLine1="            CharSequence customLabelCharSequence = info.loadCustomLabel(mContext);"
+        errorLine2="                                                        ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/TvInputManagerHelper.java"
+            line="472"
+            column="57"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#loadCustomLabel`"
+        errorLine1="            String customLabel = canonicalizeLabel(input.loadCustomLabel(mContext));"
+        errorLine2="                                                         ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/search/TvProviderSearch.java"
+            line="510"
+            column="58"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvInputInfo#loadCustomLabel`"
+        errorLine1="            String customLabel = canonicalizeLabel(input.loadCustomLabel(mContext));"
+        errorLine2="                                                         ~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/search/TvProviderSearch.java"
+            line="535"
+            column="58"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24 (current min is 23): `android.media.tv.TvContract#isChannelUriForPassthroughInput`"
+        errorLine1="        return isChannelUriForTunerInput(uri) || TvContract.isChannelUriForPassthroughInput(uri);"
+        errorLine2="                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/apps/TV/src/com/android/tv/util/Utils.java"
+            line="276"
+            column="61"/>
+    </issue>
+
+</issues>

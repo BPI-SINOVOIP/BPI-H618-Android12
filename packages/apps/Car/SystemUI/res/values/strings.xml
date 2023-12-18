@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2018 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Format for HVAC temperature (No decimal and the degree symbol) -->
+    <string name="hvac_temperature_format" translatable="false">%.0f\u00B0</string>
+    <!-- String to represent lowest setting of an HVAC system [CHAR LIMIT=10]-->
+    <string name="hvac_min_text">Min</string>
+    <!-- String to represent largest setting of an HVAC system [CHAR LIMIT=10]-->
+    <string name="hvac_max_text">Max</string>
+    <!-- String to display when no HVAC temperature is available -->
+    <string name="hvac_null_temp_text" translatable="false">--</string>
+    <!-- Text for voice recognition toast. [CHAR LIMIT=60] -->
+    <string name="voice_recognition_toast">Voice recognition now handled by connected Bluetooth device</string>
+    <!-- Name of Guest Profile. [CHAR LIMIT=35] -->
+    <string name="car_guest">Guest</string>
+    <!-- Title for button that starts a guest session. [CHAR LIMIT=35] -->
+    <string name="start_guest_session">Guest</string>
+    <!-- Title for button that  adds a new user. [CHAR LIMIT=30] -->
+    <string name="car_add_user">Add User</string>
+    <!-- Default name of the new user created. [CHAR LIMIT=30] -->
+    <string name="car_new_user">New User</string>
+    <!-- Message to inform user that creation of new user requires that user to set up their space. [CHAR LIMIT=100] -->
+    <string name="user_add_user_message_setup">When you add a new user, that person needs to set up their space.</string>
+    <!-- Message to inform user that the newly created user will have permissions to update apps for all other users. [CHAR LIMIT=100] -->
+    <string name="user_add_user_message_update">Any user can update apps for all other users.</string>
+    <!-- Message to inform user that the new user profile is loading. [CHAR LIMIT=20] -->
+    <string name="car_loading_profile">Loading</string>
+    <!-- Message to inform user that the new user profile is loading with additional information on the previous and the next user. [CHAR LIMIT=100] -->
+    <string name="car_loading_profile_developer_message">Loading user (from <xliff:g id="from_user" example="10">%1$d</xliff:g> to <xliff:g id="to_user" example="12">%2$d</xliff:g>)</string>
+    <!-- Accessibility content description for microphone off state of microphone privacy chip. [CHAR LIMIT=40]-->
+    <string name="mic_privacy_chip_off_content">Microphone is off.</string>
+    <!-- Message displayed near microphone toggle when microphone is on. [CHAR LIMIT=50]-->
+    <string name="mic_privacy_chip_mic_enabled">Microphone is enabled</string>
+    <!-- Message Subtext displayed near microphone toggle when microphone is on. [CHAR LIMIT=60]-->
+    <string name="mic_privacy_chip_mic_enabled_subtext">Apps can access microphone</string>
+    <!-- Message displayed near microphone toggle when microphone is off. [CHAR LIMIT=50]-->
+    <string name="mic_privacy_chip_mic_disabled">Microphone is disabled</string>
+    <!-- Message Subtext displayed near microphone toggle when microphone is off. [CHAR LIMIT=60]-->
+    <string name="mic_privacy_chip_mic_disabled_subtext">No apps have access to microphone</string>
+    <!-- Privacy settings button text. [CHAR LIMIT=32]-->
+    <string name="mic_privacy_chip_privacy_settings">Privacy settings</string>
+    <!-- App is using microphone suffix [CHAR LIMIT=32]-->
+    <string name="mic_privacy_chip_app_using_mic_suffix"><xliff:g id="app" example="Assistant">%s</xliff:g> is using the mic</string>
+    <!-- Apps are using microphone suffix [CHAR LIMIT=32]-->
+    <string name="mic_privacy_chip_apps_using_mic_suffix"><xliff:g id="app_list" example="Assistant &amp; Phone">%s</xliff:g> are using the mic</string>
+    <!-- App was using microphone suffix [CHAR LIMIT=50]-->
+    <string name="mic_privacy_chip_app_recently_used_mic_suffix"><xliff:g id="app" example="Assistant">%s</xliff:g> used the mic recently</string>
+    <!-- Microphone turned on toast text [CHAR LIMIT=40]-->
+    <string name="mic_privacy_chip_on_toast">Microphone turned on</string>
+    <!-- Microphone turned off toast text [CHAR LIMIT=42]-->
+    <string name="mic_privacy_chip_off_toast">Microphone turned off</string>
+    <!-- Title for dialog that shows which apps have recently used microphone [CHAR LIMIT=50]-->
+    <string name="mic_privacy_chip_dialog_title_mic">Recent use of microphone</string>
+    <!-- Ok button for dialog that shows which apps have recently used microphone [CHAR LIMIT=10]-->
+    <string name="mic_privacy_chip_dialog_ok">OK</string>
+</resources>

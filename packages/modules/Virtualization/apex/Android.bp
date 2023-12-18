@@ -1,0 +1,81 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+apex {
+    name: "com.android.virt",
+
+    // TODO(jiyong): make it updatable
+    updatable: false,
+
+    manifest: "manifest.json",
+
+    key: "com.android.virt.key",
+    certificate: ":com.android.virt.certificate",
+
+    // crosvm is enabled for only 64-bit targets on device
+    arch: {
+        arm64: {
+            binaries: [
+                "authfs", // TODO(victorhsieh): move to microdroid once we can run the test in VM.
+                "crosvm",
+            ],
+            filesystems: [
+                "microdroid_super",
+                "microdroid_boot-5.10",
+                "microdroid_vendor_boot-5.10",
+                "microdroid_vbmeta",
+                "microdroid_vbmeta_system",
+            ],
+        },
+        x86_64: {
+            binaries: [
+                "authfs", // TODO(victorhsieh): move to microdroid once we can run the test in VM.
+                "crosvm",
+            ],
+            filesystems: [
+                "microdroid_super",
+                "microdroid_boot-5.10",
+                "microdroid_vendor_boot-5.10",
+                "microdroid_vbmeta",
+                "microdroid_vbmeta_system",
+            ],
+        },
+    },
+    binaries: [
+        "fd_server",
+        "virtmanager",
+        "vm",
+
+        // tools to create composite images
+        "mk_cdisk",
+        "mk_payload",
+    ],
+    prebuilts: [
+        "com.android.virt.init.rc",
+        "microdroid_cdisk.json",
+        "microdroid_cdisk_env.json",
+        "microdroid_cdisk_userdata.json",
+        "microdroid_payload.json",
+        "microdroid_uboot_env",
+        "microdroid_bootloader",
+    ],
+    file_contexts: ":com.android.virt-file_contexts",
+}
+
+apex_key {
+    name: "com.android.virt.key",
+    public_key: "com.android.virt.avbpubkey",
+    private_key: "com.android.virt.pem",
+}
+
+android_app_certificate {
+    name: "com.android.virt.certificate",
+    certificate: "com.android.virt",
+}
+
+prebuilt_etc {
+    name: "com.android.virt.init.rc",
+    src: "virtmanager.rc",
+    filename: "init.rc",
+}

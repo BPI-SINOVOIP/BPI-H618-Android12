@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name" msgid="6098036489833144040">"Controller ng pahintulot"</string>
+    <string name="ok" msgid="1936281769725676272">"OK"</string>
+    <string name="permission_search_keyword" msgid="1214451577494730543">"mga pahintulot"</string>
+    <string name="cancel" msgid="8943320028373963831">"Kanselahin"</string>
+    <string name="back" msgid="6249950659061523680">"Bumalik"</string>
+    <string name="uninstall_or_disable" msgid="4496612999740858933">"I-uninstall o i-disable"</string>
+    <string name="app_not_found_dlg_title" msgid="6029482906093859756">"Hindi makita ang app"</string>
+    <string name="grant_dialog_button_deny" msgid="88262611492697192">"Huwag payagan"</string>
+    <string name="grant_dialog_button_deny_and_dont_ask_again" msgid="1748925431574312595">"Huwag payagan at huwag nang itanong ulit"</string>
+    <string name="grant_dialog_button_no_upgrade" msgid="8344732743633736625">"Panatilihin ang “Habang ginagamit ang app”"</string>
+    <string name="grant_dialog_button_no_upgrade_one_time" msgid="5125892775684968694">"Panatilihing “Sa pagkakataong ito lang”"</string>
+    <string name="grant_dialog_button_more_info" msgid="213350268561945193">"Higit pang info"</string>
+    <string name="grant_dialog_button_deny_anyway" msgid="7225905870668915151">"Huwag pa ring payagan"</string>
+    <string name="grant_dialog_button_dismiss" msgid="1930399742250226393">"I-dismiss"</string>
+    <string name="current_permission_template" msgid="7452035392573329375">"<xliff:g id="CURRENT_PERMISSION_INDEX">%1$s</xliff:g> sa <xliff:g id="PERMISSION_COUNT">%2$s</xliff:g>"</string>
+    <string name="permission_warning_template" msgid="2247087781222679458">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na <xliff:g id="ACTION">%2$s</xliff:g>?"</string>
+    <string name="permission_add_background_warning_template" msgid="1812914855915092273">"Palaging payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na <xliff:g id="ACTION">%2$s</xliff:g>?"</string>
+    <string name="allow_permission_foreground_only" msgid="116465816039675404">"Habang ginagamit lang ang app"</string>
+    <string name="allow_permission_always" msgid="5194342531206054051">"Palagi"</string>
+    <string name="deny_permission_deny_and_dont_ask_again" msgid="6106035221490102341">"Huwag payagan at huwag nang itanong ulit"</string>
+    <string name="permission_revoked_count" msgid="4785082705441547086">"<xliff:g id="COUNT">%1$d</xliff:g> ang naka-disable"</string>
+    <string name="permission_revoked_all" msgid="3397649017727222283">"naka-disable lahat"</string>
+    <string name="permission_revoked_none" msgid="9213345075484381180">"walang naka-disable"</string>
+    <string name="grant_dialog_button_allow" msgid="5314677880021102550">"Payagan"</string>
+    <string name="grant_dialog_button_allow_always" msgid="4485552579273565981">"Payagan sa lahat ng oras"</string>
+    <string name="grant_dialog_button_allow_foreground" msgid="501896824973636533">"Habang ginagamit ang app"</string>
+    <string name="grant_dialog_button_change_to_precise_location" msgid="3273115879467236033">"Gawing eksaktong lokasyon"</string>
+    <string name="grant_dialog_button_keey_approximate_location" msgid="438025182769080011">"Panatilihin ang tinatantyang lokasyon"</string>
+    <string name="grant_dialog_button_allow_one_time" msgid="2618088516449706391">"Sa pagkakataong ito lang"</string>
+    <string name="grant_dialog_button_allow_background" msgid="8236044729434367833">"Palaging payagan"</string>
+    <string name="grant_dialog_button_allow_all_files" msgid="4955436994954829894">"Payagan ang pamamahala ng lahat ng file"</string>
+    <string name="grant_dialog_button_allow_media_only" msgid="4832877658422573832">"Payagan ang pag-access ng mga media file"</string>
+    <string name="app_permissions_breadcrumb" msgid="5136969550489411650">"Mga App"</string>
+    <string name="app_permissions" msgid="3369917736607944781">"Mga pahintulot sa app"</string>
+    <string name="unused_apps" msgid="2058057455175955094">"Mga hindi ginagamit na app"</string>
+    <string name="no_unused_apps" msgid="12809387670415295">"Walang hindi ginagamit na app"</string>
+    <string name="app_disable_dlg_positive" msgid="7418444149981904940">"I-disable ang app"</string>
+    <string name="app_disable_dlg_text" msgid="3126943217146120240">"Kung idi-disable mo ang app na ito, baka hindi na gumana ang Android at iba pang app gaya ng inaasahan. Tandaan, hindi mo made-delete ang app na ito dahil naka-preinstall ito sa iyong device. Sa pamamagitan ng pag-disable nito, io-off mo ang app na ito at itatago mo ito sa iyong device."</string>
+    <string name="app_permission_manager" msgid="3903811137630909550">"Manager ng pahintulot"</string>
+    <string name="never_ask_again" msgid="4728762438198560329">"Huwag nang itanong muli"</string>
+    <string name="no_permissions" msgid="3881676756371148563">"Walang pahintulot"</string>
+    <string name="additional_permissions" msgid="5801285469338873430">"Mga karagdagang pahintulot"</string>
+    <string name="app_permissions_info_button_label" msgid="7633312050729974623">"Buksan ang impormasyon ng app"</string>
+    <plurals name="additional_permissions_more" formatted="false" msgid="5297511511961335277">
+      <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> pa</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> pa</item>
+    </plurals>
+    <string name="old_sdk_deny_warning" msgid="2382236998845153919">"Ang app na ito ay idinisenyo para sa mas lumang bersyon ng Android. Kapag tinanggihan ang pahintulot, maaaring hindi na ito gumana gaya ng inaasahan."</string>
+    <string name="default_permission_description" msgid="4624464917726285203">"magsagawa ng hindi kilalang pagkilos"</string>
+    <string name="app_permissions_group_summary" msgid="8788419008958284002">"Pinapayagan ang <xliff:g id="COUNT_0">%1$d</xliff:g> sa <xliff:g id="COUNT_1">%2$d</xliff:g> (na) app"</string>
+    <string name="app_permissions_group_summary2" msgid="4329922444840521150">"<xliff:g id="COUNT_0">%1$d</xliff:g>/<xliff:g id="COUNT_1">%2$d</xliff:g> app ang pinayagan"</string>
+    <string name="menu_show_system" msgid="4254021607027872504">"Ipakita ang system"</string>
+    <string name="menu_hide_system" msgid="3855390843744028465">"Itago ang system"</string>
+    <string name="manage_permission" msgid="2895385393037061964">"Pamahalaan ang pahintulot"</string>
+    <string name="no_apps" msgid="2412612731628386816">"Walang app"</string>
+    <string name="location_settings" msgid="3624412509133422562">"Mga Setting ng Lokasyon"</string>
+    <string name="location_warning" msgid="2381649060929040962">"Ang <xliff:g id="APP_NAME">%1$s</xliff:g> ay isang provider ng mga serbisyo ng lokasyon para sa device na ito. Maaaring baguhin ang access sa lokasyon sa mga setting ng lokasyon."</string>
+    <string name="system_warning" msgid="1173400963234358816">"Kung tatanggihan mo ang pahintulot na ito, maaaring hindi na gumana ang mga pangunahing feature ng iyong device gaya ng inaasahan."</string>
+    <string name="cdm_profile_revoke_warning" msgid="4443893270719106700">"Kung tatanggihan mo ang pahintulot na ito, posibleng hindi na gumana gaya ng inaasahan ang ilang feature ng iyong device na pinapamahalaan ng app na ito."</string>
+    <string name="permission_summary_enforced_by_policy" msgid="4443598170942950519">"Ipinapatupad ayon sa patakaran"</string>
+    <string name="permission_summary_disabled_by_policy_background_only" msgid="221995005556362660">"Na-disable ayon sa patakaran: access habang nasa background"</string>
+    <string name="permission_summary_enabled_by_policy_background_only" msgid="8287675974767104279">"Na-enable ayon sa patakaran: access habang nasa background"</string>
+    <string name="permission_summary_enabled_by_policy_foreground_only" msgid="3844582916889767831">"Na-enable ayon sa patakaran: access habang nasa foreground"</string>
+    <string name="permission_summary_enforced_by_admin" msgid="822702574117248700">"Kinokontrol ng admin"</string>
+    <string name="permission_summary_disabled_by_admin_background_only" msgid="3127091456731845646">"Na-disable ng admin ang access habang nasa background"</string>
+    <string name="permission_summary_enabled_by_admin_background_only" msgid="9132423838440275757">"Na-enable ng admin ang access habang nasa background"</string>
+    <string name="permission_summary_enabled_by_admin_foreground_only" msgid="1298432715610745358">"Na-enable ng admin ang access habang nasa foreground"</string>
+    <string name="permission_summary_enabled_system_fixed" msgid="2438344700184127274">"Kailangan ng device ang pahintulot para tumakbo"</string>
+    <!-- no translation found for background_access_chooser_dialog_choices:0 (1351721623256561996) -->
+    <!-- no translation found for background_access_chooser_dialog_choices:1 (9127301153688725448) -->
+    <!-- no translation found for background_access_chooser_dialog_choices:2 (4305536986042401191) -->
+    <string name="permission_access_always" msgid="1474641821883823446">"Palaging payagan"</string>
+    <string name="permission_access_only_foreground" msgid="7801170728159326195">"Payagan habang gamit ang app"</string>
+    <string name="permission_access_never" msgid="4647014230217936900">"Huwag payagan"</string>
+    <string name="loading" msgid="4789365003890741082">"Naglo-load…"</string>
+    <string name="all_permissions" msgid="6911125611996872522">"Lahat ng pahintulot"</string>
+    <string name="other_permissions" msgid="2901186127193849594">"Iba pang kakayahan ng app"</string>
+    <string name="permission_request_title" msgid="8790310151025020126">"Kahilingan sa pagpapahintulot"</string>
+    <string name="screen_overlay_title" msgid="6977038513913222078">"Natukoy ang screen overlay"</string>
+    <string name="screen_overlay_message" msgid="5622563069757142102">"Para baguhin ang setting ng pahintulot na ito, kailangan mo munang i-off ang screen overlay sa Mga Setting &gt; Mga App"</string>
+    <string name="screen_overlay_button" msgid="4655005928054025250">"Buksan ang mga setting"</string>
+    <string name="wear_not_allowed_dlg_title" msgid="1429467891296932713">"Android Wear"</string>
+    <string name="wear_not_allowed_dlg_text" msgid="512340555334769098">"Ang mga pagkilos na I-install/I-uninstall ay hindi sinusuportahan sa Wear."</string>
+    <string name="permission_review_title_template_install" msgid="1284337937156289081">"Piliin kung ano ang papayagang i-access ng &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt;"</string>
+    <string name="permission_review_title_template_update" msgid="3232333580548588657">"Na-update na ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt;. Piliin kung ano ang papayagang i-access ng app na ito."</string>
+    <string name="review_button_cancel" msgid="2191147944056548886">"Kanselahin"</string>
+    <string name="review_button_continue" msgid="2527918375047602199">"Magpatuloy"</string>
+    <string name="new_permissions_category" msgid="552995090178417611">"Mga bagong pahintulot"</string>
+    <string name="current_permissions_category" msgid="4292990083585728880">"Mga kasalukuyang pahintulot"</string>
+    <string name="message_staging" msgid="9110563899955511866">"Inihahanda ang app…"</string>
+    <string name="app_name_unknown" msgid="1319665005754048952">"Hindi alam"</string>
+    <string name="permission_usage_title" msgid="1568233336351734538">"Privacy dashboard"</string>
+    <string name="permission_group_usage_title" msgid="2595013198075285173">"Paggamit ng <xliff:g id="PERMGROUP">%1$s</xliff:g>"</string>
+    <string name="perm_usage_adv_info_title" msgid="3357831829538873708">"Tingnan ang ibang pahintulot"</string>
+    <string name="perm_usage_adv_info_summary_2_items" msgid="3702175198750127822">"<xliff:g id="PERMGROUP_0">%1$s</xliff:g>, <xliff:g id="PERMGROUP_1">%2$s</xliff:g>"</string>
+    <string name="perm_usage_adv_info_summary_more_items" msgid="949055326299562218">"<xliff:g id="PERMGROUP_0">%1$s</xliff:g>, <xliff:g id="PERMGROUP_1">%2$s</xliff:g>, at <xliff:g id="NUM">%3$s</xliff:g> pang iba"</string>
+    <string name="permission_group_usage_subtitle" msgid="712843174810251274">"Timeline ng kung kailan ginamit ng mga app ang iyong <xliff:g id="PERMGROUP">%1$s</xliff:g> sa nakalipas na 24 na oras"</string>
+    <string name="permission_usage_access_dialog_subtitle" msgid="4171772805196955753">"Kung kailan ginamit ng app na ito ang iyong<xliff:g id="PERMGROUP">%1$s</xliff:g> pahintulot"</string>
+    <string name="permission_usage_access_dialog_learn_more" msgid="7121468469493184613">"Matuto pa"</string>
+    <string name="permission_usage_duration_and_proxy" msgid="573959201368716399">"<xliff:g id="APP_NAME">%1$s</xliff:g> • <xliff:g id="TRUNCATED_TIME">%2$s</xliff:g>"</string>
+    <plurals name="duration_used_days" formatted="false" msgid="1993098309578536308">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> araw</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na araw</item>
+    </plurals>
+    <plurals name="duration_used_hours" formatted="false" msgid="1020075479447003242">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> oras</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na oras</item>
+    </plurals>
+    <plurals name="duration_used_minutes" formatted="false" msgid="3422338854436291744">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> minuto</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na minuto</item>
+    </plurals>
+    <plurals name="duration_used_seconds" formatted="false" msgid="2726799598314248110">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> segundo</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na segundo</item>
+    </plurals>
+    <plurals name="permission_usage_summary" formatted="false" msgid="2837021459986644819">
+      <item quantity="one">Huling pag-access: <xliff:g id="TIME_2">%1$s</xliff:g>\n<xliff:g id="NUM_3">%2$s</xliff:g> pag-access</item>
+      <item quantity="other">Huling pag-access: <xliff:g id="TIME_2">%1$s</xliff:g>\n<xliff:g id="NUM_3">%2$s</xliff:g> na pag-access</item>
+    </plurals>
+    <plurals name="permission_usage_summary_background" formatted="false" msgid="8810001960357233836">
+      <item quantity="one">Huling pag-access: <xliff:g id="TIME_3">%1$s</xliff:g>\n<xliff:g id="NUM_4">%2$s</xliff:g> pag-access (<xliff:g id="NUM_5">%3$s</xliff:g> sa background)</item>
+      <item quantity="other">Huling pag-access: <xliff:g id="TIME_3">%1$s</xliff:g>\n<xliff:g id="NUM_4">%2$s</xliff:g> na pag-access (<xliff:g id="NUM_5">%3$s</xliff:g> sa background)</item>
+    </plurals>
+    <plurals name="permission_usage_summary_duration" formatted="false" msgid="2223071401812931873">
+      <item quantity="one">Huling pag-access: <xliff:g id="TIME_3">%1$s</xliff:g>\n<xliff:g id="NUM_4">%2$s</xliff:g> pag-access\nTagal: <xliff:g id="TIME_5">%3$s</xliff:g></item>
+      <item quantity="other">Huling pag-access: <xliff:g id="TIME_3">%1$s</xliff:g>\n<xliff:g id="NUM_4">%2$s</xliff:g> na pag-access\nTagal: <xliff:g id="TIME_5">%3$s</xliff:g></item>
+    </plurals>
+    <plurals name="permission_usage_summary_background_duration" formatted="false" msgid="6893924292010006727">
+      <item quantity="one">Huling pag-access: <xliff:g id="TIME_4">%1$s</xliff:g>\n<xliff:g id="NUM_5">%2$s</xliff:g> pag-access (<xliff:g id="NUM_6">%3$s</xliff:g> sa background)\nTagal: <xliff:g id="TIME_7">%3$s</xliff:g></item>
+      <item quantity="other">Huling pag-access: <xliff:g id="TIME_4">%1$s</xliff:g>\n<xliff:g id="NUM_5">%2$s</xliff:g> na pag-access (<xliff:g id="NUM_6">%3$s</xliff:g> sa background)\nTagal: <xliff:g id="TIME_7">%3$s</xliff:g></item>
+    </plurals>
+    <string name="permission_usage_summary_background" msgid="6136171928959340697">"Huling pag-access: <xliff:g id="TIME">%1$s</xliff:g>\nHuling na-access sa background"</string>
+    <string name="permission_usage_any_permission" msgid="6358023078298106997">"Anumang pahintulot"</string>
+    <string name="permission_usage_any_time" msgid="3802087027301631827">"Anumang oras"</string>
+    <string name="permission_usage_last_7_days" msgid="7386221251886130065">"Nakalipas na 7 araw"</string>
+    <string name="permission_usage_last_day" msgid="1512880889737305115">"Nakalipas na 24 na oras"</string>
+    <string name="permission_usage_last_hour" msgid="3866005205535400264">"Nakalipas na 1 oras"</string>
+    <string name="permission_usage_last_15_minutes" msgid="9077554653436200702">"Nakalipas na 15 minuto"</string>
+    <string name="permission_usage_last_minute" msgid="7297055967335176238">"Nakalipas na 1 minuto"</string>
+    <string name="no_permission_usages" msgid="9119517454177289331">"Walang paggamit ng pahintulot"</string>
+    <string name="permission_usage_list_title_any_time" msgid="8718257027381592407">"Pinakakamakailang pag-access anumang oras"</string>
+    <string name="permission_usage_list_title_last_7_days" msgid="9048542342670890615">"Pinakakamakailang pag-access sa nakaraang 7 araw"</string>
+    <string name="permission_usage_list_title_last_day" msgid="8730907824567238461">"Pinakakamakailang pag-access sa nakaraang 24 oras"</string>
+    <string name="permission_usage_list_title_last_hour" msgid="6624161487623223716">"Pinakakamakailang pag-access sa nakaraang 1 oras"</string>
+    <string name="permission_usage_list_title_last_15_minutes" msgid="8615062016024296833">"Pinakakamakailang pag-access sa nakaraang 15 min"</string>
+    <string name="permission_usage_list_title_last_minute" msgid="3572792262919886849">"Pinakakamakailang pag-access sa nakaraang 1 minuto"</string>
+    <string name="permission_usage_bar_chart_title_any_time" msgid="2845251288192246754">"Paggamit ng pahintulot anumang oras"</string>
+    <string name="permission_usage_bar_chart_title_last_7_days" msgid="5796577162176938349">"Paggamit ng pahintulot sa loob ng nakaraang 7 araw"</string>
+    <string name="permission_usage_bar_chart_title_last_day" msgid="7950805735777472871">"Paggamit ng pahintulot sa nakaraang 24 na oras"</string>
+    <string name="permission_usage_bar_chart_title_last_hour" msgid="6571647509660009185">"Paggamit ng pahintulot sa loob ng nakaraang 1 oras"</string>
+    <string name="permission_usage_bar_chart_title_last_15_minutes" msgid="2743143675412824819">"Paggamit ng pahintulot sa nakaraang 15 minuto"</string>
+    <string name="permission_usage_bar_chart_title_last_minute" msgid="820450867183487607">"Paggamit ng pahintulot sa nakaraang 1 minuto"</string>
+    <plurals name="permission_usage_bar_label" formatted="false" msgid="2316692513662993785">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> app</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na app</item>
+    </plurals>
+    <string name="permission_usage_preference_summary_not_used" msgid="8806755646449754282">"Hindi ginamit sa nakaraang 24 na oras"</string>
+    <plurals name="permission_usage_preference_label" formatted="false" msgid="9033113721294293706">
+      <item quantity="one">Ginagamit ng <xliff:g id="NUMBER">%1$d</xliff:g> app</item>
+      <item quantity="other">Ginagamit ng <xliff:g id="NUMBER">%1$d</xliff:g> na app</item>
+    </plurals>
+    <string name="permission_usage_view_details" msgid="6675335735468752787">"Tingnan lahat sa Dashboard"</string>
+    <string name="app_permission_usage_filter_label" msgid="7182861154638631550">"Na-filter ng: <xliff:g id="PERM">%1$s</xliff:g>"</string>
+    <string name="app_permission_usage_remove_filter" msgid="2926157607436428207">"Alisin ang filter"</string>
+    <string name="filter_by_title" msgid="7300368602759958031">"I-filter ayon sa"</string>
+    <string name="filter_by_permissions" msgid="7613462963111282568">"I-filter ayon sa mga pahintulot"</string>
+    <string name="filter_by_time" msgid="6667864816999691642">"I-filter ayon sa oras"</string>
+    <string name="sort_spinner_most_permissions" msgid="1704349738096822836">"Pinakamaraming pahintulot"</string>
+    <string name="sort_spinner_most_accesses" msgid="5283913004357220161">"Pinakamaraming pag-access"</string>
+    <string name="sort_spinner_recent" msgid="7513845273076525203">"Kamakailan Lang"</string>
+    <string name="sort_by_app" msgid="4055799843051138087">"Ayusin ayon sa paggamit sa app"</string>
+    <string name="sort_by_time" msgid="5435045320002150456">"Pagbukud-bukurin ayon sa oras"</string>
+    <string name="item_separator" msgid="4030255389809224513">", "</string>
+    <string name="permission_usage_refresh" msgid="2264056346561305420">"I-refresh"</string>
+    <plurals name="permission_usage_permission_filter_subtitle" formatted="false" msgid="2452104463317798268">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> app</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na app</item>
+    </plurals>
+    <string name="permission_history_title" msgid="8340081285133025225">"History ng pahintulot"</string>
+    <string name="permission_history_category_today" msgid="7496389369158806620">"Ngayon"</string>
+    <string name="permission_history_category_yesterday" msgid="7242517121222012521">"Kahapon"</string>
+    <string name="app_permission_usage_title" msgid="6676802437831981822">"Paggamit ng pahintulot sa app"</string>
+    <string name="app_permission_usage_summary" msgid="390383661936709672">"Na-access nang: <xliff:g id="NUM">%1$s</xliff:g> (na) beses. Kabuuang tagal: <xliff:g id="DURATION">%2$s</xliff:g>. Huling ginamit <xliff:g id="TIME">%3$s</xliff:g> ang nakalipas."</string>
+    <string name="app_permission_usage_summary_no_duration" msgid="3698475875179457400">"Na-access nang: <xliff:g id="NUM">%1$s</xliff:g> (na) beses. Huling ginamit <xliff:g id="TIME">%2$s</xliff:g> ang nakalipas."</string>
+    <string name="app_permission_button_allow" msgid="5808039516494774647">"Payagan"</string>
+    <string name="app_permission_button_allow_all_files" msgid="1792232272599018825">"Payagan ang pamamahala ng lahat ng file"</string>
+    <string name="app_permission_button_allow_media_only" msgid="2834282724426046154">"Payagan lang ang pag-access ng media"</string>
+    <string name="app_permission_button_allow_always" msgid="4573292371734011171">"Payagan sa lahat ng oras"</string>
+    <string name="app_permission_button_allow_foreground" msgid="1991570451498943207">"Payagan lang habang ginagamit ang app"</string>
+    <string name="app_permission_button_ask" msgid="3342950658789427">"Magtanong palagi"</string>
+    <string name="app_permission_button_deny" msgid="6016454069832050300">"Huwag payagan"</string>
+    <string name="precise_image_description" msgid="6349638632303619872">"Eksaktong lokasyon"</string>
+    <string name="approximate_image_description" msgid="938803699637069884">"Tinatayang lokasyon"</string>
+    <string name="app_permission_location_accuracy" msgid="7166912915040018669">"Gamitin ang eksaktong lokasyon"</string>
+    <string name="app_permission_location_accuracy_subtitle" msgid="2654077606404987210">"Kapag naka-off ang eksaktong lokasyon, puwedeng i-access ng mga app ang iyong tinatantyang lokasyon"</string>
+    <string name="app_permission_title" msgid="2090897901051370711">"Pahintulot sa <xliff:g id="PERM">%1$s</xliff:g>"</string>
+    <string name="app_permission_header" msgid="2951363137032603806">"access sa <xliff:g id="PERM">%1$s</xliff:g> para sa app na ito"</string>
+    <string name="app_permission_footer_app_permissions_link" msgid="4926890342636587393">"Tingnan ang lahat ng pahintulot ng <xliff:g id="APP">%1$s</xliff:g>"</string>
+    <string name="app_permission_footer_permission_apps_link" msgid="3941988129992794327">"Tingnan ang lahat ng app na may ganitong pahintulot"</string>
+    <string name="assistant_mic_label" msgid="1011432357152323896">"Ipakita ang paggamit ng mikropono ng assistant"</string>
+    <string name="auto_revoke_label" msgid="5068393642936571656">"Alisin ang mga pahintulot kung hindi ginagamit ang app"</string>
+    <string name="unused_apps_label" msgid="2595428768404901064">"Alisin ang pahintulot, magbakante ng espasyo"</string>
+    <string name="auto_revoke_summary" msgid="5867548789805911683">"Para maprotektahan ang iyong data, aalisin ang mga pahintulot para sa app na ito kapag ilang buwan nang hindi ginagamit ang app."</string>
+    <string name="auto_revoke_summary_with_permissions" msgid="389712086597285013">"Para maprotektahan ang iyong data, kapag ilang buwan nang hindi ginagamit ang app, aalisin ang mga sumusunod na pahintulot: <xliff:g id="PERMS">%1$s</xliff:g>"</string>
+    <string name="auto_revoked_apps_page_summary" msgid="6594753657893756536">"Para protektahan ang iyong data, inalis na ang mga pahintulot sa mga app na ilang buwan mo nang hindi ginagamit."</string>
+    <string name="auto_revoke_open_app_message" msgid="8075556291711205039">"Kung gusto mong payagan ulit ang mga pahintulot, buksan ang app."</string>
+    <string name="auto_revoke_disabled" msgid="8697684442991567188">"Kasalukuyang naka-disable para sa app na ito ang awtomatikong pag-aalis."</string>
+    <string name="auto_revocable_permissions_none" msgid="8334929619113991466">"Walang mga pahintulot na awtomatikong mababawi ang ibinigay sa kasalukukyan"</string>
+    <string name="auto_revocable_permissions_one" msgid="5299112369449458176">"<xliff:g id="PERM">%1$s</xliff:g> pahintulot ang maaalis."</string>
+    <string name="auto_revocable_permissions_two" msgid="4874067408752041716">"Maaalis ang mga pahintulot sa <xliff:g id="PERM_0">%1$s</xliff:g> at <xliff:g id="PERM_1">%2$s</xliff:g>."</string>
+    <string name="auto_revocable_permissions_many" msgid="1521807896206032992">"Mga pahintulot na maaalis: <xliff:g id="PERMS">%1$s</xliff:g>."</string>
+    <string name="auto_manage_title" msgid="7693181026874842935">"Awtomatikong pamahalaan ang pahintulot"</string>
+    <string name="off" msgid="1438489226422866263">"I-off"</string>
+    <string name="auto_revoked_app_summary_one" msgid="7093213590301252970">"Inalis ang pahintulot na <xliff:g id="PERMISSION_NAME">%s</xliff:g>"</string>
+    <string name="auto_revoked_app_summary_two" msgid="1910545340763709389">"Inalis ang mga pahintulot na <xliff:g id="PERMISSION_NAME_0">%1$s</xliff:g> at <xliff:g id="PERMISSION_NAME_1">%2$s</xliff:g>"</string>
+    <string name="auto_revoked_app_summary_many" msgid="5930976230827378798">"Inalis ang <xliff:g id="PERMISSION_NAME">%1$s</xliff:g> at <xliff:g id="NUMBER">%2$s</xliff:g> pang pahintulot"</string>
+    <string name="unused_apps_page_title" msgid="6986983535677572559">"Mga hindi ginagamit na app"</string>
+    <string name="unused_apps_page_summary" msgid="1867593913217272155">"Kung hindi ginamit ang isang app sa loob ng ilang buwan:\n\n• Aalisin ang mga pahintulot para maprotektahan ang iyong data\n• Ihihinto ang mga notification para makatipid sa baterya\n• Aalisin ang mga pansamantalang file para magbakante ng space\n\nPara payagan ulit ang mga pahintulot at notification, buksan ang app."</string>
+    <string name="last_opened_category_title" msgid="7871347400611202595">"Huling binuksan mahigit <xliff:g id="NUMBER">%s</xliff:g> (na) buwan na ang nakakalipas"</string>
+    <string name="last_opened_summary" msgid="5248984030024968808">"Huling binuksan ang app noong <xliff:g id="DATE">%s</xliff:g>"</string>
+    <string name="last_opened_summary_short" msgid="1646067226191176825">"Huling binuksan noong <xliff:g id="DATE">%s</xliff:g>"</string>
+    <string name="app_permission_footer_special_file_access" msgid="1884202176147657788">"Kung papayagan mo ang pamamahala ng lahat ng file, magagawa ng app na ito na i-access, baguhin, at i-delete ang anumang file na nasa karaniwang storage sa device na ito o mga nakakonektang storage device. Posibleng mag-access ng mga file ang app nang hindi ka tinatanong."</string>
+    <string name="special_file_access_dialog" msgid="583804114020740610">"Payagan ang app na ito na mag-access, magbago, at mag-delete ng mga file sa device, o sa anumang nakakonektang storage device? Posibleng mag-access ng mga file ang app na ito nang hindi ka tinatanong."</string>
+    <string name="permission_description_summary_generic" msgid="5401399408814903391">"Magagawa ng mga app na may ganitong pahintulot na <xliff:g id="DESCRIPTION">%1$s</xliff:g>"</string>
+    <string name="permission_description_summary_activity_recognition" msgid="2652850576497070146">"Maa-access ng mga app na mayroon ng pahintulot na ito ang iyong pisikal na aktibidad, gaya ng paglalakad, pagbibisikleta, pagmamaneho, bilang ng hakbang, at higit pa"</string>
+    <string name="permission_description_summary_calendar" msgid="103329982944411010">"Maa-access ng mga app na may ganitong pahintulot ang iyong kalendaryo"</string>
+    <string name="permission_description_summary_call_log" msgid="7321437186317577624">"Mababasa at masusulatan ng mga app na may ganitong pahintulot ang log ng tawag sa telepono"</string>
+    <string name="permission_description_summary_camera" msgid="108004375101882069">"Makakakuha ng mga larawan at makakapag-record ng mga video ang mga app na may ganitong pahintulot"</string>
+    <string name="permission_description_summary_contacts" msgid="2337798886460408996">"Maa-access ng mga app na may ganitong pahintulot ang iyong mga contact"</string>
+    <string name="permission_description_summary_location" msgid="2817531799933480694">"Maa-access ng mga app na may ganitong pahintulot ang lokasyon ng device na ito"</string>
+    <string name="permission_description_summary_nearby_devices" msgid="8269183818275073741">"Magagawa ng mga app na may pahintulot na ito na hanapin at tukuyin ang, at kumonekta sa relatibong posisyon ng mga kalapit na device"</string>
+    <string name="permission_description_summary_microphone" msgid="630834800308329907">"Makakapag-record ng audio ang mga app na may ganitong pahintulot"</string>
+    <string name="permission_description_summary_phone" msgid="4515277217435233619">"Makakatawag at makakapamahala ng mga tawag sa telepono ang mga app na may ganitong pahintulot"</string>
+    <string name="permission_description_summary_sensors" msgid="1836045815643119949">"Maa-access ng mga app na may ganitong pahintulot ang data ng sensor tungkol sa iyong mga vital sign"</string>
+    <string name="permission_description_summary_sms" msgid="725999468547768517">"Makakapagpadala at makakatingin ng mga SMS message ang mga app na may ganitong pahintulot"</string>
+    <string name="permission_description_summary_storage" msgid="6575759089065303346">"Maa-access ng mga app na mayroon ng pahintulot na ito ang mga larawan, media, at file sa iyong device"</string>
+    <string name="app_permission_most_recent_summary" msgid="4292074449384040590">"Huling na-access: <xliff:g id="TIME_DATE">%1$s</xliff:g>"</string>
+    <string name="app_permission_most_recent_denied_summary" msgid="7659497197737708112">"Kasalukuyang tinanggihan / Huling pag-access: <xliff:g id="TIME_DATE">%1$s</xliff:g>"</string>
+    <string name="app_permission_never_accessed_summary" msgid="401346181461975090">"Hindi na-access kahit kailan"</string>
+    <string name="app_permission_never_accessed_denied_summary" msgid="6596000497490905146">"Tinanggihan / Hindi na-access kahit kailan"</string>
+    <string name="allowed_header" msgid="7769277978004790414">"Pinapayagan"</string>
+    <string name="allowed_always_header" msgid="6455903312589013545">"Palaging pinapayagan"</string>
+    <string name="allowed_foreground_header" msgid="6845655788447833353">"Pinapayagan lang habang ginagamit"</string>
+    <string name="allowed_storage_scoped" msgid="5383645873719086975">"Pinapayagan lang na mag-access ng media"</string>
+    <string name="allowed_storage_full" msgid="5356699280625693530">"Pinapayagang pamahalaan ang lahat ng file"</string>
+    <string name="ask_header" msgid="2633816846459944376">"Magtanong palagi"</string>
+    <string name="denied_header" msgid="903209608358177654">"Hindi pinapayagan"</string>
+    <plurals name="days" formatted="false" msgid="7882807103511175827">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> araw</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na araw</item>
+    </plurals>
+    <plurals name="hours" formatted="false" msgid="2100550424145061396">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> oras</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na oras</item>
+    </plurals>
+    <plurals name="minutes" formatted="false" msgid="2154398822027154606">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> minuto</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na minuto</item>
+    </plurals>
+    <plurals name="seconds" formatted="false" msgid="1564519426522404832">
+      <item quantity="one"><xliff:g id="NUMBER">%s</xliff:g> segundo</item>
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> na segundo</item>
+    </plurals>
+    <string name="permission_reminders" msgid="6528257957664832636">"Mga paalala sa pahintulot"</string>
+    <string name="auto_revoke_permission_reminder_notification_title_one" msgid="6690347469376854137">"1 hindi ginagamit na app"</string>
+    <string name="auto_revoke_permission_reminder_notification_title_many" msgid="6062217713645069960">"<xliff:g id="NUMBER_OF_APPS">%s</xliff:g> (na) hindi ginagamit na app"</string>
+    <string name="auto_revoke_permission_reminder_notification_content" msgid="4492228990462107487">"Inalis ang mga pahintulot para protektahan ang iyong privacy. I-tap para suriin"</string>
+    <string name="auto_revoke_permission_notification_title" msgid="2629844160853454657">"Inalis ang mga pahintulot para sa mga hindi ginagamit na app"</string>
+    <string name="auto_revoke_permission_notification_content" msgid="5125990886047799375">"May ilang app na ilang buwan nang hindi ginagamit. I-tap para suriin."</string>
+    <plurals name="auto_revoke_permission_notification_content_count" formatted="false" msgid="9159794096518540350">
+      <item quantity="one">May <xliff:g id="COUNT_1">%1$d</xliff:g> app na ilang buwan nang hindi ginagamit. I-tap para suriin</item>
+      <item quantity="other">May <xliff:g id="COUNT_1">%1$d</xliff:g> na app na ilang buwan nang hindi ginagamit. I-tap para suriin</item>
+    </plurals>
+    <plurals name="unused_apps_notification_title" formatted="false" msgid="8046612559038762856">
+      <item quantity="one"><xliff:g id="COUNT_1">%1$d</xliff:g> hindi ginagamit na app</item>
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> na hindi ginagamit na app</item>
+    </plurals>
+    <string name="unused_apps_notification_content" msgid="9195026773244581246">"Inalis ang mga pahintulot at pansamantalang file at inihinto ang mga notification. I-tap para suriin."</string>
+    <string name="auto_revoke_setting_subtitle" msgid="8631720570723050460">"May ilang app na ilang buwan nang hindi ginagamit"</string>
+    <plurals name="auto_revoke_setting_subtitle_count" formatted="false" msgid="85594789277193087">
+      <item quantity="one">May <xliff:g id="COUNT_1">%1$d</xliff:g> app na ilang buwan nang hindi ginagamit.</item>
+      <item quantity="other">May <xliff:g id="COUNT_1">%1$d</xliff:g> na app na ilang buwan nang hindi ginagamit.</item>
+    </plurals>
+    <string name="permissions_removed_category_title" msgid="1064754271178447643">"Inalisan ng mga pahintulot"</string>
+    <string name="permission_removed_page_title" msgid="2627436155091001209">"Inalisan ng mga pahintulot"</string>
+    <string name="all_unused_apps_category_title" msgid="755663524704745414">"Lahat ng hindi ginagamit na app"</string>
+    <string name="months_ago" msgid="1766026492610646354">"<xliff:g id="COUNT">%1$d</xliff:g> (na) buwan ang nakalipas"</string>
+    <string name="auto_revoke_preference_summary" msgid="5517958331781391481">"Inalis ang mga pahintulot para protektahan ang iyong privacy"</string>
+    <string name="background_location_access_reminder_notification_title" msgid="1140797924301941262">"Kinuha ng <xliff:g id="APP_NAME">%s</xliff:g> ang iyong lokasyon sa background"</string>
+    <string name="background_location_access_reminder_notification_content" msgid="7787084707336546245">"Maa-access ng app na ito ang iyong lokasyon anumang oras. I-tap para baguhin."</string>
+    <string name="auto_revoke_after_notification_title" msgid="5417761027669887431">"Inalis ang pahintulot sa app para protektahan ang privacy"</string>
+    <string name="auto_revoke_after_notification_content_one" msgid="6804038707453662753">"Ilang buwan nang hindi ginagamit ang <xliff:g id="APP_NAME">%s</xliff:g>. I-tap para suriin."</string>
+    <string name="auto_revoke_after_notification_content_two" msgid="9108709764831425172">"Ilang buwan nang hindi ginagamit ang <xliff:g id="APP_NAME">%s</xliff:g> at 1 pang app. I-tap para suriin."</string>
+    <string name="auto_revoke_after_notification_content_many" msgid="4774106206289751220">"Ilang buwan nang hindi ginagamit ang <xliff:g id="APP_NAME">%1$s</xliff:g> at <xliff:g id="NUMBER_OF_APPS">%2$s</xliff:g> pang app. I-tap para suriin."</string>
+    <string name="auto_revoke_before_notification_title_one" msgid="6758024954464359876">"1 app ang hindi ginagamit"</string>
+    <string name="auto_revoke_before_notification_title_many" msgid="4415543943846385685">"<xliff:g id="NUMBER_OF_APPS">%s</xliff:g> (na) app ang hindi ginagamit"</string>
+    <string name="auto_revoke_before_notification_content_one" msgid="1156635373417068822">"Aalisin ang mga pahintulot para protektahan ang iyong privacy. I-tap para suriin."</string>
+    <string name="unused_apps_title" msgid="8589298917717872239">"Mga hindi ginagamit na app"</string>
+    <string name="unused_apps_subtitle_after" msgid="2034267519506357898">"Inalis ang mga pahintulot sa"</string>
+    <string name="unused_apps_subtitle_before" msgid="5233302577076132427">"Aalisin ang mga pahintulot sa"</string>
+    <string name="unused_permissions_subtitle_two" msgid="2207266295008423015">"<xliff:g id="PERM_NAME_0">%1$s</xliff:g> at <xliff:g id="PERM_NAME_1">%2$s</xliff:g>"</string>
+    <string name="unused_permissions_subtitle_many" msgid="4387289202207450238">"<xliff:g id="PERM_NAME_0">%1$s</xliff:g>, <xliff:g id="PERM_NAME_1">%2$s</xliff:g>, at <xliff:g id="NUMBER_OF_PERMISSIONS">%3$s</xliff:g> pa"</string>
+    <string name="unused_app_permissions_removed_summary" msgid="6779039455326071033">"Para protektahan ang iyong data, inalis na ang mga pahintulot sa mga app na ilang buwan mo nang hindi ginagamit"</string>
+    <string name="unused_app_permissions_removed_summary_some" msgid="5080490037831563441">"Para maprotektahan ang iyong data, inalis ang mga pahintulot sa ilang app na ilang buwan mo nang hindi ginagamit"</string>
+    <string name="one_unused_app_summary" msgid="7831913934488881991">"May 1 app na ilang buwan nang hindi ginagamit."</string>
+    <string name="num_unused_apps_summary" msgid="1870719749940571227">"May <xliff:g id="NUMBER_OF_APPS">%s</xliff:g> (na) app na ilang buwan nang hindi ginagamit."</string>
+    <string name="permission_subtitle_only_in_foreground" msgid="9068389431267377564">"Habang ginagamit lang ang app"</string>
+    <string name="permission_subtitle_media_only" msgid="8917869683764720717">"Media"</string>
+    <string name="permission_subtitle_all_files" msgid="4982613338298067862">"Lahat ng File"</string>
+    <string name="permission_subtitle_background" msgid="8916750995309083180">"Palaging pinapayagan"</string>
+    <string name="app_perms_24h_access" msgid="99069906850627181">"Huling na-access noong <xliff:g id="TIME_DATE">%1$s</xliff:g>"</string>
+    <string name="app_perms_24h_access_yest" msgid="5411926024794555022">"Huling na-access kahapon nang <xliff:g id="TIME_DATE">%1$s</xliff:g>"</string>
+    <string name="app_perms_content_provider" msgid="6996750793881252778">"Na-access sa nakalipas na 24 na oras"</string>
+    <string name="app_perms_24h_access_background" msgid="3413674718969576843">"Huling na-access noong <xliff:g id="TIME_DATE">%1$s</xliff:g> • Palaging pinapayagan"</string>
+    <string name="app_perms_24h_access_yest_background" msgid="9174750810998076725">"Huling na-access kahapon ng <xliff:g id="TIME_DATE">%1$s</xliff:g> • Palaging pinapayagan"</string>
+    <string name="app_perms_content_provider_background" msgid="7793984056711923997">"Na-access sa nakalipas na 24 na oras • Palaging pinapayagan"</string>
+    <string name="app_perms_24h_access_media_only" msgid="6651699644199132054">"Huling na-access noong <xliff:g id="TIME_DATE">%1$s</xliff:g> • Media"</string>
+    <string name="app_perms_24h_access_yest_media_only" msgid="7213187706424998792">"Huling na-access kahapon nang <xliff:g id="TIME_DATE">%1$s</xliff:g> • Media"</string>
+    <string name="app_perms_content_provider_media_only" msgid="6206759230589923421">"Na-access sa nakalipas na 24 na oras • Media"</string>
+    <string name="app_perms_24h_access_all_files" msgid="8902360456978159091">"Huling na-access noong <xliff:g id="TIME_DATE">%1$s</xliff:g> • Lahat ng File"</string>
+    <string name="app_perms_24h_access_yest_all_files" msgid="5708424073126844909">"Huling na-access kahapon nang <xliff:g id="TIME_DATE">%1$s</xliff:g> • Lahat ng File"</string>
+    <string name="app_perms_content_provider_all_files" msgid="3315281519230304799">"Na-access sa nakalipas na 24 na oras • Lahat ng File"</string>
+    <string name="no_permissions_allowed" msgid="6081976856354669209">"Walang pinayagang pahintulot"</string>
+    <string name="no_permissions_denied" msgid="8159923922804043282">"Walang tinanggihang pahintulot"</string>
+    <string name="no_apps_allowed" msgid="7718822655254468631">"Walang pinayagang app"</string>
+    <string name="no_apps_allowed_full" msgid="8011716991498934104">"Walang pinapayagang app para sa lahat ng file"</string>
+    <string name="no_apps_allowed_scoped" msgid="4908850477787659501">"Walang pinapayagang app na para sa media lang"</string>
+    <string name="no_apps_denied" msgid="7663435886986784743">"Walang tinanggihang app"</string>
+    <string name="car_permission_selected" msgid="180837028920791596">"Napili"</string>
+    <string name="settings" msgid="5409109923158713323">"Mga Setting"</string>
+    <string name="accessibility_service_dialog_title_single" msgid="7956432823014102366">"May kumpletong access ang <xliff:g id="SERVICE_NAME">%s</xliff:g> sa iyong device"</string>
+    <string name="accessibility_service_dialog_title_multiple" msgid="5527879210683548175">"<xliff:g id="NUM_SERVICES">%s</xliff:g> (na) app sa accessibility ang may kumpletong access sa iyong device"</string>
+    <string name="accessibility_service_dialog_bottom_text_single" msgid="1128666197822205958">"Magagawa ng <xliff:g id="SERVICE_NAME">%s</xliff:g> na tingnan ang iyong screen, mga pagkilos, at mga input, magsagawa ng mga pagkilos, at kontrolin ang display."</string>
+    <string name="accessibility_service_dialog_bottom_text_multiple" msgid="7009848932395519852">"Magagawa ng mga app na ito na tingnan ang iyong screen, mga pagkilos, at mga input, magsagawa ng mga pagkilos, at kontrolin ang display."</string>
+    <string name="role_assistant_label" msgid="4727586018198208128">"Default digital assistant app"</string>
+    <string name="role_assistant_short_label" msgid="3369003713187703399">"Digital assistant app"</string>
+    <string name="role_assistant_description" msgid="6622458130459922952">"Makakatulong sa iyo ang mga assist app batay sa impormasyon sa screen na tinitingnan mo. Sinusuportahan ng ilang app ang mga serbisyo ng launcher at input ng boses para magbigay sa iyo ng pinagsama-samang tulong."</string>
+    <string name="role_assistant_request_title" msgid="5964976301922776060">"Itakda ang <xliff:g id="APP_NAME">%1$s</xliff:g> bilang iyong default na assist app?"</string>
+    <string name="role_assistant_request_description" msgid="6836644847620178483">"Makakakuha ng access sa SMS, log ng tawag"</string>
+    <string name="role_browser_label" msgid="2877796144554070207">"Default na browser app"</string>
+    <string name="role_browser_short_label" msgid="6745009127123292296">"Browser app"</string>
+    <string name="role_browser_description" msgid="3465253637499842671">"Mga app na nagbibigay sa iyo ng access sa internet at nagpapakita ng mga link na tina-tap mo"</string>
+    <string name="role_browser_request_title" msgid="2895200507835937192">"Itakda ang <xliff:g id="APP_NAME">%1$s</xliff:g> bilang iyong default na browser app?"</string>
+    <string name="role_browser_request_description" msgid="5888803407905985941">"Walang kailangang pahintulot"</string>
+    <string name="role_dialer_label" msgid="1100224146343237968">"Default na phone app"</string>
+    <string name="role_dialer_short_label" msgid="7186888549465352489">"Phone app"</string>
+    <string name="role_dialer_description" msgid="8768708633696539612">"Mga app na nagbibigay-daan sa iyong tumawag at tumanggap ng tawag sa telepono sa device mo"</string>
+    <string name="role_dialer_request_title" msgid="5959618560705912058">"Itakda ang <xliff:g id="APP_NAME">%1$s</xliff:g> bilang iyong default na phone app?"</string>
+    <string name="role_dialer_request_description" msgid="2264219375528345270">"Magkaka-access sa log ng tawag, makakapagpadala ng SMS"</string>
+    <string name="role_dialer_search_keywords" msgid="3324448983559188087">"dialer"</string>
+    <string name="role_sms_label" msgid="8456999857547686640">"Default na SMS app"</string>
+    <string name="role_sms_short_label" msgid="4371444488034692243">"SMS app"</string>
+    <string name="role_sms_description" msgid="3424020199148153513">"Mga app na nagbibigay-daan sa iyong gamitin ang numero ng telepono mo para magpadala at makatanggap ng maiikling text message, larawan, video, at higit pa"</string>
+    <string name="role_sms_request_title" msgid="7953552109601185602">"Itakda ang <xliff:g id="APP_NAME">%1$s</xliff:g> bilang iyong default na SMS app?"</string>
+    <string name="role_sms_request_description" msgid="983371022668134198">"Magkaka-access sa mga contact, SMS, telepono"</string>
+    <string name="role_sms_search_keywords" msgid="8022048144395047352">"text message, pag-text, mga mensahe, pagmemensahe"</string>
+    <string name="role_emergency_label" msgid="7028825857206842366">"Default na emergency app"</string>
+    <string name="role_emergency_short_label" msgid="2388431453335350348">"Emergency app"</string>
+    <string name="role_emergency_description" msgid="5051840234887686630">"Mga app na nagbibigay-daan sa iyong itala ang medikal na impormasyon mo at gawin itong accessible para sa mga emergency responder; para makatanggap ng mga alerto tungkol sa mga malalang lagay ng panahon at sakuna; para abisuhan ang iba kapag kailangan mo ng tulong"</string>
+    <string name="role_emergency_request_title" msgid="8469579020654348567">"Itakda ang <xliff:g id="APP_NAME">%1$s</xliff:g> bilang iyong default na emergency app?"</string>
+    <string name="role_emergency_request_description" msgid="131645948770262850">"Walang kailangang pahintulot"</string>
+    <string name="role_emergency_search_keywords" msgid="1920007722599213358">"ice"</string>
+    <string name="role_home_label" msgid="3871847846649769412">"Default na home app"</string>
+    <string name="role_home_short_label" msgid="8544733747952272337">"Home app"</string>
+    <string name="role_home_description" msgid="7997371519626556675">"Mga app, na kadalasang tinatawag na mga launcher, na pumapalit sa mga Home screen sa Android device mo at nagbibigay sa iyo ng access sa mga content at feature ng device mo"</string>
+    <string name="role_home_request_title" msgid="738136983453341081">"Itakda ang <xliff:g id="APP_NAME">%1$s</xliff:g> bilang iyong default na home app?"</string>
+    <string name="role_home_request_description" msgid="2658833966716057673">"Walang kailangang pahintulot"</string>
+    <string name="role_home_search_keywords" msgid="3830755001192666285">"launcher"</string>
+    <string name="role_call_redirection_label" msgid="5785304207206147590">"Default call redirecting app"</string>
+    <string name="role_call_redirection_short_label" msgid="7568143419571217757">"App sa pag-redirect ng tawag"</string>
+    <string name="role_call_redirection_description" msgid="6091669882014664420">"Mga app na nagbibigay-daan sa iyong magpasa ng mga papalabas na tawag sa isa pang numero ng telepono"</string>
+    <string name="role_call_redirection_request_title" msgid="2816244455003562925">"Itakda ang <xliff:g id="APP_NAME">%1$s</xliff:g> bilang iyong default na app sa pag-redirect?"</string>
+    <string name="role_call_redirection_request_description" msgid="3118895714178527164">"Walang kailangang pahintulot"</string>
+    <string name="role_call_screening_label" msgid="883935222060878724">"Default na caller ID at spam app"</string>
+    <string name="role_call_screening_short_label" msgid="2048465565063130834">"Caller ID at spam app"</string>
+    <string name="role_call_screening_description" msgid="2349431420497468981">"Mga app na nagbibigay-daan sa iyong tumukoy ng mga tawag at mag-block ng spam, mga robocall, o mga numerong ayaw mong makaugnayan"</string>
+    <string name="role_call_screening_request_title" msgid="7358309224566977290">"Itakda ang <xliff:g id="APP_NAME">%1$s</xliff:g> bilang iyong default na caller ID at spam app?"</string>
+    <string name="role_call_screening_request_description" msgid="7338511921032446006">"Walang kailangang pahintulot"</string>
+    <string name="role_watch_description" msgid="267003778693177779">"Papayagan ang <xliff:g id="APP_NAME">%1$s</xliff:g> na makipag-ugnayan sa iyong mga notification at ma-access ang iyong mga pahintulot sa Telepono, SMS, Mga Contact, at Kalendaryo."</string>
+    <string name="request_role_current_default" msgid="738722892438247184">"Kasalukuyang default"</string>
+    <string name="request_role_dont_ask_again" msgid="3556017886029520306">"Huwag nang itanong muli"</string>
+    <string name="request_role_set_as_default" msgid="4253949643984172880">"Itakdang default"</string>
+    <string name="phone_call_uses_microphone" msgid="233569591461187177">"Ginagamit ang Mikropono sa &lt;b&gt;tawag sa telepono&lt;/b&gt;"</string>
+    <string name="phone_call_uses_microphone_and_camera" msgid="6291898755681748189">"Ginagamit ang Camera at Mikropono sa &lt;b&gt;video call&lt;/b&gt;"</string>
+    <string name="phone_call_uses_camera" msgid="2048417022147857418">"Ginagamit ang Camera sa &lt;b&gt;video call&lt;/b&gt;"</string>
+    <string name="system_uses_microphone" msgid="576672130318877143">"Ina-access ng serbisyo ng system ang Mikropono"</string>
+    <string name="system_uses_microphone_and_camera" msgid="5124478304275138804">"Ina-access ng serbisyo ng system ang Camera at Mikropono"</string>
+    <string name="system_uses_camera" msgid="1911223105234441470">"Ina-access ng serbisyo ng system ang Camera"</string>
+    <string name="other_use" msgid="6564855051022776692">"Iba pang paggamit:"</string>
+    <string name="ongoing_usage_dialog_ok" msgid="103556809118460072">"OK"</string>
+    <string name="ongoing_usage_dialog_title" msgid="683836493556628569">"Kamakailang paggamit ng <xliff:g id="TYPES_LIST">%s</xliff:g>"</string>
+    <string name="ongoing_usage_dialog_title_mic" msgid="5966714811125593992">"Kamakailang paggamit ng Mikropono"</string>
+    <string name="ongoing_usage_dialog_title_camera" msgid="7819329688650711470">"Kamakailang paggamit ng Camera"</string>
+    <string name="ongoing_usage_dialog_title_mic_camera" msgid="9079747867228772797">"Kamakailang paggamit ng Mikropono at Camera"</string>
+    <string name="ongoing_usage_dialog_separator" msgid="1715181526581520068">", "</string>
+    <string name="ongoing_usage_dialog_last_separator" msgid="4170995004748832163">" at "</string>
+    <string name="default_app_search_keyword" msgid="8330125736889689743">"mga default na app"</string>
+    <string name="permgroup_list_microphone_and_camera" msgid="962768198001487969">"Mikropono at Camera"</string>
+    <string name="settings_button" msgid="4414988414732479636">"Mga Setting"</string>
+    <string name="default_apps" msgid="5119201969348748639">"Mga default na app"</string>
+    <string name="no_default_apps" msgid="2593466527182950231">"Walang default na app"</string>
+    <string name="default_apps_more" msgid="4078194675848858093">"Higit pang default"</string>
+    <string name="default_apps_manage_domain_urls" msgid="6775566451561036069">"Pagbubukas ng mga link"</string>
+    <string name="default_apps_for_work" msgid="4970308943596201811">"Default para sa trabaho"</string>
+    <string name="default_app_none" msgid="9084592086808194457">"Wala"</string>
+    <string name="default_app_system_default" msgid="6218386768175513760">"(Default ng system)"</string>
+    <string name="default_app_no_apps" msgid="115720991680586885">"Walang app"</string>
+    <string name="car_default_app_selected" msgid="5416420830430644174">"Napili"</string>
+    <string name="car_default_app_selected_with_info" msgid="1932204186080593500">"Pinili - <xliff:g id="ADDITIONAL_INFO">%1$s</xliff:g>"</string>
+    <string name="special_app_access_search_keyword" msgid="8032347212290774210">"Espesyal na access ng app"</string>
+    <string name="special_app_access" msgid="5019319067120213797">"Espesyal na app access"</string>
+    <string name="no_special_app_access" msgid="6950277571805106247">"Walang espesyal na app access"</string>
+    <string name="special_app_access_no_apps" msgid="4102911722787886970">"Walang app"</string>
+    <string name="home_missing_work_profile_support" msgid="1756855847669387977">"Hindi sinusuportahan ang profile sa trabaho"</string>
+    <string name="encryption_unaware_confirmation_message" msgid="8274491794636402484">"Tandaan: Kung ire-restart mo ang iyong device at may nakatakdang lock ng screen, hindi makakapagsimula ang app na ito hanggang sa i-unlock mo ang iyong device."</string>
+    <string name="assistant_confirmation_message" msgid="7476540402884416212">"Mababasa ng assistant ang impormasyon tungkol sa mga app na ginagamit sa iyong system, kasama ang impormasyong makikita sa screen mo o maa-access sa mga app."</string>
+    <string name="incident_report_channel_name" msgid="3144954065936288440">"Ibahagi ang Data sa Pag-debug"</string>
+    <string name="incident_report_notification_title" msgid="4635984625656519773">"Ibahagi ang nakadetalyeng data sa pag-debug?"</string>
+    <string name="incident_report_notification_text" msgid="3376480583513587923">"Gustong mag-upload ng <xliff:g id="APP_NAME">%1$s</xliff:g> ng impormasyon sa pag-debug."</string>
+    <string name="incident_report_dialog_title" msgid="669104389325204095">"Ibahagi ang data sa pag-debug?"</string>
+    <string name="incident_report_dialog_intro" msgid="5897733669850951832">"May natukoy na problema ang system."</string>
+    <string name="incident_report_dialog_text" msgid="5675553296891757523">"Hinihiling ng <xliff:g id="APP_NAME_0">%1$s</xliff:g> na mag-upload ng ulat ng bug mula sa device na ito na kinuha noong <xliff:g id="DATE">%2$s</xliff:g> sa ganap na <xliff:g id="TIME">%3$s</xliff:g>. Kabilang sa mga ulat ng bug ang personal na impormasyon tungkol sa iyong device o naka-log ayon sa mga app, halimbawa, mga user name, data ng lokasyon, pagkakakilanlan ng device, at impormasyon ng network. Magbahagi lang ng mga ulat ng bug sa mga tao at app na pinagkakatiwalaan mo ng impormasyong ito. Payagan ang <xliff:g id="APP_NAME_1">%4$s</xliff:g> na mag-upload ng ulat ng bug?"</string>
+    <string name="incident_report_error_dialog_text" msgid="4189647113387092272">"Nagka-error sa pagproseso ng ulat ng bug para sa <xliff:g id="APP_NAME">%1$s</xliff:g>. Kaya naman tinanggihan ang pagbabahagi ng detalyadong data ng pag-debug. Paumanhin sa pagkaantala."</string>
+    <string name="incident_report_dialog_allow_label" msgid="2970242967721155239">"Payagan"</string>
+    <string name="incident_report_dialog_deny_label" msgid="3535314290677579383">"Tanggihan"</string>
+    <string name="adjust_user_sensitive_title" msgid="4196724451314280527">"Mga advanced na setting"</string>
+    <string name="menu_adjust_user_sensitive" msgid="6497923610654425780">"Mga advanced na setting"</string>
+    <string name="adjust_user_sensitive_globally_title" msgid="8649190949066029174">"Ipakita ang paggamit ng system app"</string>
+    <string name="adjust_user_sensitive_globally_summary" msgid="129467818433773912">"Ipakita ang paggamit ng mga pahintulot ng system app sa status bar, dashboard, at sa ibang lugar"</string>
+    <string name="adjust_user_sensitive_per_app_header" msgid="4543506440989005648">"I-highlight ang paggamit para sa sumusunod"</string>
+    <string name="assistant_record_audio_user_sensitive_title" msgid="5532123360322362378">"Ipakita ang pagtukoy ng trigger ng assistant"</string>
+    <string name="assistant_record_audio_user_sensitive_summary" msgid="6482937591816401619">"Ipakita ang icon sa status bar kapag gumamit ng mikropono para i-activate ang voice assistant"</string>
+    <string name="permgrouprequest_storage_isolated" msgid="4892154224026852295">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang mga larawan at media sa iyong device?"</string>
+    <string name="permgrouprequest_contacts" msgid="8391550064551053695">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang iyong mga contact?"</string>
+    <string name="permgrouprequest_location" msgid="6990232580121067883">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang lokasyon ng device na ito?"</string>
+    <string name="permgrouprequestdetail_location" msgid="2635935335778429894">"Magkakaroon lang ang app ng access sa lokasyon habang ginagamit mo ang app"</string>
+    <string name="permgroupbackgroundrequest_location" msgid="1085680897265734809">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang lokasyon ng device na ito?"</string>
+    <string name="permgroupbackgroundrequestdetail_location" msgid="8021219324989662957">"Posibleng gustong i-access ng app na ito ang iyong lokasyon sa lahat ng oras, kahit na hindi mo ginagamit ang app. "<annotation id="link">"Payagan sa mga setting."</annotation></string>
+    <string name="permgroupupgraderequest_location" msgid="8328408946822691636">"Baguhin ang access sa lokasyon para sa &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt;?"</string>
+    <string name="permgroupupgraderequestdetail_location" msgid="1550899076845189165">"Gustong i-access ng app na ito ang iyong lokasyon sa lahat ng oras, kahit na hindi mo ginagamit ang app. "<annotation id="link">"Payagan sa mga setting."</annotation></string>
+    <string name="permgrouprequest_nearby_devices" msgid="2272829282660436700">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na hanapin at tukuyin ang, at kumonekta sa relatibong posisyon ng mga kalapit na device?"</string>
+    <string name="permgroupupgraderequestdetail_nearby_devices" msgid="6877531270654738614">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na hanapin at tukuyin ang, at kumonekta sa relatibong posisyon ng mga kalapit na device? "<annotation id="link">"Payagan sa mga setting."</annotation></string>
+    <string name="permgrouprequest_fineupgrade" msgid="2334242928821697672">"Gawing eksakto ang access sa lokasyon ng <xliff:g id="APP_NAME">&lt;b&gt;%1$s&lt;/b&gt;</xliff:g> mula sa pagiging tinatantya?"</string>
+    <string name="permgrouprequest_coarselocation" msgid="7244605063736425232">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang tinatantyang lokasyon ng device na ito?"</string>
+    <string name="permgrouprequest_finelocation_imagetext" msgid="1313062433398914334">"Eksakto"</string>
+    <string name="permgrouprequest_coarselocation_imagetext" msgid="8650605041483025297">"Tinatantya"</string>
+    <string name="permgrouprequest_calendar" msgid="1493150855673603806">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang iyong kalendaryo?"</string>
+    <string name="permgrouprequest_sms" msgid="5672063688745420991">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na magpadala at tumingin ng mga mensaheng SMS?"</string>
+    <string name="permgrouprequest_storage" msgid="8717773092518621602">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang mga larawan, media, at file sa iyong device?"</string>
+    <string name="permgrouprequest_microphone" msgid="2825208549114811299">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na mag-record ng audio?"</string>
+    <string name="permgrouprequestdetail_microphone" msgid="8510456971528228861">"Makakapag-record lang ng audio ang app habang ginagamit mo ang app"</string>
+    <string name="permgroupbackgroundrequest_microphone" msgid="8874462606796368183">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na mag-record ng audio?"</string>
+    <string name="permgroupbackgroundrequestdetail_microphone" msgid="553702902263681838">"Posibleng gusto ng app na ito na mag-record ng audio sa lahat ng oras, kahit na hindi mo ginagamit ang app. "<annotation id="link">"Payagan sa mga setting."</annotation></string>
+    <string name="permgroupupgraderequest_microphone" msgid="1362781696161233341">"Baguhin ang access sa mikropono para sa &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt;?"</string>
+    <string name="permgroupupgraderequestdetail_microphone" msgid="2870497719571464239">"Gusto ng app na ito na mag-record ng audio sa lahat ng oras, kahit na hindi mo ginagamit ang app. "<annotation id="link">"Payagan sa mga setting."</annotation></string>
+    <string name="permgrouprequest_activityRecognition" msgid="5415121592794230330">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang iyong pisikal na aktibidad?"</string>
+    <string name="permgrouprequest_camera" msgid="5123097035410002594">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na kumuha ng larawan at mag-record ng video?"</string>
+    <string name="permgrouprequestdetail_camera" msgid="9085323239764667883">"Makakakuha lang ng mga larawan at makakapag-precord lang ng video ang app habang ginagamit mo ang app"</string>
+    <string name="permgroupbackgroundrequest_camera" msgid="1274286575704213875">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na kumuha ng mga larawan at mag-record ng video?"</string>
+    <string name="permgroupbackgroundrequestdetail_camera" msgid="4458783509089859078">"Posibleng gusto ng app na ito na kumuha ng larawan at mag-record ng video sa lahat ng oras, kahit na hindi mo ginagamit ang app. "<annotation id="link">"Payagan sa settings."</annotation></string>
+    <string name="permgroupupgraderequest_camera" msgid="640758449200241582">"Baguhin ang access sa camera para sa &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt;?"</string>
+    <string name="permgroupupgraderequestdetail_camera" msgid="6642747548010962597">"Gusto ng app na ito na kumuha ng mga larawn at mag-record ng video sa lahat ng oras, kahit na hindi mo ginagamit ang app. "<annotation id="link">"Payagan sa mga setting."</annotation></string>
+    <string name="permgrouprequest_calllog" msgid="2065327180175371397">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang iyong mga log ng tawag sa telepono?"</string>
+    <string name="permgrouprequest_phone" msgid="1829234136997316752">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na tumawag at mamahala ng mga tawag sa telepono?"</string>
+    <string name="permgrouprequest_sensors" msgid="4397358316850652235">"Payagan ang &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; na i-access ang data ng sensor tungkol sa iyong mga vital sign?"</string>
+    <string name="auto_granted_permissions" msgid="6009452264824455892">"Kontroladong pahintulot"</string>
+    <string name="auto_granted_location_permission_notification_title" msgid="1438871159268985993">"Puwedeng i-access ang lokasyon"</string>
+    <string name="auto_granted_permission_notification_body" msgid="6919835973190443695">"Pinapahintulutan ng iyong IT admin ang <xliff:g id="APP_NAME">%s</xliff:g> na i-access ang lokasyon mo"</string>
+    <string name="other_permissions_label" msgid="8986184335503271992">"Iba pang pahintulot"</string>
+    <string name="not_used_permissions_label" msgid="3939839426115141264">"Pahintulot na ginagamit ng system"</string>
+    <string name="not_used_permissions_description" msgid="7595514824169388718">"Mga pahintulot na mga application ng system lang ang gumagamit."</string>
+    <string name="additional_permissions_label" msgid="7693557637462569046">"Mga karagdagang pahintulot"</string>
+    <string name="additional_permissions_description" msgid="2186611950890732112">"Mga pahintulot na tinukoy ng mga application."</string>
+    <string name="privdash_label_camera" msgid="1426440033626198096">"Camera"</string>
+    <string name="privdash_label_microphone" msgid="8415035835803511693">"Mikropono"</string>
+    <string name="privdash_label_location" msgid="6882400763866489291">"Lokasyon"</string>
+    <string name="privdash_label_other" msgid="3710394147423236033">"Iba pa"</string>
+    <string name="privdash_label_none" msgid="5991866260360484858">"Wala"</string>
+    <string name="privdash_label_24h" msgid="1512532123865375319">"Nakalipas\nna 24 oras"</string>
+</resources>

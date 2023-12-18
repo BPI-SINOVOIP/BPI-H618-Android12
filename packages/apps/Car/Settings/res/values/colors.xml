@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2021 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <!-- Top-level icon colors -->
+    <color name="top_level_icon_default">@android:color/black</color>
+    <color name="top_level_display_icon">@color/top_level_icon_default</color>
+    <color name="top_level_sound_icon">@color/top_level_icon_default</color>
+    <color name="top_level_network_and_internet_icon">@color/top_level_icon_default</color>
+    <color name="top_level_bluetooth_icon">@color/top_level_icon_default</color>
+    <color name="top_level_units_icon">@color/top_level_icon_default</color>
+    <color name="top_level_location_icon">@color/top_level_icon_default</color>
+    <color name="top_level_applications_icon">@color/top_level_icon_default</color>
+    <color name="top_level_notifications_icon">@color/top_level_icon_default</color>
+    <color name="top_level_profiles_and_accounts_icon">@color/top_level_icon_default</color>
+    <color name="top_level_privacy_icon">@color/top_level_icon_default</color>
+    <color name="top_level_storage_icon">@color/top_level_icon_default</color>
+    <color name="top_level_security_icon">@color/top_level_icon_default</color>
+    <color name="top_level_system_icon">@color/top_level_icon_default</color>
+    <color name="top_level_assistant_and_voice_icon">@color/top_level_icon_default</color>
+    <!-- Default foreground color for injected top-level icons -->
+    <color name="top_level_injected_icon_default">@color/top_level_icon_default</color>
+
+    <!-- Default background color for injected top-level icons -->
+    <color name="top_level_injected_default_background">#4285F4</color>
+
+    <!-- Bluetooth -->
+    <color name="bluetooth_bonded_device_off_background_color">#626262</color>
+    <color name="bluetooth_bonded_device_icon_color_checked">@android:color/black</color>
+    <color name="bluetooth_bonded_device_icon_color_unchecked">@android:color/white</color>
+    <color name="bluetooth_disabled_device_background_color">@android:color/black</color>
+    <color name="bluetooth_disabled_device_icon_color">#75FFFFFF</color>
+    <color name="bluetooth_device_icon_color">@android:color/white</color>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2016 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+  -->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/wifi_hotspot_category_title">
+    <SwitchPreference
+        android:key="hotspot_enable"
+        android:persistent="true"
+        android:title="@string/hotspot_setting_enable_hotspot" />
+
+    <PreferenceCategory
+        android:key="hotspot_setup"
+        android:title="@string/hotspot_setup" >
+        <Preference
+            android:key="hotspot_name"
+            android:title="@string/hotspot_name"
+            android:summary="" >
+            <intent
+                android:targetClass="com.android.tv.settings.connectivity.HotspotNameActivity"
+                android:targetPackage="com.android.tv.settings" />
+        </Preference>
+        <Preference
+            android:key="hotspot_security"
+            android:title="@string/hotspot_security"
+            android:summary="" >
+            <intent
+                android:targetClass="com.android.tv.settings.connectivity.HotspotSecurityActivity"
+                android:targetPackage="com.android.tv.settings" />
+        </Preference>
+        <Preference
+            android:key="hotspot_password"
+            android:title="@string/hotspot_password"
+            android:summary="" >
+            <intent
+                android:targetClass="com.android.tv.settings.connectivity.HotspotPasswordActivity"
+                android:targetPackage="com.android.tv.settings" />
+        </Preference>
+        <SwitchPreference
+            android:key="hotspot_turn_off_auto"
+            android:persistent="true"
+            android:title="@string/hotspot_turn_off_auto"
+            android:summary="@string/wifi_hotspot_auto_off_summary" />
+        <Preference
+            android:key="ap_band"
+            android:title="@string/ap_band"
+            android:summary="" >
+            <intent
+                android:targetClass="com.android.tv.settings.connectivity.HotspotApbandActivity"
+                android:targetPackage="com.android.tv.settings" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

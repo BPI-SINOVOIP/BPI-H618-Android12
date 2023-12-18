@@ -1,0 +1,124 @@
+//
+// Copyright (C) 2020 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_defaults {
+    name: "TetheringIntegrationTestsDefaults",
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.kt",
+    ],
+    min_sdk_version: "30",
+    static_libs: [
+        "NetworkStackApiStableLib",
+        "androidx.test.rules",
+        "mockito-target-extended-minus-junit4",
+        "net-tests-utils",
+        "testables",
+    ],
+    libs: [
+        "android.test.runner",
+        "android.test.base",
+        "android.test.mock",
+    ],
+    jni_libs: [
+        // For mockito extended
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
+    ],
+    jarjar_rules: ":NetworkStackJarJarRules",
+}
+
+android_library {
+    name: "TetheringIntegrationTestsLatestSdkLib",
+    target_sdk_version: "30",
+    platform_apis: true,
+    defaults: ["TetheringIntegrationTestsDefaults"],
+    visibility: [
+        "//packages/modules/Connectivity/tests/cts/tethering",
+        "//packages/modules/Connectivity/tests:__subpackages__",
+        "//packages/modules/Connectivity/Tethering/tests:__subpackages__",
+    ]
+}
+
+android_library {
+    name: "TetheringIntegrationTestsLib",
+    target_sdk_version: "current",
+    platform_apis: true,
+    defaults: ["TetheringIntegrationTestsDefaults"],
+    visibility: [
+        "//packages/modules/Connectivity/tests/cts/tethering",
+        "//packages/modules/Connectivity/Tethering/tests/mts",
+    ]
+}
+
+android_test {
+    name: "TetheringIntegrationTests",
+    platform_apis: true,
+    defaults: ["TetheringIntegrationTestsDefaults"],
+    test_suites: [
+        "device-tests",
+        "mts",
+    ],
+    compile_multilib: "both",
+}
+
+android_library {
+    name: "TetheringCoverageTestsLib",
+    min_sdk_version: "30",
+    static_libs: [
+        "NetdStaticLibTestsLib",
+        "NetworkStaticLibTestsLib",
+        "NetworkStackTestsLib",
+        "TetheringTestsLatestSdkLib",
+        "TetheringIntegrationTestsLatestSdkLib",
+    ],
+    jarjar_rules: ":TetheringTestsJarJarRules",
+    manifest: "AndroidManifest_coverage.xml",
+    visibility: [
+        "//packages/modules/Connectivity/tests:__subpackages__"
+    ],
+}
+
+// Special version of the tethering tests that includes all tests necessary for code coverage
+// purposes. This is currently the union of TetheringTests, TetheringIntegrationTests and
+// NetworkStackTests.
+// TODO: remove in favor of ConnectivityCoverageTests, which includes below tests and more
+android_test {
+    name: "TetheringCoverageTests",
+    platform_apis: true,
+    min_sdk_version: "30",
+    target_sdk_version: "30",
+    test_suites: ["device-tests", "mts"],
+    test_config: "AndroidTest_Coverage.xml",
+    defaults: ["libnetworkstackutilsjni_deps"],
+    static_libs: [
+        "modules-utils-native-coverage-listener",
+        "TetheringCoverageTestsLib",
+    ],
+    jni_libs: [
+        // For mockito extended
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
+        // For NetworkStackUtils included in NetworkStackBase
+        "libnetworkstackutilsjni",
+        "libtetherutilsjni",
+    ],
+    compile_multilib: "both",
+    manifest: "AndroidManifest_coverage.xml",
+}

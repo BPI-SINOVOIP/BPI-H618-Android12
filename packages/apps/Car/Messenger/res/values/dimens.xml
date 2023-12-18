@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Copyright (C) 2020 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Message list dimensions -->
+    <dimen name="message_history_item_height">@dimen/list_item_height</dimen>
+    <dimen name="message_history_item_padding">@dimen/list_item_padding</dimen>
+    <dimen name="message_history_guideline_begin">
+        @dimen/list_item_guideline_begin
+    </dimen>
+    <dimen name="message_history_text_margin_end">
+        @dimen/list_item_text_margin_end
+    </dimen>
+    <dimen name="message_history_icons_margin">@dimen/car_ui_padding_1</dimen>
+
+    <dimen name="list_top_padding">@dimen/car_ui_padding_2</dimen>
+    <!-- Components -->
+    <dimen name="list_item_height">116dp</dimen>
+    <dimen name="list_item_guideline_begin">@dimen/car_keyline_4</dimen>
+    <dimen name="list_item_text_margin_end">@dimen/car_ui_padding_2</dimen>
+    <dimen name="list_item_padding">@dimen/car_keyline_1</dimen>
+    <dimen name="list_divider_inset">@dimen/car_keyline_1</dimen>
+    <dimen name="list_divider_height">
+        @dimen/car_ui_list_item_action_divider_height
+    </dimen>
+    <dimen name="vertical_divider_inset">@dimen/car_ui_padding_2</dimen>
+    <dimen name="vertical_divider_width">2dp</dimen>
+    <dimen name="avatar_icon_size">76dp</dimen>
+    <dimen name="contact_avatar_corner_radius_percent" format="float">0.5</dimen>
+    <dimen name="car_keyline_1">60dp</dimen>
+    <dimen name="car_keyline_4">168dp</dimen>
+
+    <!-- Loading status view dimensions -->
+    <dimen name="loading_info_icon_size">56dp</dimen>
+    <dimen name="loading_info_icon_margin_bottom">@dimen/car_ui_padding_3</dimen>
+    <dimen name="loading_info_button_margin_top">@dimen/car_ui_padding_2</dimen>
+
+    <!-- Dialog and button -->
+    <dimen name="dialog_max_width">706dp</dimen>
+    <dimen name="hero_button_max_width">@dimen/dialog_max_width</dimen>
+    <dimen name="hero_button_min_width">@dimen/car_ui_touch_target_size</dimen>
+    <dimen name="hero_button_height">@dimen/car_ui_touch_target_size</dimen>
+    <dimen name="hero_button_corner_radius">38dp</dimen>
+
+    <dimen name="conversation_avatar_width">50dp</dimen>
+
+    <!-- Letter spacing -->
+    <dimen name="unread_icon_size">16dp</dimen>
+    <dimen name="unread_icon_marginEnd">24dp</dimen>
+    <dimen name="subtitle_icon_width">20dp</dimen>
+    <item name="letter_to_tile_ratio" format="fraction" type="fraction">67%</item>
+
+    <!-- Contact Avatar -->
+    <item name="letter_spacing_display3" format="float" type="dimen">0.0</item>
+    <item name="letter_spacing_body1" format="float" type="dimen">0.0</item>
+    <item name="letter_spacing_body2" format="float" type="dimen">0.0</item>
+    <item name="letter_spacing_body3" format="float" type="dimen">0.0</item>
+</resources>

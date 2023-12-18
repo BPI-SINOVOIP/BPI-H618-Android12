@@ -1,0 +1,38 @@
+package {
+    default_applicable_licenses: ["packages_providers_CallLogProvider_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "packages_providers_CallLogProvider_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+android_app {
+    name: "CallLogBackup",
+    // Only compile source java files in this apk.
+    srcs: ["src/**/*.java"],
+
+    // The Jacoco tool analyzes code coverage when running unit tests on the
+    // application. This configuration line selects which packages will be analyzed,
+    // leaving out code which is tested by other means (e.g. static libraries) that
+    // would dilute the coverage results. These options do not affect regular
+    // production builds.
+    jacoco: {
+        include_filter: ["com.android.calllogbackup.*"],
+    },
+    platform_apis: true,
+    certificate: "shared",
+    privileged: true,
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+
+}

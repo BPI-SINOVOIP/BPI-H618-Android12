@@ -1,0 +1,57 @@
+{
+  "presubmit": [
+    {
+      "name": "NetworkStackTests"
+    },
+    {
+      "name": "NetworkStackNextTests"
+    },
+    {
+      "name": "NetworkStackIntegrationTests"
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "NetworkStackHostTests"
+    }
+  ],
+  "auto-postsubmit": [
+    // Test tag for automotive targets. These are only running in postsubmit so as to harden the
+    // automotive targets to avoid introducing additional test flake and build time. The plan for
+    // presubmit testing for auto is to augment the existing tests to cover auto use cases as well.
+    // Additionally, this tag is used in targeted test suites to limit resource usage on the test
+    // infra during the hardening phase.
+    // TODO: this tag to be removed once the above is no longer an issue.
+    {
+      "name": "NetworkStackTests"
+    },
+    {
+      "name": "NetworkStackNextTests"
+    },
+    {
+      "name": "NetworkStackHostTests"
+    },
+    {
+      "name": "NetworkStackIntegrationTests"
+    }
+  ],
+  "mainline-presubmit": [
+    // These are unit tests only, so they don't actually require any modules to be installed.
+    // We must specify at least one module here or the tests won't run. Use the same set as CTS
+    // so in theory the infra would not need to reinstall/reboot devices to run both.
+    {
+      // TODO: add back tethering when it is updatable in this branch
+      "name": "NetworkStackTests[CaptivePortalLoginGoogle.apk+NetworkStackGoogle.apk+com.google.android.resolv.apex]"
+    }
+  ],
+  "mainline-postsubmit": [
+    {
+      "name": "NetworkStackIntegrationTests[CaptivePortalLoginGoogle.apk+NetworkStackGoogle.apk+com.google.android.resolv.apex+com.google.android.tethering.apex]"
+    }
+  ],
+  "imports": [
+    {
+      "path": "packages/modules/Connectivity"
+    }
+  ]
+}

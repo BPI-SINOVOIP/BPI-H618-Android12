@@ -1,0 +1,31 @@
+{
+  "presubmit": [
+    {
+      "name": "ExtServicesUnitTests"
+    },
+    {
+      "name": "libextservices_test"
+    }
+  ],
+  "postsubmit": [
+    {
+      "name": "ExtServicesUnitTests"
+    },
+    {
+      "name": "libextservices_test"
+    }
+  ],
+  "imports": [
+    {
+      "path": "external/libtextclassifier"
+    }
+  ],
+  "mainline-presubmit": [
+    {
+      "name": "ExtServicesUnitTests[com.google.android.extservices.apex]"
+    },
+    {
+      "name": "libextservices_test[com.google.android.extservices.apex]"
+    }
+  ]
+}

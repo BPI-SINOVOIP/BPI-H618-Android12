@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.LinkProperties#getDhcpServerAddress`"
+        errorLine1="        assertEquals(SERVER_ADDR, captor.getValue().getDhcpServerAddress());"
+        errorLine2="                                                    ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/integration/src/android/net/ip/IpClientIntegrationTestCommon.java"
+            line="1327"
+            column="53"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.LinkProperties#getNat64Prefix`"
+        errorLine1="                argThat(lp -> Objects.equals(expected, lp.getNat64Prefix())));"
+        errorLine2="                                                          ~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/integration/src/android/net/ip/IpClientIntegrationTestCommon.java"
+            line="1623"
+            column="59"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.LinkProperties#getNat64Prefix`"
+        errorLine1="                lp -> !Objects.equals(unchanged, lp.getNat64Prefix())));"
+        errorLine2="                                                    ~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/integration/src/android/net/ip/IpClientIntegrationTestCommon.java"
+            line="1629"
+            column="53"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.LinkProperties#getNat64Prefix`"
+        errorLine1="        if (lp.getNat64Prefix() != null) {"
+        errorLine2="               ~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/integration/src/android/net/ip/IpClientIntegrationTestCommon.java"
+            line="1660"
+            column="16"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.net.LinkProperties#getNat64Prefix`"
+        errorLine1="            assertEquals(prefix, lp.getNat64Prefix());"
+        errorLine2="                                    ~~~~~~~~~~~~~~">
+        <location
+            file="packages/modules/NetworkStack/tests/integration/src/android/net/ip/IpClientIntegrationTestCommon.java"
+            line="1661"
+            column="37"/>
+    </issue>
+
+</issues>

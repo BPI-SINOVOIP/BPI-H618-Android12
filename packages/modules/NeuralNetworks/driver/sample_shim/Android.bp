@@ -1,0 +1,99 @@
+/*
+ * Copyright 2021 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Prebuilt generated using 'generated_prebuilts.sh'
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_prebuilt_library_shared {
+    name: "neuralnetworks_sample_sl_driver_prebuilt",
+
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "liblog",
+        "libnativewindow",
+    ],
+    proprietary: true,
+    vendor: true,
+    // libnativewindow versioning trips this check. b/181227567 for fixing
+    allow_undefined_symbols: true,
+    target: {
+        android_x86_64: {
+            srcs: ["android_x86_64/neuralnetworks_sample_sl_driver_prebuilt.so"],
+        },
+        android_x86: {
+            srcs: ["android_x86/neuralnetworks_sample_sl_driver_prebuilt.so"],
+        },
+        android_arm64: {
+            srcs: ["android_arm64/neuralnetworks_sample_sl_driver_prebuilt.so"],
+        },
+        android_arm: {
+            srcs: ["android_arm/neuralnetworks_sample_sl_driver_prebuilt.so"],
+        },
+    },
+    apex_available: ["//apex_available:platform"],
+}
+
+cc_defaults {
+    name: "NeuralNetworksShimDriverAidl_defaults",
+    defaults: ["neuralnetworks_defaults"],
+    header_libs: [
+        "libneuralnetworks_headers",
+    ],
+    cflags: [
+        "-DNN_COMPATIBILITY_LIBRARY_BUILD",
+    ],
+    static_libs: [
+        "android.hardware.common-V2-ndk_platform",
+        "android.hardware.graphics.common-V2-ndk_platform",
+        "android.hardware.neuralnetworks-V1-ndk_platform",
+        "libaidlcommonsupport",
+        "libarect",
+        "libcutils",
+        "libneuralnetworks_shim_static",
+        "neuralnetworks_supportlibrary_loader",
+        "neuralnetworks_utils_hal_aidl",
+        "neuralnetworks_utils_hal_common",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "libhidlbase",
+        "libhidlmemory",
+        "liblog",
+        "libnativewindow",
+        "libutils",
+        "neuralnetworks_sample_sl_driver_prebuilt",
+    ],
+
+}
+
+cc_defaults {
+    name: "NeuralNetworksShimDriverAidl_server_defaults",
+    defaults: ["NeuralNetworksShimDriverAidl_defaults"],
+    relative_install_path: "hw",
+    proprietary: true,
+}
+
+cc_binary {
+    name: "android.hardware.neuralnetworks-shim-service-sample",
+    srcs: ["ShimServiceSample.cpp"],
+    defaults: ["NeuralNetworksShimDriverAidl_server_defaults"],
+    init_rc: ["config/android.hardware.neuralnetworks-shim-service-sample.rc"],
+    vintf_fragments: ["config/android.hardware.neuralnetworks-shim-service-sample.xml"],
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2021 Allwinner Technology
+
+-->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Whether HSL settings should be shown or not, default not shown -->
+    <bool name="config_has_HSL">false</bool>
+    <!-- config for HSL system max range, default max range is 10 -->
+    <integer name="config_HSL_max_range">10</integer>
+</resources>

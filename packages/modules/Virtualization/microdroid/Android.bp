@@ -1,0 +1,398 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+microdroid_shell_and_utilities = [
+    "reboot",
+    "sh",
+    "toolbox",
+    "toybox",
+]
+
+microdroid_rootdirs = [
+    "dev",
+    "proc",
+    "sys",
+
+    "system",
+    "vendor",
+    "debug_ramdisk",
+    "mnt",
+    "data",
+
+    "apex",
+    "linkerconfig",
+    "second_stage_resources",
+    "postinstall",
+]
+
+microdroid_symlinks = [
+    {
+        target: "/sys/kernel/debug",
+        name: "d",
+    },
+    {
+        target: "/system/etc",
+        name: "etc",
+    },
+]
+
+android_system_image {
+    name: "microdroid",
+    use_avb: true,
+    avb_private_key: ":avb_testkey_rsa4096",
+    avb_algorithm: "SHA256_RSA4096",
+    partition_name: "system",
+    deps: [
+        "init_second_stage",
+        "microdroid_init_rc",
+        "microdroid_build_prop",
+        "ueventd.rc",
+        "libbinder",
+        "libstdc++",
+        "logcat",
+        "logd",
+        "run-as",
+        "secilc",
+
+        // "com.android.adbd" requires these,
+        "libadbd_auth",
+        "libadbd_fs",
+
+        // "com.android.art" requires
+        "heapprofd_client_api",
+
+        "apexd",
+        "debuggerd",
+        "linker",
+        "linkerconfig",
+        "servicemanager",
+        "tombstoned",
+        "cgroups.json",
+        "public.libraries.android.txt",
+
+        "plat_sepolicy_and_mapping.sha256",
+    ] + microdroid_shell_and_utilities,
+    multilib: {
+        common: {
+            deps: [
+                "com.android.runtime",
+                "plat_sepolicy.cil",
+                "plat_mapping_file",
+                "plat_file_contexts",
+                "plat_hwservice_contexts",
+                "plat_property_contexts",
+                "plat_service_contexts",
+                "plat_keystore2_key_contexts",
+            ],
+        },
+    },
+    linker_config_src: "linker.config.json",
+    base_dir: "system",
+    dirs: microdroid_rootdirs,
+    symlinks: microdroid_symlinks,
+    file_contexts: "microdroid_file_contexts",
+}
+
+prebuilt_etc {
+    name: "microdroid_init_rc",
+    filename: "init.rc",
+    src: "init.rc",
+    relative_install_path: "init/hw",
+    installable: false, // avoid collision with system partition's init.rc
+}
+
+prebuilt_root {
+    name: "microdroid_build_prop",
+    filename: "build.prop",
+    src: "build.prop",
+    installable: false,
+}
+
+android_filesystem {
+    name: "microdroid_vendor",
+    use_avb: true,
+    deps: [
+        "microdroid_fstab",
+        "microdroid_precompiled_sepolicy",
+        "microdroid_precompiled_sepolicy.plat_sepolicy_and_mapping.sha256",
+    ],
+    multilib: {
+        common: {
+            deps: [
+                "microdroid_vendor_sepolicy.cil",
+                "microdroid_plat_pub_versioned.cil",
+                "microdroid_plat_sepolicy_vers.txt",
+            ],
+        },
+    },
+    avb_private_key: ":avb_testkey_rsa4096",
+    avb_algorithm: "SHA256_RSA4096",
+    file_contexts: "microdroid_vendor_file_contexts",
+}
+
+logical_partition {
+    name: "microdroid_super",
+    sparse: true,
+    size: "auto",
+    default_group: [
+        {
+            name: "system",
+            filesystem: ":microdroid",
+        },
+        {
+            name: "vendor",
+            filesystem: ":microdroid_vendor",
+        },
+    ],
+}
+
+// TODO(jiyong): change the name to init, cause it's confusing
+microdroid_boot_cmdline = "rdinit=/bin/init_vendor " +
+    "panic=-1 " +
+    // TODO(b/181936135) make the ratelimiting conditional; ratelimiting on prod build
+    "printk.devkmsg=on " +
+    "androidboot.first_stage_console=1 " +
+    "androidboot.hardware=microdroid "
+
+bootimg {
+    name: "microdroid_boot-5.10",
+    ramdisk_module: "microdroid_ramdisk-5.10",
+    // We don't have kernel for arm and x86. But Soong demands one when it builds for
+    // arm or x86 target. Satisfy that by providing an empty file as the kernel.
+    kernel_prebuilt: "empty_kernel",
+    arch: {
+        arm64: {
+            kernel_prebuilt: ":kernel_prebuilts-5.10-arm64",
+            cmdline: microdroid_boot_cmdline +
+                "androidboot.boot_devices=10000.pci",
+        },
+        x86_64: {
+            kernel_prebuilt: ":kernel_prebuilts-5.10-x86_64",
+            cmdline: microdroid_boot_cmdline +
+                "pci=noacpi " +
+                "androidboot.boot_devices=pci0000:00/0000:00:01.0," + // os
+                "pci0000:00/0000:00:03.0," + // payload
+                "pci0000:00/0000:00:04.0", // userdata
+        },
+    },
+    dtb_prebuilt: "dummy_dtb.img",
+    header_version: "4",
+    partition_name: "boot",
+    use_avb: true,
+    avb_private_key: ":avb_testkey_rsa4096",
+}
+
+android_filesystem {
+    name: "microdroid_ramdisk-5.10",
+    deps: [
+        "init_first_stage_soong",
+    ],
+    dirs: [
+        "dev",
+        "proc",
+        "sys",
+
+        // TODO(jiyong): remove these
+        "mnt",
+        "debug_ramdisk",
+        "second_stage_resources",
+    ],
+    type: "compressed_cpio",
+}
+
+bootimg {
+    name: "microdroid_vendor_boot-5.10",
+    ramdisk_module: "microdroid_vendor_ramdisk-5.10",
+    dtb_prebuilt: "dummy_dtb.img",
+    header_version: "4",
+    vendor_boot: true,
+    partition_name: "vendor_boot",
+    use_avb: true,
+    avb_private_key: ":avb_testkey_rsa4096",
+}
+
+android_filesystem {
+    name: "microdroid_vendor_ramdisk-5.10",
+    arch: {
+        arm64: {
+            deps: ["virt_device_prebuilts_kernel_modules-5.10-arm64"],
+        },
+        x86_64: {
+            deps: ["virt_device_prebuilts_kernel_modules-5.10-x86_64"],
+        },
+    },
+    deps: [
+        "microdroid_fstab",
+    ],
+    base_dir: "first_stage_ramdisk",
+    type: "compressed_cpio",
+    symlinks: [
+        {
+            target: "etc/fstab",
+            name: "first_stage_ramdisk/fstab.microdroid",
+        },
+        {
+            target: "first_stage_ramdisk/lib",
+            name: "lib",
+        },
+    ],
+}
+
+prebuilt_etc {
+    name: "microdroid_fstab",
+    src: "fstab",
+    filename: "fstab",
+    installable: false,
+}
+
+prebuilt_etc {
+    name: "microdroid_bootloader",
+    src: ":microdroid_bootloader_gen",
+    arch: {
+        x86_64: {
+            // For unknown reason, the signed bootloader doesn't work on x86_64. Until the problem
+            // is fixed, let's use the unsigned bootloader for the architecture.
+            // TODO(b/185115783): remove this
+            src: ":cuttlefish_crosvm_bootloader",
+        },
+    },
+    filename: "microdroid_bootloader",
+}
+
+// See external/avb/avbtool.py
+// MAX_VBMETA_SIZE=64KB, MAX_FOOTER_SIZE=4KB
+avb_hash_footer_kb = "68"
+
+genrule {
+    name: "microdroid_bootloader_gen",
+    tools: ["avbtool"],
+    srcs: [
+        ":cuttlefish_crosvm_bootloader",
+        ":avb_testkey_rsa4096",
+    ],
+    out: ["bootloader-signed"],
+    // 1. Copy the input to the output becaise avbtool modifies --image in
+    // place.
+    // 2. Check if the file is big enough. For arm and x86 we have fake
+    // bootloader file whose size is 1. It can't pass avbtool.
+    // 3. Add the hash footer. The partition size is set to (image size + 68KB)
+    // rounded up to 4KB boundary.
+    cmd: "cp $(location :cuttlefish_crosvm_bootloader) $(out) && " +
+        "if [ $$(stat --format=%s $(out)) -gt 4096 ]; then " +
+        "$(location avbtool) add_hash_footer " +
+        "--algorithm SHA256_RSA4096 " +
+        "--partition_name bootloader " +
+        "--key $(location :avb_testkey_rsa4096) " +
+        "--partition_size $$(( " + avb_hash_footer_kb + " * 1024 + ( $$(stat --format=%s $(out)) + 4096 - 1 ) / 4096 * 4096 )) " +
+        "--image $(out)" +
+        "; fi",
+}
+
+prebuilt_etc {
+    name: "microdroid_uboot_env",
+    src: ":microdroid_uboot_env_gen",
+    arch: {
+        x86_64: {
+            src: ":microdroid_uboot_env_gen_x86_64",
+        },
+    },
+    filename: "uboot_env.img",
+}
+
+genrule {
+    name: "microdroid_uboot_env_gen",
+    tools: ["mkenvimage_host"],
+    srcs: ["uboot-env.txt"],
+    out: ["output.img"],
+    cmd: "$(location mkenvimage_host) -s 4096 -o $(out) $(in)",
+}
+
+genrule {
+    name: "microdroid_uboot_env_gen_x86_64",
+    tools: ["mkenvimage_host"],
+    srcs: ["uboot-env-x86_64.txt"],
+    out: ["output.img"],
+    cmd: "$(location mkenvimage_host) -s 4096 -o $(out) $(in)",
+}
+
+// sepolicy sha256 for vendor
+prebuilt_etc {
+    name: "microdroid_precompiled_sepolicy.plat_sepolicy_and_mapping.sha256",
+    src: ":plat_sepolicy_and_mapping.sha256_gen",
+    filename: "precompiled_sepolicy.plat_sepolicy_and_mapping.sha256",
+    relative_install_path: "selinux",
+    installable: false,
+}
+
+genrule {
+    name: "microdroid_precompiled_sepolicy_gen",
+    tools: ["secilc"],
+    srcs: [
+        ":plat_sepolicy.cil",
+        ":plat_mapping_file",
+        ":microdroid_plat_pub_versioned.cil",
+        ":microdroid_vendor_sepolicy.cil",
+    ],
+    out: ["precompiled_sepolicy"],
+    cmd: "$(location secilc) -m -M true -G -c 30 $(in) -o $(out) -f /dev/null",
+}
+
+prebuilt_etc {
+    name: "microdroid_precompiled_sepolicy",
+    src: ":microdroid_precompiled_sepolicy_gen",
+    filename: "precompiled_sepolicy",
+    relative_install_path: "selinux",
+    installable: false,
+}
+
+vbmeta {
+    name: "microdroid_vbmeta",
+    partition_name: "vbmeta",
+    private_key: ":avb_testkey_rsa4096",
+    partitions: [
+        "microdroid_vendor",
+        "microdroid_vendor_boot-5.10",
+    ],
+    chained_partitions: [
+        {
+            name: "vbmeta_system",
+            rollback_index_location: 1,
+            private_key: ":avb_testkey_rsa4096",
+        },
+        {
+            name: "boot",
+            rollback_index_location: 2,
+            private_key: ":avb_testkey_rsa4096",
+        },
+    ],
+}
+
+vbmeta {
+    name: "microdroid_vbmeta_system",
+    partition_name: "vbmeta_system",
+    private_key: ":avb_testkey_rsa4096",
+    partitions: [
+        "microdroid",
+    ],
+}
+
+prebuilt_etc {
+    name: "microdroid_cdisk.json",
+    src: "microdroid_cdisk.json",
+}
+
+prebuilt_etc {
+    name: "microdroid_cdisk_env.json",
+    src: "microdroid_cdisk_env.json",
+}
+
+prebuilt_etc {
+    name: "microdroid_cdisk_userdata.json",
+    src: "microdroid_cdisk_userdata.json",
+}
+
+prebuilt_etc {
+    name: "microdroid_payload.json",
+    src: "microdroid_payload.json",
+}

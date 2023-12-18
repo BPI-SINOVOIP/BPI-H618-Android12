@@ -1,0 +1,83 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_app {
+    name: "Iwlan",
+    manifest: "AndroidManifest.xml",
+    srcs: [
+        "src/**/*.java",
+        "src/**/I*.aidl",
+    ],
+    resource_dirs: [
+        "res",
+    ],
+    static_libs: [
+        "android-support-annotations",
+    ],
+
+    libs: [
+        "android.net.ipsec.ike.stubs.system",
+        "auto_value_annotations",
+	"framework-annotations-lib",
+	"framework-connectivity",
+	"framework-wifi"
+    ],
+
+    plugins: ["auto_value_plugin"],
+
+    required: ["privapp-permlist_com.google.android.iwlan.xml"],
+
+    owner: "google",
+    product_specific: true,
+    privileged: true,
+    certificate: "platform",
+    sdk_version: "module_current",
+}
+
+prebuilt_etc {
+    name: "privapp-permlist_com.google.android.iwlan.xml",
+    sub_dir: "permissions",
+    src: "com.google.android.iwlan.xml",
+    filename_from_src: true,
+    product_specific: true,
+}
+
+android_test {
+    name: "IwlanTests",
+
+    manifest: "test/AndroidManifest.xml",
+
+    srcs: [
+        "src/**/*.java",
+        "test/**/*.java",
+    ],
+
+    platform_apis: true,
+
+    certificate: "platform",
+
+    test_suites: ["device-tests"],
+
+    compile_multilib: "both",
+
+    libs: [
+        "android.net.ipsec.ike.stubs.system",
+        "auto_value_annotations",
+    ],
+
+    plugins: ["auto_value_plugin"],
+
+    static_libs: [
+        "android-support-annotations",
+        "androidx.test.rules",
+        "mockito-target-inline-minus-junit4",
+        "mockito-target-extended-minus-junit4",
+    ],
+
+    jni_libs: [
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
+        "libmultiplejvmtiagentsinterferenceagent",
+    ],
+}

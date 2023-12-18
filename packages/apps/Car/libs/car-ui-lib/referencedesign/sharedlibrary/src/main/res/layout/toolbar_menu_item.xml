@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2021, The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:minWidth="@dimen/touch_target_size"
+    android:minHeight="@dimen/touch_target_size">
+    <FrameLayout
+        android:id="@+id/car_ui_toolbar_menu_item_icon_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+        <com.chassis.car.ui.sharedlibrary.uxr.DrawableStateImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/toolbar_menu_item_icon_background"
+            android:background="@drawable/toolbar_menu_item_icon_ripple"
+            android:scaleType="center"/>
+        <com.chassis.car.ui.sharedlibrary.uxr.DrawableStateImageView
+            android:id="@+id/car_ui_toolbar_menu_item_icon"
+            android:layout_width="@dimen/primary_icon_size"
+            android:layout_height="@dimen/primary_icon_size"
+            android:layout_gravity="center"
+            android:tint="@color/toolbar_menu_item_icon_color"
+            android:tintMode="src_in"/>
+    </FrameLayout>
+    <com.chassis.car.ui.sharedlibrary.uxr.DrawableStateSwitch
+        android:id="@+id/car_ui_toolbar_menu_item_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"/>
+
+    <!-- These buttons must have clickable="false" or they will steal the click events from the container -->
+    <com.chassis.car.ui.sharedlibrary.uxr.DrawableStateButton
+        android:id="@+id/car_ui_toolbar_menu_item_text"
+        style="@style/Toolbar.MenuItem.Text.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:clickable="false"/>
+    <com.chassis.car.ui.sharedlibrary.uxr.DrawableStateButton
+        android:id="@+id/car_ui_toolbar_menu_item_text_with_icon"
+        style="@style/Toolbar.MenuItem.Text.Borderless"
+        android:drawableTint="@color/toolbar_menu_item_icon_color"
+        android:drawablePadding="10dp"
+        android:textColor="@color/toolbar_menu_item_icon_color"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:clickable="false"/>
+</FrameLayout>

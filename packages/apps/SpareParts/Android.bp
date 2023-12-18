@@ -1,0 +1,22 @@
+package {
+    default_applicable_licenses: ["packages_apps_SpareParts_license"],
+}
+
+// Added automatically by a large-scale-change
+// http://go/android-license-faq
+license {
+    name: "packages_apps_SpareParts_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+android_app {
+    name: "SpareParts",
+    srcs: ["**/*.java"],
+    platform_apis: true,
+}

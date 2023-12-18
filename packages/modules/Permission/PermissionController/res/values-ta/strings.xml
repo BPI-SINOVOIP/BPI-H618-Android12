@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+ -->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name" msgid="6098036489833144040">"Permission controller"</string>
+    <string name="ok" msgid="1936281769725676272">"சரி"</string>
+    <string name="permission_search_keyword" msgid="1214451577494730543">"அனுமதிகள்"</string>
+    <string name="cancel" msgid="8943320028373963831">"ரத்துசெய்"</string>
+    <string name="back" msgid="6249950659061523680">"பின்செல்"</string>
+    <string name="uninstall_or_disable" msgid="4496612999740858933">"நிறுவல் நீக்கு அல்லது முடக்கு"</string>
+    <string name="app_not_found_dlg_title" msgid="6029482906093859756">"ஆப்ஸ் இல்லை"</string>
+    <string name="grant_dialog_button_deny" msgid="88262611492697192">"அனுமதிக்க வேண்டாம்"</string>
+    <string name="grant_dialog_button_deny_and_dont_ask_again" msgid="1748925431574312595">"அனுமதிக்க வேண்டாம், மீண்டும் கேட்காதே"</string>
+    <string name="grant_dialog_button_no_upgrade" msgid="8344732743633736625">"“ஆப்ஸ் உபயோகத்தில் இருக்கும்போது” என்று வைக்கவும்"</string>
+    <string name="grant_dialog_button_no_upgrade_one_time" msgid="5125892775684968694">"”இப்போது மட்டும்” வைத்திரு"</string>
+    <string name="grant_dialog_button_more_info" msgid="213350268561945193">"மேலும் தகவல்"</string>
+    <string name="grant_dialog_button_deny_anyway" msgid="7225905870668915151">"பரவாயில்லை, அனுமதிக்க வேண்டாம்"</string>
+    <string name="grant_dialog_button_dismiss" msgid="1930399742250226393">"நிராகரி"</string>
+    <string name="current_permission_template" msgid="7452035392573329375">"<xliff:g id="CURRENT_PERMISSION_INDEX">%1$s</xliff:g> / <xliff:g id="PERMISSION_COUNT">%2$s</xliff:g>"</string>
+    <string name="permission_warning_template" msgid="2247087781222679458">"<xliff:g id="ACTION">%2$s</xliff:g> ஐ மேற்கொள்ள &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permission_add_background_warning_template" msgid="1812914855915092273">"<xliff:g id="ACTION">%2$s</xliff:g> ஐ மேற்கொள்ள &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை எப்போதும் அனுமதிக்கவா?"</string>
+    <string name="allow_permission_foreground_only" msgid="116465816039675404">"ஆப்ஸைப் பயன்படுத்தும்போது மட்டும்"</string>
+    <string name="allow_permission_always" msgid="5194342531206054051">"எப்போதும்"</string>
+    <string name="deny_permission_deny_and_dont_ask_again" msgid="6106035221490102341">"அனுமதிக்க வேண்டாம், மீண்டும் கேட்காதே"</string>
+    <string name="permission_revoked_count" msgid="4785082705441547086">"<xliff:g id="COUNT">%1$d</xliff:g> முடக்கப்பட்டன"</string>
+    <string name="permission_revoked_all" msgid="3397649017727222283">"அனைத்தும் முடக்கப்பட்டன"</string>
+    <string name="permission_revoked_none" msgid="9213345075484381180">"எதுவும் முடக்கப்படவில்லை"</string>
+    <string name="grant_dialog_button_allow" msgid="5314677880021102550">"அனுமதி"</string>
+    <string name="grant_dialog_button_allow_always" msgid="4485552579273565981">"எப்போதும் அனுமதி"</string>
+    <string name="grant_dialog_button_allow_foreground" msgid="501896824973636533">"ஆப்ஸைப் பயன்படுத்தும்போது"</string>
+    <string name="grant_dialog_button_change_to_precise_location" msgid="3273115879467236033">"துல்லியமான இருப்பிடத்திற்கு மாற்று"</string>
+    <string name="grant_dialog_button_keey_approximate_location" msgid="438025182769080011">"தோராயமான இருப்பிடத்தை வைத்திரு"</string>
+    <string name="grant_dialog_button_allow_one_time" msgid="2618088516449706391">"இப்போது மட்டும்"</string>
+    <string name="grant_dialog_button_allow_background" msgid="8236044729434367833">"எப்போதும் அனுமதி"</string>
+    <string name="grant_dialog_button_allow_all_files" msgid="4955436994954829894">"அனைத்து ஃபைல்களையும் நிர்வகிக்க அனுமதி"</string>
+    <string name="grant_dialog_button_allow_media_only" msgid="4832877658422573832">"மீடியா ஃபைல்களை அணுக அனுமதி"</string>
+    <string name="app_permissions_breadcrumb" msgid="5136969550489411650">"ஆப்ஸ்"</string>
+    <string name="app_permissions" msgid="3369917736607944781">"ஆப்ஸ் அனுமதிகள்"</string>
+    <string name="unused_apps" msgid="2058057455175955094">"பயன்படுத்தாத ஆப்ஸ்"</string>
+    <string name="no_unused_apps" msgid="12809387670415295">"பயன்படுத்தாத ஆப்ஸ் எதுவுமில்லை"</string>
+    <string name="app_disable_dlg_positive" msgid="7418444149981904940">"ஆப்ஸை முடக்கு"</string>
+    <string name="app_disable_dlg_text" msgid="3126943217146120240">"இந்த ஆப்ஸை முடக்கினால் Android மற்றும் பிற ஆப்ஸ் முறையாக செயல்படாமல் போகக்கூடும். கவனத்திற்கு: இந்த ஆப்ஸ் சாதனத்தில் நிறுவப்பட்ட நிலையிலேயே வந்ததால் இதை நீக்க முடியாது. முடக்குவதன் மூலம் இந்த ஆப்ஸ் ஆஃப் செய்யப்படுவதோடு சாதனத்தில் மறைக்கப்படும்."</string>
+    <string name="app_permission_manager" msgid="3903811137630909550">"அனுமதி நிர்வாகம்"</string>
+    <string name="never_ask_again" msgid="4728762438198560329">"மீண்டும் கேட்காதே"</string>
+    <string name="no_permissions" msgid="3881676756371148563">"அனுமதிகள் தேவையில்லை"</string>
+    <string name="additional_permissions" msgid="5801285469338873430">"கூடுதல் அனுமதிகள்"</string>
+    <string name="app_permissions_info_button_label" msgid="7633312050729974623">"ஆப்ஸ் தகவலைத் திற"</string>
+    <plurals name="additional_permissions_more" formatted="false" msgid="5297511511961335277">
+      <item quantity="other">மேலும் <xliff:g id="COUNT_1">%1$d</xliff:g></item>
+      <item quantity="one">மேலும் <xliff:g id="COUNT_0">%1$d</xliff:g></item>
+    </plurals>
+    <string name="old_sdk_deny_warning" msgid="2382236998845153919">"Androidன் பழைய பதிப்புக்காக இந்த ஆப்ஸ் வடிவமைக்கப்பட்டது. அனுமதியை மறுத்தால் அது சரியாகச் செயல்படாமல் போகலாம்."</string>
+    <string name="default_permission_description" msgid="4624464917726285203">"அறியப்படாத செயலைச் செய்யும்"</string>
+    <string name="app_permissions_group_summary" msgid="8788419008958284002">"அனுமதிக்கப்பட்ட ஆப்ஸ்: <xliff:g id="COUNT_0">%1$d</xliff:g>/<xliff:g id="COUNT_1">%2$d</xliff:g>"</string>
+    <string name="app_permissions_group_summary2" msgid="4329922444840521150">"<xliff:g id="COUNT_0">%1$d</xliff:g>/<xliff:g id="COUNT_1">%2$d</xliff:g> ஆப்ஸ் அனுமதிக்கப்பட்டன"</string>
+    <string name="menu_show_system" msgid="4254021607027872504">"சிஸ்டம் ஆப்ஸைக் காட்டு"</string>
+    <string name="menu_hide_system" msgid="3855390843744028465">"சிஸ்டம் ஆப்ஸை மறை"</string>
+    <string name="manage_permission" msgid="2895385393037061964">"அனுமதியை நிர்வகி"</string>
+    <string name="no_apps" msgid="2412612731628386816">"எந்த ஆப்ஸிற்கும் தேவையில்லை"</string>
+    <string name="location_settings" msgid="3624412509133422562">"இருப்பிட அமைப்புகள்"</string>
+    <string name="location_warning" msgid="2381649060929040962">"இந்தச் சாதனத்திற்கான இருப்பிடச் சேவைகளை <xliff:g id="APP_NAME">%1$s</xliff:g> வழங்குகிறது. \'இருப்பிட அமைப்புகளுக்குச்\' சென்று \'இருப்பிட அணுகலை\' மாற்றலாம்."</string>
+    <string name="system_warning" msgid="1173400963234358816">"இந்த அனுமதியை நிராகரித்தால் சாதனத்தின் அடிப்படை அம்சங்கள் சரியாகச் செயல்படாமல் போகலாம்."</string>
+    <string name="cdm_profile_revoke_warning" msgid="4443893270719106700">"இந்த அனுமதியை நிராகரித்தால், இந்த ஆப்ஸால் நிர்வகிக்கப்படும் உங்கள் சாதனத்தின் சில அம்சங்கள் சரியாகச் செயல்படாமல் போகக்கூடும்."</string>
+    <string name="permission_summary_enforced_by_policy" msgid="4443598170942950519">"கொள்கையின்படி செயல்படுத்தப்பட்டது"</string>
+    <string name="permission_summary_disabled_by_policy_background_only" msgid="221995005556362660">"கொள்கையின்படி \'பின்புல அணுகல்’ முடக்கப்பட்டது"</string>
+    <string name="permission_summary_enabled_by_policy_background_only" msgid="8287675974767104279">"கொள்கையின்படி \'பின்புல அணுகல்\' இயக்கப்பட்டது"</string>
+    <string name="permission_summary_enabled_by_policy_foreground_only" msgid="3844582916889767831">"கொள்கையின்படி \'முன்புல அணுகல்\' இயக்கப்பட்டது"</string>
+    <string name="permission_summary_enforced_by_admin" msgid="822702574117248700">"நிர்வாகி கட்டுப்படுத்துகிறார்"</string>
+    <string name="permission_summary_disabled_by_admin_background_only" msgid="3127091456731845646">"\'பின்புல அணுகலை\' நிர்வாகி முடக்கியுள்ளார்"</string>
+    <string name="permission_summary_enabled_by_admin_background_only" msgid="9132423838440275757">"\'பின்புல அணுகலை’ நிர்வாகி இயக்கியுள்ளார்"</string>
+    <string name="permission_summary_enabled_by_admin_foreground_only" msgid="1298432715610745358">"\'முன்புல அணுகலை\' நிர்வாகி இயக்கியுள்ளார்"</string>
+    <string name="permission_summary_enabled_system_fixed" msgid="2438344700184127274">"சாதனம் இயங்குவதற்கு இந்த அனுமதி தேவை"</string>
+    <!-- no translation found for background_access_chooser_dialog_choices:0 (1351721623256561996) -->
+    <!-- no translation found for background_access_chooser_dialog_choices:1 (9127301153688725448) -->
+    <!-- no translation found for background_access_chooser_dialog_choices:2 (4305536986042401191) -->
+    <string name="permission_access_always" msgid="1474641821883823446">"எப்போதும் அனுமதி"</string>
+    <string name="permission_access_only_foreground" msgid="7801170728159326195">"ஆப்ஸை உபயோகிக்கும்போது மட்டும்"</string>
+    <string name="permission_access_never" msgid="4647014230217936900">"அனுமதிக்க வேண்டாம்"</string>
+    <string name="loading" msgid="4789365003890741082">"ஏற்றுகிறது…"</string>
+    <string name="all_permissions" msgid="6911125611996872522">"அனைத்து அனுமதிகளும்"</string>
+    <string name="other_permissions" msgid="2901186127193849594">"ஆப்ஸிற்கான பிற அனுமதிகள்"</string>
+    <string name="permission_request_title" msgid="8790310151025020126">"அனுமதி கோரிக்கை"</string>
+    <string name="screen_overlay_title" msgid="6977038513913222078">"\'திரை மேலடுக்கு\' ஆனில் உள்ளது"</string>
+    <string name="screen_overlay_message" msgid="5622563069757142102">"இந்த அனுமதியை மாற்ற முதலில் \'அமைப்புகள் &gt; ஆப்ஸ்’ என்பதற்குச் சென்று \'திரை மேலடுக்கை\' ஆஃப் செய்யவும்"</string>
+    <string name="screen_overlay_button" msgid="4655005928054025250">"அமைப்புகளைத் திற"</string>
+    <string name="wear_not_allowed_dlg_title" msgid="1429467891296932713">"Android Wear"</string>
+    <string name="wear_not_allowed_dlg_text" msgid="512340555334769098">"நிறுவல்/நிறுவல் நீக்குதலை Wearரில் செய்ய இயலாது."</string>
+    <string name="permission_review_title_template_install" msgid="1284337937156289081">"&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; எவற்றையெல்லாம் அணுகலாம் என்பதைத் தேர்வுசெய்யவும்"</string>
+    <string name="permission_review_title_template_update" msgid="3232333580548588657">"&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; புதுப்பிக்கப்பட்டது. இந்த ஆப்ஸ் எவற்றையெல்லாம் அணுகலாம் என்பதைத் தேர்வுசெய்யவும்."</string>
+    <string name="review_button_cancel" msgid="2191147944056548886">"வேண்டாம்"</string>
+    <string name="review_button_continue" msgid="2527918375047602199">"தொடர்க"</string>
+    <string name="new_permissions_category" msgid="552995090178417611">"புதிய அனுமதிகள்"</string>
+    <string name="current_permissions_category" msgid="4292990083585728880">"தற்போதைய அனுமதிகள்"</string>
+    <string name="message_staging" msgid="9110563899955511866">"ஆப்ஸ் தயாராகிறது…"</string>
+    <string name="app_name_unknown" msgid="1319665005754048952">"தெரியாதது"</string>
+    <string name="permission_usage_title" msgid="1568233336351734538">"பிரைவசி டாஷ்போர்டு"</string>
+    <string name="permission_group_usage_title" msgid="2595013198075285173">"<xliff:g id="PERMGROUP">%1$s</xliff:g> உபயோகம்"</string>
+    <string name="perm_usage_adv_info_title" msgid="3357831829538873708">"பிற அனுமதிகளைப் பார்த்தல்"</string>
+    <string name="perm_usage_adv_info_summary_2_items" msgid="3702175198750127822">"<xliff:g id="PERMGROUP_0">%1$s</xliff:g>, <xliff:g id="PERMGROUP_1">%2$s</xliff:g>"</string>
+    <string name="perm_usage_adv_info_summary_more_items" msgid="949055326299562218">"<xliff:g id="PERMGROUP_0">%1$s</xliff:g>, <xliff:g id="PERMGROUP_1">%2$s</xliff:g>, மேலும் <xliff:g id="NUM">%3$s</xliff:g>"</string>
+    <string name="permission_group_usage_subtitle" msgid="712843174810251274">"கடந்த 24 மணிநேரத்தில் <xliff:g id="PERMGROUP">%1$s</xliff:g> ஐ ஆப்ஸ் பயன்படுத்தியதற்கான காலப்பதிவு"</string>
+    <string name="permission_usage_access_dialog_subtitle" msgid="4171772805196955753">"இந்த ஆப்ஸ் <xliff:g id="PERMGROUP">%1$s</xliff:g> அனுமதியைப் பயன்படுத்தியபோது"</string>
+    <string name="permission_usage_access_dialog_learn_more" msgid="7121468469493184613">"மேலும் அறிக"</string>
+    <string name="permission_usage_duration_and_proxy" msgid="573959201368716399">"<xliff:g id="APP_NAME">%1$s</xliff:g> • <xliff:g id="TRUNCATED_TIME">%2$s</xliff:g>"</string>
+    <plurals name="duration_used_days" formatted="false" msgid="1993098309578536308">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> நாட்கள்</item>
+      <item quantity="one">1 நாள்</item>
+    </plurals>
+    <plurals name="duration_used_hours" formatted="false" msgid="1020075479447003242">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> மணிநேரம்</item>
+      <item quantity="one">1 மணிநேரம்</item>
+    </plurals>
+    <plurals name="duration_used_minutes" formatted="false" msgid="3422338854436291744">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> நிமிடங்கள்</item>
+      <item quantity="one">1 நிமிடம்</item>
+    </plurals>
+    <plurals name="duration_used_seconds" formatted="false" msgid="2726799598314248110">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> வினாடிகள்</item>
+      <item quantity="one">1 வினாடி</item>
+    </plurals>
+    <plurals name="permission_usage_summary" formatted="false" msgid="2837021459986644819">
+      <item quantity="other">கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_2">%1$s</xliff:g>\nபயன்படுத்தியவை: <xliff:g id="NUM_3">%2$s</xliff:g></item>
+      <item quantity="one">கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_0">%1$s</xliff:g>\nபயன்படுத்தியது: <xliff:g id="NUM_1">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="permission_usage_summary_background" formatted="false" msgid="8810001960357233836">
+      <item quantity="other">கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_3">%1$s</xliff:g>\nபயன்படுத்தியவை: <xliff:g id="NUM_4">%2$s</xliff:g>(பின்னணியில் பயன்படுத்தியவை: <xliff:g id="NUM_5">%3$s</xliff:g>)</item>
+      <item quantity="one">கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_0">%1$s</xliff:g>\nபயன்படுத்தியது: <xliff:g id="NUM_1">%2$s</xliff:g>(பின்னணியில் பயன்படுத்தியது: <xliff:g id="NUM_2">%3$s</xliff:g>)</item>
+    </plurals>
+    <plurals name="permission_usage_summary_duration" formatted="false" msgid="2223071401812931873">
+      <item quantity="other">கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_3">%1$s</xliff:g>\nபயன்படுத்தியவை: <xliff:g id="NUM_4">%2$s</xliff:g>\nகால அளவு: <xliff:g id="TIME_5">%3$s</xliff:g></item>
+      <item quantity="one">கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_0">%1$s</xliff:g>\nபயன்படுத்தியது: <xliff:g id="NUM_1">%2$s</xliff:g>\nகால அளவு: <xliff:g id="TIME_2">%3$s</xliff:g></item>
+    </plurals>
+    <plurals name="permission_usage_summary_background_duration" formatted="false" msgid="6893924292010006727">
+      <item quantity="other">கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_4">%1$s</xliff:g>\nபயன்படுத்தியவை: <xliff:g id="NUM_5">%2$s</xliff:g> (பின்னணியில் பயன்படுத்தியவை:<xliff:g id="NUM_6">%3$s</xliff:g>)\nகால அளவு: <xliff:g id="TIME_7">%3$s</xliff:g></item>
+      <item quantity="one">கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_0">%1$s</xliff:g>\nபயன்படுத்தியது: <xliff:g id="NUM_1">%2$s</xliff:g>(பின்னணியில் பயன்படுத்தியது: <xliff:g id="NUM_2">%3$s</xliff:g>)\nகால அளவு: <xliff:g id="TIME_3">%3$s</xliff:g></item>
+    </plurals>
+    <string name="permission_usage_summary_background" msgid="6136171928959340697">"கடைசி அணுகல்: <xliff:g id="TIME">%1$s</xliff:g>\nகடைசியாகப் பின்னணியில் அணுகியது"</string>
+    <string name="permission_usage_any_permission" msgid="6358023078298106997">"அனுமதி எதுவாயினும்"</string>
+    <string name="permission_usage_any_time" msgid="3802087027301631827">"எந்த நேரமும்"</string>
+    <string name="permission_usage_last_7_days" msgid="7386221251886130065">"கடந்த 7 நாட்கள்"</string>
+    <string name="permission_usage_last_day" msgid="1512880889737305115">"கடந்த 24 மணிநேரம்"</string>
+    <string name="permission_usage_last_hour" msgid="3866005205535400264">"கடந்த ஒரு மணிநேரம்"</string>
+    <string name="permission_usage_last_15_minutes" msgid="9077554653436200702">"கடந்த 15 நிமிடங்கள்"</string>
+    <string name="permission_usage_last_minute" msgid="7297055967335176238">"கடந்த 1 நிமிடத்தில்"</string>
+    <string name="no_permission_usages" msgid="9119517454177289331">"உபயோகிக்கப்படாத அனுமதிகள்"</string>
+    <string name="permission_usage_list_title_any_time" msgid="8718257027381592407">"மிகச் சமீபத்திய அணுகல்"</string>
+    <string name="permission_usage_list_title_last_7_days" msgid="9048542342670890615">"கடந்த 7 நாட்களில் மிகச் சமீபத்திய அணுகல்"</string>
+    <string name="permission_usage_list_title_last_day" msgid="8730907824567238461">"கடந்த 24 மணிநேரத்தில் மிகச் சமீபத்திய அணுகல்"</string>
+    <string name="permission_usage_list_title_last_hour" msgid="6624161487623223716">"கடந்த 1 மணிநேரத்தில் மிகச் சமீபத்திய அணுகல்"</string>
+    <string name="permission_usage_list_title_last_15_minutes" msgid="8615062016024296833">"கடந்த 15 நிமிடங்களில் மிகச் சமீபத்திய அணுகல்"</string>
+    <string name="permission_usage_list_title_last_minute" msgid="3572792262919886849">"கடந்த 1 நிமிடத்தில் மிகச் சமீபத்திய அணுகல்"</string>
+    <string name="permission_usage_bar_chart_title_any_time" msgid="2845251288192246754">"எப்போதைக்குமான அணுகல் உபயோகம்"</string>
+    <string name="permission_usage_bar_chart_title_last_7_days" msgid="5796577162176938349">"கடந்த 7 நாட்களில் அணுகல் உபயோகம்"</string>
+    <string name="permission_usage_bar_chart_title_last_day" msgid="7950805735777472871">"கடந்த 24 மணிநேரத்தில் அணுகல் உபயோகம்"</string>
+    <string name="permission_usage_bar_chart_title_last_hour" msgid="6571647509660009185">"கடந்த 1 மணிநேரத்தில் அணுகல் உபயோகம்"</string>
+    <string name="permission_usage_bar_chart_title_last_15_minutes" msgid="2743143675412824819">"கடந்த 15 நிமிடங்களில் அணுகல் உபயோகம்"</string>
+    <string name="permission_usage_bar_chart_title_last_minute" msgid="820450867183487607">"கடந்த 1 நிமிடத்தில் அணுகல் உபயோகம்"</string>
+    <plurals name="permission_usage_bar_label" formatted="false" msgid="2316692513662993785">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> ஆப்ஸ்</item>
+      <item quantity="one">ஒரு ஆப்ஸ்</item>
+    </plurals>
+    <string name="permission_usage_preference_summary_not_used" msgid="8806755646449754282">"கடந்த 24 மணிநேரத்தில் பயன்படுத்தவில்லை"</string>
+    <plurals name="permission_usage_preference_label" formatted="false" msgid="9033113721294293706">
+      <item quantity="other"><xliff:g id="NUMBER">%1$d</xliff:g> ஆப்ஸால் பயன்படுத்தப்பட்டது</item>
+      <item quantity="one">1 ஆப்ஸால் பயன்படுத்தப்பட்டது</item>
+    </plurals>
+    <string name="permission_usage_view_details" msgid="6675335735468752787">"டாஷ்போர்டில் அனைத்தையும் காட்டு"</string>
+    <string name="app_permission_usage_filter_label" msgid="7182861154638631550">"இதன்படி வடிகட்டப்பட்டது: <xliff:g id="PERM">%1$s</xliff:g>"</string>
+    <string name="app_permission_usage_remove_filter" msgid="2926157607436428207">"வடிப்பானை அகற்று"</string>
+    <string name="filter_by_title" msgid="7300368602759958031">"இதன்படி வடிகட்டுதல்"</string>
+    <string name="filter_by_permissions" msgid="7613462963111282568">"அனுமதிகளின்படி வடிகட்டு"</string>
+    <string name="filter_by_time" msgid="6667864816999691642">"நேரத்தின்படி வடிகட்டு"</string>
+    <string name="sort_spinner_most_permissions" msgid="1704349738096822836">"அதிகப்படியான அனுமதிகள்"</string>
+    <string name="sort_spinner_most_accesses" msgid="5283913004357220161">"அதிகப்படியான அணுகல்கள்"</string>
+    <string name="sort_spinner_recent" msgid="7513845273076525203">"சமீபத்தியவை"</string>
+    <string name="sort_by_app" msgid="4055799843051138087">"உபயோகத்தின்படி வரிசைப்படுத்து"</string>
+    <string name="sort_by_time" msgid="5435045320002150456">"நேரப்படி வரிசைப்படுத்து"</string>
+    <string name="item_separator" msgid="4030255389809224513">", "</string>
+    <string name="permission_usage_refresh" msgid="2264056346561305420">"புதுப்பி"</string>
+    <plurals name="permission_usage_permission_filter_subtitle" formatted="false" msgid="2452104463317798268">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> ஆப்ஸ்</item>
+      <item quantity="one">1 ஆப்ஸ்</item>
+    </plurals>
+    <string name="permission_history_title" msgid="8340081285133025225">"இதுவரையான அனுமதிகள்"</string>
+    <string name="permission_history_category_today" msgid="7496389369158806620">"இன்று"</string>
+    <string name="permission_history_category_yesterday" msgid="7242517121222012521">"நேற்று"</string>
+    <string name="app_permission_usage_title" msgid="6676802437831981822">"ஆப்ஸ் அனுமதிகளை உபயோகித்தல்"</string>
+    <string name="app_permission_usage_summary" msgid="390383661936709672">"அணுகல்: <xliff:g id="NUM">%1$s</xliff:g> முறை. மொத்தக் கால அளவு: <xliff:g id="DURATION">%2$s</xliff:g>. கடைசியாகப் பயன்படுத்தியது <xliff:g id="TIME">%3$s</xliff:g> முன்பு."</string>
+    <string name="app_permission_usage_summary_no_duration" msgid="3698475875179457400">"அணுகல்: <xliff:g id="NUM">%1$s</xliff:g> முறை. கடைசியாகப் பயன்படுத்தியது <xliff:g id="TIME">%2$s</xliff:g> முன்பு."</string>
+    <string name="app_permission_button_allow" msgid="5808039516494774647">"அனுமதி"</string>
+    <string name="app_permission_button_allow_all_files" msgid="1792232272599018825">"அனைத்து ஃபைல்களையும் நிர்வகிக்க அனுமதி"</string>
+    <string name="app_permission_button_allow_media_only" msgid="2834282724426046154">"மீடியா ஃபைல்களை மட்டும் அணுக அனுமதி"</string>
+    <string name="app_permission_button_allow_always" msgid="4573292371734011171">"எப்போதும் அனுமதி"</string>
+    <string name="app_permission_button_allow_foreground" msgid="1991570451498943207">"ஆப்ஸை உபயோகிக்கும்போது மட்டும் அனுமதி"</string>
+    <string name="app_permission_button_ask" msgid="3342950658789427">"ஒவ்வொரு முறையும் கேள்"</string>
+    <string name="app_permission_button_deny" msgid="6016454069832050300">"அனுமதிக்க வேண்டாம்"</string>
+    <string name="precise_image_description" msgid="6349638632303619872">"துல்லியமான இருப்பிடம்"</string>
+    <string name="approximate_image_description" msgid="938803699637069884">"தோராயமான இருப்பிடம்"</string>
+    <string name="app_permission_location_accuracy" msgid="7166912915040018669">"துல்லியமான இருப்பிடத்தைப் பயன்படுத்து"</string>
+    <string name="app_permission_location_accuracy_subtitle" msgid="2654077606404987210">"துல்லியமான இருப்பிடம் ஆஃப் செய்யப்பட்டிருக்கும்போது உங்கள் தோராயமான இருப்பிடத்தை ஆப்ஸ் அணுகலாம்"</string>
+    <string name="app_permission_title" msgid="2090897901051370711">"<xliff:g id="PERM">%1$s</xliff:g> என்பதற்கான அனுமதி"</string>
+    <string name="app_permission_header" msgid="2951363137032603806">"இந்த ஆப்ஸிற்கு <xliff:g id="PERM">%1$s</xliff:g> அணுகல்"</string>
+    <string name="app_permission_footer_app_permissions_link" msgid="4926890342636587393">"அனைத்து <xliff:g id="APP">%1$s</xliff:g> அனுமதிகளையும் காட்டு"</string>
+    <string name="app_permission_footer_permission_apps_link" msgid="3941988129992794327">"இந்த அனுமதியைக் கொண்டுள்ள அனைத்து ஆப்ஸையும் காட்டு"</string>
+    <string name="assistant_mic_label" msgid="1011432357152323896">"Assistant மைக்ரோஃபோன் உபயோகத்தைக் காட்டு"</string>
+    <string name="auto_revoke_label" msgid="5068393642936571656">"இந்த ஆப்ஸ் பயன்படுத்தப்படவில்லை என்றால் அனுமதிகளை அகற்றவும்"</string>
+    <string name="unused_apps_label" msgid="2595428768404901064">"அனுமதிகளை அகற்றி இடத்தைக் காலியாக்கு"</string>
+    <string name="auto_revoke_summary" msgid="5867548789805911683">"இந்த ஆப்ஸைச் சில மாதங்கள் பயன்படுத்தவில்லை என்றால் உங்கள் தரவைப் பாதுகாப்பதற்காக இதற்கான அனுமதிகள் அகற்றப்படும்."</string>
+    <string name="auto_revoke_summary_with_permissions" msgid="389712086597285013">"இந்த ஆப்ஸைச் சில மாதங்கள் பயன்படுத்தவில்லை என்றால் உங்கள் தரவைப் பாதுகாப்பதற்காக பின்வரும் அனுமதிகள் அகற்றப்படும்: <xliff:g id="PERMS">%1$s</xliff:g>"</string>
+    <string name="auto_revoked_apps_page_summary" msgid="6594753657893756536">"உங்கள் தரவைப் பாதுகாப்பதற்காக, கடந்த சில மாதங்களில் நீங்கள் பயன்படுத்தாத ஆப்ஸில் இருந்து அனுமதிகள் அகற்றப்பட்டன."</string>
+    <string name="auto_revoke_open_app_message" msgid="8075556291711205039">"மீண்டும் அனுமதிகளை வழங்க விரும்பினால் ஆப்ஸைத் திறக்கவும்."</string>
+    <string name="auto_revoke_disabled" msgid="8697684442991567188">"\'தானாக அகற்றுதல்\' இந்த ஆப்ஸிற்குத் தற்சமயம் முடக்கப்பட்டுள்ளது."</string>
+    <string name="auto_revocable_permissions_none" msgid="8334929619113991466">"தானாக ரத்தாகக்கூடிய அனுமதிகள் எதுவும் வழங்கப்படவில்லை"</string>
+    <string name="auto_revocable_permissions_one" msgid="5299112369449458176">"<xliff:g id="PERM">%1$s</xliff:g> அனுமதி அகற்றப்படும்."</string>
+    <string name="auto_revocable_permissions_two" msgid="4874067408752041716">"<xliff:g id="PERM_0">%1$s</xliff:g>, <xliff:g id="PERM_1">%2$s</xliff:g> அனுமதிகள் அகற்றப்படும்."</string>
+    <string name="auto_revocable_permissions_many" msgid="1521807896206032992">"அகற்றப்படவிருக்கும் அனுமதிகள்: <xliff:g id="PERMS">%1$s</xliff:g>."</string>
+    <string name="auto_manage_title" msgid="7693181026874842935">"அனுமதிகளைத் தானாகவே நிர்வகித்தல்"</string>
+    <string name="off" msgid="1438489226422866263">"ஆஃப்"</string>
+    <string name="auto_revoked_app_summary_one" msgid="7093213590301252970">"<xliff:g id="PERMISSION_NAME">%s</xliff:g> தொடர்பான அனுமதி அகற்றப்பட்டது"</string>
+    <string name="auto_revoked_app_summary_two" msgid="1910545340763709389">"<xliff:g id="PERMISSION_NAME_0">%1$s</xliff:g> மற்றும் <xliff:g id="PERMISSION_NAME_1">%2$s</xliff:g> தொடர்பான அனுமதிகள் அகற்றப்பட்டன"</string>
+    <string name="auto_revoked_app_summary_many" msgid="5930976230827378798">"<xliff:g id="PERMISSION_NAME">%1$s</xliff:g> மற்றும் பிற <xliff:g id="NUMBER">%2$s</xliff:g> அனுமதிகள் அகற்றப்பட்டன"</string>
+    <string name="unused_apps_page_title" msgid="6986983535677572559">"பயன்படுத்தாத ஆப்ஸ்"</string>
+    <string name="unused_apps_page_summary" msgid="1867593913217272155">"ஆப்ஸைச் சில மாதங்கள் பயன்படுத்தாமல் இருந்தால்:\n\n• உங்கள் தரவைப் பாதுகாக்க அனுமதிகள் அகற்றப்படும்\n• பேட்டரியைச் சேமிக்க அறிவிப்புகள் நிறுத்தப்படும்\n• சேமிப்பிடத்தைக் காலியாக்க தற்காலிக ஃபைல்கள் அகற்றப்படும்\n\nமீண்டும் அனுமதிகளை வழங்குவதற்கும் அறிவிப்புகளைப் பெறுவதற்கும் ஆப்ஸைத் திறக்கவும்."</string>
+    <string name="last_opened_category_title" msgid="7871347400611202595">"கடைசியாக <xliff:g id="NUMBER">%s</xliff:g> மாதங்களுக்கு முன்பு திறக்கப்பட்டது"</string>
+    <string name="last_opened_summary" msgid="5248984030024968808">"கடைசியாக <xliff:g id="DATE">%s</xliff:g> அன்று ஆப்ஸ் திறக்கப்பட்டது"</string>
+    <string name="last_opened_summary_short" msgid="1646067226191176825">"கடைசியாகத் திறந்தது: <xliff:g id="DATE">%s</xliff:g>"</string>
+    <string name="app_permission_footer_special_file_access" msgid="1884202176147657788">"அனைத்து ஃபைல்களையும் நிர்வகிப்பதற்கு அனுமதி வழங்கினால் இந்தச் சாதனத்தின் பொதுவான சேமிப்பகத்திலோ இணைக்கப்பட்டுள்ள சேமிப்பகச் சாதனங்களிலோ உள்ள ஃபைல்களை அணுகவும் நீக்கவும் அவற்றில் மாற்றங்களைச் செய்யவும் இந்த ஆப்ஸால் முடியும். உங்களிடம் கேட்காமலேயே ஃபைல்களை ஆப்ஸ் அணுகக்கூடும்."</string>
+    <string name="special_file_access_dialog" msgid="583804114020740610">"இந்தச் சாதனத்திலோ இணைக்கப்பட்டுள்ள சேமிப்பகச் சாதனங்களிலோ உள்ள ஃபைல்களை அணுகவும் நீக்கவும் அவற்றில் மாற்றங்களைச் செய்யவும் இந்த ஆப்ஸை அனுமதிக்கவா? உங்களிடம் கேட்காமலேயே ஃபைல்களை இந்த ஆப்ஸ் அணுகக்கூடும்."</string>
+    <string name="permission_description_summary_generic" msgid="5401399408814903391">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸானது <xliff:g id="DESCRIPTION">%1$s</xliff:g>"</string>
+    <string name="permission_description_summary_activity_recognition" msgid="2652850576497070146">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் நடத்தல், சைக்கிள் ஓட்டுதல், வாகனம் ஓட்டுதல், படிகளில் ஏறி இறங்குதல் மற்றும் பல உடல்ரீதியான செயல்பாடுகளை அணுக இயலும்"</string>
+    <string name="permission_description_summary_calendar" msgid="103329982944411010">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் உங்கள் கேலெண்டரை அணுக இயலும்"</string>
+    <string name="permission_description_summary_call_log" msgid="7321437186317577624">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸ் மொபைல் அழைப்புப் பதிவைப் படிக்கும், எழுதும்"</string>
+    <string name="permission_description_summary_camera" msgid="108004375101882069">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் படங்களை எடுக்கவும் வீடியோக்களை ரெக்கார்டு செய்யவும் இயலும்"</string>
+    <string name="permission_description_summary_contacts" msgid="2337798886460408996">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் உங்கள் தொடர்புகளை அணுக இயலும்"</string>
+    <string name="permission_description_summary_location" msgid="2817531799933480694">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் சாதனத்தின் இருப்பிடத்தை அணுக இயலும்"</string>
+    <string name="permission_description_summary_nearby_devices" msgid="8269183818275073741">"இந்த அனுமதியைப் பெற்றுள்ள ஆப்ஸால் அருகிலுள்ள சாதனங்களைக் கண்டறியவும் அவற்றுடன் இணையவும் அவற்றின் தூரத்தைத் தீர்மானிக்கவும் முடியும்"</string>
+    <string name="permission_description_summary_microphone" msgid="630834800308329907">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் ஆடியோவை ரெக்கார்டு செய்ய இயலும்"</string>
+    <string name="permission_description_summary_phone" msgid="4515277217435233619">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் மொபைல் அழைப்புகள் செய்யவும் அவற்றை நிர்வகிக்கவும் இயலும்"</string>
+    <string name="permission_description_summary_sensors" msgid="1836045815643119949">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸ் உங்கள் உடலியக்கக் குறிகள் பற்றிய சென்சார் தரவை அணுகலாம்"</string>
+    <string name="permission_description_summary_sms" msgid="725999468547768517">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் மெசேஜ்களை அனுப்பவும் பார்க்கவும் இயலும்"</string>
+    <string name="permission_description_summary_storage" msgid="6575759089065303346">"இந்த அனுமதியைக் கொண்டுள்ள ஆப்ஸால் உங்கள் சாதனத்திலுள்ள படங்கள், மீடியா மற்றும் ஃபைல்களை அணுக இயலும்"</string>
+    <string name="app_permission_most_recent_summary" msgid="4292074449384040590">"கடைசியாகப் பயன்படுத்தியது: <xliff:g id="TIME_DATE">%1$s</xliff:g>"</string>
+    <string name="app_permission_most_recent_denied_summary" msgid="7659497197737708112">"தற்போது மறுக்கப்பட்டுள்ளது / கடைசி அணுகல்: <xliff:g id="TIME_DATE">%1$s</xliff:g>"</string>
+    <string name="app_permission_never_accessed_summary" msgid="401346181461975090">"பயன்படுத்தியதில்லை"</string>
+    <string name="app_permission_never_accessed_denied_summary" msgid="6596000497490905146">"மறுக்கப்பட்டுள்ளது / ஒருபோதும் அணுகியதில்லை"</string>
+    <string name="allowed_header" msgid="7769277978004790414">"அனுமதிக்கப்பட்டவை"</string>
+    <string name="allowed_always_header" msgid="6455903312589013545">"எப்போதும் அனுமதிக்கப்படுபவை"</string>
+    <string name="allowed_foreground_header" msgid="6845655788447833353">"உபயோகத்தில் மட்டுமே அனுமதிக்கப்படும்"</string>
+    <string name="allowed_storage_scoped" msgid="5383645873719086975">"மீடியா ஃபைல்களுக்கு மட்டும் அணுகலுள்ளவை"</string>
+    <string name="allowed_storage_full" msgid="5356699280625693530">"எல்லா ஃபைல்களையும் நிர்வகிக்கும் அணுகலுள்ளவை"</string>
+    <string name="ask_header" msgid="2633816846459944376">"ஒவ்வொரு முறையும் கேள்"</string>
+    <string name="denied_header" msgid="903209608358177654">"அனுமதிக்கப்படாதவை"</string>
+    <plurals name="days" formatted="false" msgid="7882807103511175827">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> நாட்கள்</item>
+      <item quantity="one">1 நாள்</item>
+    </plurals>
+    <plurals name="hours" formatted="false" msgid="2100550424145061396">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> மணிநேரம்</item>
+      <item quantity="one">1 மணிநேரம்</item>
+    </plurals>
+    <plurals name="minutes" formatted="false" msgid="2154398822027154606">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> நிமிடங்கள்</item>
+      <item quantity="one">1 நிமிடம்</item>
+    </plurals>
+    <plurals name="seconds" formatted="false" msgid="1564519426522404832">
+      <item quantity="other"><xliff:g id="NUMBER">%s</xliff:g> விநாடிகள்</item>
+      <item quantity="one">1 விநாடி</item>
+    </plurals>
+    <string name="permission_reminders" msgid="6528257957664832636">"அனுமதிக்கான நினைவூட்டல்கள்"</string>
+    <string name="auto_revoke_permission_reminder_notification_title_one" msgid="6690347469376854137">"1 பயன்படுத்தாத ஆப்ஸ்"</string>
+    <string name="auto_revoke_permission_reminder_notification_title_many" msgid="6062217713645069960">"<xliff:g id="NUMBER_OF_APPS">%s</xliff:g> பயன்படுத்தாத ஆப்ஸ்"</string>
+    <string name="auto_revoke_permission_reminder_notification_content" msgid="4492228990462107487">"உங்கள் தனியுரிமையைப் பாதுகாக்க அனுமதிகள் அகற்றப்பட்டன. பார்க்க, தட்டவும்"</string>
+    <string name="auto_revoke_permission_notification_title" msgid="2629844160853454657">"பயன்படுத்தப்படாத ஆப்ஸின் அனுமதிகள் அகற்றப்பட்டன"</string>
+    <string name="auto_revoke_permission_notification_content" msgid="5125990886047799375">"கடந்த சில மாதங்களாக சில ஆப்ஸ் பயன்படுத்தப்படவில்லை. பார்க்க தட்டவும்."</string>
+    <plurals name="auto_revoke_permission_notification_content_count" formatted="false" msgid="9159794096518540350">
+      <item quantity="other">கடந்த சில மாதங்களாக <xliff:g id="COUNT_1">%1$d</xliff:g> ஆப்ஸ் பயன்படுத்தப்படவில்லை. பார்க்க தட்டவும்</item>
+      <item quantity="one">கடந்த சில மாதங்களாக <xliff:g id="COUNT_0">%1$d</xliff:g> ஆப்ஸ் பயன்படுத்தப்படவில்லை. பார்க்க தட்டவும்</item>
+    </plurals>
+    <plurals name="unused_apps_notification_title" formatted="false" msgid="8046612559038762856">
+      <item quantity="other"><xliff:g id="COUNT_1">%1$d</xliff:g> பயன்படுத்தாத ஆப்ஸ்</item>
+      <item quantity="one"><xliff:g id="COUNT_0">%1$d</xliff:g> பயன்படுத்தாத ஆப்ஸ்</item>
+    </plurals>
+    <string name="unused_apps_notification_content" msgid="9195026773244581246">"அனுமதிகளும் தற்காலிகக் கோப்புகளும் அகற்றப்பட்டன, அறிவிப்புகள் நிறுத்தப்பட்டன. பார்க்கத் தட்டவும்."</string>
+    <string name="auto_revoke_setting_subtitle" msgid="8631720570723050460">"கடந்த சில மாதங்களாக சில ஆப்ஸ் பயன்படுத்தப்படவில்லை"</string>
+    <plurals name="auto_revoke_setting_subtitle_count" formatted="false" msgid="85594789277193087">
+      <item quantity="other">கடந்த சில மாதங்களாக <xliff:g id="COUNT_1">%1$d</xliff:g> ஆப்ஸ் பயன்படுத்தப்படவில்லை</item>
+      <item quantity="one">கடந்த சில மாதங்களாக <xliff:g id="COUNT_0">%1$d</xliff:g> ஆப்ஸ் பயன்படுத்தப்படவில்லை</item>
+    </plurals>
+    <string name="permissions_removed_category_title" msgid="1064754271178447643">"அனுமதிகள் அகற்றப்பட்டவை"</string>
+    <string name="permission_removed_page_title" msgid="2627436155091001209">"அனுமதிகள் அகற்றப்பட்டவை"</string>
+    <string name="all_unused_apps_category_title" msgid="755663524704745414">"பயன்படுத்தப்படாத ஆப்ஸ் அனைத்தும்"</string>
+    <string name="months_ago" msgid="1766026492610646354">"<xliff:g id="COUNT">%1$d</xliff:g> மாதங்களுக்கு முன்பு"</string>
+    <string name="auto_revoke_preference_summary" msgid="5517958331781391481">"உங்கள் தனியுரிமையைப் பாதுகாக்க அனுமதிகள் அகற்றப்பட்டன"</string>
+    <string name="background_location_access_reminder_notification_title" msgid="1140797924301941262">"<xliff:g id="APP_NAME">%s</xliff:g> ஆப்ஸ் உங்கள் இருப்பிடத்தைப் பின்புலத்தில் பெற்றது"</string>
+    <string name="background_location_access_reminder_notification_content" msgid="7787084707336546245">"எப்பொழுதும் உங்கள் இருப்பிடத்தை இந்த ஆப்ஸால் பயன்படுத்த இயலும். மாற்றத் தட்டவும்."</string>
+    <string name="auto_revoke_after_notification_title" msgid="5417761027669887431">"தனியுரிமையைப் பாதுகாக்க ஆப்ஸ் அனுமதிகள் அகற்றப்பட்டன"</string>
+    <string name="auto_revoke_after_notification_content_one" msgid="6804038707453662753">"கடந்த சில மாதங்களில் <xliff:g id="APP_NAME">%s</xliff:g> ஆப்ஸ் பயன்படுத்தப்படவில்லை. பார்க்க தட்டவும்."</string>
+    <string name="auto_revoke_after_notification_content_two" msgid="9108709764831425172">"கடந்த சில மாதங்களில் <xliff:g id="APP_NAME">%s</xliff:g> ஆப்ஸும் 1 பிற ஆப்ஸும் பயன்படுத்தப்படவில்லை. பார்க்க தட்டவும்."</string>
+    <string name="auto_revoke_after_notification_content_many" msgid="4774106206289751220">"கடந்த சில மாதங்களில் <xliff:g id="APP_NAME">%1$s</xliff:g> ஆப்ஸும் <xliff:g id="NUMBER_OF_APPS">%2$s</xliff:g> பிற ஆப்ஸும் பயன்படுத்தப்படவில்லை. பார்க்க தட்டவும்."</string>
+    <string name="auto_revoke_before_notification_title_one" msgid="6758024954464359876">"1 ஆப்ஸ் பயன்படுத்தப்படவில்லை"</string>
+    <string name="auto_revoke_before_notification_title_many" msgid="4415543943846385685">"<xliff:g id="NUMBER_OF_APPS">%s</xliff:g> ஆப்ஸ் பயன்படுத்தப்படவில்லை"</string>
+    <string name="auto_revoke_before_notification_content_one" msgid="1156635373417068822">"தனியுரிமையைப் பாதுகாக்க அனுமதிகள் அகற்றப்படும். பார்க்க தட்டவும்."</string>
+    <string name="unused_apps_title" msgid="8589298917717872239">"பயன்படுத்தாத ஆப்ஸ்"</string>
+    <string name="unused_apps_subtitle_after" msgid="2034267519506357898">"இவற்றிலிருந்து அனுமதிகள் அகற்றப்பட்டன:"</string>
+    <string name="unused_apps_subtitle_before" msgid="5233302577076132427">"இவற்றிலிருந்து அனுமதிகள் அகற்றப்படும்:"</string>
+    <string name="unused_permissions_subtitle_two" msgid="2207266295008423015">"<xliff:g id="PERM_NAME_0">%1$s</xliff:g>, <xliff:g id="PERM_NAME_1">%2$s</xliff:g>"</string>
+    <string name="unused_permissions_subtitle_many" msgid="4387289202207450238">"<xliff:g id="PERM_NAME_0">%1$s</xliff:g>, <xliff:g id="PERM_NAME_1">%2$s</xliff:g>, மேலும் <xliff:g id="NUMBER_OF_PERMISSIONS">%3$s</xliff:g>"</string>
+    <string name="unused_app_permissions_removed_summary" msgid="6779039455326071033">"உங்கள் தரவைப் பாதுகாக்கும் பொருட்டு கடந்த சில மாதங்களில் நீங்கள் பயன்படுத்தப்படாத ஆப்ஸில் இருந்து அனுமதிகள் அகற்றப்பட்டன"</string>
+    <string name="unused_app_permissions_removed_summary_some" msgid="5080490037831563441">"உங்கள் தரவைப் பாதுகாக்க, கடந்த சில மாதங்களாகப் பயன்படுத்தப்படாத சில ஆப்ஸின் அனுமதிகள் அகற்றப்பட்டன"</string>
+    <string name="one_unused_app_summary" msgid="7831913934488881991">"1 ஆப்ஸ் கடந்த சில மாதங்களாகப் பயன்படுத்தப்படவில்லை"</string>
+    <string name="num_unused_apps_summary" msgid="1870719749940571227">"<xliff:g id="NUMBER_OF_APPS">%s</xliff:g> ஆப்ஸ் கடந்த சில மாதங்களாகப் பயன்படுத்தப்படவில்லை"</string>
+    <string name="permission_subtitle_only_in_foreground" msgid="9068389431267377564">"ஆப்ஸ் உபயோகத்தில் இருக்கும்போது மட்டும்"</string>
+    <string name="permission_subtitle_media_only" msgid="8917869683764720717">"மீடியா ஃபைல்கள்"</string>
+    <string name="permission_subtitle_all_files" msgid="4982613338298067862">"அனைத்து ஃபைல்களும்"</string>
+    <string name="permission_subtitle_background" msgid="8916750995309083180">"எப்போதும் அனுமதிக்கப்படுகிறது"</string>
+    <string name="app_perms_24h_access" msgid="99069906850627181">"கடைசி அணுகல்: <xliff:g id="TIME_DATE">%1$s</xliff:g>"</string>
+    <string name="app_perms_24h_access_yest" msgid="5411926024794555022">"நேற்று <xliff:g id="TIME_DATE">%1$s</xliff:g> மணிக்குக் கடைசி அணுகல்"</string>
+    <string name="app_perms_content_provider" msgid="6996750793881252778">"கடந்த 24 மணிநேரத்தில் அணுகியது"</string>
+    <string name="app_perms_24h_access_background" msgid="3413674718969576843">"கடைசியாக அணுகியது: <xliff:g id="TIME_DATE">%1$s</xliff:g> • எப்போதும் அனுமதிக்கப்படுகிறது"</string>
+    <string name="app_perms_24h_access_yest_background" msgid="9174750810998076725">"கடைசியாக அணுகியது: நேற்று <xliff:g id="TIME_DATE">%1$s</xliff:g> • எப்போதும் அனுமதிக்கப்படுகிறது"</string>
+    <string name="app_perms_content_provider_background" msgid="7793984056711923997">"கடந்த 24 மணிநேரத்தில் அணுகப்பட்டது • எப்போதும் அனுமதிக்கப்படுகிறது"</string>
+    <string name="app_perms_24h_access_media_only" msgid="6651699644199132054">"<xliff:g id="TIME_DATE">%1$s</xliff:g> மணிக்குக் கடைசி அணுகல் • மீடியா"</string>
+    <string name="app_perms_24h_access_yest_media_only" msgid="7213187706424998792">"நேற்று <xliff:g id="TIME_DATE">%1$s</xliff:g> மணிக்குக் கடைசி அணுகல் • மீடியா"</string>
+    <string name="app_perms_content_provider_media_only" msgid="6206759230589923421">"கடந்த 24 மணிநேரத்தில் அணுகியது • மீடியா"</string>
+    <string name="app_perms_24h_access_all_files" msgid="8902360456978159091">"<xliff:g id="TIME_DATE">%1$s</xliff:g> மணிக்குக் கடைசி அணுகல் • அனைத்து ஃபைல்கள்"</string>
+    <string name="app_perms_24h_access_yest_all_files" msgid="5708424073126844909">"நேற்று <xliff:g id="TIME_DATE">%1$s</xliff:g> மணிக்குக் கடைசி அணுகல் • அனைத்து ஃபைல்கள்"</string>
+    <string name="app_perms_content_provider_all_files" msgid="3315281519230304799">"கடந்த 24 மணிநேரத்தில் அணுகியது • அனைத்து ஃபைல்கள்"</string>
+    <string name="no_permissions_allowed" msgid="6081976856354669209">"எந்த அனுமதிகளும் வழங்கப்படவில்லை"</string>
+    <string name="no_permissions_denied" msgid="8159923922804043282">"எந்த அனுமதிகளும் மறுக்கப்படவில்லை"</string>
+    <string name="no_apps_allowed" msgid="7718822655254468631">"எந்த ஆப்ஸும் அனுமதிக்கப்படவில்லை"</string>
+    <string name="no_apps_allowed_full" msgid="8011716991498934104">"அனைத்து ஃபைல்களுக்குமான அனுமதி எந்த ஆப்ஸுக்கும் இல்லை"</string>
+    <string name="no_apps_allowed_scoped" msgid="4908850477787659501">"மீடியா ஃபைல்களுக்கு மட்டுமான அனுமதி எந்த ஆப்ஸுக்கும் இல்லை"</string>
+    <string name="no_apps_denied" msgid="7663435886986784743">"எந்த ஆப்ஸுக்கும் அனுமதி மறுக்கப்படவில்லை"</string>
+    <string name="car_permission_selected" msgid="180837028920791596">"தேர்ந்தெடுக்கப்பட்டது"</string>
+    <string name="settings" msgid="5409109923158713323">"அமைப்புகள்"</string>
+    <string name="accessibility_service_dialog_title_single" msgid="7956432823014102366">"உங்கள் சாதனத்திற்கான முழு அணுகல் <xliff:g id="SERVICE_NAME">%s</xliff:g> சேவைக்கு உள்ளது"</string>
+    <string name="accessibility_service_dialog_title_multiple" msgid="5527879210683548175">"உங்கள் சாதனத்திற்கான முழு அணுகல் <xliff:g id="NUM_SERVICES">%s</xliff:g> அணுகல்தன்மை ஆப்ஸிற்கு உள்ளது"</string>
+    <string name="accessibility_service_dialog_bottom_text_single" msgid="1128666197822205958">"உங்கள் திரை, செயல்கள் மற்றும் உள்ளீடுகளைப் பார்க்கவும், செயல்களை நிறைவேற்றவும், காட்சியைக் கட்டுப்படுத்தவும் <xliff:g id="SERVICE_NAME">%s</xliff:g> சேவையால் இயலும்."</string>
+    <string name="accessibility_service_dialog_bottom_text_multiple" msgid="7009848932395519852">"இந்த ஆப்ஸால் உங்கள் திரை, செயல்கள் மற்றும் உள்ளீடுகளைப் பார்க்கவும், செயல்களை நிறைவேற்றவும், காட்சியைக் கட்டுப்படுத்தவும் இயலும்."</string>
+    <string name="role_assistant_label" msgid="4727586018198208128">"இயல்பான டிஜிட்டல் அசிஸ்டண்ட்"</string>
+    <string name="role_assistant_short_label" msgid="3369003713187703399">"டிஜிட்டல் அசிஸ்டண்ட் ஆப்ஸ்"</string>
+    <string name="role_assistant_description" msgid="6622458130459922952">"நீங்கள் பார்க்கும் திரையில் உள்ள தகவலின் அடிப்படையில் அசிஸ்ட் ஆப்ஸ் உதவும். ஒருங்கிணைந்த உதவியை வழங்குவதற்காக \'தொடக்கியையும்\' \'குரல் உள்ளீட்டுச் சேவைகளையும்\' சில ஆப்ஸ் பயன்படுத்துகின்றன."</string>
+    <string name="role_assistant_request_title" msgid="5964976301922776060">"<xliff:g id="APP_NAME">%1$s</xliff:g>ஐ இயல்பான அசிஸ்ட் ஆப்ஸாக அமைக்கவா?"</string>
+    <string name="role_assistant_request_description" msgid="6836644847620178483">"மெசேஜ், அழைப்புப் பதிவுக்கான அணுகலைப் பெறும்"</string>
+    <string name="role_browser_label" msgid="2877796144554070207">"உலாவிக்கான இயல்பான ஆப்ஸ்"</string>
+    <string name="role_browser_short_label" msgid="6745009127123292296">"உலாவி ஆப்ஸ்"</string>
+    <string name="role_browser_description" msgid="3465253637499842671">"இணையத்திற்கும் திரையில் பார்த்துத் தட்டக்கூடிய இணைப்புகளுக்கும் அணுகலை வழங்கும் ஆப்ஸ்"</string>
+    <string name="role_browser_request_title" msgid="2895200507835937192">"<xliff:g id="APP_NAME">%1$s</xliff:g>ஐ இயல்பான உலாவி ஆப்ஸாக அமைக்கவா?"</string>
+    <string name="role_browser_request_description" msgid="5888803407905985941">"அனுமதிகள் தேவையில்லை"</string>
+    <string name="role_dialer_label" msgid="1100224146343237968">"இயல்பான மொபைல் ஆப்ஸ்"</string>
+    <string name="role_dialer_short_label" msgid="7186888549465352489">"மொபைல் ஆப்ஸ்"</string>
+    <string name="role_dialer_description" msgid="8768708633696539612">"உங்கள் சாதனத்தில் அழைப்புகளைச் செய்யவும் பெறவும் அனுமதிக்கும் ஆப்ஸ்"</string>
+    <string name="role_dialer_request_title" msgid="5959618560705912058">"<xliff:g id="APP_NAME">%1$s</xliff:g>ஐ இயல்பான மொபைல் ஆப்ஸாக அமைக்கவா?"</string>
+    <string name="role_dialer_request_description" msgid="2264219375528345270">"அழைப்புப் பதிவு, மெசேஜ் ஆகியவற்றுக்கான அணுகலைப் பெறும்"</string>
+    <string name="role_dialer_search_keywords" msgid="3324448983559188087">"டயலர்"</string>
+    <string name="role_sms_label" msgid="8456999857547686640">"இயல்பான மெசேஜ் ஆப்ஸ்"</string>
+    <string name="role_sms_short_label" msgid="4371444488034692243">"மெசேஜ் ஆப்ஸ்"</string>
+    <string name="role_sms_description" msgid="3424020199148153513">"சிறு மெசேஜ்கள், படங்கள், வீடியோக்கள் மற்றும் பலவற்றை அனுப்புவதற்கும் பெறுவதற்கும் உங்கள் மொபைல் எண்ணைப் பயன்படுத்த அனுமதிக்கும் ஆப்ஸ்"</string>
+    <string name="role_sms_request_title" msgid="7953552109601185602">"<xliff:g id="APP_NAME">%1$s</xliff:g>ஐ இயல்பான மெசேஜ் ஆப்ஸாக அமைக்கவா?"</string>
+    <string name="role_sms_request_description" msgid="983371022668134198">"தொடர்புகள், மெசேஜ், மொபைல் ஆகியவற்றுக்கான அணுகலைப் பெறும்"</string>
+    <string name="role_sms_search_keywords" msgid="8022048144395047352">"உரைச் செய்தி, உரைச் செய்தியிடல், மெசேஜ்கள், மெசேஜ் அனுப்புதல்"</string>
+    <string name="role_emergency_label" msgid="7028825857206842366">"இயல்பான அவசரநிலை ஆப்ஸ்"</string>
+    <string name="role_emergency_short_label" msgid="2388431453335350348">"அவசரகால ஆப்ஸ்"</string>
+    <string name="role_emergency_description" msgid="5051840234887686630">"உங்கள் மருத்துவத் தகவலைப் பதிவுசெய்யவும், அவசரக்கால பதிலளிப்போருக்கு அது கிடைக்குமாறு செய்யவும்; கடுமையான வானிலை நிகழ்வுகளையும் பேரழிவுகளையும் பற்றிய எச்சரிக்கைகளைப் பெறவும், உதவி தேவைப்படும்போது மற்றவர்களுக்கு அதைத் தெரிவிக்கவும் அனுமதிக்கும் ஆப்ஸ்"</string>
+    <string name="role_emergency_request_title" msgid="8469579020654348567">"<xliff:g id="APP_NAME">%1$s</xliff:g>ஐ இயல்பான அவசரக்கால ஆப்ஸாக அமைக்கவா?"</string>
+    <string name="role_emergency_request_description" msgid="131645948770262850">"அனுமதிகள் தேவையில்லை"</string>
+    <string name="role_emergency_search_keywords" msgid="1920007722599213358">"பனிக்கட்டி"</string>
+    <string name="role_home_label" msgid="3871847846649769412">"இயல்பான முகப்பு ஆப்ஸ்"</string>
+    <string name="role_home_short_label" msgid="8544733747952272337">"முகப்பு ஆப்ஸ்"</string>
+    <string name="role_home_description" msgid="7997371519626556675">"\'துவக்கிகள்\' என அழைக்கப்படும் இந்த ஆப்ஸ் உங்கள் Android சாதனத்தில் முகப்புத் திரைகளை மாற்றியமைப்பதோடு அதில் உள்ள உள்ளடக்கத்திற்கும் அம்சங்களுக்கும் அணுகலை வழங்கும்"</string>
+    <string name="role_home_request_title" msgid="738136983453341081">"<xliff:g id="APP_NAME">%1$s</xliff:g>ஐ இயல்பான முகப்பு ஆப்ஸாக அமைக்கவா?"</string>
+    <string name="role_home_request_description" msgid="2658833966716057673">"அனுமதிகள் தேவையில்லை"</string>
+    <string name="role_home_search_keywords" msgid="3830755001192666285">"தொடக்கி"</string>
+    <string name="role_call_redirection_label" msgid="5785304207206147590">"இயல்பு அழைப்புதிருப்பும் ஆப்ஸ்"</string>
+    <string name="role_call_redirection_short_label" msgid="7568143419571217757">"அழைப்பைத் திருப்பிவிடும் ஆப்ஸ்"</string>
+    <string name="role_call_redirection_description" msgid="6091669882014664420">"வெளிச்செல்லும் அழைப்புகளை வேறு மொபைல் எண்ணிற்குத் திருப்பிவிட அனுமதிக்கும் ஆப்ஸ்"</string>
+    <string name="role_call_redirection_request_title" msgid="2816244455003562925">"<xliff:g id="APP_NAME">%1$s</xliff:g>ஐ அழைப்பைத் திசைதிருப்பும் இயல்பான ஆப்ஸாக அமைக்கவா?"</string>
+    <string name="role_call_redirection_request_description" msgid="3118895714178527164">"அனுமதிகள் தேவையில்லை"</string>
+    <string name="role_call_screening_label" msgid="883935222060878724">"இயல்பான அழைப்பாளர் ஐடி &amp; ஸ்பேம் ஆப்ஸ்"</string>
+    <string name="role_call_screening_short_label" msgid="2048465565063130834">"அழைப்பாளர் ஐடி &amp; ஸ்பேம் ஆப்ஸ்"</string>
+    <string name="role_call_screening_description" msgid="2349431420497468981">"அழைப்புகளை அடையாளம் காணவும் ஸ்பேம், ரோபோகால்கள் அல்லது தேவையற்ற எண்களைத் தடைசெய்யவும் அனுமதிக்கும் ஆப்ஸ்"</string>
+    <string name="role_call_screening_request_title" msgid="7358309224566977290">"<xliff:g id="APP_NAME">%1$s</xliff:g>ஐ இயல்பான அழைப்பாளர் ஐடி &amp; ஸ்பேம் ஆப்ஸாக அமைக்கவா?"</string>
+    <string name="role_call_screening_request_description" msgid="7338511921032446006">"அனுமதிகள் தேவையில்லை"</string>
+    <string name="role_watch_description" msgid="267003778693177779">"உங்கள் அறிவிப்புகளைப் பயன்படுத்துவதற்கான அனுமதியையும் மொபைல், மெசேஜ், தொடர்புகள், கேலெண்டர் ஆகியவற்றின் அனுமதிகளுக்கான அணுகலையும் <xliff:g id="APP_NAME">%1$s</xliff:g> ஆப்ஸ் பெறும்."</string>
+    <string name="request_role_current_default" msgid="738722892438247184">"தற்போதைய இயல்பான ஆப்ஸ்"</string>
+    <string name="request_role_dont_ask_again" msgid="3556017886029520306">"மீண்டும் கேட்காதே"</string>
+    <string name="request_role_set_as_default" msgid="4253949643984172880">"இயல்பு ஆப்ஸாக அமை"</string>
+    <string name="phone_call_uses_microphone" msgid="233569591461187177">"&lt;b&gt;மொபைல் அழைப்பில்&lt;/b&gt; மைக்ரோஃபோன் பயன்படுத்தப்படுகிறது"</string>
+    <string name="phone_call_uses_microphone_and_camera" msgid="6291898755681748189">"&lt;b&gt;வீடியோ அழைப்பில்&lt;/b&gt; கேமராவும் மைக்ரோஃபோனும் பயன்படுத்தப்படுகின்றன"</string>
+    <string name="phone_call_uses_camera" msgid="2048417022147857418">"&lt;b&gt;வீடியோ அழைப்பில்video call&lt;/b&gt; கேமரா பயன்படுத்தப்படுகிறது"</string>
+    <string name="system_uses_microphone" msgid="576672130318877143">"சிஸ்டம் சேவையைப் பயன்படுத்தி மைக்ரோஃபோன் அணுகப்படுகிறது"</string>
+    <string name="system_uses_microphone_and_camera" msgid="5124478304275138804">"சிஸ்டம் சேவையைப் பயன்படுத்தி கேமராவும் மைக்ரோஃபோனும் அணுகப்படுகின்றன"</string>
+    <string name="system_uses_camera" msgid="1911223105234441470">"சிஸ்டம் சேவையைப் பயன்படுத்தி கேமரா அணுகப்படுகிறது"</string>
+    <string name="other_use" msgid="6564855051022776692">"பிற பயன்பாடு:"</string>
+    <string name="ongoing_usage_dialog_ok" msgid="103556809118460072">"புரிந்தது"</string>
+    <string name="ongoing_usage_dialog_title" msgid="683836493556628569">"<xliff:g id="TYPES_LIST">%s</xliff:g> இன் சமீபத்திய பயன்பாடு"</string>
+    <string name="ongoing_usage_dialog_title_mic" msgid="5966714811125593992">"மைக்ரோஃபோனைச் சமீபத்தில் பயன்படுத்தும் ஆப்ஸ்"</string>
+    <string name="ongoing_usage_dialog_title_camera" msgid="7819329688650711470">"கேமராவைச் சமீபத்தில் பயன்படுத்தும் ஆப்ஸ்"</string>
+    <string name="ongoing_usage_dialog_title_mic_camera" msgid="9079747867228772797">"மைக்ரோஃபோன் &amp; கேமராவைச் சமீபத்தில் பயன்படுத்தும் ஆப்ஸ்"</string>
+    <string name="ongoing_usage_dialog_separator" msgid="1715181526581520068">", "</string>
+    <string name="ongoing_usage_dialog_last_separator" msgid="4170995004748832163">" மற்றும் "</string>
+    <string name="default_app_search_keyword" msgid="8330125736889689743">"இயல்பான ஆப்ஸ்"</string>
+    <string name="permgroup_list_microphone_and_camera" msgid="962768198001487969">"மைக்ரோஃபோன் &amp; கேமரா"</string>
+    <string name="settings_button" msgid="4414988414732479636">"அமைப்புகள்"</string>
+    <string name="default_apps" msgid="5119201969348748639">"இயல்புநிலை ஆப்ஸ்"</string>
+    <string name="no_default_apps" msgid="2593466527182950231">"இயல்புநிலை ஆப்ஸ் இல்லை"</string>
+    <string name="default_apps_more" msgid="4078194675848858093">"கூடுதல் இயல்புநிலைகள்"</string>
+    <string name="default_apps_manage_domain_urls" msgid="6775566451561036069">"இணைப்புகளைத் திறத்தல்"</string>
+    <string name="default_apps_for_work" msgid="4970308943596201811">"பணிக்கான இயல்பு நிலை ஆப்ஸ்"</string>
+    <string name="default_app_none" msgid="9084592086808194457">"ஏதுமில்லை"</string>
+    <string name="default_app_system_default" msgid="6218386768175513760">"(சிஸ்டத்தின் இயல்புநிலை)"</string>
+    <string name="default_app_no_apps" msgid="115720991680586885">"ஆப்ஸ் இல்லை"</string>
+    <string name="car_default_app_selected" msgid="5416420830430644174">"தேர்ந்தெடுக்கப்பட்டது"</string>
+    <string name="car_default_app_selected_with_info" msgid="1932204186080593500">"<xliff:g id="ADDITIONAL_INFO">%1$s</xliff:g> தேர்ந்தெடுக்கப்பட்டுள்ளது"</string>
+    <string name="special_app_access_search_keyword" msgid="8032347212290774210">"ஆப்ஸிற்கான சிறப்பு அணுகல்"</string>
+    <string name="special_app_access" msgid="5019319067120213797">"ஆப்ஸிற்கான சிறப்பு அணுகல்"</string>
+    <string name="no_special_app_access" msgid="6950277571805106247">"ஆப்ஸிற்கு சிறப்பு அணுகல் இல்லை"</string>
+    <string name="special_app_access_no_apps" msgid="4102911722787886970">"ஆப்ஸ் இல்லை"</string>
+    <string name="home_missing_work_profile_support" msgid="1756855847669387977">"பணிக் கணக்கிற்கான ஆதரவு இதில் இல்லை"</string>
+    <string name="encryption_unaware_confirmation_message" msgid="8274491794636402484">"கவனத்திற்கு: திரைப் பூட்டு அமைக்கப்பட்டிருக்கும் நிலையில் உங்கள் மொபைலை மீண்டும் தொடங்கினால் அன்லாக் செய்யப்படும்வரை இந்த ஆப்ஸ் இயங்காது."</string>
+    <string name="assistant_confirmation_message" msgid="7476540402884416212">"திரையில் தெரியும் தகவல் அல்லது ஆப்ஸிற்குள் அணுகக்கூடிய தகவல் உட்பட உங்கள் சிஸ்டத்தில் செயல்பாட்டிலுள்ள ஆப்ஸ் பற்றிய தகவல்களை அசிஸ்டண்ட்டால் படிக்க இயலும்."</string>
+    <string name="incident_report_channel_name" msgid="3144954065936288440">"பிழைதிருத்தத் தரவைப் பகிர்தல்"</string>
+    <string name="incident_report_notification_title" msgid="4635984625656519773">"விரிவான பிழைதிருத்தத் தகவலைப் பகிரவா?"</string>
+    <string name="incident_report_notification_text" msgid="3376480583513587923">"பிழைதிருத்தத் தகவலை <xliff:g id="APP_NAME">%1$s</xliff:g> பதிவேற்ற விரும்புகிறது."</string>
+    <string name="incident_report_dialog_title" msgid="669104389325204095">"பிழைதிருத்தத் தரவைப் பகிர வேண்டுமா?"</string>
+    <string name="incident_report_dialog_intro" msgid="5897733669850951832">"சிக்கல் இருப்பதை சிஸ்டம் கண்டறிந்துள்ளது."</string>
+    <string name="incident_report_dialog_text" msgid="5675553296891757523">"இந்தச் சாதனத்திலிருந்து <xliff:g id="DATE">%2$s</xliff:g> அன்று <xliff:g id="TIME">%3$s</xliff:g> மணிக்கு எடுக்கப்பட்ட பிழை அறிக்கையைப் பதிவேற்றுமாறு <xliff:g id="APP_NAME_0">%1$s</xliff:g> கோருகிறது. இதில் பயனர் பெயர்கள், இருப்பிடத் தரவு, சாதன அடையாளங்காட்டிகள் மற்றும் நெட்வொர்க் தகவல்கள் போன்ற உங்கள் சாதனம் அல்லது உள்நுழைந்துள்ள ஆப்ஸ் பற்றிய தனிப்பட்ட தகவல்களும் உள்ளடங்கும். இந்தத் தகவல்களுடனான பிழை அறிக்கைகளை நம்பகமானவர்களுடனும் ஆப்ஸுடனும் மட்டுமே பகிரவும். பிழை அறிக்கையைப் பதிவேற்ற <xliff:g id="APP_NAME_1">%4$s</xliff:g> ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="incident_report_error_dialog_text" msgid="4189647113387092272">"<xliff:g id="APP_NAME">%1$s</xliff:g> ஆப்ஸிற்கான பிழை அறிக்கையைச் செயல்படுத்துவதில் பிழை ஏற்பட்டுள்ளது. பிழைதிருத்தத்திற்கான தரவைப் பகிர்வது மறுக்கப்பட்டுள்ளது. தடங்கலுக்கு வருந்துகிறோம்."</string>
+    <string name="incident_report_dialog_allow_label" msgid="2970242967721155239">"அனுமதி"</string>
+    <string name="incident_report_dialog_deny_label" msgid="3535314290677579383">"நிராகரி"</string>
+    <string name="adjust_user_sensitive_title" msgid="4196724451314280527">"மேம்பட்ட அமைப்புகள்"</string>
+    <string name="menu_adjust_user_sensitive" msgid="6497923610654425780">"மேம்பட்ட அமைப்புகள்"</string>
+    <string name="adjust_user_sensitive_globally_title" msgid="8649190949066029174">"சிஸ்டம் ஆப்ஸின் உபயோகத்தைக் காட்டுக"</string>
+    <string name="adjust_user_sensitive_globally_summary" msgid="129467818433773912">"நிலைப் பட்டி, டாஷ்போர்டு மற்றும் அனைத்து இடங்களிலும் \'சிஸ்டம் ஆப்ஸ்\' பயன்படுத்தும் அனுமதிகளைக் காட்டுக"</string>
+    <string name="adjust_user_sensitive_per_app_header" msgid="4543506440989005648">"பின்வருபவற்றின் உபயோகத்தைத் தனிப்படுத்திக் காட்டு"</string>
+    <string name="assistant_record_audio_user_sensitive_title" msgid="5532123360322362378">"அசிஸ்டண்ட் இயக்கப்படுவதைக் கண்டறியும் ஐகானைக் காட்டு"</string>
+    <string name="assistant_record_audio_user_sensitive_summary" msgid="6482937591816401619">"குரல் உதவியை இயக்க மைக்ரோஃபோனைப் பயன்படுத்தும்போது நிலைப் பட்டியில் ஐகானைக் காட்டு"</string>
+    <string name="permgrouprequest_storage_isolated" msgid="4892154224026852295">"இந்தச் சாதனத்திலுள்ள படங்களையும் மீடியாவையும் அணுகுவதற்கு &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_contacts" msgid="8391550064551053695">"தொடர்புகளை அணுகுவதற்கு &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_location" msgid="6990232580121067883">"இந்தச் சாதனத்தின் இருப்பிடத்தை அணுகுவதற்கு &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequestdetail_location" msgid="2635935335778429894">"இந்த ஆப்ஸை நீங்கள் உபயோகிக்கும்போது மட்டுமே இருப்பிடத்தை அணுகும்"</string>
+    <string name="permgroupbackgroundrequest_location" msgid="1085680897265734809">"இந்தச் சாதனத்தின் இருப்பிடத்தை அணுகுவதற்கு &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgroupbackgroundrequestdetail_location" msgid="8021219324989662957">"இந்த ஆப்ஸை நீங்கள் பயன்படுத்தாதபோதும்கூட உங்கள் இருப்பிடத்தை எந்நேரமும் அணுக இது விரும்பக்கூடும். "<annotation id="link">"அமைப்புகளில் அனுமதிக்கவும்"</annotation>"."</string>
+    <string name="permgroupupgraderequest_location" msgid="8328408946822691636">"&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸிற்கு இருப்பிட அணுகலை மாற்றவா?"</string>
+    <string name="permgroupupgraderequestdetail_location" msgid="1550899076845189165">"இந்த ஆப்ஸை நீங்கள் பயன்படுத்தாதபோதும்கூட உங்கள் இருப்பிடத்தை எந்நேரமும் அணுக இது விரும்பக்கூடும். "<annotation id="link">"அமைப்புகளில் அனுமதிக்கவும்"</annotation>"."</string>
+    <string name="permgrouprequest_nearby_devices" msgid="2272829282660436700">"அருகிலுள்ள சாதனங்களைக் கண்டறியவும் அவற்றுடன் இணையவும் அவற்றின் தூரத்தைத் தீர்மானிக்கவும் &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgroupupgraderequestdetail_nearby_devices" msgid="6877531270654738614">"அருகிலுள்ள சாதனங்களைக் கண்டறியவும் அவற்றுடன் இணையவும் அவற்றின் தூரத்தைத் தீர்மானிக்கவும் &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா? "<annotation id="link">"அமைப்புகளில் அனுமதி."</annotation></string>
+    <string name="permgrouprequest_fineupgrade" msgid="2334242928821697672">"<xliff:g id="APP_NAME">&lt;b&gt;%1$s&lt;/b&gt;</xliff:g> ஆப்ஸின் இருப்பிட அணுகலைத் தோராயத்திலிருந்து துல்லியத்திற்கு மாற்றவா?"</string>
+    <string name="permgrouprequest_coarselocation" msgid="7244605063736425232">"இந்தச் சாதனத்தின் தோராயமான இருப்பிடத்தை அணுக &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_finelocation_imagetext" msgid="1313062433398914334">"துல்லியமானது"</string>
+    <string name="permgrouprequest_coarselocation_imagetext" msgid="8650605041483025297">"தோராயமானது"</string>
+    <string name="permgrouprequest_calendar" msgid="1493150855673603806">"கேலெண்டரை அணுகுவதற்கு &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_sms" msgid="5672063688745420991">"மெசேஜ்களை அனுப்பவும், பார்க்கவும் &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_storage" msgid="8717773092518621602">"உங்கள் சாதனத்திலுள்ள படங்கள், மீடியா, ஃபைல்கள் ஆகியவற்றை அணுகுவதற்கு &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_microphone" msgid="2825208549114811299">"ஆடியோ ரெக்கார்டு செய்ய &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequestdetail_microphone" msgid="8510456971528228861">"இந்த ஆப்ஸை நீங்கள் உபயோகிக்கும்போது மட்டுமே ஆடியோ ரெக்கார்டு செய்யும்"</string>
+    <string name="permgroupbackgroundrequest_microphone" msgid="8874462606796368183">"ஆடியோ ரெக்கார்டு செய்ய &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgroupbackgroundrequestdetail_microphone" msgid="553702902263681838">"இந்த ஆப்ஸை உபயோகிக்காத போதும்கூட எந்நேரமும் ஆடியோ ரெக்கார்டு செய்ய அனுமதி கேட்கக்கூடும். "<annotation id="link">"அமைப்புகளில் அனுமதிக்கவும்."</annotation></string>
+    <string name="permgroupupgraderequest_microphone" msgid="1362781696161233341">"&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸுக்கான மைக்ரோஃபோன் அணுகலை மாற்றவா?"</string>
+    <string name="permgroupupgraderequestdetail_microphone" msgid="2870497719571464239">"இந்த ஆப்ஸை உபயோகிக்காத போதும்கூட எந்நேரமும் ஆடியோ ரெக்கார்டு செய்ய அனுமதி கேட்கிறது. "<annotation id="link">"அமைப்புகளில் அனுமதிக்கவும்."</annotation></string>
+    <string name="permgrouprequest_activityRecognition" msgid="5415121592794230330">"உடல் செயல்பாட்டைக் கண்காணிக்க &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_camera" msgid="5123097035410002594">"படங்கள் எடுக்கவும் வீடியோ ரெக்கார்டு செய்யவும் &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequestdetail_camera" msgid="9085323239764667883">"இந்த ஆப்ஸை நீங்கள் உபயோகிக்கும்போது மட்டுமே படங்கள் எடுக்கும், வீடியோ ரெக்கார்டு செய்யும்"</string>
+    <string name="permgroupbackgroundrequest_camera" msgid="1274286575704213875">"படங்கள் எடுக்கவும் வீடியோ ரெக்கார்டு செய்யவும் &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgroupbackgroundrequestdetail_camera" msgid="4458783509089859078">"இந்த ஆப்ஸை உபயோகிக்காத போதும்கூட எந்நேரமும் படங்கள் எடுக்கவும் வீடியோ ரெக்கார்டு செய்யவும் அனுமதி கேட்கக்கூடும். "<annotation id="link">"அமைப்புகளில் அனுமதிக்கவும்."</annotation></string>
+    <string name="permgroupupgraderequest_camera" msgid="640758449200241582">"&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸுக்கான கேமரா அணுகலை மாற்றவா?"</string>
+    <string name="permgroupupgraderequestdetail_camera" msgid="6642747548010962597">"இந்த ஆப்ஸை உபயோகிக்காத போதும்கூட எந்நேரமும் படங்கள் எடுக்கவும் வீடியோ ரெக்கார்டு செய்யவும் அனுமதி கேட்கிறது. "<annotation id="link">"அமைப்புகளில் அனுமதிக்கவும்."</annotation></string>
+    <string name="permgrouprequest_calllog" msgid="2065327180175371397">"உங்கள் மொபைல் அழைப்புப் பதிவுகளை அணுக, &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_phone" msgid="1829234136997316752">"மொபைல் அழைப்புகள் செய்யவும், அவற்றை நிர்வகிக்கவும், &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="permgrouprequest_sensors" msgid="4397358316850652235">"உங்கள் உடலியக்கக் குறிகள் பற்றிய சென்சார் தரவை அணுகுவதற்கு &lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ஆப்ஸை அனுமதிக்கவா?"</string>
+    <string name="auto_granted_permissions" msgid="6009452264824455892">"கட்டுப்படுத்தப்பட்ட அனுமதிகள்"</string>
+    <string name="auto_granted_location_permission_notification_title" msgid="1438871159268985993">"இருப்பிடத்தை அணுகலாம்"</string>
+    <string name="auto_granted_permission_notification_body" msgid="6919835973190443695">"<xliff:g id="APP_NAME">%s</xliff:g> ஆப்ஸ் உங்கள் இருப்பிடத்தை அணுக உங்கள் IT நிர்வாகி அனுமதித்துள்ளார்"</string>
+    <string name="other_permissions_label" msgid="8986184335503271992">"பிற அனுமதிகள்"</string>
+    <string name="not_used_permissions_label" msgid="3939839426115141264">"சிஸ்டத்தால் பயன்படுத்தப்படும் அனுமதி"</string>
+    <string name="not_used_permissions_description" msgid="7595514824169388718">"சிஸ்டம் ஆப்ஸால் மட்டுமே பயன்படுத்தப்படும் அனுமதிகள்."</string>
+    <string name="additional_permissions_label" msgid="7693557637462569046">"கூடுதல் அனுமதிகள்"</string>
+    <string name="additional_permissions_description" msgid="2186611950890732112">"ஆப்ஸால் வரையறுக்கப்பட்ட அனுமதிகள்."</string>
+    <string name="privdash_label_camera" msgid="1426440033626198096">"கேமரா"</string>
+    <string name="privdash_label_microphone" msgid="8415035835803511693">"மைக்ரோஃபோன்"</string>
+    <string name="privdash_label_location" msgid="6882400763866489291">"இருப்பிடம்"</string>
+    <string name="privdash_label_other" msgid="3710394147423236033">"மற்றவை"</string>
+    <string name="privdash_label_none" msgid="5991866260360484858">"எதுவுமில்லை"</string>
+    <string name="privdash_label_24h" msgid="1512532123865375319">"கடந்த\n24 மணிநேரம்"</string>
+</resources>

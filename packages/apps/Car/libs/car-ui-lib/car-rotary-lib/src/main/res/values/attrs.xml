@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2021 The Android Open Source Project
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<resources>
+  <!-- Attributes for FocusArea. -->
+  <declare-styleable name="FocusArea">
+    <!-- The ID of the default focus view. The view will be prioritized when searching for a
+         focus target.
+         (1) When the user nudges the rotary controller, it will search for a target FocusArea,
+             then search for a target view within the target FocusArea, and focus on the target
+             view. The target view is chosen in the following order:
+               1. the "android:focusedByDefault" view, if any
+               2. the "app:defaultFocus" view, if any
+               3. the selected item in a scrollable container, if any
+               4. the first focusable item in a scrollable container, if any
+               5. previously focused view, if any and the cache is not stale
+               6. the first focusable view, if any
+             Note that 5 will be prioritized over 1, 2, 3, and 4 when
+             "app:defaultFocusOverridesHistory" is true.
+         (2) When it needs to initialize the focus (such as when a window is opened), it will
+             search for a view in the window and focus on it. The view is chosen in the
+             following order:
+               1. the first "android:focusedByDefault" view, if any
+               2. the first "app:defaultFocus" view, if any
+               3. the selected item in a scrollable container, if any
+               4. the first focusable item in a scrollable container, if any
+               5. the first focusable view that is not a FocusParkingView, if any
+         If there is only one FocusArea that needs to set default focus, you can use either
+         "app:defaultFocus" or "android:focusedByDefault". If there are more than one, you
+         should use "android:focusedByDefault" in the primary FocusArea, and use
+         "app:defaultFocus" in other FocusAreas. -->
+    <attr name="defaultFocus" format="reference"/>
+
+    <!-- Whether to focus on the default focus view when nudging to the FocusArea, even if there
+         was another view in the FocusArea focused before. -->
+    <attr name="defaultFocusOverridesHistory" format="boolean"/>
+
+    <!-- The paddings of FocusArea highlight. It does't impact the paddings on its child views,
+         or vice versa. -->
+    <!-- The start padding of the FocusArea highlight. -->
+    <attr name="highlightPaddingStart" format="dimension"/>
+    <!-- The end padding of the FocusArea highlight. -->
+    <attr name="highlightPaddingEnd" format="dimension"/>
+    <!-- The top padding of the FocusArea highlight. -->
+    <attr name="highlightPaddingTop" format="dimension"/>
+    <!-- The bottom padding of the FocusArea highlight. -->
+    <attr name="highlightPaddingBottom" format="dimension"/>
+    <!-- The horizontal padding of the FocusArea highlight. It can be overridden by
+         highlightPaddingStart or highlightPaddingEnd. -->
+    <attr name="highlightPaddingHorizontal" format="dimension"/>
+    <!-- The vertical padding of the FocusArea highlight.  It can be overridden by
+         highlightPaddingTop or highlightPaddingBottom. -->
+    <attr name="highlightPaddingVertical" format="dimension"/>
+
+    <!-- The offset of the FocusArea's bounds. It only affects the perceived bounds for the
+         purposes of finding the nudge target. It doesn't affect the FocusArea's view bounds or
+         highlight bounds. The offset should only be used when FocusAreas are overlapping and
+         nudge interaction is ambiguous. -->
+    <!-- The offset of the FocusArea's start bound. -->
+    <attr name="startBoundOffset" format="dimension"/>
+    <!-- The offset of the FocusArea's end bound. -->
+    <attr name="endBoundOffset" format="dimension"/>
+    <!-- The offset of the FocusArea's top bound. -->
+    <attr name="topBoundOffset" format="dimension"/>
+    <!-- The offset of the FocusArea's bottom bound. -->
+    <attr name="bottomBoundOffset" format="dimension"/>
+    <!-- The offset of the FocusArea's horizontal bounds. It can be overridden by
+         startBoundOffset or endBoundOffset. -->
+    <attr name="horizontalBoundOffset" format="dimension"/>
+    <!-- The offset of the FocusArea's vertical bounds. It can be overridden by topBoundOffset
+         or bottomBoundOffset. -->
+    <attr name="verticalBoundOffset" format="dimension"/>
+
+    <!-- New attributes for nudge shortcuts. Usually nudge is used to navigate to another
+         FocusArea, but when a nudge shortcut is specified, it's used to navigate to the
+         given view within the same FocusArea. A nudge shortcut can be specified for each
+         direction. -->
+    <!-- The ID of the nudge left shortcut view. -->
+    <attr name="nudgeLeftShortcut" format="reference"/>
+    <!-- The ID of the nudge right shortcut view. -->
+    <attr name="nudgeRightShortcut" format="reference"/>
+    <!-- The ID of the nudge up shortcut view. -->
+    <attr name="nudgeUpShortcut" format="reference"/>
+    <!-- The ID of the nudge down shortcut view. -->
+    <attr name="nudgeDownShortcut" format="reference"/>
+
+    <!-- Legacy attributes for nudge shortcut. Usually nudge is used to navigate to another
+         FocusArea, but when a nudge shortcut is specified, it's used to navigate to the given
+         view within the same FocusArea. If using these legacy attributes, the two must be
+         specified together and the new attributes cannot be used. -->
+    <!-- The ID of the nudge shortcut view. -->
+    <attr name="nudgeShortcut" format="reference"/>
+    <!-- The direction of the nudge shortcut. -->
+    <attr name="nudgeShortcutDirection">
+      <!-- View.FOCUS_LEFT -->
+      <flag name="left" value="0x11" />
+      <!-- View.FOCUS_RIGHT -->
+      <flag name="right" value="0x42" />
+      <!-- View.FOCUS_UP -->
+      <flag name="up" value="0x21" />
+      <!-- View.FOCUS_DOWN -->
+      <flag name="down" value="0x82" />
+    </attr>
+
+    <!-- Attributes to specify the target FocusArea for a nudge. -->
+    <!-- The ID of the target FocusArea when nudging to the left. -->
+    <attr name="nudgeLeft" format="reference"/>
+    <!-- The ID of the target FocusArea when nudging to the right. -->
+    <attr name="nudgeRight" format="reference"/>
+    <!-- The ID of the target FocusArea when nudging up. -->
+    <attr name="nudgeUp" format="reference"/>
+    <!-- The ID of the target FocusArea when nudging down. -->
+    <attr name="nudgeDown" format="reference"/>
+
+    <!-- Whether rotation wraps around. When true, rotation wraps around, staying within the
+         FocusArea, when it reaches the first or last focusable view in the FocusArea. When
+         false, rotation does nothing in this case. -->
+    <attr name="wrapAround" format="boolean"/>
+  </declare-styleable>
+
+  <!-- Attributes for FocusParkingView. -->
+  <declare-styleable name="FocusParkingView">
+    <!-- Whether to restore focus when the frameworks wants to focus the FocusParkingView. When
+         false, the FocusParkingView allows itself to be focused instead. This should be false
+         for the FocusParkingView in an ActivityView. The default value is true. -->
+    <attr name="shouldRestoreFocus" format="boolean"/>
+  </declare-styleable>
+</resources>

@@ -1,0 +1,67 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_defaults {
+    name: "microdroid_signature_default",
+    host_supported: true,
+    srcs: [
+        "microdroid_signature.proto",
+        "signature.cc",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+    ],
+    export_include_dirs: ["include"],
+}
+
+cc_library_static {
+    name: "lib_microdroid_signature_proto",
+    proto: {
+        export_proto_headers: true,
+        type: "full",
+    },
+    defaults: ["microdroid_signature_default"],
+}
+
+cc_library_static {
+    name: "lib_microdroid_signature_proto_lite",
+    recovery_available: true,
+    proto: {
+        export_proto_headers: true,
+        type: "lite",
+    },
+    defaults: ["microdroid_signature_default"],
+    apex_available: [
+        "com.android.virt",
+    ],
+}
+
+cc_binary {
+    name: "mk_payload",
+    srcs: [
+        "mk_payload.cc",
+    ],
+    shared_libs: [
+        "libbase",
+        "libcuttlefish_fs",
+        "libcuttlefish_utils",
+        "liblog",
+        "libz",
+    ],
+    static_libs: [
+        "lib_microdroid_signature_proto_lite",
+        "libcdisk_spec",
+        "libext2_uuid",
+        "libimage_aggregator",
+        "libjsoncpp",
+        "libprotobuf-cpp-lite",
+        "libsparse",
+        "libxml2",
+    ],
+    generated_sources: ["apex-info-list"],
+    apex_available: [
+        "com.android.virt",
+    ],
+}

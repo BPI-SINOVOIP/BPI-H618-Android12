@@ -1,0 +1,89 @@
+rule android.sysprop.** com.android.connectivity.@0
+rule com.android.net.module.util.** com.android.connectivity.@0
+rule com.android.modules.utils.** com.android.connectivity.@0
+
+# internal util classes
+rule android.util.LocalLog* com.android.connectivity.@0
+# android.util.IndentingPrintWriter* should use a different package name from
+# the one in com.android.internal.util
+rule android.util.IndentingPrintWriter* com.android.connectivity.@0
+rule com.android.internal.util.** com.android.connectivity.@0
+
+rule com.android.internal.messages.** com.android.connectivity.@0
+rule com.google.protobuf.** com.android.connectivity.@0
+
+# From dnsresolver_aidl_interface (newer AIDLs should go to android.net.resolv.aidl)
+rule android.net.resolv.aidl.** com.android.connectivity.@0
+rule android.net.IDnsResolver* com.android.connectivity.@0
+rule android.net.ResolverHostsParcel* com.android.connectivity.@0
+rule android.net.ResolverOptionsParcel* com.android.connectivity.@0
+rule android.net.ResolverParamsParcel* com.android.connectivity.@0
+rule android.net.ResolverParamsParcel* com.android.connectivity.@0
+# Also includes netd event listener AIDL, but this is handled by netd-client rules
+
+# From net-utils-device-common
+rule android.net.NetworkFactory* com.android.connectivity.@0
+
+# From netd-client (newer AIDLs should go to android.net.netd.aidl)
+rule android.net.netd.aidl.** com.android.connectivity.@0
+rule android.net.INetd* com.android.connectivity.@0
+rule android.net.InterfaceConfigurationParcel* com.android.connectivity.@0
+rule android.net.MarkMaskParcel* com.android.connectivity.@0
+rule android.net.NativeNetworkConfig* com.android.connectivity.@0
+rule android.net.NativeNetworkType* com.android.connectivity.@0
+rule android.net.NativeVpnType* com.android.connectivity.@0
+rule android.net.RouteInfoParcel* com.android.connectivity.@0
+rule android.net.TetherConfigParcel* com.android.connectivity.@0
+rule android.net.TetherOffloadRuleParcel* com.android.connectivity.@0
+rule android.net.TetherStatsParcel* com.android.connectivity.@0
+rule android.net.UidRangeParcel* com.android.connectivity.@0
+rule android.net.metrics.INetdEventListener* com.android.connectivity.@0
+
+# From netlink-client
+rule android.net.netlink.** com.android.connectivity.@0
+
+# From networkstack-client (newer AIDLs should go to android.net.[networkstack|ipmemorystore].aidl)
+rule android.net.networkstack.aidl.** com.android.connectivity.@0
+rule android.net.ipmemorystore.aidl.** com.android.connectivity.@0
+rule android.net.ipmemorystore.aidl.** com.android.connectivity.@0
+rule android.net.DataStallReportParcelable* com.android.connectivity.@0
+rule android.net.DhcpResultsParcelable* com.android.connectivity.@0
+rule android.net.IIpMemoryStore* com.android.connectivity.@0
+rule android.net.INetworkMonitor* com.android.connectivity.@0
+rule android.net.INetworkStackConnector* com.android.connectivity.@0
+rule android.net.INetworkStackStatusCallback* com.android.connectivity.@0
+rule android.net.InformationElementParcelable* com.android.connectivity.@0
+rule android.net.InitialConfigurationParcelable* com.android.connectivity.@0
+rule android.net.IpMemoryStore* com.android.connectivity.@0
+rule android.net.Layer2InformationParcelable* com.android.connectivity.@0
+rule android.net.Layer2PacketParcelable* com.android.connectivity.@0
+rule android.net.NattKeepalivePacketDataParcelable* com.android.connectivity.@0
+rule android.net.NetworkMonitorManager* com.android.connectivity.@0
+rule android.net.NetworkTestResultParcelable* com.android.connectivity.@0
+rule android.net.PrivateDnsConfigParcel* com.android.connectivity.@0
+rule android.net.ProvisioningConfigurationParcelable* com.android.connectivity.@0
+rule android.net.ScanResultInfoParcelable* com.android.connectivity.@0
+rule android.net.TcpKeepalivePacketDataParcelable* com.android.connectivity.@0
+rule android.net.dhcp.DhcpLeaseParcelable* com.android.connectivity.@0
+rule android.net.dhcp.DhcpServingParamsParcel* com.android.connectivity.@0
+rule android.net.dhcp.IDhcpEventCallbacks* com.android.connectivity.@0
+rule android.net.dhcp.IDhcpServer* com.android.connectivity.@0
+rule android.net.ip.IIpClient* com.android.connectivity.@0
+rule android.net.ip.IpClientCallbacks* com.android.connectivity.@0
+rule android.net.ip.IpClientManager* com.android.connectivity.@0
+rule android.net.ip.IpClientUtil* com.android.connectivity.@0
+rule android.net.ipmemorystore.** com.android.connectivity.@0
+rule android.net.networkstack.** com.android.connectivity.@0
+rule android.net.shared.** com.android.connectivity.@0
+rule android.net.util.KeepalivePacketDataUtil* com.android.connectivity.@0
+
+# From connectivity-module-utils
+rule android.net.util.InterfaceParams* com.android.connectivity.@0
+rule android.net.util.SharedLog* com.android.connectivity.@0
+rule android.net.shared.** com.android.connectivity.@0
+
+# From services-connectivity-shared-srcs
+rule android.net.util.NetworkConstants* com.android.connectivity.@0
+
+# Remaining are connectivity sources in com.android.server and com.android.server.connectivity:
+# TODO: move to a subpackage of com.android.connectivity (such as com.android.connectivity.server)

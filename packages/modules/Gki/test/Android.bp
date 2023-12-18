@@ -1,0 +1,55 @@
+// Copyright (C) 2020 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// A list of names of test APEXes for GkiInstallTest to instantiate test cases.
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+genrule {
+    name: "gki_install_test_file_list",
+    srcs: [":gki_install_test_files"],
+    out: ["gki_install_test_file_list.txt"],
+    cmd: "for file in $(in); do basename $${file} >> $(out); done",
+}
+
+java_test_host {
+    name: "GkiInstallTest",
+    srcs: [
+        "src/**/*.java",
+        ":gki_install_test_file_list",
+    ],
+    test_suites: [
+        "device-tests",
+    ],
+    libs: [
+        "compatibility-tradefed",
+        "tradefed",
+    ],
+    static_libs: [
+        "cts-host-utils",
+        "hamcrest-library",
+    ],
+    data: [":gki_install_test_files"],
+    java_resources: [":gki_install_test_file_list"],
+}
+
+// Prebuilts
+
+prebuilt_gki_apex {
+    name: "com.android.gki.kmi_5_4_android12_0_test_prebuilt",
+    installable: false,
+    kmi_version: "5.4-android12-0",
+    src: "com.android.gki.kmi_5_4_android12_0_test_prebuilt.apex",
+}

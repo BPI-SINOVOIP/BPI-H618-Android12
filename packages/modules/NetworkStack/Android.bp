@@ -1,0 +1,450 @@
+//
+// Copyright (C) 2018 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+// The network stack can be compiled using system_current (non-finalized) SDK, or finalized system_X
+// SDK. There is also a variant that uses system_current SDK and runs in the system process
+// (InProcessNetworkStack). The following structure is used to create the build rules:
+//
+//                          NetworkStackAndroidLibraryDefaults <-- common defaults for android libs
+//                                            /    \
+//           +NetworkStackApiStableShims --> /      \ <-- +NetworkStackApiCurrentShims
+//           +NetworkStackReleaseApiLevel   /        \    +NetworkStackDevApiLevel
+//           +jarjar apishim.api[latest].* /          \
+//            to apishim.*                /            \
+//                                       /              \
+//                                      /                \
+//                                     /                  \               android libs w/ all code
+//                                    / <- +module src/ -> \              (also used in unit tests)
+//                                   /                      \                        |
+//               NetworkStackApiStableLib               NetworkStackApiCurrentLib <--*
+//                          |                                     |
+//                          | <--   +NetworkStackAppDefaults  --> |
+//                          |          (APK build params)         |
+//                          |                                     |
+//                          | <-- +NetworkStackReleaseApiLevel    | <-- +NetworkStackDevApiLevel
+//                          |                                     |
+//                          |                                     |
+//                NetworkStackApiStable          NetworkStack, InProcessNetworkStack, <-- APKs
+//                                                         TestNetworkStack
+
+// Common defaults to define SDK level
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_defaults {
+    name: "NetworkStackDevApiLevel",
+    min_sdk_version: "29",
+    sdk_version: "system_current",
+}
+
+java_defaults {
+    name: "NetworkStackReleaseApiLevel",
+    sdk_version: "module_31",
+    min_sdk_version: "29",
+    target_sdk_version: "31",
+    libs: [
+        "framework-connectivity",
+        "framework-statsd",
+        "framework-wifi",
+    ]
+}
+
+// Libraries for the API shims
+java_defaults {
+    name: "NetworkStackShimsDefaults",
+    libs: [
+        "androidx.annotation_annotation",
+        "networkstack-client",
+    ],
+    static_libs : [
+        "modules-utils-build_system"
+    ],
+    apex_available: [
+        "com.android.tethering",
+        "//apex_available:platform",  // For InProcessNetworkStack and InProcessTethering
+    ],
+    min_sdk_version: "29",
+}
+
+// Common shim code. This includes the shim interface definitions themselves, and things like
+// ShimUtils and UnsupportedApiLevelException. Compiles against system_current because ShimUtils
+// needs access to all Build.VERSION_CODES.*, which by definition are only in the newest SDK.
+// TODO: consider moving ShimUtils into a library (or removing it in favour of SdkLevel) and compile
+// this target against the lowest-supported SDK (currently 29).
+java_library {
+    name: "NetworkStackShimsCommon",
+    defaults: ["NetworkStackShimsDefaults"],
+    srcs: ["apishim/common/**/*.java"],
+    sdk_version: "system_current",
+    visibility: ["//visibility:private"],
+}
+
+// Each level of the shims (29, 30, ...) is its own java_library compiled against the corresponding
+// system_X SDK. this ensures that each shim can only use SDK classes that exist in its SDK level.
+java_library {
+    name: "NetworkStackApi29Shims",
+    defaults: ["NetworkStackShimsDefaults"],
+    srcs: ["apishim/29/**/*.java"],
+    libs: [
+        "NetworkStackShimsCommon",
+    ],
+    sdk_version: "system_29",
+    visibility: ["//visibility:private"],
+}
+
+java_library {
+    name: "NetworkStackApi30Shims",
+    defaults: ["NetworkStackShimsDefaults"],
+    srcs: [
+        "apishim/30/**/*.java",
+    ],
+    libs: [
+        "NetworkStackShimsCommon",
+        "NetworkStackApi29Shims",
+    ],
+    sdk_version: "system_30",
+    visibility: ["//visibility:private"],
+    lint: {
+        baseline_filename: "lint-baseline-api-30-shims.xml",
+    },
+}
+
+// Shims for APIs being added to the current development version of Android. These APIs are not
+// stable and have no defined version number. These could be called 10000, but they use the next
+// integer so if the next SDK release happens to use that integer, we don't need to rename them.
+java_library {
+    name: "NetworkStackApi31Shims",
+    defaults: ["NetworkStackShimsDefaults"],
+    srcs: [
+        "apishim/31/**/*.java",
+    ],
+    libs: [
+        "NetworkStackShimsCommon",
+        "NetworkStackApi29Shims",
+        "NetworkStackApi30Shims",
+        "framework-connectivity",
+    ],
+    sdk_version: "module_31",
+    visibility: ["//visibility:private"],
+}
+
+
+// Shims for APIs being added to the current development version of Android. These APIs are not
+// stable and have no defined version number. These could be called 10000, but they use the next
+// integer so if the next SDK release happens to use that integer, we don't need to rename them.
+java_library {
+    name: "NetworkStackApi32Shims",
+    defaults: ["NetworkStackShimsDefaults"],
+    srcs: [
+        "apishim/32/**/*.java",
+    ],
+    libs: [
+        "NetworkStackShimsCommon",
+        "NetworkStackApi29Shims",
+        "NetworkStackApi30Shims",
+        "NetworkStackApi31Shims",
+        "framework-connectivity",
+    ],
+    sdk_version: "module_current",
+    visibility: ["//visibility:private"],
+}
+
+// API current uses the API current shims directly.
+// The current (in-progress) shims are in the com.android.networkstack.apishim package and are
+// called directly by the networkstack code.
+java_library {
+    name: "NetworkStackApiCurrentShims",
+    defaults: ["NetworkStackShimsDefaults"],
+    static_libs: [
+        "NetworkStackShimsCommon",
+        "NetworkStackApi29Shims",
+        "NetworkStackApi30Shims",
+        "NetworkStackApi31Shims",
+        "NetworkStackApi32Shims",
+    ],
+    sdk_version: "module_current",
+    visibility: [
+        "//packages/modules/Connectivity/Tethering",
+        "//packages/modules/Connectivity/tests/cts/net",
+    ],
+}
+
+// API stable uses jarjar to rename the latest stable apishim package from
+// com.android.networkstack.apishim.apiXX to com.android.networkstack.apishim, which is called by
+// the networkstack code.
+java_library {
+    name: "NetworkStackApiStableShims",
+    defaults: ["NetworkStackShimsDefaults"],
+    static_libs: [
+        "NetworkStackShimsCommon",
+        "NetworkStackApi29Shims",
+        "NetworkStackApi30Shims",
+        "NetworkStackApi31Shims",
+    ],
+    jarjar_rules: "apishim/jarjar-rules-compat.txt",
+    sdk_version: "module_31",
+    visibility: [
+        "//packages/modules/Connectivity/Tethering",
+        "//packages/modules/Connectivity/tests/cts/net",
+    ],
+}
+
+// Common defaults for android libraries containing network stack code, used to compile variants of
+// the network stack in the system process and in the network_stack process
+java_defaults {
+    name: "NetworkStackAndroidLibraryDefaults",
+    srcs: [
+        ":framework-networkstack-shared-srcs",
+        ":networkstack-module-utils-srcs",
+    ],
+    libs: ["unsupportedappusage"],
+    static_libs: [
+        "androidx.annotation_annotation",
+        "netd_aidl_interface-lateststable-java",
+        "netlink-client",
+        "networkstack-client",
+        "net-utils-framework-common",
+        // See note on statsprotos when adding/updating proto build rules
+        "datastallprotosnano",
+        "statsprotos",
+        "captiveportal-lib",
+        "net-utils-device-common",
+    ],
+    plugins: ["java_api_finder"],
+}
+
+// The versions of the android library containing network stack code compiled for each SDK variant.
+android_library {
+    name: "NetworkStackApiCurrentLib",
+    defaults: ["NetworkStackDevApiLevel", "NetworkStackAndroidLibraryDefaults"],
+    srcs: [
+        "src/**/*.java",
+        ":statslog-networkstack-java-gen-current"
+    ],
+    static_libs: ["NetworkStackApiCurrentShims"],
+    manifest: "AndroidManifestBase.xml",
+    visibility: [
+        "//frameworks/base/tests/net/integration",
+        "//packages/modules/Connectivity/Tethering/tests/integration",
+        "//packages/modules/Connectivity/tests/cts/net",
+        "//packages/modules/NetworkStack/tests/unit",
+        "//packages/modules/NetworkStack/tests/integration",
+    ],
+    lint: {
+        baseline_filename: "lint-baseline-current-lib.xml",
+    },
+}
+
+android_library {
+    name: "NetworkStackApiStableLib",
+    defaults: ["NetworkStackReleaseApiLevel", "NetworkStackAndroidLibraryDefaults"],
+    srcs: [
+        "src/**/*.java",
+        ":statslog-networkstack-java-gen-stable",
+    ],
+    static_libs: ["NetworkStackApiStableShims"],
+    manifest: "AndroidManifestBase.xml",
+    visibility: [
+        "//frameworks/base/packages/Connectivity/tests/integration",
+        "//frameworks/base/tests/net/integration",
+        "//packages/modules/Connectivity/Tethering/tests/integration",
+        "//packages/modules/Connectivity/tests/cts/net",
+        "//packages/modules/Connectivity/tests/integration",
+        "//packages/modules/NetworkStack/tests/unit",
+        "//packages/modules/NetworkStack/tests/integration",
+    ],
+    lint: {
+        baseline_filename: "lint-baseline-stable-lib.xml",
+    },
+}
+
+filegroup {
+    name: "NetworkStackJarJarRules",
+    srcs: ["jarjar-rules-shared.txt"],
+    visibility: [
+        "//packages/modules/NetworkStack/tests/unit",
+        "//packages/modules/NetworkStack/tests/integration",
+        "//packages/modules/Connectivity/Tethering/tests/integration",
+    ]
+}
+
+// Common defaults for compiling the actual APK, based on the NetworkStackApiXBase android libraries
+java_defaults {
+    name: "NetworkStackAppDefaults",
+    privileged: true,
+    jni_libs: [
+        "libnativehelper_compat_libc++",
+        "libnetworkstackutilsjni",
+    ],
+    // Resources already included in NetworkStackBase
+    resource_dirs: [],
+    jarjar_rules: ":NetworkStackJarJarRules",
+    use_embedded_native_libs: true,
+    optimize: {
+        proguard_flags_files: ["proguard.flags"],
+    },
+}
+
+// Non-updatable network stack running in the system server process for devices not using the module
+android_app {
+    name: "InProcessNetworkStack",
+    defaults: [ "NetworkStackAppDefaults", "NetworkStackDevApiLevel"],
+    static_libs: ["NetworkStackApiCurrentLib"],
+    certificate: "platform",
+    manifest: "AndroidManifest_InProcess.xml",
+    // InProcessNetworkStack is a replacement for NetworkStack
+    overrides: ["NetworkStack", "NetworkStackNext"],
+    // The permission configuration *must* be included to ensure security of the device
+    // The InProcessNetworkStack goes together with the PlatformCaptivePortalLogin, which replaces
+    // the default CaptivePortalLogin.
+    required: [
+        "PlatformNetworkPermissionConfig",
+        "PlatformCaptivePortalLogin",
+    ],
+}
+
+// Pre-merge the AndroidManifest for NetworkStackNext, so that its manifest can be merged on top
+android_library {
+    name: "NetworkStackNextManifestBase",
+    defaults: ["NetworkStackAppDefaults", "NetworkStackDevApiLevel"],
+    static_libs: ["NetworkStackApiCurrentLib"],
+    manifest: "AndroidManifest.xml"
+}
+
+// NetworkStack build targeting the current API release, for testing on in-development SDK
+android_app {
+    name: "NetworkStackNext",
+    defaults: ["NetworkStackAppDefaults", "NetworkStackDevApiLevel"],
+    static_libs: ["NetworkStackNextManifestBase"],
+    certificate: "networkstack",
+    manifest: "AndroidManifest_Next.xml",
+    // The permission configuration *must* be included to ensure security of the device
+    required: [
+        "NetworkPermissionConfig",
+        "privapp_whitelist_com.android.networkstack",
+    ],
+}
+
+// Updatable network stack for finalized API
+android_app {
+    name: "NetworkStack",
+    defaults: ["NetworkStackAppDefaults", "NetworkStackReleaseApiLevel"],
+    static_libs: ["NetworkStackApiStableLib"],
+    certificate: "networkstack",
+    manifest: "AndroidManifest.xml",
+    // The permission configuration *must* be included to ensure security of the device
+    required: [
+        "NetworkPermissionConfig",
+        "privapp_whitelist_com.android.networkstack",
+    ],
+    updatable: true,
+}
+
+cc_library_shared {
+    name: "libnetworkstackutilsjni",
+    srcs: [
+        "jni/network_stack_utils_jni.cpp"
+    ],
+    sdk_version: "29",
+    min_sdk_version: "29",
+    shared_libs: [
+        "liblog",
+        "libnativehelper_compat_libc++",
+    ],
+    static_libs: [
+        "libnetjniutils",
+    ],
+
+    // We cannot use plain "libc++" here to link libc++ dynamically because it results in:
+    //   java.lang.UnsatisfiedLinkError: dlopen failed: library "libc++_shared.so" not found
+    // even if "libc++" is added into jni_libs below. Adding "libc++_shared" into jni_libs doesn't
+    // build because soong complains of:
+    //   module NetworkStack missing dependencies: libc++_shared
+    //
+    // So, link libc++ statically. This means that we also need to ensure that all the C++ libraries
+    // we depend on do not dynamically link libc++. This is currently the case, because liblog is
+    // C-only and libnativehelper_compat_libc also uses stl: "c++_static".
+    //
+    // TODO: find a better solution for this in R.
+    stl: "c++_static",
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-unused-parameter",
+    ],
+}
+
+genrule {
+    name: "statslog-networkstack-java-gen-current",
+    tools: ["stats-log-api-gen"],
+    cmd: "$(location stats-log-api-gen) --java $(out) --module network_stack" +
+         " --javaPackage com.android.networkstack.metrics --javaClass NetworkStackStatsLog" +
+         " --minApiLevel 29",
+    out: ["com/android/networkstack/metrics/NetworkStackStatsLog.java"],
+}
+
+genrule {
+    name: "statslog-networkstack-java-gen-stable",
+    tools: ["stats-log-api-gen"],
+    cmd: "$(location stats-log-api-gen) --java $(out) --module network_stack" +
+         " --javaPackage com.android.networkstack.metrics --javaClass NetworkStackStatsLog" +
+         " --minApiLevel 29 --compileApiLevel 30",
+    out: ["com/android/networkstack/metrics/NetworkStackStatsLog.java"],
+}
+
+
+version_code_networkstack_next = "300000000"
+version_code_networkstack_test = "999999999"
+
+genrule {
+    name: "NetworkStackTestAndroidManifest",
+    srcs: ["AndroidManifest.xml"],
+    out: ["TestAndroidManifest.xml"],
+    cmd: "sed -E 's/versionCode=\"[0-9]+\"/versionCode=\""
+        + version_code_networkstack_test
+        + "\"/' $(in) > $(out)",
+    visibility: ["//visibility:private"],
+}
+
+android_app {
+    name: "TestNetworkStack",
+    defaults: ["NetworkStackAppDefaults", "NetworkStackReleaseApiLevel"],
+    static_libs: ["NetworkStackApiStableLib"],
+    certificate: "networkstack",
+    manifest: ":NetworkStackTestAndroidManifest",
+    // The permission configuration *must* be included to ensure security of the device
+    required: [
+        "NetworkPermissionConfig",
+        "privapp_whitelist_com.android.networkstack",
+    ],
+}
+
+// When adding or modifying protos, the jarjar rules and possibly proguard rules need
+// to be updated: proto libraries may pull additional static libraries.
+java_library_static {
+    name: "statsprotos",
+    proto: {
+        type: "lite",
+    },
+    srcs: [
+        "src/com/android/networkstack/metrics/stats.proto",
+    ],
+    static_libs: [
+        "networkstackprotos",
+    ],
+    defaults: ["NetworkStackReleaseApiLevel"],
+}

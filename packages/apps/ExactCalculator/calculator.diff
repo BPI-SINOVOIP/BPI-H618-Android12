@@ -1,0 +1,147 @@
+commit 4f461e76f27e4e57d8cec0fa408c9f335626b9cf
+Author: zengshuchuan <zengshuchuan@allwinnertech.com>
+Date:   Fri Dec 22 15:34:45 2017 +0800
+
+    support start test apk
+    
+    1.add function of open dragonfire
+    2.add permission to write external storage
+    3.change signature to platform
+    
+    Change-Id: I32bbdedcbe2f09dbe1f6aaf868871432fcbdea3b
+
+diff --git a/Android.mk b/Android.mk
+index 5b92157..6433d21 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -33,6 +33,8 @@ LOCAL_SDK_VERSION := current
+ LOCAL_PACKAGE_NAME := ExactCalculator
+ LOCAL_OVERRIDES_PACKAGES := Calculator
+ 
++LOCAL_CERTIFICATE := platform
++
+ LOCAL_SRC_FILES := $(call all-java-files-under, src)
+ 
+ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index a7675b1..72e1a9e 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -18,6 +18,8 @@
+ <manifest
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.android.calculator2">
++    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
++    <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE"/>
+ 
+     <application
+         android:allowBackup="false"
+diff --git a/src/com/android/calculator2/Calculator.java b/src/com/android/calculator2/Calculator.java
+index b3d79eb..080f493 100644
+--- a/src/com/android/calculator2/Calculator.java
++++ b/src/com/android/calculator2/Calculator.java
+@@ -868,6 +868,13 @@ public class Calculator extends Activity
+                     evaluateInstantIfNecessary();
+                 }
+                 return;
++            case R.id.op_add:
++                //when sd card exist "custom_cases.xml", open test mode, check if Calculator's display TEST_MODE_KEY, then startup DragonFire application.
++                String str = mFormulaText.getText().toString();
++                if (TestModeManager.start(view.getContext(), str)) {
++                    onClear();
++                    break;
++                }
+             default:
+                 cancelIfEvaluating(false);
+                 if (haveUnprocessed()) {
+diff --git a/src/com/android/calculator2/TestModeManager.java b/src/com/android/calculator2/TestModeManager.java
+new file mode 100755
+index 0000000..ff7bc17
+--- /dev/null
++++ b/src/com/android/calculator2/TestModeManager.java
+@@ -0,0 +1,85 @@
++package com.android.calculator2;
++
++import java.io.File;
++
++import android.content.ComponentName;
++import android.content.Context;
++import android.content.Intent;
++import android.util.Log;
++
++public class TestModeManager {
++    private final static boolean debug = true;
++    private final static String TAG = "TestModeManager";
++    public final static String TEST_MODE_KEY = "33+";
++    public final static String TEST_MODE_CONFIG = "23+";
++    private final static String FLAG_INNER = "/system/etc/custom_cases.xml";
++    private final static String FLAG_SDCARD = "/mnt/sdcard/DragonFire/custom_cases.xml";
++    private final static String FLAG_AGING_SDCARD = "/mnt/sdcard/DragonFire/custom_cases_aging.xml";
++    private final static String FLAG_SDCARD_CONFIG = "/mnt/sdcard/DragonFire/";
++
++    public static boolean start(Context context, String inputKey) {
++        if (inputKey.equals(TEST_MODE_CONFIG)) {
++            return checkAndStartConfig(context);
++        } else if (inputKey.equals(TEST_MODE_KEY)) {
++            return checkAndStart(context);
++        }
++        return false;
++    }
++
++    private static boolean checkAndStart(Context context) {
++        if (debug) Log.d(TAG, "checkAndStart");
++        boolean b = false;
++        File file = findDragonFire("/storage", "DragonFire/custom_cases.xml");
++        File agingfile = findDragonFire("/storage", "DragonFire/custom_cases_aging.xml");
++        if (file != null || agingfile != null || new File(FLAG_SDCARD).exists() || new File(FLAG_AGING_SDCARD).exists() || new File(FLAG_INNER).exists()) {
++            if (debug) Log.d(TAG, "starting test");
++            Intent i = new Intent();
++            ComponentName component = new ComponentName(
++                    "com.softwinner.dragonfire",
++                    "com.softwinner.dragonfire.SplashScreen_test");
++
++            i.setComponent(component);
++            try {
++                if (debug) Log.d(TAG, "start dragonfire test");
++                context.startActivity(i);
++                b = true;
++            } catch (Exception e) {
++            }
++        }
++        return b;
++    }
++
++    private static boolean checkAndStartConfig(Context context) {
++        if (debug) Log.d(TAG, "checkAndStartConfig");
++        boolean b = false;
++        File file = findDragonFire("/storage", "DragonFire");
++        if (file != null || new File(FLAG_SDCARD_CONFIG).exists() || new File(FLAG_INNER).exists()) {
++            if (debug) Log.d(TAG, "starting test config");
++            Intent i = new Intent();
++            ComponentName component = new ComponentName(
++                    "com.softwinner.dragonfire",
++                    "com.softwinner.dragonfire.SplashScreen_configuration");
++            i.setComponent(component);
++            try {
++                context.startActivity(i);
++                b = true;
++            } catch (Exception e) {
++            }
++        }
++        return b;
++    }
++
++    private static File findDragonFire(String dir, String path) {
++        File file = new File(dir);
++        File list[] = file.listFiles();
++        for (File f : list) {
++            if (f.isDirectory()) {
++                File dfFile = new File(f, path);
++                if (dfFile.exists())
++                    return dfFile;
++            }
++        }
++        return null;
++    }
++}
++
