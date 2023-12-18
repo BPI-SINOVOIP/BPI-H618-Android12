@@ -1,0 +1,5 @@
+cc_library_static {
+    name: "libcdx_videoResize_stream",
+    defaults: ["libcdx_stream_defaults"],
+    srcs: ["CdxVideoResizeStream.c"],
+}

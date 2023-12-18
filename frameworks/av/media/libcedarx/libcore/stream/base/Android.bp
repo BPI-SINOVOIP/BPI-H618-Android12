@@ -1,0 +1,50 @@
+cc_library_shared {
+    name: "libcdx_stream",
+
+    defaults: ["libcdx_config_defaults"],
+
+    srcs: ["CdxStream.c"],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/libcore/base/include",
+        "frameworks/av/media/libcedarx/libcore/stream/include",
+        "frameworks/av/media/libcedarx",
+    ],
+
+    cflags: ["-Wno-psabi"],
+
+    shared_libs: [
+        "libdl",
+        "libutils",
+        "libcutils",
+        "libcrypto",
+        "libcdx_base",
+        "libssl",
+        "liblive555",
+        "libz",
+        "libcdx_common",
+        "liblog",
+    ],
+
+    whole_static_libs: [
+        "libcdx_rtmp_stream",
+        "libcdx_mms_stream",
+    ],
+
+    static_libs: [
+        "libcdx_rtsp_stream",
+        "libcdx_file_stream",
+        "libcdx_tcp_stream",
+        "libcdx_http_stream",
+        "libcdx_udp_stream",
+        "libcdx_customer_stream",
+        "libcdx_ssl_stream",
+        "libcdx_aes_stream",
+        "libcdx_bdmv_stream",
+        "libcdx_widevine_stream",
+        "libcdx_videoResize_stream",
+        "libcdx_datasource_stream",
+        "libcdx_dtmb_stream",
+    ],
+
+}

@@ -1,0 +1,56 @@
+cc_library_shared {
+    name: "libOmxVdec",
+
+    defaults: [
+        "libcdc_config_defaults",
+    ],
+    proprietary: true,
+    srcs: [
+        "src/omx_vdec.c",
+        "src/omx_vdec_port.c",
+        "src/omx_vdec_aw_decoder_android.cpp",
+        "looper/omx_thread.c",
+        "looper/omx_mutex.c",
+        "looper/omx_sem.c",
+        "src/omx_deinterlace.cpp",
+    ],
+
+    include_dirs: [
+        "frameworks/native/include/",
+        "frameworks/native/include/media/hardware",
+        "hardware/libhardware/include/hardware/",
+        "hardware/aw/gpu/include",
+        "hardware/aw/gpu",
+        "frameworks/av/media/libstagefright/foundation/include",
+        "frameworks/native/libs/nativebase/include",
+        "frameworks/native/libs/nativewindow/include",
+        "frameworks/native/libs/arect/include",
+    ],
+    local_include_dirs: [
+        "inc",
+        "looper/",
+    ],
+
+    header_libs: [
+        "libcedarc_headers",
+        "libawopenmax_headers",
+        "libawomx_headers",
+        "libomxcore_headers",
+    ],
+    //cflags : ["-DCONF_OMX_USE_COPY_STRATEGY"],
+
+    shared_libs: [
+        "libvdecoder",
+        "libVE",
+        "libvideoengine",
+        "libMemAdapter",
+        "libcdc_base",
+        "liblog",
+        "libcutils",
+        "libutils",
+        "libbinder",
+        "libui",
+        "libdl",
+        "libion",
+    ],
+}

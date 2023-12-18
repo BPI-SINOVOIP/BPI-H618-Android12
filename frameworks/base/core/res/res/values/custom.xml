@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- support the mouse mode -->
+    <string name="enter_key_mouse_mode">enter the mouse mode</string>
+    <string name="exit_key_mouse_mode">exit the mouse mode</string>
+    <string name="title_key_mouse_mode">mouse mode</string>
+    <string name="detail_key_mouse_mode">Now is the mouse mode</string>
+    <!-- message for audio -->
+    <string name="usb_audio_out_plug_in_title">USB AV-out device plug in</string>
+    <string name="usb_audio_plug_in_message">Switch to USB audio channel</string>
+    <string name="usb_audio_plug_out_message">Change to default channel</string>
+    <string name="usb_audio_out_plug_out_title">USB AV-out device plug out</string>
+    <string name="usb_audio_in_plug_in_title">USB AV-in device plug in</string>
+    <string name="usb_audio_in_plug_out_title">USB AV-in device plug out</string>
+    <string name="headphone_plug_in_title">HeadPhone plug in</string>
+    <string name="headphone_plug_out_title">HeadPhone plug out</string>
+    <string name="headphone_plug_in_message">Switch to HeadPhone</string>
+    <string name="headphone_plug_out_message">Change to default channel</string>
+    <string name="usb_output_title">Choose USB Audio Device</string>
+    <string name="usb_output_message">USB Audio Out Device Has Plug in, Would You Please Choose or Not，\nafter %1$s second(s) will change to USB Audio Device</string>
+    <string name="usb_yes">Yes</string>
+    <string name="usb_no">No</string>
+    <!-- Control whether the normal led flick when ir input.
+            0 - both not flick.
+            1 - standby led flick , normal led not flick.
+            2 - normal led flick , standby led flick.
+            3 - both flick.
+    -->
+    <integer name="config_ledNormalFlicker">1</integer>
+
+    <!-- Control whether all led off when standby.
+            false - not all led off, the standby led on.
+            true - all led off.
+    -->
+    <bool name="config_ledStandbyAllOff">false</bool>
+
+    <!-- Control whether all led off when shutdown.
+            false - not all led off, the standby led on.
+            true -  all led off.
+    -->
+    <bool name="config_ledShutdownAllOff">false</bool>
+
+    <bool name="config_shutdownForceScreenOff">false</bool>
+
+    <!-- Control gpio write low level or high level when the led on
+            false - led on when input high level
+            true - led on when input low level
+    -->
+    <bool name="config_ledBrightInLowLevel">false</bool>
+</resources>

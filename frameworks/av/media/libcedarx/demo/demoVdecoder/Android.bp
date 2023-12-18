@@ -1,0 +1,40 @@
+cc_binary {
+    name: "demoVdecoder",
+    defaults: ["libcdx_config_defaults"],
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+    srcs: [
+        "demoVdecoder.c"
+    ],
+    include_dirs: [
+        "frameworks/av",
+        "frameworks/av/media/libcedarx",
+        "frameworks/av/media/libcedarx/libcore/base/include",
+        "frameworks/av/media/libcedarx/libcore/parser/include",
+        "frameworks/av/media/libcedarx/libcore/stream/include",
+        "frameworks/av/media/libcedarx/libcore/common/iniparser",
+        "frameworks/av/media/libcedarx/external/include/adecoder",
+        "frameworks/av/media/libcedarx/external/include",
+    ],
+    header_libs: [
+        "libcedarc_headers",
+    ],
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libvdecoder",
+        "libcdx_base",
+        "libcdx_stream",
+        "libcdx_parser",
+        "libVE",
+        "libMemAdapter",
+        "libcdx_common",
+        "libcrypto",
+    ],
+    cflags: ["-Werror"],
+}

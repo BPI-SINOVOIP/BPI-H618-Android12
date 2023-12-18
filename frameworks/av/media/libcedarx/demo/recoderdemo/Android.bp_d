@@ -1,0 +1,48 @@
+cc_binary {
+    name: "recorderdemo",
+
+    defaults: ["libcdx_config_defaults"],
+
+    srcs:[
+            "recoderdemo.c",
+            "CdxIon.c",
+            "RecoderWriter.c",
+        ],
+
+    include_dirs: [
+        "frameworks/av/",
+        "frameworks/av/include/",
+        "frameworks/native/include/",
+        "frameworks/av/media/libcedarx",
+        "frameworks/av/media/libcedarx/demo/recoderdemo",
+        "frameworks/av/media/libcedarx/awrecorder/",
+        "frameworks/av/media/libcedarx/libcore/base/",
+        "frameworks/av/media/libcedarx/libcore/base/include/",
+        "frameworks/av/media/libcedarx/libcore/muxer/include/",
+        "frameworks/av/media/libcedarx/external/include/aencoder/",
+        "frameworks/av/media/libcedarx/external/include/",
+    ],
+
+    header_libs: [
+        "libcedarc_headers",
+    ],
+
+    shared_libs: [
+        "libvencoder",
+        "libvenc_base",
+        "libcdx_muxer",
+        "libawrecorder",
+        "libVE",
+        "libMemAdapter",
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libcdc_base",
+        "libcdx_base",
+        "libcdx_common",
+        "libcrypto",
+    ],
+
+    compile_multilib: "32",
+
+}

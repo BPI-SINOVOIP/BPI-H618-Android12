@@ -1,0 +1,104 @@
+package {
+    default_applicable_licenses: [
+        "frameworks_av_media_libstagefright_mpeg2ts_license",
+    ],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "frameworks_av_media_libstagefright_mpeg2ts_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+cc_defaults {
+    name: "libstagefright_mpeg2support_defaults",
+
+    srcs: [
+        "AnotherPacketSource.cpp",
+        "ATSParser.cpp",
+        "CasManager.cpp",
+        "ESQueue.cpp",
+    ],
+
+    include_dirs: [
+        "frameworks/av/media/libstagefright",
+        "frameworks/native/include/media/openmax",
+    ],
+
+    cflags: [
+        "-Werror",
+        "-Wall",
+    ],
+
+    sanitize: {
+        misc_undefined: [
+            "unsigned-integer-overflow",
+            "signed-integer-overflow",
+        ],
+        cfi: true,
+    },
+
+    shared_libs: [
+        "libhidlmemory",
+        "android.hardware.cas.native@1.0",
+        "android.hidl.memory@1.0",
+        "android.hidl.allocator@1.0",
+    ],
+
+    header_libs: [
+        "libmedia_datasource_headers",
+        "libaudioclient_headers",
+        "media_ndk_headers",
+        "libstagefright_foundation_headers",
+    ],
+
+    export_include_dirs: ["."],
+
+    whole_static_libs: [
+        "libstagefright_metadatautils",
+    ],
+
+    min_sdk_version: "29",
+
+    host_supported: true,
+
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+}
+
+
+cc_library_static {
+    name: "libstagefright_mpeg2support",
+    defaults: [
+        "libstagefright_mpeg2support_defaults",
+    ],
+    cflags: [
+        "-DENABLE_CRYPTO",
+    ],
+    shared_libs: [
+        "libcrypto",
+    ],
+    srcs: [
+        "HlsSampleDecryptor.cpp",
+    ],
+}
+
+cc_library_static {
+    name: "libstagefright_mpeg2support_nocrypto",
+    defaults: [
+        "libstagefright_mpeg2support_defaults",
+    ],
+    apex_available: [
+        "com.android.media",
+    ],
+}

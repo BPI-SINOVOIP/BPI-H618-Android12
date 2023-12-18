@@ -1,0 +1,19 @@
+cc_library_static {
+    name: "libcdx_mpg_parser",
+
+    srcs: [
+         "CdxMpgParser.c",
+         "dvdTitleIfo.c",
+         "mpgTime.c",
+         "CdxMpgParserImpl.c",
+         "mpgOpen.c",
+         "statusChange.c",
+         "mpgRead.c",
+    ],
+
+    shared_libs: ["libz"],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

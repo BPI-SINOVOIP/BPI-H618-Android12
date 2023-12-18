@@ -1,0 +1,20 @@
+cc_library_static {
+    name: "libcdx_rtsp_stream",
+
+    defaults: ["libcdx_stream_defaults"],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/external/include/adecoder",
+        "frameworks/av/media/libcedarx/external/include/live",
+        "frameworks/av/media/libcedarx/libcore/parser/include",
+        "frameworks/av/media/libcedarx/libcore/base/include",
+    ],
+
+    header_libs: [
+        "libcedarc_headers",
+    ],
+
+    srcs: [
+        "CdxRtspStream.cpp",
+    ],
+}

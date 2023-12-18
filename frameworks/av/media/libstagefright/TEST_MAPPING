@@ -1,0 +1,47 @@
+{
+  // tests which require dynamic content
+  // invoke with: atest -- --enable-module-dynamic-download=true
+  // TODO(b/148094059): unit tests not allowed to download content
+  "dynamic-presubmit": [
+    // writerTest fails about 5 out of 66
+    // { "name": "writerTest" },
+
+    { "name": "HEVCUtilsUnitTest" },
+    { "name": "ExtractorFactoryTest" }
+
+  ],
+
+  "presubmit-large": [
+    {
+      "name": "CtsMediaTestCases",
+      "options": [
+        {
+          "include-annotation": "android.platform.test.annotations.Presubmit"
+        },
+        {
+          "exclude-annotation": "android.platform.test.annotations.RequiresDevice"
+        },
+        // TODO: b/149314419
+        {
+          "exclude-filter": "android.media.cts.AudioPlaybackCaptureTest"
+        },
+        {
+          "exclude-filter": "android.media.cts.AudioRecordTest"
+        }
+      ]
+    }
+  ],
+  "presubmit": [
+    {
+      "name": "mediacodecTest"
+    },
+    {
+      "name": "CtsMediaTranscodingTestCases"
+    }
+  ],
+  "postsubmit": [
+    {
+       "name": "BatteryChecker_test"
+    }
+  ]
+}

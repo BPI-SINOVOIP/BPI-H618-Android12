@@ -1,0 +1,15 @@
+cc_library_static {
+    name: "libcdx_ogg_parser",
+
+    srcs: [
+         "CdxOggParser.c",
+         "oggCore.c",
+         "oggparseogm.c",
+         "oggparsevorbis.c",
+         "oggparseopus.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

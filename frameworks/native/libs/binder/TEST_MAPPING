@@ -1,0 +1,78 @@
+{
+  "presubmit": [
+    {
+      "name": "binderSafeInterfaceTest"
+    },
+    {
+      "name": "binderVendorDoubleLoadTest"
+    },
+    {
+      "name": "binderAllocationLimits"
+    },
+    {
+      "name": "binderClearBufTest"
+    },
+    {
+      "name": "binderDriverInterfaceTest"
+    },
+    {
+      "name": "binderTextOutputTest"
+    },
+    {
+      "name": "binderParcelTest"
+    },
+    {
+      "name": "binderLibTest"
+    },
+    {
+      "name": "binderRpcTest"
+    },
+    {
+      "name": "binderStabilityTest"
+    },
+    {
+      "name": "libbinder_ndk_unit_test"
+    },
+    {
+      "name": "CtsNdkBinderTestCases"
+    },
+    {
+      "name": "aidl_lazy_test"
+    },
+    {
+      "name": "aidl_integration_test"
+    },
+    {
+      "name": "memunreachable_binder_test"
+    },
+    {
+      "name": "libbinderthreadstateutils_test"
+    },
+    {
+      "name": "CtsOsTestCases",
+      "options": [
+        {
+          "exclude-annotation": "android.platform.test.annotations.LargeTest"
+        },
+        {
+          "exclude-filter": "android.os.cts.BuildTest#testSdkInt"
+        },
+        {
+          "exclude-filter": "android.os.cts.StrictModeTest#testNonSdkApiUsage"
+        }
+      ]
+    },
+    {
+      "name": "libbinder_rs-internal_test"
+    },
+    {
+      "name": "rustBinderTest"
+    },
+    {
+      "name": "binderRustNdkInteropTest"
+    },
+    {
+      "name": "rustBinderSerializationTest"
+    }
+  ]
+}

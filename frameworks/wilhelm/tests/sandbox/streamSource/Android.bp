@@ -1,0 +1,20 @@
+// slesTest_playStream
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_test {
+    name: "slesTest_playStream",
+    gtest: false,
+
+    srcs: ["slesTestPlayStream.cpp"],
+
+    shared_libs: ["libOpenSLES"],
+
+    cflags: [
+        "-Werror",
+        "-Wall",
+        "-Wno-deprecated-declarations",
+    ],
+}

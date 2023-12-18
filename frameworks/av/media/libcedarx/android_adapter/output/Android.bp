@@ -1,0 +1,72 @@
+cc_library_shared {
+    name: "libaw_output",
+
+    defaults: ["libcdx_parser_defaults"],
+
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+    srcs: [
+        "soundControl.cpp",
+        "layerControl.cpp",
+        "subtitleControl.cpp",
+        "deinterlace.cpp",
+        "VideoFrameScheduler.cpp",
+        "VideoFrameSchedulerWrap.cpp",
+    ],
+
+    //############ the interface of skia changed in AndroidN,
+    //############ we do not support native render for subtitle
+
+    include_dirs: [
+        "frameworks/av/",
+        "frameworks/av/include/",
+        "frameworks/native/include/android",
+        "frameworks/av/media/libmediametrics/include", //For R
+        "frameworks/av/media/libcedarx/libcore/common/iniparser",
+        "frameworks/av/media/libcedarx/libcore/parser/include/",
+        "frameworks/av/media/libcedarx/android_adapter/awplayer",
+        "frameworks/av/media/libcedarx/android_adapter/output",
+        "frameworks/av/media/libcedarx/libcore/playback/include",
+        "frameworks/av/media/libcedarx/xplayer/include",
+        "hardware/aw/gpu/include",
+        "hardware/aw/gpu",
+        "external/skia/include/core",
+        "external/skia/include/effects",
+        "external/skia/src/ports",
+        "external/skia/src/core",
+        "external/skia/include/utils",
+        //"external/icu/libandroidicu/include",//not for R
+    ],
+
+    cflags: ["-Wno-unused-parameter"],
+
+    //LOCAL_CFLAGS += -Wno-error=unused-function
+
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "liblog",
+        "libbinder",
+        "libmedia",
+        "libui",
+        "libgui",
+        "libion",
+        "libcdx_playback",
+        "libcdx_parser",
+        "libcdx_stream",
+        "libcdx_base",
+        "libandroidicu",
+        "libMemAdapter",
+        "libcdc_base",
+        "libxplayer",
+        "libcdx_common",
+    ] + ["libaudioclient"],
+
+    header_libs: [
+        "libcedarc_headers",
+    ],
+}

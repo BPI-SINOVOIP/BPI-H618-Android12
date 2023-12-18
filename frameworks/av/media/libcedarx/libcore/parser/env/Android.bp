@@ -1,0 +1,9 @@
+cc_library_static {
+    name: "libaw_env",
+    defaults: ["libcdx_parser_defaults"],
+    srcs: ["EnvParserItf.c"],
+    include_dirs: [
+        "frameworks/av/media/libcedarx/libcore/parser/asf",
+    ],
+    cflags: ["-DBOARD_USE_PLAYREADY=0"],
+}

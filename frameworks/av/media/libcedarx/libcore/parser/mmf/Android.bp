@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_mmf_parser",
+
+    srcs: [
+         "CdxMmfParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

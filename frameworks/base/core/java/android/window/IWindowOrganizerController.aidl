@@ -1,0 +1,85 @@
+/**
+ * Copyright (c) 2020, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package android.window;
+
+import android.view.SurfaceControl;
+
+import android.os.IBinder;
+import android.window.IDisplayAreaOrganizerController;
+import android.window.ITaskOrganizerController;
+import android.window.ITransitionPlayer;
+import android.window.IWindowContainerTransactionCallback;
+import android.window.WindowContainerToken;
+import android.window.WindowContainerTransaction;
+
+/** @hide */
+interface IWindowOrganizerController {
+
+    /**
+     * Apply multiple WindowContainer operations at once.
+     * @param t The transaction to apply.
+     */
+    void applyTransaction(in WindowContainerTransaction t);
+
+    /**
+     * Apply multiple WindowContainer operations at once.
+     * @param t The transaction to apply.
+     * @param callback This transaction will use the synchronization scheme described in
+     *        BLASTSyncEngine.java. The SurfaceControl transaction containing the effects of this
+     *        WindowContainer transaction will be passed to this callback when ready.
+     * @return An ID for the sync operation which will later be passed to transactionReady callback.
+     *         This lets the caller differentiate overlapping sync operations.
+     */
+    int applySyncTransaction(in WindowContainerTransaction t,
+            in IWindowContainerTransactionCallback callback);
+
+    /**
+     * Starts a transition.
+     * @param type The transition type.
+     * @param transitionToken A token associated with the transition to start. If null, a new
+     *                        transition will be created of the provided type.
+     * @param t Operations that are part of the transition.
+     * @return a token representing the transition. This will just be transitionToken if it was
+     *         non-null.
+     */
+    IBinder startTransition(int type, in @nullable IBinder transitionToken,
+            in @nullable WindowContainerTransaction t);
+
+    /**
+     * Finishes a transition. This must be called for all created transitions.
+     * @param transitionToken Which transition to finish
+     * @param t Changes to make before finishing but in the same SF Transaction. Can be null.
+     * @param callback Called when t is finished applying.
+     * @return An ID for the sync operation (see {@link #applySyncTransaction}. This will be
+     *         negative if no sync transaction was attached (null t or callback)
+     */
+    int finishTransition(in IBinder transitionToken,
+            in @nullable WindowContainerTransaction t,
+            in IWindowContainerTransactionCallback callback);
+
+    /** @return An interface enabling the management of task organizers. */
+    ITaskOrganizerController getTaskOrganizerController();
+
+    /** @return An interface enabling the management of display area organizers. */
+    IDisplayAreaOrganizerController getDisplayAreaOrganizerController();
+
+    /**
+     * Registers a transition player with Core. There is only one of these at a time and calling
+     * this will replace the existing one if set.
+     */
+    void registerTransitionPlayer(in ITransitionPlayer player);
+}

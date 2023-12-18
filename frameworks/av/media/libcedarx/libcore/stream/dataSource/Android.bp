@@ -1,0 +1,7 @@
+cc_library_static {
+    name: "libcdx_datasource_stream",
+
+    defaults: ["libcdx_stream_defaults"],
+
+    srcs: ["dataSourceStream.c"],
+}

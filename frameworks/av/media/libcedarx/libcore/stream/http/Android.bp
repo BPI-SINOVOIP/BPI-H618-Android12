@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_http_stream",
+
+    defaults: ["libcdx_stream_defaults"],
+
+    srcs: [
+        "CdxHttpField.c",
+        "CdxHttpStream.c",
+        "CdxHttpUtils.c",
+    ],
+}

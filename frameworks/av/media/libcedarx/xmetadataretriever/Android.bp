@@ -1,0 +1,37 @@
+cc_library_shared {
+    name: "libxmetadata_retriever",
+
+    defaults: ["libcdx_parser_defaults"],
+
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+    srcs: ["xmetadataretriever.c"],
+
+    include_dirs: [
+        "frameworks/av/",
+        "frameworks/av/include/",
+        "frameworks/native/include/",
+        "frameworks/av/media/libcedarx/libcore/common/iniparser",
+        "frameworks/av/media/libcedarx/xplayer/include/",
+        "frameworks/av/media/libcedarx/xmetadataretriever/include/",
+    ],
+    header_libs: [
+        "libcedarc_headers",
+    ],
+    shared_libs: [
+        "libcutils",
+        "liblog",
+        "libcdx_parser",
+        "libcdx_stream",
+        "libMemAdapter",
+        "libvdecoder",
+        "libvencoder",
+        "libcdx_base",
+        "libcdx_common",
+    ],
+
+}

@@ -1,0 +1,9 @@
+cc_library_static {
+    name: "libcdx_awrawstream_parser",
+
+    srcs: ["AwRawStreamParser.c"],
+
+    defaults: [
+        "libcdx_parser_defaults"
+    ],
+}

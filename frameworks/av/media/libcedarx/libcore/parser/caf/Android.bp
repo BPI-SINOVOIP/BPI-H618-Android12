@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_caf_parser",
+
+    srcs: [
+         "CdxCafParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

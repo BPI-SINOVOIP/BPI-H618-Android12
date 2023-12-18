@@ -1,0 +1,112 @@
+
+
+package {
+    default_applicable_licenses: [
+        "frameworks_av_services_audioflinger_license",
+    ],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "frameworks_av_services_audioflinger_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+cc_library_shared {
+    name: "libaudioflinger",
+
+    srcs: [
+        "AudioFlinger.cpp",
+        "AudioHwDevice.cpp",
+        "AudioStreamOut.cpp",
+        "AudioWatchdog.cpp",
+        "BufLog.cpp",
+        "DeviceEffectManager.cpp",
+        "Effects.cpp",
+        "FastCapture.cpp",
+        "FastCaptureDumpState.cpp",
+        "FastCaptureState.cpp",
+        "FastMixer.cpp",
+        "FastMixerDumpState.cpp",
+        "FastMixerState.cpp",
+        "FastThread.cpp",
+        "FastThreadDumpState.cpp",
+        "FastThreadState.cpp",
+        "NBAIO_Tee.cpp",
+        "PatchPanel.cpp",
+        "SpdifStreamOut.cpp",
+        "StateQueue.cpp",
+        "Threads.cpp",
+        "Tracks.cpp",
+        "TypedLogger.cpp",
+    ],
+
+    include_dirs: [
+        "frameworks/av/services/audiopolicy",
+        "frameworks/av/services/medialog",
+    ],
+
+    shared_libs: [
+        "audioflinger-aidl-cpp",
+        "audioclient-types-aidl-cpp",
+        "av-types-aidl-cpp",
+        "effect-aidl-cpp",
+        "libaudioclient_aidl_conversion",
+        "libaudiofoundation",
+        "libaudiohal",
+        "libaudioprocessing",
+        "libaudiospdif",
+        "libaudioutils",
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libbinder",
+        "libaudioclient",
+        "libmedialogservice",
+        "libmediametrics",
+        "libmediautils",
+        "libnbaio",
+        "libnblog",
+        "libpermission",
+        "libpowermanager",
+        "libmediautils",
+        "libmemunreachable",
+        "libmedia_helper",
+        "libshmemcompat",
+        "libvibrator",
+    ],
+
+    static_libs: [
+        "libcpustats",
+        "libsndfile",
+        "libpermission",
+    ],
+
+    header_libs: [
+        "libaudioclient_headers",
+        "libaudiohal_headers",
+        "libmedia_headers",
+    ],
+
+    export_shared_lib_headers: [
+        "libpermission",
+    ],
+
+    cflags: [
+        "-DSTATE_QUEUE_INSTANTIATIONS=\"StateQueueInstantiations.cpp\"",
+        "-fvisibility=hidden",
+        "-Werror",
+        "-Wall",
+    ],
+    sanitize: {
+        integer_overflow: true,
+    },
+
+}

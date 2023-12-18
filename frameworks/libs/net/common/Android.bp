@@ -1,0 +1,198 @@
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// 1. The "net-utils-framework-common" library is also compiled into the framework and placed on the
+//    boot classpath. It uses jarjar rules so that anything outside the framework can use this
+//    library directly.
+// 2. The "net-utils-services-common" library is for use by modules and frameworks/base/services.
+//    It does not need to be jarjared because it is not placed on the bootclasspath.
+// 3. The "net-utils-telephony-common-srcs" filegroup is for use specifically by telephony, which
+//    places many of its classes, even non-API service classes, on the boot classpath. Any file that
+//    is added to this filegroup *must* have a corresponding jarjar rule in the telephony jarjar
+//    rules file. Otherwise, it will end up on the boot classpath and other modules will not be able
+//    to provide their own copy.
+
+// Note: all filegroups here must have the right path attribute because otherwise, if they are
+// included in the bootclasspath, they could incorrectly be included in the SDK documentation even
+// though they are not in the current.txt files.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_library {
+  name: "net-utils-device-common",
+  srcs: [
+      "device/com/android/net/module/util/**/*.java",
+      // This library is used by system modules, for which the system health impact of Kotlin
+      // has not yet been evaluated. Annotations may need jarjar'ing.
+      // "src_devicecommon/**/*.kt",
+      ":framework-annotations",
+  ],
+  sdk_version: "system_current",
+  min_sdk_version: "29",
+  target_sdk_version: "30",
+  apex_available: [
+      "//apex_available:anyapex",
+      "//apex_available:platform",
+  ],
+  visibility: [
+        "//frameworks/base/packages/Tethering",
+        "//packages/modules/Connectivity:__subpackages__",
+        "//packages/modules/Connectivity/framework:__subpackages__",
+        "//frameworks/opt/net/ike",
+        "//frameworks/opt/net/wifi/service",
+        "//packages/modules/Wifi/service",
+        "//frameworks/opt/net/telephony",
+        "//packages/modules/NetworkStack:__subpackages__",
+        "//packages/modules/CaptivePortalLogin",
+        "//frameworks/libs/net/common/tests:__subpackages__",
+        "//frameworks/libs/net/common/testutils:__subpackages__",
+  ],
+  static_libs: [
+      "net-utils-framework-common",
+  ],
+  libs: [
+      "androidx.annotation_annotation",
+  ],
+}
+
+java_defaults {
+    name: "lib_mockito_extended",
+    static_libs: [
+        "mockito-target-extended-minus-junit4"
+    ],
+    jni_libs: [
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
+    ],
+}
+
+filegroup {
+    name: "net-utils-framework-common-srcs",
+    srcs: ["framework/**/*.java"],
+    path: "framework",
+    visibility: [
+        "//frameworks/base",
+        "//packages/modules/Connectivity:__subpackages__",
+        "//frameworks/base/packages/Connectivity/framework",
+    ],
+}
+
+java_library {
+    name: "net-utils-framework-common",
+    srcs: [
+        ":net-utils-framework-common-srcs",
+        // TODO: avoid including all framework annotations as they end up in library users jars
+        // and need jarjaring
+        ":framework-annotations",
+    ],
+    sdk_version: "system_current",
+    jarjar_rules: "jarjar-rules-shared.txt",
+    visibility: [
+        "//cts/tests/tests/net",
+        "//cts/tests/tests/wifi",
+        "//packages/modules/Connectivity/tests/cts/net",
+        "//frameworks/base/packages/Tethering",
+        "//packages/modules/Connectivity/Tethering",
+        "//frameworks/base/tests:__subpackages__",
+        "//frameworks/opt/net/ike",
+        "//frameworks/opt/telephony",
+        "//frameworks/base/wifi:__subpackages__",
+        "//frameworks/base/packages/Connectivity:__subpackages__",
+        "//packages/modules/Connectivity:__subpackages__",
+        "//packages/modules/NetworkStack:__subpackages__",
+        "//packages/modules/CaptivePortalLogin",
+        "//frameworks/libs/net/common/tests:__subpackages__",
+        "//frameworks/libs/net/common/device",
+        "//packages/modules/Wifi/framework/tests:__subpackages__",
+    ],
+}
+filegroup {
+    name: "net-utils-services-common-srcs",
+    srcs: [
+        "device/android/net/NetworkFactory.java",
+        "device/android/net/NetworkFactoryImpl.java",
+        "device/android/net/NetworkFactoryLegacyImpl.java",
+        "device/android/net/NetworkFactoryShim.java",
+    ],
+    visibility: [
+        "//frameworks/base/services/net",
+    ],
+}
+
+java_library {
+    name: "net-utils-services-common",
+    srcs: [
+        ":net-utils-services-common-srcs",
+        ":framework-annotations",
+    ],
+    sdk_version: "system_current",
+    min_sdk_version: "30",
+    static_libs: [
+        "modules-utils-build_system",
+    ],
+    visibility: [
+        "//frameworks/base/services/net",
+    ],
+}
+
+// Use a filegroup and not a library for telephony sources, as framework-annotations cannot be
+// included either (some annotations would be duplicated on the bootclasspath).
+filegroup {
+    name: "net-utils-telephony-common-srcs",
+    srcs: [
+        // Any class here *must* have a corresponding jarjar rule in the telephony build rules.
+        "device/android/net/NetworkFactory.java",
+        "device/android/net/NetworkFactoryImpl.java",
+        "device/android/net/NetworkFactoryLegacyImpl.java",
+        "device/android/net/NetworkFactoryShim.java",
+    ],
+    path: "device",
+    visibility: [
+        "//frameworks/opt/telephony",
+    ],
+}
+
+// Use a filegroup and not a library for wifi sources, as this needs corresponding jar-jar
+// rules on the wifi side.
+// Any class here *must* have a corresponding jarjar rule in the wifi build rules.
+filegroup {
+    name: "net-utils-framework-wifi-common-srcs",
+    srcs: [
+        "framework/com/android/net/module/util/**/*.java",
+    ],
+    path: "framework",
+    visibility: [
+        "//frameworks/base",
+    ],
+}
+
+// Use a filegroup and not a library for wifi sources, as this needs corresponding jar-jar
+// rules on the wifi side.
+// Any class here *must* have a corresponding jarjar rule in the wifi build rules.
+filegroup {
+    name: "net-utils-wifi-service-common-srcs",
+    srcs: [
+       "device/android/net/NetworkFactory.java",
+       "device/android/net/NetworkFactoryImpl.java",
+       "device/android/net/NetworkFactoryLegacyImpl.java",
+       "device/android/net/NetworkFactoryShim.java",
+       "framework/com/android/net/module/util/NetUtils.java",
+    ],
+    visibility: [
+        "//frameworks/opt/net/wifi/service",
+        "//packages/modules/Wifi/service",
+    ],
+}

@@ -1,0 +1,46 @@
+//########################################################################
+// Build NetworkStaticLibTests package
+//########################################################################
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+android_library {
+    name: "NetworkStaticLibTestsLib",
+    srcs: ["src/**/*.java","src/**/*.kt"],
+    min_sdk_version: "29",
+    defaults: ["framework-connectivity-test-defaults"],
+    static_libs: [
+        "net-utils-framework-common",
+        "androidx.test.rules",
+        "mockito-target-extended-minus-junit4",
+        "net-utils-device-common",
+        "net-tests-utils",
+    ],
+    libs: [
+        "android.test.runner",
+        "android.test.base",
+    ],
+    visibility: [
+        "//frameworks/base/packages/Tethering/tests/integration",
+        "//packages/modules/Connectivity/tests:__subpackages__",
+        "//packages/modules/Connectivity/Tethering/tests:__subpackages__",
+        "//packages/modules/NetworkStack/tests/integration",
+    ]
+}
+
+android_test {
+    name: "NetworkStaticLibTests",
+    certificate: "platform",
+    static_libs: [
+        "NetworkStaticLibTestsLib",
+    ],
+    jni_libs: [
+        // For mockito extended
+        "libdexmakerjvmtiagent",
+        "libstaticjvmtiagent",
+    ],
+    jarjar_rules: "jarjar-rules.txt",
+    test_suites: ["device-tests"],
+}

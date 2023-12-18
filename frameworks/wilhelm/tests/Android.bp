@@ -1,0 +1,27 @@
+// Build the unit tests.
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_wilhelm_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-MIT
+    default_applicable_licenses: ["frameworks_wilhelm_license"],
+}
+
+cc_test {
+    name: "libopenslestests",
+
+    shared_libs: ["libOpenSLES"],
+
+    srcs: ["mimeUri_test.cpp"],
+
+    cflags: [
+        "-Werror",
+        "-Wall",
+        "-Wno-deprecated-declarations",
+    ],
+}
+
+// Build the manual test programs.
+subdirs = ["*"]

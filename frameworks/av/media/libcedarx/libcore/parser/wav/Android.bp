@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_wav_parser",
+
+    srcs: [
+         "CdxWavParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

@@ -1,0 +1,10 @@
+cc_library_static {
+    name: "libcdx_rtmp_stream",
+
+    defaults: ["libcdx_stream_defaults"],
+
+    srcs: [
+        "CdxRtmpConnect.c",
+        "CdxRtmpStream.c",
+    ],
+}

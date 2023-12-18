@@ -1,0 +1,13 @@
+cc_library_static {
+    name: "libcdx_hls_parser",
+    defaults: ["libcdx_parser_defaults"],
+
+    srcs: [
+        "CdxHlsParser.c",
+        "M3UParser.c",
+    ],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/external/include"],//for R
+        //"external/boringssl/src/include"],
+}

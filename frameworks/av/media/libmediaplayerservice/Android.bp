@@ -1,0 +1,138 @@
+bootstrap_go_package {
+    name: "soong-mpsproduct",
+    pkgPath: "android/soong/mpsproduct",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-cc",
+    ],
+    srcs: [
+        "mpsproduct.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+mpsproduct_defaults {
+    name: "mpsproduct_defaults",
+}
+
+package {
+    default_applicable_licenses: [
+        "frameworks_av_media_libmediaplayerservice_license",
+    ],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "frameworks_av_media_libmediaplayerservice_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+cc_library {
+
+    srcs: [
+        "ActivityManager.cpp",
+        "DeathNotifier.cpp",
+        "MediaPlayerFactory.cpp",
+        "MediaPlayerService.cpp",
+        "MediaRecorderClient.cpp",
+        "MetadataRetrieverClient.cpp",
+        "StagefrightMetadataRetriever.cpp",
+        "StagefrightRecorder.cpp",
+        "TestPlayerStub.cpp",
+	"HDCP.cpp",
+	"RemoteDisplay.cpp",
+    ],
+
+    shared_libs: [
+        "android.hardware.media.c2@1.0",
+        "android.hardware.media.omx@1.0",
+        "av-types-aidl-cpp",
+        "framework-permission-aidl-cpp",
+        "libaudioclient_aidl_conversion",
+        "libbase",
+        "libactivitymanager_aidl",
+        "libandroid_net",
+        "libaudioclient",
+        "libbinder",
+        "libcamera_client",
+        "libcodec2_client",
+        "libcrypto",
+        "libcutils",
+        "libdatasource",
+        "libdl",
+        "libdrmframework",
+        "libgui",
+        "libhidlbase",
+        "liblog",
+        "libmedia",
+        "libmedia_codeclist",
+        "libmedia_omx",
+        "libmediadrm",
+        "libmediametrics",
+        "libmediautils",
+        "libmemunreachable",
+        "libnetd_client",
+        "libpowermanager",
+        "libstagefright",
+        "libstagefright_foundation",
+        "libstagefright_httplive",
+        "libutils",
+        "libawplayer",
+        "libawmetadataretriever",
+        "libstagefright_omx",
+        "libstagefright_wfd",
+        "libisomountmanagerservice",
+    ],
+
+    header_libs: [
+        "media_plugin_headers",
+    ],
+
+    static_libs: [
+        "libplayerservice_datasource",
+        "libstagefright_nuplayer",
+        "libstagefright_rtsp",
+        "libstagefright_timedtext",
+        "framework-permission-aidl-cpp",
+    ],
+
+    export_shared_lib_headers: [
+        "libmedia",
+        "framework-permission-aidl-cpp",
+    ],
+
+    include_dirs: [
+        "frameworks/av/media/libstagefright/rtsp",
+        "frameworks/av/media/libstagefright/webm",
+        "frameworks/av/media/libdatasource/include/datasource",
+        "frameworks/av/media/libstagefright/wifi-display",
+        "frameworks/av/media/libcedarx/android_adapter/awplayer",
+        "frameworks/av/media/libcedarx/android_adapter/metadataretriever",
+        "vendor/aw/homlet/framework/isomountmanager/include",
+    ],
+
+    local_include_dirs: ["include"],
+
+    cflags: [
+        "-Werror",
+        "-Wno-error=deprecated-declarations",
+        "-Wall",
+        "-DCONF_ANDROID_MAJOR_VER=12",
+        "-DSUPPORT_BDMV",
+    ],
+
+    name: "libmediaplayerservice",
+
+    sanitize: {
+        cfi: true,
+    },
+
+}

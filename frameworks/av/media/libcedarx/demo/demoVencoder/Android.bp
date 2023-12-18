@@ -1,0 +1,36 @@
+cc_binary {
+    name: "demoVenc",
+    defaults: ["libcdx_config_defaults"],
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+    srcs: [
+        "EncoderTest.c"
+    ],
+    include_dirs: [
+        "frameworks/av",
+        "frameworks/av/media/libcedarx",
+        "frameworks/av/media/libcedarx/libcore/base/include",
+        "frameworks/av/media/libcedarx/libcore/playback",
+        "frameworks/av/media/libcedarx/libcore/playback/include",
+        "frameworks/av/media/libcedarx/external/include",
+        "frameworks/av/media/libcedarx/external/include/adecoder",
+    ],
+    header_libs: [
+        "libcedarc_headers",
+    ],
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libvencoder",
+        "libcdx_base",
+        "libcdx_playback",
+        "libVE",
+        "libMemAdapter",
+    ],
+    cflags: ["-Werror"],
+}

@@ -1,0 +1,46 @@
+cc_library_shared {
+    name: "libcdx_muxer",
+
+    srcs: [
+        "CdxFsCache.c",
+        "CdxFsSimpleCache.c",
+        "CdxFsWriteDirect.c",
+        "CdxFsWriter.c",
+        "CdxMuxer.c",
+        "CdxTsemaphore.c",
+        ],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/libcore/muxer/base",
+        "frameworks/av/media/libcedarx/libcore",
+        "frameworks/av/media/libcedarx/libcore/base/include",
+        "frameworks/av/media/libcedarx/libcore/muxer/include",
+        "frameworks/av/media/libcedarx/libcore/stream/include",
+        "frameworks/av/media/libcedarx/external/include/aencoder",
+    ],
+
+    header_libs: [
+        "libcedarc_headers",
+    ],
+
+    shared_libs: [
+        "libcdx_stream",
+        "libcdx_base",
+    ] + [
+        "libicuuc",
+        "libutils",
+        "liblog",
+        "libcutils",
+        "libz",
+        "libdl",
+        "libssl",
+        "libcrypto",
+        "libcdx_common",
+    ],
+
+    static_libs: [
+        "libcdx_mp4_muxer",
+        "libcdx_aac_muxer",
+        "libcdx_ts_muxer",
+    ],
+}

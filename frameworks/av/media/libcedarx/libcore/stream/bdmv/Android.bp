@@ -1,0 +1,5 @@
+cc_library_static {
+    name: "libcdx_bdmv_stream",
+    defaults: ["libcdx_stream_defaults"],
+    srcs: ["AwBdmvStream.c"],
+}

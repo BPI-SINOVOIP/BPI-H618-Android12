@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_flv_parser",
+
+    srcs: [
+         "CdxFlvParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

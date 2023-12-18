@@ -1,0 +1,12 @@
+cc_library_static {
+    name: "libcdx_asf_parser",
+
+    srcs: [
+         "AsfParser.c",
+         "AsfParserItf.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

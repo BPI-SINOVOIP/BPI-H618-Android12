@@ -1,0 +1,15 @@
+#!/system/bin/sh
+
+if [ "$1" != "instrument" ] ; then
+    cmd activity "$@"
+else
+    if [ -f /vendor/framework/vendor_am.jar ] ; then
+       base=/vendor
+       amjar=vendor_am.jar
+    else
+       base=/system
+       amjar=am.jar
+    fi
+    export CLASSPATH=$base/framework/$amjar
+    exec app_process $base/bin com.android.commands.am.Am "$@"
+fi

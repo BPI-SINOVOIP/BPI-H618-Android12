@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_pmp_parser",
+
+    srcs: [
+         "CdxPmpParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

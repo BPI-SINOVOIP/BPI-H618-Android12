@@ -1,0 +1,55 @@
+cc_library_shared {
+    name: "libxplayer",
+
+    defaults: ["libcdx_config_defaults"],
+
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+    srcs: [
+        "xplayer.c",
+        "demuxComponent.c",
+        "cache.c",
+    ],
+
+    // Please keep the list in some order
+    include_dirs: [
+        "frameworks/av/",
+        "frameworks/av/include/",
+        "frameworks/native/include/android/",
+        "frameworks/av/media/libcedarx",
+        "frameworks/av/media/libcedarx/libcore/common/iniparser/",
+        "frameworks/av/media/libcedarx/libcore/base/include/",
+        "frameworks/av/media/libcedarx/libcore/parser/include/",
+        "frameworks/av/media/libcedarx/libcore/stream/include/",
+        "frameworks/av/media/libcedarx/libcore/playback/include",
+        "frameworks/av/media/libcedarx/external/include/adecoder",
+        "frameworks/av/media/libcedarx/external/include/sdecoder",
+    ],
+    local_include_dirs: ["include"],
+
+    header_libs: [
+        "libcedarc_headers",
+    ],
+
+    //TARGET_GLOBAL_CFLAGS += -DTARGET_BOARD_PLATFORM=$(TARGET_BOARD_PLATFORM)
+
+    cflags: ["-Wno-deprecated-declarations"],
+    //LOCAL_CFLAGS += -Werror -Wno-deprecated-declarations
+
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "liblog",
+        "libmedia",
+        "libcdx_playback",
+        "libcdx_parser",
+        "libMemAdapter",
+        "libcdx_base",
+        "libcdx_common",
+    ],
+
+}

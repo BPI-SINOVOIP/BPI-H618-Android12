@@ -1,0 +1,12 @@
+cc_library_static {
+    name: "libcdx_ts_parser",
+
+    srcs: [
+         "CdxTsParser.c",
+         "MediaProbe.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

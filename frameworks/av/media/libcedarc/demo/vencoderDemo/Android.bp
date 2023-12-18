@@ -1,0 +1,48 @@
+cc_binary {
+    name: "vencoderDemo",
+    defaults: ["libcdc_config_defaults"],
+    vendor_available: true,
+    host_ldlibs: [
+        "-lm",
+        "-llog",
+    ],
+
+    srcs: [
+        "EncoderTest.c",
+        "avtimer.c",
+    ],
+
+    include_dirs: [
+    ],
+
+    cflags: [
+        "-Wno-error=parentheses-equality",
+        "-Wno-error=shift-negative-value",
+        "-Wno-error=unused-variable",
+        "-Wno-error=unused-function",
+        "-Wno-error=unused-label",
+        "-Wno-error=unused-value",
+        "-Wno-error=sign-compare",
+        "-Wno-error=unused-parameter",
+        "-Wno-error=incompatible-pointer-types",
+        "-Wno-error=implicit-function-declaration",
+        "-Wno-error=format",
+        "-Wno-error=return-type",
+
+    ],
+
+    header_libs:[
+        "libcedarc_headers",
+    ],
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libVE",
+        "libMemAdapter",
+        "libvencoder",
+        "libvenc_base",
+        "libcdc_base",
+    ],
+
+}

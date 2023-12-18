@@ -1,0 +1,34 @@
+cc_library_shared {
+    name: "libcdx_common",
+
+    // ANDROIDMK TRANSLATION ERROR: unsupported include
+    // include $(LOCAL_PATH)/../../config.mk
+    defaults: ["libcdx_config_defaults"],
+    srcs: [
+        "./iniparser/dictionary.c",
+        "./iniparser/iniparserapi.c",
+        "./iniparser/iniparser.c",
+        "./plugin/cdx_plugin.c",
+    ],
+
+    local_include_dirs: [
+        "iniparser",
+        "plugin",
+    ],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx",
+        "frameworks/av/media/libcedarx/libcore/base/include",
+    ],
+
+    cflags: ["-Wno-psabi"],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "libcdx_base",
+        "libdl",
+        "liblog",
+    ],
+
+}

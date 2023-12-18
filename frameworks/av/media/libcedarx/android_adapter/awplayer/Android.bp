@@ -1,0 +1,75 @@
+bootstrap_go_package {
+    name: "soong-awplayer",
+    pkgPath: "android/soong/awplayer",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-cc",
+    ],
+    srcs: [
+        "awplayer.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+awplayer_defaults {
+    name: "awplayer_defaults",
+}
+
+cc_library_shared {
+    name: "libawplayer",
+
+    defaults: ["libcdx_config_defaults", "libcdx_parser_defaults", "awplayer_defaults"],
+
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+    srcs: [
+        "awplayer.cpp",
+        "awStreamingSource.cpp",
+        "awStreamListener.cpp",
+        "subtitleUtils.cpp",
+        "awLogRecorder.cpp",
+    ],
+
+    include_dirs: [
+        "frameworks/av/",
+        "frameworks/av/include/",
+        "frameworks/av/media/libmediametrics/include/",//for R
+        "frameworks/native/include/android",
+        "frameworks/av/media/libcedarx/libcore/parser/include/",
+        "frameworks/av/media/libcedarx/libcore/playback/include/",
+        "frameworks/av/media/libcedarx/xplayer/include",
+        "frameworks/av/media/libcedarx/android_adapter/output",
+        "frameworks/av/media/libcedarx/android_adapter/base",
+	//"external/icu/icu4c/source/common",//not for R
+    ],
+
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "libbinder",
+        "liblog",
+        "libmedia",
+        "libmediametrics",
+        "libstagefright_foundation",
+        "libui",
+        "libgui",
+        "libion",
+        "libcdx_playback",
+        "libcdx_parser",
+        "libcdx_stream",
+        "libcdx_base",
+        //"libicuuc",//not for
+        "libandroidicu",
+        "libMemAdapter",
+        "libxplayer",
+        "libaw_output",
+        "libawadapter_base",
+        "libcdx_common",
+    ],
+
+}

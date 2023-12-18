@@ -1,0 +1,46 @@
+cc_library_shared {
+    name: "libawmetadataretriever",
+
+    defaults: ["libcdx_parser_defaults"],
+
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+    srcs: ["awmetadataretriever.cpp"],
+
+    include_dirs: [
+        "frameworks/av/",
+        "frameworks/av/include",
+        "frameworks/av/include/media",
+        "frameworks/av/media/libcedarx/libcore/parser/include/",
+        "frameworks/av/media/libcedarx/libcore/common/iniparser",
+        "frameworks/av/media/libcedarx/xmetadataretriever/include/",
+        "frameworks/av/media/libcedarx/android_adapter/base",
+        //"external/icu/icu4c/source/common",//not for R
+        //"external/icu/icu4c/source/i18n",//not for R
+    ],
+
+   //cflags: ["-DCONF_ANDROID_MAJOR_VER=10"],
+
+    shared_libs: [
+        "libutils",
+        "libcutils",
+        "libbinder",
+        "liblog",
+        "libmedia",
+        "libui",
+        "libgui",
+        "libMemAdapter",
+        //"libicuuc",//not for R
+        //"libicui18n",//not for R
+	"libandroidicu",//for R
+        "libcdx_base",
+        "libxmetadata_retriever",
+        "libawadapter_base",
+        "libcdx_common",
+    ],
+
+}

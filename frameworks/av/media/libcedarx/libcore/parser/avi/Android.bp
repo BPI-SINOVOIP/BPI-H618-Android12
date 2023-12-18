@@ -1,0 +1,17 @@
+cc_library_static {
+    name: "libcdx_avi_parser",
+
+    srcs: [
+         "CdxAviParser.c",
+         "CdxAviDepack.c",
+         "CdxAviDepackIndex.c",
+         "CdxAviDepackSequence.c",
+         "CdxAviIdx1.c",
+         "CdxAviOdmlIndx.c",
+         "CdxCheckStreamPara.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

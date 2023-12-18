@@ -1,0 +1,9 @@
+<resources>
+    <!-- record the audio output channel -->
+    <!-- the string's values are defined in AudioManager.java -->
+    <string name="def_audio_output_channel" translatable="false">AUDIO_CODEC,AUDIO_HDMI</string>
+    <!-- record the audio manage policy -->
+    <!-- the string's values are defined in Settings.java -->
+    <integer name="def_audio_manage_policy">2</integer>
+    <bool name="def_enable_pass_through">false</bool>
+</resources>

@@ -1,0 +1,169 @@
+cc_prebuilt_library_shared {
+    name: "libadecoder",
+    srcs: ["lib32/arm-linux-androideabi/libadecoder.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaencoder",
+    srcs: ["lib32/arm-linux-androideabi/libaencoder.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_aacdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_aacdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_alacdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_alacdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_amrdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_amrdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_mp3dec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_mp3dec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_apedec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_apedec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_dsddec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_dsddec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_flacdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_flacdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_g729dec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_g729dec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_oggdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_oggdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_wavdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_wavdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_atrcdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_atrcdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_cookdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_cookdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_radec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_radec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libaw_opusdec",
+    srcs: ["lib32/arm-linux-androideabi/libaw_opusdec.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libpassthrua",
+    srcs: ["lib32/arm-linux-androideabi/libpassthrua.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libpassthrud",
+    srcs: ["lib32/arm-linux-androideabi/libpassthrud.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc", "libdl", "liblog", "libm"],
+}
+
+cc_prebuilt_library_shared {
+    name: "liblive555",
+    srcs: ["lib32/anougat70/liblive555.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc++", "libc", "libcutils", "libdl", "libm", "libstdc++"],
+}
+
+cc_prebuilt_library_shared {
+    name: "librtp",
+    srcs: ["lib32/anougat70/librtp.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc++", "libc", "libcdx_base", "libcdx_stream", "libcutils",
+    "libdl", "libm", "liblog"],
+}
+
+cc_prebuilt_library_shared {
+    name: "libsubdecoder",
+    srcs: ["lib32/anougat70/libsubdecoder.so"],
+
+    compile_multilib: "32",
+    shared_libs: ["libc++", "libc", "libcutils", "libdl", "liblog", "libm",
+    "libutils"],
+}

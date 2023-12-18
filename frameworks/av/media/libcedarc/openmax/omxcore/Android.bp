@@ -1,0 +1,59 @@
+bootstrap_go_package {
+    name: "soong-omx_core",
+    pkgPath: "android/soong/omx_core",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-cc",
+    ],
+    srcs: [
+        "omx_core.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+omx_core_defaults {
+    name: "omx_core_defaults",
+}
+
+omx_core_head_defaults {
+    name: "omx_core_head_defaults",
+}
+
+cc_library_shared {
+    name: "libOmxCore",
+    defaults: ["libcdc_config_defaults",
+            "omx_core_defaults",
+    ],
+    proprietary: true,
+    srcs: [
+        "aw_omx_component.c",
+        "aw_omx_core.c",
+    ],
+
+    local_include_dirs: [
+        "include",
+    ],
+
+    include_dirs: [
+    ],
+
+    header_libs: [
+        "libawopenmax_headers",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+        "libbinder",
+        "libdl",
+        "libcdc_base",
+    ],
+}
+
+cc_library_headers {
+    name: "libomxcore_headers",
+    defaults: ["omx_core_head_defaults"],
+    vendor_available: true,
+}

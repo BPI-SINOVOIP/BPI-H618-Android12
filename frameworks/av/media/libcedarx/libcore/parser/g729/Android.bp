@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_g729_parser",
+
+    srcs: [
+         "CdxG729Parser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

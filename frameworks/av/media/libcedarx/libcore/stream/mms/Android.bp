@@ -1,0 +1,13 @@
+cc_library_static {
+    name: "libcdx_mms_stream",
+
+    defaults: ["libcdx_stream_defaults"],
+
+    srcs: [
+        "CdxMmshStream.c",
+        "CdxMmsStream.c",
+        "CdxMmsTcp.c",
+        "CdxMmsHttpStream.c",
+        "CdxMmstStream.c",
+    ],
+}

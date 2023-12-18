@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_pls_parser",
+
+    srcs: [
+         "CdxPlsParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

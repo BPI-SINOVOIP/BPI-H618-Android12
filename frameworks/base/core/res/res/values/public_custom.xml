@@ -1,0 +1,30 @@
+<resources>
+  <!-- define audio message -->
+  <java-symbol type="string" name="usb_audio_out_plug_in_title" />
+  <java-symbol type="string" name="usb_audio_plug_in_message" />
+  <java-symbol type="string" name="usb_audio_plug_out_message" />
+  <java-symbol type="string" name="usb_audio_out_plug_out_title" />
+  <java-symbol type="string" name="usb_audio_in_plug_in_title" />
+  <java-symbol type="string" name="usb_audio_in_plug_out_title" />
+  <java-symbol type="string" name="headphone_plug_in_title" />
+  <java-symbol type="string" name="headphone_plug_out_title" />
+  <java-symbol type="string" name="headphone_plug_in_message" />
+  <java-symbol type="string" name="headphone_plug_out_message" />
+  <java-symbol type="string" name="usb_output_title" />
+  <java-symbol type="string" name="usb_output_message" />
+  <java-symbol type="string" name="usb_yes" />
+  <java-symbol type="string" name="usb_no" />
+  <!-- support the mouse mode -->
+  <java-symbol type="string" name="enter_key_mouse_mode" />
+  <java-symbol type="string" name="exit_key_mouse_mode" />
+  <java-symbol type="string" name="title_key_mouse_mode" />
+  <java-symbol type="string" name="detail_key_mouse_mode" />
+  <!-- an icon for the mouse mode -->
+  <java-symbol type="drawable" name="key_mouse" />
+
+  <java-symbol type="integer" name="config_ledNormalFlicker" />
+  <java-symbol type="bool" name="config_ledStandbyAllOff" />
+  <java-symbol type="bool" name="config_ledShutdownAllOff" />
+  <java-symbol type="bool" name="config_shutdownForceScreenOff" />
+  <java-symbol type="bool" name="config_ledBrightInLowLevel" />
+</resources>

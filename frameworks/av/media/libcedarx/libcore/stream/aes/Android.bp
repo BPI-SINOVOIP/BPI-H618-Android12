@@ -1,0 +1,13 @@
+cc_library_static {
+    name: "libcdx_aes_stream",
+
+    defaults: ["libcdx_stream_defaults"],
+
+    srcs: ["CdxAesStream.c"],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/libcore/stream/aes",
+	//"external/boringssl/src/include",//not for R
+	"frameworks/av/media/libcedarx/external/include",//for R
+    ],
+}

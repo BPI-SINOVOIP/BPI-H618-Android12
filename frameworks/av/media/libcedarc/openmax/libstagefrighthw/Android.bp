@@ -1,0 +1,24 @@
+cc_library_shared {
+    name: "libstagefrighthw",
+    srcs: ["AwOMXPlugin.cpp"],
+    proprietary: true,
+
+    defaults: ["libcdc_config_defaults"],
+
+    include_dirs: [
+        "frameworks/native/include/media/hardware",
+        "frameworks/native/include/media/openmax",
+        "frameworks/native/headers/media_plugin",
+    ],
+
+    shared_libs: [
+        "libbinder",
+        "libutils",
+        "liblog",
+        "libcutils",
+        "libdl",
+        "libui",
+        "libcdc_base",
+    ],
+
+}

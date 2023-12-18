@@ -1,0 +1,12 @@
+cc_library_static {
+    name: "libcdx_m3u9_parser",
+
+    srcs: [
+         "CdxM3u9Parser.c",
+         "M3U9Parser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

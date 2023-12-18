@@ -1,0 +1,24 @@
+{
+  "presubmit": [
+    {
+      "name": "GtsMediaTestCases",
+      "options" : [
+        {
+          "include-annotation": "android.platform.test.annotations.Presubmit"
+        },
+        {
+          "include-filter": "com.google.android.media.gts.WidevineGenericOpsTests"
+        },
+        {
+          "include-filter": "com.google.android.media.gts.WidevineH264PlaybackTests"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "path": "frameworks/av/drm/mediadrm/plugins"
+    }
+  ]
+}
+

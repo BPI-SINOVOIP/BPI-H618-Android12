@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_bd_parser",
+
+    srcs: [
+         "CdxBdParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

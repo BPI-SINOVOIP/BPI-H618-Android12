@@ -1,0 +1,19 @@
+cc_library_static {
+    name: "libcdx_aac_muxer",
+
+    srcs: ["CdxAacMuxer.c"],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/libcore/muxer",
+        "frameworks/av/media/libcedarx/libcore",
+        "frameworks/av/media/libcedarx/libcore/base/include",
+        "frameworks/av/media/libcedarx/libcore/muxer/include",
+        "frameworks/av/media/libcedarx/libcore/muxer/base",
+        "frameworks/av/media/libcedarx/libcore/stream/include",
+        "frameworks/av/media/libcedarx/external/include/aencoder",
+    ],
+    header_libs: [
+        "libcedarc_headers",
+    ],
+    shared_libs: ["libz"],
+}

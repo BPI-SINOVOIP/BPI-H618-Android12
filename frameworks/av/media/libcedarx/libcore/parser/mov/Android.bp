@@ -1,0 +1,44 @@
+bootstrap_go_package {
+    name: "soong-movparser",
+    pkgPath: "android/soong/movparser",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-cc",
+    ],
+    srcs: [
+        "movparser.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+movparser_defaults {
+    name: "movparser_defaults",
+}
+
+cc_library_static {
+    name: "libcdx_mov_parser",
+
+    // ANDROIDMK TRANSLATION ERROR: unsupported include
+    // include $(CEDARX_ROOT)/config.mk
+    srcs: [
+         "CdxMovAtom.c",
+         "CdxMovParserImpl.c",
+         "CdxMovParser.c",
+         "CdxMovSample.c",
+         "CdxMovList.c",
+         "mpeg4Vol.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+        "movparser_defaults"
+    ],
+
+    include_dirs: [
+        "external/zlib",
+    ],
+
+    shared_libs: ["libz"],
+
+}

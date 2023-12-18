@@ -1,0 +1,49 @@
+cc_library_shared {
+    name: "libvdecoder",
+    defaults: [
+    "libcdc_config_defaults",
+    "libcdc_libs_defaults",
+    ],
+    vendor_available: true,
+
+    srcs: [
+        "pixel_format.c",
+        "vdecoder.c",
+    ],
+
+    include_dirs: [
+    ],
+
+    local_include_dirs: [
+        "include",
+        "aftertreatment",
+    ],
+
+    header_libs: [
+        "libcedarc_headers",
+    ],
+
+    cflags: [
+        "-Wno-implicit-function-declaration",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "libVE",
+        "libcdc_base",
+        "libvideoengine",
+        "libMemAdapter",
+        "libaftertreatment",
+        "libfbm",
+        "libsbm",
+    ],
+
+}
+
+cc_library_headers {
+    name: "libvdecoder_headers",
+    vendor_available: true,
+
+    export_include_dirs: ["include"],
+}

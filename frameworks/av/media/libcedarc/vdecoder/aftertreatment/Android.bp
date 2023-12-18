@@ -1,0 +1,42 @@
+cc_library_shared {
+    name: "libaftertreatment",
+    defaults: ["libcdc_config_defaults"],
+    vendor_available: true,
+
+    srcs: [
+        "aftertreatment.c",
+    ],
+
+    include_dirs: [
+    ],
+
+    local_include_dirs: [
+        "include",
+    ],
+
+    cflags: [
+        "-Wno-implicit-function-declaration",
+    ],
+
+    header_libs: [
+        "libcedarc_headers",
+        "libvdecoder_headers",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libVE",
+        "libMemAdapter",
+        "libcdc_base",
+        "libscaledown",
+        "libfbm",
+    ],
+
+}
+
+cc_library_headers {
+    name: "libaftertreat_headers",
+    vendor_available: true,
+
+    export_include_dirs: ["include"],
+}

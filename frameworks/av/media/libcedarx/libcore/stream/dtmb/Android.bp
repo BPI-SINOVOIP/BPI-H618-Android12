@@ -1,0 +1,10 @@
+cc_library_static {
+    name: "libcdx_dtmb_stream",
+
+    defaults: ["libcdx_stream_defaults"],
+
+    srcs: [
+        "DTMBStream.c",
+        "consumer.c",
+    ],
+}

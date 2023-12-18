@@ -1,0 +1,35 @@
+cc_library_shared {
+    name: "libvenc_base",
+    vendor_available: true,
+    // ANDROIDMK TRANSLATION ERROR: unsupported include
+    // include $(SCLIB_TOP)/config.mk
+    defaults: ["libcdc_config_defaults"],
+    srcs: [
+        "FrameBufferManager.c",
+        "BitstreamManager.c",
+        "EncAdapter.c",
+    ],
+
+    include_dirs: [
+    ],
+    local_include_dirs: ["include"],
+
+    export_include_dirs: [
+        "include",
+    ],
+
+    header_libs: [
+        "libcedarc_headers",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+    ] + [
+        "libVE",
+        "libcdc_base",
+        "libMemAdapter",
+        "liblog",
+    ],
+
+}

@@ -1,0 +1,22 @@
+cc_defaults {
+    name: "libcdx_stream_defaults",
+
+    defaults: ["libcdx_config_defaults"],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/libcore/base/include",
+        "frameworks/av/media/libcedarx/libcore/stream/include",
+        "frameworks/av/media/libcedarx",
+        "external/zlib",
+    ],
+
+    cflags: ["-Wno-psabi", "-Wall", "-Werror"],
+
+}
+
+cc_library_static {
+    name: "libcdx_file_stream",
+    defaults: ["libcdx_stream_defaults"],
+    srcs: ["CdxFileStream.c"],
+
+}

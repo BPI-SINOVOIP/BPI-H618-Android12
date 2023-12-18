@@ -1,0 +1,81 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_native_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["frameworks_native_license"],
+}
+
+cc_fuzz {
+    name: "binder_parcel_fuzzer",
+    defaults: ["libbinder_ndk_host_user"],
+    host_supported: true,
+
+    fuzz_config: {
+        cc: ["smoreland@google.com"],
+    },
+
+    srcs: [
+        "binder.cpp",
+        "binder_ndk.cpp",
+        "hwbinder.cpp",
+        "main.cpp",
+        "random_fd.cpp",
+        "random_parcel.cpp",
+        "util.cpp",
+    ],
+    static_libs: [
+        "libbase",
+        "libbinder_random_parcel",
+        "libcgrouprc",
+        "libcgrouprc_format",
+        "libcutils",
+        "libhidlbase",
+        "liblog",
+        "libprocessgroup",
+        "libjsoncpp",
+        "libutils",
+    ],
+
+    target: {
+        android: {
+            shared_libs: [
+                "libbinder_ndk",
+                "libbinder",
+            ],
+        },
+        host: {
+            static_libs: [
+                "libbinder_ndk",
+                "libbinder",
+            ],
+        },
+    },
+    // This flag enables verbose output in the fuzz target, and is very useful
+    // for debugging a failure. If you are trying to diagnose how a crash was
+    // produced, you may find uncommenting the below line very useful.
+    // cflags: ["-DENABLE_LOG_FUZZ"],
+}
+
+cc_library_static {
+    name: "libbinder_random_parcel",
+    host_supported: true,
+    target: {
+        darwin: {
+            enabled: false,
+        }
+    },
+    srcs: [
+        "random_fd.cpp",
+        "random_parcel.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libcutils",
+        "libutils",
+    ],
+    local_include_dirs: ["include_random_parcel"],
+    export_include_dirs: ["include_random_parcel"],
+}

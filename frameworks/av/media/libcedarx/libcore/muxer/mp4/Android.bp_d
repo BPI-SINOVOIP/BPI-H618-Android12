@@ -1,0 +1,23 @@
+cc_library_static {
+    name: "libcdx_mp4_muxer",
+
+    srcs: [
+            "CdxMp4Muxer.c",
+            "CdxMp4MuxerLib.c",
+          ],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/libcore/muxer/mp4",
+        "frameworks/av/media/libcedarx/libcore",
+        "frameworks/av/media/libcedarx/libcore/base/include",
+        "frameworks/av/media/libcedarx/libcore/muxer/include",
+        "frameworks/av/media/libcedarx/libcore/muxer/base",
+        "frameworks/av/media/libcedarx/libcore/stream/include",
+        "frameworks/av/media/libcedarx/external/include/aencoder",
+    ],
+    header_libs: [
+        "libcedarc_headers",
+    ],
+    shared_libs: ["libz"],
+
+}

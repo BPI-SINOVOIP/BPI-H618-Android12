@@ -1,0 +1,15 @@
+cc_library_static {
+    name: "libcdx_remux_parser",
+
+    srcs: [
+         "CdxRemuxParser.c",
+         "mpeg4Vol.c",
+    ],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx/libcore/stream/rtsp",
+    ],
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

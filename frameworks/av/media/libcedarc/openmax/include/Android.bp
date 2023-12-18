@@ -1,0 +1,6 @@
+cc_library_headers {
+    name: "libawopenmax_headers",
+    vendor_available: true,
+
+    export_include_dirs: ["."],
+}

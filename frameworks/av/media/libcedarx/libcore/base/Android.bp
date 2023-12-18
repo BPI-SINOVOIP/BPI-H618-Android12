@@ -1,0 +1,48 @@
+cc_library_shared {
+    name: "libcdx_base",
+
+    defaults: ["libcdx_config_defaults"],
+    // ANDROIDMK TRANSLATION ERROR: unsupported include
+    // include $(LOCAL_PATH)/../../config.mk
+
+    // ANDROIDMK TRANSLATION ERROR: unsupported include
+    // include $(LOCAL_PATH)/config.mk
+
+    srcs: [
+        "CdxDebug.c",
+        "CdxMessage.c",
+        "CdxMeta.c",
+        "CdxQueue.c",
+        "CdxList.c",
+        "CdxBitReader.c",
+        "CdxBuffer.c",
+        "cdx_log.c",
+        "CdxSocketUtil.c",
+        "CdxStrUtil.c",
+        "AwMessageQueue.c",
+        "CdxISOLang.c",
+        "CdxSysinfo.c",
+        "SmartDnsService.c",
+        "AwPool.c",
+        "CdxKeyedVector.c",
+        "CdxParseUrl.c",
+        "CdxTime.c",
+    ],
+
+    local_include_dirs: [
+        "include",
+    ],
+
+    include_dirs: [
+        "frameworks/av/media/libcedarx",
+    ],
+
+    cflags: ["-Wno-psabi"],
+
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "liblog",
+    ],
+
+}

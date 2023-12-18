@@ -1,0 +1,21 @@
+// Build the unit tests.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_test {
+    name: "BufferQueue_test",
+
+    srcs: ["BufferQueue_test.cpp"],
+
+    shared_libs: ["libOpenSLES"],
+
+    static_libs: ["libOpenSLESUT"],
+
+    cflags: [
+        "-Werror",
+        "-Wall",
+        "-Wno-deprecated-declarations",
+    ],
+}

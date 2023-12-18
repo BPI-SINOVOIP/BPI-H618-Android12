@@ -1,0 +1,53 @@
+cc_library_shared {
+    name: "libawrecorder",
+
+    arch: {
+        arm: {
+            instruction_set: "arm",
+        },
+    },
+
+    srcs: [
+        "AudioEncodeComponent.c",
+        "awencoder.c",
+        "EncDataComponent.c",
+        "VideoEncodeComponent.c"
+        ],
+    include_dirs: [
+        "frameworks/av/",
+        "frameworks/av/include/",
+        "frameworks/native/include/",
+        "frameworks/av/media/libcedarx/external/include/adecoder",
+        "frameworks/av/media/libcedarx/external/include/aencoder",
+        "frameworks/av/media/libcedarx/libcore/playback/include",
+        "frameworks/av/media/libcedarx/libcore/common/iniparser/",
+        "frameworks/av/media/libcedarx/libcore/parser/include/",
+        "frameworks/av/media/libcedarx/libcore/muxer/include/",
+        "frameworks/av/media/libcedarx/libcore/stream/include/",
+        "frameworks/av/media/libcedarx/libcore/base/include/",
+        "frameworks/av/media/libcedarx/",
+        "frameworks/av/media/libcedarx/xplayer/include",
+        "frameworks/av/media/libcedarx/awrecorder",
+    ],
+
+    shared_libs: [
+        "libvencoder",
+        "libvenc_base",
+        "libVE",
+        "libutils",
+        "libcutils",
+        "liblog",
+        "libmedia",
+        "libcdx_playback",
+        "libcdx_muxer",
+        "libaencoder",
+        "libcdx_base",
+        "libcdx_stream",
+        "libMemAdapter",
+        "libcdx_common",
+    ],
+
+    header_libs: [
+        "libcedarc_headers",
+    ],
+}

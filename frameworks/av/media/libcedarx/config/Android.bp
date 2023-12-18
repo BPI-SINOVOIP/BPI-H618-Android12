@@ -1,0 +1,40 @@
+bootstrap_go_package {
+    name: "soong-cedarx-config",
+    pkgPath: "android/soong/cedarx-config",
+    deps: [
+        "blueprint",
+        "blueprint-pathtools",
+        "soong",
+        "soong-android",
+        "soong-cc",
+        "soong-genrule",
+    ],
+    srcs: [
+          "cedarx_config.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+cedarx_config_defaults {
+    name: "cedarx_config_defaults",
+}
+
+cc_defaults {
+    name: "libcdx_config_defaults",
+    defaults: ["cedarx_config_defaults"],
+
+    cflags: [
+        "-Wno-error=parentheses-equality",
+        "-Wno-error=shift-negative-value",
+        "-Wno-error=unused-variable",
+        "-Wno-error=unused-function",
+        "-Wno-error=unused-label",
+        "-Wno-error=unused-value",
+        "-Wno-error=sign-compare",
+        "-Wno-error=unused-parameter",
+        "-Wno-error=incompatible-pointer-types",
+        "-Wno-error=implicit-function-declaration",
+        "-Wno-error=format",
+        "-Wno-error=return-type",
+    ],
+}

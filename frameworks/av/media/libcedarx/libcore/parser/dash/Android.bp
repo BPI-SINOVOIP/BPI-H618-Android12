@@ -1,0 +1,22 @@
+cc_library_static {
+    name: "libcdx_dash_parser",
+
+    srcs: [
+         "CdxDashParser.c",
+         "CdxMpd.c",
+    ],
+
+    include_dirs: [
+        "external/libxml2/include",
+        //"external/icu/icu4c/source/common",//not for R
+        "frameworks/av/media/libcedarx/libcore/parser/mov",
+    ],
+
+    shared_libs: [
+        "libxml2",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

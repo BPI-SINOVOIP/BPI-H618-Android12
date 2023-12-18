@@ -1,0 +1,38 @@
+bootstrap_go_package {
+    name: "soong-sstrparser",
+    pkgPath: "android/soong/sstrparser",
+    deps: [
+        "soong",
+        "soong-android",
+        "soong-cc",
+    ],
+    srcs: [
+        "sstrparser.go",
+    ],
+    pluginFor: ["soong_build"],
+}
+
+sstrparser_defaults {
+    name: "sstrparser_defaults",
+}
+
+cc_library_static {
+    name: "libcdx_sstr_parser",
+
+    defaults: ["libcdx_parser_defaults", "sstrparser_defaults"],
+
+    srcs: [
+        "AwSstrIsmc.c",
+        "AwSstrParser.c",
+        "AwSstrUtils.c",
+    ],
+
+    include_dirs: [
+        "external/libxml2/include",
+        //"external/icu/libandroidicu/include",//not for R
+        //"external/icu/icu4c/source/common/unicode",//not for R
+	//"external/icu/icu4c/source/common",//not for R
+    ],
+
+    static_libs: ["libxml2"],
+}

@@ -1,0 +1,31 @@
+cc_defaults {
+    name: "libcdx_parser_defaults",
+    defaults: ["libcdx_config_defaults"],
+    include_dirs: [
+        "frameworks/av/media/libcedarx",
+        "frameworks/av/media/libcedarx/libcore",
+        "frameworks/av/media/libcedarx/libcore/base/include",
+        "frameworks/av/media/libcedarx/libcore/parser/base/id3base",
+        "frameworks/av/media/libcedarx/libcore/parser/include",
+        "frameworks/av/media/libcedarx/libcore/stream/include",
+        "frameworks/av/media/libcedarx/external/include/adecoder",
+    ],
+    cflags: ["-Wno-psabi"],
+    header_libs: [
+        "libcedarc_headers",
+        "libvdecoder_headers",
+    ],
+}
+
+cc_library_static {
+    name: "libcdx_aac_parser",
+
+    // ANDROIDMK TRANSLON ERROR: unsupported include
+    // include $(CEDARX_ROOT)/config.m
+
+    srcs: ["CdxAacParser.c"],
+
+    defaults: [
+        "libcdx_parser_defaults"
+    ],
+}

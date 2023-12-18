@@ -1,0 +1,7 @@
+cc_library_static {
+    name: "libcdx_ssl_stream",
+    defaults: ["libcdx_stream_defaults"],
+    //include_dirs: ["external/boringssl/src/include"],//not for R
+    include_dirs: ["frameworks/av/media/libcedarx/external/include"],//for R
+    srcs: ["CdxSSLStream.c"],
+}

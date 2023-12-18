@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_mms_parser",
+
+    srcs: [
+         "CdxMmsParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

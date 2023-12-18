@@ -1,0 +1,327 @@
+//
+// Copyright (C) 2014 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_native_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["frameworks_native_license"],
+}
+
+cc_defaults {
+    name: "binder_test_defaults",
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+}
+
+cc_test {
+    name: "binderDriverInterfaceTest_IPC_32",
+    defaults: ["binder_test_defaults"],
+    srcs: ["binderDriverInterfaceTest.cpp"],
+    header_libs: ["libbinder_headers"],
+    compile_multilib: "32",
+    multilib: { lib32: { suffix: "" } },
+    cflags: ["-DBINDER_IPC_32BIT=1"],
+    test_suites: ["vts"],
+}
+
+cc_test {
+    name: "binderDriverInterfaceTest",
+    defaults: ["binder_test_defaults"],
+    product_variables: {
+        binder32bit: {
+            cflags: ["-DBINDER_IPC_32BIT=1"],
+        },
+    },
+    header_libs: ["libbinder_headers"],
+    srcs: ["binderDriverInterfaceTest.cpp"],
+    test_suites: ["device-tests", "vts"],
+}
+
+cc_test {
+    name: "binderLibTest_IPC_32",
+    defaults: ["binder_test_defaults"],
+    srcs: ["binderLibTest.cpp"],
+    shared_libs: [
+        "libbinder",
+        "libutils",
+    ],
+    static_libs: [
+        "libgmock",
+    ],
+    compile_multilib: "32",
+    multilib: { lib32: { suffix: "" } },
+    cflags: ["-DBINDER_IPC_32BIT=1"],
+    test_suites: ["vts"],
+    require_root: true,
+}
+
+// unit test only, which can run on host and doesn't use /dev/binder
+cc_test {
+    name: "binderParcelTest",
+    host_supported: true,
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    srcs: ["binderParcelTest.cpp"],
+    shared_libs: [
+        "libbinder",
+        "libutils",
+    ],
+    test_suites: ["general-tests"],
+}
+
+cc_test {
+    name: "binderLibTest",
+    defaults: ["binder_test_defaults"],
+    product_variables: {
+        binder32bit: {
+            cflags: ["-DBINDER_IPC_32BIT=1"],
+        },
+    },
+
+    srcs: ["binderLibTest.cpp"],
+    shared_libs: [
+        "libbinder",
+        "libutils",
+    ],
+    static_libs: [
+        "libgmock",
+    ],
+    test_suites: ["device-tests", "vts"],
+    require_root: true,
+}
+
+aidl_interface {
+    name: "binderRpcTestIface",
+    host_supported: true,
+    unstable: true,
+    srcs: [
+        "IBinderRpcSession.aidl",
+        "IBinderRpcTest.aidl",
+    ],
+    backend: {
+        java: {
+            enabled: false,
+        },
+    },
+}
+
+cc_test {
+    name: "binderRpcTest",
+    host_supported: true,
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    defaults: [
+        "binder_test_defaults",
+        "libbinder_ndk_host_user",
+    ],
+
+    srcs: [
+        "binderRpcTest.cpp",
+    ],
+    shared_libs: [
+        "libbinder",
+        "libbinder_ndk",
+        "libbase",
+        "libutils",
+        "libcutils",
+        "liblog",
+    ],
+    static_libs: [
+        "binderRpcTestIface-cpp",
+        "binderRpcTestIface-ndk_platform",
+    ],
+    test_suites: ["general-tests"],
+    require_root: true,
+    // Prevent the unit test target from running on sc-dev as it's not ready.
+    test_options: {
+        unit_test: false,
+    },
+}
+
+cc_benchmark {
+    name: "binderRpcBenchmark",
+    defaults: ["binder_test_defaults"],
+    host_supported: true,
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    srcs: [
+        "binderRpcBenchmark.cpp",
+        "IBinderRpcBenchmark.aidl",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "liblog",
+        "libutils",
+    ],
+}
+
+cc_test {
+    name: "binderThroughputTest",
+    defaults: ["binder_test_defaults"],
+    srcs: ["binderThroughputTest.cpp"],
+    shared_libs: [
+        "libbinder",
+        "libutils",
+    ],
+    clang: true,
+    cflags: [
+        "-g",
+        "-Wno-missing-field-initializers",
+        "-Wno-sign-compare",
+        "-O3",
+    ],
+}
+
+cc_test {
+    name: "binderTextOutputTest",
+    defaults: ["binder_test_defaults"],
+    srcs: ["binderTextOutputTest.cpp"],
+    shared_libs: [
+        "libbinder",
+        "libutils",
+        "libbase",
+    ],
+    test_suites: ["device-tests"],
+}
+
+cc_test {
+    name: "schd-dbg",
+    defaults: ["binder_test_defaults"],
+    srcs: ["schd-dbg.cpp"],
+    shared_libs: [
+        "libbinder",
+        "libutils",
+        "libbase",
+    ],
+}
+
+cc_test {
+    name: "binderSafeInterfaceTest",
+    defaults: ["binder_test_defaults"],
+    srcs: ["binderSafeInterfaceTest.cpp"],
+
+    cppflags: [
+        "-Wextra",
+    ],
+
+    cpp_std: "experimental",
+    gnu_extensions: false,
+
+    shared_libs: [
+        "libbinder",
+        "libcutils",
+        "liblog",
+        "libutils",
+    ],
+    test_suites: ["device-tests", "vts"],
+    require_root: true,
+}
+
+cc_test {
+    name: "binderClearBufTest",
+    defaults: ["binder_test_defaults"],
+    srcs: [
+        "binderClearBufTest.cpp",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "liblog",
+        "libutils",
+    ],
+
+    test_suites: ["general-tests"],
+    require_root: true,
+}
+
+aidl_interface {
+    name: "binderStabilityTestIface",
+    unstable: true,
+    srcs: [
+        "IBinderStabilityTest.aidl",
+    ],
+    backend: {
+        java: {
+            enabled: false,
+        },
+    },
+}
+
+cc_test {
+    name: "binderStabilityTest",
+    defaults: ["binder_test_defaults"],
+    srcs: [
+        "binderStabilityTest.cpp",
+    ],
+
+    // critical that libbinder/libbinder_ndk are shared for VTS
+    shared_libs: [
+        "libbinder_ndk",
+        "libbinder",
+        "liblog",
+        "libutils",
+    ],
+    static_libs: [
+        "binderStabilityTestIface-cpp",
+        "binderStabilityTestIface-ndk_platform",
+    ],
+
+    test_suites: ["device-tests", "vts"],
+    require_root: true,
+}
+
+cc_test {
+    name: "binderAllocationLimits",
+    defaults: ["binder_test_defaults"],
+    srcs: ["binderAllocationLimits.cpp"],
+    shared_libs: [
+        "libbinder",
+        "liblog",
+        "libutils",
+        "libutilscallstack",
+        "libbase",
+    ],
+    test_suites: ["device-tests"],
+    require_root: true,
+}
+
+cc_benchmark {
+    name: "binderParcelBenchmark",
+    defaults: ["binder_test_defaults"],
+    srcs: ["binderParcelBenchmark.cpp"],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "liblog",
+        "libutils",
+    ],
+}

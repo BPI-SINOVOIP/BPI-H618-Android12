@@ -1,0 +1,72 @@
+// Copyright (C) 2014 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// ANDROIDMK TRANSLATION WARNING: No 'include $(CLEAR_VARS)' detected before first assignment; clearing vars now
+
+// Build the java code
+// ============================================================
+
+java_library {
+    name: "pppoe-service",
+    installable: true,
+
+    aidl: {
+        local_include_dirs: ["java"],
+    },
+    srcs: [
+        "java/**/*.java",
+        "java/**/I*.aidl",
+        "java/**/*.logtags",
+    ],
+
+    platform_apis: true,
+
+    libs: [
+        "services",
+        "framework-connectivity",
+    ],
+}
+
+//============================================================
+cc_library_shared {
+    name: "libpppoe-jni",
+
+    cflags: [
+        "-Wno-unused-parameter",
+        "-Wno-int-to-pointer-cast",
+    ] + [
+        "-Wno-maybe-uninitialized",
+        "-Wno-parentheses",
+    ],
+    cppflags: [
+        "-Wno-conversion-null",
+        "-Wno-return-type",
+    ],
+
+    srcs: ["jni/com_android_server_pppoe_PppoeNative.cpp"],
+    shared_libs: [
+        "libandroid_runtime",
+        "libz",
+        "libcutils",
+        "libutils",
+        "libbinder",
+        "libnetutils",
+        "liblog",
+    ],
+
+    host_ldlibs: [
+        "-lm",
+        "-llog",
+    ],
+}

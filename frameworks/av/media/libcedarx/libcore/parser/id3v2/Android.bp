@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_id3v2_parser",
+
+    srcs: [
+         "CdxId3v2Parser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

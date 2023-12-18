@@ -1,0 +1,172 @@
+// Build the unit tests for installd
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_native_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["frameworks_native_license"],
+}
+
+cc_test {
+    name: "installd_utils_test",
+    test_suites: ["device-tests"],
+    clang: true,
+    srcs: ["installd_utils_test.cpp"],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libbase",
+        "libutils",
+        "libcutils",
+    ],
+    static_libs: [
+        "libasync_safe",
+        "libdiskusage",
+        "libinstalld",
+        "liblog",
+    ],
+    test_config: "installd_utils_test.xml",
+}
+
+cc_test {
+    name: "installd_cache_test",
+    test_suites: ["device-tests"],
+    clang: true,
+    srcs: ["installd_cache_test.cpp"],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libcrypto",
+        "libcutils",
+        "libprocessgroup",
+        "libselinux",
+        "libutils",
+        "server_configurable_flags",
+    ],
+    static_libs: [
+        "libasync_safe",
+        "libdiskusage",
+        "libinstalld",
+        "liblog",
+        "liblogwrap",
+    ],
+    test_config: "installd_cache_test.xml",
+
+    product_variables: {
+        arc: {
+            exclude_srcs: [
+                "QuotaUtils.cpp",
+            ],
+            static_libs: [
+                "libarcdiskquota",
+                "arc_services_aidl",
+            ],
+            cflags: [
+                "-DUSE_ARC",
+            ],
+        },
+    },
+}
+
+cc_test {
+    name: "installd_service_test",
+    test_suites: ["device-tests"],
+    clang: true,
+    srcs: ["installd_service_test.cpp"],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libcrypto",
+        "libcutils",
+        "libprocessgroup",
+        "libselinux",
+        "libutils",
+        "server_configurable_flags",
+    ],
+    static_libs: [
+        "libasync_safe",
+        "libdiskusage",
+        "libinstalld",
+        "liblog",
+        "liblogwrap",
+    ],
+    test_config: "installd_service_test.xml",
+
+    product_variables: {
+        arc: {
+            exclude_srcs: [
+                "QuotaUtils.cpp",
+            ],
+            static_libs: [
+                "libarcdiskquota",
+                "arc_services_aidl",
+            ],
+            cflags: [
+                "-DUSE_ARC",
+            ],
+        },
+    },
+}
+
+cc_test {
+    name: "installd_dexopt_test",
+    test_suites: ["device-tests"],
+    clang: true,
+    srcs: ["installd_dexopt_test.cpp"],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libbase",
+        "libbinder",
+        "libcrypto",
+        "libcutils",
+        "libprocessgroup",
+        "libselinux",
+        "libutils",
+        "server_configurable_flags",
+    ],
+    static_libs: [
+        "libasync_safe",
+        "libdiskusage",
+        "libinstalld",
+        "liblog",
+        "liblogwrap",
+        "libziparchive",
+        "libz",
+    ],
+    test_config: "installd_dexopt_test.xml",
+
+    product_variables: {
+        arc: {
+            exclude_srcs: [
+                "QuotaUtils.cpp",
+            ],
+            static_libs: [
+                "libarcdiskquota",
+                "arc_services_aidl",
+            ],
+            cflags: [
+                "-DUSE_ARC",
+            ],
+        },
+    },
+}
+
+cc_test {
+    name: "installd_otapreopt_test",
+    test_suites: ["device-tests"],
+    clang: true,
+    srcs: ["installd_otapreopt_test.cpp"],
+    cflags: ["-Wall", "-Werror"],
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libutils",
+        "server_configurable_flags",
+    ],
+    static_libs: [
+        "liblog",
+        "libotapreoptparameters"
+    ],
+}

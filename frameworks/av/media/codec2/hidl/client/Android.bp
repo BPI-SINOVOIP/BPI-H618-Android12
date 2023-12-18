@@ -1,0 +1,59 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "frameworks_av_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["frameworks_av_license"],
+}
+
+cc_library {
+    name: "libcodec2_client",
+
+    srcs: [
+        "client.cpp",
+        "output.cpp",
+    ],
+
+    header_libs: [
+        "libcodec2_internal", // private
+    ],
+
+    shared_libs: [
+        "android.hardware.graphics.bufferqueue@1.0",
+        "android.hardware.media.bufferpool@2.0",
+        "android.hardware.media.c2@1.0",
+        "android.hardware.media.c2@1.1",
+        "android.hardware.media.c2@1.2",
+        "libbase",
+        "libbinder",
+        "libcodec2",
+        "libcodec2_hidl_client@1.0",
+        "libcodec2_hidl_client@1.1",
+        "libcodec2_hidl_client@1.2",
+        "libcodec2_vndk",
+        "libcutils",
+        "libgui",
+        "libhidlbase",
+        "liblog",
+        "libstagefright_bufferpool@2.0.1",
+        "libui",
+        "libutils",
+    ],
+
+    export_include_dirs: [
+        "include",
+    ],
+
+    export_shared_lib_headers: [
+        "android.hardware.media.c2@1.0",
+        "android.hardware.media.c2@1.1",
+        "android.hardware.media.c2@1.2",
+        "libcodec2",
+        "libcodec2_hidl_client@1.0",
+        "libcodec2_hidl_client@1.1",
+        "libcodec2_hidl_client@1.2",
+        "libcodec2_vndk",
+    ],
+
+}

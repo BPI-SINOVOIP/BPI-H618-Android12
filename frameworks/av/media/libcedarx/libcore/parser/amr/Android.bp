@@ -1,0 +1,11 @@
+cc_library_static {
+    name: "libcdx_amr_parser",
+
+    srcs: [
+         "CdxAmrParser.c",
+    ],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

@@ -1,0 +1,15 @@
+cc_library_static {
+    name: "libcdx_mkv_parser",
+
+    srcs: [
+         "CdxMkvParser.c",
+         "CdxMkvParserImpl.c",
+         "zlib.c",
+    ],
+
+    shared_libs: ["libz"],
+
+    defaults: [
+        "libcdx_parser_defaults",
+    ],
+}

@@ -1,0 +1,11 @@
+cc_library_shared {
+    name: "libionbase",
+
+    srcs: [
+        "ion_alloc.c",
+    ],
+
+    local_include_dirs: [
+        "include",
+    ],
+}
