@@ -1,0 +1,211 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.android.tools.lint",
+    "module": "lint-gradle",
+    "version": "30.0.0-alpha14",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.0-rc-1"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "lint-gradle-30.0.0-alpha14.jar",
+          "url": "lint-gradle-30.0.0-alpha14.jar",
+          "size": 71808,
+          "sha512": "24cd9613a083e596ea30c56d52d8ee023429a6777732d48bad1f15886ba0fadb5fd807a02e7a237e234d2a7203502e2d01b0f4d5c572f2b8fc2c962f97492e1e",
+          "sha256": "5afb26c5211e99933708e9683acf563d7a7a74f7ef6d6477df0feb3a68400b1f",
+          "sha1": "2687cda77de815ae04fd86e3e75d2557d154fb36",
+          "md5": "bbd321f8c81b81522b94f43075a2ef31"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.localToProject": "public",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.android.tools",
+          "module": "sdk-common",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools",
+          "module": "sdklib",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools",
+          "module": "common",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "builder",
+          "version": {
+            "requires": "7.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "builder-model",
+          "version": {
+            "requires": "7.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools.external.com-intellij",
+          "module": "intellij-core",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools.external.com-intellij",
+          "module": "kotlin-compiler",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools.external.org-jetbrains",
+          "module": "uast",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "manifest-merger",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools.lint",
+          "module": "lint",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android",
+          "module": "zipflinger",
+          "version": {
+            "requires": "7.0.0-alpha14"
+          }
+        },
+        {
+          "group": "com.android.tools",
+          "module": "repository",
+          "version": {
+            "requires": "30.0.0-alpha14"
+          }
+        },
+        {
+          "group": "org.codehaus.groovy",
+          "module": "groovy-all",
+          "version": {
+            "requires": "3.0.7"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-reflect",
+          "version": {
+            "requires": "1.4.32"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.4.32"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lint-gradle-30.0.0-alpha14.jar",
+          "url": "lint-gradle-30.0.0-alpha14.jar",
+          "size": 71808,
+          "sha512": "24cd9613a083e596ea30c56d52d8ee023429a6777732d48bad1f15886ba0fadb5fd807a02e7a237e234d2a7203502e2d01b0f4d5c572f2b8fc2c962f97492e1e",
+          "sha256": "5afb26c5211e99933708e9683acf563d7a7a74f7ef6d6477df0feb3a68400b1f",
+          "sha1": "2687cda77de815ae04fd86e3e75d2557d154fb36",
+          "md5": "bbd321f8c81b81522b94f43075a2ef31"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "lint-gradle-30.0.0-alpha14-javadoc.jar",
+          "url": "lint-gradle-30.0.0-alpha14-javadoc.jar",
+          "size": 425400,
+          "sha512": "251f00efae4721278d7c5abb1ea68d977779307ed4479f89cba337129b4b1cf4c684c6916c3e1064038ed6c6a3bd7a33d1909ba674d732ea96dc310f342b0b58",
+          "sha256": "8fb8820e1d9fe9bf29bc81873847aa2b44252e95351a0d96d9774ab7364529b5",
+          "sha1": "9e7b1456ce08b12eb4d202a2960788dcf230e23c",
+          "md5": "9620e87e978cf5dfc05c55f3f65499f6"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "lint-gradle-30.0.0-alpha14-sources.jar",
+          "url": "lint-gradle-30.0.0-alpha14-sources.jar",
+          "size": 71551,
+          "sha512": "47120d60ca2720af44fe89597966ec9dd2b0189924517f54bc992107fbeb6d341aa49353dca8c259b7c8a23752e699499a85f35646485d20361cce02184af789",
+          "sha256": "b80cf71db2b25687eb70dd5f0bf6456208a05ece7287812e0a7dbf4e176d13f3",
+          "sha1": "d4d1138421e9e8aa6095784de8513021f42d1c62",
+          "md5": "34a24366a1c30db176b33bddfd69644b"
+        }
+      ]
+    }
+  ]
+}
