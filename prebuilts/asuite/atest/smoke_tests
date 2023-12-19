@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+# Copyright 2020, The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+import os
+import shutil
+import subprocess
+import sys
+
+from smoke_test_data import utils
+
+
+# Constants that share among tests.
+OS_TYPE = str.lower(os.uname().sysname) + '-x86'
+ATEST = 'atest'
+ATEST_BIN = os.path.join(
+    os.getenv(utils.TOP), 'prebuilts/asuite', ATEST, OS_TYPE, ATEST)
+# Append more tests in the ordered list below, and provide a main() so that
+# smoke_tests can invoke them directly.
+# TODO: b/153411501 support --enable-file-patterns in the future.
+TESTS = ['lookup_tests', 'test_mappings', 'include_subdirs', 'iterations']
+
+
+if __name__ == '__main__':
+    if not os.getenv(utils.TOP):
+        print('Unable to locate {}. Run "lunch" and try again.'.format(utils.TOP))
+        sys.exit(1)
+
+    # Ensure we're testing the correct prebuilt par.
+    if not shutil.which(ATEST) == ATEST_BIN:
+        print('You are not running {}.'.format(ATEST_BIN))
+        print('Warning: currently using: {}'.format(shutil.which(ATEST)))
+        sys.exit(1)
+
+    # Rebuild module_info.json at the beginning.
+    os.system('{} -mc --dry-run hello_world_test'.format(ATEST))
+    sys.path.append(utils.SMOKE_DIR)
+    _modules = {}
+    for test in TESTS:
+        _modules[test] = __import__(test)
+        _modules[test].main()

@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# Copyright 2020, The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+if [ "$(uname -s)" == "Darwin" ]; then
+    ATEST_DIR=$(dirname $(readlink "$0"))
+    realpath(){ echo "$(cd $(dirname $1);pwd -P)/$(basename $1)"; }
+else
+    ATEST_DIR=$(dirname "$0")
+fi
+
+function get_python_version() {
+    python - << END
+import sys
+print(sys.version_info.major)
+END
+}
+
+function is_python3() {
+    python3 - << END
+import sys
+current_version = (sys.version_info.major, sys.version_info.minor)
+if current_version >= (3, 4):
+    print(True)
+else:
+    print(False)
+END
+}
+
+# 1. Expect in most Linux that comes with python3.
+if which python3 >/dev/null 2>&1; then
+    if [[ x$(is_python3) == x"False" ]]; then
+        echo "[Warning] Outdated version of python3 detected!"
+        echo "Please install python 3.5+ to run the latest atest."
+    fi
+    ATEST="$(realpath $ATEST_DIR)/atest-py3"
+# 2. For legacy mechines that only have python2
+elif which python2 >/dev/null 2>&1; then
+    ATEST="$(realpath $ATEST_DIR)/atest-py2"
+    echo "[Warning] You are running a FALLBACK version of atest!"
+    echo "This fallback version of atest will be NO LONGER MAINTAINED/BUG FIXING!"
+# In some distros there are no explicit python2/python3 executables.
+elif which python >/dev/null 2>&1; then
+    if [[ "$(get_python_version)" -eq 3 ]]; then
+        echo "Please point $(which python) to /usr/bin/python3 to run atest."
+    else
+        echo "Please point $(which python) to /usr/bin/python2 to run atest."
+    fi
+    exit 0
+# Unlikely to happen, exit if no python/python2/python3 executables at all.
+else
+    echo "Please install python 3.5+ to run the latest atest."
+    exit 0
+fi
+
+$ATEST "$@"

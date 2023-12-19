@@ -1,0 +1,57 @@
+{
+  "arch": {
+    "host": "x86_64-linux-gnu",
+    "target": [
+      "arm64",
+      "x64"
+    ]
+  },
+  "id": "",
+  "parts": [
+    {
+      "meta": "docs/low_level.json",
+      "type": "documentation"
+    },
+    {
+      "meta": "docs/metadata_schemas.json",
+      "type": "documentation"
+    },
+    {
+      "meta": "docs/musl_license.json",
+      "type": "documentation"
+    },
+    {
+      "meta": "docs/open_source.json",
+      "type": "documentation"
+    },
+    {
+      "meta": "pkg/async-cpp/meta.json",
+      "type": "cc_source_library"
+    },
+    {
+      "meta": "pkg/async/meta.json",
+      "type": "cc_source_library"
+    },
+    {
+      "meta": "pkg/fdio/meta.json",
+      "type": "cc_prebuilt_library"
+    },
+    {
+      "meta": "pkg/fit/meta.json",
+      "type": "cc_source_library"
+    },
+    {
+      "meta": "pkg/sync/meta.json",
+      "type": "cc_prebuilt_library"
+    },
+    {
+      "meta": "pkg/sysroot/meta.json",
+      "type": "sysroot"
+    },
+    {
+      "meta": "pkg/zx/meta.json",
+      "type": "cc_source_library"
+    }
+  ],
+  "schema_version": "1"
+}

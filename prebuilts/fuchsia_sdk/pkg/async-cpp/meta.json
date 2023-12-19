@@ -1,0 +1,32 @@
+{
+  "banjo_deps": [],
+  "deps": [
+    "async",
+    "fit",
+    "zx"
+  ],
+  "fidl_deps": [],
+  "headers": [
+    "pkg/async-cpp/include/lib/async/cpp/executor.h",
+    "pkg/async-cpp/include/lib/async/cpp/irq.h",
+    "pkg/async-cpp/include/lib/async/cpp/paged_vmo.h",
+    "pkg/async-cpp/include/lib/async/cpp/receiver.h",
+    "pkg/async-cpp/include/lib/async/cpp/task.h",
+    "pkg/async-cpp/include/lib/async/cpp/time.h",
+    "pkg/async-cpp/include/lib/async/cpp/trap.h",
+    "pkg/async-cpp/include/lib/async/cpp/wait.h"
+  ],
+  "include_dir": "pkg/async-cpp/include",
+  "name": "async-cpp",
+  "root": "pkg/async-cpp",
+  "sources": [
+    "pkg/async-cpp/executor.cc",
+    "pkg/async-cpp/irq.cc",
+    "pkg/async-cpp/paged_vmo.cc",
+    "pkg/async-cpp/receiver.cc",
+    "pkg/async-cpp/task.cc",
+    "pkg/async-cpp/trap.cc",
+    "pkg/async-cpp/wait.cc"
+  ],
+  "type": "cc_source_library"
+}

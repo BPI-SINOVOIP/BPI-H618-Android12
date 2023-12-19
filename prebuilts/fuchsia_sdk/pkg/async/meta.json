@@ -1,0 +1,24 @@
+{
+  "banjo_deps": [],
+  "deps": [
+    "fit"
+  ],
+  "fidl_deps": [],
+  "headers": [
+    "pkg/async/include/lib/async/dispatcher.h",
+    "pkg/async/include/lib/async/irq.h",
+    "pkg/async/include/lib/async/paged_vmo.h",
+    "pkg/async/include/lib/async/receiver.h",
+    "pkg/async/include/lib/async/task.h",
+    "pkg/async/include/lib/async/time.h",
+    "pkg/async/include/lib/async/trap.h",
+    "pkg/async/include/lib/async/wait.h"
+  ],
+  "include_dir": "pkg/async/include",
+  "name": "async",
+  "root": "pkg/async",
+  "sources": [
+    "pkg/async/ops.c"
+  ],
+  "type": "cc_source_library"
+}

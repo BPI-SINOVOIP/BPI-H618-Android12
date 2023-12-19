@@ -1,0 +1,35 @@
+{
+  "binaries": {
+    "arm64": {
+      "debug": ".build-id/74/2b17fa45c78956.debug",
+      "dist": "arch/arm64/dist/libfdio.so",
+      "dist_path": "lib/libfdio.so",
+      "link": "arch/arm64/lib/libfdio.so"
+    },
+    "x64": {
+      "debug": ".build-id/cf/a07b064427801f.debug",
+      "dist": "arch/x64/dist/libfdio.so",
+      "dist_path": "lib/libfdio.so",
+      "link": "arch/x64/lib/libfdio.so"
+    }
+  },
+  "deps": [],
+  "format": "shared",
+  "headers": [
+    "pkg/fdio/include/lib/fdio/directory.h",
+    "pkg/fdio/include/lib/fdio/fd.h",
+    "pkg/fdio/include/lib/fdio/fdio.h",
+    "pkg/fdio/include/lib/fdio/io.h",
+    "pkg/fdio/include/lib/fdio/limits.h",
+    "pkg/fdio/include/lib/fdio/namespace.h",
+    "pkg/fdio/include/lib/fdio/private.h",
+    "pkg/fdio/include/lib/fdio/spawn.h",
+    "pkg/fdio/include/lib/fdio/unsafe.h",
+    "pkg/fdio/include/lib/fdio/vfs.h",
+    "pkg/fdio/include/lib/fdio/watcher.h"
+  ],
+  "include_dir": "pkg/fdio/include",
+  "name": "fdio",
+  "root": "pkg/fdio",
+  "type": "cc_prebuilt_library"
+}

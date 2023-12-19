@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://fuchsia.com/schemas/sdk/common.json",
+  "definitions": {
+    "file": {
+      "description": "Path to a file from the root of the SDK",
+      "type": "string"
+    },
+    "type": {
+      "description": "Represents the type of an SDK element",
+      "type": "string"
+    },
+    "sdk_element": {
+      "description": "Base type for SDK elements",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of the element",
+          "$ref": "#/definitions/type"
+        },
+        "name": {
+          "description": "The name of the element",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    "banjo_library_name": {
+      "description": "Name of a BANJO library",
+      "type": "string"
+    },
+    "fidl_library_name": {
+      "description": "Name of a FIDL library",
+      "type": "string"
+    },
+    "cc_library_name": {
+      "description": "Name of a C/C++ library",
+      "type": "string"
+    },
+    "target_arch": {
+      "description": "Target architecture",
+      "type": "string",
+      "enum": [
+        "arm64",
+        "x64"
+      ]
+    }
+  }
+}
