@@ -1,0 +1,13 @@
+*.a
+*.o
+*.patch
+*.so
+*.so.*
+/.build-config
+/fsverity
+/fsverity.sig
+/run-tests.log
+/test_*
+cscope.*
+ncscope.*
+tags

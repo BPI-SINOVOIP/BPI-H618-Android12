@@ -1,0 +1,17 @@
+*.pyc
+__pycache__
+
+# vim swapfiles
+*.sw?
+
+# virtual environment
+.venv/
+
+# python packaging
+MANIFEST
+dist/
+build/
+*.egg-info/
+
+# Pycharm stuff
+.idea/

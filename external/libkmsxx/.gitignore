@@ -1,0 +1,11 @@
+*.swp
+*.a
+*.so
+build
+*.txt.user
+*.patch
+py/__pycache__
+*.pyc
+meson.build.user
+subprojects/packagecache/
+subprojects/pybind11-*/

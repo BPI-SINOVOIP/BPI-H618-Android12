@@ -1,0 +1,25 @@
+# Project files and paths.
+.classpath
+.project
+*.iml
+**/*.iml
+.settings/
+bin/
+gen/
+.idea/
+
+# ignore OS X metadata
+.DS_Store
+
+# Andorid Studio
+app/build/
+/.gradle
+/.idea
+
+# cscope and ctags
+cscope.files
+cscope.in.out
+cscope.out
+cscope.po.out
+tags
+
