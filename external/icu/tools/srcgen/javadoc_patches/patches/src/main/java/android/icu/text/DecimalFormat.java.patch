@@ -1,0 +1,15 @@
+--- android_icu4j/src/main/java/android/icu/text/DecimalFormat.java	2021-01-19 16:26:29.614685814 +0000
++++ android_icu4j/src/main/java/android/icu/text/DecimalFormat.java	2021-01-19 16:26:50.998837611 +0000
+@@ -43,12 +43,6 @@
+ /**
+  * <strong>[icu enhancement]</strong> ICU's replacement for {@link java.text.DecimalFormat}.&nbsp;Methods, fields, and other functionality specific to ICU are labeled '<strong>[icu]</strong>'.
+  *
+- * <p>
+- * <strong>IMPORTANT:</strong> New users are strongly encouraged to see if
+- * {@link NumberFormatter} fits their use case.  Although not deprecated, this
+- * class, DecimalFormat, is only provided for java.text.DecimalFormat compatibility.
+- * <hr>
+- *
+  * <code>DecimalFormat</code> is the primary
+  * concrete subclass of {@link NumberFormat}. It has a variety of features designed to make it
+  * possible to parse and format numbers in any locale, including support for Western, Arabic, or

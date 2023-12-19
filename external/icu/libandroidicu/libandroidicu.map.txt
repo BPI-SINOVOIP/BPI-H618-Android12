@@ -1,0 +1,143 @@
+# GENERATED SOURCE. DO NOT MODIFY.
+# Run external/icu/tools/icu4c_srcgen/generate_libandroidicu.py to regenerate
+#
+# Copyright (C) 2018 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+LIBANDROIDICU_EXTERNAL_1 {
+  global:
+    UCNV_FROM_U_CALLBACK_STOP_android;
+    UCNV_TO_U_CALLBACK_STOP_android;
+    u_charDirection_android;
+    u_charMirror_android;
+    u_charName_android;
+    u_charType_android;
+    u_countChar32_android;
+    u_digit_android;
+    u_errorName_android;
+    u_foldCase_android;
+    u_getCombiningClass_android;
+    u_getIntPropertyMaxValue_android;
+    u_getIntPropertyValue_android;
+    u_getNumericValue_android;
+    u_hasBinaryProperty_android;
+    u_isIDIgnorable_android;
+    u_isIDPart_android;
+    u_isIDStart_android;
+    u_isJavaSpaceChar_android;
+    u_isMirrored_android;
+    u_isUAlphabetic_android;
+    u_isUWhiteSpace_android;
+    u_isWhitespace_android;
+    u_isalnum_android;
+    u_isalpha_android;
+    u_iscntrl_android;
+    u_isdefined_android;
+    u_isdigit_android;
+    u_islower_android;
+    u_ispunct_android;
+    u_isspace_android;
+    u_istitle_android;
+    u_isupper_android;
+    u_strFromUTF8_android;
+    u_strFromUTF8WithSub_android;
+    u_strToLower_android;
+    u_strToUTF8_android;
+    u_strToUpper_android;
+    u_tolower_android;
+    u_totitle_android;
+    u_toupper_android;
+    ubidi_close_android;
+    ubidi_countRuns_android;
+    ubidi_getLength_android;
+    ubidi_getLevelAt_android;
+    ubidi_getParaLevel_android;
+    ubidi_getVisualRun_android;
+    ubidi_open_android;
+    ubidi_openSized_android;
+    ubidi_reorderVisual_android;
+    ubidi_setClassCallback_android;
+    ubidi_setPara_android;
+    ubrk_close_android;
+    ubrk_current_android;
+    ubrk_first_android;
+    ubrk_following_android;
+    ubrk_getRuleStatus_android;
+    ubrk_isBoundary_android;
+    ubrk_next_android;
+    ubrk_open_android;
+    ubrk_preceding_android;
+    ubrk_setUText_android;
+    ucnv_close_android;
+    ucnv_convert_android;
+    ucnv_convertEx_android;
+    ucnv_getNextUChar_android;
+    ucnv_open_android;
+    ucnv_setFromUCallBack_android;
+    ucnv_setToUCallBack_android;
+    ucol_close_android;
+    ucol_open_android;
+    ucol_setAttribute_android;
+    ucol_strcoll_android;
+    ucol_strcollIter_android;
+    ucsdet_close_android;
+    ucsdet_detect_android;
+    ucsdet_detectAll_android;
+    ucsdet_getConfidence_android;
+    ucsdet_getName_android;
+    ucsdet_open_android;
+    ucsdet_setText_android;
+    udatpg_close_android;
+    udatpg_getBestPattern_android;
+    udatpg_open_android;
+    uiter_setUTF8_android;
+    uloc_addLikelySubtags_android;
+    uloc_canonicalize_android;
+    uloc_countAvailable_android;
+    uloc_forLanguageTag_android;
+    uloc_getAvailable_android;
+    uloc_getDefault_android;
+    uloc_getISO3Country_android;
+    uloc_getISO3Language_android;
+    uloc_getISOCountries_android;
+    uloc_getISOLanguages_android;
+    uloc_getName_android;
+    uloc_getScript_android;
+    uloc_setDefault_android;
+    uloc_toLanguageTag_android;
+    unorm2_composePair_android;
+    unorm2_getDecomposition_android;
+    unorm2_getNFCInstance_android;
+    unorm2_getNFDInstance_android;
+    unorm2_getRawDecomposition_android;
+    uregex_close_android;
+    uregex_matches_android;
+    uregex_open_android;
+    uregex_setText_android;
+    ures_close_android;
+    ures_getByIndex_android;
+    ures_getByKey_android;
+    ures_getString_android;
+    ures_openDirect_android;
+    uscript_getScript_android;
+    uscript_getShortName_android;
+    utext_close_android;
+    utext_openUChars_android;
+    utext_openUTF8_android;
+    utrans_close_android;
+    utrans_openU_android;
+    utrans_transUChars_android;
+  local:
+    *;
+};

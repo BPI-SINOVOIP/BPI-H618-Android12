@@ -1,0 +1,218 @@
+package {
+    default_applicable_licenses: [
+        "external_webrtc_third_party_abseil-cpp_license",
+    ],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+// See: http://go/android-license-faq
+license {
+    name: "external_webrtc_third_party_abseil-cpp_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "legacy_unencumbered",
+    ],
+    license_text: [
+        "LICENSE",
+    ],
+}
+
+cc_defaults {
+    name: "libwebrtc_absl_defaults",
+    visibility: [
+        "//external/webrtc:__subpackages__",
+        "//device/google/cuttlefish/host/frontend/webrtc:__subpackages__",
+    ],
+}
+
+cc_library_headers {
+    name: "libwebrtc_absl_headers",
+    defaults: ["libwebrtc_absl_defaults"],
+    // vendor needed for libpreprocessing effects.
+    vendor: true,
+    host_supported: true,
+    export_include_dirs: ["."],
+    visibility: [
+        "//frameworks/av/media/libeffects/preprocessing:__subpackages__",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_base",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/base/dynamic_annotations.cc",
+        "absl/base/internal/cycleclock.cc",
+        "absl/base/internal/exponential_biased.cc",
+        "absl/base/internal/low_level_alloc.cc",
+        "absl/base/internal/periodic_sampler.cc",
+        "absl/base/internal/raw_logging.cc",
+        "absl/base/internal/spinlock.cc",
+        "absl/base/internal/spinlock_wait.cc",
+        "absl/base/internal/sysinfo.cc",
+        "absl/base/internal/thread_identity.cc",
+        "absl/base/internal/throw_delegate.cc",
+        "absl/base/internal/unscaledcycleclock.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_container",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/container/internal/test_instance_tracker.cc",
+        "absl/container/internal/hash_generator_testing.cc",
+        "absl/container/internal/hashtablez_sampler.cc",
+        "absl/container/internal/hashtablez_sampler_force_weak_definition.cc",
+        "absl/container/internal/raw_hash_set.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_debugging",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/debugging/failure_signal_handler.cc",
+        "absl/debugging/internal/address_is_readable.cc",
+        "absl/debugging/internal/demangle.cc",
+        "absl/debugging/internal/elf_mem_image.cc",
+        "absl/debugging/internal/examine_stack.cc",
+        "absl/debugging/internal/stack_consumption.cc",
+        "absl/debugging/internal/vdso_support.cc",
+        "absl/debugging/leak_check.cc",
+        "absl/debugging/stacktrace.cc",
+        "absl/debugging/symbolize.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_flags",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/flags/usage_config.cc",
+        "absl/flags/marshalling.cc",
+        "absl/flags/usage.cc",
+        "absl/flags/flag.cc",
+        "absl/flags/parse.cc",
+        "absl/flags/internal/flag.cc",
+        "absl/flags/internal/program_name.cc",
+        "absl/flags/internal/registry.cc",
+        "absl/flags/internal/usage.cc",
+        "absl/flags/internal/type_erased.cc",
+        "absl/flags/flag_test_defs.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_hash",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/hash/internal/city.cc",
+        "absl/hash/internal/hash.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_numeric",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: ["absl/numeric/int128.cc"],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_status",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/status/status.cc",
+        "absl/status/status_payload_printer.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_strings",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/strings/ascii.cc",
+        "absl/strings/charconv.cc",
+        "absl/strings/cord.cc",
+        "absl/strings/escaping.cc",
+        "absl/strings/internal/charconv_bigint.cc",
+        "absl/strings/internal/charconv_parse.cc",
+        "absl/strings/internal/escaping.cc",
+        "absl/strings/internal/memutil.cc",
+        "absl/strings/internal/ostringstream.cc",
+        "absl/strings/internal/str_format/arg.cc",
+        "absl/strings/internal/str_format/bind.cc",
+        "absl/strings/internal/str_format/extension.cc",
+        "absl/strings/internal/str_format/float_conversion.cc",
+        "absl/strings/internal/str_format/output.cc",
+        "absl/strings/internal/str_format/parser.cc",
+        "absl/strings/internal/utf8.cc",
+        "absl/strings/match.cc",
+        "absl/strings/numbers.cc",
+        "absl/strings/str_cat.cc",
+        "absl/strings/str_replace.cc",
+        "absl/strings/str_split.cc",
+        "absl/strings/string_view.cc",
+        "absl/strings/substitute.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_synchronization",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/synchronization/barrier.cc",
+        "absl/synchronization/blocking_counter.cc",
+        "absl/synchronization/internal/create_thread_identity.cc",
+        "absl/synchronization/internal/per_thread_sem.cc",
+        "absl/synchronization/internal/waiter.cc",
+        "absl/synchronization/internal/graphcycles.cc",
+        "absl/synchronization/notification.cc",
+        "absl/synchronization/mutex.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_time",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/time/civil_time.cc",
+        "absl/time/clock.cc",
+        "absl/time/duration.cc",
+        "absl/time/format.cc",
+        "absl/time/internal/cctz/src/civil_time_detail.cc",
+        "absl/time/internal/cctz/src/time_zone_fixed.cc",
+        "absl/time/internal/cctz/src/time_zone_format.cc",
+        "absl/time/internal/cctz/src/time_zone_if.cc",
+        "absl/time/internal/cctz/src/time_zone_impl.cc",
+        "absl/time/internal/cctz/src/time_zone_info.cc",
+        "absl/time/internal/cctz/src/time_zone_libc.cc",
+        "absl/time/internal/cctz/src/time_zone_lookup.cc",
+        "absl/time/internal/cctz/src/time_zone_posix.cc",
+        "absl/time/internal/cctz/src/zone_info_source.cc",
+        "absl/time/time.cc",
+    ],
+}
+
+cc_library_host_static {
+    name: "libwebrtc_absl_types",
+    defaults: ["libwebrtc_absl_defaults"],
+    srcs: [
+        "absl/types/bad_any_cast.cc",
+        "absl/types/bad_optional_access.cc",
+        "absl/types/bad_variant_access.cc",
+    ],
+}
