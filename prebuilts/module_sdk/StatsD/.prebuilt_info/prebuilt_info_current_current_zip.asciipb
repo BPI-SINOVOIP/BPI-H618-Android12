@@ -1,0 +1,19 @@
+drops {
+  android_build_drop {
+    build_id: "7611331"
+    target: "mainline_modules-user"
+    source_file: "mainline-sdks/statsd-module-sdk-current.zip"
+  }
+  dest_file: "current/current.zip"
+  version: ""
+  version_group: ""
+  git_project: "platform/prebuilts/module_sdk/StatsD"
+  git_branch: "sc-dev"
+  transform: TRANSFORM_UNZIP
+  transform_options {
+    rename {
+      from_path: "Android.bp"
+      to_path: "Android.bp.auto"
+    }
+  }
+}

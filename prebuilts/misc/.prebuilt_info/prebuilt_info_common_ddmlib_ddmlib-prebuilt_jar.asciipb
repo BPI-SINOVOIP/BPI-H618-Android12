@@ -1,0 +1,12 @@
+drops {
+  android_build_drop {
+    build_id: "7308957"
+    target: "studio_linux"
+    source_file: "artifacts/ddmlib.jar"
+  }
+  dest_file: "common/ddmlib/ddmlib-prebuilt.jar"
+  version: ""
+  version_group: ""
+  git_project: "platform/prebuilts/misc"
+  git_branch: "master"
+}

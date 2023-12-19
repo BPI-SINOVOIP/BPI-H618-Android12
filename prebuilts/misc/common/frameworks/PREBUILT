@@ -1,0 +1,13 @@
+The objects in this prebuilt directory can be built from
+	platform/frameworks/base
+
+platformprotos-prebuilt.jar:
+Built from commit I757f06b69eefe26dbbbaa1bbde1abeca1b6a62f4.
+First AOSP build containing the change is aosp-master@5989172.
+
+platformtestprotos-prebuilt.jar:
+Built from change I82386a6c8a5e6ddf42d8377148001f4ede2f297f
+
+Note: Before dropping the jars, please run the following command to strip the
+jar manifest file, which causes hidden dependency on jars in the Class-Path.
+$ zip -d platformprotos-prebuilt.jar META-INF/MANIFEST.MF

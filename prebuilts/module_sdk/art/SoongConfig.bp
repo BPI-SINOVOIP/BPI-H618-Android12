@@ -1,0 +1,97 @@
+// Set up Soong config variables prefer prebuilts when
+// SOONG_CONFIG_art_module_source_build isn't set. Corresponding boilerplate for
+// disabling ART Module top level source modules is in art/build/SoongConfig.bp.
+
+// TODO(b/172480617): Clean up when ART source is no longer in the platform
+// manifest.
+soong_config_bool_variable {
+    name: "source_build",
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_cc_prebuilt_binary",
+    module_type: "cc_prebuilt_binary",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_cc_prebuilt_library",
+    module_type: "cc_prebuilt_library",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_cc_prebuilt_library_headers",
+    module_type: "cc_prebuilt_library_headers",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_cc_prebuilt_library_shared",
+    module_type: "cc_prebuilt_library_shared",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_cc_prebuilt_library_static",
+    module_type: "cc_prebuilt_library_static",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_java_import",
+    module_type: "java_import",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_java_test_import",
+    module_type: "java_test_import",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_java_sdk_library_import",
+    module_type: "java_sdk_library_import",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_java_system_modules_import",
+    module_type: "java_system_modules_import",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_prebuilt_bootclasspath_fragment",
+    module_type: "prebuilt_bootclasspath_fragment",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}
+
+soong_config_module_type {
+    name: "art_prebuilt_prebuilt_platform_compat_config",
+    module_type: "prebuilt_platform_compat_config",
+    config_namespace: "art_module",
+    bool_variables: ["source_build"],
+    properties: ["prefer"],
+}

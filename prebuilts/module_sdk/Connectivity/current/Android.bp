@@ -1,0 +1,221 @@
+// This is auto-generated. DO NOT EDIT.
+
+package {
+    // A default list here prevents the license LSC from adding its own list which would
+    // be unnecessary as every module in the sdk already has its own licenses property.
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+soong_config_module_type_import {
+    from: "packages/modules/common/Android.bp",
+    module_types: [
+        "module_java_sdk_library_import",
+        "module_prebuilt_bootclasspath_fragment",
+    ],
+}
+
+prebuilt_bootclasspath_fragment {
+    name: "tethering-module-sdk_com.android.tethering-bootclasspath-fragment@current",
+    sdk_member_name: "com.android.tethering-bootclasspath-fragment",
+    visibility: ["//visibility:public"],
+    apex_available: ["com.android.tethering"],
+    licenses: ["tethering-module-sdk_Android-Apache-2.0@current"],
+    contents: [
+        "tethering-module-sdk_framework-connectivity@current",
+        "tethering-module-sdk_framework-tethering@current",
+    ],
+    hidden_api: {
+        unsupported: ["hiddenapi/hiddenapi-unsupported.txt"],
+        max_target_o_low_priority: ["hiddenapi/hiddenapi-max-target-o-low-priority.txt"],
+        stub_flags: "hiddenapi/stub-flags.csv",
+        annotation_flags: "hiddenapi/annotation-flags.csv",
+        metadata: "hiddenapi/metadata.csv",
+        index: "hiddenapi/index.csv",
+        all_flags: "hiddenapi/all-flags.csv",
+    },
+}
+
+module_prebuilt_bootclasspath_fragment {
+    name: "com.android.tethering-bootclasspath-fragment",
+    prefer: true,
+    soong_config_variables: {
+        module_build_from_source: {
+            prefer: false,
+        },
+    },
+    visibility: ["//visibility:public"],
+    apex_available: ["com.android.tethering"],
+    licenses: ["tethering-module-sdk_Android-Apache-2.0"],
+    contents: [
+        "framework-connectivity",
+        "framework-tethering",
+    ],
+    hidden_api: {
+        unsupported: ["hiddenapi/hiddenapi-unsupported.txt"],
+        max_target_o_low_priority: ["hiddenapi/hiddenapi-max-target-o-low-priority.txt"],
+        stub_flags: "hiddenapi/stub-flags.csv",
+        annotation_flags: "hiddenapi/annotation-flags.csv",
+        metadata: "hiddenapi/metadata.csv",
+        index: "hiddenapi/index.csv",
+        all_flags: "hiddenapi/all-flags.csv",
+    },
+}
+
+java_sdk_library_import {
+    name: "tethering-module-sdk_framework-connectivity@current",
+    sdk_member_name: "framework-connectivity",
+    visibility: ["//visibility:public"],
+    apex_available: ["com.android.tethering"],
+    licenses: ["tethering-module-sdk_Android-Apache-2.0@current"],
+    shared_library: false,
+    permitted_packages: ["android.net"],
+    public: {
+        jars: ["sdk_library/public/framework-connectivity-stubs.jar"],
+        stub_srcs: ["sdk_library/public/framework-connectivity.srcjar"],
+        current_api: "sdk_library/public/framework-connectivity.txt",
+        removed_api: "sdk_library/public/framework-connectivity-removed.txt",
+        sdk_version: "module_current",
+    },
+    system: {
+        jars: ["sdk_library/system/framework-connectivity-stubs.jar"],
+        stub_srcs: ["sdk_library/system/framework-connectivity.srcjar"],
+        current_api: "sdk_library/system/framework-connectivity.txt",
+        removed_api: "sdk_library/system/framework-connectivity-removed.txt",
+        sdk_version: "module_current",
+    },
+    module_lib: {
+        jars: ["sdk_library/module-lib/framework-connectivity-stubs.jar"],
+        stub_srcs: ["sdk_library/module-lib/framework-connectivity.srcjar"],
+        current_api: "sdk_library/module-lib/framework-connectivity.txt",
+        removed_api: "sdk_library/module-lib/framework-connectivity-removed.txt",
+        sdk_version: "module_current",
+    },
+}
+
+module_java_sdk_library_import {
+    name: "framework-connectivity",
+    prefer: true,
+    soong_config_variables: {
+        module_build_from_source: {
+            prefer: false,
+        },
+    },
+    visibility: ["//visibility:public"],
+    apex_available: ["com.android.tethering"],
+    licenses: ["tethering-module-sdk_Android-Apache-2.0"],
+    shared_library: false,
+    permitted_packages: ["android.net"],
+    public: {
+        jars: ["sdk_library/public/framework-connectivity-stubs.jar"],
+        stub_srcs: ["sdk_library/public/framework-connectivity.srcjar"],
+        current_api: "sdk_library/public/framework-connectivity.txt",
+        removed_api: "sdk_library/public/framework-connectivity-removed.txt",
+        sdk_version: "module_current",
+    },
+    system: {
+        jars: ["sdk_library/system/framework-connectivity-stubs.jar"],
+        stub_srcs: ["sdk_library/system/framework-connectivity.srcjar"],
+        current_api: "sdk_library/system/framework-connectivity.txt",
+        removed_api: "sdk_library/system/framework-connectivity-removed.txt",
+        sdk_version: "module_current",
+    },
+    module_lib: {
+        jars: ["sdk_library/module-lib/framework-connectivity-stubs.jar"],
+        stub_srcs: ["sdk_library/module-lib/framework-connectivity.srcjar"],
+        current_api: "sdk_library/module-lib/framework-connectivity.txt",
+        removed_api: "sdk_library/module-lib/framework-connectivity-removed.txt",
+        sdk_version: "module_current",
+    },
+}
+
+java_sdk_library_import {
+    name: "tethering-module-sdk_framework-tethering@current",
+    sdk_member_name: "framework-tethering",
+    visibility: ["//visibility:public"],
+    apex_available: ["com.android.tethering"],
+    licenses: ["tethering-module-sdk_Android-Apache-2.0@current"],
+    shared_library: false,
+    permitted_packages: ["android.net"],
+    public: {
+        jars: ["sdk_library/public/framework-tethering-stubs.jar"],
+        stub_srcs: ["sdk_library/public/framework-tethering.srcjar"],
+        current_api: "sdk_library/public/framework-tethering.txt",
+        removed_api: "sdk_library/public/framework-tethering-removed.txt",
+        sdk_version: "module_current",
+    },
+    system: {
+        jars: ["sdk_library/system/framework-tethering-stubs.jar"],
+        stub_srcs: ["sdk_library/system/framework-tethering.srcjar"],
+        current_api: "sdk_library/system/framework-tethering.txt",
+        removed_api: "sdk_library/system/framework-tethering-removed.txt",
+        sdk_version: "module_current",
+    },
+    module_lib: {
+        jars: ["sdk_library/module-lib/framework-tethering-stubs.jar"],
+        stub_srcs: ["sdk_library/module-lib/framework-tethering.srcjar"],
+        current_api: "sdk_library/module-lib/framework-tethering.txt",
+        removed_api: "sdk_library/module-lib/framework-tethering-removed.txt",
+        sdk_version: "module_current",
+    },
+}
+
+module_java_sdk_library_import {
+    name: "framework-tethering",
+    prefer: true,
+    soong_config_variables: {
+        module_build_from_source: {
+            prefer: false,
+        },
+    },
+    visibility: ["//visibility:public"],
+    apex_available: ["com.android.tethering"],
+    licenses: ["tethering-module-sdk_Android-Apache-2.0"],
+    shared_library: false,
+    permitted_packages: ["android.net"],
+    public: {
+        jars: ["sdk_library/public/framework-tethering-stubs.jar"],
+        stub_srcs: ["sdk_library/public/framework-tethering.srcjar"],
+        current_api: "sdk_library/public/framework-tethering.txt",
+        removed_api: "sdk_library/public/framework-tethering-removed.txt",
+        sdk_version: "module_current",
+    },
+    system: {
+        jars: ["sdk_library/system/framework-tethering-stubs.jar"],
+        stub_srcs: ["sdk_library/system/framework-tethering.srcjar"],
+        current_api: "sdk_library/system/framework-tethering.txt",
+        removed_api: "sdk_library/system/framework-tethering-removed.txt",
+        sdk_version: "module_current",
+    },
+    module_lib: {
+        jars: ["sdk_library/module-lib/framework-tethering-stubs.jar"],
+        stub_srcs: ["sdk_library/module-lib/framework-tethering.srcjar"],
+        current_api: "sdk_library/module-lib/framework-tethering.txt",
+        removed_api: "sdk_library/module-lib/framework-tethering-removed.txt",
+        sdk_version: "module_current",
+    },
+}
+
+license {
+    name: "tethering-module-sdk_Android-Apache-2.0@current",
+    sdk_member_name: "Android-Apache-2.0",
+    visibility: ["//visibility:private"],
+    license_kinds: ["SPDX-license-identifier-Apache-2.0"],
+    license_text: ["licenses/build/soong/licenses/LICENSE"],
+}
+
+license {
+    name: "tethering-module-sdk_Android-Apache-2.0",
+    visibility: ["//visibility:private"],
+    license_kinds: ["SPDX-license-identifier-Apache-2.0"],
+    license_text: ["licenses/build/soong/licenses/LICENSE"],
+}
+
+sdk_snapshot {
+    name: "tethering-module-sdk@current",
+    visibility: ["//visibility:public"],
+    bootclasspath_fragments: ["tethering-module-sdk_com.android.tethering-bootclasspath-fragment@current"],
+    java_sdk_libs: [
+        "tethering-module-sdk_framework-connectivity@current",
+        "tethering-module-sdk_framework-tethering@current",
+    ],
+}
