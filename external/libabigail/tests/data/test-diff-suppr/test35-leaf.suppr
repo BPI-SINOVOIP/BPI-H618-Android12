@@ -1,0 +1,8 @@
+[suppress_type]
+
+  # Suppress the type that had a data member inserted after the data
+  # member named 'member0'.  That would be the type named
+  # leaf_to_filter.
+
+  name_regexp = .*
+  has_data_member_inserted_between = {offset_after(member0), end}

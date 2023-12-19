@@ -1,0 +1,28 @@
+================ changes of 'dbus-binding-tool'===============
+  ELF architecture changed
+  Functions changes summary: 0 Removed, 0 Changed, 0 Added function
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+  Function symbols changes summary: 0 Removed, 5 Added function symbols not referenced by debug info
+  Variable symbols changes summary: 2 Removed, 0 Added variable symbols not referenced by debug info
+
+  architecture changed from 'elf-amd-x86_64' to 'elf-arm'
+
+  5 Added function symbols not referenced by debug info:
+
+    [A] __libc_csu_fini
+    [A] __libc_csu_init
+    [A] base_info_ref
+    [A] base_info_unref
+    [A] main
+
+  2 Removed variable symbols not referenced by debug info:
+
+    [D] stderr
+    [D] stdout
+
+================ end of changes of 'dbus-binding-tool'===============
+
+Removed binaries:
+  [D] /usr/lib64/libdbus-glib-1.so.2.3.2, SONAME: libdbus-glib-1.so.2
+Added binaries:
+  [A] /usr/lib/libdbus-glib-1.so.2.3.2, SONAME: libdbus-glib-1.so.2

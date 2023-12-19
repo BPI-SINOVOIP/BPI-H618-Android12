@@ -1,0 +1,35 @@
+Functions changes summary: 0 Removed, 3 Changed, 1 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 Added function:
+
+  [A] 'method B1::B1()'
+
+3 functions with some indirect sub-type change:
+
+  [C] 'method B0::B0()' has some indirect sub-type changes:
+    implicit parameter 0 of type 'B0*' has sub-type changes:
+      in pointed to type 'struct B0':
+        type size hasn't changed
+        1 data member change:
+          'char m0' access changed from 'public' to 'private'
+
+  [C] 'method S::S()' has some indirect sub-type changes:
+    implicit parameter 0 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S':
+        type size changed from 64 to 96 (in bits)
+        1 base class change:
+          'struct B0' changed:
+            details were reported earlier
+        1 base class insertion:
+          class B1
+        1 data member change:
+          type of 'int m0' changed:
+            type name changed from 'int' to 'char'
+            type size changed from 32 to 8 (in bits)
+          and offset changed from 32 to 64 (in bits) (by +32 bits), access changed from 'public' to 'private'
+
+  [C] 'function void foo(S&)' has some indirect sub-type changes:
+    parameter 1 of type 'S&' has sub-type changes:
+      referenced type 'struct S' changed, as reported earlier
+

@@ -1,0 +1,18 @@
+Functions changes summary: 0 Removed, 1 Changed (1 filtered out), 2 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 Added functions:
+
+  [A] 'method S::S()'
+  [A] 'method int S::mem_fn1()'
+
+1 function with some indirect sub-type change:
+
+  [C] 'method int S::mem_fn0()' has some indirect sub-type changes:
+    implicit parameter 0 of type 'S* const' has sub-type changes:
+      in unqualified underlying type 'S*':
+        in pointed to type 'struct S':
+          type size changed from 8 to 32 (in bits)
+          1 data member insertion:
+            'int m0', at offset 0 (in bits)
+

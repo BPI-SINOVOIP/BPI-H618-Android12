@@ -1,0 +1,122 @@
+// Copyright 2019 The Chromium OS Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+syntax = "proto3";
+
+package chromiumos.config.api.test.tls;
+
+option go_package = "go.chromium.org/chromiumos/config/go/api/test/tls";
+
+// Common lab services implemented on top of the wiring APIs.
+//
+// The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+// NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+// "OPTIONAL" in this document are to be interpreted as described in
+// RFC 2119.
+//
+// All clients SHOULD pass the gRPC metadata key request_trace_id with one
+// value. The value is a unique string that is associated with the method call
+// in metrics. Clients that do not pass request_trace_id MAY be rejected so that
+// they can be fixed.
+service Common {
+  // ExecDutCommand runs a command on a DUT.
+  //
+  // The working directory is /.
+  // A tty is not spawned for the command.
+  // The user and group is root.
+  // All signals have their default dispositions and are not masked.
+  // The umask is set to 0.
+  //
+  // The environment contains:
+  //
+  //   TERM=dumb
+  //   PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/bin
+  //   LANG=en_US.UTF-8
+  //   USER=root
+  //   HOME=/root
+  //
+  // The environment MAY also contain SSH client variables.
+  // The environment SHALL NOT contain variables not mentioned above.
+  //
+  // If the stream is interrupted, the implementation MAY attempt to
+  // stop the command by sending SIGINT, SIGHUP, SIGTERM, or SIGKILL.
+  rpc ExecDutCommand(ExecDutCommandRequest)
+      returns (stream ExecDutCommandResponse);
+}
+
+message ExecDutCommandRequest {
+  // name is the resource name for the DUT.
+  // The DUT name is passed to the RTD when the RTD is started.
+  // It is not specified whether the name is the DUT hostname.
+  string name = 1;
+  // command is the command to run.
+  // If this contains no slashes, it is resolved using PATH.
+  // If this starts with /, it is used as an absolute path to the
+  // program to run.
+  // Otherwise, this is treated as a path relative to the working
+  // directory.
+  string command = 2;
+  // args are the arguments to pass to the command.
+  repeated string args = 3;
+  // stdin is passed to the command as the program's stdin.
+  // The stream does not support seeking.
+  // An empty bytes is not treated specially; if the command reads
+  // from stdin, it will receive zero bytes.
+  bytes stdin = 4;
+  // stdout indicates how to handle the command's stdout.
+  Output stdout = 5;
+  // stderr indicates how to handle the command's stderr.
+  Output stderr = 6;
+}
+message ExecDutCommandResponse {
+  message ExitInfo {
+    // status provides information about how the command process
+    // terminated.
+    //
+    // If the command failed to start, status is set to an arbitrary
+    // non-zero value.
+    //
+    // If signaled is set, status is set to the signal that caused
+    // the command to terminate.
+    //
+    // Otherwise, status is set to the exit status of the process.
+    // Exit statuses outside of 0 to 255 inclusive are not supported;
+    // they will be mapped to an arbitrary non-zero value.
+    //
+    // status is zero if and only if the process was successfully
+    // started and exited with a zero status.
+    int32 status = 1;
+    // signaled indicates whether the command exited due to a signal.
+    // If set, status contains the signal.
+    bool signaled = 2;
+    // started indicates whether the command was started.
+    bool started = 3;
+    // error_message provides a human readable explanation for some errors.
+    // This MUST NOT be inspected by programs.
+    string error_message = 4;
+  }
+  // exit_info contains exit information.
+  // This is set when the command has exited or failed to start.
+  // This is set on the last message in the response stream.
+  ExitInfo exit_info = 1;
+  // stdout contains the shell command's stdout output since the last
+  // response in the stream.
+  // The implementation MAY batch or delay output to later
+  // responses in the stream.
+  bytes stdout = 2;
+  // stderr contains the shell command's stderr output since the last
+  // response in the stream.
+  // The implementation MAY batch or delay output to later
+  // responses in the stream.
+  bytes stderr = 3;
+}
+
+// Output enumeration for ExecDutCommandRequest.
+enum Output {
+  // OUTPUT_PIPE means to collect output and return it.
+  OUTPUT_PIPE = 0;
+  // OUTPUT_STDOUT is a special value for stderr which means to merge stderr
+  // into stdout.
+  OUTPUT_STDOUT = 1;
+}

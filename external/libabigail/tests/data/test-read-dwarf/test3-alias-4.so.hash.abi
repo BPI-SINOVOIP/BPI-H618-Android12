@@ -1,0 +1,8 @@
+<abi-corpus version='2.0' path='data/test-read-dwarf/test3.so' soname='test3.so.1'>
+  <elf-needed>
+    <dependency name='libc.so.6'/>
+  </elf-needed>
+  <elf-function-symbols>
+    <elf-symbol name='_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+</abi-corpus>

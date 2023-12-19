@@ -1,0 +1,129 @@
+Git commit messages format
+==========================
+
+The principle of the git commit log is to document at least the
+*what*; in English.  That is redundant with the commit diff, yes.  But
+that redundancy does help in understanding the commit diff better.  If
+appropriate, the commit log can also document the *why*, but only if
+it does so by respecting the format of the commit log.  The reason why
+we are so strict about the format is that the commit log is later
+parsed by a tool to build a ChangeLog, which we want to stay compliant
+with the GNU ChangeLog format.
+
+So here is the format we are talking about.
+
+The first line of a git commit message should start at column 1, with
+no space. That line should be a short summary of the purpose of the
+commit.  If the commit relates to a bug filed into bugzilla, the line
+should begin with the bug (or Problem Report) number, followed by a
+white space; e.g:
+
+Bug <number-of-the-bug> This is a great commit
+
+The line in its entirety should not be longer than 50 characters.
+
+The next line should be an empty line, with no spaces.
+
+Subsequent lines can be a free form introductory text that should
+start column 0.  The introductory text can have an arbitrary number of
+lines.  No line in that text should start with the sequence
+<white-space>*.  That is, no line in that text should start with a
+sequence of white spaces followed by the start character (*).
+
+If there was an introductory text, then the next line should be an
+empty line, with no spaces.
+
+The subsequent lines should have the form of the Body of a GNU ChangeLog
+entry, i.e:
+
+	* file1.c (func1): Changed foo in this function.
+	(func2): Changed blah in that function
+	* file2.c (func_foo): Changed something here.
+
+Note that before the '*', there is a tab that is 8 spaces long.  Also
+note that right after the '*', there is a space.
+
+An example of commit message would be:
+
+~=~
+Bug 123456 Add super feature
+
+The super feature requires modifying function_bleh to make it call
+function_foo instead of function_bar.  As function_bar is no more
+used, this patch removes it.
+
+	* file1.c (function_foo): Define new static function.
+	* file2.c (function_bar): Removed static function.
+	* file3.c (function_bleh): Modified this function to call
+	function_foo, rather than function function_bar.
+~=~
+
+Note how, in the ChangeLog part of the commit log, each function
+modification is mentioned, by referring to the name of the function in
+parenthesis.  The length of a line should not exceed 72 characters.
+The description of what happens to the function should be succinct.
+Just describe the "what".
+
+The "how" should be described by comments in the code change itself,
+so there is no need to describe in the ChangeLog part of the commit
+log..  The "why" and "general spirit" of the change should be
+described in the introductory text that precedes the ChangeLog part.
+So, again, no need to add to the ChangeLog part.
+
+For files that contain no function definitions, the ChangeLog looks
+like:
+
+~=~ Bug 123456 Shorten compilation lines
+
+	* configure.ac: Shorten compilation lines by regrouping
+	PKG_CHECK_MODULES calls.
+	* tests/Makefile.am: Adjust this.
+~=~
+
+Another one could be:
+
+~=~
+Bug 123456 Shorten compilation lines
+
+Blah blah, this is an introductory text explaining the purpose of this
+commit.  It can contain whatever character I want.  It just cannot
+contain a line that starts with white spaces immediately followed by
+the star character.
+
+	* configure.ac: Shorten compilation lines by regrouping
+	PKG_CHECK_MODULES calls.
+	* tests/Makefile.am: Adjust this.
+~=~
+
+When it's needed, the introductory text is very important.  Please
+take time to explain the current status of the code (before your
+patch) and why it was in the need of your patch.  In other words, take
+time to explain the problem you are trying to solve.  If the problem
+is explained in a bug in the bugzilla, please try to explain it again,
+using your words.  Just linking to the bugzilla is generally not
+enough.  And then, yes, refer to the bugzilla.
+
+Then explain how your changes address the issue that you've just
+described.
+
+In other words, the introductory text should tell a story.  So please
+be generous :-)
+
+And then the ChangeLog part of the commit log is another exercise.
+This one has to be succinct.  Every single function or global variable
+or type changed (or added/removed) has to be mentioned explicitly by
+name as shown in one of the examples above.
+
+Writing the ChangeLog part of the commit log can seem tedious, but
+it's an excellent way to perform an auto-review of your work.  You'd
+be surprised by the number of issues that you catch in the process.
+
+Also, please keep in mind that reviewers of the code are going to do a
+function-by-function and line-by-line review of your changes, so
+please, take the time to do so as well.  This is a great way to give
+great quality to your code.
+
+We encourage you to look at the existing commit logs or at the
+ChangeLog file for inspiration.
+
+Happy Hacking!

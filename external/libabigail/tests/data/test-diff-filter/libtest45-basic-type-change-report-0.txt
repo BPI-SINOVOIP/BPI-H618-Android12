@@ -1,0 +1,50 @@
+Functions changes summary: 0 Removed, 4 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+4 functions with some indirect sub-type change:
+
+  [C] 'function int& foo0(S0&)' at test45-basic-type-change-v1.cc:24:1 has some indirect sub-type changes:
+    return type changed:
+      in referenced type 'int':
+        type name changed from 'int' to 'char'
+        type size changed from 32 to 8 (in bits)
+    parameter 1 of type 'S0&' has sub-type changes:
+      in referenced type 'struct S0' at test45-basic-type-change-v1.cc:8:1:
+        type size hasn't changed
+        1 data member change:
+          type of 'int* m0' changed:
+            in pointed to type 'int':
+              type name changed from 'int' to 'char'
+              type size changed from 32 to 8 (in bits)
+
+  [C] 'function int* foo1(S1&)' at test45-basic-type-change-v1.cc:28:1 has some indirect sub-type changes:
+    return type changed:
+      in pointed to type 'int':
+        type name changed from 'int' to 'char'
+        type size changed from 32 to 8 (in bits)
+    parameter 1 of type 'S1&' has sub-type changes:
+      in referenced type 'struct S1' at test45-basic-type-change-v1.cc:13:1:
+        type size hasn't changed
+        1 data member change:
+          type of 'int* m0' changed:
+            in pointed to type 'int':
+              type name changed from 'int' to 'char'
+              type size changed from 32 to 8 (in bits)
+
+  [C] 'function const int foo2(S2&)' at test45-basic-type-change-v1.cc:32:1 has some indirect sub-type changes:
+    return type changed:
+      'const int' changed to 'const char'
+    parameter 1 of type 'S2&' has sub-type changes:
+      in referenced type 'struct S2' at test45-basic-type-change-v1.cc:18:1:
+        type size hasn't changed
+        1 data member change:
+          type of 'int* m0' changed:
+            in pointed to type 'int':
+              type name changed from 'int' to 'char'
+              type size changed from 32 to 8 (in bits)
+
+  [C] 'function int foo3(S2&)' at test45-basic-type-change-v1.cc:36:1 has some indirect sub-type changes:
+    return type changed:
+      type name changed from 'int' to 'char'
+      type size changed from 32 to 8 (in bits)
+

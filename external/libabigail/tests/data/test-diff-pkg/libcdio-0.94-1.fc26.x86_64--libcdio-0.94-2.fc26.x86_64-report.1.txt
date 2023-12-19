@@ -1,0 +1,56 @@
+================ changes of 'libcdio.so.16.0.0'===============
+  Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  2 functions with some indirect sub-type change:
+
+    [C] 'function discmode_t mmc_get_dvd_struct_physical(const CdIo_t*, cdio_dvd_struct_t*)' at mmc.c:949:1 has some indirect sub-type changes:
+      parameter 2 of type 'cdio_dvd_struct_t*' has sub-type changes:
+        in pointed to type 'typedef cdio_dvd_struct_t' at dvd.h:130:1:
+          underlying type 'union {uint8_t type; cdio_dvd_physical_t physical; cdio_dvd_copyright_t copyright; cdio_dvd_disckey_t disckey; cdio_dvd_bca_t bca; cdio_dvd_manufact_t manufact;}' at dvd.h:122:1 changed:
+            type size hasn't changed
+            2 data member changes:
+              type of 'cdio_dvd_disckey_t disckey' changed:
+                underlying type 'struct cdio_dvd_disckey' at dvd.h:100:1 changed:
+                  type size hasn't changed
+                  1 data member change:
+                    'unsigned int agid' offset changed from 0 to 8 (in bits) (by +8 bits)
+              type of 'cdio_dvd_physical_t physical' changed:
+                underlying type 'struct cdio_dvd_physical' at dvd.h:86:1 changed:
+                  type size hasn't changed
+                  1 data member change:
+                    type of 'cdio_dvd_layer_t layer[4]' changed:
+                      array element type 'typedef cdio_dvd_layer_t' changed:
+                        underlying type 'struct cdio_dvd_layer' at dvd.h:65:1 changed:
+                          type size hasn't changed
+                          8 data member changes:
+                            'unsigned int layer_type' offset changed from 0 to 16 (in bits) (by +16 bits)
+                            'unsigned int min_rate' offset changed from 0 to 8 (in bits) (by +8 bits)
+                            'unsigned int linear_density' offset changed from 3 to 27 (in bits) (by +24 bits)
+                            'unsigned int disc_size' offset changed from 4 to 12 (in bits) (by +8 bits)
+                            'unsigned int track_path' offset changed from 4 to 20 (in bits) (by +16 bits)
+                            'unsigned int nlayers' offset changed from 5 to 21 (in bits) (by +16 bits)
+                            'unsigned int bca' offset changed from 7 to 31 (in bits) (by +24 bits)
+                            'unsigned int track_density' offset changed from 7 to 23 (in bits) (by +16 bits)
+                      type size hasn't changed
+
+    [C] 'function discmode_t mmc_get_dvd_struct_physical_private(void*, mmc_run_cmd_fn_t, cdio_dvd_struct_t*)' at mmc.c:450:1 has some indirect sub-type changes:
+      parameter 3 of type 'cdio_dvd_struct_t*' has sub-type changes:
+        pointed to type 'typedef cdio_dvd_struct_t' changed at dvd.h:130:1, as reported earlier
+
+================ end of changes of 'libcdio.so.16.0.0'===============
+
+================ changes of 'libiso9660++.so.0.0.0'===============
+  Functions changes summary: 1 Removed, 0 Changed, 1 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  1 Removed function:
+
+    [D] 'method void std::vector<ISO9660::Stat*, std::allocator<ISO9660::Stat*> >::_M_emplace_back_aux<ISO9660::Stat*>(ISO9660::Stat*&&)'    {_ZNSt6vectorIPN7ISO96604StatESaIS2_EE19_M_emplace_back_auxIJS2_EEEvDpOT_}
+
+  1 Added function:
+
+    [A] 'method void std::vector<ISO9660::Stat*, std::allocator<ISO9660::Stat*> >::_M_realloc_insert<ISO9660::Stat*>(std::vector<ISO9660::Stat*, std::allocator<ISO9660::Stat*> >::iterator, ISO9660::Stat*&&)'    {_ZNSt6vectorIPN7ISO96604StatESaIS2_EE17_M_realloc_insertIJS2_EEEvN9__gnu_cxx17__normal_iteratorIPS2_S4_EEDpOT_}
+
+================ end of changes of 'libiso9660++.so.0.0.0'===============
+

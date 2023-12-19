@@ -1,0 +1,26 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function int foo_1(S*)' at test36-1-v1.c:12:1 has some indirect sub-type changes:
+    parameter 1 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S' at test36-1-v1.c:6:1:
+        type size hasn't changed
+        1 data member change:
+          type of 'int m0' changed:
+            type name changed from 'int' to 'unsigned int'
+            type size hasn't changed
+
+  [C] 'function int foo_2(S*)' at test36-2-v1.c:13:1 has some indirect sub-type changes:
+    parameter 1 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S' at test36-2-v1.c:6:1:
+        type size hasn't changed
+        2 data member changes:
+          type of 'int m0' changed:
+            type name changed from 'int' to 'unsigned int'
+            type size hasn't changed
+          type of 'int m1' changed:
+            type name changed from 'int' to 'unsigned int'
+            type size hasn't changed
+

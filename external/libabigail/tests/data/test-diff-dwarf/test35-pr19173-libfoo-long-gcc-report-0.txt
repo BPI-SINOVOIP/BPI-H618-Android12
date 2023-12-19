@@ -1,0 +1,12 @@
+Functions changes summary: 0 Removed, 0 Changed, 0 Added function
+Variables changes summary: 0 Removed, 1 Changed, 0 Added variable
+
+1 Changed variable:
+
+  [C] 'char buggy_symbol[5]' was changed to 'char buggy_symbol[10]':
+    size of symbol changed from 5 to 10
+    type of variable changed:
+      type name changed from 'char[5]' to 'char[10]'
+      array type size changed from 40 to 80
+      array type subrange 1 changed length from 5 to 10
+

@@ -1,0 +1,21 @@
+# Copyright 2018 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+AUTHOR = "meet-devices-eng@google.com"
+NAME = "enterprise_CFM_ApolloPeripheralPowerCycle.viking"
+TIME = "SHORT"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "enterprise"
+ATTRIBUTES = "suite:hotrod-remora"
+TEST_TYPE = "client"
+# TODO: Apollo peripherals should be added as Skylab inventory labels, e.g.:
+# DEPENDENCIES = "viking"
+
+DOC = """
+This test disables then re-enables Power over Ethernet for connected Viking soundbar.
+"""
+
+# Viking is always port 0
+# (Our current Apollo has a Falcon Lite on 1 and a Houston on 2)
+job.run_test('enterprise_CFM_ApolloPeripheralPowerCycle', port=0)

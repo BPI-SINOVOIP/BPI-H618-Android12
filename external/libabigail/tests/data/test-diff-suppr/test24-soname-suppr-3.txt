@@ -1,0 +1,4 @@
+[suppress_type]
+  file_name_regexp = .*/libtest24-soname-v1.so$
+  name = S
+  accessed_through = reference-or-pointer

@@ -1,0 +1,4 @@
+[suppress_type]
+  name_regexp = PrivateType.
+  type_kind = struct
+  accessed_through = pointer

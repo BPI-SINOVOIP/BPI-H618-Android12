@@ -1,0 +1,24 @@
+Leaf changes summary: 3 artifacts changed
+Changed leaf types summary: 3 leaf types changed
+Removed/Changed/Added functions summary: 0 Removed, 0 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+'struct S at test-member-size-v0.cc:3:1' changed:
+  type size changed from 128 to 192 (in bits)
+  1 data member insertion:
+    'int y', at offset 128 (in bits) at test-member-size-v1.cc:6:1
+
+'struct T at test-member-size-v0.cc:13:1' changed:
+  type size changed from 192 to 256 (in bits)
+  there are data member changes:
+    type 'struct S' of 'T::s' changed, as reported earlier
+    'int a' offset changed from 128 to 192 (in bits) (by +64 bits)
+
+'struct U at test-member-size-v0.cc:18:1' changed:
+  type size changed from 192 to 256 (in bits)
+  there are data member changes:
+    type 'struct {S s;}' of 'anonymous data member' changed:
+      type size changed from 128 to 192 (in bits)
+      there are data member changes:
+        type 'struct S' of 'U::__anonymous_struct__::s' changed, as reported earlier
+    'int r' offset changed from 128 to 192 (in bits) (by +64 bits)

@@ -1,0 +1,13 @@
+Functions changes summary: 0 Removed, 1 Changed (1 filtered out), 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'method hidden::S0::S0(int)' has some indirect sub-type changes:
+    implicit parameter 0 of type 'hidden::S0* const' has sub-type changes:
+      in unqualified underlying type 'hidden::S0*':
+        in pointed to type 'struct hidden::S0':
+          type size changed from 32 to 64 (in bits)
+          1 data member insertion:
+            'char m1', at offset 32 (in bits)
+

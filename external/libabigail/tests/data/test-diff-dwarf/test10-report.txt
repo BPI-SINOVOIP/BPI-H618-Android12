@@ -1,0 +1,23 @@
+Functions changes summary: 0 Removed, 1 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'function void foo(S&)' has some indirect sub-type changes:
+    parameter 1 of type 'S&' has sub-type changes:
+      in referenced type 'struct S':
+        type size changed from 1152 to 1280 (in bits)
+        2 data member changes:
+          type of 'int m0[5][3]' changed:
+            type name changed from 'int[5][3]' to 'int[5][4]'
+            array type size changed from 480 to 640
+            array type subrange 2 changed length from 3 to 4
+          type of 'int* m1[10]' changed:
+            array element type 'int*' changed:
+              in pointed to type 'int':
+                type name changed from 'int' to 'char'
+                type size changed from 32 to 8 (in bits)
+            type name changed from 'int*[10]' to 'char*[10]'
+            type size hasn't changed
+          and offset changed from 512 to 640 (in bits) (by +128 bits)
+

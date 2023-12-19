@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+_abipkgdiff_module()
+{
+	local cur prev OPTS
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	case $prev in
+	  '--d1'|'--d2'|'--debug-info-dir1'|'--debug-info-dir2')
+	    local IFS=$'\n'
+	    compopt -o dirnames
+	    COMPREPLY=( $(compgen -d -- $cur) )
+	    return 0
+	    ;;
+	  '--suppressions'|'--suppr')
+	    local IFS=$'\n'
+	    compopt -o filenames
+	    COMPREPLY=( $(compgen -f -- $cur) )
+	    return 0
+	    ;;
+	esac
+	case $cur in
+	  -*)
+	    OPTS="  --d1
+		    --d2
+		    --debug-info-dir1
+		    --debug-info-dir2
+		    --dso-only
+		    --help
+		    --keep-tmp-files
+		    --no-added-binaries
+		    --no-linkage-name
+		    --redundant
+		    --no-show-locs
+		    --suppr
+		    --suppressions
+		    --verbose"
+	    COMPREPLY=( $(compgen -W "${OPTS[*]}" -- $cur) )
+	    return 0
+	    ;;
+	esac
+	local IFS=$'\n'
+	compopt -o filenames
+	COMPREPLY=( $(compgen -f -- $cur) )
+	return 0
+}
+complete -F _abipkgdiff_module abipkgdiff

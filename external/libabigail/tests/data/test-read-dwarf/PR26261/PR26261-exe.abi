@@ -1,0 +1,90 @@
+<abi-corpus version='2.0' path='data/test-read-dwarf/PR26261/PR26261-exe'>
+  <elf-needed>
+    <dependency name='libc.so.6'/>
+  </elf-needed>
+  <elf-function-symbols>
+    <elf-symbol name='__libc_csu_fini' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='__libc_csu_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_fini' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_start' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='fun_obja' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='fun_objb' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='main' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='wrapped_call' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <elf-variable-symbols>
+    <elf-symbol name='_IO_stdin_used' size='4' type='object-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-variable-symbols>
+  <abi-instr address-size='64' path='PR26261-main.c' comp-dir-path='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261' language='LANG_C89'>
+    <pointer-type-def type-id='type-id-1' size-in-bits='64' id='type-id-2'/>
+    <pointer-type-def type-id='type-id-2' size-in-bits='64' id='type-id-3'/>
+    <function-decl name='wrapped_call' mangled-name='wrapped_call' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-main.c' line='18' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='wrapped_call'>
+      <parameter type-id='type-id-4' name='fun' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-main.c' line='18' column='1'/>
+      <parameter type-id='type-id-5' name='a' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-main.c' line='19' column='1'/>
+      <parameter type-id='type-id-5' name='b' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-main.c' line='20' column='1'/>
+      <return type-id='type-id-6'/>
+    </function-decl>
+    <function-decl name='main' mangled-name='main' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-main.c' line='27' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='main'>
+      <parameter type-id='type-id-5' name='argc' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-main.c' line='27' column='1'/>
+      <parameter type-id='type-id-3' name='argv' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-main.c' line='27' column='1'/>
+      <return type-id='type-id-5'/>
+    </function-decl>
+    <type-decl name='char' size-in-bits='8' id='type-id-1'/>
+    <type-decl name='int' size-in-bits='32' id='type-id-5'/>
+    <type-decl name='void' id='type-id-6'/>
+    <pointer-type-def type-id='type-id-7' size-in-bits='64' id='type-id-4'/>
+    <function-type size-in-bits='64' id='type-id-7'>
+      <parameter type-id='type-id-5'/>
+      <parameter type-id='type-id-5'/>
+      <return type-id='type-id-6'/>
+    </function-type>
+  </abi-instr>
+  <abi-instr address-size='64' path='PR26261-obja.c' comp-dir-path='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261' language='LANG_C89'>
+    <type-decl name='int' size-in-bits='32' id='type-id-5'/>
+    <type-decl name='void' id='type-id-6'/>
+    <class-decl name='SA' size-in-bits='192' is-struct='yes' visibility='default' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-obja.h' line='5' column='1' id='type-id-8'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='m1' type-id='type-id-5' visibility='default' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-obja.h' line='7' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='m2' type-id='type-id-9' visibility='default' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-obja.h' line='8' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='m3' type-id='type-id-10' visibility='default' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-obja.h' line='9' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='fn_ptr_type_a_t' type-id='type-id-4' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-obja.h' line='1' column='1' id='type-id-9'/>
+    <typedef-decl name='fn_ptr_type_a2_t' type-id='type-id-4' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-obja.h' line='3' column='1' id='type-id-10'/>
+    <pointer-type-def type-id='type-id-8' size-in-bits='64' id='type-id-11'/>
+    <pointer-type-def type-id='type-id-7' size-in-bits='64' id='type-id-4'/>
+    <function-decl name='fun_obja' mangled-name='fun_obja' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-obja.c' line='4' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='fun_obja'>
+      <parameter type-id='type-id-11' name='s' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-obja.c' line='4' column='1'/>
+      <return type-id='type-id-6'/>
+    </function-decl>
+  </abi-instr>
+  <abi-instr address-size='64' path='PR26261-objb.c' comp-dir-path='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261' language='LANG_C89'>
+    <type-decl name='char' size-in-bits='8' id='type-id-1'/>
+    <class-decl name='SB' size-in-bits='128' is-struct='yes' visibility='default' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-objb.h' line='3' column='1' id='type-id-12'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='m1' type-id='type-id-5' visibility='default' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-objb.h' line='5' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='m2' type-id='type-id-13' visibility='default' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-objb.h' line='6' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='fn_ptr_type_b_t' type-id='type-id-14' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-objb.h' line='1' column='1' id='type-id-13'/>
+    <pointer-type-def type-id='type-id-12' size-in-bits='64' id='type-id-15'/>
+    <pointer-type-def type-id='type-id-16' size-in-bits='64' id='type-id-14'/>
+    <function-decl name='fun_objb' mangled-name='fun_objb' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-objb.c' line='4' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='fun_objb'>
+      <parameter type-id='type-id-15' name='s' filepath='/home/dodji/git/libabigail/patches/tests/data/test-read-dwarf/PR26261/PR26261-objb.c' line='4' column='1'/>
+      <return type-id='type-id-6'/>
+    </function-decl>
+    <function-type size-in-bits='64' id='type-id-16'>
+      <parameter type-id='type-id-5'/>
+      <parameter type-id='type-id-5'/>
+      <parameter type-id='type-id-1'/>
+      <return type-id='type-id-6'/>
+    </function-type>
+  </abi-instr>
+</abi-corpus>

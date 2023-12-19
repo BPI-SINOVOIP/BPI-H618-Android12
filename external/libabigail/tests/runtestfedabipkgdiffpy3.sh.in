@@ -1,0 +1,23 @@
+#!/bin/bash -e
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+
+# Either tests runner script or the tools/fedabipkgdiff has shebang
+# `/usr/bin/env python`, as a result, to run tests in Python 3, we have to
+# change PATH in order to make sure python can be found before the current
+# $PATH.
+
+PY3_TEMP=$(mktemp -d --tmpdir libabigail-py3-temp-XXXXXXXX)
+
+ln -s $(which @PYTHON3_INTERPRETER@) $PY3_TEMP/python
+
+export PATH=$PY3_TEMP:$PATH
+
+function clean_env
+{
+    unlink $PY3_TEMP/python
+    rmdir $PY3_TEMP
+}
+
+trap "clean_env" EXIT
+
+@PYTHON3_INTERPRETER@ "@abs_top_builddir@/tests/runtestfedabipkgdiff.py"

@@ -1,0 +1,8 @@
+VERSION_1.0 {
+  global: foo;
+  local: *;
+};
+
+VERSION_2.0 {
+  global: foo;
+} VERSION_1.0;

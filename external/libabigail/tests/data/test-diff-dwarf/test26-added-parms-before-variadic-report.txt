@@ -1,0 +1,29 @@
+Functions changes summary: 0 Removed, 4 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+4 functions with some indirect sub-type change:
+
+  [C] 'function void fun1(const char*, ...)' has some indirect sub-type changes:
+    parameter 2 of type '...' changed:
+      entity changed from 'variadic parameter type' to 'const char*'
+      type size changed from 0 to 64 (in bits)
+    parameter 3 of type '...' was added
+
+  [C] 'function void fun2(const char*, ...)' has some indirect sub-type changes:
+    parameter 2 of type '...' changed:
+      entity changed from 'variadic parameter type' to 'const char*'
+      type size changed from 0 to 64 (in bits)
+    parameter 3 of type '...' was added
+
+  [C] 'function void fun3(const char*, const int*, ...)' has some indirect sub-type changes:
+    parameter 3 of type '...' changed:
+      entity changed from 'variadic parameter type' to 'const int*'
+      type size changed from 0 to 64 (in bits)
+    parameter 4 of type '...' was added
+
+  [C] 'function void fun4(const char*, const int*, ...)' has some indirect sub-type changes:
+    parameter 3 of type '...' changed:
+      entity changed from 'variadic parameter type' to 'const int*'
+      type size changed from 0 to 64 (in bits)
+    parameter 4 of type '...' was added
+

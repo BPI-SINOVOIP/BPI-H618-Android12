@@ -1,0 +1,36 @@
+Comparing the ABI of binaries between dbus-glib-0.100.2-2.fc20.i686.rpm and dbus-glib-0.106-1.fc23.i686.rpm:
+
+================ changes of 'libdbus-glib-1.so.2.2.2'===============
+  Functions changes summary: 0 Removed, 0 Changed, 2 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  2 Added functions:
+
+    [A] 'function DBusGConnection* dbus_g_connection_open_private(const gchar*, GMainContext*, GError**)'    {dbus_g_connection_open_private}
+    [A] 'function DBusGConnection* dbus_g_method_invocation_get_g_connection(DBusGMethodInvocation*)'    {dbus_g_method_invocation_get_g_connection}
+
+================ end of changes of 'libdbus-glib-1.so.2.2.2'===============
+
+================ changes of 'dbus-binding-tool'===============
+  Functions changes summary: 2 Removed, 0 Changed, 1 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+  Function symbols changes summary: 0 Removed, 0 Added function symbol not referenced by debug info
+  Variable symbols changes summary: 2 Removed, 0 Added variable symbols not referenced by debug info
+
+  2 Removed functions:
+
+    [D] 'function BaseInfo* base_info_ref(BaseInfo*)'    {base_info_ref}
+    [D] 'function void base_info_unref(BaseInfo*)'    {base_info_unref}
+
+  1 Added function:
+
+    [A] 'function int main(int, char**)'    {main}
+
+  2 Removed variable symbols not referenced by debug info:
+
+    [D] stderr
+    [D] stdout
+
+================ end of changes of 'dbus-binding-tool'===============
+
+

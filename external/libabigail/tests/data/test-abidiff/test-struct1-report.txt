@@ -1,0 +1,32 @@
+5 changed types:
+  'class s0' changed:
+    type size changed from 192 to 256 (in bits)
+    1 member function insertion:
+      'method virtual int s0::foo(int, char) const', virtual at voffset 2/2
+    1 member function change:
+      'method virtual s0::__deleting_dtor ()' has some sub-type changes:
+        parameter 1 of type 's0*' has sub-type changes:
+          pointed to type 'class s0' changed, as being reported
+    1 data member deletion:
+      'char m1', at offset 96 (in bits)
+    1 data member insertion:
+      'double m01', at offset 128 (in bits)
+    2 data member changes:
+      type of 'int m0' changed:
+        type name changed from 'int' to 'char'
+        type size changed from 32 to 8 (in bits)
+        type alignment changed from 32 to 8
+      'unsigned int m2' offset changed from 128 to 192 (in bits) (by +64 bits)
+  'const s0' changed:
+    unqualified underlying type 'class s0' changed, as reported earlier
+  'const s0*' changed:
+    in pointed to type 'const s0':
+      unqualified underlying type 'class s0' changed, as reported earlier
+  's0&' changed:
+    referenced type 'class s0' changed, as reported earlier
+  's0*' changed:
+    pointed to type 'class s0' changed, as reported earlier
+  'function int bar(s0&)' was removed
+
+  'function int baz(s0&)' was added
+

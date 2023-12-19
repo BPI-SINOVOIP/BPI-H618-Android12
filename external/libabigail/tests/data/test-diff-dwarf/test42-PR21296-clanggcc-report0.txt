@@ -1,0 +1,61 @@
+Functions changes summary: 1 Removed, 8 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 Removed function:
+
+  [D] 'method void std::_Tuple_impl<1ul>::_Tuple_impl()'
+
+8 functions with some indirect sub-type change:
+
+  [C] 'function std::tuple<STR&&> my_forward_as_tuple<STR>(STR&&)' has some indirect sub-type changes:
+    return type changed:
+      type name changed from 'std::tuple<STR&&>' to 'std::tuple<STR &&>'
+      type size hasn't changed
+      1 base class deletion:
+        struct std::_Tuple_impl<0ul, STR&&>
+      1 base class insertion:
+        struct std::_Tuple_impl<0, STR &&>
+
+  [C] 'method void std::_Head_base<0ul, STR&&, false>::_Head_base<STR>(STR&&)' has some indirect sub-type changes:
+    'method void std::_Head_base<0ul, STR&&, false>::_Head_base<STR>(STR&&) {_ZNSt10_Head_baseILm0EO3STRLb0EEC2IS0_St9true_typeEEOT_}' now becomes 'method void std::_Head_base<0, STR &&, false>::_Head_base<STR, std::true_type>(STR&&) {_ZNSt10_Head_baseILm0EO3STRLb0EEC2IS0_St9true_typeEEOT_}'
+    implicit parameter 0 of type 'std::_Head_base<0ul, STR&&, false>* const' changed:
+      entity changed from 'std::_Head_base<0ul, STR&&, false>* const' to 'std::_Head_base<0, STR &&, false>*'
+      type size hasn't changed
+
+  [C] 'method STR& std::_Head_base<0ul, STR&&, false>::_M_head()' has some indirect sub-type changes:
+    'method STR& std::_Head_base<0ul, STR&&, false>::_M_head() {_ZNSt10_Head_baseILm0EO3STRLb0EE7_M_headERKS2_}' now becomes 'method STR& std::_Head_base<0, STR &&, false>::_M_head() {_ZNSt10_Head_baseILm0EO3STRLb0EE7_M_headERKS2_}'
+    parameter 1 of type 'const std::_Head_base<0ul, STR&&, false>&' changed:
+      in referenced type 'const std::_Head_base<0ul, STR&&, false>':
+        'const std::_Head_base<0ul, STR&&, false>' changed to 'const std::_Head_base<0, STR &&, false>'
+
+  [C] 'method STR& std::_Tuple_impl<0ul, STR&&>::_M_head()' has some indirect sub-type changes:
+    'method STR& std::_Tuple_impl<0ul, STR&&>::_M_head() {_ZNSt11_Tuple_implILm0EJO3STREE7_M_headERKS2_}' now becomes 'method STR& std::_Tuple_impl<0, STR &&>::_M_head() {_ZNSt11_Tuple_implILm0EJO3STREE7_M_headERKS2_}'
+    parameter 1 of type 'const std::_Tuple_impl<0ul, STR&&>&' changed:
+      in referenced type 'const std::_Tuple_impl<0ul, STR&&>':
+        'const std::_Tuple_impl<0ul, STR&&>' changed to 'const std::_Tuple_impl<0, STR &&>'
+
+  [C] 'function std::__add_c_ref<STR&&>::type std::__get_helper<0ul, STR&&>(const std::_Tuple_impl<0ul, STR&&>&)' has some indirect sub-type changes:
+    'function std::__add_c_ref<STR&&>::type std::__get_helper<0ul, STR&&>(const std::_Tuple_impl<0ul, STR&&>&) {_ZSt12__get_helperILm0EO3STRJEENSt11__add_c_refIT0_E4typeERKSt11_Tuple_implIXT_EJS3_DpT1_EE}' now becomes 'function std::__add_c_ref<STR &&>::type std::__get_helper<0, STR &&>(const std::_Tuple_impl<0, STR &&>&) {_ZSt12__get_helperILm0EO3STRJEENSt11__add_c_refIT0_E4typeERKSt11_Tuple_implIXT_EJS3_DpT1_EE}'
+    return type changed:
+      typedef name changed from std::__add_c_ref<STR&&>::type to std::__add_c_ref<STR &&>::type
+    parameter 1 of type 'const std::_Tuple_impl<0ul, STR&&>&' changed:
+      in referenced type 'const std::_Tuple_impl<0ul, STR&&>':
+        'const std::_Tuple_impl<0ul, STR&&>' changed to 'const std::_Tuple_impl<0, STR &&>'
+
+  [C] 'function std::__add_c_ref<STR&&>::type std::get<0ul, STR&&>(const std::tuple<STR&&>&)' has some indirect sub-type changes:
+    'function std::__add_c_ref<STR&&>::type std::get<0ul, STR&&>(const std::tuple<STR&&>&) {_ZSt3getILm0EJO3STREENSt11__add_c_refINSt13tuple_elementIXT_ESt5tupleIJDpT0_EEE4typeEE4typeERKS7_}' now becomes 'function std::__add_c_ref<STR &&>::type std::get<0, STR &&>(const std::tuple<STR &&>&) {_ZSt3getILm0EJO3STREENSt11__add_c_refINSt13tuple_elementIXT_ESt5tupleIJDpT0_EEE4typeEE4typeERKS7_}'
+    return type changed:
+      typedef name changed from std::__add_c_ref<STR&&>::type to std::__add_c_ref<STR &&>::type
+    parameter 1 of type 'const std::tuple<STR&&>&' changed:
+      in referenced type 'const std::tuple<STR&&>':
+        'const std::tuple<STR&&>' changed to 'const std::tuple<STR &&>'
+
+  [C] 'function std::remove_reference<STR&>::type&& std::move<STR&>(STR&)' has some indirect sub-type changes:
+    'function std::remove_reference<STR&>::type&& std::move<STR&>(STR&) {_ZSt4moveIR3STREONSt16remove_referenceIT_E4typeEOS3_}' now becomes 'function std::remove_reference<STR &>::type&& std::move<STR &>(STR&) {_ZSt4moveIR3STREONSt16remove_referenceIT_E4typeEOS3_}'
+    return type changed:
+
+  [C] 'function void tpl<std::tuple<STR&&> >(std::tuple<STR&&>)' has some indirect sub-type changes:
+    'function void tpl<std::tuple<STR&&> >(std::tuple<STR&&>) {_Z3tplISt5tupleIJO3STREEEvT_}' now becomes 'function void tpl<std::tuple<STR &&> >(std::tuple<STR &&>) {_Z3tplISt5tupleIJO3STREEEvT_}'
+    parameter 1 of type 'class std::tuple<STR&&>' changed:
+      details were reported earlier
+

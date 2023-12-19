@@ -1,0 +1,136 @@
+{
+ suppress all libpython leaks
+ Memcheck:Leak
+ ...
+ obj:*libpython*.so*
+}
+
+{
+ suppress all _rpm.so leaks (from python)
+ Memcheck:Leak
+ ...
+ obj:*_rpm.so*
+}
+
+{
+ suppress all librpm.so leaks (from python)
+ Memcheck:Leak
+ ...
+ obj:*librpm.so*
+}
+
+{
+ suppress all libfreeblpriv3.so leaks (from python)
+ Memcheck:Leak
+ ...
+ obj:*libfreeblpriv3.so*
+ ...
+}
+
+{
+ suppress all libsoftokn3.so leaks (from python)
+ Memcheck:Leak
+ ...
+ obj:*libsoftokn3.so*
+}
+
+{
+ suppress leaks from bash
+ Memcheck:Leak
+ ...
+ obj:*bash
+}
+
+{
+   suppress helgrind race report from elfutils's elf_version function.
+   Helgrind:Race
+   fun:elf_version
+}
+
+{
+   suppress helgrind race report from elfutils's elf_begin function.
+   Helgrind:Race
+   fun:elf_begin
+}
+
+{
+   suppress helgrind another race report from elfutils.
+   Helgrind:Race
+   fun:_dlerror_run
+}
+
+{
+   <insert_a_suppression_name_here>
+   Helgrind:Race
+   fun:_ZNSo9_M_insertImEERSoT_
+}
+
+{
+   suppress helgrind race report from inserting into an ostream
+   Helgrind:Race
+   fun:_ZNSo9_M_insertIlEERSoT_
+}
+
+
+{
+   Writting to ostream has data races (IAUI) I believe due to facets-related manipulations.
+   Helgrind:Race
+   fun:_ZNSo9_M_insertIyEERSoT_
+}
+
+{
+   <insert_a_suppression_name_here>
+   Helgrind:Race
+   fun:_ZNSo9_M_insertImEERSoT_
+   fun:operator<<
+}
+
+{
+   <insert_a_suppression_name_here>
+   Helgrind:Race
+   obj:/usr/lib64/libgcc_s*.so*
+   fun:_Unwind_RaiseException
+}
+
+{
+   <insert_a_suppression_name_here>
+   Helgrind:Race
+   obj:/usr/lib64/libgcc_s*.so*
+   obj:/usr/lib64/libgcc_s*.so*
+   fun:_Unwind_RaiseException
+}
+
+{
+   <insert_a_suppression_name_here>
+   Helgrind:Race
+   obj:/usr/lib64/libgcc_s*.so*
+   obj:/usr/lib64/libgcc_s*.so*
+   obj:/usr/lib64/libgcc_s*so.*
+   fun:_Unwind_RaiseException
+}
+
+
+{
+   <insert_a_suppression_name_here>
+   Helgrind:Race
+   fun:_Unwind_SetGR
+   fun:__gxx_personality_v0
+   obj:/usr/lib64/libgcc_s*.so*
+   fun:_Unwind_RaiseException
+}
+
+{
+   <insert_a_suppression_name_here>
+   Helgrind:Race
+   fun:_Unwind_SetGR
+   fun:__gxx_personality_v0
+   obj:/usr/lib64/libgcc_s*.so*
+   fun:_Unwind_RaiseException
+}
+
+{
+   <insert_a_suppression_name_here>
+   Helgrind:Race
+   fun:memcpy
+   fun:__libc_sigaction
+}

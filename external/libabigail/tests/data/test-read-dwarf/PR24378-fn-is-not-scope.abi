@@ -1,0 +1,18 @@
+<abi-corpus version='2.0' path='data/test-read-dwarf/PR24378-fn-is-not-scope.o'>
+  <elf-function-symbols>
+    <elf-symbol name='_ZN4stac14buggy_functionEPFvPFfiiEE' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <abi-instr address-size='64' path='dwarf_bug.cpp' comp-dir-path='/remote/users/lstacul' language='LANG_C_plus_plus'>
+    <type-decl name='void' id='type-id-1'/>
+    <pointer-type-def type-id='type-id-2' size-in-bits='64' id='type-id-3'/>
+    <namespace-decl name='stac'>
+      <function-decl name='buggy_function' mangled-name='_ZN4stac14buggy_functionEPFvPFfiiEE' filepath='/remote/users/lstacul/dwarf_bug.cpp' line='10' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN4stac14buggy_functionEPFvPFfiiEE'>
+        <parameter type-id='type-id-3'/>
+        <return type-id='type-id-1'/>
+      </function-decl>
+    </namespace-decl>
+    <function-type size-in-bits='64' id='type-id-2'>
+      <return type-id='type-id-1'/>
+    </function-type>
+  </abi-instr>
+</abi-corpus>

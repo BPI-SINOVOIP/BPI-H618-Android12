@@ -1,0 +1,43 @@
+; So this suppresses all the reports about types
+[suppress_type]
+  name = Dwarf
+  type_kind = enum
+# type_kind = typedef|enum|struct|class|union|array|builtin
+# name_regexp = <regex>
+
+[suppress_function]
+  name = foo
+# name_regexp = blah
+# parameter = '0 <type-name>
+# parameter = '1 /<type-name-regexp>/
+# return_type_name = <return-type>
+# return_type_regexp = <return-type-regexp>
+# symbol_name
+# symbol_name_regexp = <symbol-regexp>
+# symbol_versin = <symbol-version>
+# symbol_version_regexp = <symbol-version-regex>
+
+[suppress_variable]
+  label = some string in here
+  name = foo
+  name_regexp = foo
+  symbol_name = foo
+  symbol_name_regexp = foo
+  type_name = int
+  type_name_regexp = int
+
+# The stuff below hasn't been implemented yet.
+
+[suppress_symbol]
+  name= _init
+
+[suppress_symbol_version]
+  name = GLIBC_PRIVATE
+
+[suppress_data_member]
+  name=foo::bar
+
+[suppress_member_function]
+  name = foo<int>::bar
+  parameter_type-1 = int
+  parameter_type-2 = char

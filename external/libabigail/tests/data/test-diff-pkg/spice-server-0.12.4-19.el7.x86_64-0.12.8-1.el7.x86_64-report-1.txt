@@ -1,0 +1,53 @@
+================ changes of 'libspice-server.so.1.8.0'===============
+  Functions changes summary: 1 Removed, 2 Changed (77 filtered out), 8 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  1 Removed function:
+
+    [D] 'function int spice_server_migrate_client_state(SpiceServer*)'    {spice_server_migrate_client_state@@SPICE_SERVER_0.6.0}
+
+  8 Added functions:
+
+    [A] 'function void spice_replay_free(SpiceReplay*)'    {spice_replay_free@@SPICE_SERVER_0.12.6}
+    [A] 'function void spice_replay_free_cmd(SpiceReplay*, QXLCommandExt*)'    {spice_replay_free_cmd@@SPICE_SERVER_0.12.6}
+    [A] 'function SpiceReplay* spice_replay_new(FILE*, int)'    {spice_replay_new@@SPICE_SERVER_0.12.6}
+    [A] 'function QXLCommandExt* spice_replay_next_cmd(SpiceReplay*, QXLWorker*)'    {spice_replay_next_cmd@@SPICE_SERVER_0.12.6}
+    [A] 'function uint32_t spice_server_get_best_playback_rate(SpicePlaybackInstance*)'    {spice_server_get_best_playback_rate@@SPICE_SERVER_0.12.5}
+    [A] 'function uint32_t spice_server_get_best_record_rate(SpiceRecordInstance*)'    {spice_server_get_best_record_rate@@SPICE_SERVER_0.12.5}
+    [A] 'function void spice_server_set_playback_rate(SpicePlaybackInstance*, uint32_t)'    {spice_server_set_playback_rate@@SPICE_SERVER_0.12.5}
+    [A] 'function void spice_server_set_record_rate(SpiceRecordInstance*, uint32_t)'    {spice_server_set_record_rate@@SPICE_SERVER_0.12.5}
+
+  2 functions with some indirect sub-type change:
+
+    [C] 'function spice_image_compression_t spice_server_get_image_compression(SpiceServer*)' at reds.c:3618:1 has some indirect sub-type changes:
+      return type changed:
+        typedef name changed from spice_image_compression_t to SpiceImageCompression at enums.h:197:1
+        underlying type 'enum __anonymous_enum__2' at spice.h:471:1 changed:
+          type name changed from '__anonymous_enum__2' to 'SpiceImageCompression'
+          type size hasn't changed
+          7 enumerator deletions:
+            '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_INVALID' value '0'
+            '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_OFF' value '1'
+            '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_AUTO_GLZ' value '2'
+            '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_AUTO_LZ' value '3'
+            '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_QUIC' value '4'
+            '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_GLZ' value '5'
+            '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_LZ' value '6'
+          9 enumerator insertions:
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_INVALID' value '0'
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_OFF' value '1'
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_AUTO_GLZ' value '2'
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_AUTO_LZ' value '3'
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_QUIC' value '4'
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_GLZ' value '5'
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_LZ' value '6'
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_LZ4' value '7'
+            'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_ENUM_END' value '8'
+
+    [C] 'function int spice_server_set_image_compression(SpiceServer*, spice_image_compression_t)' at reds.c:3602:1 has some indirect sub-type changes:
+      parameter 2 of type 'typedef spice_image_compression_t' changed:
+        typedef name changed from spice_image_compression_t to SpiceImageCompression at enums.h:197:1
+        underlying type 'enum __anonymous_enum__2' changed at spice.h:471:1, as reported earlier
+
+================ end of changes of 'libspice-server.so.1.8.0'===============
+

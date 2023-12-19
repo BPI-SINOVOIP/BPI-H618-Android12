@@ -1,0 +1,5 @@
+[suppress_file]
+  #
+  # Do not load files test0-type-suppr-v0.o or test0-type-suppr-v1.o
+  #
+  file_name_regexp = (test0-type-suppr-v0.o|test0-type-suppr-v1.o)

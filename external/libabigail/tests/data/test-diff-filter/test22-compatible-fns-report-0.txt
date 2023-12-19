@@ -1,0 +1,10 @@
+Functions changes summary: 0 Removed, 1 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'function void func0(const volatile S* const* const*)' has some indirect sub-type changes:
+    parameter 1 of type 'const volatile S* const* const*' changed:
+      in pointed to type 'const volatile S* const* const':
+        'const volatile S* const* const' changed to 'const volatile typedef_of_S* const* const'
+

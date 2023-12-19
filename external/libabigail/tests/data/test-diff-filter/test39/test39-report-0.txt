@@ -1,0 +1,27 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function long long int foo1(container_type*)' at test39-b-v1.c:10:1 has some indirect sub-type changes:
+    parameter 1 of type 'container_type*' has sub-type changes:
+      in pointed to type 'struct container_type' at test39.h:3:1:
+        type size hasn't changed
+        1 data member change:
+          type of 'opaque_type* s' changed:
+            in pointed to type 'struct opaque_type' at test39-b-v1.c:3:1:
+              type size changed from 32 to 64 (in bits)
+              1 data member insertion:
+                'char m1', at offset 32 (in bits) at test39-b-v1.c:6:1
+
+  [C] 'function long long int foo2(container_type*)' at test39-c-v1.c:10:1 has some indirect sub-type changes:
+    parameter 1 of type 'container_type*' has sub-type changes:
+      in pointed to type 'struct container_type' at test39.h:3:1:
+        type size hasn't changed
+        1 data member change:
+          type of 'opaque_type* s' changed:
+            in pointed to type 'struct opaque_type' at test39-c-v1.c:3:1:
+              type size changed from 32 to 64 (in bits)
+              1 data member insertion:
+                'unsigned char m1', at offset 32 (in bits) at test39-c-v1.c:6:1
+

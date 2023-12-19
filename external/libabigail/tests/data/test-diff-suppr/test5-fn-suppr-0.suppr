@@ -1,0 +1,9 @@
+[suppress_function]
+
+  # suppress change reports for a function which name is 'bar' ...
+  name = bar
+
+  # ...and which first parameter has a type named 'S*'.
+  # Note that parameters' index start at 0.
+  parameter = '0 S*
+

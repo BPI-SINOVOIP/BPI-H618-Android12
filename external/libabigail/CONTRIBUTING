@@ -1,0 +1,287 @@
+Contact
+=======
+
+The project homepage is at https://sourceware.org/libabigail
+
+The current libabigail source code can be checked out with:
+git clone git://sourceware.org/git/libabigail
+
+The mailing list to send messages and patches to is
+libabigail@sourceware.org.
+
+The archives of that list are available at http://sourceware.org/ml/libabigail.
+
+File bugs
+=========
+
+Bugs are to be filled in bugzilla at
+https://sourceware.org/bugzilla/enter_bug.cgi?product=libabigail
+
+Writing and sending patches
+============================
+
+Please supply patches using git format-patch and git send-email.  If
+you don't know how to use git, send-email, fine.  Just use your
+favorite email client, attach the patch to a nice message, and send us
+the message.
+
+Patches have to be sent by email to libabigail@sourceware.org.
+
+Please read the file COMMIT-LOG-GUIDELINES in the source tree to learn
+about how to write the commit log accompanying the patch.
+
+If you are adding a new public header file to the project, or if you
+are defining a new entry point to the API of libabigail, please take
+some time to read the file VISIBILITY about how you need to handle the
+visibility of symbols that are part of the API and ABI of libabigail.
+
+Make sure you sign your patch.  To learn about signing, please read
+the "Sign your work" chapter below.
+
+One important thing to do before sending your patch is to launch the
+regression tests.
+
+Regression tests
+================
+
+Regression tests are under the directory 'tests'.  They are usually
+written in C++ and are especially designed to be easy to debug.  The
+idea is that if the test fails, the programmer should just have to
+launch them under GDB and debug them right away.  No-bullshit style.
+
+Regression tests are launched by doing:
+
+   make check
+
+If you have N processor cores on your machine, you can launch the
+tests in parallel to make whole thing go faster by doing:
+
+  make -jN -lN check
+
+If you want to test the fabrication of the distribution tarball (this
+is important, because that is how we do to actually release the
+tarball of the project that you can download from the internet) then
+you can do:
+
+  make distcheck
+
+This actually builds the tarball, then untars it, configure/compile
+the untarred source code and launches the regression checks from
+there.
+
+You can also launch this in parallel by doing:
+
+  make -jN -lN distcheck
+
+with N being the number of processor core you have on your system.
+
+Please make sure you always launch "make distcheck" before sending a
+patch, so that you are sure that we can always build a tarball after
+your patch is applied to the source tree.
+
+A variant of distcheck is "make distcheck-fast".  It's like "make
+distcheck" but it's faster.  You can just use that one.
+
+A complementary regression checking target is "check-self-compare".
+You invoke it by doing "make check-self-compare".  That target
+analyzes the ABI of the libabigail.so shared object, serializes it
+into the ABIXML format and then compares the ABI internal
+representation gathered from the libabigail.so binary against the one
+gathered from the ABIXML format.  The two should be equal if
+everything goes right.  This is an important regression test.  The
+problem is that it can takes twice as much time as make distcheck.  So
+we've put it into its own separate target.
+
+So, to be complete the regression checking command to run against your
+patch should be: "make check-self-compare distcheck -j16", if you have
+a machine with a 16 threads processors, for instance.
+
+Coding language and style
+==========================
+
+The coding style is self evident when reading the source code.  So
+please, stick to and mimic what is already in there for the sake of
+consistency at very least.  Just for history, it's derived from the
+style of the C++ standard library from the GNU project.
+
+As of libabigail 2.0, the language we use is C++ 11.  The level
+supported is the one supported by the GCC 4.8.x series of compilers.
+This should be old and well tested enough to be supported by your
+current favorite compiler.
+
+Initially, the code base of the project was written in C++03, with the
+TR1 extensions.  That heritage is well visible in the code base as it
+is today.
+
+Please do not rush and send gazillions of patches that just re-write
+tons of code into your favorite C++ 11 flavour du jour.  We will
+likely reject those patches.  We want to keep the history of the code
+base in such a way that tools like "git blame <sourcefile> are still
+useful.
+
+So we'll accept patches changing parts of the code base to more recent
+C++ 11 constructs only if you happen to add functionality or fix
+things in that area.  If it makes "cultural common" sense to adopt
+those constructs.  What I mean by "cultural" is that must make sense
+in relative to the culture of the project.  And yes, that is
+subjective.  Sorry.
+
+As a generic rule, we tend to favor the lowest possible level of
+abstraction that makes sense without requiring future maintainers of
+the project to have a PhD in design patterns.  We are not impressed by
+design patterns.  We use them where they make clear sense, but we
+don't idolize them.  Put it another way, we will always favor the one
+who *READS* and debug the code over the one who writes it.  To put
+things in a hypothetical perspective, we'll rather accept a repetitive
+code that stays simple to read and debug over a highly abstract one
+using meta programming to save a few lines of repetitive code located
+in a very small number of places.
+
+Really, in this project, we care about low level binary analysis
+stuff.  Issues in that area can be hard to reproduce and quite
+challenging to debug.  So having tons of abstraction layers in the
+code base have proven to be a maintenance burden over the years, from
+our experience in working on similar projects.  So please help us
+avoid those mistakes that we make just for the pleasure of writing
+what can look as "pleasant code" at a first naive sight.
+
+That being said, we also love cleanly designed APIs that are fairly
+re-usable and well documented.  And we also praise abstraction and
+modularisation that we recognize as being the most basic tools of any
+engineer.  So we like to think about ourselves as well rounded people
+who care about maintaining things for a long time to come :-)
+
+Launching regression tests in Valgrind
+--------------------------------------
+
+To detect memory management errors, the tests of the regression test
+suite can be run using Valgrind tools, essentially memcheck and
+helgrind.
+
+To do so, please do:
+
+  make check-valgrind
+
+This runs the tests under the control of Valgrind memcheck and
+helgrind tools.
+
+But then, if you want Valgrind to check the libabigail command line
+tools that are *forked* by some of the tests then type:
+
+  make check-valgrind-recursive
+
+This one takes a long time.  On my system for instance, it takes an
+hour.  But then it checks *everything*.  If you don't have that time,
+then "make check-valgrind" is enough, as the regression tests that use
+the libabigail *library* directly (as opposed to forking libabigail
+command line tools) will be verified.
+
+How tests are organized
+-----------------------
+
+There are two kinds of regression tests.  Those that use the
+libabigail *library* directly, and those that spawn one of the
+libabigail command line tools.
+
+Generally, both are usually made of a loop that churns through a set of input
+binaries to compare.  Once the comparison is done, the resulting
+report is compared against a reference report that is provided.
+
+Test executable have names that starts with 'runtest*'.  For instance,
+under <build-directory>/tests/ you can find tests named
+runtestdiffdwarf, runtestabidiff, etc...
+
+If a test executable is named
+<build-directory>/tests/runtestdiffdwarf, then its source code is
+tests/test-diff-dwarf.cc.  Similarly, the source code of the test
+<build-directory>/tests/runtestabidiff is tests/test-abidiff.cc.
+
+The data provided for each test (for instance the input binaries to
+compare and the reference report that should result from the
+comparison) is to be found under tests/data.  So data for the test
+runtestdiffdwarf is to be found under tests/data/test-diff-dwarf.
+Data for the test runtestabidiff is to be found under
+tests/data/test-abidiff.cc.
+
+So adding your own tests usually just amounts to adding the input
+right input into the right sub-directory of tests/data/.  To do so,
+look at several tests/test-*.cc to see which one you'd like to add
+some input binaries to be compared in.
+
+Then once you know which tests/test-*.cc you'd like to extend, and if
+you added your input binaries and reference reports (maybe other
+things too) to the right sub-director of tests/data/, you just need to
+extend the array of input binaries/reference reports that the test
+walks to perform the comparisons.  It's generally a global variable
+before the main() function of the test.  In test-diff-dwarf.cc, for
+instance, the variable name is "in_out_specs".  You just have to add a
+new entry to that array; that new entry contains the paths to your new
+input binaries and reference reports.  Just read the code in there and
+use your brains.  It should be straight forward.
+
+Ah, also, if you added new files for the tests, then the build system
+needs to be told that those files have to be added to the distribution
+tarball when we do "make dist" (or make distcheck).  To do so, please
+make sure to add your new test input files to the
+tests/data/Makefile.am file, in the EXTRA_DIST variable.  Look at how
+things are organized in that file, and please do things similarly.
+
+Sign your work
+==============
+
+To facilitate tracking of who did what, we've adopted a "sign-off"
+procedure for patches based on the procedure used by the Linux kernel
+project.
+
+The sign-off is a simple line at the end of the explanation for the
+patch, which certifies that you wrote it or otherwise have the right
+to pass it on as a patch under an appropriate license. The rules are
+pretty simple: if you can certify the below:
+
+        Developer's Certificate of Origin
+
+        By making a contribution to this project, I certify that:
+
+	(a) The contribution was created in whole or in part by me,
+	    and I have the right to submit the contribution under the
+	    license indicated in, or otherwise designated as being
+	    applicable to, the file.
+
+        (b) The contribution was provided directly to me by some other
+            person who certified (a), and I have not modified it.
+
+        (c) I understand and agree that the project and the
+            contribution are public and that a record of the
+            contribution (including all personal information I submit
+            with it, including my sign-off) is maintained indefinitely
+            and may be redistributed.
+
+then you just add a line saying
+
+Signed-off-by: Random J Developer <random@developer.example.org>
+
+using your real name (sorry, no pseudonyms or anonymous contributions.)
+
+git commit --signoff will add such a Signed-off-by line at the end of
+the commit log message for you.
+
+Modifying the website
+=====================
+
+The source code of the website of libabigail is stored in CVS (sigh,
+yeah, that is so old school).  You can check out that web source code
+by doing:
+
+    CVS_RSH=ssh cvs -z9 -d :ext:user@sourceware.org:/cvs/libabigail/ co htdocs
+
+where 'user' is your username on the sourceware system.
+Alternatively, you can check out the the web source code anonymously,
+if you don't have any user account on the sourceware system by doing:
+
+    export CVSROOT=:pserver:anoncvs@cygwin.com:/cvs/libabigail
+    cvs login
+    (the CVS anonymous password to use is "anoncvs")
+    cvs checkout htdocs
+
+
+Happy Hacking!

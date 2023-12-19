@@ -1,0 +1,124 @@
+================ changes of 'libspice-server.so.1.8.0'===============
+Leaf changes summary: 10 artifacts changed (13 filtered out)
+  Changed leaf types summary: 1 (13 filtered out) leaf types changed
+  Removed/Changed/Added functions summary: 1 Removed, 0 Changed, 8 Added functions
+  Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+  1 Removed function:
+
+    [D] 'function int spice_server_migrate_client_state(SpiceServer*)'    {spice_server_migrate_client_state@@SPICE_SERVER_0.6.0}
+
+  8 Added functions:
+
+    [A] 'function void spice_replay_free(SpiceReplay*)'    {spice_replay_free@@SPICE_SERVER_0.12.6}
+    [A] 'function void spice_replay_free_cmd(SpiceReplay*, QXLCommandExt*)'    {spice_replay_free_cmd@@SPICE_SERVER_0.12.6}
+    [A] 'function SpiceReplay* spice_replay_new(FILE*, int)'    {spice_replay_new@@SPICE_SERVER_0.12.6}
+    [A] 'function QXLCommandExt* spice_replay_next_cmd(SpiceReplay*, QXLWorker*)'    {spice_replay_next_cmd@@SPICE_SERVER_0.12.6}
+    [A] 'function uint32_t spice_server_get_best_playback_rate(SpicePlaybackInstance*)'    {spice_server_get_best_playback_rate@@SPICE_SERVER_0.12.5}
+    [A] 'function uint32_t spice_server_get_best_record_rate(SpiceRecordInstance*)'    {spice_server_get_best_record_rate@@SPICE_SERVER_0.12.5}
+    [A] 'function void spice_server_set_playback_rate(SpicePlaybackInstance*, uint32_t)'    {spice_server_set_playback_rate@@SPICE_SERVER_0.12.5}
+    [A] 'function void spice_server_set_record_rate(SpiceRecordInstance*, uint32_t)'    {spice_server_set_record_rate@@SPICE_SERVER_0.12.5}
+
+  'enum __anonymous_enum__2 at spice.h:471:1' changed:
+    type name changed from '__anonymous_enum__2' to 'SpiceImageCompression'
+    type size hasn't changed
+    7 enumerator deletions:
+      '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_INVALID' value '0'
+      '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_OFF' value '1'
+      '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_AUTO_GLZ' value '2'
+      '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_AUTO_LZ' value '3'
+      '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_QUIC' value '4'
+      '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_GLZ' value '5'
+      '__anonymous_enum__2::SPICE_IMAGE_COMPRESS_LZ' value '6'
+    9 enumerator insertions:
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_INVALID' value '0'
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_OFF' value '1'
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_AUTO_GLZ' value '2'
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_AUTO_LZ' value '3'
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_QUIC' value '4'
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_GLZ' value '5'
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_LZ' value '6'
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_LZ4' value '7'
+      'SpiceImageCompression::SPICE_IMAGE_COMPRESSION_ENUM_END' value '8'
+    79 impacted interfaces:
+      function void spice_qxl_add_memslot(QXLInstance*, QXLDevMemSlot*)
+      function void spice_qxl_add_memslot_async(QXLInstance*, QXLDevMemSlot*, uint64_t)
+      function void spice_qxl_create_primary_surface(QXLInstance*, uint32_t, QXLDevSurfaceCreate*)
+      function void spice_qxl_create_primary_surface_async(QXLInstance*, uint32_t, QXLDevSurfaceCreate*, uint64_t)
+      function void spice_qxl_del_memslot(QXLInstance*, uint32_t, uint32_t)
+      function void spice_qxl_destroy_primary_surface(QXLInstance*, uint32_t)
+      function void spice_qxl_destroy_primary_surface_async(QXLInstance*, uint32_t, uint64_t)
+      function void spice_qxl_destroy_surface_async(QXLInstance*, uint32_t, uint64_t)
+      function void spice_qxl_destroy_surface_wait(QXLInstance*, uint32_t)
+      function void spice_qxl_destroy_surfaces(QXLInstance*)
+      function void spice_qxl_destroy_surfaces_async(QXLInstance*, uint64_t)
+      function void spice_qxl_driver_unload(QXLInstance*)
+      function void spice_qxl_flush_surfaces_async(QXLInstance*, uint64_t)
+      function void spice_qxl_loadvm_commands(QXLInstance*, QXLCommandExt*, uint32_t)
+      function void spice_qxl_monitors_config_async(QXLInstance*, QXLPHYSICAL, int, uint64_t)
+      function void spice_qxl_oom(QXLInstance*)
+      function void spice_qxl_reset_cursor(QXLInstance*)
+      function void spice_qxl_reset_image_cache(QXLInstance*)
+      function void spice_qxl_reset_memslots(QXLInstance*)
+      function void spice_qxl_set_max_monitors(QXLInstance*, unsigned int)
+      function void spice_qxl_start(QXLInstance*)
+      function void spice_qxl_stop(QXLInstance*)
+      function void spice_qxl_update_area(QXLInstance*, uint32_t, QXLRect*, QXLRect*, uint32_t, uint32_t)
+      function void spice_qxl_update_area_async(QXLInstance*, uint32_t, QXLRect*, uint32_t, uint64_t)
+      function void spice_qxl_wakeup(QXLInstance*)
+      function int spice_server_add_client(SpiceServer*, int, int)
+      function int spice_server_add_interface(SpiceServer*, SpiceBaseInstance*)
+      function int spice_server_add_renderer(SpiceServer*, const char*)
+      function int spice_server_add_ssl_client(SpiceServer*, int, int)
+      function void spice_server_char_device_wakeup(SpiceCharDeviceInstance*)
+      function void spice_server_destroy(SpiceServer*)
+      function spice_image_compression_t spice_server_get_image_compression(SpiceServer*)
+      function int spice_server_get_num_clients(SpiceServer*)
+      function int spice_server_get_peer_info(SpiceServer*, sockaddr*, socklen_t*)
+      function int spice_server_get_sock_info(SpiceServer*, sockaddr*, socklen_t*)
+      function int spice_server_init(SpiceServer*, SpiceCoreInterface*)
+      function int spice_server_is_server_mouse(SpiceServer*)
+      function int spice_server_migrate_connect(SpiceServer*, const char*, int, int, const char*)
+      function int spice_server_migrate_end(SpiceServer*, int)
+      function int spice_server_migrate_info(SpiceServer*, const char*, int, int, const char*)
+      function int spice_server_migrate_start(SpiceServer*)
+      function int spice_server_migrate_switch(SpiceServer*)
+      function SpiceServer* spice_server_new()
+      function void spice_server_playback_get_buffer(SpicePlaybackInstance*, uint32_t**, uint32_t*)
+      function void spice_server_playback_put_samples(SpicePlaybackInstance*, uint32_t*)
+      function void spice_server_playback_set_mute(SpicePlaybackInstance*, uint8_t)
+      function void spice_server_playback_set_volume(SpicePlaybackInstance*, uint8_t, uint16_t*)
+      function void spice_server_playback_start(SpicePlaybackInstance*)
+      function void spice_server_playback_stop(SpicePlaybackInstance*)
+      function void spice_server_port_event(SpiceCharDeviceInstance*, uint8_t)
+      function uint32_t spice_server_record_get_samples(SpiceRecordInstance*, uint32_t*, uint32_t)
+      function void spice_server_record_set_mute(SpiceRecordInstance*, uint8_t)
+      function void spice_server_record_set_volume(SpiceRecordInstance*, uint8_t, uint16_t*)
+      function void spice_server_record_start(SpiceRecordInstance*)
+      function void spice_server_record_stop(SpiceRecordInstance*)
+      function void spice_server_set_addr(SpiceServer*, const char*, int)
+      function int spice_server_set_agent_copypaste(SpiceServer*, int)
+      function int spice_server_set_agent_file_xfer(SpiceServer*, int)
+      function int spice_server_set_agent_mouse(SpiceServer*, int)
+      function int spice_server_set_channel_security(SpiceServer*, const char*, int)
+      function int spice_server_set_compat_version(SpiceServer*, spice_compat_version_t)
+      function int spice_server_set_exit_on_disconnect(SpiceServer*, int)
+      function int spice_server_set_image_compression(SpiceServer*, spice_image_compression_t)
+      function int spice_server_set_jpeg_compression(SpiceServer*, spice_wan_compression_t)
+      function int spice_server_set_listen_socket_fd(SpiceServer*, int)
+      function void spice_server_set_name(SpiceServer*, const char*)
+      function int spice_server_set_noauth(SpiceServer*)
+      function int spice_server_set_playback_compression(SpiceServer*, int)
+      function int spice_server_set_port(SpiceServer*, int)
+      function int spice_server_set_sasl(SpiceServer*, int)
+      function int spice_server_set_sasl_appname(SpiceServer*, const char*)
+      function void spice_server_set_seamless_migration(SpiceServer*, int)
+      function int spice_server_set_streaming_video(SpiceServer*, int)
+      function int spice_server_set_ticket(SpiceServer*, const char*, int, int, int)
+      function int spice_server_set_tls(SpiceServer*, int, const char*, const char*, const char*, const char*, const char*, const char*)
+      function void spice_server_set_uuid(SpiceServer*, const uint8_t*)
+      function int spice_server_set_zlib_glz_compression(SpiceServer*, spice_wan_compression_t)
+      function void spice_server_vm_start(SpiceServer*)
+      function void spice_server_vm_stop(SpiceServer*)
+================ end of changes of 'libspice-server.so.1.8.0'===============
+

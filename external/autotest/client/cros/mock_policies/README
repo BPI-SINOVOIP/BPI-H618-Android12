@@ -1,0 +1,14 @@
+This directory contains the ingredients necessary to regenerate
+signed mock policies and the corresponding public keys.  See here
+for details on how to use this code:
+
+https://sites.google.com/a/google.com/chromeos/archive/testing-tools-for-device-policies
+
+Please use ../mock_owner_private.key as the private key.
+Please use madmax@managedchrome.com as the user for generating
+mock_metrics_{on,off}.policy
+protoc --decode_raw is useful for verifying your work by comparing old
+proto and the new.
+
+If you are having to regenerate these files, most likely you have to
+change the code in this directory.  Please keep the code up-to-date in git.

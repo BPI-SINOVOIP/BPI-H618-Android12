@@ -1,0 +1,39 @@
+# Copyright (c) 2014 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+AUTHOR = "deymo, chromeos-installer@google.com"
+NAME = "platform_Powerwash"
+TIME = "SHORT"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "platform"
+TEST_TYPE = "server"
+ATTRIBUTES = "suite:bvt-installer"
+
+DOC = """
+Tests that a device runs powerwash on the first reboot after the powerwash was
+signaled. The test verifies that a given file on the stateful partition is
+deleted during powerwash and that the powerwash counter is increased.
+
+We supply a job_repo_url to the test when running locally. In the lab this will
+be passed directly. The job_repo_url is a link to the autotest packages on a
+devserver. The test uses it to find and stage the stateful payload it needs to
+restore after performing the powerwash.
+
+To get a list of available devservers to use execute this command:
+atest server list | grep devserver
+
+Example usage:
+test_that platform_Powerwash <eureka/cros/beaglobonedevice ip> --board=<board> --args="job_repo_url=http://<devserver IP>:8082/static/<board>-release/RXX-XXXXX.X.X/autotest/packages"
+"""
+
+from autotest_lib.client.common_lib import utils
+args_dict = utils.args_to_dict(args)
+job_repo_url = args_dict.get('job_repo_url')
+
+def run_test(machine):
+    host = hosts.create_host(machine)
+    job.run_test("platform_Powerwash", host=host, job_repo_url=job_repo_url,
+                 disable_sysinfo=True)
+
+parallel_simple(run_test, machines)

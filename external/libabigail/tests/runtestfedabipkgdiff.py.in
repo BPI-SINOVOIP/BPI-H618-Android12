@@ -1,0 +1,159 @@
+#!/usr/bin/env python
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+# -*- coding: utf-8 -*-
+# -*- Mode: Python
+#
+# Author: Chenxiong Qi
+
+'''Runs tests for the fedabipkgdiff program
+
+This program runs the fedabipkgdiff tool (via the mockfedabipkgdiff
+tool) repeatedly and compares its output against a set of reference
+output files.
+
+'''
+
+import sys
+import os
+import subprocess
+
+FEDABIPKGDIFF = '@abs_top_builddir@/tests/mockfedabipkgdiff'
+TEST_SRC_DIR = '@abs_top_srcdir@/tests'
+TEST_BUILD_DIR = '@abs_top_builddir@/tests'
+INPUT_DIR = '@abs_top_srcdir@/tests/data/test-fedabipkgdiff'
+OUTPUT_DIR = '@abs_top_builddir@/tests/output/test-fedabipkgdiff'
+
+# This variable  is a list of 3-uples.  Here is the meaning of
+# the elements of each 3-uples:
+#
+# (arguments to pass to fedabipkgdiff,
+#  reference output file,
+#  where to store the result of the comparison)
+#
+# Note that after fedabipkgdiff is run (using the arguments that are
+# the first element of the tuple) the result of the comparison is
+# going to be compared against the reference output file, and both
+# must be equal.
+#
+# If a user wants to add a new test, she must add a new tuple to the
+# variable below, and also add a new reference output to the source
+# distribution.
+#
+FEDABIPKGDIFF_TEST_SPECS = [
+    (['--from', 'fc20',  '--to', 'fc23', 'dbus-glib'],
+     'data/test-fedabipkgdiff/test0-from-fc20-to-fc23-dbus-glib-report-0.txt',
+     'output/test-fedabipkgdiff/test0-type-suppr-report-0.txt'),
+
+    (['--from', 'fc20', os.path.join(INPUT_DIR,
+                                     'packages/dbus-glib/0.106/1.fc23/x86_64/'
+                                     'dbus-glib-0.106-1.fc23.x86_64.rpm')],
+     'data/test-fedabipkgdiff/test1-from-fc20-to-dbus-glib-0.106-1.fc23.x86_64-report-0.txt',
+     'output/test-fedabipkgdiff/test1-from-fc20-to-dbus-glib-0.106-1.fc23.x86_64-report-0.txt'),
+
+    (['dbus-glib-0.100.2-2.fc20', 'dbus-glib-0.106-1.fc23'],
+     'data/test-fedabipkgdiff/test2-dbus-glib-0.100.2-2.fc20--dbus-glib-0.106-1.fc23-report-0.txt',
+     'output/test-fedabipkgdiff/test2-dbus-glib-0.100.2-2.fc20--dbus-glib-0.106-1.fc23-report-0.txt'),
+
+    (['dbus-glib-0.100.2-2.fc20.i686', 'dbus-glib-0.106-1.fc23.i686'],
+     'data/test-fedabipkgdiff/test3-dbus-glib-0.100.2-2.fc20.i686--dbus-glib-0.106-1.fc23.i686-report-0.txt',
+     'output/test-fedabipkgdiff/test3-dbus-glib-0.100.2-2.fc20.i686--dbus-glib-0.106-1.fc23.i686-report-0.txt'),
+
+    (['vte291-0.39.1-1.fc22.x86_64', 'vte291-0.39.90-1.fc22.x86_64'],
+     'data/test-fedabipkgdiff/vte291-0.39.1-1.fc22.x86_64--vte291-0.39.90-1.fc22.x86_64-report-0.txt',
+     'output/test-fedabipkgdiff/vte291-0.39.1-1.fc22.x86_64--vte291-0.39.90-1.fc22.x86_64-report-0.txt'),
+
+    ([os.path.join(INPUT_DIR, 'packages/dbus-glib/0.100.2/2.fc20/x86_64/dbus-glib-0.100.2-2.fc20.x86_64.rpm'),
+      os.path.join(INPUT_DIR, 'packages/dbus-glib/0.106/1.fc23/x86_64/dbus-glib-0.106-1.fc23.x86_64.rpm')],
+     'data/test-fedabipkgdiff/test4-glib-0.100.2-2.fc20.x86_64.rpm-glib-0.106-1.fc23.x86_64.rpm-report-0.txt',
+     'output/test-fedabipkgdiff/test4-glib-0.100.2-2.fc20.x86_64.rpm-glib-0.106-1.fc23.x86_64.rpm-report-0.txt'),
+
+    ([os.path.join(INPUT_DIR, 'dbus-glib/dbus-glib-0.100.2-2.fc20.x86_64.rpm'),
+      os.path.join(INPUT_DIR, 'dbus-glib/dbus-glib-0.106-1.fc23.x86_64.rpm')],
+     'data/test-fedabipkgdiff/test5-same-dir-dbus-glib-0.100.2-2.fc20.x86_64--dbus-glib-0.106-1.fc23.x86_64-report-0.txt',
+     'output/test-fedabipkgdiff/test5-same-dir-dbus-glib-0.100.2-2.fc20.x86_64--dbus-glib-0.106-1.fc23.x86_64-report-0.txt'),
+
+    ([os.path.join(INPUT_DIR, 'nss-util/nss-util-3.12.6-1.fc14.x86_64.rpm'),
+      os.path.join(INPUT_DIR, 'nss-util/nss-util-3.24.0-2.0.fc25.x86_64.rpm')],
+     'data/test-fedabipkgdiff/test6-nss-util-3.12.6-1.fc14.x86_64--nss-util-3.24.0-2.0.fc25.x86_64-report-0.txt',
+     'output/test-fedabipkgdiff/test6-nss-util-3.12.6-1.fc14.x86_64--nss-util-3.24.0-2.0.fc25.x86_64-report-0.txt'),
+
+    (['--self-compare', '-a', '--from', 'fc23', 'dbus-glib'],
+     'data/test-fedabipkgdiff/test7-self-compare-from-fc23-dbus-glib-report-0.txt',
+     'output/test-fedabipkgdiff/test7-self-compare-from-fc23-dbus-glib-report-0.txt'),
+]
+
+
+def ensure_output_dir_created():
+    '''Create output dir if it's not already created.'''
+
+    try:
+        os.makedirs(OUTPUT_DIR)
+    except:
+        pass
+
+        if not os.path.exists(OUTPUT_DIR):
+            sys.exit(1)
+
+
+def run_fedabipkgdiff_tests():
+    """Run the fedabipkgdiff tests
+
+    Loop through the test inputs in the FEDABIPKGDIFF_TEST_SPECS global
+    variable and for each of the test input, launch a comparison using
+    mockfedabipkgdiff, which calls fedabipkgdiff by making sure it
+    doesn't use the network.
+
+    The result of the comparison is stored in an output file, and that
+    output file is compared (using GNU diff) against the reference
+    output file specified in the FEDABIPKGDIFF_TEST_SPECS global
+    variable.
+
+    This function returns True iff all comparison specified by
+    FEDABIPKGDIFF_TEST_SPECS succeed.
+    """
+
+    result = True
+    for args, reference_report_path, output_path in FEDABIPKGDIFF_TEST_SPECS:
+        reference_report_path = os.path.join(TEST_SRC_DIR, reference_report_path)
+        output_path = os.path.join(TEST_BUILD_DIR, output_path)
+        cmd = [FEDABIPKGDIFF,
+               '--no-default-suppression',
+               '--show-identical-binaries',
+               '--clean-cache'] + args
+
+        with open(output_path, 'w') as out_file:
+            subprocess.call(cmd, stdout=out_file)
+
+            if not os.path.exists(reference_report_path):
+                sys.stderr.write('file not found: ' + reference_report_path + '\n')
+                return_code = -1
+            else:
+                diffcmd = ['diff', '-u', reference_report_path, output_path]
+                return_code = subprocess.call(diffcmd)
+            if return_code:
+                sys.stderr.write('fedabipkgdiff test failed for ' +
+                                 reference_report_path + '\n')
+                sys.stderr.write('command was: ' + ' '.join(cmd) + '\n');
+            result &=  not return_code
+
+    return result
+
+
+def main():
+    """The main entry point of this program.
+
+    This creates the output directory and launches the tests for the
+    fedabipkgdiff program.
+
+    :return: 0 upon success, 1 otherwise.
+    """
+
+    ensure_output_dir_created()
+    result = 0
+    result = run_fedabipkgdiff_tests()
+    return not result
+
+
+if __name__ == '__main__':
+    exit_code = main()
+    sys.exit(exit_code)

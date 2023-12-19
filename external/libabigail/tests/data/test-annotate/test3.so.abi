@@ -1,0 +1,28 @@
+<abi-corpus version='2.0' architecture='elf-amd-x86_64' soname='test3.so.1'>
+  <elf-needed>
+    <dependency name='libc.so.6'/>
+  </elf-needed>
+  <elf-function-symbols>
+    <!-- __foo -->
+    <elf-symbol name='__foo' type='func-type' binding='global-binding' visibility='default-visibility' alias='foo,foo__,__foo__' is-defined='yes'/>
+    <!-- __foo__ -->
+    <elf-symbol name='__foo__' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- _fini -->
+    <elf-symbol name='_fini' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- _init -->
+    <elf-symbol name='_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- foo -->
+    <elf-symbol name='foo' type='func-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- foo__ -->
+    <elf-symbol name='foo__' type='func-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <abi-instr address-size='64' path='test3.c' comp-dir-path='/home/skumari/Tasks/source_repo/dodji/libabigail/tests/data/test-read-dwarf' language='LANG_C89'>
+    <!-- void -->
+    <type-decl name='void' id='type-id-1'/>
+    <!-- void __foo() -->
+    <function-decl name='__foo' mangled-name='__foo' filepath='/home/skumari/Tasks/source_repo/dodji/libabigail/tests/data/test-read-dwarf/test3.c' line='8' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='__foo'>
+      <!-- void -->
+      <return type-id='type-id-1'/>
+    </function-decl>
+  </abi-instr>
+</abi-corpus>

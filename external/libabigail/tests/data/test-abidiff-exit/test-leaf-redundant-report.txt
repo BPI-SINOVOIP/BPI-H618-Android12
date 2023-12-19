@@ -1,0 +1,27 @@
+Leaf changes summary: 4 artifacts changed
+Changed leaf types summary: 0 leaf type changed
+Removed/Changed/Added functions summary: 0 Removed, 4 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+4 functions with some sub-type change:
+
+  [C] 'function void fn1(sto1)' at test-leaf-redundant-v1.c:12:1 has some sub-type changes:
+    parameter 1 of type 'struct sto1' changed:
+      type name changed from 'sto1' to 'stn1'
+      type size hasn't changed
+
+  [C] 'function void fn2(sto2)' at test-leaf-redundant-v1.c:15:1 has some sub-type changes:
+    parameter 1 of type 'struct sto2' changed:
+      type name changed from 'sto2' to 'stn2'
+      type size changed from 64 to 128 (in bits)
+      1 data member insertion:
+        'double y', at offset 64 (in bits) at test-leaf-redundant-v1.c:9:1
+
+  [C] 'function void fn3(sto1*)' at test-leaf-redundant-v1.c:18:1 has some sub-type changes:
+    parameter 1 of type 'sto1*' changed:
+      pointer type changed from: 'sto1*' to: 'stn1*'
+
+  [C] 'function void fn4(sto2*)' at test-leaf-redundant-v1.c:21:1 has some sub-type changes:
+    parameter 1 of type 'sto2*' changed:
+      pointer type changed from: 'sto2*' to: 'stn2*'
+

@@ -1,0 +1,157 @@
+/*!
+
+\mainpage The ABI Generic Analysis and Instrumentation Library
+
+\tableofcontents
+
+\section presentation Presentation
+
+This project aims at providing a C++ library for constructing,
+manipulating, serializing and de-serializing ABI-relevant artifacts.
+The set of artifacts that we are interested in is made of
+constructions like types, variables, functions and declarations of a
+given library or program.  For a given program or library, this set of
+constructions is called an ABI corpus.
+
+Thus the project aims at providing a library to manipulate ABI
+corpora, compare them, provide detailed information about their
+differences and help build tools to infer interesting conclusions
+about these differences.
+
+\section documentation Documentation
+
+The documentations of the libabigail tools is available online <a
+href="http://sourceware.org/libabigail/manual">here</a>.
+
+The html documentation of the API of the library itself is available
+online <a href="http://sourceware.org/libabigail/apidoc">here</a>.
+
+\section communication IRC and Mailing lists
+
+To hang out with libabigail developers and users, you can chat with us
+via <a href="http://en.wikipedia.org/wiki/Wikipedia:IRC">IRC</a> at
+<em>irc://irc.oftc.net\#libabigail</em>.
+
+To send us patches or just drop by to say Hi, please send an email to
+our mailing list at the address 'libabigail <at> sourceware <dot>
+org'.  The archives of the mailing list can be read <a
+href="https://sourceware.org/ml/libabigail">online</a>.  To send us an
+email, you first need to register to the mailing list by feeling
+<a href="https://sourceware.org/mailman/listinfo/libabigail">this
+form</a>.
+
+\section bugs Bug reports
+
+Bug reports are to be filed into our <a
+href="http://sourceware.org/bugzilla/enter_bug.cgi?product=libabigail">Bugzilla
+database</a>.
+
+\section license License
+
+The source code of the library is under <a href="http://www.gnu.org/licenses/lgpl.html"> LGPL version 3</a> or later.
+
+\section source Getting the source code
+
+You can download compressed tarballs containing the source code of
+Libabigail at http://mirrors.kernel.org/sourceware/libabigail.  The
+latest released version of is source code is
+http://mirrors.kernel.org/sourceware/libabigail/libabigail-1.8.tar.gz.
+
+You can also get the source code in a read-only manner from our <a
+href="http://sourceware.org/git/gitweb.cgi?p=libabigail.git">Git
+repository</a> by doing:
+
+\code
+	git clone git://sourceware.org/git/libabigail.git
+\endcode
+
+If you have write access on sourceware.org, you can check the source
+out in read-write by doing:
+
+\code
+	git clone ssh://sourceware.org/git/libabigail.git
+\endcode
+
+\section compile Compiling the source code
+
+To compile libabigail, you first need to install its dependencies.  At
+the moment the dependencies are the following Free Software packages:
+
+    \li <a href="http://www.gnu.org/software/autoconf/">autoconf</a>
+    \li <a href="http://www.gnu.org/software/automake/">automake</a>
+    \li <a href="http://www.gnu.org/software/libtool/">libtool</a>
+    \li <a href="http://www.freedesktop.org/wiki/Software/pkg-config/">pkg-config</a>
+    \li <a href="http://www.xmlsoft.org">libxml2</a>
+    \li <a href="https://fedorahosted.org/elfutils/">elfutils</a>
+    \li <a href="http://www.stack.nl/~dimitri/doxygen/download.html">doxygen</a>
+    \li <a href="http://www.sphinx-doc.org/en/stable/">python-sphinx</a>
+
+\subsection compile-from-tarball Compiling the code from the tarball
+
+Once you've downloaded the tarball, please extract its content to a
+directory of your choice.  To extract the tarball on GNU/Linux, please
+type:
+
+\code
+  tar -xvf libabigail-<version>.tar.gz
+\endcode
+
+This should create a directory <em>libabigail-<version></em>.
+
+Then go to that directory and run the commands:
+
+\code
+  mkdir build
+  cd build
+  ../configure --prefix=/where/you/want/to/install/libabigail
+  make all install
+\endcode
+
+Make sure the directory <em>/where/you/want/to/install/libabigail</em>
+exists and is writeable by you.
+
+The commands above should have built libabigail and its associated
+tools, and installed them under
+<em>/where/you/want/to/install/libabigail</em>.  Note that built
+objects are under the <em>build</em> sub-directory of the source tree
+of Libabigail which you extracted from the tarball.
+
+\subsection compile-from-git Compiling the code retrieved via the source code repository
+
+Go to your local libabigail.git directory where the source code
+you've checked out lies and create a 'build' directory that will
+receive the binaries resulting from the compilation:
+
+\code
+    cd libabigail
+    mkdir build
+\endcode
+
+Generate the relevant build-system-related information needed to
+configure the package for compilation, by typing:
+
+\code
+    autoreconf -i
+\endcode
+
+Then configure the package:
+
+\code
+    cd build
+    ../configure --prefix=<absolute-path-of-where-you-want-the-binaries-to-be-installed>
+\endcode
+
+Then build the package
+
+\code
+    make
+\endcode
+
+And then install its resulting binaries and documentation:
+
+\code
+    make install
+\endcode
+
+
+*/

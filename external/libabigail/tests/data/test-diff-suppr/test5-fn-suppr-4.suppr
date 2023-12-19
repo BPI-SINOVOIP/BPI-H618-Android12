@@ -1,0 +1,5 @@
+[suppress_function]
+
+  # suppress change reports for a function which symbol name is _Z3barPS
+  # or _Z3barPPS
+  symbol_name_regexp = ^_Z3barP+1S

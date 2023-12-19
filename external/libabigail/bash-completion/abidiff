@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+_abidiff_module()
+{
+	local cur prev OPTS
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	case $prev in
+	  '--d1'|'--d2'|'--debug-info-dir1'|'--debug-info-dir2')
+	    local IFS=$'\n'
+	    compopt -o dirnames
+	    COMPREPLY=( $(compgen -d -- $cur) )
+	    return 0
+	    ;;
+	  '--suppressions'|'--suppr')
+	    local IFS=$'\n'
+	    compopt -o filenames
+	    COMPREPLY=( $(compgen -f -- $cur) )
+	    return 0
+	    ;;
+	  '--drop' | '--drop-fn' | '--drop-var' | '--keep' | '--keep-fn' | '--keep-var')
+	  #'--{drop,keep}{,-fn,-var}')
+	    COMPREPLY=( $(compgen -W "string" -- $cur) )
+	    return 0
+	    ;;
+	esac
+	case $cur in
+	  -*)
+	    OPTS="  --added-fns
+		    --added-vars
+		    --changed-fns
+		    --changed-vars
+		    --d1
+		    --d2
+		    --debug-info-dir1
+		    --debug-info-dir2
+		    --deleted-fns
+		    --deleted-vars
+		    --drop
+		    --drop-fn
+		    --drop-var
+		    --dump-diff-tree
+		    --harmless
+		    --help
+		    --keep
+		    --keep-fn
+		    --keep-var
+		    --no-harmful
+		    --no-linkage-name
+		    --no-redundant
+		    --no-unreferenced-symbols
+		    --redundant
+		    --no-show-locs
+		    --stat
+		    --symtabs"
+	    COMPREPLY=( $(compgen -W "${OPTS[*]}" -- $cur) )
+	    return 0
+	    ;;
+	esac
+	local IFS=$'\n'
+	compopt -o filenames
+	COMPREPLY=( $(compgen -f -- $cur) )
+	return 0
+}
+complete -F _abidiff_module abidiff

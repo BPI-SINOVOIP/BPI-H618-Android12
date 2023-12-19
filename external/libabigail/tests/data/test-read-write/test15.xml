@@ -1,0 +1,17 @@
+<abi-instr path='data/test-read-write/test15.xml'>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-1'/>
+  <class-template-decl id='class-tmpl-id-2'>
+    <template-type-parameter id='type-id-3' name='T'/>
+    <class-decl name='C' visibility='default' id='type-id-4'>
+      <member-type access='public'>
+        <typedef-decl name='TINT' type-id='type-id-1' id='type-id-5'/>
+      </member-type>
+      <data-member access='private'>
+        <var-decl name='m_first' type-id='type-id-3'/>
+      </data-member>
+      <data-member access='private'>
+        <var-decl name='m_second' type-id='type-id-5'/>
+      </data-member>
+    </class-decl>
+  </class-template-decl>
+</abi-instr>

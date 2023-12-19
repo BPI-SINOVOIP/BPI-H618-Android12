@@ -1,0 +1,18 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function void bar(S*)' has some indirect sub-type changes:
+    parameter 1 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S':
+        type size changed from 32 to 64 (in bits)
+        1 data member insertion:
+          'char m0', at offset 0 (in bits)
+        1 data member change:
+          'int m1' offset changed from 0 to 32 (in bits) (by +32 bits)
+
+  [C] 'function void bar(int, S)' has some indirect sub-type changes:
+    parameter 2 of type 'struct S' has sub-type changes:
+      details were reported earlier
+

@@ -1,0 +1,176 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+#
+# This file contains default system-wide suppression specifications to
+# be used by Abigail tools[1] to filter out specific ABI change
+# reports when comparing the ABI of some core system binaries.
+#
+# To learn about the syntax of Abigail suppression specifications,
+# please refer to the relevant section of the online manual[2].
+#
+# If you feel like some suppression specifications should be added to
+# this file so that they can be applied system-wide each time an
+# Abigail tool is invoked to compare a given core system binary,
+# please file an enhance request to
+# https://sourceware.org/bugzilla/enter_bug.cgi?product=libabigail.
+#
+# Or, consider just adding those suppression specification to your
+# ~/.abignore file.
+#
+# [1]: https://sourceware.org/libabigail/manual/libabigail-overview.html
+# [2]: https://sourceware.org/libabigail/manual/libabigail-concepts.html#suppression-specifications.
+#
+
+#############################################
+# Below are glibc suppression specifications
+############################################
+
+# The idea is to suppress ABI change reports on functions and variable
+# which symbol version is "GLIBC_PRIVATE".  The SONAMEs of the
+# libraries these suppression specification are to be applied to are:
+#
+#      ld-linux-x86-64.so.2
+#      libanl.so.1
+#      libcidn.so.1
+#      libcrypt.so.1
+#      libc.so.6
+#      libdl.so.2
+#      libm.so.6
+#      libmvec.so.1
+#      libnsl.so.1
+#      libnss_compat.so.2
+#      libnss_db.so.2
+#      libnss_dns.so.2
+#      libnss_files.so.2
+#      libnss_hesiod.so.2
+#      libnss_nisplus.so.2
+#      libnss_nis.so.2
+#      libpthread.so.0
+#      libresolv.so.2
+#      librt.so.1
+#      libthread_db.so.1
+#      libutil.so.1
+#
+# The SONAMEs above can be derived from
+#  https://sourceware.org/glibc/wiki/ABIList.
+
+[suppress_function]
+  # Suppress ABI change reports about functions which symbol version
+  # is "GLIBC_PRIVATE"
+  symbol_version = GLIBC_PRIVATE
+
+  # And we want to restrict this suppression specification only to
+  # libraries with these SONAMEs:
+  soname_regexp = (libanl|libcidn|libcrypt|libc|libdl|libm|libmvec|libnsl|libnss_compat|libnss_db|libnss_dns|libnss_files|libnss_hesiod|libnss_nisplus|libnss_nis|libpthread|libresolv|librt|libthread_db|libutil|ld\[a-z0-9-\]*)\\.so\\.\[0-9\]*
+
+[suppress_variable]
+  # Suppress ABI change reports about functions which symbol version
+  # is "GLIBC_PRIVATE"
+  symbol_version = GLIBC_PRIVATE
+
+  # And we want to restrict this suppression specification only to
+  # libraries with these SONAMEs:
+  soname_regexp = (libanl|libcidn|libcrypt|libc|libdl|libm|libmvec|libnsl|libnss_compat|libnss_db|libnss_dns|libnss_files|libnss_hesiod|libnss_nisplus|libnss_nis|libpthread|libresolv|librt|libthread_db|libutil|ld\[a-z0-9-\]*)\\.so\\.\[0-9\]*
+
+#############################################
+# End of glibc suppression specifications
+############################################
+
+###########################################################
+# Below are  suppression specifications for webkitgtk
+###########################################################
+
+[suppress_function]
+  soname_regexp = libwebkit2?gtk-.*\\.so.*
+  name_not_regexp = ^webkit_.*
+  drop = true
+
+[suppress_variable]
+  soname_regexp = libwebkit2?gtk-.*\\.so.*
+  name_regexp = (^std::.*|WebCore::.*|WebKit::.*)
+  drop = true
+
+[suppress_type]
+  soname_regexp = libwebkit2?gtk-.*\\.so.*
+  name_regexp = (^std::.*|WebCore::.*|WebKit::.*)
+  drop = true
+
+#######################################################
+# End of webkitgtk suppression specifications
+#######################################################
+
+########################################################
+# Suppression specification for C++ libraries
+# that are not libstdc++.so
+########################################################
+
+[suppress_function]
+  soname_not_regexp = libstdc\\+\\+\\.so.*
+  name_regexp = std::.*
+  drop = true
+
+[suppress_variable]
+  soname_not_regexp = libstdc\\+\\+\\.so.*
+  name_regexp = std::.*
+  drop = true
+
+########################################################
+# End of suppression specification for C++ libraries
+# that are not libstdc++.so
+########################################################
+
+########################################################
+# Suppression specification for C++ libraries
+# that are not Boost.
+########################################################
+
+[suppress_function]
+  soname_not_regexp = libboost_.*\\.so.*
+  name_regexp = boost::.*
+  drop = true
+
+[suppress_variable]
+  soname_not_regexp = libboost_.*\\.so.*
+  name_regexp = boost::.*
+  drop = true
+
+########################################################
+# End of suppression specification for C++ libraries
+# that are not Boost.
+########################################################
+
+###########################################################
+# Do not compare the kernel.img file from the grub2 package
+###########################################################
+
+[suppress_file]
+  file_name_regexp = kernel\\.img
+
+#####################################################################
+# End of "Do not compare the kernel.img file from the grub2 package"
+#####################################################################
+
+
+##########################################
+# krb5 default suppression specifications
+#########################################
+[suppress_function]
+  # Suppress ABI change reports about functions starting with the name
+  # krb5int_* in libraries named libkrb5<something>.so
+  soname_regexp = libkrb5.*\\.so.*
+  name_regexp = ^krb5int_.*
+##########################################
+# End of krb5 suppression specifications
+#########################################
+
+
+#############################################
+# libvirt default suppression specifications
+#############################################
+[suppress_function]
+  # Suppress ABI change reports about functions with symbol version
+  # LIBVIRT_PRIVATE
+  symbol_version = LIBVIRT_PRIVATE
+  soname_regexp = libvirt\\.so.*
+####################################################
+# End of libvirt default suppression specifications
+####################################################

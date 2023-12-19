@@ -1,0 +1,6 @@
+[suppress_file]
+  # Avoid loading files which name does *NOT* match the regexp name
+  # foo.* This is practically going to forbid the loading of files
+  # test0-type-suppr-v0.o and test0-type-suppr-v1.o
+  file_name_not_regexp = foo.*
+

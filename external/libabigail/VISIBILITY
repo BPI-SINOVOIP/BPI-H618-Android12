@@ -1,0 +1,68 @@
+PLEASE READ ALL OF THIS FILE, ESPECIALLY IF YOU ARE DEFINING A NEW
+PUBLIC HEADER IN LIBABIGAIL.
+
+How symbols that are exported are controlled in libabigail
+==========================================================
+
+We try to limit the number of ELF symbols that are exported by the
+libabigail.so shared library.  We call this symbols visibility
+control.
+
+As GNU/Linux is our development platform, we control symbol visibility
+by using the visibility support of the G++ compiler.
+
+How to do so is properly explained at https://gcc.gnu.org/wiki/Visibility.
+
+All symbols are hidden by default
+=================================
+
+When building translation units that make up the libabigail.so shared
+library, G++ is invoked with the -fvisibility=hidden directive.  Which
+instructs it to make symbols of functions and global variables
+*locally* defined in the shared library, *NOT* exported (or global).
+
+Exporting symbols of entities declared in public headers
+========================================================
+
+In a translation unit that is part of the libabigail.so shared
+library, before including a header file that is a public libabigail
+header (e.g, abg-ir.h), one need to declare:
+
+    #include "abg-internal.h"
+    ABG_BEGIN_EXPORT_DECLARATIONS
+
+then all the public header files inclusion (using #include directives)
+follow.  At the end of these public header files inclusion, one need
+to declare:
+
+    ABG_END_EXPORT_DECLARATIONS
+
+
+The ABG_BEGIN_EXPORT_DECLARATIONS is a macro defined in abg-internal.h
+which expands to:
+
+    #pragma GCC visibility push(default)
+
+This instructs G++ to export the symbol of all global functions and
+variables definitions that are declared from that point on.
+
+The ABG_END_EXPORT_DECLARATIONS is a macro defined in abg-internal.h
+which expands to:
+
+    #pragma GCC visibility pop
+
+It instructs G++ to stop exporting symbols of global functions and
+variable definition from that point on.
+
+In practice, the pair ABG_BEGIN_EXPORT_DECLARATIONS,
+ABG_END_EXPORT_DECLARATIONS allows us to only export symbols of
+global functions and variables declared in the block denoted by these
+two macros. Symbols of anything else that is declared outside of that block
+are going to be hidden, thanks to the -fvisibility=hidden option
+passed to G++.
+
+So whenever you are defining a new header file with declarations that
+ought to be part of the API of libabigail, the *definition* file which
+defines the declarations of the header file must use
+the ABG_BEGIN_EXPORT_DECLARATIONS and ABG_END_EXPORT_DECLARATIONS
+macro to include the public header.

@@ -1,0 +1,17 @@
+Functions changes summary: 0 Removed, 1 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'function void f0(A*)' at test-PR26739-2-v1.c:17:1 has some indirect sub-type changes:
+    parameter 1 of type 'A*' has sub-type changes:
+      in pointed to type 'struct A' at test-PR26739-2-v1.c:6:1:
+        type size hasn't changed
+        1 data member change:
+          type of 'const volatile const int m[5]' changed:
+            entity changed from 'const volatile const int[5]' to compatible type 'typedef array_type1' at test-PR26739-2-v1.c:3:1
+              array element type 'const volatile const int' changed:
+                'const volatile const int' changed to 'const int'
+              type name changed from 'volatile const int[5]' to 'const int[5]'
+              type size hasn't changed
+

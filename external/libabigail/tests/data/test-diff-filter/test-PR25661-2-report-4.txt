@@ -1,0 +1,9 @@
+Leaf changes summary: 1 artifact changed
+Changed leaf types summary: 1 leaf type changed
+Removed/Changed/Added functions summary: 0 Removed, 0 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+'struct S at test-PR25661-2-v0.c:1:1' changed:
+  type size hasn't changed
+  data members 'S::b', 'S::c' were replaced by anonymous data member:
+    'struct {int b; struct {union {char added_char; int c;};};}'

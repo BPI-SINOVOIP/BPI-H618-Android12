@@ -1,0 +1,30 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function void reg1(S*, T*, T*)' at test-member-size-v1.cc:26:1 has some indirect sub-type changes:
+    parameter 1 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S' at test-member-size-v1.cc:3:1:
+        type size changed from 128 to 192 (in bits)
+        1 data member insertion:
+          'int y', at offset 128 (in bits) at test-member-size-v1.cc:6:1
+        no data member change (1 filtered);
+    parameter 2 of type 'T*' has sub-type changes:
+      in pointed to type 'struct T' at test-member-size-v1.cc:14:1:
+        type size changed from 192 to 256 (in bits)
+        2 data member changes:
+          'S s' size changed from 128 to 192 (in bits) (by +64 bits)
+          'int a' offset changed from 128 to 192 (in bits) (by +64 bits)
+
+  [C] 'function void reg2(U*)' at test-member-size-v1.cc:27:1 has some indirect sub-type changes:
+    parameter 1 of type 'U*' has sub-type changes:
+      in pointed to type 'struct U' at test-member-size-v1.cc:19:1:
+        type size changed from 192 to 256 (in bits)
+        2 data member changes:
+          type of 'anonymous data member struct {S s;}' changed:
+            type size changed from 128 to 192 (in bits)
+            1 data member change:
+              'S s' size changed from 128 to 192 (in bits) (by +64 bits)
+          'int r' offset changed from 128 to 192 (in bits) (by +64 bits)
+

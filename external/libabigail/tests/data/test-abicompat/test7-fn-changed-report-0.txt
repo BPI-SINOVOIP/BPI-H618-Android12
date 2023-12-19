@@ -1,0 +1,18 @@
+ELF file 'test7-fn-changed-app' might not be ABI compatible with 'libtest7-fn-changed-libapp-v1.so' due to differences with 'libtest7-fn-changed-libapp-v0.so' below:
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function float add(float, float)' has some indirect sub-type changes:
+    return type changed:
+      type name changed from 'float' to 'int'
+      type size hasn't changed
+
+  [C] 'function void print(const Student)' has some indirect sub-type changes:
+    parameter 1 of type 'const Student' has sub-type changes:
+      in unqualified underlying type 'struct Student':
+        type size changed from 128 to 192 (in bits)
+        1 data member insertion:
+          'float percentage', at offset 128 (in bits)
+

@@ -1,0 +1,13 @@
+#!/bin/sh -x
+
+# This program launches "abidw --abidiff src/.libs/libabigail.so"
+# This compares libabigail.so against its own ABIXML output.
+abidw=@top_builddir@/tools/abidw
+objdir=@top_builddir@/src/.libs
+
+echo "ENABLE_SLOW_TEST="$ENABLE_SLOW_TEST
+
+if test x$ENABLE_SLOW_TEST != x; then
+    `$abidw --abidiff $objdir/libabigail.so`
+fi
+

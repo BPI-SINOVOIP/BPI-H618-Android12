@@ -1,0 +1,61 @@
+================ changes of 'libICE.so.6.3.0'===============
+  Functions changes summary: 0 Removed, 1 Changed (100 filtered out), 3 Added functions
+  Variables changes summary: 1 Removed, 2 Changed (12 filtered out), 0 Added variables
+
+  3 Added functions:
+
+    [A] 'function int _IceTransIsListening(const char*)'    {_IceTransIsListening}
+    [A] 'function int _IceTransListen(const char*)'    {_IceTransListen}
+    [A] 'function int _IceTransReceived(const char*)'    {_IceTransReceived}
+
+  1 function with some indirect sub-type change:
+
+    [C] 'function IceConn IceAcceptConnection(IceListenObj, IceAcceptStatus*)' at accept.c:38:1 has some indirect sub-type changes:
+      return type changed:
+        underlying type '_IceConn*' changed:
+          in pointed to type 'struct _IceConn' at ICEconn.h:131:1:
+            type size hasn't changed
+            2 data member changes (2 filtered):
+              type of 'IceListenObj listen_obj' changed:
+                underlying type '_IceListenObj*' changed:
+                  in pointed to type 'struct _IceListenObj' at ICElibint.h:120:1:
+                    type size hasn't changed
+                    1 data member change:
+                      type of '_XtransConnInfo* trans_conn' changed:
+                        in pointed to type 'struct _XtransConnInfo' at Xtransint.h:136:1:
+                          type size changed from 640 to 768 (in bits)
+                          2 data member insertions:
+                            '_XtransConnFd* recv_fds', at offset 640 (in bits) at Xtransint.h:148:1
+                            '_XtransConnFd* send_fds', at offset 704 (in bits) at Xtransint.h:149:1
+                          no data member change (1 filtered);
+              type of '_IcePingWait* ping_waits' changed:
+                in pointed to type 'struct _IcePingWait' at ICEconn.h:48:1:
+                  entity changed from 'struct _IcePingWait' to compatible type 'typedef _IcePingWait' at ICEconn.h:48:1
+
+  1 Removed variable:
+
+    [D] 'const in6_addr in6addr_any'    {in6addr_any}
+
+  2 Changed variables:
+
+    [C] 'char* _IceAuthNames[1]' was changed to 'const char* _IceAuthNames[1]' at globals.h:37:1:
+      type of variable changed:
+        array element type 'char*' changed:
+          in pointed to type 'char':
+            entity changed from 'char' to 'const char'
+            type size hasn't changed
+        type name changed from 'char*[1]' to 'const char*[1]'
+        type size hasn't changed
+
+    [C] '_IceWatchProc* _IceWatchProcs' was changed at globals.h:39:1:
+      type of variable changed:
+        in pointed to type 'struct _IceWatchProc' at ICElibint.h:322:1:
+          entity changed from 'struct _IceWatchProc' to compatible type 'typedef _IceWatchProc' at ICElibint.h:322:1
+            type size hasn't changed
+            1 data member changes (2 filtered):
+              type of '_IceWatchedConnection* watched_connections' changed:
+                in pointed to type 'struct _IceWatchedConnection' at ICElibint.h:315:1:
+                  entity changed from 'struct _IceWatchedConnection' to compatible type 'typedef _IceWatchedConnection' at ICElibint.h:315:1
+
+================ end of changes of 'libICE.so.6.3.0'===============
+

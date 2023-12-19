@@ -1,0 +1,97 @@
+<abi-corpus version='2.0' architecture='elf-amd-x86_64'>
+  <elf-function-symbols>
+    <!-- foo(S&) -->
+    <elf-symbol name='_Z3fooR1S' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <abi-instr address-size='64' path='test7.cc' comp-dir-path='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf' language='LANG_C_plus_plus'>
+    <!-- char -->
+    <type-decl name='char' size-in-bits='8' id='type-id-1'/>
+    <!-- char*[7] -->
+    <array-type-def dimensions='1' type-id='type-id-2' size-in-bits='448' id='type-id-3'>
+      <!-- <anonymous range>[7] -->
+      <subrange length='7' type-id='type-id-4' id='type-id-5'/>
+    </array-type-def>
+    <!-- char[1] -->
+    <array-type-def dimensions='1' type-id='type-id-1' size-in-bits='8' id='type-id-6'>
+      <!-- <anonymous range>[1] -->
+      <subrange length='1' type-id='type-id-4' id='type-id-7'/>
+    </array-type-def>
+    <!-- char[] -->
+    <array-type-def dimensions='1' type-id='type-id-1' size-in-bits='infinite' id='type-id-8'>
+      <!-- <anonymous range>[] -->
+      <subrange length='infinite' type-id='type-id-4' id='type-id-9'/>
+    </array-type-def>
+    <!-- double -->
+    <type-decl name='double' size-in-bits='64' id='type-id-10'/>
+    <!-- double[5][3] -->
+    <array-type-def dimensions='2' type-id='type-id-10' size-in-bits='960' id='type-id-11'>
+      <!-- <anonymous range>[5] -->
+      <subrange length='5' type-id='type-id-4' id='type-id-12'/>
+      <!-- <anonymous range>[3] -->
+      <subrange length='3' type-id='type-id-4' id='type-id-13'/>
+    </array-type-def>
+    <!-- int -->
+    <type-decl name='int' size-in-bits='32' id='type-id-14'/>
+    <!-- int*[4] -->
+    <array-type-def dimensions='1' type-id='type-id-15' size-in-bits='256' id='type-id-16'>
+      <!-- <anonymous range>[4] -->
+      <subrange length='4' type-id='type-id-4' id='type-id-17'/>
+    </array-type-def>
+    <!-- int*[4]*[10] -->
+    <array-type-def dimensions='1' type-id='type-id-18' size-in-bits='640' id='type-id-19'>
+      <!-- <anonymous range>[10] -->
+      <subrange length='10' type-id='type-id-4' id='type-id-20'/>
+    </array-type-def>
+    <!-- int[5] -->
+    <array-type-def dimensions='1' type-id='type-id-14' size-in-bits='160' id='type-id-21'>
+      <!-- <anonymous range>[5] -->
+      <subrange length='5' type-id='type-id-4' id='type-id-12'/>
+    </array-type-def>
+    <!-- sizetype -->
+    <type-decl name='sizetype' size-in-bits='64' id='type-id-4'/>
+    <!-- struct S -->
+    <class-decl name='S' size-in-bits='2304' is-struct='yes' visibility='default' filepath='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf/test7.cc' line='1' column='1' id='type-id-22'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <!-- int S::a[5] -->
+        <var-decl name='a' type-id='type-id-21' visibility='default' filepath='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf/test7.cc' line='3' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <!-- char* S::b[7] -->
+        <var-decl name='b' type-id='type-id-3' visibility='default' filepath='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf/test7.cc' line='4' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <!-- double S::c[5][3] -->
+        <var-decl name='c' type-id='type-id-11' visibility='default' filepath='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf/test7.cc' line='5' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1600'>
+        <!-- int*[4]* S::d[10] -->
+        <var-decl name='d' type-id='type-id-19' visibility='default' filepath='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf/test7.cc' line='6' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2240'>
+        <!-- char S::e[1] -->
+        <var-decl name='e' type-id='type-id-6' visibility='default' filepath='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf/test7.cc' line='7' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2248'>
+        <!-- char S::f[] -->
+        <var-decl name='f' type-id='type-id-8' visibility='default' filepath='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf/test7.cc' line='8' column='1'/>
+      </data-member>
+    </class-decl>
+    <!-- S& -->
+    <qualified-type-def type-id='type-id-23' id='type-id-24'/>
+    <!-- S& -->
+    <reference-type-def kind='lvalue' type-id='type-id-22' size-in-bits='64' id='type-id-23'/>
+    <!-- char* -->
+    <pointer-type-def type-id='type-id-1' size-in-bits='64' id='type-id-2'/>
+    <!-- int* -->
+    <pointer-type-def type-id='type-id-14' size-in-bits='64' id='type-id-15'/>
+    <!-- int*[4]* -->
+    <pointer-type-def type-id='type-id-16' size-in-bits='64' id='type-id-18'/>
+    <!-- int foo(S&) -->
+    <function-decl name='foo' mangled-name='_Z3fooR1S' filepath='/home/ooprala/rh/u/libabigail/tests/data/test-read-dwarf/test7.cc' line='11' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_Z3fooR1S'>
+      <!-- parameter of type 'S&' -->
+      <parameter type-id='type-id-24'/>
+      <!-- int -->
+      <return type-id='type-id-14'/>
+    </function-decl>
+  </abi-instr>
+</abi-corpus>

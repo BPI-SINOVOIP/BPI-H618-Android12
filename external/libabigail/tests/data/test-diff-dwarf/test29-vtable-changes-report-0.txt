@@ -1,0 +1,38 @@
+Functions changes summary: 0 Removed, 3 Changed, 1 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 Added function:
+
+  [A] 'method virtual void S::fn1()'
+    note that this adds a new entry to the vtable of struct S
+
+3 functions with some indirect sub-type change:
+
+  [C] 'method virtual void S::fn0()' has some indirect sub-type changes:
+    implicit parameter 0 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S':
+        type size hasn't changed
+        1 member function insertion:
+          'method virtual void S::fn1()', virtual at voffset 3/3
+        4 member function changes:
+          'method virtual S::~S(int)' has some sub-type changes:
+            implicit parameter 0 of type 'S*' has sub-type changes:
+              pointed to type 'struct S' changed, as being reported
+          'method virtual S::~S(int)' has some sub-type changes:
+            implicit parameter 0 of type 'S*' has sub-type changes:
+              pointed to type 'struct S' changed, as being reported
+          'method virtual S::~S(int)' has some sub-type changes:
+            implicit parameter 0 of type 'S*' has sub-type changes:
+              pointed to type 'struct S' changed, as being reported
+          'method virtual void S::fn0()' has some sub-type changes:
+            implicit parameter 0 of type 'S*' has sub-type changes:
+              pointed to type 'struct S' changed, as being reported
+
+  [C] 'method virtual S::~S(int)' has some indirect sub-type changes:
+    implicit parameter 0 of type 'S*' has sub-type changes:
+      pointed to type 'struct S' changed, as reported earlier
+
+  [C] 'method virtual S::~S(int)' has some indirect sub-type changes:
+    implicit parameter 0 of type 'S*' has sub-type changes:
+      pointed to type 'struct S' changed, as reported earlier
+

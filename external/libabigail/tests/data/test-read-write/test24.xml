@@ -1,0 +1,15 @@
+<abi-instr path='data/test-read-write/test24.xml'>
+  <type-decl name='char' size-in-bits='8' id='type-id-1'/>
+  <type-decl name='unsigned int' size-in-bits='32' id='type-id-2'/>
+  <pointer-type-def type-id='type-id-1' size-in-bits='64' id='type-id-3'/>
+  <qualified-type-def type-id='type-id-3' restrict='yes' id='type-id-4'/>
+  <qualified-type-def type-id='type-id-1' const='yes' id='type-id-5'/>
+  <pointer-type-def type-id='type-id-5' size-in-bits='64' id='type-id-6'/>
+  <qualified-type-def type-id='type-id-6' restrict='yes' id='type-id-7'/>
+  <function-decl name='cpy' size-in-bits='64'>
+    <parameter type-id='type-id-4' name='s1'/>
+    <parameter type-id='type-id-7' name='s2'/>
+    <parameter type-id='type-id-2' name='n'/>
+    <return type-id='type-id-3'/>
+  </function-decl>
+</abi-instr>

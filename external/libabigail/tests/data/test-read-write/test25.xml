@@ -1,0 +1,50 @@
+<abi-instr address-size='64' path='data/text-read-write/test25.xml'>
+  <type-decl name='char' size-in-bits='8' alignment-in-bits='8' id='type-id-1'/>
+  <array-type-def dimensions='1' type-id='type-id-2' size-in-bits='448' alignment-in-bits='64' id='type-id-3'>
+    <subrange length='7' id='type-id-4'/>
+  </array-type-def>
+  <array-type-def dimensions='1' type-id='type-id-1' size-in-bits='infinite' alignment-in-bits='8' id='type-id-5'>
+    <subrange length='infinite' id='type-id-6'/>
+  </array-type-def>
+  <class-decl name='S' size-in-bits='2240' is-struct='yes' visibility='default' id='type-id-7'>
+    <data-member access='public' layout-offset-in-bits='0'>
+      <var-decl name='a' type-id='type-id-8' visibility='default'/>
+    </data-member>
+    <data-member access='public' layout-offset-in-bits='192'>
+      <var-decl name='b' type-id='type-id-3' visibility='default'/>
+    </data-member>
+    <data-member access='public' layout-offset-in-bits='640'>
+      <var-decl name='c' type-id='type-id-9' visibility='default'/>
+    </data-member>
+    <data-member access='public' layout-offset-in-bits='1600'>
+      <var-decl name='d' type-id='type-id-10' visibility='default'/>
+    </data-member>
+    <data-member access='public' layout-offset-in-bits='2240'>
+      <var-decl name='f' type-id='type-id-5' visibility='default'/>
+    </data-member>
+  </class-decl>
+  <type-decl name='double' size-in-bits='64' alignment-in-bits='64' id='type-id-11'/>
+  <array-type-def dimensions='2' type-id='type-id-11' size-in-bits='960' alignment-in-bits='64' id='type-id-9'>
+    <subrange length='5' id='type-id-12'/>
+    <subrange length='3' id='type-id-13'/>
+  </array-type-def>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-14'/>
+  <array-type-def dimensions='1' type-id='type-id-15' size-in-bits='256' alignment-in-bits='64' id='type-id-16'>
+    <subrange length='4' id='type-id-17'/>
+  </array-type-def>
+  <array-type-def dimensions='1' type-id='type-id-18' size-in-bits='640' alignment-in-bits='64' id='type-id-10'>
+    <subrange length='10' id='type-id-19'/>
+  </array-type-def>
+  <array-type-def dimensions='1' type-id='type-id-14' size-in-bits='160' alignment-in-bits='32' id='type-id-8'>
+    <subrange length='5' id='type-id-12'/>
+  </array-type-def>
+  <reference-type-def kind='lvalue' type-id='type-id-7' size-in-bits='64' alignment-in-bits='64' id='type-id-20'/>
+  <qualified-type-def type-id='type-id-20' const='yes' id='type-id-21'/>
+  <pointer-type-def type-id='type-id-1' size-in-bits='64' alignment-in-bits='64' id='type-id-2'/>
+  <pointer-type-def type-id='type-id-14' size-in-bits='64' alignment-in-bits='64' id='type-id-15'/>
+  <pointer-type-def type-id='type-id-16' size-in-bits='64' alignment-in-bits='64' id='type-id-18'/>
+  <function-decl name='foo' size-in-bits='64'>
+    <parameter type-id='type-id-21'/>
+    <return type-id='type-id-14'/>
+  </function-decl>
+</abi-instr>

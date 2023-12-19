@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+_fedabipkgdiff_module()
+{
+	local cur OPTS
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	case $cur in
+	  -*)
+	    OPTS="  --dry-run
+                    --debug
+                    --traceback
+                    --server
+                    --topdir
+                    --from
+                    --to
+                    --all-subpackages
+                    --dso-only
+                    --no-default-suppression
+                    --no-devel-pkg
+                    --abipkgdiff
+                    --clean-cache
+                    --clean-cache-before
+                    --clean-cache-after
+                    --self-compare"
+	    COMPREPLY=( $(compgen -W "${OPTS[*]}" -- $cur) )
+	    return 0
+	    ;;
+	esac
+	local IFS=$'\n'
+	compopt -o filenames
+	COMPREPLY=( $(compgen -f -- $cur) )
+	return 0
+}
+complete -F _fedabipkgdiff_module fedabipkgdiff

@@ -1,0 +1,34 @@
+Subject Libabigail <insert-version-number-here> is out!
+
+Libabigail <insert-version-number-here> has been released.
+
+You can download it at http://mirrors.kernel.org/sourceware/libabigail/libabigail-<insert-version-number-here>.tar.gz.
+
+Libabigail is a library which aims at constructing, manipulating,
+serializing and de-serializing ABI-relevant artifacts.
+
+It also comes with a set of associated command line tools to compare
+the interfaces of ELF binaries resulting from the compilation of C or
+C++ programs.
+
+Typical use cases of libabigail tools include detecting ABI
+incompatible changes across several releases of shared libraries or
+incompatible changes in the interface between a Linux kernel and its
+modules, for instance.
+
+Users can of course write their own tools using the library.
+
+The library comes with extensive API documentation available online at
+https://sourceware.org/libabigail/apidoc.  The tools are documented
+online as well at https://sourceware.org/libabigail/manual/libabigail-tools.html.
+
+Below is a summary of the significant changes brought to you in this
+new release:
+
+<insert-the-last-NEWS-item-here>
+
+Many thanks to those who contributed to this release with bug reports,
+comments or code.
+
+Happy Hacking and may all significant binary interface changes of your
+libraries be noticed!

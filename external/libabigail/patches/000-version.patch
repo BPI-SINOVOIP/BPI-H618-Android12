@@ -1,0 +1,16 @@
+diff --git a/include/abg-version.h b/include/abg-version.h
+index 98b2a0603fe9..b6021924f497 100644
+--- a/include/abg-version.h
++++ b/include/abg-version.h
+@@ -1,8 +1,10 @@
+ // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
++#include "android_build_version.h"
++
+ #ifndef __ABG_VERSION_H__
+ #define __ABG_VERSION_H__
+ #define ABIGAIL_VERSION_MAJOR "2"
+ #define ABIGAIL_VERSION_MINOR "0"
+ #define ABIGAIL_VERSION_REVISION "0"
+-#define ABIGAIL_VERSION_SUFFIX ""
++#define ABIGAIL_VERSION_SUFFIX "-" ANDROID_BUILD_VERSION
+ #endif

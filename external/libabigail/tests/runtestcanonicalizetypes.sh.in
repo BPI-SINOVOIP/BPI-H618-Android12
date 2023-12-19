@@ -1,0 +1,32 @@
+#!/bin/sh
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+
+# This program launches "abidiff $binary $binary" on multiple
+# instances of $binary.  The expect result is for the command to show
+# an empty result.  Otherwise, this program exits with an error and
+# outputs some text about the binary on which abidiff failed.
+
+abidiff=@top_builddir@/tools/abidiff
+objdir=@top_builddir@/src/.libs
+objext=@OBJEXT@
+
+binaries="abg-tools-utils abg-hash abg-ini abg-writer"
+outputfile=runtestcanonicalizetypes.output.txt
+finaloutputfile=runtestcanonicalizetypes.output.final.txt
+cat /dev/null > $outputfile
+
+for i in $binaries;
+do
+  obj=$objdir/$i.$objext
+  cmd="$abidiff --no-default-suppression $obj $obj"
+  `$cmd` > $outputfile
+  if test -s $outputfile; then
+      echo $cmd >> $finaloutputfile
+      cat $outputfile >> $finaloutputfile
+  fi
+done
+
+if test -s $finaloutputfile; then
+ cat $finaloutputfile
+ exit 1
+fi

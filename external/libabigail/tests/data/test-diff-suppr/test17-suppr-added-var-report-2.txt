@@ -1,0 +1,12 @@
+Functions changes summary: 0 Removed, 0 Changed, 0 Added function
+Variables changes summary: 0 Removed, 1 Changed, 0 Added (1 filtered out) variables
+
+1 Changed variable:
+
+  [C] 'S* var0' was changed:
+    type of variable changed:
+      in pointed to type 'struct S':
+        type size changed from 32 to 64 (in bits)
+        1 data member insertion:
+          'char m1', at offset 32 (in bits)
+

@@ -1,0 +1,109 @@
+Functions changes summary: 82 Removed, 6 Changed (31 filtered out), 0 Added (1081 filtered out) functions
+Variables changes summary: 0 Removed (47 filtered out), 1 Changed, 0 Added (11 filtered out) variables
+Function symbols changes summary: 7 Removed, 0 Added (76 filtered out) function symbols not referenced by debug info
+Variable symbols changes summary: 0 Removed, 0 Added variable symbol not referenced by debug info
+
+82 Removed functions:
+
+  [D] 'function void COI::fini()'
+  [D] 'function bool COI::init()'
+  [D] 'function void* DL_sym(void*, const char*, const char*)'
+  [D] 'method COIRESULT Engine::compute(const std::__cxx11::list<coibuffer*, std::allocator<coibuffer*> >&, void*, uint16_t, void*, uint16_t, uint32_t, const COIEVENT*, COIEVENT*)'
+  [D] 'method void FuncList::dump()'
+  [D] 'method void* FuncList::find_addr(const char*)'
+  [D] 'method const char* FuncList::find_name(void*)'
+  [D] 'method int64_t FuncList::max_name_length()'
+  [D] 'method MicEnvVar::VarValue* MicEnvVar::CardEnvVars::find_var(char*, int)'
+  [D] 'method MicEnvVar::CardEnvVars::~CardEnvVars()'
+  [D] 'method MicEnvVar::VarValue::~VarValue()'
+  [D] 'method void MicEnvVar::add_env_var(int, char*, int, char*)'
+  [D] 'method void MicEnvVar::analyze_env_var(char*)'
+  [D] 'method char** MicEnvVar::create_environ_for_card(int)'
+  [D] 'method MicEnvVar::CardEnvVars* MicEnvVar::get_card(int)'
+  [D] 'method MicEnvVarKind MicEnvVar::get_env_var_kind(char*, int*, char**, int*, char**)'
+  [D] 'method void MicEnvVar::mic_parse_env_var_list(int, char*)'
+  [D] 'method MicEnvVar::~MicEnvVar()'
+  [D] 'method bool MyoWrapper::LoadLibrary()'
+  [D] 'function void ORSL::init()'
+  [D] 'function void ORSL::release(int)'
+  [D] 'function bool ORSL::reserve(int)'
+  [D] 'function bool ORSL::try_reserve(int)'
+  [D] 'method bool OffloadDescriptor::alloc_ptr_data(PtrData*&, void*, int64_t, int64_t, int64_t, int)'
+  [D] 'method bool OffloadDescriptor::compute()'
+  [D] 'method bool OffloadDescriptor::find_ptr_data(PtrData*&, void*, int64_t, int64_t, bool)'
+  [D] 'method bool OffloadDescriptor::offload(const char*, bool, VarDesc*, VarDesc2*, int, void**, int, void**, int, void*)'
+  [D] 'method bool OffloadDescriptor::offload_finish()'
+  [D] 'method bool OffloadDescriptor::receive_pointer_data(bool)'
+  [D] 'method bool OffloadDescriptor::recieve_noncontiguous_pointer_data(int, char*, COIBUFFER, COIEVENT*)'
+  [D] 'method bool OffloadDescriptor::send_noncontiguous_pointer_data(int, PtrData*, PtrData*, COIEVENT*)'
+  [D] 'method bool OffloadDescriptor::send_pointer_data(bool)'
+  [D] 'method bool OffloadDescriptor::wait_dependencies(void**, int)'
+  [D] 'function void Offload_Report_Epilog(OffloadHostTimerData*)'
+  [D] 'function void Offload_Report_Prolog(OffloadHostTimerData*)'
+  [D] 'function void Offload_Timer_Print()'
+  [D] 'method void VarList::dump()'
+  [D] 'method void VarList::table_copy(void*, int64_t)'
+  [D] 'method void VarList::table_patch_names(int64_t)'
+  [D] 'method int64_t VarList::table_size(int64_t&)'
+  [D] 'function void __arr_data_offset_and_length(const arr_desc*, int64_t&, int64_t&)'
+  [D] 'function void __arr_desc_dump(const char*, const char*, const arr_desc*, bool)'
+  [D] 'function void __dump_bytes(int, void*, int)'
+  [D] 'function uint64_t __dv_data_length(const ArrDesc*)'
+  [D] 'function uint64_t __dv_data_length(const ArrDesc*, int64_t)'
+  [D] 'function void __dv_desc_dump(const char*, const ArrDesc*)'
+  [D] 'function bool __dv_is_allocated(const ArrDesc*)'
+  [D] 'function bool __dv_is_contiguous(const ArrDesc*)'
+  [D] 'function void __liboffload_error_support(error_types, ...)'
+  [D] 'function int __offload_init_library()'
+  [D] 'function void __offload_myoFini()'
+  [D] 'function bool __offload_parse_int_string(const char*, int64_t&)'
+  [D] 'function bool __offload_parse_size_string(const char*, uint64_t&)'
+  [D] 'function int64_t cean_get_transf_size(CeanReadRanges*)'
+  [D] 'function bool cean_ranges_match(CeanReadRanges*, CeanReadRanges*)'
+  [D] 'function void get_arr_desc_numbers(const arr_desc*, int64_t, int64_t&, int64_t&, int&, CeanReadRanges*&)'
+  [D] 'function int64_t get_el_value(char*, int64_t, int64_t)'
+  [D] 'function bool get_next_range(CeanReadRanges*, int64_t*)'
+  [D] 'function CeanReadRanges* init_read_ranges_arr_desc(const arr_desc*)'
+  [D] 'function CeanReadRanges* init_read_ranges_dv(const ArrDesc*)'
+  [D] 'function bool is_arr_desc_contiguous(const arr_desc*)'
+  [D] 'function arr_desc* make_arr_desc(void*, int64_t, int64_t, int64_t)'
+  [D] 'function const char* offload_get_message_str(int)'
+  [D] 'function int offload_offload_wrap(OFFLOAD, const char*, int, int, VarDesc*, VarDesc2*, int, void**, void**, int, void*)'
+  [D] 'function void offload_report_free_data(OffloadHostTimerData*)'
+  [D] 'function void offload_stage_print(int, int, ...)'
+  [D] 'function void offload_timer_fill_host_mic_num(OffloadHostTimerData*, int)'
+  [D] 'function void offload_timer_fill_host_rdata(OffloadHostTimerData*, uint64_t)'
+  [D] 'function void offload_timer_fill_host_sdata(OffloadHostTimerData*, uint64_t)'
+  [D] 'function void offload_timer_fill_target_data(OffloadHostTimerData*, void*)'
+  [D] 'function OffloadHostTimerData* offload_timer_init(const char*, int)'
+  [D] 'function void offload_timer_start(OffloadHostTimerData*, OffloadHostPhase)'
+  [D] 'function void offload_timer_stop(OffloadHostTimerData*, OffloadHostPhase)'
+  [D] 'function void print_range(const char*, uint64_t, uint64_t, int)'
+  [D] 'function const char* report_get_host_stage_str(int)'
+  [D] 'function const char* report_get_message_str(error_types)'
+  [D] 'function const char* report_get_target_stage_str(int)'
+  [D] 'function void std::__adjust_heap<VarList::BufEntry*, long int, VarList::BufEntry, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const VarList::BufEntry&, const VarList::BufEntry&)> >(VarList::BufEntry*, long int, long int, VarList::BufEntry, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const VarList::BufEntry&, const VarList::BufEntry&)>)'
+  [D] 'function void std::__insertion_sort<VarList::BufEntry*, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const VarList::BufEntry&, const VarList::BufEntry&)> >(VarList::BufEntry*, VarList::BufEntry*, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const VarList::BufEntry&, const VarList::BufEntry&)>)'
+  [D] 'function void std::__introsort_loop<VarList::BufEntry*, long int, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const VarList::BufEntry&, const VarList::BufEntry&)> >(VarList::BufEntry*, VarList::BufEntry*, long int, __gnu_cxx::__ops::_Iter_comp_iter<bool (*)(const VarList::BufEntry&, const VarList::BufEntry&)>)'
+  [D] 'function void std::__unguarded_linear_insert<VarList::BufEntry*, __gnu_cxx::__ops::_Val_comp_iter<bool (*)(const VarList::BufEntry&, const VarList::BufEntry&)> >(VarList::BufEntry*, __gnu_cxx::__ops::_Val_comp_iter<bool (*)(const VarList::BufEntry&, const VarList::BufEntry&)>)'
+  [D] 'function void write_message(FILE*, int, __va_list_tag*)'
+
+1 Changed variable:
+
+  [C] 'static const char* Engine::m_func_names[6]' was changed to 'static const char* Engine::m_func_names[7]':
+    size of symbol changed from 48 to 56
+    type of variable changed:
+      type name changed from 'const char*[6]' to 'const char*[7]'
+      array type size changed from 384 to 448
+      array type subrange 1 changed length from 6 to 7
+
+7 Removed function symbols not referenced by debug info:
+
+  [D] _ZN7VarListD1Ev
+  [D] _ZN7VarListD2Ev, aliases _ZN7VarListD1Ev
+  [D] _ZN8FuncListD1Ev
+  [D] _ZN8FuncListD2Ev, aliases _ZN8FuncListD1Ev
+  [D] _ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEED0Ev
+  [D] _ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEED1Ev, aliases _ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEED2Ev
+  [D] _ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEED2Ev
+

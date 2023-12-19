@@ -1,0 +1,21 @@
+Leaf changes summary: 0 artifact changed
+Changed leaf types summary: 0 leaf type changed
+Removed/Changed/Added functions summary: 0 Removed, 0 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+Unreachable types summary: 1 removed, 1 changed, 1 added types
+
+1 removed type unreachable from any public interface:
+
+  [D] 'struct unreachable_struct1' at test-v0.c:6:1
+
+1 changed type unreachable from any public interface:
+
+  [C] 'struct unreachable_struct2' changed:
+    type size changed from 32 to 64 (in bits)
+    1 data member insertion:
+      'char m2', at offset 32 (in bits) at test-v1.c:9:1
+
+1 added type unreachable from any public interface:
+
+  [A] 'struct unreachable_struct3' at test-v1.c:12:1
+

@@ -1,0 +1,35 @@
+# Copyright 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# This file has been automatically generated. Do not edit!
+
+AUTHOR = 'ARC++ Team'
+NAME = 'cheets_GTS.8.0_dev.waivers'
+ATTRIBUTES = 'suite:arc-gts, suite:arc-gts-qual'
+DEPENDENCIES = 'arc'
+JOB_RETRIES = 1
+TEST_TYPE = 'server'
+TIME = 'MEDIUM'
+MAX_RESULT_SIZE_KB = 307200
+DOC = 'Run waived testcases of the Android Google Test Suite (GTS) in the ARC++ container.'
+
+def run_TS(machine):
+    host_list = [hosts.create_host(machine)]
+    job.run_test(
+        'cheets_GTS',
+        hosts=host_list,
+        iterations=1,
+        tag='8.0_dev.waivers',
+        test_name='cheets_GTS.8.0_dev.waivers',
+        authkey='gs://chromeos-arc-images/cts/bundle/gts-arc.json',
+        run_template=['run', 'commandAndExit', 'gts', '--subplan', 'waivers', '--ignore-business-logic-failure'],
+        retry_template=['run', 'commandAndExit', 'retry', '--retry', '{session_id}'],
+        target_module='gts-dev',
+        target_plan='waivers',
+        load_waivers=False,
+        uri='gs://chromeos-arc-images/cts/bundle/android-gts-8-R3-P-Preview3-7012566.zip',
+        use_jdk9=True,
+        timeout=3600)
+
+parallel_simple(run_TS, machines)

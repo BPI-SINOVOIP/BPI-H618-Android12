@@ -1,0 +1,15 @@
+digraph "C4"
+{
+  edge [fontname="FreeSans",fontsize="9",labelfontname="FreeSans",labelfontsize="9"];
+  node [fontname="FreeSans",fontsize="9",shape=record];
+  Node1 [label="C4",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="9",style="solid",fontname="FreeSans"];
+  Node2 [label="base",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structbase.html"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="9",style="solid",fontname="FreeSans"];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="9",style="solid",fontname="FreeSans"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="9",style="solid",fontname="FreeSans"];
+  Node3 [label="D4v",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_d4v.html"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="9",style="solid",fontname="FreeSans"];
+  Node4 [label="Dd2",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_dd2.html"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="9",style="solid",fontname="FreeSans"];
+}

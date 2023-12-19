@@ -1,0 +1,11 @@
+<abi-corpus-group path='mypath' architecture='elf-arm-aarch64'>
+  <abi-corpus path='vmlinux' architecture='elf-arm-aarch64'>
+    <elf-function-symbols>
+      <elf-symbol name='func' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    </elf-function-symbols>
+    <abi-instr version='1.0' address-size='64' path='file.h' comp-dir-path='common' language='LANG_C89'>
+      <function-decl name='func' filepath='file.h' line='22' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='func'>
+      </function-decl>
+    </abi-instr>
+  </abi-corpus>
+</abi-corpus-group>

@@ -1,0 +1,26 @@
+Functions changes summary: 0 Removed, 2 Changed (3 filtered out), 1 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 Added function:
+
+  [A] 'method C0::C0()'
+
+2 functions with some indirect sub-type change:
+
+  [C] 'method C1::C1()' has some indirect sub-type changes:
+    implicit parameter 0 of type 'C1*' has sub-type changes:
+      in pointed to type 'class C1':
+        type size changed from 8 to 64 (in bits)
+        1 data member insertion:
+          'int m1', at offset 32 (in bits)
+
+  [C] 'function void foo(C0&)' has some indirect sub-type changes:
+    parameter 1 of type 'C0&' has sub-type changes:
+      in referenced type 'struct C0':
+        type size changed from 16 to 24 (in bits)
+        1 data member insertion:
+          'char m2', at offset 0 (in bits)
+        2 data member changes:
+          'E0 m0' offset changed from 0 to 8 (in bits) (by +8 bits)
+          'E1 m1' offset changed from 8 to 16 (in bits) (by +8 bits)
+

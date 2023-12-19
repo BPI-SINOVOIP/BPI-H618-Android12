@@ -1,0 +1,23 @@
+<abi-corpus version='2.0' path='data/test-read-dwarf/test4.so'>
+  <elf-needed>
+    <dependency name='libc.so.6'/>
+  </elf-needed>
+  <elf-function-symbols>
+    <elf-symbol name='cpy' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <abi-instr address-size='64' path='test4.c' comp-dir-path='/home/mark/src/tests' language='LANG_C89'>
+    <type-decl name='char' size-in-bits='8' id='a84c031d'/>
+    <type-decl name='unsigned int' size-in-bits='32' id='f0981eeb'/>
+    <pointer-type-def type-id='a84c031d' size-in-bits='64' id='26a90f95'/>
+    <qualified-type-def type-id='26a90f95' restrict='yes' id='266fe297'/>
+    <qualified-type-def type-id='a84c031d' const='yes' id='9b45d938'/>
+    <pointer-type-def type-id='9b45d938' size-in-bits='64' id='80f4b756'/>
+    <qualified-type-def type-id='80f4b756' restrict='yes' id='9d26089a'/>
+    <function-decl name='cpy' mangled-name='cpy' filepath='/home/mark/src/tests/test4.c' line='2' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='cpy'>
+      <parameter type-id='266fe297' name='s1' filepath='/home/mark/src/tests/test4.c' line='2' column='1'/>
+      <parameter type-id='9d26089a' name='s2' filepath='/home/mark/src/tests/test4.c' line='2' column='1'/>
+      <parameter type-id='f0981eeb' name='n' filepath='/home/mark/src/tests/test4.c' line='2' column='1'/>
+      <return type-id='26a90f95'/>
+    </function-decl>
+  </abi-instr>
+</abi-corpus>

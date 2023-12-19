@@ -1,0 +1,160 @@
+Functions changes summary: 0 Removed, 11 Changed (200 filtered out), 13 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+Function symbols changes summary: 0 Removed, 0 Added function symbol not referenced by debug info
+Variable symbols changes summary: 0 Removed, 6 Added variable symbols not referenced by debug info
+
+13 Added functions:
+
+  [A] 'function void __cxxabiv1::__cxa_throw_bad_array_length()'
+  [A] 'function void __cxxabiv1::__cxa_throw_bad_array_new_length()'
+  [A] 'function void std::__throw_out_of_range_fmt(const char*, ...)'
+  [A] 'method virtual const char* std::bad_array_length::what() const'
+    note that this adds a new entry to the vtable of class std::bad_array_length
+  [A] 'method virtual std::bad_array_length::~bad_array_length(int)'
+    note that this adds a new entry to the vtable of class std::bad_array_length
+  [A] 'method virtual std::bad_array_length::~bad_array_length(int)'
+    note that this adds a new entry to the vtable of class std::bad_array_length
+  [A] 'method virtual const char* std::bad_array_new_length::what() const'
+    note that this adds a new entry to the vtable of class std::bad_array_new_length
+  [A] 'method virtual std::bad_array_new_length::~bad_array_new_length(int)'
+    note that this adds a new entry to the vtable of class std::bad_array_new_length
+  [A] 'method virtual std::bad_array_new_length::~bad_array_new_length(int)'
+    note that this adds a new entry to the vtable of class std::bad_array_new_length
+  [A] 'function std::new_handler std::get_new_handler()'
+  [A] 'function std::terminate_handler std::get_terminate()'
+  [A] 'function std::unexpected_handler std::get_unexpected()'
+  [A] 'method std::regex_error::regex_error(std::regex_constants::error_type)'
+
+11 functions with some indirect sub-type change:
+
+  [C] 'function __cxxabiv1::__cxa_dependent_exception* __cxxabiv1::__cxa_allocate_dependent_exception()' has some indirect sub-type changes:
+    return type changed:
+      in pointed to type 'struct __cxxabiv1::__cxa_dependent_exception':
+        type size hasn't changed
+        1 data member insertion:
+          'void (void*)* __padding', at offset 32 (in bits)
+        6 data member changes:
+          'std::unexpected_handler unexpectedHandler' offset changed from 32 to 64 (in bits) (by +32 bits)
+          'std::terminate_handler terminateHandler' offset changed from 64 to 96 (in bits) (by +32 bits)
+          '__cxxabiv1::__cxa_exception* nextException' offset changed from 96 to 128 (in bits) (by +32 bits)
+          'int handlerCount' offset changed from 128 to 160 (in bits) (by +32 bits)
+          '__cxxabiv1::__cxa_exception* nextPropagatingException' offset changed from 160 to 192 (in bits) (by +32 bits)
+          'int propagationCount' offset changed from 192 to 224 (in bits) (by +32 bits)
+
+  [C] 'method virtual std::__future_base::_Async_state_common::~_Async_state_common(int)' has some indirect sub-type changes:
+    implicit parameter 0 of type 'std::__future_base::_Async_state_common*' has sub-type changes:
+      in pointed to type 'class std::__future_base::_Async_state_common':
+        type size hasn't changed
+        1 base class change:
+          'class std::__future_base::_State_base' changed:
+            type size hasn't changed
+            1 member function changes (3 filtered):
+              'method virtual std::__future_base::_State_base* std::__future_base::_State_base::_M_run_deferred()' has some sub-type changes:
+                return type changed:
+                  entity changed from 'std::__future_base::_State_base*' to 'void'
+                  type size changed from 32 to 0 (in bits)
+            1 data member changes (1 filtered):
+              type of 'std::__future_base::_State_base::_Ptr_type _M_result' changed:
+                underlying type 'typedef std::__future_base::_Ptr' changed:
+                  underlying type 'class std::unique_ptr<std::__future_base::_Result<void>, std::__future_base::_Result_base::_Deleter>' changed:
+                    type name changed from 'std::unique_ptr<std::__future_base::_Result<void>, std::__future_base::_Result_base::_Deleter>' to 'std::unique_ptr<std::__future_base::_Result_base, std::__future_base::_Result_base::_Deleter>'
+                    type size hasn't changed
+                    1 data member change:
+                      type of 'std::unique_ptr<std::__future_base::_Result<void>, std::__future_base::_Result_base::_Deleter>::__tuple_type _M_t' changed:
+                        typedef name changed from std::unique_ptr<std::__future_base::_Result<void>, std::__future_base::_Result_base::_Deleter>::__tuple_type to std::unique_ptr<std::__future_base::_Result_base, std::__future_base::_Result_base::_Deleter>::__tuple_type
+                        underlying type 'class std::tuple<std::__future_base::_Result<void>*, std::__future_base::_Result_base::_Deleter>' changed:
+                          type name changed from 'std::tuple<std::__future_base::_Result<void>*, std::__future_base::_Result_base::_Deleter>' to 'std::tuple<std::__future_base::_Result_base*, std::__future_base::_Result_base::_Deleter>'
+                          type size hasn't changed
+                          1 base class deletion:
+                            struct std::_Tuple_impl<0u, std::__future_base::_Result<void>*, std::__future_base::_Result_base::_Deleter>
+                          1 base class insertion:
+                            struct std::_Tuple_impl<0u, std::__future_base::_Result_base*, std::__future_base::_Result_base::_Deleter>
+                      and name of 'std::unique_ptr<std::__future_base::_Result<void>, std::__future_base::_Result_base::_Deleter>::_M_t' changed to 'std::unique_ptr<std::__future_base::_Result_base, std::__future_base::_Result_base::_Deleter>::_M_t'
+        no member function changes (4 filtered);
+
+  [C] 'function void std::__throw_regex_error(std::regex_constants::error_type)' has some indirect sub-type changes:
+    parameter 1 of type 'enum std::regex_constants::error_type' has sub-type changes:
+      type size hasn't changed
+      1 enumerator deletion:
+        'std::regex_constants::error_type::_S_error_last' value '13'
+
+  [C] 'method void std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::_M_allocate_internal_buffer()' has some indirect sub-type changes:
+    implicit parameter 0 of type 'std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >* const' has sub-type changes:
+      in unqualified underlying type 'std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >*':
+        in pointed to type 'class std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >':
+          type size hasn't changed
+          no member function changes (14 filtered);
+          1 data member change:
+            type of 'const std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::__codecvt_type* _M_codecvt' changed:
+              in pointed to type 'const std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::__codecvt_type':
+                in unqualified underlying type 'typedef std::basic_filebuf<wchar_t, std::char_traits<wchar_t> >::__codecvt_type':
+                  underlying type 'class std::codecvt<wchar_t, char, __mbstate_t>' changed:
+                    type size hasn't changed
+                    no base class change (1 filtered);
+                    2 member function insertions:
+                      'method virtual std::codecvt_base::result std::codecvt<wchar_t, char, __mbstate_t>::do_in(std::codecvt<wchar_t, char, __mbstate_t>::state_type&, const std::codecvt<wchar_t, char, __mbstate_t>::extern_type*, const std::codecvt<wchar_t, char, __mbstate_t>::extern_type*, const std::codecvt<wchar_t, char, __mbstate_t>::extern_type*&, std::codecvt<wchar_t, char, __mbstate_t>::intern_type*, std::codecvt<wchar_t, char, __mbstate_t>::intern_type*, std::codecvt<wchar_t, char, __mbstate_t>::intern_type*&) const', virtual at voffset 4/8
+                      'method virtual std::codecvt_base::result std::codecvt<wchar_t, char, __mbstate_t>::do_out(std::codecvt<wchar_t, char, __mbstate_t>::state_type&, const std::codecvt<wchar_t, char, __mbstate_t>::intern_type*, const std::codecvt<wchar_t, char, __mbstate_t>::intern_type*, const std::codecvt<wchar_t, char, __mbstate_t>::intern_type*&, std::codecvt<wchar_t, char, __mbstate_t>::extern_type*, std::codecvt<wchar_t, char, __mbstate_t>::extern_type*, std::codecvt<wchar_t, char, __mbstate_t>::extern_type*&) const', virtual at voffset 2/8
+                    no member function changes (10 filtered);
+
+  [C] 'method void* std::basic_fstream<char, std::char_traits<char> >::close(int, void**)' has some indirect sub-type changes:
+    return type changed:
+      entity changed from 'void*' to 'void'
+      type size changed from 32 to 0 (in bits)
+    parameter 1 of type 'int' was removed
+    parameter 2 of type 'void**' was removed
+
+  [C] 'method void* std::basic_fstream<wchar_t, std::char_traits<wchar_t> >::close(int, void**)' has some indirect sub-type changes:
+    return type changed:
+      entity changed from 'void*' to 'void'
+      type size changed from 32 to 0 (in bits)
+    parameter 1 of type 'int' was removed
+    parameter 2 of type 'void**' was removed
+
+  [C] 'method void* std::basic_ifstream<char, std::char_traits<char> >::close(int, void**)' has some indirect sub-type changes:
+    return type changed:
+      entity changed from 'void*' to 'void'
+      type size changed from 32 to 0 (in bits)
+    parameter 1 of type 'int' was removed
+    parameter 2 of type 'void**' was removed
+
+  [C] 'method void* std::basic_ifstream<wchar_t, std::char_traits<wchar_t> >::close(int, void**)' has some indirect sub-type changes:
+    return type changed:
+      entity changed from 'void*' to 'void'
+      type size changed from 32 to 0 (in bits)
+    parameter 1 of type 'int' was removed
+    parameter 2 of type 'void**' was removed
+
+  [C] 'method void* std::basic_ofstream<char, std::char_traits<char> >::close(int, void**)' has some indirect sub-type changes:
+    return type changed:
+      entity changed from 'void*' to 'void'
+      type size changed from 32 to 0 (in bits)
+    parameter 1 of type 'int' was removed
+    parameter 2 of type 'void**' was removed
+
+  [C] 'method void* std::basic_ofstream<wchar_t, std::char_traits<wchar_t> >::close(int, void**)' has some indirect sub-type changes:
+    return type changed:
+      entity changed from 'void*' to 'void'
+      type size changed from 32 to 0 (in bits)
+    parameter 1 of type 'int' was removed
+    parameter 2 of type 'void**' was removed
+
+  [C] 'method std::codecvt_byname<wchar_t, char, __mbstate_t>* std::codecvt_byname<wchar_t, char, __mbstate_t>::codecvt_byname(const char*, std::size_t)' has some indirect sub-type changes:
+    Please note that the symbol of this function is _ZNSt14codecvt_bynameIwc11__mbstate_tEC2EPKcj@@GLIBCXX_3.4
+     and it aliases symbol: _ZNSt14codecvt_bynameIwc11__mbstate_tEC1EPKcj@@GLIBCXX_3.4
+    implicit parameter 0 of type 'std::codecvt_byname<wchar_t, char, __mbstate_t>*' has sub-type changes:
+      in pointed to type 'class std::codecvt_byname<wchar_t, char, __mbstate_t>':
+        type size hasn't changed
+        1 base class change:
+          'class std::codecvt<wchar_t, char, __mbstate_t>' changed:
+            details were reported earlier
+        no member function changes (3 filtered);
+
+6 Added variable symbols not referenced by debug info:
+
+  [A] _ZTISt16bad_array_length@@CXXABI_1.3.8
+  [A] _ZTISt20bad_array_new_length@@CXXABI_1.3.8
+  [A] _ZTSSt16bad_array_length@@CXXABI_1.3.8
+  [A] _ZTSSt20bad_array_new_length@@CXXABI_1.3.8
+  [A] _ZTVSt16bad_array_length@@CXXABI_1.3.8
+  [A] _ZTVSt20bad_array_new_length@@CXXABI_1.3.8
+

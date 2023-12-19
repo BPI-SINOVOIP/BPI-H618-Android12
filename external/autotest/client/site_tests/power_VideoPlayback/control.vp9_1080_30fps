@@ -1,0 +1,18 @@
+AUTHOR = "Chrome OS Team"
+NAME = "power_VideoPlayback.vp9_1080_30fps"
+PURPOSE = "Measure video playback power usage."
+CRITERIA = "This test is a benchmark."
+TIME = "SHORT"
+TEST_CATEGORY = "Benchmark"
+TEST_CLASS = "power"
+TEST_TYPE = "client"
+ATTRIBUTES = ""
+DOC = """
+Test video decode for vp9 1080p 30fps for 6min
+"""
+
+args_dict = utils.args_to_dict(args)
+pdash_note = args_dict.get('pdash_note', '')
+job.run_test('power_VideoPlayback', tag=NAME.split('.')[1],
+             videos=[('vp9_1080_30fps', '')], secs_per_video=360,
+             pdash_note=pdash_note, seconds_period=10)

@@ -1,0 +1,22 @@
+<abi-instr path='data/test-read-write/test6.xml'>
+  <type-decl name='char' size-in-bits='8' alignment-in-bits='8' id='type-id-1'/>
+  <enum-decl name='enum_foo' id='type-id-2'>
+    <underlying-type type-id='type-id-1'/>
+    <enumerator name='e0' value='0'/>
+    <enumerator name='e1' value='1'/>
+    <enumerator name='e2' value='2'/>
+    <enumerator name='e3' value='2'/>
+  </enum-decl>
+  <type-decl name='short int' size-in-bits='16' alignment-in-bits='16' id='type-id-3'/>
+  <namespace-decl name='foo'>
+    <enum-decl name='enum_foo' id='type-id-4'>
+      <underlying-type type-id='type-id-5'/>
+      <enumerator name='e0' value='0'/>
+      <enumerator name='e1' value='1'/>
+      <enumerator name='e2' value='2'/>
+      <enumerator name='e3' value='2'/>
+      <enumerator name='e4' value='2'/>
+    </enum-decl>
+    <type-decl name='int32' size-in-bits='32' alignment-in-bits='32' id='type-id-5'/>
+  </namespace-decl>
+</abi-instr>

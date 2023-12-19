@@ -1,0 +1,84 @@
+<abi-instr path='data/test-read-write/test20.xml'>
+  <class-decl name='__class_type_info_pseudo' size-in-bits='128' alignment-in-bits='64' visibility='default' id='type-id-1'/>
+  <class-decl name='__vmi_class_type_info_pseudo3' size-in-bits='576' alignment-in-bits='64' visibility='default' id='type-id-2'/>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-3'/>
+  <type-decl name='void' alignment-in-bits='8' id='type-id-4'/>
+  <class-decl name='B0' size-in-bits='32' alignment-in-bits='32' visibility='default' filepath='../../prtests/test9.cc' line='1' column='7' id='type-id-5'>
+    <data-member access='private' layout-offset-in-bits='0'>
+      <var-decl name='m0' type-id='type-id-3' visibility='default' filepath='../../prtests/test9.cc' line='3' column='7'/>
+    </data-member>
+    <member-function access='public'>
+      <function-decl name='__base_ctor ' mangled-name='_ZN2B0C2Ev' filepath='../../prtests/test9.cc' line='7' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-6'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+    <member-function access='public'>
+      <function-decl name='__comp_ctor ' mangled-name='_ZN2B0C1Ev' filepath='../../prtests/test9.cc' line='7' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-6'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+  </class-decl>
+  <class-decl name='B1' size-in-bits='32' alignment-in-bits='32' visibility='default' filepath='../../prtests/test9.cc' line='20' column='7' id='type-id-7'>
+    <data-member access='private' layout-offset-in-bits='0'>
+      <var-decl name='m0' type-id='type-id-3' visibility='default' filepath='../../prtests/test9.cc' line='22' column='7'/>
+    </data-member>
+    <member-function access='public'>
+      <function-decl name='__base_ctor ' mangled-name='_ZN2B1C2Ev' filepath='../../prtests/test9.cc' line='26' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-8'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+    <member-function access='public'>
+      <function-decl name='__comp_ctor ' mangled-name='_ZN2B1C1Ev' filepath='../../prtests/test9.cc' line='26' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-8'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+  </class-decl>
+  <class-decl name='B2' size-in-bits='32' alignment-in-bits='32' visibility='default' filepath='../../prtests/test9.cc' line='39' column='7' id='type-id-9'>
+    <data-member access='private' layout-offset-in-bits='0'>
+      <var-decl name='m0' type-id='type-id-3' visibility='default' filepath='../../prtests/test9.cc' line='41' column='7'/>
+    </data-member>
+    <member-function access='public'>
+      <function-decl name='__base_ctor ' mangled-name='_ZN2B2C2Ev' filepath='../../prtests/test9.cc' line='45' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-10'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+    <member-function access='public'>
+      <function-decl name='__comp_ctor ' mangled-name='_ZN2B2C1Ev' filepath='../../prtests/test9.cc' line='45' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-10'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+  </class-decl>
+  <class-decl name='S' size-in-bits='192' alignment-in-bits='64' visibility='default' filepath='../../prtests/test9.cc' line='58' column='7' id='type-id-11'>
+    <base-class access='public' layout-offset-in-bits='64' type-id='type-id-5'/>
+    <base-class access='public' layout-offset-in-bits='96' type-id='type-id-7'/>
+    <base-class access='private' layout-offset-in-bits='160' is-virtual='yes' type-id='type-id-9'/>
+    <data-member access='private' layout-offset-in-bits='128'>
+      <var-decl name='m0' type-id='type-id-3' visibility='default' filepath='../../prtests/test9.cc' line='60' column='7'/>
+    </data-member>
+    <member-function access='public'>
+      <function-decl name='__comp_ctor ' mangled-name='_ZN1SC1Ev' filepath='../../prtests/test9.cc' line='64' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-12'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+  </class-decl>
+  <pointer-type-def type-id='type-id-5' size-in-bits='64' alignment-in-bits='64' id='type-id-6'/>
+  <pointer-type-def type-id='type-id-7' size-in-bits='64' alignment-in-bits='64' id='type-id-8'/>
+  <pointer-type-def type-id='type-id-9' size-in-bits='64' alignment-in-bits='64' id='type-id-10'/>
+  <pointer-type-def type-id='type-id-11' size-in-bits='64' alignment-in-bits='64' id='type-id-12'/>
+  <qualified-type-def type-id='type-id-1' const='yes' id='type-id-13'/>
+  <qualified-type-def type-id='type-id-2' const='yes' id='type-id-14'/>
+  <function-decl name='foo' mangled-name='_Z3foov' filepath='../../prtests/test9.cc' line='78' column='1' visibility='default' binding='global' size-in-bits='8' alignment-in-bits='8'>
+    <return type-id='type-id-4'/>
+  </function-decl>
+  <var-decl name='_ZTI2B0' type-id='type-id-13' mangled-name='_ZTI2B0' visibility='default' binding='weak' filepath='../../prtests/test9.cc' line='81' column='1'/>
+  <var-decl name='_ZTI2B2' type-id='type-id-13' mangled-name='_ZTI2B2' visibility='default' binding='weak' filepath='../../prtests/test9.cc' line='81' column='1'/>
+  <var-decl name='_ZTI2B1' type-id='type-id-13' mangled-name='_ZTI2B1' visibility='default' binding='weak' filepath='../../prtests/test9.cc' line='81' column='1'/>
+  <var-decl name='_ZTI1S' type-id='type-id-14' mangled-name='_ZTI1S' visibility='default' binding='weak' filepath='../../prtests/test9.cc' line='58' column='7'/>
+</abi-instr>

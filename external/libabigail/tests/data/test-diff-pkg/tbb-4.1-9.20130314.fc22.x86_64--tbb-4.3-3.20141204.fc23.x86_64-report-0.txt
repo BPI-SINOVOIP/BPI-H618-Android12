@@ -1,0 +1,355 @@
+================ changes of 'libtbb.so.2'===============
+  Functions changes summary: 0 Removed, 18 Changed (92 filtered out), 17 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+  Function symbols changes summary: 0 Removed, 0 Added function symbol not referenced by debug info
+  Variable symbols changes summary: 3 Removed, 0 Added variable symbols not referenced by debug info
+
+  17 Added functions:
+
+    [A] 'method int tbb::interface7::internal::task_arena_base::internal_current_slot()'    {_ZN3tbb10interface78internal15task_arena_base21internal_current_slotEv}
+    [A] 'method void tbb::interface7::internal::task_arena_base::internal_enqueue(tbb::task&, intptr_t) const'    {_ZNK3tbb10interface78internal15task_arena_base16internal_enqueueERNS_4taskEl}
+    [A] 'method void tbb::interface7::internal::task_arena_base::internal_execute(tbb::interface7::internal::delegate_base&) const'    {_ZNK3tbb10interface78internal15task_arena_base16internal_executeERNS1_13delegate_baseE}
+    [A] 'method void tbb::interface7::internal::task_arena_base::internal_initialize()'    {_ZN3tbb10interface78internal15task_arena_base19internal_initializeEv}
+    [A] 'method void tbb::interface7::internal::task_arena_base::internal_terminate()'    {_ZN3tbb10interface78internal15task_arena_base18internal_terminateEv}
+    [A] 'method void tbb::interface7::internal::task_arena_base::internal_wait() const'    {_ZNK3tbb10interface78internal15task_arena_base13internal_waitEv}
+    [A] 'method void tbb::interface8::internal::x86_rtm_rw_mutex::internal_acquire_reader(tbb::interface8::internal::x86_rtm_rw_mutex::scoped_lock&, bool)'    {_ZN3tbb10interface88internal16x86_rtm_rw_mutex23internal_acquire_readerERNS2_11scoped_lockEb}
+    [A] 'method void tbb::interface8::internal::x86_rtm_rw_mutex::internal_acquire_writer(tbb::interface8::internal::x86_rtm_rw_mutex::scoped_lock&, bool)'    {_ZN3tbb10interface88internal16x86_rtm_rw_mutex23internal_acquire_writerERNS2_11scoped_lockEb}
+    [A] 'method void tbb::interface8::internal::x86_rtm_rw_mutex::internal_construct()'    {_ZN3tbb10interface88internal16x86_rtm_rw_mutex18internal_constructEv}
+    [A] 'method bool tbb::interface8::internal::x86_rtm_rw_mutex::internal_downgrade(tbb::interface8::internal::x86_rtm_rw_mutex::scoped_lock&)'    {_ZN3tbb10interface88internal16x86_rtm_rw_mutex18internal_downgradeERNS2_11scoped_lockE}
+    [A] 'method void tbb::interface8::internal::x86_rtm_rw_mutex::internal_release(tbb::interface8::internal::x86_rtm_rw_mutex::scoped_lock&)'    {_ZN3tbb10interface88internal16x86_rtm_rw_mutex16internal_releaseERNS2_11scoped_lockE}
+    [A] 'method bool tbb::interface8::internal::x86_rtm_rw_mutex::internal_try_acquire_writer(tbb::interface8::internal::x86_rtm_rw_mutex::scoped_lock&)'    {_ZN3tbb10interface88internal16x86_rtm_rw_mutex27internal_try_acquire_writerERNS2_11scoped_lockE}
+    [A] 'method bool tbb::interface8::internal::x86_rtm_rw_mutex::internal_upgrade(tbb::interface8::internal::x86_rtm_rw_mutex::scoped_lock&)'    {_ZN3tbb10interface88internal16x86_rtm_rw_mutex16internal_upgradeERNS2_11scoped_lockE}
+    [A] 'method void tbb::internal::concurrent_queue_base_v8::internal_push_move(void*)'    {_ZN3tbb8internal24concurrent_queue_base_v818internal_push_moveEPKv}
+    [A] 'method bool tbb::internal::concurrent_queue_base_v8::internal_push_move_if_not_full(void*)'    {_ZN3tbb8internal24concurrent_queue_base_v830internal_push_move_if_not_fullEPKv}
+    [A] 'method void tbb::internal::concurrent_queue_base_v8::move_content(tbb::internal::concurrent_queue_base_v8&)'    {_ZN3tbb8internal24concurrent_queue_base_v812move_contentERS1_}
+    [A] 'method void tbb::task_group_context::capture_fp_settings()'    {_ZN3tbb18task_group_context19capture_fp_settingsEv}
+
+  18 functions with some indirect sub-type change:
+
+    [C] 'method void tbb::filter::set_end_of_input(int)' at pipeline.cpp:700:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'tbb::filter*' has sub-type changes:
+        in pointed to type 'class tbb::filter' at pipeline.h:65:1:
+          type size hasn't changed
+          1 member function deletion:
+            'method virtual tbb::filter::~filter(int)' at pipeline.cpp:698:1
+          1 member function insertion:
+            'method virtual tbb::filter::~filter(int)' at pipeline.cpp:688:1
+          no member function changes (4 filtered);
+          1 data member changes (4 filtered):
+            type of 'tbb::internal::input_buffer* my_input_buffer' changed:
+              in pointed to type 'class tbb::internal::input_buffer' at pipeline.cpp:52:1:
+                type size hasn't changed
+                1 data member change:
+                  type of 'tbb::spin_mutex array_mutex' changed:
+                    type size hasn't changed
+                    1 base class insertion:
+                      class tbb::internal::mutex_copy_deprecated_and_disabled at tbb_stddef.h:334:1
+
+    [C] 'method tbb::task& tbb::internal::allocate_root_with_context_proxy::allocate(std::size_t) const' at task.cpp:66:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'const tbb::internal::allocate_root_with_context_proxy* const' has sub-type changes:
+        in unqualified underlying type 'const tbb::internal::allocate_root_with_context_proxy*':
+          in pointed to type 'const tbb::internal::allocate_root_with_context_proxy':
+            in unqualified underlying type 'class tbb::internal::allocate_root_with_context_proxy' at task.h:131:1:
+              type size hasn't changed
+              1 data member change:
+                type of 'tbb::task_group_context& my_context' changed:
+                  in referenced type 'class tbb::task_group_context' at task.h:302:1:
+                    type size hasn't changed
+                    1 data member insertion:
+                      'tbb::internal::cpu_ctl_env_space my_cpu_ctl_env', at offset 896 (in bits) at task.h:380:1
+                    2 data member changes (1 filtered):
+                      type of 'char _leading_padding[80]' changed:
+                        type name changed from 'char[80]' to 'char[72]'
+                        array type size changed from 640 to 576
+                        array type subrange 1 changed length from 80 to 72
+                      type of 'tbb::internal::generic_scheduler* my_owner' changed:
+                        in pointed to type 'class tbb::internal::generic_scheduler' at scheduler.h:110:1:
+                          type size changed from 3136 to 3072 (in bits)
+                          1 base class change:
+                            'struct tbb::internal::scheduler_state' at scheduler.h:73:1 changed:
+                              type size changed from 576 to 704 (in bits)
+                              2 data member insertions:
+                                'volatile intptr_t* my_ref_top_priority', at offset 576 (in bits) at scheduler.h:96:1
+                                'volatile uintptr_t* my_ref_reload_epoch', at offset 640 (in bits) at scheduler.h:99:1
+                              2 data member changes (1 filtered):
+                                type of 'tbb::internal::arena* my_arena' changed:
+                                  in pointed to type 'class tbb::internal::arena' at arena.h:160:1:
+                                    type size hasn't changed
+                                    1 base class deletion:
+                                      struct tbb::internal::padded<tbb::internal::arena_base> at tbb_stddef.h:261:1
+                                    1 base class insertion:
+                                      struct tbb::internal::padded<tbb::internal::arena_base, 128ul> at tbb_stddef.h:251:1
+                                    1 data member change:
+                                      type of 'tbb::internal::arena_slot my_slots[1]' changed:
+                                        array element type 'struct tbb::internal::arena_slot' changed:
+                                          type size hasn't changed
+                                          2 base class deletions:
+                                            struct tbb::internal::padded<tbb::internal::arena_slot_line1> at tbb_stddef.h:261:1
+                                            struct tbb::internal::padded<tbb::internal::arena_slot_line2> at tbb_stddef.h:261:1
+                                          2 base class insertions:
+                                            struct tbb::internal::padded<tbb::internal::arena_slot_line1, 128ul> at tbb_stddef.h:251:1
+                                            struct tbb::internal::padded<tbb::internal::arena_slot_line2, 128ul> at tbb_stddef.h:251:1
+                                        type size hasn't changed
+                                type of 'tbb::internal::mail_inbox my_inbox' changed:
+                                  type size hasn't changed
+                                  1 data member change:
+                                    type of 'tbb::internal::mail_outbox* my_putter' changed:
+                                      in pointed to type 'class tbb::internal::mail_outbox' at mailbox.h:103:1:
+                                        type size hasn't changed
+                                        1 base class deletion:
+                                          class tbb::internal::unpadded_mail_outbox at mailbox.h:97:1
+                                        1 base class insertion:
+                                          struct tbb::internal::padded<tbb::internal::unpadded_mail_outbox, 128ul> at tbb_stddef.h:251:1
+                                        1 data member deletion:
+                                          'char pad[104]', at offset 136 (in bits) at mailbox.h:114:1
+                          1 member function deletion:
+                            'method virtual tbb::task* tbb::internal::generic_scheduler::receive_or_steal_task(tbb::internal::reference_count&, bool)' at scheduler.h:391:1, virtual at voffset 7/7
+                          1 member function insertion:
+                            'method virtual tbb::task* tbb::internal::generic_scheduler::receive_or_steal_task(tbb::internal::reference_count&)' at scheduler.h:362:1, virtual at voffset 7/7
+                          no member function changes (4 filtered);
+                          3 data member deletions:
+                            'unsigned int hint_for_push', at offset 896 (in bits) at scheduler.h:171:1
+                            'volatile intptr_t* my_ref_top_priority', at offset 2560 (in bits) at scheduler.h:433:1
+                            'volatile uintptr_t* my_ref_reload_epoch', at offset 2752 (in bits) at scheduler.h:443:1
+                          18 data member changes:
+                            'uintptr_t my_stealing_threshold' offset changed from 704 to 832 (in bits) (by +128 bits)
+                            type of 'tbb::internal::market* my_market' changed:
+                              in pointed to type 'class tbb::internal::market' at market.h:49:1:
+                                type size changed from 1664 to 1728 (in bits)
+                                no member function changes (8 filtered);
+                                1 data member insertion:
+                                  'bool join_workers', at offset 384 (in bits) at market.h:88:1
+                                7 data member changes:
+                                  type of 'tbb::internal::market::arenas_list_mutex_type my_arenas_list_mutex' changed:
+                                    underlying type 'typedef tbb::internal::scheduler_mutex_type' at scheduler_common.h:123:1 changed:
+                                      typedef name changed from tbb::internal::scheduler_mutex_type to tbb::spin_rw_mutex at spin_rw_mutex.h:38:1
+                                      underlying type 'class tbb::spin_mutex' at spin_mutex.h:47:1 changed:
+                                        type name changed from 'tbb::spin_mutex' to 'tbb::spin_rw_mutex_v3'
+                                        type size changed from 8 to 64 (in bits)
+                                        1 base class insertion:
+                                          class tbb::internal::mutex_copy_deprecated_and_disabled at tbb_stddef.h:334:1
+                                        1 data member change:
+                                          type of '__TBB_atomic_flag flag' changed:
+                                            typedef name changed from __TBB_atomic_flag to tbb::spin_rw_mutex_v3::state_t at spin_rw_mutex.h:214:1
+                                            underlying type 'typedef __TBB_Flag' at tbb_machine.h:875:1 changed:
+                                              typedef name changed from __TBB_Flag to intptr_t at stdint.h:119:1
+                                              underlying type 'unsigned char' changed:
+                                                type name changed from 'unsigned char' to 'long int'
+                                                type size changed from 8 to 64 (in bits)
+                                          and name of 'tbb::spin_mutex::flag' changed to 'tbb::spin_rw_mutex_v3::state' at spin_rw_mutex.h:224:1
+                                  'intptr_t my_global_top_priority' offset changed from 384 to 448 (in bits) (by +64 bits)
+                                  'intptr_t my_global_bottom_priority' offset changed from 448 to 512 (in bits) (by +64 bits)
+                                  'uintptr_t my_global_reload_epoch' offset changed from 512 to 576 (in bits) (by +64 bits)
+                                  type of 'tbb::internal::market::priority_level_info my_priority_levels[3]' changed:
+                                    array element type 'struct tbb::internal::market::priority_level_info' changed:
+                                      type size hasn't changed
+                                      1 data member change:
+                                        type of 'tbb::internal::intrusive_list_base<tbb::internal::intrusive_list<tbb::internal::arena>, tbb::internal::arena>::iterator next_arena' changed:
+                                          entity changed from 'class tbb::internal::intrusive_list_base<tbb::internal::intrusive_list<tbb::internal::arena>, tbb::internal::arena>::iterator' to 'tbb::internal::arena*'
+                                          type size hasn't changed
+                                    type size hasn't changed
+                                  and offset changed from 576 to 640 (in bits) (by +64 bits)
+                                  'uintptr_t my_arenas_aba_epoch' offset changed from 1536 to 1600 (in bits) (by +64 bits)
+                                  'tbb::internal::generic_scheduler* my_workers[1]' offset changed from 1600 to 1664 (in bits) (by +64 bits)
+                            and offset changed from 768 to 896 (in bits) (by +128 bits)
+                            'tbb::internal::FastRandom my_random' offset changed from 832 to 960 (in bits) (by +128 bits)
+                            'tbb::task* my_free_list' offset changed from 960 to 1024 (in bits) (by +64 bits)
+                            'tbb::task* my_dummy_task' offset changed from 1024 to 1088 (in bits) (by +64 bits)
+                            'long int my_ref_count' offset changed from 1088 to 1152 (in bits) (by +64 bits)
+                            'bool my_auto_initialized' offset changed from 1152 to 1216 (in bits) (by +64 bits)
+                            'intptr_t my_small_task_count' offset changed from 1216 to 1280 (in bits) (by +64 bits)
+                            'tbb::task* my_return_list' offset changed from 1280 to 1344 (in bits) (by +64 bits)
+                            'char _padding1[112]' offset changed from 1344 to 1408 (in bits) (by +64 bits)
+                            'tbb::internal::context_list_node_t my_context_list_head' offset changed from 2240 to 2304 (in bits) (by +64 bits)
+                            'tbb::spin_mutex my_context_list_mutex' offset changed from 2368 to 2432 (in bits) (by +64 bits)
+                            'uintptr_t my_context_state_propagation_epoch' offset changed from 2432 to 2496 (in bits) (by +64 bits)
+                            'tbb::atomic<long unsigned int> my_local_ctx_list_update' offset changed from 2496 to 2560 (in bits) (by +64 bits)
+                            'uintptr_t my_local_reload_epoch' offset changed from 2816 to 2752 (in bits) (by -64 bits)
+                            'volatile bool my_pool_reshuffling_pending' offset changed from 2880 to 2816 (in bits) (by -64 bits)
+                            'tbb::atomic<long unsigned int> my_nonlocal_ctx_list_update' offset changed from 2944 to 2880 (in bits) (by -64 bits)
+                            '__cilk_tbb_unwatch_thunk my_cilk_unwatch_thunk' offset changed from 3008 to 2944 (in bits) (by -64 bits)
+
+    [C] 'method void tbb::internal::concurrent_queue_base::internal_pop(void*)' at concurrent_queue_v2.cpp:240:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'tbb::internal::concurrent_queue_base* const' has sub-type changes:
+        in unqualified underlying type 'tbb::internal::concurrent_queue_base*':
+          in pointed to type 'class tbb::internal::concurrent_queue_base' at concurrent_queue_v2.h:41:1:
+            type size hasn't changed
+            1 member function deletion:
+              'method virtual tbb::internal::concurrent_queue_base::~concurrent_queue_base(int)' at concurrent_queue_v2.cpp:225:1
+            1 member function insertion:
+              'method virtual tbb::internal::concurrent_queue_base::~concurrent_queue_base(int)' at concurrent_queue_v2.cpp:217:1
+            no member function changes (4 filtered);
+            1 data member change:
+              type of 'tbb::internal::concurrent_queue_rep* my_rep' changed:
+                in pointed to type 'class tbb::internal::concurrent_queue_rep' at concurrent_queue_v2.cpp:102:1:
+                  type size hasn't changed
+                  1 data member changes (2 filtered):
+                    type of 'tbb::internal::concurrent_monitor items_avail' changed:
+                      type size hasn't changed
+                      1 data member change:
+                        'tbb::spin_mutex mutex_ec' offset changed from 0 to 8 (in bits) (by +8 bits)
+
+    [C] 'method tbb::internal::concurrent_queue_iterator_base::~concurrent_queue_iterator_base(int)' at concurrent_queue_v2.cpp:360:1 has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method tbb::internal::concurrent_queue_iterator_base_v3::concurrent_queue_iterator_base_v3(const tbb::internal::concurrent_queue_base_v3&)' at concurrent_queue.cpp:622:1 has some indirect sub-type changes:
+      parameter 1 of type 'const tbb::internal::concurrent_queue_base_v3&' has sub-type changes:
+        in referenced type 'const tbb::internal::concurrent_queue_base_v3':
+          'const tbb::internal::concurrent_queue_base_v3' changed to 'const tbb::internal::concurrent_queue_base'
+
+    [C] 'method tbb::internal::concurrent_queue_iterator_base_v3::~concurrent_queue_iterator_base_v3(int)' at concurrent_queue.cpp:663:1 has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method tbb::internal::concurrent_vector_base_v3::~concurrent_vector_base_v3(int)' at concurrent_vector.cpp:330:1 has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method bool tbb::internal::hash_map_segment_base::internal_grow_predicate() const' at concurrent_hash_map.cpp:47:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'const tbb::internal::hash_map_segment_base* const' has sub-type changes:
+        in unqualified underlying type 'const tbb::internal::hash_map_segment_base*':
+          in pointed to type 'const tbb::internal::hash_map_segment_base':
+            in unqualified underlying type 'struct tbb::internal::hash_map_segment_base' at concurrent_hash_map.cpp:27:1:
+              type size hasn't changed
+              1 data member change:
+                type of 'tbb::internal::hash_map_segment_base::segment_mutex_t my_mutex' changed:
+                  underlying type 'typedef tbb::spin_rw_mutex' at spin_rw_mutex.h:39:1 changed:
+                    underlying type 'class tbb::spin_rw_mutex_v3' at spin_rw_mutex.h:43:1 changed:
+                      type size hasn't changed
+                      1 base class insertion:
+                        class tbb::internal::mutex_copy_deprecated_and_disabled at tbb_stddef.h:334:1
+                      no data member change (1 filtered);
+
+    [C] 'function void tbb::internal::throw_exception_v4(tbb::internal::exception_id)' at tbb_misc.cpp:119:1 has some indirect sub-type changes:
+      parameter 1 of type 'enum tbb::internal::exception_id' has sub-type changes:
+        type size hasn't changed
+        1 enumerator insertion:
+          'tbb::internal::exception_id::eid_bad_tagged_msg_cast' value '20'
+        1 enumerator change:
+          'tbb::internal::exception_id::eid_max' from value '20' to '21' at tbb_exception.h:79:1
+
+    [C] 'method void tbb::mutex::internal_construct()' at mutex.cpp:113:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'tbb::mutex* const' has sub-type changes:
+        in unqualified underlying type 'tbb::mutex*':
+          in pointed to type 'class tbb::mutex' at mutex.h:40:1:
+            type size hasn't changed
+            1 base class insertion:
+              class tbb::internal::mutex_copy_deprecated_and_disabled at tbb_stddef.h:334:1
+
+    [C] 'method void tbb::queuing_mutex::internal_construct()' at queuing_mutex.cpp:105:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'tbb::queuing_mutex* const' has sub-type changes:
+        in unqualified underlying type 'tbb::queuing_mutex*':
+          in pointed to type 'class tbb::queuing_mutex' at queuing_mutex.h:45:1:
+            type size hasn't changed
+            1 base class insertion:
+              class tbb::internal::mutex_copy_deprecated_and_disabled at tbb_stddef.h:334:1
+
+    [C] 'method void tbb::queuing_rw_mutex::internal_construct()' at queuing_rw_mutex.cpp:491:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'tbb::queuing_rw_mutex* const' has sub-type changes:
+        in unqualified underlying type 'tbb::queuing_rw_mutex*':
+          in pointed to type 'class tbb::queuing_rw_mutex' at queuing_rw_mutex.h:47:1:
+            type size hasn't changed
+            1 base class insertion:
+              class tbb::internal::mutex_copy_deprecated_and_disabled at tbb_stddef.h:334:1
+
+    [C] 'method void tbb::recursive_mutex::internal_construct()' at recursive_mutex.cpp:97:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'tbb::recursive_mutex* const' has sub-type changes:
+        in unqualified underlying type 'tbb::recursive_mutex*':
+          in pointed to type 'class tbb::recursive_mutex' at recursive_mutex.h:39:1:
+            type size hasn't changed
+            1 base class insertion:
+              class tbb::internal::mutex_copy_deprecated_and_disabled at tbb_stddef.h:334:1
+
+    [C] 'method void tbb::task_group_context::init(int)' at task_group_context.cpp:202:1 has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method void tbb::task_group_context::register_pending_exception(int)' at task_group_context.cpp:465:1 has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method void tbb::task_group_context::reset(int)' at task_group_context.cpp:429:1 has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method tbb::task_group_context::~task_group_context(int)' at task_group_context.cpp:140:1 has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method tbb::thread_bound_filter::result_type tbb::thread_bound_filter::process_item()' at pipeline.cpp:712:1 has some indirect sub-type changes:
+      implicit parameter 0 of type 'tbb::thread_bound_filter* const' has sub-type changes:
+        in unqualified underlying type 'tbb::thread_bound_filter*':
+          in pointed to type 'class tbb::thread_bound_filter' at pipeline.h:197:1:
+            type size hasn't changed
+            1 base class change:
+              'class tbb::filter' at pipeline.h:74:1 changed:
+                details were reported earlier
+
+  3 Removed variable symbols not referenced by debug info:
+
+    [D] _ZTVN3rml16versioned_objectE
+    [D] _ZTVN3rml6clientE
+    [D] _ZTVN3rml6serverE
+
+================ end of changes of 'libtbb.so.2'===============
+
+================ changes of 'libtbbmalloc.so.2'===============
+  Functions changes summary: 9 Removed, 0 Changed, 0 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+  Function symbols changes summary: 0 Removed, 27 Added function symbols not referenced by debug info
+  Variable symbols changes summary: 0 Removed, 0 Added variable symbol not referenced by debug info
+
+  9 Removed functions:
+
+    [D] 'function void* rml::internal::__TBB_internal_calloc(size_t, size_t)'    {__TBB_internal_calloc}
+    [D] 'function void rml::internal::__TBB_internal_free(void*)'    {__TBB_internal_free}
+    [D] 'function void* rml::internal::__TBB_internal_malloc(size_t)'    {__TBB_internal_malloc}
+    [D] 'function int rml::internal::__TBB_internal_posix_memalign(void**, size_t, size_t)'    {__TBB_internal_posix_memalign}
+    [D] 'function void* rml::internal::__TBB_internal_realloc(void*, size_t)'    {__TBB_internal_realloc}
+    [D] 'function void* safer_scalable_aligned_realloc(void*, size_t, size_t, void*)'    {safer_scalable_aligned_realloc}
+    [D] 'function void safer_scalable_free(void*, void (void*)*)'    {safer_scalable_free}
+    [D] 'function size_t safer_scalable_msize(void*, typedef size_t (void*)*)'    {safer_scalable_msize}
+    [D] 'function void* safer_scalable_realloc(void*, size_t, void*)'    {safer_scalable_realloc}
+
+  27 Added function symbols not referenced by debug info:
+
+    [A] _Z10BitScanRevm
+    [A] _Z10FencedLoadRVKl
+    [A] _Z11FencedStoreRVll
+    [A] _Z15AtomicIncrementRVl
+    [A] _Z15SpinWaitWhileEqRVKll
+    [A] _Z16AtomicFetchStorePVvm
+    [A] _Z21AtomicCompareExchangeRVlll
+    [A] _Z8AtomicOrPVvm
+    [A] _Z8do_yieldv
+    [A] _Z9AtomicAddRVll
+    [A] _Z9AtomicAndPVvm
+    [A] _ZN11MallocMutex11scoped_lockC1ERS_
+    [A] _ZN11MallocMutex11scoped_lockC1ERS_bPb, aliases _ZN11MallocMutex11scoped_lockC2ERS_bPb
+    [A] _ZN11MallocMutex11scoped_lockC2ERS_, aliases _ZN11MallocMutex11scoped_lockC1ERS_
+    [A] _ZN11MallocMutex11scoped_lockC2ERS_bPb
+    [A] _ZN11MallocMutex11scoped_lockD1Ev, aliases _ZN11MallocMutex11scoped_lockD2Ev
+    [A] _ZN11MallocMutex11scoped_lockD2Ev
+    [A] _ZN11MallocMutexC1Ev, aliases _ZN11MallocMutexC2Ev
+    [A] _ZN11MallocMutexC2Ev
+    [A] _ZdlPvS_
+    [A] _ZnwmPv
+    [A] __TBB_malloc_safer_aligned_msize
+    [A] __TBB_malloc_safer_aligned_realloc
+    [A] __TBB_malloc_safer_free
+    [A] __TBB_malloc_safer_msize
+    [A] __TBB_malloc_safer_realloc
+    [A] scalable_allocation_command
+
+================ end of changes of 'libtbbmalloc.so.2'===============
+
+================ changes of 'libtbbmalloc_proxy.so.2'===============
+  Functions changes summary: 1 Removed, 0 Changed, 3 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  1 Removed function:
+
+    [D] 'function bool __TBB_internal_find_original_malloc(int, const char**, void**)'    {__TBB_internal_find_original_malloc}
+
+  3 Added functions:
+
+    [A] 'function void __libc_free(void*)'    {__libc_free}
+    [A] 'function void* __libc_realloc(void*, size_t)'    {__libc_realloc}
+    [A] 'function size_t malloc_usable_size(void*)'    {malloc_usable_size}
+
+================ end of changes of 'libtbbmalloc_proxy.so.2'===============
+

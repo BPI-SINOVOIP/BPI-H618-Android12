@@ -1,0 +1,41 @@
+Leaf changes summary: 6 artifacts changed
+Changed leaf types summary: 6 leaf types changed
+Removed/Changed/Added functions summary: 0 Removed, 0 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+'struct foo at test-leaf-peeling-v0.cc:2:1' changed:
+  type size changed from 32 to 64 (in bits)
+  there are data member changes:
+    type 'int' of 'foo::z' changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)
+
+'struct ops1 at test-leaf-peeling-v0.cc:6:1' changed:
+  type size hasn't changed
+  there are data member changes:
+    type 'int*' of 'ops1::x' changed:
+      pointer type changed from: 'int*' to: 'int**'
+
+'struct ops2 at test-leaf-peeling-v0.cc:10:1' changed (indirectly):
+  type size changed from 320 to 640 (in bits)
+  there are data member changes:
+    'foo y[10]' size changed from 320 to 640 (in bits) (by +320 bits)
+
+'struct ops3 at test-leaf-peeling-v0.cc:14:1' changed:
+  type size hasn't changed
+  there are data member changes:
+    type 'void (int&)*' of 'ops3::spong' changed:
+      pointer type changed from: 'void (int&)*' to: 'void (int&&)*'
+
+'struct ops4 at test-leaf-peeling-v0.cc:18:1' changed:
+  type size hasn't changed
+  there are data member changes:
+    type 'int*' of 'ops4::x' changed:
+      entity changed from 'int*' to 'int&'
+      type size hasn't changed
+
+'struct ops5 at test-leaf-peeling-v0.cc:22:1' changed:
+  type size hasn't changed
+  there are data member changes:
+    type 'int*' of 'ops5::x' changed:
+      pointer type changed from: 'int*' to: 'int***'

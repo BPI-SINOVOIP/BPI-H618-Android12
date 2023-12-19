@@ -1,0 +1,11 @@
+VERSION_1.0 {
+  global: foo;
+};
+
+VERSION_2.0 {
+  global: foo;
+} VERSION_1.0;
+
+VERSION_3.0 {
+  global: foo;
+} VERSION_2.0;

@@ -1,0 +1,41 @@
+Leaf changes summary: 7 artifacts changed
+Changed leaf types summary: 3 leaf types changed
+Removed/Changed/Added functions summary: 0 Removed, 4 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+4 functions with some sub-type change:
+
+  [C] 'function int& foo0(S0&)' at test45-basic-type-change-v1.cc:24:1 has some sub-type changes:
+    return type changed:
+      reference type changed from: 'int&' to: 'char&'
+
+  [C] 'function int* foo1(S1&)' at test45-basic-type-change-v1.cc:28:1 has some sub-type changes:
+    return type changed:
+      pointer type changed from: 'int*' to: 'char*'
+
+  [C] 'function const int foo2(S2&)' at test45-basic-type-change-v1.cc:32:1 has some sub-type changes:
+    return type changed:
+      'const int' changed to 'const char'
+
+  [C] 'function int foo3(S2&)' at test45-basic-type-change-v1.cc:36:1 has some sub-type changes:
+    return type changed:
+      type name changed from 'int' to 'char'
+      type size changed from 32 to 8 (in bits)
+
+'struct S0 at test45-basic-type-change-v0.cc:8:1' changed:
+  type size hasn't changed
+  there are data member changes:
+    type 'int*' of 'S0::m0' changed:
+      pointer type changed from: 'int*' to: 'char*'
+
+'struct S1 at test45-basic-type-change-v0.cc:13:1' changed:
+  type size hasn't changed
+  there are data member changes:
+    type 'int*' of 'S1::m0' changed:
+      pointer type changed from: 'int*' to: 'char*'
+
+'struct S2 at test45-basic-type-change-v0.cc:18:1' changed:
+  type size hasn't changed
+  there are data member changes:
+    type 'int*' of 'S2::m0' changed:
+      pointer type changed from: 'int*' to: 'char*'

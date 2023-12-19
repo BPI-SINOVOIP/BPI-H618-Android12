@@ -1,0 +1,50 @@
+<abi-instr path='data/test-read-write/test17.xml'>
+  <type-decl name='char' size-in-bits='8' alignment-in-bits='8' id='type-id-1'/>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-2'/>
+  <type-decl name='unsigned int' size-in-bits='32' alignment-in-bits='32' id='type-id-3'/>
+  <type-decl name='void' alignment-in-bits='8' id='type-id-4'/>
+  <enum-decl name='E' filepath='../../prtests/test.cc' line='1' column='6' id='type-id-5'>
+    <underlying-type type-id='type-id-3'/>
+    <enumerator name='e0' value='0'/>
+    <enumerator name='e1' value='1'/>
+  </enum-decl>
+  <class-decl name='S' size-in-bits='96' alignment-in-bits='32' visibility='default' filepath='../../prtests/test.cc' line='3' column='8' id='type-id-6'>
+    <data-member access='public'>
+      <var-decl name='m0' type-id='type-id-2' visibility='default' filepath='../../prtests/test.cc' line='5' column='7'/>
+    </data-member>
+    <data-member access='public'>
+      <var-decl name='m1' type-id='type-id-1' visibility='default' filepath='../../prtests/test.cc' line='6' column='8'/>
+    </data-member>
+    <data-member access='public'>
+      <var-decl name='m2' type-id='type-id-5' visibility='default' filepath='../../prtests/test.cc' line='7' column='10'/>
+    </data-member>
+    <member-function access='public'>
+      <function-decl name='S' mangled-name='_ZN1SC1Ev *INTERNAL* ' filepath='../../prtests/test.cc' line='9' column='3' declared-inline='yes' visibility='default' binding='global' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-7'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+    <member-function access='public'>
+      <function-decl name='__base_ctor ' mangled-name='_ZN1SC2Ev' filepath='../../prtests/test.cc' line='9' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-7'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+    <member-function access='public'>
+      <function-decl name='__comp_ctor ' mangled-name='_ZN1SC1Ev' filepath='../../prtests/test.cc' line='9' column='3' declared-inline='yes' visibility='default' binding='weak' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-7'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+    <member-function access='public'>
+      <function-decl name='S' mangled-name='_ZN1SC1ERKS_ *INTERNAL* ' filepath='../../prtests/test.cc' line='15' column='3' declared-inline='yes' visibility='default' binding='global' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-7'/>
+        <parameter type-id='type-id-8'/>
+        <return type-id='type-id-4'/>
+      </function-decl>
+    </member-function>
+  </class-decl>
+  <reference-type-def kind='lvalue' type-id='type-id-6' size-in-bits='64' alignment-in-bits='64' id='type-id-8'/>
+  <pointer-type-def type-id='type-id-6' size-in-bits='64' alignment-in-bits='64' id='type-id-7'/>
+  <var-decl name='var' type-id='type-id-6' mangled-name='var' visibility='default' binding='global' filepath='../../prtests/test.cc' line='30' column='3'/>
+</abi-instr>

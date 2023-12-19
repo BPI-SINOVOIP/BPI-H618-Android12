@@ -1,0 +1,12 @@
+<abi-instr path='data/test-read-write/test9.xml'>
+  <type-decl name='char' size-in-bits='8' alignment-in-bits='8' id='type-id-1'/>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-2'/>
+  <pointer-type-def type-id='type-id-2' size-in-bits='64' alignment-in-bits='64' id='type-id-3'/>
+  <namespace-decl name='inner'>
+    <function-decl name='func' mangled-name='some-mangling' declared-inline='yes' visibility='default' binding='global' size-in-bits='8' alignment-in-bits='8'>
+      <parameter type-id='type-id-1'/>
+      <parameter type-id='type-id-3'/>
+      <return type-id='type-id-2'/>
+    </function-decl>
+  </namespace-decl>
+</abi-instr>

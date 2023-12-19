@@ -1,0 +1,18 @@
+# Copyright 2019 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+AUTHOR = "achuith"
+NAME = "login_UnicornLogin"
+TIME = "SHORT"
+TEST_CATEGORY = "General"
+TEST_CLASS = "login"
+TEST_TYPE = "client"
+# Disable until test can be fixed: https://crbug.com/1097949
+# ATTRIBUTES = "suite:bvt-perbuild"
+
+DOC = """
+This test verifies that logging into a Unicorn account works correctly.
+"""
+
+job.run_test('login_UnicornLogin')

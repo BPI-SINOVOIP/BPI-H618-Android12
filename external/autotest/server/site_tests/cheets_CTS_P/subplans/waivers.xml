@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no' ?>
+<SubPlan version="2.0">
+  <!--
+    Unless there's special reason, the entries can be removed only
+    when the DEV version bundle's provisional version number (like 9.0r13)
+    is incremented. Otherwise the computation for the canonical list
+    of test cases is confused. See b/151779432.
+  -->
+  <Entry include="CtsCameraTestCases android.hardware.camera2.cts.CaptureRequestTest#testFlashControl" />
+  <Entry include="CtsGraphicsTestCases android.graphics.cts.BitmapTest#testHardwareBitmapNotLeaking" />
+  <Entry include="CtsGraphicsTestCases android.graphics.cts.BitmapTest#testDrawingHardwareBitmapNotLeaking" />
+</SubPlan>

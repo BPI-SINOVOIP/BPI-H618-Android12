@@ -1,0 +1,34 @@
+# Copyright (c) 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+AUTHOR = "Chrome OS Team"
+NAME = "faft_cr50_pvt_tast"
+PURPOSE = "Suite to test Cr50 (prepvt) firmware functionality using Tast framework."
+
+TIME = "SHORT"
+TEST_CATEGORY = "General"
+TEST_CLASS = "suite"
+TEST_TYPE = "Server"
+
+DOC = """
+The suite is the Tast counterpart of suite:faft_cr50_pvt.
+
+The reason why we need a separate suite is because "test_that" command
+cannot run Tast tests if devserver is not presented (crbug.com/948805).
+Placing Tast tests on this suite can avoid possible regression of
+suite:faft_cr50_pvt.
+
+Note that the prevpt and pvt suites are identical.
+The two names are to make searches for faft_cr50_p* include Tast results.
+"""
+
+import common
+from autotest_lib.server.cros.dynamic_suite import dynamic_suite
+
+args_dict['add_experimental'] = True
+args_dict['max_runtime_mins'] = 60
+args_dict['name'] = NAME
+args_dict['job'] = job
+
+dynamic_suite.reimage_and_run(**args_dict)

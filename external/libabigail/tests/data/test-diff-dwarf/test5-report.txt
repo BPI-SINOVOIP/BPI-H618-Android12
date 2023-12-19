@@ -1,0 +1,17 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'method C0::C0()' has some indirect sub-type changes:
+    implicit parameter 0 of type 'C0*' has sub-type changes:
+      in pointed to type 'class C0':
+        type size hasn't changed
+        1 data member change:
+          'int m0' access changed from 'private' to 'public'
+
+  [C] 'function C0 foo()' has some indirect sub-type changes:
+    return type changed:
+      entity changed from 'class C0' to compatible type 'typedef c0_type'
+        details were reported earlier
+

@@ -1,0 +1,38 @@
+<abi-corpus version='2.0' path='data/test-read-dwarf/test8-qualified-this-pointer.so'>
+  <elf-needed>
+    <dependency name='libstdc++.so.6'/>
+    <dependency name='libm.so.6'/>
+    <dependency name='libgcc_s.so.1'/>
+    <dependency name='libc.so.6'/>
+  </elf-needed>
+  <elf-function-symbols>
+    <elf-symbol name='_ZNK1S3fooEv' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_fini' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <abi-instr address-size='64' path='test8-qualified-this-pointer.cc' comp-dir-path='/home/dodji/git/libabigail/master/tests/data/test-read-dwarf' language='LANG_C_plus_plus'>
+    <type-decl name='int' size-in-bits='32' id='95e97e5e'/>
+    <type-decl name='void' id='48b5725f'/>
+    <class-decl name='S' size-in-bits='32' is-struct='yes' visibility='default' filepath='/home/dodji/git/libabigail/master/tests/data/test-read-dwarf/test8-qualified-this-pointer.cc' line='1' column='1' id='50d9a3fa'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='i' type-id='95e97e5e' visibility='default' filepath='/home/dodji/git/libabigail/master/tests/data/test-read-dwarf/test8-qualified-this-pointer.cc' line='3' column='1'/>
+      </data-member>
+      <member-function access='public' constructor='yes'>
+        <function-decl name='S' filepath='/home/dodji/git/libabigail/master/tests/data/test-read-dwarf/test8-qualified-this-pointer.cc' line='5' column='1' visibility='default' binding='global' size-in-bits='64'>
+          <parameter type-id='fd01f598' is-artificial='yes'/>
+          <return type-id='48b5725f'/>
+        </function-decl>
+      </member-function>
+      <member-function access='public' const='yes'>
+        <function-decl name='foo' mangled-name='_ZNK1S3fooEv' filepath='/home/dodji/git/libabigail/master/tests/data/test-read-dwarf/test8-qualified-this-pointer.cc' line='14' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZNK1S3fooEv'>
+          <parameter type-id='89b9ceca' name='this' is-artificial='yes'/>
+          <return type-id='95e97e5e'/>
+        </function-decl>
+      </member-function>
+    </class-decl>
+    <pointer-type-def type-id='50d9a3fa' size-in-bits='64' id='fd01f598'/>
+    <qualified-type-def type-id='50d9a3fa' const='yes' id='0fb3b55d'/>
+    <pointer-type-def type-id='0fb3b55d' size-in-bits='64' id='2ee6aa55'/>
+    <qualified-type-def type-id='2ee6aa55' const='yes' id='89b9ceca'/>
+  </abi-instr>
+</abi-corpus>

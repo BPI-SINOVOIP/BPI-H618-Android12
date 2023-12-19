@@ -1,0 +1,36 @@
+================ changes of 'libdbus-glib-1.so.2.1.0'===============
+  Functions changes summary: 0 Removed, 0 Changed, 0 Added function
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+  Function symbols changes summary: 0 Removed, 8 Added function symbols not referenced by debug info
+  Variable symbols changes summary: 0 Removed, 0 Added variable symbol not referenced by debug info
+
+  8 Added function symbols not referenced by debug info:
+
+    [A] dbus_g_bus_get_private
+    [A] dbus_g_connection_open_private
+    [A] dbus_g_connection_unregister_g_object
+    [A] dbus_g_method_invocation_get_g_connection
+    [A] dbus_g_object_type_register_shadow_property
+    [A] dbus_g_value_build_g_variant
+    [A] dbus_g_value_parse_g_variant
+    [A] dbus_glib_global_set_disable_legacy_property_access
+
+================ end of changes of 'libdbus-glib-1.so.2.1.0'===============
+
+================ changes of 'dbus-binding-tool'===============
+  Functions changes summary: 0 Removed, 0 Changed, 0 Added function
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+  Function symbols changes summary: 2 Removed, 1 Added function symbols not referenced by debug info
+  Variable symbols changes summary: 0 Removed, 0 Added variable symbol not referenced by debug info
+
+  2 Removed function symbols not referenced by debug info:
+
+    [D] base_info_ref
+    [D] base_info_unref
+
+  1 Added function symbol not referenced by debug info:
+
+    [A] dbus_g_value_build_g_variant
+
+================ end of changes of 'dbus-binding-tool'===============
+

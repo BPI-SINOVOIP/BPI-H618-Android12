@@ -1,0 +1,38 @@
+Functions changes summary: 0 Removed, 3 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+3 functions with some indirect sub-type change:
+
+  [C] 'method virtual Interface::~Interface(int)' has some indirect sub-type changes:
+    implicit parameter 0 of type 'Interface*' has sub-type changes:
+      in pointed to type 'class Interface':
+        type size hasn't changed
+        1 member function insertion:
+          'method virtual void Interface::method2()', virtual at voffset 3/4
+        5 member function changes:
+          'method virtual Interface::~Interface(int)' has some sub-type changes:
+            implicit parameter 0 of type 'Interface*' has sub-type changes:
+              pointed to type 'class Interface' changed, as being reported
+          'method virtual Interface::~Interface(int)' has some sub-type changes:
+            implicit parameter 0 of type 'Interface*' has sub-type changes:
+              pointed to type 'class Interface' changed, as being reported
+          'method virtual Interface::~Interface(int)' has some sub-type changes:
+            implicit parameter 0 of type 'Interface*' has sub-type changes:
+              pointed to type 'class Interface' changed, as being reported
+          'method virtual void Interface::method1()' has some sub-type changes:
+            implicit parameter 0 of type 'Interface*' has sub-type changes:
+              pointed to type 'class Interface' changed, as being reported
+          'method virtual void Interface::method3()' has some sub-type changes:
+            the vtable offset of method virtual void Interface::method3() changed from 3 to 4
+              note that this is an ABI incompatible change to the vtable of class Interface
+            implicit parameter 0 of type 'Interface*' has sub-type changes:
+              pointed to type 'class Interface' changed, as being reported
+
+  [C] 'method virtual Interface::~Interface(int)' has some indirect sub-type changes:
+    implicit parameter 0 of type 'Interface*' has sub-type changes:
+      pointed to type 'class Interface' changed, as reported earlier
+
+  [C] 'function Interface* make_interface()' has some indirect sub-type changes:
+    return type changed:
+      pointed to type 'class Interface' changed, as reported earlier
+

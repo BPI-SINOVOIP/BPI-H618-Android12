@@ -1,0 +1,13 @@
+<abi-corpus version='2.0' path='data/test-read-dwarf/test5.o'>
+  <elf-function-symbols>
+    <elf-symbol name='_Z3barPv' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <abi-instr address-size='64' path='test.cc' comp-dir-path='/home/dodji/libabigailtests' language='LANG_C_plus_plus'>
+    <type-decl name='void' id='type-id-1'/>
+    <pointer-type-def type-id='type-id-1' size-in-bits='64' id='type-id-2'/>
+    <function-decl name='bar' mangled-name='_Z3barPv' filepath='/home/dodji/libabigailtests/test.cc' line='2' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_Z3barPv'>
+      <parameter type-id='type-id-2'/>
+      <return type-id='type-id-1'/>
+    </function-decl>
+  </abi-instr>
+</abi-corpus>

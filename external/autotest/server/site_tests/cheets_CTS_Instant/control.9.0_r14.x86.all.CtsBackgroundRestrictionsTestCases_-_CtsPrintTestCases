@@ -1,0 +1,34 @@
+# Copyright 2018 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+# This file has been automatically generated. Do not edit!
+
+AUTHOR = 'ARC++ Team'
+NAME = 'cheets_CTS_Instant.9.0_r14.x86.all.CtsBackgroundRestrictionsTestCases_-_CtsPrintTestCases'
+ATTRIBUTES = 'suite:arc-cts, suite:arc-cts-qual'
+DEPENDENCIES = 'arc, cts_cpu_x86'
+JOB_RETRIES = 1
+TEST_TYPE = 'server'
+TIME = 'LONG'
+MAX_RESULT_SIZE_KB = 512000
+DOC = 'Run module CtsBackgroundRestrictionsTestCases, CtsCameraTestCases, CtsColorModeTestCases, CtsDatabaseTestCases, CtsDisplayTestCases, CtsDpiTestCases, CtsDreamsTestCases, CtsEdiHostTestCases, CtsExternalSourcesTestCases, CtsFileSystemTestCases, CtsFragmentTestCases, CtsFragmentTestCasesSdk26, CtsGestureTestCases, CtsHostsideWebViewTests, CtsInputMethodServiceHostTestCases, CtsInputMethodTestCases, CtsLocation2TestCases, CtsLocationTestCases, CtsMediaHostTestCases, CtsMediaTestCases, CtsMultiUserTestCases, CtsOsHostTestCases, CtsPdfTestCases, CtsPermission2TestCases, CtsPermissionTestCases, CtsPreference2TestCases, CtsPreferenceTestCases, CtsPrintTestCases of the Android Compatibility Test Suite for Instant Apps (CTS Instant) using x86 ABI in the ARC++ container.'
+
+def run_TS(machine):
+    host_list = [hosts.create_host(machine)]
+    job.run_test(
+        'cheets_CTS_Instant',
+        hosts=host_list,
+        iterations=1,
+        max_retry=9,
+        tag='9.0_r14.x86.all.CtsBackgroundRestrictionsTestCases_-_CtsPrintTestCases',
+        test_name='cheets_CTS_Instant.9.0_r14.x86.all.CtsBackgroundRestrictionsTestCases_-_CtsPrintTestCases',
+        run_template=['run', 'commandAndExit', 'cts-instant', '--exclude-filter', 'CtsTextTestCases', '--exclude-filter', 'CtsAnimationTestCases', '--exclude-filter', 'CtsSampleDeviceTestCases', '--exclude-filter', 'CtsAutoFillServiceTestCases', '--exclude-filter', 'CtsAccountManagerTestCases', '--exclude-filter', 'CtsAppWidgetTestCases', '--exclude-filter', 'CtsUiDeviceTestCases', '--exclude-filter', 'CtsAccessibilityTestCases', '--exclude-filter', 'CtsSampleHostTestCases', '--exclude-filter', 'CtsToastTestCases', '--exclude-filter', 'CtsViewTestCases', '--exclude-filter', 'CtsAppSecurityHostTestCases', '--exclude-filter', 'CtsSystemUiTestCases', '--exclude-filter', 'CtsUsbTests', '--exclude-filter', 'CtsWidgetTestCases', '--exclude-filter', 'CtsAccessibilityServiceTestCases', '--exclude-filter', 'CtsUsageStatsTestCases', '--exclude-filter', 'CtsWindowManagerDeviceTestCases', '--exclude-filter', 'CtsUiAutomationTestCases', '--exclude-filter', 'CtsUidIsolationTestCases', '--logcat-on-failure'],
+        retry_template=['run', 'commandAndExit', 'retry', '--retry', '{session_id}'],
+        target_module='all.CtsBackgroundRestrictionsTestCases_-_CtsPrintTestCases',
+        target_plan=None,
+        bundle='x86',
+        uri='gs://chromeos-arc-images/cts/bundle/P/android-cts_instant-9.0_r14-linux_x86-x86.zip',
+        timeout=18000)
+
+parallel_simple(run_TS, machines)

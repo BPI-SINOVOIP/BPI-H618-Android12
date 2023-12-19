@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+_abicompat_module()
+{
+	local cur prev OPTS
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	case $prev in
+	  '--app-debug-info-dir'|'--lib-debug-info-dir1'|'--lib-debug-info-dir2')
+	    local IFS=$'\n'
+	    compopt -o dirnames
+	    COMPREPLY=( $(compgen -d -- $cur) )
+	    return 0
+	    ;;
+	  '--suppressions')
+	    local IFS=$'\n'
+	    compopt -o filenames
+	    COMPREPLY=( $(compgen -f -- $cur) )
+	    return 0
+	    ;;
+	  '--drop' | '--drop-fn' | '--drop-var' | '--keep' | '--keep-fn' | '--keep-var')
+	  #'--{drop,keep}{,-fn,-var}')
+	    COMPREPLY=( $(compgen -W "string" -- $cur) )
+	    return 0
+	    ;;
+	esac
+	case $cur in
+	  -*)
+		#TODO: not done, short options missing etc..
+	    OPTS="  --app-debug-info-dir1
+		    --help
+		    --lib-debug-info-dir1
+		    --lib-debug-info-dir2
+		    --list-undefined-symbols
+		    --no-redundant
+		    --redundant
+		    --show-base-names
+		    --no-show-locs
+		    --suppressions
+		    --weak-mode"
+	    COMPREPLY=( $(compgen -W "${OPTS[*]}" -- $cur) )
+	    return 0
+	    ;;
+	esac
+	local IFS=$'\n'
+	compopt -o filenames
+	COMPREPLY=( $(compgen -f -- $cur) )
+	return 0
+}
+complete -F _abicompat_module abicompat

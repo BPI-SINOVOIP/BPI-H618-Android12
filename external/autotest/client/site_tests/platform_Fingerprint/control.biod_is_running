@@ -1,0 +1,23 @@
+# Copyright 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+AUTHOR = "Chrome OS Team"
+NAME = "platform_Fingerprint.biod_is_running"
+PURPOSE = "Checks that biod is running."
+CRITERIA = """
+Fails if biod is not running.
+"""
+ATTRIBUTES = "suite:fingerprint"
+TIME = "SHORT"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "platform"
+TEST_TYPE = "client"
+DEPENDENCIES = "fingerprint"
+JOB_RETRIES = 0
+
+DOC = """
+Checks that biod is running.
+"""
+
+job.run_test('platform_Fingerprint', to_test='biod_is_running')

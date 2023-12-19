@@ -1,0 +1,7 @@
+[suppress_function]
+ symbol_name_not_regexp = ^PageMovable$
+ drop = yes
+
+[suppress_variable]
+ symbol_name_not_regexp = ^PageMovable$
+ drop = yes

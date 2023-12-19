@@ -1,0 +1,14 @@
+<abi-instr path='data/test-read-write/test2.xml'>
+  <type-decl name='char' size-in-bits='8' alignment-in-bits='8' id='type-id-1'/>
+  <namespace-decl name='bar'>
+    <type-decl name='int32' size-in-bits='32' alignment-in-bits='32' id='type-id-2'/>
+  </namespace-decl>
+  <namespace-decl name='baz'>
+    <namespace-decl name='barbaz'>
+      <type-decl name='int64' size-in-bits='64' alignment-in-bits='64' id='type-id-3'/>
+    </namespace-decl>
+  </namespace-decl>
+  <namespace-decl name='foo'>
+    <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-4'/>
+  </namespace-decl>
+</abi-instr>

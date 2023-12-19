@@ -1,0 +1,41 @@
+Leaf changes summary: 4 artifacts changed
+Changed leaf types summary: 1 leaf type changed
+Removed/Changed/Added functions summary: 1 Removed, 1 Changed, 1 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 Removed function:
+
+  [D] 'method virtual int ops::deleted_fn()'    {_ZN3ops10deleted_fnEv}
+    note that this removes an entry from the vtable of struct ops
+
+1 Added function:
+
+  [A] 'method virtual long int ops::added_fn()'    {_ZN3ops8added_fnEv}
+    note that this adds a new entry to the vtable of struct ops
+
+1 function with some sub-type change:
+
+  [C] 'method virtual int ops::changed_fn()' at test-leaf-cxx-members-v1.cc:5:1 has some sub-type changes:
+    return type changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)
+
+'struct ops at test-leaf-cxx-members-v0.cc:2:1' changed:
+  type size changed from 128 to 192 (in bits)
+  1 member function deletion:
+    'method virtual int ops::deleted_fn()' at test-leaf-cxx-members-v0.cc:6:1, virtual at voffset 1/1    {_ZN3ops10deleted_fnEv}
+  1 member function insertion:
+    'method virtual long int ops::added_fn()' at test-leaf-cxx-members-v1.cc:11:1, virtual at voffset 1/1    {_ZN3ops8added_fnEv}
+  there are member function changes:
+    'method virtual int ops::changed_fn()' has some changes:
+      return type changed:
+        type name changed from 'int' to 'long int'
+        type size changed from 32 to 64 (in bits)
+  1 data member deletion:
+    'int deleted_var', at offset 96 (in bits) at test-leaf-cxx-members-v0.cc:5:1
+  1 data member insertion:
+    'long int added_var', at offset 128 (in bits) at test-leaf-cxx-members-v1.cc:10:1
+  there are data member changes:
+    type 'int' of 'ops::changed_var' changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)

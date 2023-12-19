@@ -1,0 +1,1601 @@
+<abi-corpus path='tests/data/test-symtab/kernel-modversions/one_of_each.ko' architecture='elf-amd-x86_64'>
+  <elf-function-symbols>
+    <elf-symbol name='exported_function' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes' crc='0xe52d5bd0'/>
+    <elf-symbol name='exported_function_gpl' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes' crc='0xfda43846'/>
+  </elf-function-symbols>
+  <elf-variable-symbols>
+    <elf-symbol name='exported_variable' size='4' type='object-type' binding='global-binding' visibility='default-visibility' is-defined='yes' crc='0xee94d699'/>
+    <elf-symbol name='exported_variable_gpl' size='4' type='object-type' binding='global-binding' visibility='default-visibility' is-defined='yes' crc='0x41336c46'/>
+  </elf-variable-symbols>
+  <abi-instr version='1.0' address-size='64' path='tests/data/test-symtab/kernel-modversions/one_of_each.c' comp-dir-path='/ws/contrib/linux' language='LANG_C89'>
+    <type-decl name='int' size-in-bits='32' id='type-id-1'/>
+    <type-decl name='void' id='type-id-2'/>
+    <var-decl name='exported_variable' type-id='type-id-1' mangled-name='exported_variable' visibility='default' filepath='tests/data/test-symtab/kernel-modversions/one_of_each.c' line='9' column='1' elf-symbol-id='exported_variable'/>
+    <var-decl name='exported_variable_gpl' type-id='type-id-1' mangled-name='exported_variable_gpl' visibility='default' filepath='tests/data/test-symtab/kernel-modversions/one_of_each.c' line='12' column='1' elf-symbol-id='exported_variable_gpl'/>
+    <function-decl name='exported_function' mangled-name='exported_function' filepath='tests/data/test-symtab/kernel-modversions/one_of_each.c' line='3' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='exported_function'>
+      <return type-id='type-id-2'/>
+    </function-decl>
+  </abi-instr>
+  <abi-instr version='1.0' address-size='64' path='tests/data/test-symtab/kernel-modversions/one_of_each.mod.c' comp-dir-path='/ws/contrib/linux' language='LANG_C89'>
+
+
+
+
+
+
+
+
+    <array-type-def dimensions='1' type-id='type-id-3' size-in-bits='256' id='type-id-4'>
+      <subrange length='4' type-id='type-id-5' id='type-id-6'/>
+
+    </array-type-def>
+    <type-decl name='bool' size-in-bits='8' id='type-id-7'/>
+    <type-decl name='char' size-in-bits='8' id='type-id-8'/>
+    <array-type-def dimensions='1' type-id='type-id-9' size-in-bits='2048' id='type-id-10'>
+      <subrange length='32' type-id='type-id-5' id='type-id-11'/>
+
+    </array-type-def>
+    <array-type-def dimensions='1' type-id='type-id-9' size-in-bits='192' id='type-id-12'>
+      <subrange length='3' type-id='type-id-5' id='type-id-13'/>
+
+    </array-type-def>
+    <array-type-def dimensions='1' type-id='type-id-8' size-in-bits='16384' id='type-id-14'>
+      <subrange length='2048' type-id='type-id-5' id='type-id-15'/>
+
+    </array-type-def>
+    <array-type-def dimensions='1' type-id='type-id-8' size-in-bits='448' id='type-id-16'>
+      <subrange length='56' type-id='type-id-5' id='type-id-17'/>
+
+    </array-type-def>
+    <class-decl name='anon_vma' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-18'/>
+    <class-decl name='exception_table_entry' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-19'/>
+    <class-decl name='file' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-20'/>
+    <class-decl name='kernfs_iattrs' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-21'/>
+    <class-decl name='kernfs_open_node' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-22'/>
+    <class-decl name='linux_binfmt' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-23'/>
+    <class-decl name='module_param_attrs' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-24'/>
+    <class-decl name='poll_table_struct' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-25'/>
+    <class-decl name='seq_file' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-26'/>
+    <class-decl name='sock' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-27'/>
+    <class-decl name='task_struct' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-28'/>
+    <class-decl name='user_namespace' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-29'/>
+    <class-decl name='vm_operations_struct' is-struct='yes' visibility='default' is-declaration-only='yes' id='type-id-30'/>
+    <type-decl name='long int' size-in-bits='64' id='type-id-31'/>
+    <type-decl name='long long int' size-in-bits='64' id='type-id-32'/>
+    <type-decl name='long long unsigned int' size-in-bits='64' id='type-id-33'/>
+    <array-type-def dimensions='1' type-id='type-id-34' size-in-bits='384' id='type-id-35'>
+      <subrange length='2' type-id='type-id-5' id='type-id-36'/>
+
+    </array-type-def>
+    <type-decl name='short int' size-in-bits='16' id='type-id-37'/>
+    <type-decl name='signed char' size-in-bits='8' id='type-id-38'/>
+    <type-decl name='unnamed-enum-underlying-type' is-anonymous='yes' size-in-bits='32' alignment-in-bits='32' id='type-id-39'/>
+    <type-decl name='unsigned char' size-in-bits='8' id='type-id-40'/>
+    <type-decl name='unsigned int' size-in-bits='32' id='type-id-41'/>
+    <type-decl name='unsigned long int' size-in-bits='64' id='type-id-5'/>
+    <array-type-def dimensions='1' type-id='type-id-5' size-in-bits='2816' id='type-id-42'>
+      <subrange length='44' type-id='type-id-5' id='type-id-43'/>
+
+    </array-type-def>
+    <array-type-def dimensions='1' type-id='type-id-5' size-in-bits='infinite' id='type-id-44'>
+      <subrange length='infinite' type-id='type-id-5' id='type-id-45'/>
+
+    </array-type-def>
+    <type-decl name='unsigned short int' size-in-bits='16' id='type-id-46'/>
+    <class-decl name='module' size-in-bits='4608' is-struct='yes' visibility='default' filepath='./include/linux/module.h' line='347' column='1' id='type-id-47'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='state' type-id='type-id-48' visibility='default' filepath='./include/linux/module.h' line='348' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='list' type-id='type-id-49' visibility='default' filepath='./include/linux/module.h' line='351' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='name' type-id='type-id-16' visibility='default' filepath='./include/linux/module.h' line='354' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <var-decl name='mkobj' type-id='type-id-50' visibility='default' filepath='./include/linux/module.h' line='357' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1408'>
+        <var-decl name='modinfo_attrs' type-id='type-id-51' visibility='default' filepath='./include/linux/module.h' line='358' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1472'>
+        <var-decl name='version' type-id='type-id-52' visibility='default' filepath='./include/linux/module.h' line='359' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1536'>
+        <var-decl name='srcversion' type-id='type-id-52' visibility='default' filepath='./include/linux/module.h' line='360' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1600'>
+        <var-decl name='holders_dir' type-id='type-id-53' visibility='default' filepath='./include/linux/module.h' line='361' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1664'>
+        <var-decl name='syms' type-id='type-id-54' visibility='default' filepath='./include/linux/module.h' line='364' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1728'>
+        <var-decl name='crcs' type-id='type-id-55' visibility='default' filepath='./include/linux/module.h' line='365' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1792'>
+        <var-decl name='num_syms' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='366' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1856'>
+        <var-decl name='kp' type-id='type-id-56' visibility='default' filepath='./include/linux/module.h' line='372' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1920'>
+        <var-decl name='num_kp' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='373' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1952'>
+        <var-decl name='num_gpl_syms' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='376' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1984'>
+        <var-decl name='gpl_syms' type-id='type-id-54' visibility='default' filepath='./include/linux/module.h' line='377' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2048'>
+        <var-decl name='gpl_crcs' type-id='type-id-55' visibility='default' filepath='./include/linux/module.h' line='378' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2112'>
+        <var-decl name='unused_syms' type-id='type-id-54' visibility='default' filepath='./include/linux/module.h' line='382' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2176'>
+        <var-decl name='unused_crcs' type-id='type-id-55' visibility='default' filepath='./include/linux/module.h' line='383' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2240'>
+        <var-decl name='num_unused_syms' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='384' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2272'>
+        <var-decl name='num_unused_gpl_syms' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='387' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2304'>
+        <var-decl name='unused_gpl_syms' type-id='type-id-54' visibility='default' filepath='./include/linux/module.h' line='388' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2368'>
+        <var-decl name='unused_gpl_crcs' type-id='type-id-55' visibility='default' filepath='./include/linux/module.h' line='389' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2432'>
+        <var-decl name='async_probe_requested' type-id='type-id-57' visibility='default' filepath='./include/linux/module.h' line='397' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2496'>
+        <var-decl name='gpl_future_syms' type-id='type-id-54' visibility='default' filepath='./include/linux/module.h' line='400' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2560'>
+        <var-decl name='gpl_future_crcs' type-id='type-id-55' visibility='default' filepath='./include/linux/module.h' line='401' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2624'>
+        <var-decl name='num_gpl_future_syms' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='402' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2656'>
+        <var-decl name='num_exentries' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='405' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2688'>
+        <var-decl name='extable' type-id='type-id-58' visibility='default' filepath='./include/linux/module.h' line='406' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2752'>
+        <var-decl name='init' type-id='type-id-59' visibility='default' filepath='./include/linux/module.h' line='409' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='3072'>
+        <var-decl name='core_layout' type-id='type-id-60' visibility='default' filepath='./include/linux/module.h' line='412' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='3712'>
+        <var-decl name='init_layout' type-id='type-id-60' visibility='default' filepath='./include/linux/module.h' line='413' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='4352'>
+        <var-decl name='arch' type-id='type-id-61' visibility='default' filepath='./include/linux/module.h' line='416' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='4352'>
+        <var-decl name='taints' type-id='type-id-5' visibility='default' filepath='./include/linux/module.h' line='418' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='4416'>
+        <var-decl name='args' type-id='type-id-9' visibility='default' filepath='./include/linux/module.h' line='441' column='1'/>
+      </data-member>
+    </class-decl>
+    <enum-decl name='module_state' filepath='./include/linux/module.h' line='295' column='1' id='type-id-48'>
+      <underlying-type type-id='type-id-39'/>
+      <enumerator name='MODULE_STATE_LIVE' value='0'/>
+      <enumerator name='MODULE_STATE_COMING' value='1'/>
+      <enumerator name='MODULE_STATE_GOING' value='2'/>
+      <enumerator name='MODULE_STATE_UNFORMED' value='3'/>
+    </enum-decl>
+    <class-decl name='list_head' size-in-bits='128' is-struct='yes' visibility='default' filepath='./include/linux/types.h' line='181' column='1' id='type-id-49'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='next' type-id='type-id-62' visibility='default' filepath='./include/linux/types.h' line='182' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='prev' type-id='type-id-62' visibility='default' filepath='./include/linux/types.h' line='182' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='module_kobject' size-in-bits='768' is-struct='yes' visibility='default' filepath='./include/linux/module.h' line='42' column='1' id='type-id-50'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='kobj' type-id='type-id-63' visibility='default' filepath='./include/linux/module.h' line='43' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='512'>
+        <var-decl name='mod' type-id='type-id-64' visibility='default' filepath='./include/linux/module.h' line='44' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='576'>
+        <var-decl name='drivers_dir' type-id='type-id-53' visibility='default' filepath='./include/linux/module.h' line='45' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <var-decl name='mp' type-id='type-id-65' visibility='default' filepath='./include/linux/module.h' line='46' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='704'>
+        <var-decl name='kobj_completion' type-id='type-id-66' visibility='default' filepath='./include/linux/module.h' line='47' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kobject' size-in-bits='512' is-struct='yes' visibility='default' filepath='./include/linux/kobject.h' line='65' column='1' id='type-id-63'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='name' type-id='type-id-52' visibility='default' filepath='./include/linux/kobject.h' line='66' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='entry' type-id='type-id-49' visibility='default' filepath='./include/linux/kobject.h' line='67' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='parent' type-id='type-id-53' visibility='default' filepath='./include/linux/kobject.h' line='68' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='kset' type-id='type-id-67' visibility='default' filepath='./include/linux/kobject.h' line='69' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='ktype' type-id='type-id-68' visibility='default' filepath='./include/linux/kobject.h' line='70' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='sd' type-id='type-id-69' visibility='default' filepath='./include/linux/kobject.h' line='71' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='kref' type-id='type-id-70' visibility='default' filepath='./include/linux/kobject.h' line='72' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='31'>
+        <var-decl name='state_initialized' type-id='type-id-41' visibility='default' filepath='./include/linux/kobject.h' line='76' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='30'>
+        <var-decl name='state_in_sysfs' type-id='type-id-41' visibility='default' filepath='./include/linux/kobject.h' line='77' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='29'>
+        <var-decl name='state_add_uevent_sent' type-id='type-id-41' visibility='default' filepath='./include/linux/kobject.h' line='78' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='28'>
+        <var-decl name='state_remove_uevent_sent' type-id='type-id-41' visibility='default' filepath='./include/linux/kobject.h' line='79' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='27'>
+        <var-decl name='uevent_suppress' type-id='type-id-41' visibility='default' filepath='./include/linux/kobject.h' line='80' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kset' size-in-bits='704' is-struct='yes' visibility='default' filepath='./include/linux/kobject.h' line='193' column='1' id='type-id-71'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='list' type-id='type-id-49' visibility='default' filepath='./include/linux/kobject.h' line='194' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='list_lock' type-id='type-id-72' visibility='default' filepath='./include/linux/kobject.h' line='195' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='kobj' type-id='type-id-63' visibility='default' filepath='./include/linux/kobject.h' line='196' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <var-decl name='uevent_ops' type-id='type-id-73' visibility='default' filepath='./include/linux/kobject.h' line='197' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='spinlock_t' type-id='type-id-74' filepath='./include/linux/spinlock_types.h' line='73' column='1' id='type-id-72'/>
+    <class-decl name='spinlock' is-struct='yes' visibility='default' filepath='./include/linux/spinlock_types.h' line='61' column='1' id='type-id-74'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='' type-id='type-id-75' visibility='default'/>
+      </data-member>
+    </class-decl>
+    <union-decl name='__anonymous_union__' is-anonymous='yes' visibility='default' filepath='./include/linux/spinlock_types.h' line='62' column='1' id='type-id-75'>
+      <data-member access='private'>
+        <var-decl name='rlock' type-id='type-id-76' visibility='default' filepath='./include/linux/spinlock_types.h' line='63' column='1'/>
+      </data-member>
+    </union-decl>
+    <class-decl name='raw_spinlock' is-struct='yes' visibility='default' filepath='./include/linux/spinlock_types.h' line='20' column='1' id='type-id-76'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='raw_lock' type-id='type-id-77' visibility='default' filepath='./include/linux/spinlock_types.h' line='21' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='arch_spinlock_t' type-id='type-id-78' filepath='./include/linux/spinlock_types_up.h' line='25' column='1' id='type-id-77'/>
+    <class-decl name='__anonymous_struct__' is-struct='yes' is-anonymous='yes' naming-typedef-id='type-id-77' visibility='default' filepath='./include/linux/spinlock_types_up.h' line='25' column='1' id='type-id-78'/>
+    <class-decl name='kset_uevent_ops' size-in-bits='192' is-struct='yes' visibility='default' filepath='./include/linux/kobject.h' line='157' column='1' id='type-id-79'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='filter' type-id='type-id-80' visibility='default' filepath='./include/linux/kobject.h' line='158' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='name' type-id='type-id-81' visibility='default' filepath='./include/linux/kobject.h' line='159' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='uevent' type-id='type-id-82' visibility='default' filepath='./include/linux/kobject.h' line='160' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kobj_uevent_env' size-in-bits='18688' is-struct='yes' visibility='default' filepath='./include/linux/kobject.h' line='149' column='1' id='type-id-83'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='argv' type-id='type-id-12' visibility='default' filepath='./include/linux/kobject.h' line='150' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='envp' type-id='type-id-10' visibility='default' filepath='./include/linux/kobject.h' line='151' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2240'>
+        <var-decl name='envp_idx' type-id='type-id-1' visibility='default' filepath='./include/linux/kobject.h' line='152' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2272'>
+        <var-decl name='buf' type-id='type-id-14' visibility='default' filepath='./include/linux/kobject.h' line='153' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='18656'>
+        <var-decl name='buflen' type-id='type-id-1' visibility='default' filepath='./include/linux/kobject.h' line='154' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kobj_type' size-in-bits='448' is-struct='yes' visibility='default' filepath='./include/linux/kobject.h' line='139' column='1' id='type-id-84'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='release' type-id='type-id-85' visibility='default' filepath='./include/linux/kobject.h' line='140' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='sysfs_ops' type-id='type-id-86' visibility='default' filepath='./include/linux/kobject.h' line='141' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='default_attrs' type-id='type-id-87' visibility='default' filepath='./include/linux/kobject.h' line='142' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='default_groups' type-id='type-id-88' visibility='default' filepath='./include/linux/kobject.h' line='143' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='child_ns_type' type-id='type-id-89' visibility='default' filepath='./include/linux/kobject.h' line='144' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='namespace' type-id='type-id-90' visibility='default' filepath='./include/linux/kobject.h' line='145' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='get_ownership' type-id='type-id-91' visibility='default' filepath='./include/linux/kobject.h' line='146' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='sysfs_ops' size-in-bits='128' is-struct='yes' visibility='default' filepath='./include/linux/sysfs.h' line='223' column='1' id='type-id-92'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='show' type-id='type-id-93' visibility='default' filepath='./include/linux/sysfs.h' line='224' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='store' type-id='type-id-94' visibility='default' filepath='./include/linux/sysfs.h' line='225' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='ssize_t' type-id='type-id-95' filepath='./include/linux/types.h' line='60' column='1' id='type-id-96'/>
+    <typedef-decl name='__kernel_ssize_t' type-id='type-id-97' filepath='./include/uapi/asm-generic/posix_types.h' line='73' column='1' id='type-id-95'/>
+    <typedef-decl name='__kernel_long_t' type-id='type-id-31' filepath='./include/uapi/asm-generic/posix_types.h' line='15' column='1' id='type-id-97'/>
+    <class-decl name='attribute' size-in-bits='128' is-struct='yes' visibility='default' filepath='./include/linux/sysfs.h' line='30' column='1' id='type-id-98'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='name' type-id='type-id-52' visibility='default' filepath='./include/linux/sysfs.h' line='31' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='mode' type-id='type-id-99' visibility='default' filepath='./include/linux/sysfs.h' line='32' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='umode_t' type-id='type-id-46' filepath='./include/linux/types.h' line='19' column='1' id='type-id-99'/>
+    <typedef-decl name='size_t' type-id='type-id-100' filepath='./include/linux/types.h' line='55' column='1' id='type-id-101'/>
+    <typedef-decl name='__kernel_size_t' type-id='type-id-102' filepath='./include/uapi/asm-generic/posix_types.h' line='72' column='1' id='type-id-100'/>
+    <typedef-decl name='__kernel_ulong_t' type-id='type-id-5' filepath='./include/uapi/asm-generic/posix_types.h' line='16' column='1' id='type-id-102'/>
+    <class-decl name='attribute_group' size-in-bits='320' is-struct='yes' visibility='default' filepath='./include/linux/sysfs.h' line='84' column='1' id='type-id-103'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='name' type-id='type-id-52' visibility='default' filepath='./include/linux/sysfs.h' line='85' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='is_visible' type-id='type-id-104' visibility='default' filepath='./include/linux/sysfs.h' line='86' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='is_bin_visible' type-id='type-id-105' visibility='default' filepath='./include/linux/sysfs.h' line='88' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='attrs' type-id='type-id-87' visibility='default' filepath='./include/linux/sysfs.h' line='90' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='bin_attrs' type-id='type-id-106' visibility='default' filepath='./include/linux/sysfs.h' line='91' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='bin_attribute' size-in-bits='448' is-struct='yes' visibility='default' filepath='./include/linux/sysfs.h' line='161' column='1' id='type-id-107'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='attr' type-id='type-id-98' visibility='default' filepath='./include/linux/sysfs.h' line='162' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='size' type-id='type-id-101' visibility='default' filepath='./include/linux/sysfs.h' line='163' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='private' type-id='type-id-108' visibility='default' filepath='./include/linux/sysfs.h' line='164' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='read' type-id='type-id-109' visibility='default' filepath='./include/linux/sysfs.h' line='165' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='write' type-id='type-id-109' visibility='default' filepath='./include/linux/sysfs.h' line='167' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='mmap' type-id='type-id-110' visibility='default' filepath='./include/linux/sysfs.h' line='169' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='loff_t' type-id='type-id-111' filepath='./include/linux/types.h' line='46' column='1' id='type-id-112'/>
+    <typedef-decl name='__kernel_loff_t' type-id='type-id-32' filepath='./include/uapi/asm-generic/posix_types.h' line='88' column='1' id='type-id-111'/>
+    <class-decl name='vm_area_struct' size-in-bits='1408' is-struct='yes' visibility='default' filepath='./include/linux/mm_types.h' line='292' column='1' id='type-id-113'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='vm_start' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='295' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='vm_end' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='296' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='vm_next' type-id='type-id-114' visibility='default' filepath='./include/linux/mm_types.h' line='300' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='vm_prev' type-id='type-id-114' visibility='default' filepath='./include/linux/mm_types.h' line='300' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='vm_rb' type-id='type-id-34' visibility='default' filepath='./include/linux/mm_types.h' line='302' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='rb_subtree_gap' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='310' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='512'>
+        <var-decl name='vm_mm' type-id='type-id-115' visibility='default' filepath='./include/linux/mm_types.h' line='314' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='576'>
+        <var-decl name='vm_page_prot' type-id='type-id-116' visibility='default' filepath='./include/linux/mm_types.h' line='315' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <var-decl name='vm_flags' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='316' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='704'>
+        <var-decl name='shared' type-id='type-id-117' visibility='default' filepath='./include/linux/mm_types.h' line='325' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='960'>
+        <var-decl name='anon_vma_chain' type-id='type-id-49' visibility='default' filepath='./include/linux/mm_types.h' line='333' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1088'>
+        <var-decl name='anon_vma' type-id='type-id-118' visibility='default' filepath='./include/linux/mm_types.h' line='335' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1152'>
+        <var-decl name='vm_ops' type-id='type-id-119' visibility='default' filepath='./include/linux/mm_types.h' line='338' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1216'>
+        <var-decl name='vm_pgoff' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='341' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1280'>
+        <var-decl name='vm_file' type-id='type-id-120' visibility='default' filepath='./include/linux/mm_types.h' line='343' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1344'>
+        <var-decl name='vm_private_data' type-id='type-id-108' visibility='default' filepath='./include/linux/mm_types.h' line='344' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1408'>
+        <var-decl name='vm_userfaultfd_ctx' type-id='type-id-121' visibility='default' filepath='./include/linux/mm_types.h' line='355' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='rb_node' size-in-bits='192' is-struct='yes' visibility='default' filepath='./include/linux/rbtree.h' line='24' column='1' id='type-id-34'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='__rb_parent_color' type-id='type-id-5' visibility='default' filepath='./include/linux/rbtree.h' line='25' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='rb_right' type-id='type-id-122' visibility='default' filepath='./include/linux/rbtree.h' line='26' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='rb_left' type-id='type-id-122' visibility='default' filepath='./include/linux/rbtree.h' line='27' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='mm_struct' size-in-bits='6720' is-struct='yes' visibility='default' filepath='./include/linux/mm_types.h' line='370' column='1' id='type-id-123'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='' type-id='type-id-124' visibility='default'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6720'>
+        <var-decl name='cpu_bitmap' type-id='type-id-44' visibility='default' filepath='./include/linux/mm_types.h' line='533' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='__anonymous_struct__1' size-in-bits='6720' is-struct='yes' is-anonymous='yes' visibility='default' filepath='./include/linux/mm_types.h' line='371' column='1' id='type-id-124'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='mmap' type-id='type-id-114' visibility='default' filepath='./include/linux/mm_types.h' line='372' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='mm_rb' type-id='type-id-125' visibility='default' filepath='./include/linux/mm_types.h' line='373' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='vmacache_seqnum' type-id='type-id-126' visibility='default' filepath='./include/linux/mm_types.h' line='374' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='get_unmapped_area' type-id='type-id-127' visibility='default' filepath='./include/linux/mm_types.h' line='376' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='mmap_base' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='380' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='mmap_legacy_base' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='381' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='task_size' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='387' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='highest_vm_end' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='388' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='512'>
+        <var-decl name='pgd' type-id='type-id-128' visibility='default' filepath='./include/linux/mm_types.h' line='389' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='576'>
+        <var-decl name='mm_users' type-id='type-id-129' visibility='default' filepath='./include/linux/mm_types.h' line='410' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='608'>
+        <var-decl name='mm_count' type-id='type-id-129' visibility='default' filepath='./include/linux/mm_types.h' line='419' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <var-decl name='pgtables_bytes' type-id='type-id-3' visibility='default' filepath='./include/linux/mm_types.h' line='422' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='704'>
+        <var-decl name='map_count' type-id='type-id-1' visibility='default' filepath='./include/linux/mm_types.h' line='424' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='736'>
+        <var-decl name='page_table_lock' type-id='type-id-72' visibility='default' filepath='./include/linux/mm_types.h' line='426' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='768'>
+        <var-decl name='mmap_sem' type-id='type-id-130' visibility='default' filepath='./include/linux/mm_types.h' line='429' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1024'>
+        <var-decl name='mmlist' type-id='type-id-49' visibility='default' filepath='./include/linux/mm_types.h' line='431' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1152'>
+        <var-decl name='hiwater_rss' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='438' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1216'>
+        <var-decl name='hiwater_vm' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='439' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1280'>
+        <var-decl name='total_vm' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='441' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1344'>
+        <var-decl name='locked_vm' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='442' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1408'>
+        <var-decl name='pinned_vm' type-id='type-id-131' visibility='default' filepath='./include/linux/mm_types.h' line='443' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1472'>
+        <var-decl name='data_vm' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='444' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1536'>
+        <var-decl name='exec_vm' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='445' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1600'>
+        <var-decl name='stack_vm' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='446' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1664'>
+        <var-decl name='def_flags' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='447' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1728'>
+        <var-decl name='arg_lock' type-id='type-id-72' visibility='default' filepath='./include/linux/mm_types.h' line='449' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1728'>
+        <var-decl name='start_code' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='450' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1792'>
+        <var-decl name='end_code' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='450' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1856'>
+        <var-decl name='start_data' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='450' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1920'>
+        <var-decl name='end_data' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='450' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1984'>
+        <var-decl name='start_brk' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='451' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2048'>
+        <var-decl name='brk' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='451' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2112'>
+        <var-decl name='start_stack' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='451' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2176'>
+        <var-decl name='arg_start' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='452' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2240'>
+        <var-decl name='arg_end' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='452' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2304'>
+        <var-decl name='env_start' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='452' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2368'>
+        <var-decl name='env_end' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='452' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='2432'>
+        <var-decl name='saved_auxv' type-id='type-id-42' visibility='default' filepath='./include/linux/mm_types.h' line='454' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='5248'>
+        <var-decl name='rss_stat' type-id='type-id-132' visibility='default' filepath='./include/linux/mm_types.h' line='460' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='5504'>
+        <var-decl name='binfmt' type-id='type-id-133' visibility='default' filepath='./include/linux/mm_types.h' line='462' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='5568'>
+        <var-decl name='context' type-id='type-id-134' visibility='default' filepath='./include/linux/mm_types.h' line='465' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6144'>
+        <var-decl name='flags' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='467' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6208'>
+        <var-decl name='core_state' type-id='type-id-135' visibility='default' filepath='./include/linux/mm_types.h' line='469' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6272'>
+        <var-decl name='user_ns' type-id='type-id-136' visibility='default' filepath='./include/linux/mm_types.h' line='488' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6336'>
+        <var-decl name='exe_file' type-id='type-id-120' visibility='default' filepath='./include/linux/mm_types.h' line='491' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6400'>
+        <var-decl name='tlb_flush_pending' type-id='type-id-129' visibility='default' filepath='./include/linux/mm_types.h' line='517' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6432'>
+        <var-decl name='tlb_flush_batched' type-id='type-id-57' visibility='default' filepath='./include/linux/mm_types.h' line='520' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6440'>
+        <var-decl name='uprobes_state' type-id='type-id-137' visibility='default' filepath='./include/linux/mm_types.h' line='522' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6464'>
+        <var-decl name='async_put_work' type-id='type-id-138' visibility='default' filepath='./include/linux/mm_types.h' line='526' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='rb_root' size-in-bits='64' is-struct='yes' visibility='default' filepath='./include/linux/rbtree.h' line='31' column='1' id='type-id-125'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='rb_node' type-id='type-id-122' visibility='default' filepath='./include/linux/rbtree.h' line='32' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='u64' type-id='type-id-139' filepath='./include/asm-generic/int-ll64.h' line='23' column='1' id='type-id-126'/>
+    <typedef-decl name='__u64' type-id='type-id-33' filepath='./include/uapi/asm-generic/int-ll64.h' line='31' column='1' id='type-id-139'/>
+    <typedef-decl name='pgd_t' type-id='type-id-140' filepath='./arch/x86/include/asm/pgtable_types.h' line='267' column='1' id='type-id-141'/>
+    <class-decl name='__anonymous_struct__2' size-in-bits='64' is-struct='yes' is-anonymous='yes' naming-typedef-id='type-id-141' visibility='default' filepath='./arch/x86/include/asm/pgtable_types.h' line='267' column='1' id='type-id-140'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='pgd' type-id='type-id-142' visibility='default' filepath='./arch/x86/include/asm/pgtable_types.h' line='267' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='pgdval_t' type-id='type-id-5' filepath='./arch/x86/include/asm/pgtable_64_types.h' line='18' column='1' id='type-id-142'/>
+    <typedef-decl name='atomic_t' type-id='type-id-143' filepath='./include/linux/types.h' line='173' column='1' id='type-id-129'/>
+    <class-decl name='__anonymous_struct__3' size-in-bits='32' is-struct='yes' is-anonymous='yes' naming-typedef-id='type-id-129' visibility='default' filepath='./include/linux/types.h' line='171' column='1' id='type-id-143'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='counter' type-id='type-id-1' visibility='default' filepath='./include/linux/types.h' line='172' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='atomic_long_t' type-id='type-id-131' filepath='./include/asm-generic/atomic-long.h' line='12' column='1' id='type-id-3'/>
+    <typedef-decl name='atomic64_t' type-id='type-id-144' filepath='./include/linux/types.h' line='178' column='1' id='type-id-131'/>
+    <class-decl name='__anonymous_struct__4' size-in-bits='64' is-struct='yes' is-anonymous='yes' naming-typedef-id='type-id-131' visibility='default' filepath='./include/linux/types.h' line='176' column='1' id='type-id-144'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='counter' type-id='type-id-145' visibility='default' filepath='./include/linux/types.h' line='177' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='s64' type-id='type-id-146' filepath='./include/asm-generic/int-ll64.h' line='22' column='1' id='type-id-145'/>
+    <typedef-decl name='__s64' type-id='type-id-32' filepath='./include/uapi/asm-generic/int-ll64.h' line='30' column='1' id='type-id-146'/>
+    <class-decl name='rw_semaphore' size-in-bits='256' is-struct='yes' visibility='default' filepath='./include/linux/rwsem.h' line='35' column='1' id='type-id-130'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='count' type-id='type-id-3' visibility='default' filepath='./include/linux/rwsem.h' line='36' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='owner' type-id='type-id-3' visibility='default' filepath='./include/linux/rwsem.h' line='42' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='wait_lock' type-id='type-id-147' visibility='default' filepath='./include/linux/rwsem.h' line='46' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='wait_list' type-id='type-id-49' visibility='default' filepath='./include/linux/rwsem.h' line='47' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='raw_spinlock_t' type-id='type-id-76' filepath='./include/linux/spinlock_types.h' line='29' column='1' id='type-id-147'/>
+    <class-decl name='mm_rss_stat' size-in-bits='256' is-struct='yes' visibility='default' filepath='./include/linux/mm_types_task.h' line='60' column='1' id='type-id-132'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='count' type-id='type-id-4' visibility='default' filepath='./include/linux/mm_types_task.h' line='61' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='mm_context_t' type-id='type-id-148' filepath='./arch/x86/include/asm/mmu.h' line='57' column='1' id='type-id-134'/>
+    <class-decl name='__anonymous_struct__5' size-in-bits='576' is-struct='yes' is-anonymous='yes' naming-typedef-id='type-id-134' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='13' column='1' id='type-id-148'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='ctx_id' type-id='type-id-126' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='18' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='tlb_gen' type-id='type-id-131' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='28' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='ia32_compat' type-id='type-id-46' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='37' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='lock' type-id='type-id-149' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='40' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='vdso' type-id='type-id-108' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='41' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='vdso_image' type-id='type-id-150' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='42' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='512'>
+        <var-decl name='perf_rdpmc_allowed' type-id='type-id-129' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='44' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='544'>
+        <var-decl name='pkey_allocation_map' type-id='type-id-151' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='50' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='560'>
+        <var-decl name='execute_only_pkey' type-id='type-id-152' visibility='default' filepath='./arch/x86/include/asm/mmu.h' line='51' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='mutex' size-in-bits='192' is-struct='yes' visibility='default' filepath='./include/linux/mutex.h' line='53' column='1' id='type-id-149'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='owner' type-id='type-id-3' visibility='default' filepath='./include/linux/mutex.h' line='54' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='wait_lock' type-id='type-id-72' visibility='default' filepath='./include/linux/mutex.h' line='55' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='wait_list' type-id='type-id-49' visibility='default' filepath='./include/linux/mutex.h' line='59' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='vdso_image' size-in-bits='832' is-struct='yes' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='13' column='1' id='type-id-153'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='data' type-id='type-id-108' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='14' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='size' type-id='type-id-5' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='15' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='alt' type-id='type-id-5' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='17' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='alt_len' type-id='type-id-5' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='17' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='sym_vvar_start' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='19' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='sym_vvar_page' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='21' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='sym_pvclock_page' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='22' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='sym_hvclock_page' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='23' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='512'>
+        <var-decl name='sym_VDSO32_NOTE_MASK' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='24' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='576'>
+        <var-decl name='sym___kernel_sigreturn' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='25' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <var-decl name='sym___kernel_rt_sigreturn' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='26' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='704'>
+        <var-decl name='sym___kernel_vsyscall' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='27' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='768'>
+        <var-decl name='sym_int80_landing_pad' type-id='type-id-31' visibility='default' filepath='./arch/x86/include/asm/vdso.h' line='28' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='u16' type-id='type-id-154' filepath='./include/asm-generic/int-ll64.h' line='19' column='1' id='type-id-151'/>
+    <typedef-decl name='__u16' type-id='type-id-46' filepath='./include/uapi/asm-generic/int-ll64.h' line='24' column='1' id='type-id-154'/>
+    <typedef-decl name='s16' type-id='type-id-155' filepath='./include/asm-generic/int-ll64.h' line='18' column='1' id='type-id-152'/>
+    <typedef-decl name='__s16' type-id='type-id-37' filepath='./include/uapi/asm-generic/int-ll64.h' line='23' column='1' id='type-id-155'/>
+    <class-decl name='core_state' size-in-bits='384' is-struct='yes' visibility='default' filepath='./include/linux/mm_types.h' line='363' column='1' id='type-id-156'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='nr_threads' type-id='type-id-129' visibility='default' filepath='./include/linux/mm_types.h' line='364' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='dumper' type-id='type-id-157' visibility='default' filepath='./include/linux/mm_types.h' line='365' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='startup' type-id='type-id-158' visibility='default' filepath='./include/linux/mm_types.h' line='366' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='core_thread' size-in-bits='128' is-struct='yes' visibility='default' filepath='./include/linux/mm_types.h' line='358' column='1' id='type-id-157'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='task' type-id='type-id-159' visibility='default' filepath='./include/linux/mm_types.h' line='359' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='next' type-id='type-id-160' visibility='default' filepath='./include/linux/mm_types.h' line='360' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='completion' size-in-bits='192' is-struct='yes' visibility='default' filepath='./include/linux/completion.h' line='26' column='1' id='type-id-158'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='done' type-id='type-id-41' visibility='default' filepath='./include/linux/completion.h' line='27' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='wait' type-id='type-id-161' visibility='default' filepath='./include/linux/completion.h' line='28' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='wait_queue_head_t' type-id='type-id-162' filepath='./include/linux/wait.h' line='38' column='1' id='type-id-161'/>
+    <class-decl name='wait_queue_head' size-in-bits='128' is-struct='yes' visibility='default' filepath='./include/linux/wait.h' line='34' column='1' id='type-id-162'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='lock' type-id='type-id-72' visibility='default' filepath='./include/linux/wait.h' line='35' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='head' type-id='type-id-49' visibility='default' filepath='./include/linux/wait.h' line='36' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='bool' type-id='type-id-7' filepath='./include/linux/types.h' line='30' column='1' id='type-id-57'/>
+    <class-decl name='uprobes_state' is-struct='yes' visibility='default' filepath='./include/linux/uprobes.h' line='142' column='1' id='type-id-137'/>
+    <class-decl name='work_struct' size-in-bits='256' is-struct='yes' visibility='default' filepath='./include/linux/workqueue.h' line='102' column='1' id='type-id-138'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='data' type-id='type-id-3' visibility='default' filepath='./include/linux/workqueue.h' line='103' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='entry' type-id='type-id-49' visibility='default' filepath='./include/linux/workqueue.h' line='104' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='func' type-id='type-id-163' visibility='default' filepath='./include/linux/workqueue.h' line='105' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='work_func_t' type-id='type-id-164' filepath='./include/linux/workqueue.h' line='21' column='1' id='type-id-163'/>
+    <typedef-decl name='pgprot_t' type-id='type-id-165' filepath='./arch/x86/include/asm/pgtable_types.h' line='265' column='1' id='type-id-116'/>
+    <class-decl name='pgprot' size-in-bits='64' is-struct='yes' visibility='default' filepath='./arch/x86/include/asm/pgtable_types.h' line='265' column='1' id='type-id-165'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='pgprot' type-id='type-id-166' visibility='default' filepath='./arch/x86/include/asm/pgtable_types.h' line='265' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='pgprotval_t' type-id='type-id-5' filepath='./arch/x86/include/asm/pgtable_64_types.h' line='19' column='1' id='type-id-166'/>
+    <class-decl name='__anonymous_struct__6' size-in-bits='256' is-struct='yes' is-anonymous='yes' visibility='default' filepath='./include/linux/mm_types.h' line='322' column='1' id='type-id-117'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='rb' type-id='type-id-34' visibility='default' filepath='./include/linux/mm_types.h' line='323' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='rb_subtree_last' type-id='type-id-5' visibility='default' filepath='./include/linux/mm_types.h' line='324' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='vm_userfaultfd_ctx' is-struct='yes' visibility='default' filepath='./include/linux/mm_types.h' line='283' column='1' id='type-id-121'/>
+    <class-decl name='kobj_ns_type_operations' size-in-bits='384' is-struct='yes' visibility='default' filepath='./include/linux/kobject_ns.h' line='39' column='1' id='type-id-167'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='type' type-id='type-id-168' visibility='default' filepath='./include/linux/kobject_ns.h' line='40' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='current_may_mount' type-id='type-id-169' visibility='default' filepath='./include/linux/kobject_ns.h' line='41' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='grab_current_ns' type-id='type-id-170' visibility='default' filepath='./include/linux/kobject_ns.h' line='42' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='netlink_ns' type-id='type-id-171' visibility='default' filepath='./include/linux/kobject_ns.h' line='43' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='initial_ns' type-id='type-id-170' visibility='default' filepath='./include/linux/kobject_ns.h' line='44' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='drop_ns' type-id='type-id-172' visibility='default' filepath='./include/linux/kobject_ns.h' line='45' column='1'/>
+      </data-member>
+    </class-decl>
+    <enum-decl name='kobj_ns_type' filepath='./include/linux/kobject_ns.h' line='26' column='1' id='type-id-168'>
+      <underlying-type type-id='type-id-39'/>
+      <enumerator name='KOBJ_NS_TYPE_NONE' value='0'/>
+      <enumerator name='KOBJ_NS_TYPE_NET' value='1'/>
+      <enumerator name='KOBJ_NS_TYPES' value='2'/>
+    </enum-decl>
+    <typedef-decl name='kuid_t' type-id='type-id-173' filepath='./include/linux/uidgid.h' line='23' column='1' id='type-id-174'/>
+    <class-decl name='__anonymous_struct__7' size-in-bits='32' is-struct='yes' is-anonymous='yes' naming-typedef-id='type-id-174' visibility='default' filepath='./include/linux/uidgid.h' line='21' column='1' id='type-id-173'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='val' type-id='type-id-175' visibility='default' filepath='./include/linux/uidgid.h' line='22' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='uid_t' type-id='type-id-176' filepath='./include/linux/types.h' line='32' column='1' id='type-id-175'/>
+    <typedef-decl name='__kernel_uid32_t' type-id='type-id-41' filepath='./include/uapi/asm-generic/posix_types.h' line='49' column='1' id='type-id-176'/>
+    <typedef-decl name='kgid_t' type-id='type-id-177' filepath='./include/linux/uidgid.h' line='28' column='1' id='type-id-178'/>
+    <class-decl name='__anonymous_struct__8' size-in-bits='32' is-struct='yes' is-anonymous='yes' naming-typedef-id='type-id-178' visibility='default' filepath='./include/linux/uidgid.h' line='26' column='1' id='type-id-177'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='val' type-id='type-id-179' visibility='default' filepath='./include/linux/uidgid.h' line='27' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='gid_t' type-id='type-id-180' filepath='./include/linux/types.h' line='33' column='1' id='type-id-179'/>
+    <typedef-decl name='__kernel_gid32_t' type-id='type-id-41' filepath='./include/uapi/asm-generic/posix_types.h' line='50' column='1' id='type-id-180'/>
+    <class-decl name='kernfs_node' size-in-bits='1024' is-struct='yes' visibility='default' filepath='./include/linux/kernfs.h' line='131' column='1' id='type-id-181'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='count' type-id='type-id-129' visibility='default' filepath='./include/linux/kernfs.h' line='132' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='32'>
+        <var-decl name='active' type-id='type-id-129' visibility='default' filepath='./include/linux/kernfs.h' line='133' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='parent' type-id='type-id-69' visibility='default' filepath='./include/linux/kernfs.h' line='143' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='name' type-id='type-id-52' visibility='default' filepath='./include/linux/kernfs.h' line='144' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='rb' type-id='type-id-34' visibility='default' filepath='./include/linux/kernfs.h' line='146' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='ns' type-id='type-id-108' visibility='default' filepath='./include/linux/kernfs.h' line='148' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='hash' type-id='type-id-41' visibility='default' filepath='./include/linux/kernfs.h' line='149' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='512'>
+        <var-decl name='' type-id='type-id-182' visibility='default'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='768'>
+        <var-decl name='priv' type-id='type-id-108' visibility='default' filepath='./include/linux/kernfs.h' line='156' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='832'>
+        <var-decl name='id' type-id='type-id-183' visibility='default' filepath='./include/linux/kernfs.h' line='158' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='896'>
+        <var-decl name='flags' type-id='type-id-46' visibility='default' filepath='./include/linux/kernfs.h' line='159' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='912'>
+        <var-decl name='mode' type-id='type-id-99' visibility='default' filepath='./include/linux/kernfs.h' line='160' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='960'>
+        <var-decl name='iattr' type-id='type-id-184' visibility='default' filepath='./include/linux/kernfs.h' line='161' column='1'/>
+      </data-member>
+    </class-decl>
+    <union-decl name='__anonymous_union__1' size-in-bits='256' is-anonymous='yes' visibility='default' filepath='./include/linux/kernfs.h' line='150' column='1' id='type-id-182'>
+      <data-member access='private'>
+        <var-decl name='dir' type-id='type-id-185' visibility='default' filepath='./include/linux/kernfs.h' line='151' column='1'/>
+      </data-member>
+      <data-member access='private'>
+        <var-decl name='symlink' type-id='type-id-186' visibility='default' filepath='./include/linux/kernfs.h' line='152' column='1'/>
+      </data-member>
+      <data-member access='private'>
+        <var-decl name='attr' type-id='type-id-187' visibility='default' filepath='./include/linux/kernfs.h' line='153' column='1'/>
+      </data-member>
+    </union-decl>
+    <class-decl name='kernfs_elem_dir' size-in-bits='192' is-struct='yes' visibility='default' filepath='./include/linux/kernfs.h' line='84' column='1' id='type-id-185'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='subdirs' type-id='type-id-5' visibility='default' filepath='./include/linux/kernfs.h' line='85' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='children' type-id='type-id-125' visibility='default' filepath='./include/linux/kernfs.h' line='87' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='root' type-id='type-id-188' visibility='default' filepath='./include/linux/kernfs.h' line='93' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kernfs_root' size-in-bits='704' is-struct='yes' visibility='default' filepath='./include/linux/kernfs.h' line='183' column='1' id='type-id-189'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='kn' type-id='type-id-69' visibility='default' filepath='./include/linux/kernfs.h' line='185' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='flags' type-id='type-id-41' visibility='default' filepath='./include/linux/kernfs.h' line='186' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='ino_idr' type-id='type-id-190' visibility='default' filepath='./include/linux/kernfs.h' line='189' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='last_ino' type-id='type-id-191' visibility='default' filepath='./include/linux/kernfs.h' line='190' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='352'>
+        <var-decl name='next_generation' type-id='type-id-191' visibility='default' filepath='./include/linux/kernfs.h' line='191' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='syscall_ops' type-id='type-id-192' visibility='default' filepath='./include/linux/kernfs.h' line='192' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='supers' type-id='type-id-49' visibility='default' filepath='./include/linux/kernfs.h' line='195' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='576'>
+        <var-decl name='deactivate_waitq' type-id='type-id-161' visibility='default' filepath='./include/linux/kernfs.h' line='197' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='idr' size-in-bits='192' is-struct='yes' visibility='default' filepath='./include/linux/idr.h' line='19' column='1' id='type-id-190'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='idr_rt' type-id='type-id-193' visibility='default' filepath='./include/linux/idr.h' line='20' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='idr_base' type-id='type-id-41' visibility='default' filepath='./include/linux/idr.h' line='21' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='160'>
+        <var-decl name='idr_next' type-id='type-id-41' visibility='default' filepath='./include/linux/idr.h' line='22' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='xarray' size-in-bits='128' is-struct='yes' visibility='default' filepath='./include/linux/xarray.h' line='292' column='1' id='type-id-193'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='xa_lock' type-id='type-id-72' visibility='default' filepath='./include/linux/xarray.h' line='293' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='xa_flags' type-id='type-id-194' visibility='default' filepath='./include/linux/xarray.h' line='295' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='xa_head' type-id='type-id-108' visibility='default' filepath='./include/linux/xarray.h' line='296' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='gfp_t' type-id='type-id-41' filepath='./include/linux/types.h' line='153' column='1' id='type-id-194'/>
+    <typedef-decl name='u32' type-id='type-id-195' filepath='./include/asm-generic/int-ll64.h' line='21' column='1' id='type-id-191'/>
+    <typedef-decl name='__u32' type-id='type-id-41' filepath='./include/uapi/asm-generic/int-ll64.h' line='27' column='1' id='type-id-195'/>
+    <class-decl name='kernfs_syscall_ops' size-in-bits='320' is-struct='yes' visibility='default' filepath='./include/linux/kernfs.h' line='171' column='1' id='type-id-196'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='show_options' type-id='type-id-197' visibility='default' filepath='./include/linux/kernfs.h' line='172' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='mkdir' type-id='type-id-198' visibility='default' filepath='./include/linux/kernfs.h' line='174' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='rmdir' type-id='type-id-199' visibility='default' filepath='./include/linux/kernfs.h' line='176' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='rename' type-id='type-id-200' visibility='default' filepath='./include/linux/kernfs.h' line='177' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='show_path' type-id='type-id-201' visibility='default' filepath='./include/linux/kernfs.h' line='179' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kernfs_elem_symlink' size-in-bits='64' is-struct='yes' visibility='default' filepath='./include/linux/kernfs.h' line='96' column='1' id='type-id-186'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='target_kn' type-id='type-id-69' visibility='default' filepath='./include/linux/kernfs.h' line='97' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kernfs_elem_attr' size-in-bits='256' is-struct='yes' visibility='default' filepath='./include/linux/kernfs.h' line='100' column='1' id='type-id-187'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='ops' type-id='type-id-202' visibility='default' filepath='./include/linux/kernfs.h' line='101' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='open' type-id='type-id-203' visibility='default' filepath='./include/linux/kernfs.h' line='102' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='size' type-id='type-id-112' visibility='default' filepath='./include/linux/kernfs.h' line='103' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='notify_next' type-id='type-id-69' visibility='default' filepath='./include/linux/kernfs.h' line='104' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kernfs_ops' size-in-bits='768' is-struct='yes' visibility='default' filepath='./include/linux/kernfs.h' line='220' column='1' id='type-id-204'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='open' type-id='type-id-205' visibility='default' filepath='./include/linux/kernfs.h' line='225' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='release' type-id='type-id-206' visibility='default' filepath='./include/linux/kernfs.h' line='226' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='seq_show' type-id='type-id-207' visibility='default' filepath='./include/linux/kernfs.h' line='239' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='seq_start' type-id='type-id-208' visibility='default' filepath='./include/linux/kernfs.h' line='241' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='seq_next' type-id='type-id-209' visibility='default' filepath='./include/linux/kernfs.h' line='242' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='seq_stop' type-id='type-id-210' visibility='default' filepath='./include/linux/kernfs.h' line='243' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='read' type-id='type-id-211' visibility='default' filepath='./include/linux/kernfs.h' line='245' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='atomic_write_len' type-id='type-id-101' visibility='default' filepath='./include/linux/kernfs.h' line='255' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='512'>
+        <var-decl name='prealloc' type-id='type-id-57' visibility='default' filepath='./include/linux/kernfs.h' line='262' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='576'>
+        <var-decl name='write' type-id='type-id-211' visibility='default' filepath='./include/linux/kernfs.h' line='263' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <var-decl name='poll' type-id='type-id-212' visibility='default' filepath='./include/linux/kernfs.h' line='266' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='704'>
+        <var-decl name='mmap' type-id='type-id-213' visibility='default' filepath='./include/linux/kernfs.h' line='269' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kernfs_open_file' size-in-bits='1088' is-struct='yes' visibility='default' filepath='./include/linux/kernfs.h' line='200' column='1' id='type-id-214'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='kn' type-id='type-id-69' visibility='default' filepath='./include/linux/kernfs.h' line='202' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='file' type-id='type-id-120' visibility='default' filepath='./include/linux/kernfs.h' line='203' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='seq_file' type-id='type-id-215' visibility='default' filepath='./include/linux/kernfs.h' line='204' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='priv' type-id='type-id-108' visibility='default' filepath='./include/linux/kernfs.h' line='205' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='mutex' type-id='type-id-149' visibility='default' filepath='./include/linux/kernfs.h' line='208' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='448'>
+        <var-decl name='prealloc_mutex' type-id='type-id-149' visibility='default' filepath='./include/linux/kernfs.h' line='209' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='640'>
+        <var-decl name='event' type-id='type-id-1' visibility='default' filepath='./include/linux/kernfs.h' line='210' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='704'>
+        <var-decl name='list' type-id='type-id-49' visibility='default' filepath='./include/linux/kernfs.h' line='211' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='832'>
+        <var-decl name='prealloc_buf' type-id='type-id-9' visibility='default' filepath='./include/linux/kernfs.h' line='212' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='896'>
+        <var-decl name='atomic_write_len' type-id='type-id-101' visibility='default' filepath='./include/linux/kernfs.h' line='214' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='7'>
+        <var-decl name='mmapped' type-id='type-id-57' visibility='default' filepath='./include/linux/kernfs.h' line='215' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='6'>
+        <var-decl name='released' type-id='type-id-57' visibility='default' filepath='./include/linux/kernfs.h' line='216' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='1024'>
+        <var-decl name='vm_ops' type-id='type-id-119' visibility='default' filepath='./include/linux/kernfs.h' line='217' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='__poll_t' type-id='type-id-41' filepath='./include/uapi/linux/types.h' line='52' column='1' id='type-id-216'/>
+    <union-decl name='kernfs_node_id' size-in-bits='64' visibility='default' filepath='./include/linux/kernfs.h' line='108' column='1' id='type-id-183'>
+      <data-member access='private'>
+        <var-decl name='' type-id='type-id-217' visibility='default'/>
+      </data-member>
+      <data-member access='private'>
+        <var-decl name='id' type-id='type-id-126' visibility='default' filepath='./include/linux/kernfs.h' line='119' column='1'/>
+      </data-member>
+    </union-decl>
+    <class-decl name='__anonymous_struct__9' size-in-bits='64' is-struct='yes' is-anonymous='yes' visibility='default' filepath='./include/linux/kernfs.h' line='109' column='1' id='type-id-217'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='ino' type-id='type-id-191' visibility='default' filepath='./include/linux/kernfs.h' line='116' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='32'>
+        <var-decl name='generation' type-id='type-id-191' visibility='default' filepath='./include/linux/kernfs.h' line='117' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kref' size-in-bits='32' is-struct='yes' visibility='default' filepath='./include/linux/kref.h' line='19' column='1' id='type-id-70'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='refcount' type-id='type-id-218' visibility='default' filepath='./include/linux/kref.h' line='20' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='refcount_t' type-id='type-id-219' filepath='./include/linux/refcount.h' line='21' column='1' id='type-id-218'/>
+    <class-decl name='refcount_struct' size-in-bits='32' is-struct='yes' visibility='default' filepath='./include/linux/refcount.h' line='19' column='1' id='type-id-219'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='refs' type-id='type-id-129' visibility='default' filepath='./include/linux/refcount.h' line='20' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='module_attribute' size-in-bits='448' is-struct='yes' visibility='default' filepath='./include/linux/module.h' line='50' column='1' id='type-id-220'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='attr' type-id='type-id-98' visibility='default' filepath='./include/linux/module.h' line='51' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='show' type-id='type-id-221' visibility='default' filepath='./include/linux/module.h' line='52' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='store' type-id='type-id-222' visibility='default' filepath='./include/linux/module.h' line='54' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='setup' type-id='type-id-223' visibility='default' filepath='./include/linux/module.h' line='56' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='320'>
+        <var-decl name='test' type-id='type-id-224' visibility='default' filepath='./include/linux/module.h' line='57' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='384'>
+        <var-decl name='free' type-id='type-id-225' visibility='default' filepath='./include/linux/module.h' line='58' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kernel_symbol' size-in-bits='96' is-struct='yes' visibility='default' filepath='./include/linux/export.h' line='69' column='1' id='type-id-226'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='value_offset' type-id='type-id-1' visibility='default' filepath='./include/linux/export.h' line='70' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='32'>
+        <var-decl name='name_offset' type-id='type-id-1' visibility='default' filepath='./include/linux/export.h' line='71' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='namespace_offset' type-id='type-id-1' visibility='default' filepath='./include/linux/export.h' line='72' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='s32' type-id='type-id-227' filepath='./include/asm-generic/int-ll64.h' line='20' column='1' id='type-id-228'/>
+    <typedef-decl name='__s32' type-id='type-id-1' filepath='./include/uapi/asm-generic/int-ll64.h' line='26' column='1' id='type-id-227'/>
+    <class-decl name='kernel_param' size-in-bits='320' is-struct='yes' visibility='default' filepath='./include/linux/moduleparam.h' line='69' column='1' id='type-id-229'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='name' type-id='type-id-52' visibility='default' filepath='./include/linux/moduleparam.h' line='70' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='mod' type-id='type-id-64' visibility='default' filepath='./include/linux/moduleparam.h' line='71' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='ops' type-id='type-id-230' visibility='default' filepath='./include/linux/moduleparam.h' line='72' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='perm' type-id='type-id-231' visibility='default' filepath='./include/linux/moduleparam.h' line='73' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='208'>
+        <var-decl name='level' type-id='type-id-232' visibility='default' filepath='./include/linux/moduleparam.h' line='74' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='216'>
+        <var-decl name='flags' type-id='type-id-233' visibility='default' filepath='./include/linux/moduleparam.h' line='75' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='256'>
+        <var-decl name='' type-id='type-id-234' visibility='default'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kernel_param_ops' size-in-bits='256' is-struct='yes' visibility='default' filepath='./include/linux/moduleparam.h' line='47' column='1' id='type-id-235'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='flags' type-id='type-id-41' visibility='default' filepath='./include/linux/moduleparam.h' line='49' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='set' type-id='type-id-236' visibility='default' filepath='./include/linux/moduleparam.h' line='51' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='get' type-id='type-id-237' visibility='default' filepath='./include/linux/moduleparam.h' line='53' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='free' type-id='type-id-172' visibility='default' filepath='./include/linux/moduleparam.h' line='55' column='1'/>
+      </data-member>
+    </class-decl>
+    <typedef-decl name='s8' type-id='type-id-238' filepath='./include/asm-generic/int-ll64.h' line='16' column='1' id='type-id-232'/>
+    <typedef-decl name='__s8' type-id='type-id-38' filepath='./include/uapi/asm-generic/int-ll64.h' line='20' column='1' id='type-id-238'/>
+    <typedef-decl name='u8' type-id='type-id-239' filepath='./include/asm-generic/int-ll64.h' line='17' column='1' id='type-id-233'/>
+    <typedef-decl name='__u8' type-id='type-id-40' filepath='./include/uapi/asm-generic/int-ll64.h' line='21' column='1' id='type-id-239'/>
+    <union-decl name='__anonymous_union__2' size-in-bits='64' is-anonymous='yes' visibility='default' filepath='./include/linux/moduleparam.h' line='76' column='1' id='type-id-234'>
+      <data-member access='private'>
+        <var-decl name='arg' type-id='type-id-108' visibility='default' filepath='./include/linux/moduleparam.h' line='77' column='1'/>
+      </data-member>
+      <data-member access='private'>
+        <var-decl name='str' type-id='type-id-240' visibility='default' filepath='./include/linux/moduleparam.h' line='78' column='1'/>
+      </data-member>
+      <data-member access='private'>
+        <var-decl name='arr' type-id='type-id-241' visibility='default' filepath='./include/linux/moduleparam.h' line='79' column='1'/>
+      </data-member>
+    </union-decl>
+    <class-decl name='kparam_string' size-in-bits='128' is-struct='yes' visibility='default' filepath='./include/linux/moduleparam.h' line='86' column='1' id='type-id-242'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='maxlen' type-id='type-id-41' visibility='default' filepath='./include/linux/moduleparam.h' line='87' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='string' type-id='type-id-9' visibility='default' filepath='./include/linux/moduleparam.h' line='88' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='kparam_array' size-in-bits='256' is-struct='yes' visibility='default' filepath='./include/linux/moduleparam.h' line='92' column='1' id='type-id-243'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='max' type-id='type-id-41' visibility='default' filepath='./include/linux/moduleparam.h' line='94' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='32'>
+        <var-decl name='elemsize' type-id='type-id-41' visibility='default' filepath='./include/linux/moduleparam.h' line='95' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='num' type-id='type-id-244' visibility='default' filepath='./include/linux/moduleparam.h' line='96' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='ops' type-id='type-id-230' visibility='default' filepath='./include/linux/moduleparam.h' line='97' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='elem' type-id='type-id-108' visibility='default' filepath='./include/linux/moduleparam.h' line='98' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='module_layout' size-in-bits='640' is-struct='yes' visibility='default' filepath='./include/linux/module.h' line='307' column='1' id='type-id-60'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='base' type-id='type-id-108' visibility='default' filepath='./include/linux/module.h' line='309' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='size' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='311' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='96'>
+        <var-decl name='text_size' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='313' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='128'>
+        <var-decl name='ro_size' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='315' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='160'>
+        <var-decl name='ro_after_init_size' type-id='type-id-41' visibility='default' filepath='./include/linux/module.h' line='317' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='192'>
+        <var-decl name='mtn' type-id='type-id-245' visibility='default' filepath='./include/linux/module.h' line='320' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='mod_tree_node' size-in-bits='448' is-struct='yes' visibility='default' filepath='./include/linux/module.h' line='302' column='1' id='type-id-245'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='mod' type-id='type-id-64' visibility='default' filepath='./include/linux/module.h' line='303' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='node' type-id='type-id-246' visibility='default' filepath='./include/linux/module.h' line='304' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='latch_tree_node' size-in-bits='384' is-struct='yes' visibility='default' filepath='./include/linux/rbtree_latch.h' line='40' column='1' id='type-id-246'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='node' type-id='type-id-35' visibility='default' filepath='./include/linux/rbtree_latch.h' line='41' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='mod_arch_specific' is-struct='yes' visibility='default' filepath='./arch/x86/include/asm/module.h' line='8' column='1' id='type-id-61'/>
+    <pointer-type-def type-id='type-id-18' size-in-bits='64' id='type-id-118'/>
+    <pointer-type-def type-id='type-id-98' size-in-bits='64' id='type-id-247'/>
+    <pointer-type-def type-id='type-id-247' size-in-bits='64' id='type-id-87'/>
+    <pointer-type-def type-id='type-id-107' size-in-bits='64' id='type-id-248'/>
+    <pointer-type-def type-id='type-id-248' size-in-bits='64' id='type-id-106'/>
+    <pointer-type-def type-id='type-id-8' size-in-bits='64' id='type-id-9'/>
+    <pointer-type-def type-id='type-id-158' size-in-bits='64' id='type-id-66'/>
+    <qualified-type-def type-id='type-id-103' const='yes' id='type-id-249'/>
+    <pointer-type-def type-id='type-id-249' size-in-bits='64' id='type-id-250'/>
+    <pointer-type-def type-id='type-id-250' size-in-bits='64' id='type-id-88'/>
+    <qualified-type-def type-id='type-id-8' const='yes' id='type-id-251'/>
+    <pointer-type-def type-id='type-id-251' size-in-bits='64' id='type-id-52'/>
+    <pointer-type-def type-id='type-id-252' size-in-bits='64' id='type-id-253'/>
+    <qualified-type-def type-id='type-id-253' const='yes' id='type-id-81'/>
+    <qualified-type-def type-id='type-id-229' const='yes' id='type-id-254'/>
+    <pointer-type-def type-id='type-id-254' size-in-bits='64' id='type-id-255'/>
+    <qualified-type-def type-id='type-id-235' const='yes' id='type-id-256'/>
+    <pointer-type-def type-id='type-id-256' size-in-bits='64' id='type-id-230'/>
+    <qualified-type-def type-id='type-id-226' const='yes' id='type-id-257'/>
+    <pointer-type-def type-id='type-id-257' size-in-bits='64' id='type-id-54'/>
+    <qualified-type-def type-id='type-id-204' const='yes' id='type-id-258'/>
+    <pointer-type-def type-id='type-id-258' size-in-bits='64' id='type-id-202'/>
+    <qualified-type-def type-id='type-id-167' const='yes' id='type-id-259'/>
+    <pointer-type-def type-id='type-id-259' size-in-bits='64' id='type-id-260'/>
+    <pointer-type-def type-id='type-id-261' size-in-bits='64' id='type-id-89'/>
+    <qualified-type-def type-id='type-id-243' const='yes' id='type-id-262'/>
+    <pointer-type-def type-id='type-id-262' size-in-bits='64' id='type-id-241'/>
+    <qualified-type-def type-id='type-id-242' const='yes' id='type-id-263'/>
+    <pointer-type-def type-id='type-id-263' size-in-bits='64' id='type-id-240'/>
+    <qualified-type-def type-id='type-id-79' const='yes' id='type-id-264'/>
+    <pointer-type-def type-id='type-id-264' size-in-bits='64' id='type-id-73'/>
+    <qualified-type-def type-id='type-id-228' const='yes' id='type-id-265'/>
+    <pointer-type-def type-id='type-id-265' size-in-bits='64' id='type-id-55'/>
+    <qualified-type-def type-id='type-id-92' const='yes' id='type-id-266'/>
+    <pointer-type-def type-id='type-id-266' size-in-bits='64' id='type-id-86'/>
+    <qualified-type-def type-id='type-id-151' const='yes' id='type-id-231'/>
+    <qualified-type-def type-id='type-id-153' const='yes' id='type-id-267'/>
+    <pointer-type-def type-id='type-id-267' size-in-bits='64' id='type-id-150'/>
+    <qualified-type-def type-id='type-id-30' const='yes' id='type-id-268'/>
+    <pointer-type-def type-id='type-id-268' size-in-bits='64' id='type-id-119'/>
+    <pointer-type-def type-id='type-id-156' size-in-bits='64' id='type-id-135'/>
+    <pointer-type-def type-id='type-id-157' size-in-bits='64' id='type-id-160'/>
+    <pointer-type-def type-id='type-id-19' size-in-bits='64' id='type-id-58'/>
+    <pointer-type-def type-id='type-id-20' size-in-bits='64' id='type-id-120'/>
+    <pointer-type-def type-id='type-id-269' size-in-bits='64' id='type-id-59'/>
+    <pointer-type-def type-id='type-id-270' size-in-bits='64' id='type-id-237'/>
+    <pointer-type-def type-id='type-id-271' size-in-bits='64' id='type-id-236'/>
+    <pointer-type-def type-id='type-id-272' size-in-bits='64' id='type-id-110'/>
+    <pointer-type-def type-id='type-id-273' size-in-bits='64' id='type-id-199'/>
+    <pointer-type-def type-id='type-id-274' size-in-bits='64' id='type-id-198'/>
+    <pointer-type-def type-id='type-id-275' size-in-bits='64' id='type-id-200'/>
+    <pointer-type-def type-id='type-id-276' size-in-bits='64' id='type-id-205'/>
+    <pointer-type-def type-id='type-id-277' size-in-bits='64' id='type-id-213'/>
+    <pointer-type-def type-id='type-id-278' size-in-bits='64' id='type-id-279'/>
+    <qualified-type-def type-id='type-id-279' const='yes' id='type-id-80'/>
+    <pointer-type-def type-id='type-id-280' size-in-bits='64' id='type-id-281'/>
+    <qualified-type-def type-id='type-id-281' const='yes' id='type-id-82'/>
+    <pointer-type-def type-id='type-id-282' size-in-bits='64' id='type-id-224'/>
+    <pointer-type-def type-id='type-id-283' size-in-bits='64' id='type-id-201'/>
+    <pointer-type-def type-id='type-id-284' size-in-bits='64' id='type-id-197'/>
+    <pointer-type-def type-id='type-id-285' size-in-bits='64' id='type-id-207'/>
+    <pointer-type-def type-id='type-id-229' size-in-bits='64' id='type-id-56'/>
+    <pointer-type-def type-id='type-id-21' size-in-bits='64' id='type-id-184'/>
+    <pointer-type-def type-id='type-id-181' size-in-bits='64' id='type-id-69'/>
+    <pointer-type-def type-id='type-id-214' size-in-bits='64' id='type-id-286'/>
+    <pointer-type-def type-id='type-id-22' size-in-bits='64' id='type-id-203'/>
+    <pointer-type-def type-id='type-id-189' size-in-bits='64' id='type-id-188'/>
+    <pointer-type-def type-id='type-id-196' size-in-bits='64' id='type-id-192'/>
+    <pointer-type-def type-id='type-id-178' size-in-bits='64' id='type-id-287'/>
+    <pointer-type-def type-id='type-id-84' size-in-bits='64' id='type-id-68'/>
+    <pointer-type-def type-id='type-id-83' size-in-bits='64' id='type-id-288'/>
+    <pointer-type-def type-id='type-id-63' size-in-bits='64' id='type-id-53'/>
+    <pointer-type-def type-id='type-id-71' size-in-bits='64' id='type-id-67'/>
+    <pointer-type-def type-id='type-id-174' size-in-bits='64' id='type-id-289'/>
+    <pointer-type-def type-id='type-id-23' size-in-bits='64' id='type-id-133'/>
+    <pointer-type-def type-id='type-id-49' size-in-bits='64' id='type-id-62'/>
+    <pointer-type-def type-id='type-id-112' size-in-bits='64' id='type-id-290'/>
+    <pointer-type-def type-id='type-id-123' size-in-bits='64' id='type-id-115'/>
+    <pointer-type-def type-id='type-id-47' size-in-bits='64' id='type-id-64'/>
+    <pointer-type-def type-id='type-id-220' size-in-bits='64' id='type-id-51'/>
+    <pointer-type-def type-id='type-id-50' size-in-bits='64' id='type-id-291'/>
+    <pointer-type-def type-id='type-id-24' size-in-bits='64' id='type-id-65'/>
+    <pointer-type-def type-id='type-id-141' size-in-bits='64' id='type-id-128'/>
+    <pointer-type-def type-id='type-id-25' size-in-bits='64' id='type-id-292'/>
+    <pointer-type-def type-id='type-id-34' size-in-bits='64' id='type-id-122'/>
+    <pointer-type-def type-id='type-id-26' size-in-bits='64' id='type-id-215'/>
+    <pointer-type-def type-id='type-id-27' size-in-bits='64' id='type-id-293'/>
+    <pointer-type-def type-id='type-id-28' size-in-bits='64' id='type-id-159'/>
+    <pointer-type-def type-id='type-id-294' size-in-bits='64' id='type-id-212'/>
+    <pointer-type-def type-id='type-id-295' size-in-bits='64' id='type-id-169'/>
+    <pointer-type-def type-id='type-id-296' size-in-bits='64' id='type-id-109'/>
+    <pointer-type-def type-id='type-id-297' size-in-bits='64' id='type-id-211'/>
+    <pointer-type-def type-id='type-id-298' size-in-bits='64' id='type-id-93'/>
+    <pointer-type-def type-id='type-id-299' size-in-bits='64' id='type-id-94'/>
+    <pointer-type-def type-id='type-id-300' size-in-bits='64' id='type-id-221'/>
+    <pointer-type-def type-id='type-id-301' size-in-bits='64' id='type-id-222'/>
+    <pointer-type-def type-id='type-id-302' size-in-bits='64' id='type-id-104'/>
+    <pointer-type-def type-id='type-id-303' size-in-bits='64' id='type-id-105'/>
+    <pointer-type-def type-id='type-id-41' size-in-bits='64' id='type-id-244'/>
+    <pointer-type-def type-id='type-id-304' size-in-bits='64' id='type-id-127'/>
+    <pointer-type-def type-id='type-id-29' size-in-bits='64' id='type-id-136'/>
+    <pointer-type-def type-id='type-id-113' size-in-bits='64' id='type-id-114'/>
+    <pointer-type-def type-id='type-id-305' size-in-bits='64' id='type-id-206'/>
+    <pointer-type-def type-id='type-id-306' size-in-bits='64' id='type-id-85'/>
+    <pointer-type-def type-id='type-id-307' size-in-bits='64' id='type-id-91'/>
+    <pointer-type-def type-id='type-id-308' size-in-bits='64' id='type-id-225'/>
+    <pointer-type-def type-id='type-id-309' size-in-bits='64' id='type-id-223'/>
+    <pointer-type-def type-id='type-id-310' size-in-bits='64' id='type-id-210'/>
+    <pointer-type-def type-id='type-id-311' size-in-bits='64' id='type-id-172'/>
+    <pointer-type-def type-id='type-id-312' size-in-bits='64' id='type-id-164'/>
+    <pointer-type-def type-id='type-id-2' size-in-bits='64' id='type-id-108'/>
+    <pointer-type-def type-id='type-id-313' size-in-bits='64' id='type-id-170'/>
+    <pointer-type-def type-id='type-id-314' size-in-bits='64' id='type-id-90'/>
+    <pointer-type-def type-id='type-id-315' size-in-bits='64' id='type-id-208'/>
+    <pointer-type-def type-id='type-id-316' size-in-bits='64' id='type-id-209'/>
+    <pointer-type-def type-id='type-id-317' size-in-bits='64' id='type-id-171'/>
+    <pointer-type-def type-id='type-id-138' size-in-bits='64' id='type-id-318'/>
+    <var-decl name='__this_module' type-id='type-id-47' visibility='default' filepath='./include/linux/export.h' line='15' column='1'/>
+    <function-type size-in-bits='64' id='type-id-252'>
+      <parameter type-id='type-id-67'/>
+      <parameter type-id='type-id-53'/>
+      <return type-id='type-id-52'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-261'>
+      <parameter type-id='type-id-53'/>
+      <return type-id='type-id-260'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-269'>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-270'>
+      <parameter type-id='type-id-9'/>
+      <parameter type-id='type-id-255'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-271'>
+      <parameter type-id='type-id-52'/>
+      <parameter type-id='type-id-255'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-272'>
+      <parameter type-id='type-id-120'/>
+      <parameter type-id='type-id-53'/>
+      <parameter type-id='type-id-248'/>
+      <parameter type-id='type-id-114'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-273'>
+      <parameter type-id='type-id-69'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-274'>
+      <parameter type-id='type-id-69'/>
+      <parameter type-id='type-id-52'/>
+      <parameter type-id='type-id-99'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-275'>
+      <parameter type-id='type-id-69'/>
+      <parameter type-id='type-id-69'/>
+      <parameter type-id='type-id-52'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-276'>
+      <parameter type-id='type-id-286'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-277'>
+      <parameter type-id='type-id-286'/>
+      <parameter type-id='type-id-114'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-278'>
+      <parameter type-id='type-id-67'/>
+      <parameter type-id='type-id-53'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-280'>
+      <parameter type-id='type-id-67'/>
+      <parameter type-id='type-id-53'/>
+      <parameter type-id='type-id-288'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-282'>
+      <parameter type-id='type-id-64'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-283'>
+      <parameter type-id='type-id-215'/>
+      <parameter type-id='type-id-69'/>
+      <parameter type-id='type-id-188'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-284'>
+      <parameter type-id='type-id-215'/>
+      <parameter type-id='type-id-188'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-285'>
+      <parameter type-id='type-id-215'/>
+      <parameter type-id='type-id-108'/>
+      <return type-id='type-id-1'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-294'>
+      <parameter type-id='type-id-286'/>
+      <parameter type-id='type-id-292'/>
+      <return type-id='type-id-216'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-295'>
+      <return type-id='type-id-57'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-296'>
+      <parameter type-id='type-id-120'/>
+      <parameter type-id='type-id-53'/>
+      <parameter type-id='type-id-248'/>
+      <parameter type-id='type-id-9'/>
+      <parameter type-id='type-id-112'/>
+      <parameter type-id='type-id-101'/>
+      <return type-id='type-id-96'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-297'>
+      <parameter type-id='type-id-286'/>
+      <parameter type-id='type-id-9'/>
+      <parameter type-id='type-id-101'/>
+      <parameter type-id='type-id-112'/>
+      <return type-id='type-id-96'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-298'>
+      <parameter type-id='type-id-53'/>
+      <parameter type-id='type-id-247'/>
+      <parameter type-id='type-id-9'/>
+      <return type-id='type-id-96'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-299'>
+      <parameter type-id='type-id-53'/>
+      <parameter type-id='type-id-247'/>
+      <parameter type-id='type-id-52'/>
+      <parameter type-id='type-id-101'/>
+      <return type-id='type-id-96'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-300'>
+      <parameter type-id='type-id-51'/>
+      <parameter type-id='type-id-291'/>
+      <parameter type-id='type-id-9'/>
+      <return type-id='type-id-96'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-301'>
+      <parameter type-id='type-id-51'/>
+      <parameter type-id='type-id-291'/>
+      <parameter type-id='type-id-52'/>
+      <parameter type-id='type-id-101'/>
+      <return type-id='type-id-96'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-302'>
+      <parameter type-id='type-id-53'/>
+      <parameter type-id='type-id-247'/>
+      <parameter type-id='type-id-1'/>
+      <return type-id='type-id-99'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-303'>
+      <parameter type-id='type-id-53'/>
+      <parameter type-id='type-id-248'/>
+      <parameter type-id='type-id-1'/>
+      <return type-id='type-id-99'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-304'>
+      <parameter type-id='type-id-120'/>
+      <parameter type-id='type-id-5'/>
+      <parameter type-id='type-id-5'/>
+      <parameter type-id='type-id-5'/>
+      <parameter type-id='type-id-5'/>
+      <return type-id='type-id-5'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-305'>
+      <parameter type-id='type-id-286'/>
+      <return type-id='type-id-2'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-306'>
+      <parameter type-id='type-id-53'/>
+      <return type-id='type-id-2'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-307'>
+      <parameter type-id='type-id-53'/>
+      <parameter type-id='type-id-289'/>
+      <parameter type-id='type-id-287'/>
+      <return type-id='type-id-2'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-308'>
+      <parameter type-id='type-id-64'/>
+      <return type-id='type-id-2'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-309'>
+      <parameter type-id='type-id-64'/>
+      <parameter type-id='type-id-52'/>
+      <return type-id='type-id-2'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-310'>
+      <parameter type-id='type-id-215'/>
+      <parameter type-id='type-id-108'/>
+      <return type-id='type-id-2'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-311'>
+      <parameter type-id='type-id-108'/>
+      <return type-id='type-id-2'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-312'>
+      <parameter type-id='type-id-318'/>
+      <return type-id='type-id-2'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-313'>
+      <return type-id='type-id-108'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-314'>
+      <parameter type-id='type-id-53'/>
+      <return type-id='type-id-108'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-315'>
+      <parameter type-id='type-id-215'/>
+      <parameter type-id='type-id-290'/>
+      <return type-id='type-id-108'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-316'>
+      <parameter type-id='type-id-215'/>
+      <parameter type-id='type-id-108'/>
+      <parameter type-id='type-id-290'/>
+      <return type-id='type-id-108'/>
+    </function-type>
+    <function-type size-in-bits='64' id='type-id-317'>
+      <parameter type-id='type-id-293'/>
+      <return type-id='type-id-108'/>
+    </function-type>
+  </abi-instr>
+</abi-corpus>

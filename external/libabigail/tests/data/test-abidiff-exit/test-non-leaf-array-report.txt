@@ -1,0 +1,11 @@
+Leaf changes summary: 1 artifact changed
+Changed leaf types summary: 1 leaf type changed
+Removed/Changed/Added functions summary: 0 Removed, 0 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+'struct buzz at test-non-leaf-array-v0.c:1:1' changed:
+  type size changed from 32 to 64 (in bits)
+  there are data member changes:
+    type 'int' of 'buzz::a' changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)

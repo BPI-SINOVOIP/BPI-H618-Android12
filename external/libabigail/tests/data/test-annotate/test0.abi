@@ -1,0 +1,126 @@
+<abi-corpus version='2.0' architecture='elf-amd-x86_64'>
+  <elf-needed>
+    <dependency name='libstdc++.so.6'/>
+    <dependency name='libm.so.6'/>
+    <dependency name='libgcc_s.so.1'/>
+    <dependency name='libc.so.6'/>
+  </elf-needed>
+  <elf-function-symbols>
+    <!-- ns0::bar(int, ...) -->
+    <elf-symbol name='_ZN3ns03barEiz' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- ns0::baz(int&) -->
+    <elf-symbol name='_ZN3ns03bazERi' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- ns0::foo(char*, long) -->
+    <elf-symbol name='_ZN3ns03fooEPcl' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- ns0::bar2(ns0::E&) -->
+    <elf-symbol name='_ZN3ns04bar2ERNS_1EE' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- ns0::baz2(int&) -->
+    <elf-symbol name='_ZN3ns04baz2ERi' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- __libc_csu_fini -->
+    <elf-symbol name='__libc_csu_fini' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- __libc_csu_init -->
+    <elf-symbol name='__libc_csu_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- _fini -->
+    <elf-symbol name='_fini' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- _init -->
+    <elf-symbol name='_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- _start -->
+    <elf-symbol name='_start' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- main -->
+    <elf-symbol name='main' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <elf-variable-symbols>
+    <!-- _IO_stdin_used -->
+    <elf-symbol name='_IO_stdin_used' size='4' type='object-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <!-- global -->
+    <elf-symbol name='global' size='4' type='object-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-variable-symbols>
+  <abi-instr address-size='64' path='test0.cc' comp-dir-path='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf' language='LANG_C_plus_plus'>
+    <!-- char -->
+    <type-decl name='char' size-in-bits='8' id='type-id-1'/>
+    <!-- int -->
+    <type-decl name='int' size-in-bits='32' id='type-id-2'/>
+    <!-- long int -->
+    <type-decl name='long int' size-in-bits='64' id='type-id-3'/>
+    <!-- long long int -->
+    <type-decl name='long long int' size-in-bits='64' id='type-id-4'/>
+    <!-- unnamed&#45;enum&#45;underlying&#45;type&#45;32 -->
+    <type-decl name='unnamed-enum-underlying-type-32' is-anonymous='yes' size-in-bits='32' alignment-in-bits='32' id='type-id-5'/>
+    <!-- variadic parameter type -->
+    <type-decl name='variadic parameter type' id='type-id-6'/>
+    <!-- void -->
+    <type-decl name='void' id='type-id-7'/>
+    <!-- char* -->
+    <pointer-type-def type-id='type-id-1' size-in-bits='64' id='type-id-8'/>
+    <!-- const int -->
+    <qualified-type-def type-id='type-id-2' const='yes' id='type-id-9'/>
+    <!-- const long int -->
+    <qualified-type-def type-id='type-id-3' const='yes' id='type-id-10'/>
+    <!-- int& -->
+    <qualified-type-def type-id='type-id-11' id='type-id-12'/>
+    <!-- int& -->
+    <reference-type-def kind='lvalue' type-id='type-id-2' size-in-bits='64' id='type-id-11'/>
+    <!-- ns0::E& -->
+    <qualified-type-def type-id='type-id-13' id='type-id-14'/>
+    <!-- ns0::E& -->
+    <reference-type-def kind='lvalue' type-id='type-id-15' size-in-bits='64' id='type-id-13'/>
+    <!-- volatile const long int -->
+    <qualified-type-def type-id='type-id-10' volatile='yes' id='type-id-16'/>
+    <!-- namespace ns0 -->
+    <namespace-decl name='ns0'>
+      <!-- enum ns0::E -->
+      <enum-decl name='E' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='19' column='1' id='type-id-15'>
+        <underlying-type type-id='type-id-5'/>
+        <enumerator name='e0' value='0'/>
+        <enumerator name='e1' value='1'/>
+      </enum-decl>
+      <!-- typedef long long int ns0::long_long -->
+      <typedef-decl name='long_long' type-id='type-id-4' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='25' column='1' id='type-id-17'/>
+      <!-- void ns0::bar(const int, ...) -->
+      <function-decl name='bar' mangled-name='_ZN3ns03barEiz' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='12' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN3ns03barEiz'>
+        <!-- parameter of type 'const int' -->
+        <parameter type-id='type-id-9' name='c' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='12' column='1'/>
+        <parameter is-variadic='yes'/>
+        <!-- void -->
+        <return type-id='type-id-7'/>
+      </function-decl>
+      <!-- void ns0::baz(int&) -->
+      <function-decl name='baz' mangled-name='_ZN3ns03bazERi' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='16' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN3ns03bazERi'>
+        <!-- parameter of type 'int&' -->
+        <parameter type-id='type-id-12' name='c' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='16' column='1'/>
+        <!-- void -->
+        <return type-id='type-id-7'/>
+      </function-decl>
+      <!-- void ns0::bar2(ns0::E&) -->
+      <function-decl name='bar2' mangled-name='_ZN3ns04bar2ERNS_1EE' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='22' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN3ns04bar2ERNS_1EE'>
+        <!-- parameter of type 'ns0::E&' -->
+        <parameter type-id='type-id-14' name='e' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='22' column='1'/>
+        <!-- void -->
+        <return type-id='type-id-7'/>
+      </function-decl>
+      <!-- ns0::long_long ns0::baz2(int&) -->
+      <function-decl name='baz2' mangled-name='_ZN3ns04baz2ERi' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='28' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN3ns04baz2ERi'>
+        <!-- parameter of type 'int&' -->
+        <parameter type-id='type-id-12' name='c' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='28' column='1'/>
+        <!-- typedef ns0::long_long -->
+        <return type-id='type-id-17'/>
+      </function-decl>
+      <!-- long int ns0::foo(char*, volatile const long int) -->
+      <function-decl name='foo' mangled-name='_ZN3ns03fooEPcl' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='45' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN3ns03fooEPcl'>
+        <!-- parameter of type 'char*' -->
+        <parameter type-id='type-id-8' name='c' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='45' column='1'/>
+        <!-- parameter of type 'volatile const long int' -->
+        <parameter type-id='type-id-16' name='l' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='45' column='1'/>
+        <!-- long int -->
+        <return type-id='type-id-3'/>
+      </function-decl>
+    </namespace-decl>
+    <!-- int main() -->
+    <function-decl name='main' mangled-name='main' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='49' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='main'>
+      <!-- int -->
+      <return type-id='type-id-2'/>
+    </function-decl>
+    <!-- int global -->
+    <var-decl name='global' type-id='type-id-2' mangled-name='global' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test0.cc' line='3' column='1' elf-symbol-id='global'/>
+  </abi-instr>
+</abi-corpus>

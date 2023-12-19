@@ -1,0 +1,42 @@
+Leaf changes summary: 7 artifacts changed
+Changed leaf types summary: 1 leaf type changed
+Removed/Changed/Added functions summary: 1 Removed, 1 Changed, 1 Added function
+Removed/Changed/Added variables summary: 1 Removed, 1 Changed, 1 Added variable
+
+1 Removed function:
+
+  [D] 'function int deleted_fun()'    {_Z11deleted_funv}
+
+1 Added function:
+
+  [A] 'function long int added_fun()'    {_Z9added_funv}
+
+1 function with some sub-type change:
+
+  [C] 'function int directly_changed_fun()' has some sub-type changes:
+    return type changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)
+
+1 Removed variable:
+
+  [D] 'int deleted_var'    {deleted_var}
+
+1 Added variable:
+
+  [A] 'long int added_var'    {added_var}
+
+1 Changed variable:
+
+  [C] 'int directly_changed_var' was changed to 'long int directly_changed_var':
+    size of symbol changed from 4 to 8
+    type of variable changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)
+
+'struct changed' changed:
+  type size changed from 32 to 64 (in bits)
+  there are data member changes:
+    type 'int' of 'changed::foo' changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)

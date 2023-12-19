@@ -1,0 +1,26 @@
+# Copyright 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+AUTHOR = 'The Chromium OS Audio Team, chromeos-audio@google.com'
+NAME = 'audio_AudioInputGain'
+PURPOSE = 'Test that the input capture gain is controllable.'
+CRITERIA = '''
+Control the input capture gain by chrome.audio API, and check the actual gain
+from the recorded wave of ALSA loopback.
+'''
+ATTRIBUTES = 'suite:audio_essential'
+TIME = 'SHORT'
+TEST_CATEGORY = 'Functional'
+TEST_CLASS = 'audio'
+TEST_TYPE = 'client'
+DEPENDENCIES = ''
+
+DOC = '''
+Test that the input capture gain is controllable.
+
+NOTE: For this test kernel config is required to have CONFIG_SND_ALOOP=m which
+makes snd-aloop is manually probeable.
+'''
+
+job.run_test('audio_AudioInputGain')

@@ -1,0 +1,8 @@
+ELF file 'test3-fn-removed-app' is not ABI compatible with 'libtest3-fn-removed-v1.so' due to differences with 'libtest3-fn-removed-v0.so' below:
+Functions changes summary: 1 Removed, 0 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 Removed function:
+
+  [D] 'function void _internal_fun1()'    {_Z4fun1v@@VERSION_1.0}
+

@@ -1,0 +1,15 @@
+3 changed types:
+  'class S0' changed:
+    type size changed from 32 to 64 (in bits)
+    1 data member insertion:
+      'char m1', at offset 32 (in bits)
+  'const S0' changed:
+    unqualified underlying type 'class S0' changed, as reported earlier
+  'const S0&' changed:
+    in referenced type 'const S0':
+      unqualified underlying type 'class S0' changed, as reported earlier
+1 changed declaration:
+  'function void foo(const S0&)' was changed to 'function void foo(const S0&)':
+    parameter 1 of type 'const S0&' has sub-type changes:
+      in referenced type 'const S0':
+        unqualified underlying type 'class S0' changed, as reported earlier

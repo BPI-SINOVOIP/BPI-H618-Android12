@@ -1,0 +1,1613 @@
+#!/usr/bin/env python
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+# -*- coding: utf-8 -*-
+# -*- Mode: Python
+#
+# Copyright (C) 2013-2016 Red Hat, Inc.
+#
+# Author: Chenxiong Qi
+
+from __future__ import print_function
+
+import argparse
+import functools
+import glob
+import logging
+import mimetypes
+import os
+import re
+import shutil
+import six
+import subprocess
+import sys
+
+from collections import namedtuple
+from itertools import chain
+
+import xdg.BaseDirectory
+
+import rpm
+import koji
+
+# @file
+#
+# You might have known that abipkgdiff is a command line tool to compare two
+# RPM packages to find potential differences of ABI. This is really useful for
+# Fedora packagers and developers. Usually, excpet the RPM packages built
+# locally, if a packager wants to compare RPM packages he just built with
+# specific RPM packages that were already built and availabe in Koji,
+# fedabipkgdiff is the right tool for him.
+#
+# With fedabipkgdiff, packager is able to specify certain criteria to tell
+# fedabipkgdiff which RPM packages he wants to compare, then fedabipkgdiff will
+# find them, download them, and boom, run the abipkgdiff for you.
+#
+# Currently, fedabipkgdiff returns 0 if everything works well, otherwise, 1 if
+# something wrong.
+
+
+koji_config = koji.read_config('koji')
+DEFAULT_KOJI_SERVER = koji_config['server']
+DEFAULT_KOJI_TOPURL = koji_config['topurl']
+
+# The working directory where to hold all data including downloaded RPM
+# packages Currently, it's not configurable and hardcode here. In the future
+# version of fedabipkgdiff, I'll make it configurable by users.
+HOME_DIR = os.path.join(xdg.BaseDirectory.xdg_cache_home,
+                        os.path.splitext(os.path.basename(__file__))[0])
+
+DEFAULT_ABIPKGDIFF = 'abipkgdiff'
+
+# Mask for determining if underlying fedabipkgdiff succeeds or not.
+# This is for when the compared ABIs are equal
+ABIDIFF_OK = 0
+# This bit is set if there an application error.
+ABIDIFF_ERROR = 1
+# This bit is set if the tool is invoked in an non appropriate manner.
+ABIDIFF_USAGE_ERROR = 1 << 1
+# This bit is set if the ABIs being compared are different.
+ABIDIFF_ABI_CHANGE = 1 << 2
+
+
+# Used to construct abipkgdiff command line argument, package and associated
+# debuginfo package
+# fedabipkgdiff runs abipkgdiff in this form
+#
+#   abipkgdiff \
+#       --d1 /path/to/package1-debuginfo.rpm \
+#       --d2 /path/to/package2-debuginfo.rpm \
+#       /path/to/package1.rpm \
+#       /path/to/package2.rpm
+#
+# ComparisonHalf is a three-elements tuple in format
+#
+#   (package1.rpm, [package1-debuginfo.rpm..] package1-devel.rpm)
+#
+# - the first element is the subject representing the package to
+#   compare.  It's a dict representing the RPM we are interested in.
+#   That dict was retrieved from Koji XMLRPC API.
+# - the rest are ancillary packages used for the comparison. So, the
+#   second one is a vector containing the needed debuginfo packages
+#   (yes there can be more than one), and the last one is the package
+#   containing API of the ELF shared libraries carried by subject.
+#   All the packages are dicts representing RPMs and those dicts were
+#   retrieved fromt he KOji XMLRPC API.
+#
+# So, before calling abipkgdiff, fedabipkgdiff must prepare and pass
+# the following information
+#
+#   (/path/to/package1.rpm, [/paths/to/package1-debuginfo.rpm ..] /path/to/package1-devel.rpm)
+#   (/path/to/package2.rpm, [/paths/to/package2-debuginfo.rpm ..] /path/to/package1-devel.rpm)
+#
+ComparisonHalf = namedtuple('ComparisonHalf',
+                            ['subject', 'ancillary_debug', 'ancillary_devel'])
+
+
+global_config = None
+pathinfo = None
+session = None
+
+# There is no way to configure the log format so far. I hope I would have time
+# to make it available so that if fedabipkgdiff is scheduled and run by some
+# service, the logs logged into log file is muc usable.
+logging.basicConfig(format='[%(levelname)s] %(message)s', level=logging.CRITICAL)
+logger = logging.getLogger(os.path.basename(__file__))
+
+
+class KojiPackageNotFound(Exception):
+    """Package is not found in Koji"""
+
+
+class PackageNotFound(Exception):
+    """Package is not found locally"""
+
+
+class RpmNotFound(Exception):
+    """RPM is not found"""
+
+
+class NoBuildsError(Exception):
+    """No builds returned from a method to select specific builds"""
+
+
+class NoCompleteBuilds(Exception):
+    """No complete builds for a package
+
+    This is a serious problem, nothing can be done if there is no complete
+    builds for a package.
+    """
+
+
+class InvalidDistroError(Exception):
+    """Invalid distro error"""
+
+
+class CannotFindLatestBuildError(Exception):
+    """Cannot find latest build from a package"""
+
+
+class SetCleanCacheAction(argparse._StoreTrueAction):
+    """Custom Action making clean-cache as bundle of clean-cache-before and clean-cache-after"""
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        setattr(namespace, 'clean_cache_before', self.const)
+        setattr(namespace, 'clean_cache_after', self.const)
+
+
+def is_distro_valid(distro):
+    """Adjust if a distro is valid
+
+    Currently, check for Fedora and RHEL.
+
+    :param str distro: a string representing a distro value.
+    :return: True if distro is the one specific to Fedora, like fc24, el7.
+    "rtype: bool
+    """
+    return re.match(r'^(fc|el)\d{1,2}$', distro) is not None
+
+
+def get_distro_from_string(str):
+    """Get the part of a string that designates the Fedora distro version number
+
+    For instance, when passed the string '2.3.fc12', this function
+    returns the string 'fc12'.
+
+    :param str the string to consider
+    :return: The sub-string of the parameter that represents the
+    Fedora distro version number, or None if the parameter does not
+    contain such a sub-string.
+    """
+
+    m = re.match(r'(.*)((fc|el)\d{1,2})(.*)', str)
+    if not m:
+        return None
+
+    distro = m.group(2)
+    return distro
+
+
+def match_nvr(s):
+    """Determine if a string is a N-V-R"""
+    return re.match(r'^([^/]+)-(.+)-(.+)$', s) is not None
+
+
+def match_nvra(s):
+    """Determine if a string is a N-V-R.A"""
+    return re.match(r'^([^/]+)-(.+)-(.+)\.(.+)$', s) is not None
+
+
+def is_rpm_file(filename):
+    """Return if a file is a RPM"""
+    return os.path.isfile(filename) and \
+        mimetypes.guess_type(filename)[0] == 'application/x-rpm'
+
+
+def cmp_nvr(left, right):
+    """Compare function for sorting a sequence of NVRs
+
+    This is the compare function used in sorted function to sort builds so that
+    fedabipkgdiff is able to select the latest build. Return value follows the
+    rules described in the part of paramter cmp of sorted documentation.
+
+    :param str left: left nvr to compare.
+    :param str right: right nvr to compare.
+    :return: -1, 0, or 1 that represents left is considered smaller than,
+    equal to, or larger than the right individually.
+    :rtype: int
+    """
+    left_nvr = koji.parse_NVR(left['nvr'])
+    right_nvr = koji.parse_NVR(right['nvr'])
+    return rpm.labelCompare(
+        (left_nvr['epoch'], left_nvr['version'], left_nvr['release']),
+        (right_nvr['epoch'], right_nvr['version'], right_nvr['release']))
+
+
+def log_call(func):
+    """A decorator that logs a method invocation
+
+    Method's name and all arguments, either positional or keyword arguments,
+    will be logged by logger.debug. Also, return value from the decorated
+    method will be logged just after the invocation is done.
+
+    This decorator does not catch any exception thrown from the decorated
+    method. If there is any exception thrown from decorated method, you can
+    catch them in the caller and obviously, no return value is logged.
+
+    :param callable func: a callable object to decorate
+    """
+    def proxy(*args, **kwargs):
+        logger.debug('Call %s, args: %s, kwargs: %s',
+                     func.__name__,
+                     args if args else '',
+                     kwargs if kwargs else '')
+        result = func(*args, **kwargs)
+        logger.debug('Result from %s: %s', func.__name__, result)
+        return result
+    return proxy
+
+
+def delete_download_cache():
+    """Delete download cache directory"""
+    download_dir = get_download_dir()
+    if global_config.dry_run:
+        print('DRY-RUN: Delete cached downloaded RPM packages at {0}'.format(download_dir))
+    else:
+        logger.debug('Delete cached downloaded RPM packages at {0}'.format(download_dir))
+        shutil.rmtree(download_dir)
+
+
+class RPM(object):
+    """Wrapper around an RPM descriptor received from Koji
+
+    The RPM descriptor that is returned from Koji XMLRPC API is a
+    dict. This wrapper class makes it eaiser to access all these
+    properties in the way of object.property.
+    """
+
+    def __init__(self, rpm_info):
+        """Initialize a RPM object
+
+        :param dict rpm_info: a dict representing an RPM descriptor
+        received from the Koji API, either listRPMs or getRPM
+        """
+        self.rpm_info = rpm_info
+
+    def __str__(self):
+        """Return the string representation of this RPM
+
+        Return the string representation of RPM information returned from Koji
+        directly so that RPM can be treated in same way.
+        """
+        return str(self.rpm_info)
+
+    def __getattr__(self, name):
+        """Access RPM information in the way of object.property
+
+        :param str name: the property name to access.
+        :raises AttributeError: if name is not one of keys of RPM information.
+        """
+        if name in self.rpm_info:
+            return self.rpm_info[name]
+        else:
+            raise AttributeError('No attribute name {0}'.format(name))
+
+    def is_peer(self, another_rpm):
+        """Determine if this is the peer of a given rpm.
+
+        Here is what "peer" means.
+
+        Consider a package P for which the tripplet Name, Version,
+        Release is made of the values {N,V,R}.  Then, consider a
+        package P' for which the similar tripplet is {N', V', R'}.
+
+        P' is a peer of P if N == N', and either V != V' or R != R'.
+        given package with a given NVR is another package with a N'V'
+        """
+        return self.name == another_rpm.name and \
+            self.arch == another_rpm.arch and \
+            not (self.version == another_rpm.version
+                 and self.release == another_rpm.release)
+
+    @property
+    def nvra(self):
+        """Return a RPM's N-V-R-A representation
+
+        An example: libabigail-1.0-0.8.rc4.1.fc23.x86_64
+        """
+        nvra, _ = os.path.splitext(self.filename)
+        return nvra
+
+    @property
+    def filename(self):
+        """Return a RPM file name
+
+        An example: libabigail-1.0-0.8.rc4.1.fc23.x86_64.rpm
+        """
+        return os.path.basename(pathinfo.rpm(self.rpm_info))
+
+    @property
+    def is_debuginfo(self):
+        """Check if the name of the current RPM denotes a debug info package"""
+        return koji.is_debuginfo(self.rpm_info['name'])
+
+    @property
+    def is_devel(self):
+        """Check if the name of current RPM denotes a development package"""
+        return self.rpm_info['name'].endswith('-devel')
+
+    @property
+    def download_url(self):
+        """Get the URL from where to download this RPM"""
+        build = session.getBuild(self.build_id)
+        return os.path.join(pathinfo.build(build), pathinfo.rpm(self.rpm_info))
+
+    @property
+    def downloaded_file(self):
+        """Get a pridictable downloaded file name with absolute path"""
+        # arch should be removed from the result returned from PathInfo.rpm
+        filename = os.path.basename(pathinfo.rpm(self.rpm_info))
+        return os.path.join(get_download_dir(), filename)
+
+    @property
+    def is_downloaded(self):
+        """Check if this RPM was already downloaded to local disk"""
+        return os.path.exists(self.downloaded_file)
+
+
+class LocalRPM(RPM):
+    """Representing a local RPM
+
+    Local RPM means the one that could be already downloaded or built from
+    where I can find it
+    """
+
+    def __init__(self, filename):
+        """Initialize local RPM with a filename
+
+        :param str filename: a filename pointing to a RPM file in local
+        disk. Note that, this file must not exist necessarily.
+        """
+        self.local_filename = filename
+        self.rpm_info = koji.parse_NVRA(os.path.basename(filename))
+
+    @property
+    def downloaded_file(self):
+        """Return filename of this RPM
+
+        Returned filename is just the one passed when initializing this RPM.
+
+        :return: filename of this RPM
+        :rtype: str
+        """
+        return self.local_filename
+
+    @property
+    def download_url(self):
+        raise NotImplementedError('LocalRPM has no URL to download')
+
+    def _find_rpm(self, rpm_filename):
+        """Search an RPM from the directory of the current instance of LocalRPM
+
+        :param str rpm_filename: filename of rpm to find, for example
+        foo-devel-0.1-1.fc24.
+        :return: an instance of LocalRPM representing the found rpm, or None if
+        no RPM was found.
+        """
+        search_dir = os.path.dirname(os.path.abspath(self.local_filename))
+        filename = os.path.join(search_dir, rpm_filename)
+        return LocalRPM(filename) if os.path.exists(filename) else None
+
+    @log_call
+    def find_debuginfo(self):
+        """Find debuginfo RPM package from a directory"""
+        filename = \
+            '%(name)s-debuginfo-%(version)s-%(release)s.%(arch)s.rpm' % \
+            self.rpm_info
+        return self._find_rpm(filename)
+
+    @log_call
+    def find_devel(self):
+        """Find development package from a directory"""
+        filename = \
+            '%(name)s-devel-%(version)s-%(release)s.%(arch)s.rpm' % \
+            self.rpm_info
+        return self._find_rpm(filename)
+
+
+class RPMCollection(object):
+    """Collection of RPMs
+
+    This is a simple collection containing RPMs collected from a
+    directory on the local filesystem or retrieved from Koji.
+
+    A collection can contain one or more sets of RPMs.  Each set of
+    RPMs being for a particular architecture.
+
+    For a given architecture, a set of RPMs is made of one RPM and its
+    ancillary RPMs.  An ancillary RPM is either a debuginfo RPM or a
+    devel RPM.
+
+    So a given RPMCollection would (informally) look like:
+
+    {
+      i686   => {foo.i686.rpm, foo-debuginfo.i686.rpm, foo-devel.i686.rpm}
+      x86_64 => {foo.x86_64.rpm, foo-debuginfo.x86_64.rpm, foo-devel.x86_64.rpm,}
+    }
+
+    """
+
+    def __init__(self, rpms=None):
+        # Mapping from arch to a list of rpm_infos.
+        # Note that *all* RPMs of the collections are present in this
+        # map; that is the RPM to consider and its ancillary RPMs.
+        self.rpms = {}
+
+        # Mapping from arch to another mapping containing index of debuginfo
+        # and development package
+        # e.g.
+        # self.ancillary_rpms = {'i686', {'debuginfo': foo-debuginfo.rpm,
+        #                                 'devel': foo-devel.rpm}}
+        self.ancillary_rpms = {}
+
+        if rpms:
+            for rpm in rpms:
+                self.add(rpm)
+
+    @classmethod
+    def gather_from_dir(cls, rpm_file, all_rpms=None):
+        """Gather RPM collection from local directory"""
+        dir_name = os.path.dirname(os.path.abspath(rpm_file))
+        filename = os.path.basename(rpm_file)
+
+        nvra = koji.parse_NVRA(filename)
+        rpm_files = glob.glob(os.path.join(
+            dir_name, '*-%(version)s-%(release)s.%(arch)s.rpm' % nvra))
+        rpm_col = cls()
+
+        if all_rpms:
+            selector = lambda rpm: True
+        else:
+            selector = lambda rpm: local_rpm.is_devel or \
+                local_rpm.is_debuginfo or local_rpm.filename == filename
+
+        found_debuginfo = 1
+
+        for rpm_file in rpm_files:
+            local_rpm = LocalRPM(rpm_file)
+
+            if local_rpm.is_debuginfo:
+                found_debuginfo <<= 1
+                if found_debuginfo == 4:
+                    raise RuntimeError(
+                        'Found more than one debuginfo package in '
+                         'this directory. At the moment, fedabipkgdiff '
+                        'is not able to deal with this case. '
+                        'Please create two separate directories and '
+                        'put an RPM and its ancillary debuginfo and '
+                        'devel RPMs in each directory.')
+
+            if selector(local_rpm):
+                rpm_col.add(local_rpm)
+
+        return rpm_col
+
+    def add(self, rpm):
+        """Add a RPM into this collection"""
+        self.rpms.setdefault(rpm.arch, []).append(rpm)
+
+        devel_debuginfo_default = {'debuginfo': None, 'devel': None}
+
+        if rpm.is_debuginfo:
+            self.ancillary_rpms.setdefault(
+                rpm.arch, devel_debuginfo_default)['debuginfo'] = rpm
+
+        if rpm.is_devel:
+            self.ancillary_rpms.setdefault(
+                rpm.arch, devel_debuginfo_default)['devel'] = rpm
+
+    def rpms_iter(self, arches=None, default_behavior=True):
+        """Iterator of RPMs to go through RPMs with specific arches"""
+        arches = sorted(self.rpms.keys())
+
+        for arch in arches:
+            for _rpm in self.rpms[arch]:
+                yield _rpm
+
+    def get_sibling_debuginfo(self, rpm):
+        """Get sibling debuginfo package of given rpm
+
+        The sibling debuginfo is a debug info package for the
+        'rpm'.  Note that if there are several debuginfo packages
+        associated to 'rpm' and users want to get the one which name
+        matches exactly 'rpm', then they might want to use the member
+        function 'get_matching_debuginfo' instead.
+
+        """
+        if rpm.arch not in self.ancillary_rpms:
+            return None
+        return self.ancillary_rpms[rpm.arch].get('debuginfo')
+
+    def get_matching_debuginfo(self, rpm):
+        """Get the debuginfo package that matches a given one """
+        all_debuginfo_list = self.get_all_debuginfo_rpms(rpm)
+        debuginfo_pkg = None
+        for d in all_debuginfo_list:
+            if d.name == '{0}-debuginfo'.format(rpm.name):
+                debuginfo_pkg = d
+                break
+        if not debuginfo_pkg:
+            debuginfo_pkg = self.get_sibling_debuginfo(rpm)
+
+        return debuginfo_pkg
+
+    def get_sibling_devel(self, rpm):
+        """Get sibling devel package of given rpm"""
+        if rpm.arch not in self.ancillary_rpms:
+            return None
+        return self.ancillary_rpms[rpm.arch].get('devel')
+
+    def get_peer_rpm(self, rpm):
+        """Get peer rpm of rpm from this collection"""
+        if rpm.arch not in self.rpms:
+            return None
+        for _rpm in self.rpms[rpm.arch]:
+            if _rpm.is_peer(rpm):
+                return _rpm
+        return None
+
+    def get_all_debuginfo_rpms(self, rpm_info):
+        """Return a list of descriptors of all the debuginfo RPMs associated
+        to a given RPM.
+
+        :param: dict rpm_info a dict representing an RPM.  This was
+        received from the Koji API, either from listRPMs or getRPM.
+        :return: a list of dicts containing RPM descriptors (dicts)
+        for the debuginfo RPMs associated to rpm_info
+        :retype: dict
+        """
+        rpm_infos = self.rpms[rpm_info.arch]
+        result = []
+        for r in rpm_infos:
+            if r.is_debuginfo:
+                result.append(r)
+        return result
+
+
+def generate_comparison_halves(rpm_col1, rpm_col2):
+    """Iterate RPM collection and peer's to generate comparison halves"""
+    for _rpm in rpm_col1.rpms_iter():
+        if _rpm.is_debuginfo:
+            continue
+        if _rpm.is_devel and not global_config.check_all_subpackages:
+            continue
+
+        if global_config.self_compare:
+            rpm2 = _rpm
+        else:
+            rpm2 = rpm_col2.get_peer_rpm(_rpm)
+            if rpm2 is None:
+                logger.warning('Peer RPM of {0} is not found.'.format(_rpm.filename))
+                continue
+
+        debuginfo_list1 = []
+        debuginfo_list2 = []
+
+        # If this is a *devel* package we are looking at, then get all
+        # the debug info packages associated to with the main package
+        # and stick them into the resulting comparison half.
+
+        if _rpm.is_devel:
+            debuginfo_list1 = rpm_col1.get_all_debuginfo_rpms(_rpm)
+        else:
+            debuginfo_list1.append(rpm_col1.get_matching_debuginfo(_rpm))
+
+        devel1 = rpm_col1.get_sibling_devel(_rpm)
+
+        if global_config.self_compare:
+            debuginfo_list2 = debuginfo_list1
+            devel2 = devel1
+        else:
+            if rpm2.is_devel:
+                debuginfo_list2 = rpm_col2.get_all_debuginfo_rpms(rpm2)
+            else:
+                debuginfo_list2.append(rpm_col2.get_matching_debuginfo(rpm2))
+            devel2 = rpm_col2.get_sibling_devel(rpm2)
+
+        yield (ComparisonHalf(subject=_rpm,
+                              ancillary_debug=debuginfo_list1,
+                              ancillary_devel=devel1),
+               ComparisonHalf(subject=rpm2,
+                              ancillary_debug=debuginfo_list2,
+                              ancillary_devel=devel2))
+
+
+class Brew(object):
+    """Interface to Koji XMLRPC API with enhancements specific to fedabipkgdiff
+
+    kojihub XMLRPC APIs are well-documented in koji's source code. For more
+    details information, please refer to class RootExports within kojihub.py.
+
+    For details of APIs used within fedabipkgdiff, refer to from line
+
+    https://pagure.io/koji/blob/master/f/hub/kojihub.py#_7835
+    """
+
+    def __init__(self, baseurl):
+        """Initialize Brew
+
+        :param str baseurl: the kojihub URL to initialize a session, that is
+        used to access koji XMLRPC APIs.
+        """
+        self.session = koji.ClientSession(baseurl)
+
+    @log_call
+    def listRPMs(self, buildID=None, arches=None, selector=None):
+        """Get list of RPMs of a build from Koji
+
+        Call kojihub.listRPMs to get list of RPMs. Return selected RPMs without
+        changing each RPM information.
+
+        A RPM returned from listRPMs contains following keys:
+
+        - id
+        - name
+        - version
+        - release
+        - nvr (synthesized for sorting purposes)
+        - arch
+        - epoch
+        - payloadhash
+        - size
+        - buildtime
+        - build_id
+        - buildroot_id
+        - external_repo_id
+        - external_repo_name
+        - metadata_only
+        - extra
+
+        :param int buildID: id of a build from which to list RPMs.
+        :param arches: to restrict to list RPMs with specified arches.
+        :type arches: list or tuple
+        :param selector: called to determine if a RPM should be selected and
+        included in the final returned result. Selector must be a callable
+        object and accepts one parameter of a RPM.
+        :type selector: a callable object
+        :return: a list of RPMs, each of them is a dict object
+        :rtype: list
+        """
+        if selector:
+            assert hasattr(selector, '__call__'), 'selector must be callable.'
+        rpms = self.session.listRPMs(buildID=buildID, arches=arches)
+        if selector:
+            rpms = [rpm for rpm in rpms if selector(rpm)]
+        return rpms
+
+    @log_call
+    def getRPM(self, rpminfo):
+        """Get a RPM from koji
+
+        Call kojihub.getRPM, and returns the result directly without any
+        change.
+
+        When not found a RPM, koji.getRPM will return None, then
+        this method will raise RpmNotFound error immediately to claim what is
+        happening. I want to raise fedabipkgdiff specific error rather than
+        koji's GenericError and then raise RpmNotFound again, so I just simply
+        don't use strict parameter to call koji.getRPM.
+
+        :param rpminfo: rpminfo may be a N-V-R.A or a map containing name,
+        version, release, and arch. For example, file-5.25-5.fc24.x86_64, and
+        `{'name': 'file', 'version': '5.25', 'release': '5.fc24', 'arch':
+        'x86_64'}`.
+        :type rpminfo: str or dict
+        :return: a map containing RPM information, that contains same keys as
+        method `Brew.listRPMs`.
+        :rtype: dict
+        :raises RpmNotFound: if a RPM cannot be found with rpminfo.
+        """
+        rpm = self.session.getRPM(rpminfo)
+        if rpm is None:
+            raise RpmNotFound('Cannot find RPM {0}'.format(rpminfo))
+        return rpm
+
+    @log_call
+    def listBuilds(self, packageID, state=None, topone=None,
+                   selector=None, order_by=None, reverse=None):
+        """Get list of builds from Koji
+
+        Call kojihub.listBuilds, and return selected builds without changing
+        each build information.
+
+        By default, only builds with COMPLETE state are queried and returns
+        afterwards.
+
+        :param int packageID: id of package to list builds from.
+        :param int state: build state. There are five states of a build in
+        Koji. fedabipkgdiff only cares about builds with COMPLETE state. If
+        state is omitted, builds with COMPLETE state are queried from Koji by
+        default.
+        :param bool topone: just return the top first build.
+        :param selector: a callable object used to select specific subset of
+        builds. Selector will be called immediately after Koji returns queried
+        builds. When each call to selector, a build is passed to
+        selector. Return True if select current build, False if not.
+        :type selector: a callable object
+        :param str order_by: the attribute name by which to order the builds,
+        for example, name, version, or nvr.
+        :param bool reverse: whether to order builds reversely.
+        :return: a list of builds, even if there is only one build.
+        :rtype: list
+        :raises TypeError: if selector is not callable, or if order_by is not a
+        string value.
+        """
+        if state is None:
+            state = koji.BUILD_STATES['COMPLETE']
+
+        if selector is not None and not hasattr(selector, '__call__'):
+            raise TypeError(
+                '{0} is not a callable object.'.format(str(selector)))
+
+        if order_by is not None and not isinstance(order_by, six.string_types):
+            raise TypeError('order_by {0} is invalid.'.format(order_by))
+
+        builds = self.session.listBuilds(packageID=packageID, state=state)
+        if selector is not None:
+            builds = [build for build in builds if selector(build)]
+        if order_by is not None:
+            # FIXME: is it possible to sort builds by using opts parameter of
+            # listBuilds
+            if order_by == 'nvr':
+                if six.PY2:
+                    builds = sorted(builds, cmp=cmp_nvr, reverse=reverse)
+                else:
+                    builds = sorted(builds,
+                                    key=functools.cmp_to_key(cmp_nvr),
+                                    reverse=reverse)
+            else:
+                builds = sorted(
+                    builds, key=lambda b: b[order_by], reverse=reverse)
+        if topone:
+            builds = builds[0:1]
+
+        return builds
+
+    @log_call
+    def getPackage(self, name):
+        """Get a package from Koji
+
+        :param str name: a package name.
+        :return: a mapping containing package information. For example,
+        `{'id': 1, 'name': 'package'}`.
+        :rtype: dict
+        """
+        package = self.session.getPackage(name)
+        if package is None:
+            package = self.session.getPackage(name.rsplit('-', 1)[0])
+            if package is None:
+                raise KojiPackageNotFound(
+                    'Cannot find package {0}.'.format(name))
+        return package
+
+    @log_call
+    def getBuild(self, buildID):
+        """Get a build from Koji
+
+        Call kojihub.getBuild. Return got build directly without change.
+
+        :param int buildID: id of build to get from Koji.
+        :return: the found build. Return None, if not found a build with
+        buildID.
+        :rtype: dict
+        """
+        return self.session.getBuild(buildID)
+
+    @log_call
+    def get_rpm_build_id(self, name, version, release, arch=None):
+        """Get build ID that contains a RPM with specific nvra
+
+        If arch is not omitted, a RPM can be identified by its N-V-R-A.
+
+        If arch is omitted, name is used to get associated package, and then
+        to get the build.
+
+        Example:
+
+        >>> brew = Brew('url to kojihub')
+        >>> brew.get_rpm_build_id('httpd', '2.4.18', '2.fc24')
+        >>> brew.get_rpm_build_id('httpd', '2.4.18', '2.fc25', 'x86_64')
+
+        :param str name: name of a rpm
+        :param str version: version of a rpm
+        :param str release: release of a rpm
+        :param arch: arch of a rpm
+        :type arch: str or None
+        :return: id of the build from where the RPM is built
+        :rtype: dict
+        :raises KojiPackageNotFound: if name is not found from Koji if arch
+        is None.
+        """
+        if arch is None:
+            package = self.getPackage(name)
+            selector = lambda item: item['version'] == version and \
+                item['release'] == release
+            builds = self.listBuilds(packageID=package['id'],
+                                     selector=selector)
+            if not builds:
+                raise NoBuildsError(
+                    'No builds are selected from package {0}.'.format(
+                        package['name']))
+            return builds[0]['build_id']
+        else:
+            rpm = self.getRPM({'name': name,
+                               'version': version,
+                               'release': release,
+                               'arch': arch,
+                               })
+            return rpm['build_id']
+
+    @log_call
+    def get_package_latest_build(self, package_name, distro):
+        """Get latest build from a package, for a particular distro.
+
+        Example:
+
+        >>> brew = Brew('url to kojihub')
+        >>> brew.get_package_latest_build('httpd', 'fc24')
+
+        :param str package_name: from which package to get the latest build
+        :param str distro: which distro the latest build belongs to
+        :return: the found build
+        :rtype: dict or None
+        :raises NoCompleteBuilds: if there is no latest build of a package.
+        """
+        package = self.getPackage(package_name)
+        selector = lambda item: item['release'].find(distro) > -1
+
+        builds = self.listBuilds(packageID=package['id'],
+                                 selector=selector,
+                                 order_by='nvr',
+                                 reverse=True)
+        if not builds:
+            # So we found no build which distro string exactly matches
+            # the 'distro' parameter.
+            #
+            # Now lets try to get builds which distro string are less
+            # than the value of the 'distro' parameter.  This is for
+            # cases when, for instance, the build of package foo that
+            # is present in current Fedora 27 is foo-1.fc26.  That
+            # build originates from Fedora 26 but is being re-used in
+            # Fedora 27.  So we want this function to pick up that
+            # foo-1.fc26, even though we want the builds of foo that
+            # match the distro string fc27.
+
+            selector = lambda build: get_distro_from_string(build['release']) and \
+                       get_distro_from_string(build['release']) <= distro
+
+            builds = self.listBuilds(packageID=package['id'],
+                                 selector=selector,
+                                 order_by='nvr',
+                                 reverse=True);
+
+        if not builds:
+            raise NoCompleteBuilds(
+                'No complete builds of package {0}'.format(package_name))
+
+        return builds[0]
+
+    @log_call
+    def select_rpms_from_a_build(self, build_id, package_name, arches=None,
+                                 select_subpackages=None):
+        """Select specific RPMs within a build
+
+        RPMs could be filtered be specific criterias by the parameters.
+
+        By default, fedabipkgdiff requires the RPM package, as well as
+        its associated debuginfo and devel packages.  These three
+        packages are selected, and noarch and src are excluded.
+
+        :param int build_id: from which build to select rpms.
+        :param str package_name: which rpm to select that matches this name.
+        :param arches: which arches to select. If arches omits, rpms with all
+        arches except noarch and src will be selected.
+        :type arches: list, tuple or None
+        :param bool select_subpackages: indicate whether to select all RPMs
+        with specific arch from build.
+        :return: a list of RPMs returned from listRPMs
+        :rtype: list
+        """
+        excluded_arches = ('noarch', 'src')
+
+        def rpms_selector(package_name, excluded_arches):
+            return lambda rpm: \
+                rpm['arch'] not in excluded_arches and \
+                (rpm['name'] == package_name or
+                 rpm['name'].endswith('-debuginfo') or
+                 rpm['name'].endswith('-devel'))
+
+        if select_subpackages:
+            selector = lambda rpm: rpm['arch'] not in excluded_arches
+        else:
+            selector = rpms_selector(package_name, excluded_arches)
+        rpm_infos = self.listRPMs(buildID=build_id,
+                                  arches=arches,
+                                  selector=selector)
+        return RPMCollection((RPM(rpm_info) for rpm_info in rpm_infos))
+
+    @log_call
+    def get_latest_built_rpms(self, package_name, distro, arches=None):
+        """Get RPMs from latest build of a package
+
+        :param str package_name: from which package to get the rpms
+        :param str distro: which distro the rpms belong to
+        :param arches: which arches the rpms belong to
+        :type arches: str or None
+        :return: the selected RPMs
+        :rtype: list
+        """
+        latest_build = self.get_package_latest_build(package_name, distro)
+        # Get rpm and debuginfo rpm from each arch
+        return self.select_rpms_from_a_build(latest_build['build_id'],
+                                             package_name,
+                                             arches=arches)
+
+
+@log_call
+def get_session():
+    """Get instance of Brew to talk with Koji"""
+    return Brew(global_config.koji_server)
+
+
+@log_call
+def get_download_dir():
+    """Return the directory holding all downloaded RPMs
+
+    If directory does not exist, it is created automatically.
+
+    :return: path to directory holding downloaded RPMs.
+    :rtype: str
+    """
+    download_dir = os.path.join(HOME_DIR, 'downloads')
+    if not os.path.exists(download_dir):
+        os.makedirs(download_dir)
+    return download_dir
+
+
+@log_call
+def download_rpm(url):
+    """Using curl to download a RPM from Koji
+
+    Currently, curl is called and runs in a spawned process. pycurl would be a
+    good way instead. This would be changed in the future.
+
+    :param str url: URL of a RPM to download.
+    :return: True if a RPM is downloaded successfully, False otherwise.
+    :rtype: bool
+    """
+    cmd = 'curl --location --silent {0} -o {1}'.format(
+        url, os.path.join(get_download_dir(),
+                          os.path.basename(url)))
+    if global_config.dry_run:
+        print('DRY-RUN: {0}'.format(cmd))
+        return
+
+    return_code = subprocess.call(cmd, shell=True)
+    if return_code > 0:
+        logger.error('curl fails with returned code: %d.', return_code)
+        return False
+    return True
+
+
+@log_call
+def download_rpms(rpms):
+    """Download RPMs
+
+    :param list rpms: list of RPMs to download.
+    """
+    def _download(rpm):
+        if rpm.is_downloaded:
+            logger.debug('Reuse %s', rpm.downloaded_file)
+        else:
+            logger.debug('Download %s', rpm.download_url)
+            download_rpm(rpm.download_url)
+
+    for rpm in rpms:
+        _download(rpm)
+
+
+@log_call
+def build_path_to_abipkgdiff():
+    """Build the path to the 'abipkgidiff' program to use.
+
+    The path to 'abipkgdiff' is either the argument of the
+    --abipkgdiff command line option, or the path to 'abipkgdiff' as
+    found in the $PATH environment variable.
+
+    :return: str a string representing the path to the 'abipkgdiff'
+    command.
+    """
+    if global_config.abipkgdiff:
+        return global_config.abipkgdiff
+    return DEFAULT_ABIPKGDIFF
+
+
+def format_debug_info_pkg_options(option, debuginfo_list):
+    """Given a list of debug info package descriptors return an option
+    string that looks like:
+
+       option dbg.rpm1 option dbgrpm2 ...
+
+    :param: list debuginfo_list a list of instances of the RPM class
+    representing the debug info rpms to use to construct the option
+    string.
+
+    :return: str a string representing the option string that
+    concatenate the 'option' parameter before the path to each RPM
+    contained in 'debuginfo_list'.
+    """
+    options = []
+
+    for dbg_pkg in debuginfo_list:
+        if dbg_pkg and dbg_pkg.downloaded_file:
+            options.append(' {0} {1}'.format(option, dbg_pkg.downloaded_file))
+
+    return ' '.join(options) if options else ''
+
+@log_call
+def abipkgdiff(cmp_half1, cmp_half2):
+    """Run abipkgdiff against found two RPM packages
+
+    Construct and execute abipkgdiff to get ABI diff
+
+    abipkgdiff \
+        --d1 package1-debuginfo --d2 package2-debuginfo \
+        package1-rpm package2-rpm
+
+    Output to stdout or stderr from abipkgdiff is not captured. abipkgdiff is
+    called synchronously. fedabipkgdiff does not return until underlying
+    abipkgdiff finishes.
+
+    :param ComparisonHalf cmp_half1: the first comparison half.
+    :param ComparisonHalf cmp_half2: the second comparison half.
+    :return: return code of underlying abipkgdiff execution.
+    :rtype: int
+    """
+    abipkgdiff_tool = build_path_to_abipkgdiff()
+
+    suppressions = ''
+
+    if global_config.suppr:
+        suppressions = '--suppressions {0}'.format(global_config.suppr)
+
+    if global_config.no_devel_pkg:
+        devel_pkg1 = ''
+        devel_pkg2 = ''
+    else:
+        if cmp_half1.ancillary_devel is None:
+            msg = 'Development package for {0} does not exist.'.format(cmp_half1.subject.filename)
+            if global_config.error_on_warning:
+                raise RuntimeError(msg)
+            else:
+                devel_pkg1 = ''
+                logger.warning('{0} Ignored.'.format(msg))
+        else:
+            devel_pkg1 = '--devel-pkg1 {0}'.format(cmp_half1.ancillary_devel.downloaded_file)
+
+        if cmp_half2.ancillary_devel is None:
+            msg = 'Development package for {0} does not exist.'.format(cmp_half2.subject.filename)
+            if global_config.error_on_warning:
+                raise RuntimeError(msg)
+            else:
+                devel_pkg2 = ''
+                logger.warning('{0} Ignored.'.format(msg))
+        else:
+            devel_pkg2 = '--devel-pkg2 {0}'.format(cmp_half2.ancillary_devel.downloaded_file)
+
+    if cmp_half1.ancillary_debug is None:
+        msg = 'Debuginfo package for {0} does not exist.'.format(cmp_half1.subject.filename)
+        if global_config.error_on_warning:
+            raise RuntimeError(msg)
+        else:
+            debuginfo_pkg1 = ''
+            logger.warning('{0} Ignored.'.format(msg))
+    else:
+        debuginfo_pkg1 = format_debug_info_pkg_options("--d1", cmp_half1.ancillary_debug)
+
+    if cmp_half2.ancillary_debug is None:
+        msg = 'Debuginfo package for {0} does not exist.'.format(cmp_half2.subject.filename)
+        if global_config.error_on_warning:
+            raise RuntimeError(msg)
+        else:
+            debuginfo_pkg2 = ''
+            logger.warning('{0} Ignored.'.format(msg))
+    else:
+        debuginfo_pkg2 = format_debug_info_pkg_options("--d2", cmp_half2.ancillary_debug);
+
+    cmd = []
+
+    if global_config.self_compare:
+        cmd = [
+            abipkgdiff_tool,
+            '--dso-only' if global_config.dso_only else '',
+            '--self-check',
+            debuginfo_pkg1,
+            cmp_half1.subject.downloaded_file,
+        ]
+    else:
+        cmd = [
+            abipkgdiff_tool,
+            suppressions,
+            '--show-identical-binaries' if global_config.show_identical_binaries else '',
+            '--no-default-suppression' if global_config.no_default_suppr else '',
+            '--dso-only' if global_config.dso_only else '',
+            debuginfo_pkg1,
+            debuginfo_pkg2,
+            devel_pkg1,
+            devel_pkg2,
+            cmp_half1.subject.downloaded_file,
+            cmp_half2.subject.downloaded_file,
+        ]
+    cmd = [s for s in cmd if s != '']
+
+    if global_config.dry_run:
+        print('DRY-RUN: {0}'.format(' '.join(cmd)))
+        return
+
+    logger.debug('Run: %s', ' '.join(cmd))
+
+    print('Comparing the ABI of binaries between {0} and {1}:'.format(
+        cmp_half1.subject.filename, cmp_half2.subject.filename))
+    print()
+
+    proc = subprocess.Popen(' '.join(cmd), shell=True,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                            universal_newlines=True)
+    # So we could have done: stdout, stderr = proc.communicate()
+    # But then the documentatin of proc.communicate says:
+    #
+    #    Note: The data read is buffered in memory, so do not use this
+    #    method if the data size is large or unlimited. "
+    #
+    # In practice, we are seeing random cases where this
+    # proc.communicate() function does *NOT* terminate and seems to be
+    # in a deadlock state.  So we are avoiding it altogether.  We are
+    # then busy looping, waiting for the spawn process to finish, and
+    # then we get its output.
+    #
+
+    while True:
+        if proc.poll() != None:
+            break
+
+    stdout = ''.join(proc.stdout.readlines())
+    stderr = ''.join(proc.stderr.readlines())
+
+    is_ok = proc.returncode == ABIDIFF_OK
+    is_internal_error = proc.returncode & ABIDIFF_ERROR or proc.returncode & ABIDIFF_USAGE_ERROR
+    has_abi_change = proc.returncode & ABIDIFF_ABI_CHANGE
+
+    if is_internal_error:
+        six.print_(stderr, file=sys.stderr)
+    elif is_ok or has_abi_change:
+        print(stdout)
+
+    return proc.returncode
+
+
+@log_call
+def run_abipkgdiff(rpm_col1, rpm_col2):
+    """Run abipkgdiff
+
+    If one of the executions finds ABI differences, the return code is the
+    return code from abipkgdiff.
+
+    :param RPMCollection rpm_col1: a collection of RPMs
+    :param RPMCollection rpm_col2: same as rpm_col1
+    :return: exit code of the last non-zero returned from underlying abipkgdiff
+    :rtype: int
+    """
+    return_codes = [
+        abipkgdiff(cmp_half1, cmp_half2) for cmp_half1, cmp_half2
+        in generate_comparison_halves(rpm_col1, rpm_col2)]
+    return max(return_codes, key=abs) if return_codes else 0
+
+
+@log_call
+def diff_local_rpm_with_latest_rpm_from_koji():
+    """Diff against local rpm and remove latest rpm
+
+    This operation handles a local rpm and debuginfo rpm and remote ones
+    located in remote Koji server, that has specific distro specificed by
+    argument --from.
+
+    1/ Suppose the packager has just locally built a package named
+    foo-3.0.fc24.rpm. To compare the ABI of this locally build package with the
+    latest stable package from Fedora 23, one would do:
+
+    fedabipkgdiff --from fc23 ./foo-3.0.fc24.rpm
+    """
+
+    from_distro = global_config.from_distro
+    if not is_distro_valid(from_distro):
+        raise InvalidDistroError('Invalid distro {0}'.format(from_distro))
+
+    local_rpm_file = global_config.NVR[0]
+    if not os.path.exists(local_rpm_file):
+        raise ValueError('{0} does not exist.'.format(local_rpm_file))
+
+    local_rpm = LocalRPM(local_rpm_file)
+    rpm_col1 = session.get_latest_built_rpms(local_rpm.name,
+                                             from_distro,
+                                             arches=local_rpm.arch)
+    rpm_col2 = RPMCollection.gather_from_dir(local_rpm_file)
+
+    if global_config.clean_cache_before:
+        delete_download_cache()
+
+    download_rpms(rpm_col1.rpms_iter())
+    result = run_abipkgdiff(rpm_col1, rpm_col2)
+
+    if global_config.clean_cache_after:
+        delete_download_cache()
+
+    return result
+
+
+@log_call
+def diff_latest_rpms_based_on_distros():
+    """abipkgdiff rpms based on two distros
+
+    2/ Suppose the packager wants to see how the ABIs of the package foo
+    evolved between fedora 19 and fedora 22. She would thus type the command:
+
+    fedabipkgdiff --from fc19 --to fc22 foo
+    """
+
+    from_distro = global_config.from_distro
+    to_distro = global_config.to_distro
+
+    if not is_distro_valid(from_distro):
+        raise InvalidDistroError('Invalid distro {0}'.format(from_distro))
+
+    if not is_distro_valid(to_distro):
+        raise InvalidDistroError('Invalid distro {0}'.format(to_distro))
+
+    package_name = global_config.NVR[0]
+
+    rpm_col1 = session.get_latest_built_rpms(package_name,
+                                             distro=global_config.from_distro)
+    rpm_col2 = session.get_latest_built_rpms(package_name,
+                                             distro=global_config.to_distro)
+
+    if global_config.clean_cache_before:
+        delete_download_cache()
+
+    download_rpms(chain(rpm_col1.rpms_iter(), rpm_col2.rpms_iter()))
+    result = run_abipkgdiff(rpm_col1, rpm_col2)
+
+    if global_config.clean_cache_after:
+        delete_download_cache()
+
+    return result
+
+
+@log_call
+def diff_two_nvras_from_koji():
+    """Diff two nvras from koji
+
+    The arch probably omits, that means febabipkgdiff will diff all arches. If
+    specificed, the specific arch will be handled.
+
+    3/ Suppose the packager wants to compare the ABI of two packages designated
+    by their name and version. She would issue a command like this:
+
+    fedabipkgdiff foo-1.0.fc19 foo-3.0.fc24
+    fedabipkgdiff foo-1.0.fc19.i686 foo-1.0.fc24.i686
+    """
+    left_rpm = koji.parse_NVRA(global_config.NVR[0])
+    right_rpm = koji.parse_NVRA(global_config.NVR[1])
+
+    if is_distro_valid(left_rpm['arch']) and \
+            is_distro_valid(right_rpm['arch']):
+        nvr = koji.parse_NVR(global_config.NVR[0])
+        params1 = (nvr['name'], nvr['version'], nvr['release'], None)
+
+        nvr = koji.parse_NVR(global_config.NVR[1])
+        params2 = (nvr['name'], nvr['version'], nvr['release'], None)
+    else:
+        params1 = (left_rpm['name'],
+                   left_rpm['version'],
+                   left_rpm['release'],
+                   left_rpm['arch'])
+        params2 = (right_rpm['name'],
+                   right_rpm['version'],
+                   right_rpm['release'],
+                   right_rpm['arch'])
+
+    build_id = session.get_rpm_build_id(*params1)
+    rpm_col1 = session.select_rpms_from_a_build(
+        build_id, params1[0], arches=params1[3],
+        select_subpackages=global_config.check_all_subpackages)
+
+    build_id = session.get_rpm_build_id(*params2)
+    rpm_col2 = session.select_rpms_from_a_build(
+        build_id, params2[0], arches=params2[3],
+        select_subpackages=global_config.check_all_subpackages)
+
+    if global_config.clean_cache_before:
+        delete_download_cache()
+
+    download_rpms(chain(rpm_col1.rpms_iter(), rpm_col2.rpms_iter()))
+    result = run_abipkgdiff(rpm_col1, rpm_col2)
+
+    if global_config.clean_cache_after:
+        delete_download_cache()
+
+    return result
+
+
+@log_call
+def self_compare_rpms_from_distro():
+    """Compare ABI between same package from a distro
+
+    Doing ABI comparison on self package should return no
+    ABI change and hence return code should be 0. This is useful
+    to ensure that functionality of libabigail itself
+    didn't break. This utility can be invoked like this:
+
+    fedabipkgdiff --self-compare -a --from fc25 foo
+    """
+
+    from_distro = global_config.from_distro
+
+    if not is_distro_valid(from_distro):
+        raise InvalidDistroError('Invalid distro {0}'.format(from_distro))
+
+    package_name = global_config.NVR[0]
+
+    rpm_col1 = session.get_latest_built_rpms(package_name,
+                                             distro=global_config.from_distro)
+
+    if global_config.clean_cache_before:
+        delete_download_cache()
+
+    download_rpms(rpm_col1.rpms_iter())
+    result = run_abipkgdiff(rpm_col1, rpm_col1)
+
+    if global_config.clean_cache_after:
+        delete_download_cache()
+
+    return result
+
+
+@log_call
+def diff_from_two_rpm_files(from_rpm_file, to_rpm_file):
+    """Diff two RPM files"""
+    rpm_col1 = RPMCollection.gather_from_dir(from_rpm_file)
+    rpm_col2 = RPMCollection.gather_from_dir(to_rpm_file)
+    if global_config.clean_cache_before:
+        delete_download_cache()
+    download_rpms(chain(rpm_col1.rpms_iter(), rpm_col2.rpms_iter()))
+    result = run_abipkgdiff(rpm_col1, rpm_col2)
+    if global_config.clean_cache_after:
+        delete_download_cache()
+    return result
+
+
+def build_commandline_args_parser():
+    parser = argparse.ArgumentParser(
+        description='Compare ABI of shared libraries in RPM packages from the '
+                    'Koji build system')
+
+    parser.add_argument(
+        'NVR',
+        nargs='*',
+        help='RPM package N-V-R, N-V-R-A, N, or local RPM '
+             'file names with relative or absolute path.')
+    parser.add_argument(
+        '--dry-run',
+        required=False,
+        dest='dry_run',
+        action='store_true',
+        help='Don\'t actually do the work. The commands that should be '
+             'run will be sent to stdout.')
+    parser.add_argument(
+        '--from',
+        required=False,
+        metavar='DISTRO',
+        dest='from_distro',
+        help='baseline Fedora distribution name, for example, fc23')
+    parser.add_argument(
+        '--to',
+        required=False,
+        metavar='DISTRO',
+        dest='to_distro',
+        help='Fedora distribution name to compare against the baseline, for '
+             'example, fc24')
+    parser.add_argument(
+        '-a',
+        '--all-subpackages',
+        required=False,
+        action='store_true',
+        dest='check_all_subpackages',
+        help='Check all subpackages instead of only the package specificed in '
+             'command line.')
+    parser.add_argument(
+        '--dso-only',
+        required=False,
+        action='store_true',
+        dest='dso_only',
+        help='Compare the ABI of shared libraries only. If this option is not '
+             'provided, the tool compares the ABI of all ELF binaries.')
+    parser.add_argument(
+        '--debug',
+        required=False,
+        action='store_true',
+        dest='debug',
+        help='show debug output')
+    parser.add_argument(
+        '--traceback',
+        required=False,
+        action='store_true',
+        dest='show_traceback',
+        help='show traceback when there is an exception thrown.')
+    parser.add_argument(
+        '--server',
+        required=False,
+        metavar='URL',
+        dest='koji_server',
+        default=DEFAULT_KOJI_SERVER,
+        help='URL of koji XMLRPC service. Default is {0}'.format(
+            DEFAULT_KOJI_SERVER))
+    parser.add_argument(
+        '--topurl',
+        required=False,
+        metavar='URL',
+        dest='koji_topurl',
+        default=DEFAULT_KOJI_TOPURL,
+        help='URL for RPM files access')
+    parser.add_argument(
+        '--abipkgdiff',
+        required=False,
+        metavar='ABIPKGDIFF',
+        dest='abipkgdiff',
+        default='',
+        help="The path to the 'abipkgtool' command to use. "
+             "By default use the one found in $PATH.")
+    parser.add_argument(
+        '--suppressions',
+        required=False,
+        metavar='SUPPR',
+        dest='suppr',
+        default='',
+        help='The suppression specification file to use during comparison')
+    parser.add_argument(
+        '--no-default-suppression',
+        required=False,
+        action='store_true',
+        dest='no_default_suppr',
+        help='Do not load default suppression specifications')
+    parser.add_argument(
+        '--no-devel-pkg',
+        required=False,
+        action='store_true',
+        dest='no_devel_pkg',
+        help='Do not compare ABI with development package')
+    parser.add_argument(
+        '--show-identical-binaries',
+        required=False,
+        action='store_true',
+        dest='show_identical_binaries',
+        help='Show information about binaries whose ABI are identical')
+    parser.add_argument(
+        '--error-on-warning',
+        required=False,
+        action='store_true',
+        dest='error_on_warning',
+        help='Raise error instead of warning')
+    parser.add_argument(
+        '--clean-cache',
+        required=False,
+        action=SetCleanCacheAction,
+        dest='clean_cache',
+        default=None,
+        help='A convenient way to clean cache without specifying '
+             '--clean-cache-before and --clean-cache-after at same time')
+    parser.add_argument(
+        '--clean-cache-before',
+        required=False,
+        action='store_true',
+        dest='clean_cache_before',
+        default=None,
+        help='Clean cache before ABI comparison')
+    parser.add_argument(
+        '--clean-cache-after',
+        required=False,
+        action='store_true',
+        dest='clean_cache_after',
+        default=None,
+        help='Clean cache after ABI comparison')
+    parser.add_argument(
+        '--self-compare',
+        required=False,
+        action='store_true',
+        dest='self_compare',
+        default=None,
+        help='ABI comparison on same package')
+    return parser
+
+
+def main():
+    parser = build_commandline_args_parser()
+
+    args = parser.parse_args()
+
+    global global_config
+    global_config = args
+
+    global pathinfo
+    pathinfo = koji.PathInfo(topdir=global_config.koji_topurl)
+
+    global session
+    session = get_session()
+
+    if global_config.debug:
+        logger.setLevel(logging.DEBUG)
+
+    logger.debug(args)
+
+    if global_config.from_distro and global_config.self_compare and \
+            global_config.NVR:
+        return self_compare_rpms_from_distro()
+
+    if global_config.from_distro and global_config.to_distro is None and \
+            global_config.NVR:
+        return diff_local_rpm_with_latest_rpm_from_koji()
+
+    if global_config.from_distro and global_config.to_distro and \
+            global_config.NVR:
+        return diff_latest_rpms_based_on_distros()
+
+    if global_config.from_distro is None and global_config.to_distro is None:
+        if len(global_config.NVR) > 1:
+            left_one = global_config.NVR[0]
+            right_one = global_config.NVR[1]
+
+            if is_rpm_file(left_one) and is_rpm_file(right_one):
+                return diff_from_two_rpm_files(left_one, right_one)
+
+            both_nvr = match_nvr(left_one) and match_nvr(right_one)
+            both_nvra = match_nvra(left_one) and match_nvra(right_one)
+
+            if both_nvr or both_nvra:
+                return diff_two_nvras_from_koji()
+
+    six.print_('Unknown arguments. Please refer to --help.', file=sys.stderr)
+    return 1
+
+
+if __name__ == '__main__':
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        if global_config is None:
+            raise
+        if global_config.debug:
+            logger.debug('Terminate by user')
+        else:
+            six.print_('Terminate by user', file=sys.stderr)
+        if global_config.show_traceback:
+            raise
+        else:
+            sys.exit(2)
+    except Exception as e:
+        if global_config is None:
+            raise
+        if global_config.debug:
+            logger.debug(str(e))
+        else:
+            six.print_(str(e), file=sys.stderr)
+        if global_config.show_traceback:
+            raise
+        else:
+            sys.exit(1)

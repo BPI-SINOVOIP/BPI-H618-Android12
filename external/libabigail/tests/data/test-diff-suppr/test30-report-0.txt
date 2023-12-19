@@ -1,0 +1,30 @@
+Functions changes summary: 1 Removed, 2 Changed, 1 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 Removed function:
+
+  [D] 'method virtual int non_defined_class::virtual_func_to_be_removed()'    {_ZN17non_defined_class26virtual_func_to_be_removedEv}
+    note that this removes an entry from the vtable of class non_defined_class
+
+1 Added function:
+
+  [A] 'method virtual int non_defined_class::virtual_func_inserted()'    {_ZN17non_defined_class21virtual_func_insertedEv}
+    note that this adds a new entry to the vtable of class non_defined_class
+
+2 functions with some indirect sub-type change:
+
+  [C] 'method virtual int non_defined_class::virtual_func0()' at test30-priv-lib-v1.h:15:1 has some indirect sub-type changes:
+    the vtable offset of method virtual int non_defined_class::virtual_func0() changed from 3 to 4
+      note that this is an ABI incompatible change to the vtable of class non_defined_class
+
+  [C] 'function int public_function(S*)' at test30-pub-lib-v1.cc:22:1 has some indirect sub-type changes:
+    parameter 1 of type 'S*' has sub-type changes:
+      in pointed to type 'class S' at test30-pub-lib-v1.h:1:1:
+        type size hasn't changed
+        1 data member change:
+          type of 'S::priv_type* priv' changed:
+            in pointed to type 'class S::priv_type' at test30-pub-lib-v1.cc:14:1:
+              type size changed from 64 to 128 (in bits)
+              1 data member insertion:
+                'int member1', at offset 64 (in bits) at test30-pub-lib-v1.cc:18:1
+

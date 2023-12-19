@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+_abilint_module()
+{
+	local cur prev OPTS
+	COMPREPLY=()
+	cur="${COMP_WORDS[COMP_CWORD]}"
+	prev="${COMP_WORDS[COMP_CWORD-1]}"
+	case $prev in
+	  '-d'|'--debug-info-dir')
+	    local IFS=$'\n'
+	    compopt -o dirnames
+	    COMPREPLY=( $(compgen -d -- $cur) )
+	    return 0
+	    ;;
+	esac
+	case $cur in
+	  -*)
+	    OPTS="  --idiff
+		    --debug-info-dir
+		    --help
+		    --noout
+		    --stdin
+		    --tu"
+	    COMPREPLY=( $(compgen -W "${OPTS[*]}" -- $cur) )
+	    return 0
+	    ;;
+	esac
+	local IFS=$'\n'
+	compopt -o filenames
+	COMPREPLY=( $(compgen -f -- $cur) )
+	return 0
+}
+complete -F _abilint_module abilint

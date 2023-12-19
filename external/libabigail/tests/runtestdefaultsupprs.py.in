@@ -1,0 +1,246 @@
+#!/usr/bin/env @PYTHON@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+
+'''Runs tests for the default suppression specifications of libabigail.
+
+This program tries to exercise the reading of default suppression
+files by the abidiff and abipkgdiff programs.
+
+It reads a set of input files to ABI-compare, along with a
+suppressions specification and a reference output.  The test points
+the environment variables LIBABIGAIL_DEFAULT_SYSTEM_SUPPRESSION_FILE
+and LIBABIGAIL_USER_SYSTEM_SUPPRESSION_FILE environment variables at
+the suppression specification and runs abidiff to compare the two
+input binary files.  The result of the comparison should be equal to
+the reference output, meaning that the suppression specification was
+taken into account.
+'''
+
+import sys
+import os
+import subprocess
+
+
+abidiff = '@abs_top_builddir@/tools/abidiff'
+abipkgdiff = '@abs_top_builddir@/tools/abipkgdiff'
+test_src_dir = '@top_srcdir@/tests'
+test_build_dir = '@abs_top_builddir@/tests'
+input_dir = '@top_srcdir@/tests/data/test-default-supprs'
+output_dir = '@abs_top_builddir@/tests/output/test-default-supprs'
+
+# This variable named is a list of 5-uples.  Here is the meaning of
+# the elements of each 5-uples:
+#
+# (first binary to compare,
+#  second binary to compare,
+#  suppression specification,
+#  reference output file,
+#  where to store the result of the comparison)
+#
+abidiff_test_specs = [('data/test-default-supprs/test0-type-suppr-v0.o',
+                       'data/test-default-supprs/test0-type-suppr-v1.o',
+                       'data/test-default-supprs/test0-type-suppr-0.suppr',
+                       'data/test-default-supprs/test0-type-suppr-report-0.txt',
+                       'output/test-default-supprs/test0-type-suppr-report-0.txt'),]
+
+# This variable named is a list of 5-uples.  Here is the meaning of
+# the elements of each 5-uples:
+#
+# (first package to compare,
+#  second package to compare,
+#  suppression specification,
+#  reference output file,
+#  where to store the result of the comparison)
+#
+abipkgdiff_test_specs = [('data/test-default-supprs/dirpkg-1-dir1',
+                          'data/test-default-supprs/dirpkg-1-dir2',
+                          'data/test-default-supprs/dirpkg-1-dir2/dir.abignore',
+                          'data/test-default-supprs/dirpkg-1-dir-report-0.txt',
+                          'output/test-default-supprs/dirpkg-1-dir-report-0.txt')]
+
+
+def ensure_output_dir_created():
+    '''Create output dir if it's not already created.'''
+
+    try:
+        os.makedirs(output_dir)
+    except:
+        pass
+
+        if not os.path.exists(output_dir):
+            sys.exit(1);
+
+def run_abidiff_tests():
+    """Run the abidiff default suppression tests.
+
+    Loop through the test inputs in the abidiff_test_specs global
+    variable and for each of the test input, launch a comparison using
+    abidiff and setting LIBABIGAIL_SYSTEM_SUPPRESSION_FILE and
+    LIBABIGAIL_USER_SYSTEM_SUPPRESSION_FILE environment variables.
+
+    Note that if LIBABIGAIL_SYSTEM_SUPPRESSION_FILE is not set,
+    libabigail tries to load the file
+    $libdir/libabigail/defaul-libabigail.abignore, and then tries to
+    load the file $HOME/.abignore.  This program does not test the
+    case where LIBABIGAIL_SYSTEM_SUPPRESSION_FILE and
+    LIBABIGAIL_USER_SYSTEM_SUPPRESSION_FILE are not set.
+
+    This function returns the exit code of the abidiff program.
+
+    """
+
+    default_suppression = output_dir + "/default.abignore"
+    with open(default_suppression, 'w') as out:
+        out.write('\n');
+
+    result = 0;
+    for test_spec in abidiff_test_specs:
+        binary1 = test_spec[0]
+        binary2 = test_spec[1]
+        suppressions = test_spec[2]
+        reference_report_path = test_spec[3]
+        output_path = test_spec[4]
+
+        binary1 = test_src_dir + "/" + binary1
+        binary2 = test_src_dir + "/" + binary2
+        suppressions = test_src_dir + "/" + suppressions if suppressions else ''
+        reference_report_path = test_src_dir + "/" + reference_report_path
+        output_path = test_build_dir + "/" + output_path
+
+        cmd = [abidiff, binary1, binary2]
+
+        # The environment variables that say where to find the default
+        # suppression specifications loaded by libabigail.
+        envs = {
+            'LIBABIGAIL_DEFAULT_SYSTEM_SUPPRESSION_FILE' : default_suppression,
+            'LIBABIGAIL_DEFAULT_USER_SUPPRESSION_FILE' : default_suppression
+        }
+
+        # Initialize the environment variables above to their default
+        # value.
+        for name, value in envs.items():
+            os.environ[name] = value;
+
+        for env_name in envs:
+            env_vars = os.environ
+            if suppressions:
+                env_vars[env_name] = suppressions
+
+            with open(output_path, 'w') as out_file:
+                subprocess.call(cmd, env=env_vars, stdout=out_file)
+
+            diffcmd = ['diff', '-u', reference_report_path, output_path]
+
+            return_code = subprocess.call(diffcmd)
+            if return_code:
+                result = return_code
+                sys.stderr.write("failed abidiff test "
+                                 "for env var '" + env_name + "'\n");
+
+            del env_vars[env_name];
+
+        try:
+            os.remove(default_suppression)
+        except:
+            pass
+
+        return result;
+
+def run_abipkgdiff_tests():
+    """Run the abipkgdiff default suppression tests.
+
+    Loop through the test inputs in the abipkgdiff_test_specs global
+    variable and for each of the input packages, launch a comparison
+    using abipkgdiff and setting LIBABIGAIL_SYSTEM_SUPPRESSION_FILE
+    and LIBABIGAIL_USER_SYSTEM_SUPPRESSION_FILE environment variables.
+
+    Note that if LIBABIGAIL_SYSTEM_SUPPRESSION_FILE is not set,
+    libabigail tries to load the file
+    $libdir/libabigail/defaul-libabigail.abignore, and then tries to
+    load the file $HOME/.abignore.  This program does not test the
+    case where LIBABIGAIL_SYSTEM_SUPPRESSION_FILE and
+    LIBABIGAIL_USER_SYSTEM_SUPPRESSION_FILE are not set.
+
+    This function returns the exit code of the abipkgdiff program.
+
+    """
+
+    default_suppression = output_dir + "/default.abignore"
+    with open(default_suppression, 'w') as out:
+        out.write('\n');
+
+    result = 0;
+    for test_spec in abipkgdiff_test_specs:
+        pkg1 = test_spec[0]
+        pkg2 = test_spec[1]
+        suppressions = test_spec[2]
+        reference_report_path = test_spec[3]
+        output_path = test_spec[4]
+
+        pkg1 = test_src_dir + "/" + pkg1
+        pkg2 = test_src_dir + "/" + pkg2
+        suppressions = test_src_dir + "/" + suppressions if suppressions else ''
+        reference_report_path = test_src_dir + "/" + reference_report_path
+        output_path = test_build_dir + "/" + output_path
+
+        cmd = [abipkgdiff, '--no-abignore', pkg1, pkg2]
+
+        # The environment variables that say where to find the default
+        # suppression specifications loaded by libabigail.
+        envs = {
+            'LIBABIGAIL_DEFAULT_SYSTEM_SUPPRESSION_FILE' : default_suppression,
+            'LIBABIGAIL_DEFAULT_USER_SUPPRESSION_FILE' : default_suppression
+        }
+
+        # Initialize the environment variables above to their default
+        # value.
+        for name, value in envs.items():
+            os.environ[name] = value;
+
+        for env_name in envs:
+            env_vars = os.environ
+            if suppressions:
+                env_vars[env_name] = suppressions
+
+            with open(output_path, 'w') as out_file:
+                subprocess.call(cmd, env=env_vars, stdout=out_file)
+
+            diffcmd = ['diff', '-u', reference_report_path, output_path]
+
+            return_code = subprocess.call(diffcmd)
+            if return_code:
+                result = return_code
+                sys.stderr.write("failed abipkgdiff test "
+                                 "for env var '" + e + "'\n");
+
+            del env_vars[env_name];
+
+        try:
+            os.remove(default_suppression)
+        except:
+            pass
+
+        return result;
+
+def main():
+    """The main entry point of this program.
+
+    This creates the output directory and launches the tests for the
+    abidiff and abipkgdiff probrams.  It the abidiff programs returns
+    with a non-zero exit code, this function returns that exit code
+    immediatly.  Otherwise, it runs the abipkgdiff tests and returns
+    its exit code.
+
+    """
+
+    ensure_output_dir_created()
+    result = 0;
+    result = run_abidiff_tests()
+    if result:
+        return result;
+    result = run_abipkgdiff_tests()
+    return result;
+
+if __name__ == '__main__':
+    exit_code = main()
+    sys.exit(exit_code)

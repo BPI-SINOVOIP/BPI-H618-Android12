@@ -1,0 +1,8 @@
+ELF file 'test2-var-removed-app' is not ABI compatible with 'libtest2-var-removed-v1.so' due to differences with 'libtest2-var-removed-v0.so' below:
+Functions changes summary: 0 Removed, 0 Changed, 0 Added function
+Variables changes summary: 1 Removed, 0 Changed, 0 Added variable
+
+1 Removed variable:
+
+  [D] 'int global_var1'    {global_var1}
+

@@ -1,0 +1,81 @@
+Functions changes summary: 0 Removed, 1 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'function void fun(S*)' at qualifier-typedef-array-v1.c:37:1 has some indirect sub-type changes:
+    parameter 1 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S' at qualifier-typedef-array-v1.c:10:1:
+        type size hasn't changed
+        12 data member changes:
+          type of 'A c_a' changed:
+            entity changed from 'typedef A' to compatible type 'void* const[7]'
+              array element type 'void*' changed:
+                entity changed from 'void*' to 'void* const'
+                type size hasn't changed
+              type size hasn't changed
+          type of 'A v_a' changed:
+            entity changed from 'typedef A' to compatible type 'void* volatile[7]'
+              array element type 'void*' changed:
+                entity changed from 'void*' to 'void* volatile'
+                type size hasn't changed
+              type size hasn't changed
+          type of 'A r_a' changed:
+            entity changed from 'typedef A' to compatible type 'void*[7]'
+          type of 'B c_b' changed:
+            typedef name changed from B to A at qualifier-typedef-array-v1.c:1:1
+            underlying type 'typedef A' at qualifier-typedef-array-v0.c:1:1 changed:
+              entity changed from 'typedef A' to compatible type 'void* const[7]'
+                array element type 'void*' changed:
+                  entity changed from 'void*' to 'void* const'
+                  type size hasn't changed
+                type size hasn't changed
+          type of 'B v_b' changed:
+            typedef name changed from B to A at qualifier-typedef-array-v1.c:1:1
+            underlying type 'typedef A' at qualifier-typedef-array-v0.c:1:1 changed:
+              entity changed from 'typedef A' to compatible type 'void* volatile[7]'
+                array element type 'void*' changed:
+                  entity changed from 'void*' to 'void* volatile'
+                  type size hasn't changed
+                type size hasn't changed
+          type of 'B r_b' changed:
+            typedef name changed from B to A at qualifier-typedef-array-v1.c:1:1
+            underlying type 'typedef A' at qualifier-typedef-array-v0.c:1:1 changed:
+              entity changed from 'typedef A' to compatible type 'void*[7]'
+          type of 'C v_c' changed:
+            entity changed from 'typedef C' to compatible type 'const volatile void* const[7]'
+              array element type 'void* const' changed:
+                'void* const' changed to 'const volatile void* const'
+              type name changed from 'void*[7]' to 'volatile void* const[7]'
+              type size hasn't changed
+          type of 'C r_c' changed:
+            entity changed from 'typedef C' to compatible type 'restrict void* const[7]'
+              array element type 'void* const' changed:
+                'void* const' changed to 'restrict const void* const'
+              type name changed from 'void*[7]' to 'restrict void* const[7]'
+              type size hasn't changed
+          type of 'D v_d' changed:
+            entity changed from 'typedef D' to compatible type 'const volatile void* const[7]'
+              array element type 'void* const' changed:
+                'void* const' changed to 'const volatile void* const'
+              type name changed from 'void*[7]' to 'volatile void* const[7]'
+              type size hasn't changed
+          type of 'D r_d' changed:
+            entity changed from 'typedef D' to compatible type 'restrict void* const[7]'
+              array element type 'void* const' changed:
+                'void* const' changed to 'restrict const void* const'
+              type name changed from 'void*[7]' to 'restrict void* const[7]'
+              type size hasn't changed
+          type of 'E r_e' changed:
+            entity changed from 'typedef E' to compatible type 'restrict const volatile void* const[7]'
+              array element type 'const volatile void* const' changed:
+                'const volatile void* const' changed to 'restrict const volatile volatile void* const'
+              type name changed from 'volatile void* const[7]' to 'restrict volatile void* const[7]'
+              type size hasn't changed
+          type of 'F r_f' changed:
+            entity changed from 'typedef F' to compatible type 'restrict const volatile void* const[7]'
+              array element type 'const volatile void* const' changed:
+                'const volatile void* const' changed to 'restrict const volatile volatile void* const'
+              type name changed from 'volatile void* const[7]' to 'restrict volatile void* const[7]'
+              type size hasn't changed
+

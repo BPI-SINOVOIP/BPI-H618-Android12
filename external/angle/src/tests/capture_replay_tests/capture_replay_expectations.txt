@@ -1,0 +1,80 @@
+#
+# Copyright 2020 The ANGLE Project Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+#
+# capture_replay_expectations:
+#   Skip these tests because they are expected to fail
+#
+
+# Failed tests
+D3DImageFormatConversionTest.*
+DrawBuffersTest.UnwrittenOutputVariablesShouldNotCrash/*
+FramebufferTest.MultiContextNoRenderingFeedbackLoops/*
+ImageTest.Deletion/*
+ImageTest.MipLevels/*
+ImageTest.Source2DTarget2D/*
+ImageTest.Source2DTargetExternal/*
+ImageTest.SourceCubeTarget2D/*
+ImageTest.SourceRenderbufferTargetTexture/*
+ImageTest.SourceRenderbufferTargetTextureExternal/*
+ImageTest.UpdatedData/*
+PbufferTest.BindTexImage/*
+PbufferTest.Clearing/*
+PbufferTest.TextureSizeReset/*
+SimpleStateChangeTest.DrawAndClearTextureRepeatedly/*
+SimpleStateChangeTest.RebindTranslatedAttribute/*
+WebGL2ReadOutsideFramebufferTest.CopyTexSubImage3D/*
+WebGLDrawElementsTest.DrawElementsTypeAlignment/*
+WebGLGLSLTest.*
+WebGLReadOutsideFramebufferTest.*
+
+# http://anglebug.com/6006 Failing on bots
+GLSLTest.InactiveVaryingInVertexActiveInFragment/*
+# Flanky tests, pass standalone, but fail in a group
+ColorMaskTest.AMDZeroColorMaskBug/ES3_OpenGL
+WebGLCompatibilityTest.DrawArraysBufferOutOfBoundsNonInstanced/ES2_Vulkan_SwiftShader
+WebGLCompatibilityTest.DrawElementsBufferOutOfBoundsInIndexBuffer/ES2_Vulkan_SwiftShader
+WebGLCompatibilityTest.DrawElementsBufferOutOfBoundsInVertexBuffer/ES2_Vulkan_SwiftShader
+
+# Crashed tests
+BlitFramebufferANGLETest.Reverse*/*
+BlitFramebufferANGLETest.Scissored*/*
+ClipDistanceTest.*
+DebugMarkerTest.*
+DebugTest.*
+EGLStreamTest.*
+ExternalWrapTest.*
+GetImageTestNoExtensions.EntryPointsInactive/*
+GLSLTest.ArrayOfStructContainingArrayOfSamplers/*
+GLSLTest.InactiveSamplersInStruct/*
+GLSLTest.MixedShaderLengths/*
+GLSLTest.ZeroShaderLength/*
+GPUTestConfigTest.GPUTestConfigConditions_D3D11/*
+ImageTest.SourceCubeTargetExternal/*
+PBOExtensionTest.*
+RobustBufferAccessBehaviorTest.*
+Texture2DTest.DefineMultipleLevelsWithoutMipmapping/*
+VertexAttributeTest.*
+
+# Crashes because closing the FD fails and this raises an assertion
+VulkanExternalImageTest.ShouldImportSemaphoreOpaqueFd/ES2_Vulkan_SwiftShader
+
+# Replay times out
+VulkanExternalImageTest.WaitSemaphoresRetainsContentOpaqueFd/ES2_Vulkan_SwiftShader
+VulkanExternalImageTest.ShouldClearOpaqueFdWithSema*/ES2_Vulkan_SwiftShader
+VulkanExternalImageTest.ShouldDrawOpaqueFdWithSemaphores/ES2_Vulkan_SwiftShader
+
+WebGLCompatibilityTest.MultiContextNoRenderingFeedbackLoops/*
+WebGLFramebufferTest.*
+
+# Skipped tests
+EGLProgramCacheControlTest.NegativeAPI/*
+EGLProgramCacheControlTest.SaveAndReload/*
+LineLoopTest.DISABLED_DrawArraysWithLargeCount/*
+MipmapTest.DISABLED_ThreeLevelsInitData/*
+
+# Compile failed tests
+
+# ES1 comparison failed tests
+BootAnimationTest.DefaultBootAnimation/*

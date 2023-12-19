@@ -1,0 +1,14 @@
+<abi-instr path='data/test-read-write/test11.xml'>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-1'/>
+  <namespace-decl name='ns0'>
+    <function-template-decl id='fn-tmpl-id-2'>
+      <template-type-parameter id='type-id-3' name='T'/>
+      <template-type-parameter id='type-id-4' name='U'/>
+      <function-decl name='func' binding='global' size-in-bits='8' alignment-in-bits='8'>
+        <parameter type-id='type-id-3' name='first'/>
+        <parameter type-id='type-id-4' name='second'/>
+        <return type-id='type-id-1'/>
+      </function-decl>
+    </function-template-decl>
+  </namespace-decl>
+</abi-instr>

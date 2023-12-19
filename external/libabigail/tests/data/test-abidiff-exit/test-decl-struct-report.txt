@@ -1,0 +1,17 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function void reg1(const embodied*)' at test-decl-struct-v1.c:4:1 has some indirect sub-type changes:
+    parameter 1 of type 'const embodied*' has sub-type changes:
+      in pointed to type 'const embodied':
+        in unqualified underlying type 'struct embodied' at test-decl-struct-v1.c:1:1:
+          type struct embodied was a declaration-only type and is now a defined type
+
+  [C] 'function void reg2(const disembodied*)' at test-decl-struct-v1.c:5:1 has some indirect sub-type changes:
+    parameter 1 of type 'const disembodied*' has sub-type changes:
+      in pointed to type 'const disembodied':
+        in unqualified underlying type 'struct disembodied':
+          type struct disembodied was a defined type and is now a declaration-only type
+

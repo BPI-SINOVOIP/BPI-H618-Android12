@@ -1,0 +1,16 @@
+Functions changes summary: 0 Removed, 1 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'function void foo(some_union_type*)' has some indirect sub-type changes:
+    parameter 1 of type 'some_union_type*' has sub-type changes:
+      in pointed to type 'union some_union_type':
+        type size hasn't changed
+        1 data member deletion:
+          'int m0'
+        type changed from:
+          union some_union_type{int m0; char m1; S m2;}
+        to:
+          union some_union_type{char m1; S m2;}
+

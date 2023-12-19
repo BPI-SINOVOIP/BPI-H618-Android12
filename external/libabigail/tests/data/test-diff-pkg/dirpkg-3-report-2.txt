@@ -1,0 +1,15 @@
+================ changes of 'libobj-v0.so'===============
+  Functions changes summary: 0 Removed, 1 Changed (1 filtered out), 0 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  1 function with some indirect sub-type change:
+
+    [C] 'function void foo(S1&)' at obj-v0.cc:24:1 has some indirect sub-type changes:
+      parameter 1 of type 'S1&' has sub-type changes:
+        in referenced type 'struct S1' at obj-v0.cc:15:1:
+          type size changed from 8 to 32 (in bits)
+          1 data member insertion:
+            'int mem2', at offset 0 (in bits) at obj-v0.cc:17:1
+
+================ end of changes of 'libobj-v0.so'===============
+

@@ -1,0 +1,113 @@
+================ changes of 'libsigc-2.0.so.0.0.0'===============
+  Functions changes summary: 1 Removed, 11 Changed (49 filtered out), 1 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  1 Removed function:
+
+    [D] 'method void std::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_M_clear()'    {_ZNSt10_List_baseIN4sigc9slot_baseESaIS1_EE8_M_clearEv}
+
+  1 Added function:
+
+    [A] 'method void std::__cxx11::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_M_clear()'    {_ZNSt7__cxx1110_List_baseIN4sigc9slot_baseESaIS2_EE8_M_clearEv}
+
+  11 functions with some indirect sub-type change:
+
+    [C] 'method bool sigc::connection::block(bool)' has some indirect sub-type changes:
+      implicit parameter 0 of type 'sigc::connection* const' has sub-type changes:
+        in unqualified underlying type 'sigc::connection*':
+          in pointed to type 'struct sigc::connection':
+            type size hasn't changed
+            1 data member change:
+              type of 'sigc::slot_base* slot_' changed:
+                in pointed to type 'class sigc::slot_base':
+                  type size hasn't changed
+                  1 data member change:
+                    type of 'sigc::slot_base::rep_type* rep_' changed:
+                      in pointed to type 'typedef sigc::slot_base::rep_type':
+                        underlying type 'struct sigc::internal::slot_rep' changed:
+                          type size hasn't changed
+                          1 base class change:
+                            'struct sigc::trackable' changed:
+                              type size hasn't changed
+                              1 data member change:
+                                type of 'sigc::internal::trackable_callback_list* callback_list_' changed:
+                                  in pointed to type 'struct sigc::internal::trackable_callback_list':
+                                    type size changed from 192 to 256 (in bits)
+                                    2 data member changes:
+                                      type of 'sigc::internal::trackable_callback_list::callback_list callbacks_' changed:
+                                        underlying type 'class std::list<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >' changed:
+                                          type name changed from 'std::list<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >' to 'std::__cxx11::list<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >'
+                                          type size changed from 128 to 192 (in bits)
+                                          1 base class change:
+                                            'class std::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >' changed:
+                                              type name changed from 'std::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >' to 'std::__cxx11::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >'
+                                              type size changed from 128 to 192 (in bits)
+                                              1 data member change:
+                                                type of 'std::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >::_List_impl _M_impl' changed:
+                                                  type name changed from 'std::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >::_List_impl' to 'std::__cxx11::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >::_List_impl'
+                                                  type size changed from 128 to 192 (in bits)
+                                                  1 data member change:
+                                                    type of 'std::__detail::_List_node_base _M_node' changed:
+                                                      type name changed from 'std::__detail::_List_node_base' to 'std::_List_node<long unsigned int>'
+                                                      type size changed from 128 to 192 (in bits)
+                                                      1 base class insertion:
+                                                        struct std::__detail::_List_node_base
+                                                      2 data member deletions:
+                                                        'std::__detail::_List_node_base* _M_next', at offset 0 (in bits)
+                                                        'std::__detail::_List_node_base* _M_prev', at offset 64 (in bits)
+                                                      1 data member insertion:
+                                                        'unsigned long int _M_data', at offset 128 (in bits)
+                                                    and name of 'std::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >::_List_impl::_M_node' changed to 'std::__cxx11::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >::_List_impl::_M_node'
+                                                and name of 'std::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >::_M_impl' changed to 'std::__cxx11::_List_base<sigc::internal::trackable_callback, std::allocator<sigc::internal::trackable_callback> >::_M_impl'
+                                      'bool clearing_' offset changed from 128 to 192 (in bits) (by +64 bits)
+
+    [C] 'method void sigc::connection::disconnect(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method sigc::connection::~connection(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method void sigc::internal::signal_impl::block(bool)' has some indirect sub-type changes:
+      implicit parameter 0 of type 'sigc::internal::signal_impl* const' has sub-type changes:
+        in unqualified underlying type 'sigc::internal::signal_impl*':
+          in pointed to type 'struct sigc::internal::signal_impl':
+            type size changed from 192 to 256 (in bits)
+            1 data member change:
+              type of 'std::list<sigc::slot_base, std::allocator<sigc::slot_base> > slots_' changed:
+                type name changed from 'std::list<sigc::slot_base, std::allocator<sigc::slot_base> >' to 'std::__cxx11::list<sigc::slot_base, std::allocator<sigc::slot_base> >'
+                type size changed from 128 to 192 (in bits)
+                1 base class change:
+                  'class std::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >' changed:
+                    type name changed from 'std::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >' to 'std::__cxx11::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >'
+                    type size changed from 128 to 192 (in bits)
+                    1 data member change:
+                      type of 'std::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_List_impl _M_impl' changed:
+                        type name changed from 'std::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_List_impl' to 'std::__cxx11::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_List_impl'
+                        type size changed from 128 to 192 (in bits)
+                        1 data member change:
+                          name of 'std::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_List_impl::_M_node' changed to 'std::__cxx11::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_List_impl::_M_node', size changed from 128 to 192 (in bits) (by +64 bits)
+                      and name of 'std::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_M_impl' changed to 'std::__cxx11::_List_base<sigc::slot_base, std::allocator<sigc::slot_base> >::_M_impl'
+
+    [C] 'method void sigc::internal::trackable_callback_list::clear(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method sigc::internal::trackable_callback_list::~trackable_callback_list(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method void sigc::signal_base::clear(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method sigc::signal_base::~signal_base(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method void sigc::slot_base::disconnect(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method sigc::slot_base::~slot_base(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+    [C] 'method sigc::trackable::~trackable(int)' has some indirect sub-type changes:
+      parameter 1 of type 'int' was removed
+
+================ end of changes of 'libsigc-2.0.so.0.0.0'===============
+

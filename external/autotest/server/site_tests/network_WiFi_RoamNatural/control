@@ -1,0 +1,24 @@
+# Copyright (c) 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+AUTHOR = 'matthewmwang'
+NAME = 'network_WiFi_RoamNatural'
+TIME = 'LONG'
+TEST_TYPE = 'Server'
+DEPENDENCIES = 'wificell'
+
+DOC = """
+Bring up two APs and attenuate them around several values to observe and assess
+roam behavior.
+"""
+
+
+def run(machine):
+    job.run_test('network_WiFi_RoamNatural',
+                 host=hosts.create_host(machine),
+                 raw_cmdline_args=args,
+                 pcap_as_router=True)
+
+
+parallel_simple(run, machines)

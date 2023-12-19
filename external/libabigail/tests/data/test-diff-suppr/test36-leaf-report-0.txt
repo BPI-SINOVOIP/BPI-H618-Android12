@@ -1,0 +1,23 @@
+Leaf changes summary: 2 artifacts changed
+Changed leaf types summary: 2 leaf types changed
+Removed/Changed/Added functions summary: 0 Removed, 0 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+'struct leaf1 at test36-leaf-v0.cc:4:1' changed:
+  type size changed from 32 to 64 (in bits)
+  1 data member insertion:
+    'char m1', at offset 32 (in bits) at test36-leaf-v1.cc:7:1
+  3 impacted interfaces:
+    function void interface1(struct_type*)
+    function void interface2(struct_type&)
+    function void interface3(struct_type**)
+
+'struct leaf2 at test36-leaf-v0.cc:9:1' changed:
+  type size changed from 64 to 96 (in bits)
+  there are data member changes:
+    type 'struct leaf1' of 'leaf2::member0' changed, as reported earlier
+    'char member1' offset changed from 32 to 64 (in bits) (by +32 bits)
+  3 impacted interfaces:
+    function void interface1(struct_type*)
+    function void interface2(struct_type&)
+    function void interface3(struct_type**)

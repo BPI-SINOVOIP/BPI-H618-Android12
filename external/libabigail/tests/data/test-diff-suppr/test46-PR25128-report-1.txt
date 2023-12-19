@@ -1,0 +1,16 @@
+Leaf changes summary: 2 artifacts changed
+Changed leaf types summary: 1 leaf type changed
+Removed/Changed/Added functions summary: 0 Removed, 0 Changed, 1 Added function
+Removed/Changed/Added variables summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 Added function:
+
+  [A] 'function void arch_set_max_freq_scale(cpumask*, unsigned long int)'
+
+'struct root_domain at sched.h:732:1' changed:
+  type size changed from 14592 to 14720 (in bits)
+  there are data member changes:
+    type 'unsigned long int' of 'root_domain::max_cpu_capacity' changed:
+      entity changed from 'unsigned long int' to 'struct max_cpu_capacity' at sched.h:722:1
+      type size changed from 64 to 192 (in bits)
+    'perf_domain* pd' offset changed from 14528 to 14656 (in bits) (by +128 bits)

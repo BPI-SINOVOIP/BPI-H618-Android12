@@ -1,0 +1,21 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function void bar(EnumType1)' at test41-enumerator-changes-v1.cc:24:1 has some indirect sub-type changes:
+    parameter 1 of type 'enum EnumType1' has sub-type changes:
+      type size hasn't changed
+      1 enumerator insertion:
+        'EnumType1::ee3_inserted' value '3'
+      1 enumerator change:
+        'EnumType1::eenum_count' from value '3' to '4' at test41-enumerator-changes-v1.cc:10:1
+
+  [C] 'function void foo(EnumType0)' at test41-enumerator-changes-v1.cc:20:1 has some indirect sub-type changes:
+    parameter 1 of type 'enum EnumType0' has sub-type changes:
+      type size hasn't changed
+      1 enumerator insertion:
+        'EnumType0::e3_inserted' value '3'
+      1 enumerator change:
+        'EnumType0::enum_count' from value '3' to '4' at test41-enumerator-changes-v1.cc:1:1
+

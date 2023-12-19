@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+---
+BasedOnStyle: GNU
+Standard: c++11
+AlignConsecutiveDeclarations: true
+AlwaysBreakAfterReturnType: All
+BreakConstructorInitializers: BeforeColon
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 2
+IndentWidth: 2
+AlignAfterOpenBracket: Align
+BinPackParameters: false
+BreakStringLiterals: false
+PointerAlignment: Left
+SortUsingDeclarations: false
+SpaceBeforeParens: ControlStatements
+TabWidth: 8
+UseTab: Always
+BreakBeforeBinaryOperators: NonAssignment
+---

@@ -1,0 +1,22 @@
+# Copyright 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+AUTHOR = 'jiyounha'
+NAME = 'cheets_LabDependencies'
+TIME = 'FAST'
+TEST_CATEGORY = ""
+TEST_TYPE = 'Server'
+DEPENDENCIES = 'arc'
+ATTRIBUTES = ('suite:bvt-perbuild')
+JOB_RETRIES = 0
+
+DOC = """
+This test will fail if correct dependencies are not installed in the testing environment.
+"""
+
+def run(machine):
+    host = hosts.create_host(machine)
+    job.run_test('cheets_LabDependencies', host=host)
+
+parallel_simple(run, machines)

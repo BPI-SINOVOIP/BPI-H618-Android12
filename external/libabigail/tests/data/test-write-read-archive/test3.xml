@@ -1,0 +1,6 @@
+<abi-instr version='1.0' path='test3.xml'>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-1'/>
+  <qualified-type-def type-id='type-id-1' const='yes' id='type-id-2'/>
+  <qualified-type-def type-id='type-id-1' volatile='yes' id='type-id-3'/>
+  <qualified-type-def type-id='type-id-1' const='yes' volatile='yes' id='type-id-4'/>
+</abi-instr>

@@ -1,0 +1,12 @@
+Functions changes summary: 0 Removed, 0 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+Unreachable types summary: 1 removed, 0 changed (1 filtered out), 1 added types
+
+1 removed type unreachable from any public interface:
+
+  [D] 'struct unreachable_struct1' at test-v0.c:6:1
+
+1 added type unreachable from any public interface:
+
+  [A] 'struct unreachable_struct3' at test-v1.c:12:1
+

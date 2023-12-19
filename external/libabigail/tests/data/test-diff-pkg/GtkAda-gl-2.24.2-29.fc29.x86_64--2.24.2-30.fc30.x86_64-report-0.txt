@@ -1,0 +1,60 @@
+================ changes of 'libgtkada_gl-2.24.so.2'===============
+  Functions changes summary: 0 Removed, 2 Changed (3 filtered out), 0 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+  Function symbols changes summary: 0 Removed, 0 Added function symbol not referenced by debug info
+  Variable symbols changes summary: 6 Removed, 6 Added variable symbols not referenced by debug info
+
+  2 functions with some indirect sub-type change:
+
+    [C] 'function void gl_h__glgentextures(const gdk__gl__gl_configs, const gl_h__gluint_vec___XUP)' at gl_h.adb:35:1 has some indirect sub-type changes:
+      parameter 2 of type 'const gl_h__gluint_vec___XUP' has sub-type changes:
+        in unqualified underlying type 'struct gl_h__gluint_vec___XUP' at gl_h.ads:57:1:
+          type size hasn't changed
+          1 data member change:
+            type of 'gl_h__gluint_vec___XUP::gl_h__gluint_vec___XUB* P_BOUNDS' changed:
+              in pointed to type 'struct gl_h__gluint_vec___XUP::gl_h__gluint_vec___XUB' at gl_h.ads:57:1:
+                type size hasn't changed
+                2 data member changes:
+                  type of 'integer LB0' changed:
+                    entity changed from 'integer' to '<range natural___XDLU_0__2147483647>[2147483648]'
+                    type size changed from 32 to 2147483647 (in bits)
+                  type of 'integer UB0' changed:
+                    entity changed from 'integer' to '<range natural___XDLU_0__2147483647>[2147483648]'
+                    type size changed from 32 to 2147483647 (in bits)
+
+    [C] 'function gtk__glarea__gtk_glarea gtk__glarea__gtk_new(gtk__glarea__gtk_glarea, const gtk__glarea__attributes_array___XUP)' at gtk-glarea.adb:63:1 has some indirect sub-type changes:
+      parameter 2 of type 'const gtk__glarea__attributes_array___XUP' has sub-type changes:
+        in unqualified underlying type 'struct gtk__glarea__attributes_array___XUP' at gtk-glarea.ads:48:1:
+          type size hasn't changed
+          1 data member change:
+            type of 'gtk__glarea__attributes_array___XUP::gtk__glarea__attributes_array___XUB* P_BOUNDS' changed:
+              in pointed to type 'struct gtk__glarea__attributes_array___XUP::gtk__glarea__attributes_array___XUB':
+                type size hasn't changed
+                2 data member changes:
+                  type of 'integer LB0' changed:
+                    entity changed from 'integer' to '<range natural___XDLU_0__2147483647>[2147483648]'
+                    type size changed from 32 to 2147483647 (in bits)
+                  type of 'integer UB0' changed:
+                    entity changed from 'integer' to '<range natural___XDLU_0__2147483647>[2147483648]'
+                    type size changed from 32 to 2147483647 (in bits)
+
+  6 Removed variable symbols not referenced by debug info:
+
+    [D] gtk__glarea__C210s
+    [D] gtk__glarea__gtk_glarea_recordB43s
+    [D] gtk__glarea__gtk_glarea_recordE39s
+    [D] gtk__glarea__gtk_glarea_recordH40s
+    [D] gtk__glarea__gtk_glarea_recordR41s
+    [D] gtk__glarea__gtk_glarea_recordR41s___UNC
+
+  6 Added variable symbols not referenced by debug info:
+
+    [A] gtk__glarea__C208s
+    [A] gtk__glarea__gtk_glarea_recordB41s
+    [A] gtk__glarea__gtk_glarea_recordE37s
+    [A] gtk__glarea__gtk_glarea_recordH38s
+    [A] gtk__glarea__gtk_glarea_recordR39s
+    [A] gtk__glarea__gtk_glarea_recordR39s___UNC
+
+================ end of changes of 'libgtkada_gl-2.24.so.2'===============
+

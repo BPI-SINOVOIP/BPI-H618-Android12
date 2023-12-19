@@ -1,0 +1,392 @@
+#!/usr/bin/env python
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+# -*- coding: utf-8 -*-
+# -*- Mode: Python
+#
+# Author: Dodji Seketeli
+#
+# Based on some preliminary work from Chenxiong Qi, posted to
+# https://sourceware.org/ml/libabigail/2016-q3/msg00031.html.
+
+
+'''A local-only version of the fedabipkgdiff program
+
+This program behaves exactly like the fedabipkgdiff tool, except
+that it doesn't use the network (via the Koji client) to get Fedora
+packages.  The Koji client is the interface that is used to access
+the Fedora build system to get Fedora binary packages.
+
+This program thus loads the fedabipkgdiff tool and overloads
+(replaces) its Koji Client session with a fake (also known as a
+mock) Koji client named MockClientSession that gets the packages
+locally.  Packages are stored under the directory
+tests/data/test-fedabipkgdiff/packages.  This program then invokes
+the fedabipkgdiff program just as if the user invoked it from the
+command line.
+
+This program is useful for tests that can be called from "make
+check" because those must be able to perform in environments where
+no network is avaible.
+
+Please note that the descriptions of the builds of each package are
+stored in at least three global variables below: packages, builds
+and rpms.
+
+Whenever a user wants to add a new build to the local set of builds
+locally available via MockClientSession, she must update these three
+variables.
+'''
+
+import os
+import tempfile
+import imp
+import six
+
+try:
+    from mock import patch
+except ImportError:
+    import sys
+    six.print_('mock is required to run tests. Please install before running'
+               ' tests.', file=sys.stderr)
+    sys.exit(1)
+
+ABIPKGDIFF = '@abs_top_builddir@/tools/abipkgdiff'
+FEDABIPKGDIFF = '@abs_top_srcdir@/tools/fedabipkgdiff'
+INPUT_DIR =  '@abs_top_srcdir@/tests/data/test-fedabipkgdiff'
+OUTPUT_DIR = '@abs_top_builddir@/tests/output/test-fedabipkgdiff'
+TEST_TOPDIR = 'file://{0}'.format(INPUT_DIR)
+
+DOWNLOAD_CACHE_DIR_PREFIX=os.path.join(OUTPUT_DIR, 'download-cache')
+if not os.path.exists(DOWNLOAD_CACHE_DIR_PREFIX):
+    os.makedirs(DOWNLOAD_CACHE_DIR_PREFIX)
+DOWNLOAD_CACHE_DIR=tempfile.mkdtemp(dir=DOWNLOAD_CACHE_DIR_PREFIX)
+
+
+def get_download_dir():
+    """Mock get_download_dir"""
+    if not os.path.exists(DOWNLOAD_CACHE_DIR):
+        os.makedirs(DOWNLOAD_CACHE_DIR)
+    return DOWNLOAD_CACHE_DIR
+
+
+# Import the fedabipkgdiff program file from the source directory.
+fedabipkgdiff_mod = imp.load_source('fedabipkgdiff', FEDABIPKGDIFF)
+
+
+# -----------------  Koji resource storage begins ------------------
+#
+# List all necessary Koji resources for running tests within this test
+# module. Currently, packages, builds, and rpms are listed here, and their
+# relationship is maintained well. At the same time, all information including
+# the ID for each package, build and rpm is real and can be queried from Koji,
+# that is for convenience once developers need this.
+#
+# When additional packages, builds and rpms are required for test cases, here
+# is the right place to add them. Just think them as a super simple in-memory
+# database, and methods of MockClientSession knows well how to read them.
+
+packages = [
+    {'id': 286, 'name': 'gnutls'},
+    {'id': 612, 'name': 'dbus-glib'},
+    {'id': 9041, 'name': 'nss-util'},
+    {'id': 18494, 'name': 'vte291'},
+    ]
+
+builds = [
+    {'build_id': 428835, 'nvr': 'dbus-glib-0.100-4.fc20',
+     'name': 'dbus-glib', 'release': '4.fc20', 'version': '0.100',
+     'package_id': 612, 'package_name': 'dbus-glib', 'state': 1,
+     },
+    {'build_id': 430720, 'nvr': 'dbus-glib-0.100.2-1.fc20',
+     'name': 'dbus-glib', 'release': '1.fc20', 'version': '0.100.2',
+     'package_id': 612, 'package_name': 'dbus-glib', 'state': 1,
+     },
+    {'build_id': 442366, 'nvr': 'dbus-glib-0.100.2-2.fc20',
+     'name': 'dbus-glib', 'release': '2.fc20', 'version': '0.100.2',
+     'package_id': 612, 'package_name': 'dbus-glib', 'state': 1,
+     },
+    {'build_id': 715478, 'nvr': 'dbus-glib-0.106-1.fc23',
+     'name': 'dbus-glib', 'release': '1.fc23', 'version': '0.106',
+     'package_id': 612, 'package_name': 'dbus-glib', 'state': 1,
+     },
+    {'build_id': 648058, 'nvr': 'dbus-glib-0.104-3.fc23',
+     'name': 'dbus-glib', 'release': '3.fc23', 'version': '0.104',
+     'package_id': 612, 'package_name': 'dbus-glib', 'state': 1,
+     },
+    {'build_id': 613769, 'nvr': 'dbus-glib-0.104-2.fc23',
+     'name': 'dbus-glib', 'release': '2.fc23', 'version': '0.104',
+     'package_id': 612, 'package_name': 'dbus-glib', 'state': 1,
+     },
+
+    {'build_id': 160295, 'nvr': 'nss-util-3.12.6-1.fc14',
+     'name': 'nss-util', 'version': '3.12.6', 'release': '1.fc14',
+     'package_id': 9041, 'package_name': 'nss-util', 'state': 1,
+     },
+    {'build_id': 767978, 'nvr': 'nss-util-3.24.0-2.0.fc25',
+     'name': 'nss-util', 'version': '3.24.0', 'release': '2.0.fc25',
+     'package_id': 9041, 'package_name': 'nss-util', 'state': 1,
+     },
+
+    # builds of package gnutls
+    {'build_id': 767306, 'nvr': 'gnutls-3.4.12-1.fc23',
+     'name': 'gnutls', 'release': '1.fc23', 'version': '3.4.12',
+     'package_id': 286, 'package_name': 'gnutls', 'state': 1,
+     },
+    {'build_id': 770965, 'nvr': 'gnutls-3.4.13-1.fc23',
+     'name': 'gnutls', 'release': '1.fc23', 'version': '3.4.13',
+     'package_id': 286, 'package_name': 'gnutls', 'state': 1,
+     },
+    {'build_id': 649701, 'nvr': 'gnutls-3.4.2-1.fc23',
+     'name': 'gnutls', 'release': '1.fc23', 'version': '3.4.2',
+     'package_id': 286, 'package_name': 'gnutls', 'state': 1,
+     },
+
+    # builds of package vte291
+    {'build_id': 600011, 'nvr': 'vte291-0.39.1-1.fc22',
+     'name': 'vte291', 'version': '0.39.1', 'release': '1.fc22',
+     'package_id': 18494, 'package_name': 'vte291', 'state': 1,
+     },
+    {'build_id': 612610, 'nvr': 'vte291-0.39.90-1.fc22',
+     'name': 'vte291', 'version': '0.39.90', 'release': '1.fc22',
+     'package_id': 18494, 'package_name': 'vte291', 'state': 1,
+     },
+    ]
+
+rpms = [
+    {'build_id': 442366,
+     'name': 'dbus-glib', 'release': '2.fc20', 'version': '0.100.2',
+     'arch': 'x86_64', 'nvr': 'dbus-glib-0.100.2-2.fc20',
+     },
+    {'build_id': 442366,
+     'name': 'dbus-glib-devel', 'release': '2.fc20', 'version': '0.100.2',
+     'arch': 'x86_64', 'nvr': 'dbus-glib-devel-0.100.2-2.fc20',
+     },
+    {'build_id': 442366,
+     'name': 'dbus-glib-debuginfo', 'release': '2.fc20', 'version': '0.100.2',
+     'arch': 'x86_64', 'nvr': 'dbus-glib-debuginfo-0.100.2-2.fc20',
+     },
+    {'build_id': 442366,
+     'name': 'dbus-glib-devel', 'release': '2.fc20', 'version': '0.100.2',
+     'arch': 'i686', 'nvr': 'dbus-glib-devel-0.100.2-2.fc20',
+     },
+    {'build_id': 442366,
+     'name': 'dbus-glib-debuginfo', 'release': '2.fc20', 'version': '0.100.2',
+     'arch': 'i686', 'nvr': 'dbus-glib-debuginfo-0.100.2-2.fc20',
+     },
+    {'build_id': 442366,
+     'name': 'dbus-glib', 'version': '0.100.2', 'release': '2.fc20',
+     'arch': 'i686', 'nvr': 'dbus-glib-0.100.2-2.fc20',
+     },
+
+    {'build_id': 715478,
+     'name': 'dbus-glib-debuginfo', 'version': '0.106', 'release': '1.fc23',
+     'arch': 'i686', 'nvr': 'dbus-glib-debuginfo-0.106-1.fc23',
+     },
+    {'build_id': 715478,
+     'name': 'dbus-glib', 'version': '0.106', 'release': '1.fc23',
+     'arch': 'i686', 'nvr': 'dbus-glib-0.106-1.fc23',
+     },
+    {'build_id': 715478,
+     'name': 'dbus-glib-devel', 'version': '0.106', 'release': '1.fc23',
+     'arch': 'i686', 'nvr': 'dbus-glib-devel-0.106-1.fc23',
+     },
+    {'build_id': 715478,
+     'name': 'dbus-glib', 'version': '0.106', 'release': '1.fc23',
+     'arch': 'x86_64', 'nvr': 'dbus-glib-0.106-1.fc23',
+     },
+    {'build_id': 715478,
+     'name': 'dbus-glib-debuginfo', 'version': '0.106', 'release': '1.fc23',
+     'arch': 'x86_64', 'nvr': 'dbus-glib-debuginfo-0.106-1.fc23',
+     },
+    {'build_id': 715478,
+     'name': 'dbus-glib-devel', 'release': '1.fc23', 'version': '0.106',
+     'arch': 'x86_64', 'nvr': 'dbus-glib-devel-0.106-1.fc23',
+     },
+
+    # RPMs of build nss-util-3.12.6-1.fc14
+    {'build_id': 160295,
+     'name': 'nss-util', 'release': '1.fc14', 'version': '3.12.6',
+     'arch': 'x86_64', 'nvr': 'nss-util-3.12.6-1.fc14',
+     },
+    {'build_id': 160295,
+     'name': 'nss-util-devel', 'release': '1.fc14', 'version': '3.12.6',
+     'arch': 'x86_64', 'nvr': 'nss-util-devel-3.12.6-1.fc14',
+     },
+    {'build_id': 160295,
+     'name': 'nss-util-debuginfo', 'release': '1.fc14', 'version': '3.12.6',
+     'arch': 'x86_64', 'nvr': 'nss-util-debuginfo-3.12.6-1.fc14',
+     },
+
+    # RPMs of build nss-util-3.24.0-2.0.fc25
+    {'build_id': 767978,
+     'name': 'nss-util-debuginfo', 'release': '2.0.fc25', 'version': '3.24.0',
+     'arch': 'x86_64', 'nvr': 'nss-util-debuginfo-3.24.0-2.0.fc25',
+     },
+    {'build_id': 767978,
+     'name': 'nss-util', 'release': '2.0.fc25', 'version': '3.24.0',
+     'arch': 'x86_64', 'nvr': 'nss-util-3.24.0-2.0.fc25',
+     },
+    {'build_id': 767978,
+     'name': 'nss-util-devel', 'release': '2.0.fc25', 'version': '3.24.0',
+     'arch': 'x86_64', 'nvr': 'nss-util-devel-3.24.0-2.0.fc25',
+     },
+    # RPMs of build vte291-0.39.1-1.fc22
+    {'build_id': 600011,
+     'name': 'vte291', 'version': '0.39.1', 'release': '1.fc22', 
+     'arch': 'x86_64', 'nvr': 'vte291-0.39.1-1.fc22',
+    },
+    {'build_id': 600011,
+     'name': 'vte291-devel', 'version': '0.39.1', 'release': '1.fc22', 
+     'arch': 'x86_64', 'nvr': 'vte291-0.39.1-1.fc22',
+    },
+    {'build_id': 600011,
+     'name': 'vte291-debuginfo', 'version': '0.39.1', 'release': '1.fc22', 
+     'arch': 'x86_64', 'nvr': 'vte291-0.39.1-1.fc22',
+    },
+
+    # RPMs of build vte291-0.39.90-1.fc22
+    {'build_id': 612610,
+     'name': 'vte291', 'version': '0.39.90', 'release': '1.fc22', 
+     'arch': 'x86_64', 'nvr': 'vte291-0.39.90-1.fc22',
+    },
+    {'build_id': 612610,
+     'name': 'vte291-devel', 'version': '0.39.90', 'release': '1.fc22', 
+     'arch': 'x86_64', 'nvr': 'vte291-0.39.90-1.fc22',
+    },
+    {'build_id': 612610,
+     'name': 'vte291-debuginfo', 'version': '0.39.90', 'release': '1.fc22', 
+     'arch': 'x86_64', 'nvr': 'vte291-0.39.90-1.fc22',
+    },
+   ]
+
+# -----------------  End of Koji resource storage ------------------
+
+
+class MockClientSession(object):
+    """Mock koji.ClientSession
+
+    This mock ClientSession aims to avoid touching a real Koji instance to
+    interact with XMLRPC APIs required by fedabipkgdiff.
+
+    For the tests within this module, methods do not necessarily to return
+    complete RPM and build information. So, if you need more additional
+    information, here is the right place to add them.
+    """
+
+    def __init__(self, baseurl):
+        """Initialize a mock ClientSession
+
+        :param str baseurl: the URL to remote kojihub service. As of writing
+        this mock class, `baseurl` is not used at all, just keep it here if
+        it's useful in the future.
+
+        All mock methods have same signature as corresponding kojihub.*
+        methods, and type of parameters may be different and only satify
+        fedabipkgdiff requirement.
+        """
+        self.baseurl = baseurl
+
+    def getPackage(self, name):
+        """Mock kojihub.getPackage
+
+        :param str name: name of package to find and return
+        :return: the found package
+        :rtype: dict
+        """
+        assert isinstance(name, six.string_types)
+
+        def selector(package):
+            return package['name'] == name
+
+        return [p for p in packages if selector(p)][0]
+
+    def getBuild(self, build_id):
+        """Mock kojihub.getBuild
+
+        :param int build_id: ID of build to find and return
+        :return: the found build
+        :rtype: dict
+        """
+        assert isinstance(build_id, int)
+
+        def selector(build):
+            return build['build_id'] == build_id
+
+        return [b for b in builds if selector(b)][0]
+
+    def listBuilds(self, packageID, state=None):
+        """Mock kojihub.listBuilds
+
+        :param int packageID: ID of package whose builds is found and returned
+        :param state: build state. If state is omitted, all builds of a package
+        are returned
+        :type state: int or None
+        """
+        assert isinstance(packageID, int)
+        if state is not None:
+            assert isinstance(state, int)
+
+        def selector(build):
+            selected = build['package_id'] == packageID
+            if state is not None:
+                selected = selected and build['state'] == state
+            return selected
+
+        return filter(selector, builds)
+
+    def getRPM(self, rpminfo):
+        """Mock kojihub.getRPM
+
+        :param dict rpminfo: a mapping containing rpm information, at least,
+        it contains name, version, release, and arch.
+        """
+        assert isinstance(rpminfo, dict)
+
+        def selector(rpm):
+            return rpm['name'] == rpminfo['name'] and \
+                rpm['version'] == rpminfo['version'] and \
+                rpm['release'] == rpminfo['release'] and \
+                rpm['arch'] == rpminfo['arch']
+
+        return [rpm for rpm in rpms if selector(rpm)][0]
+
+    def listRPMs(self, buildID, arches=None):
+        """Mock kojihub.listRPMs
+
+        :param int buildID: ID of build from which to list rpms
+        :param arches: to list rpms built for specific arches. If arches is
+        omitted, rpms of all arches will be listed.
+        :type arches: list, tuple, str, or None
+        :return: list of rpms
+        :rtype: list
+        """
+        assert isinstance(buildID, int)
+        if arches is not None:
+            assert isinstance(arches, (tuple, list, six.string_types))
+
+        if arches is not None and isinstance(arches, six.string_types):
+            arches = [arches]
+
+        def selector(rpm):
+            selected = rpm['build_id'] == buildID
+            if arches is not None:
+                selected = selected and rpm['arch'] in arches
+            return selected
+
+        return [rpm for rpm in rpms if selector(rpm)]
+
+
+@patch('koji.ClientSession', new=MockClientSession)
+@patch('fedabipkgdiff.DEFAULT_KOJI_TOPURL', new=TEST_TOPDIR)
+@patch('fedabipkgdiff.DEFAULT_ABIPKGDIFF', new=ABIPKGDIFF)
+@patch('fedabipkgdiff.get_download_dir', new=get_download_dir)
+def run_fedabipkgdiff():
+    return fedabipkgdiff_mod.main()
+
+
+def do_main():
+    run_fedabipkgdiff()
+
+
+if __name__ == '__main__':
+    do_main()

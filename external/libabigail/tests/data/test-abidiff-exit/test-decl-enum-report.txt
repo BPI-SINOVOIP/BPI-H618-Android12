@@ -1,0 +1,17 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function void reg1(const embodied_enum*)' at test-decl-enum-v1.c:4:1 has some indirect sub-type changes:
+    parameter 1 of type 'const embodied_enum*' has sub-type changes:
+      in pointed to type 'const embodied_enum':
+        in unqualified underlying type 'enum embodied_enum' at test-decl-enum-v1.c:1:1:
+          enum type enum embodied_enum was a declaration-only enum type and is now a defined enum type
+
+  [C] 'function void reg2(const disembodied_enum*)' at test-decl-enum-v1.c:5:1 has some indirect sub-type changes:
+    parameter 1 of type 'const disembodied_enum*' has sub-type changes:
+      in pointed to type 'const disembodied_enum':
+        in unqualified underlying type 'enum disembodied_enum':
+          enum type enum disembodied_enum was a defined enum type and is now a declaration-only enum type
+

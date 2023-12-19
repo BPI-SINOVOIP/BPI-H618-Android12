@@ -1,0 +1,16 @@
+Functions changes summary: 0 Removed, 1 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'function one::Foo one::foo(u32)' has some indirect sub-type changes:
+    'function one::Foo one::foo(u32) {foo}' now becomes 'function two::Foo two::foo(u32, u32) {foo}'
+    return type changed:
+      type name changed from 'one::Foo' to 'two::Foo'
+      type size changed from 32 to 64 (in bits)
+      1 data member insertion:
+        'u32 b', at offset 32 (in bits)
+      1 data member change:
+        name of 'one::Foo::a' changed to 'two::Foo::a'
+    parameter 2 of type 'u32' was added
+

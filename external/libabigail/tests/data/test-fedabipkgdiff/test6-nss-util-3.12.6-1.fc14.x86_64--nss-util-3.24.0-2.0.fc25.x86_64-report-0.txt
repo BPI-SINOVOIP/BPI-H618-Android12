@@ -1,0 +1,51 @@
+Comparing the ABI of binaries between nss-util-3.12.6-1.fc14.x86_64.rpm and nss-util-3.24.0-2.0.fc25.x86_64.rpm:
+
+================ changes of 'libnssutil3.so'===============
+  Functions changes summary: 0 Removed, 0 Changed, 0 Added function
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+  Function symbols changes summary: 0 Removed, 37 Added function symbols not referenced by debug info
+  Variable symbols changes summary: 0 Removed, 0 Added variable symbol not referenced by debug info
+
+  37 Added function symbols not referenced by debug info:
+
+    [A] NSSUTIL_ArgDecodeNumber@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgFetchValue@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgGetLabel@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgGetParamValue@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgHasFlag@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgIsBlank@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgParseCipherFlags@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgParseModuleSpec@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgParseModuleSpecEx@@NSSUTIL_3.21
+    [A] NSSUTIL_ArgParseSlotFlags@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgParseSlotInfo@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgReadLong@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgSkipParameter@@NSSUTIL_3.14
+    [A] NSSUTIL_ArgStrip@@NSSUTIL_3.14
+    [A] NSSUTIL_DoModuleDBFunction@@NSSUTIL_3.14
+    [A] NSSUTIL_DoubleEscape@@NSSUTIL_3.14
+    [A] NSSUTIL_DoubleEscapeSize@@NSSUTIL_3.14
+    [A] NSSUTIL_Escape@@NSSUTIL_3.14
+    [A] NSSUTIL_EscapeSize@@NSSUTIL_3.14
+    [A] NSSUTIL_GetVersion@@NSSUTIL_3.13
+    [A] NSSUTIL_MkModuleSpec@@NSSUTIL_3.14
+    [A] NSSUTIL_MkNSSString@@NSSUTIL_3.14
+    [A] NSSUTIL_MkSlotString@@NSSUTIL_3.14
+    [A] NSSUTIL_Quote@@NSSUTIL_3.14
+    [A] NSSUTIL_QuoteSize@@NSSUTIL_3.14
+    [A] NSS_InitializePRErrorTable@@NSSUTIL_3.13
+    [A] PORT_DestroyCheapArena@@NSSUTIL_3.24
+    [A] PORT_InitCheapArena@@NSSUTIL_3.24
+    [A] PORT_RegExpSearch@@NSSUTIL_3.12.7
+    [A] SECITEM_AllocArray@@NSSUTIL_3.15
+    [A] SECITEM_DupArray@@NSSUTIL_3.15
+    [A] SECITEM_FreeArray@@NSSUTIL_3.15
+    [A] SECITEM_ReallocItemV2@@NSSUTIL_3.15
+    [A] SECITEM_ZfreeArray@@NSSUTIL_3.15
+    [A] _NSSUTIL_EvaluateConfigDir@@NSSUTIL_3.14
+    [A] _NSSUTIL_GetSecmodName@@NSSUTIL_3.14
+    [A] _SGN_VerifyPKCS1DigestInfo@@NSSUTIL_3.17.1
+
+================ end of changes of 'libnssutil3.so'===============
+
+

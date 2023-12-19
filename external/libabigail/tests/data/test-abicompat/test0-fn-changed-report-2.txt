@@ -1,0 +1,21 @@
+ELF file 'test0-fn-changed-app' might not be ABI compatible with 'libtest0-fn-changed-libapp-v1.so' due to differences with 'libtest0-fn-changed-libapp-v0.so' below:
+Functions changes summary: 0 Removed, 2 Changed (4 filtered out), 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function libapp::S0* libapp::create_s0()' at test0-fn-changed-libapp-v1.cc:61:1 has some indirect sub-type changes:
+    return type changed:
+      in pointed to type 'struct libapp::S0' at test0-fn-changed-libapp-v1.cc:10:1:
+        type size changed from 32 to 64 (in bits)
+        1 data member insertion:
+          'char m1', at offset 32 (in bits) at test0-fn-changed-libapp-v1.cc:13:1
+
+  [C] 'function libapp::S1* libapp::create_s1()' at test0-fn-changed-libapp-v1.cc:69:1 has some indirect sub-type changes:
+    return type changed:
+      in pointed to type 'struct libapp::S1' at test0-fn-changed-libapp-v1.cc:21:1:
+        type size changed from 32 to 96 (in bits)
+        2 data member insertions:
+          'char m1', at offset 32 (in bits) at test0-fn-changed-libapp-v1.cc:24:1
+          'unsigned int m2', at offset 64 (in bits) at test0-fn-changed-libapp-v1.cc:25:1
+

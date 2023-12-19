@@ -1,0 +1,5 @@
+[suppress_file]
+  # Do not load files foo.o.  This is practically going to allow the
+  # loading of files test0-type-suppr-v0.o and test0-type-suppr-v1.o.
+  file_name_regexp = foo.*
+

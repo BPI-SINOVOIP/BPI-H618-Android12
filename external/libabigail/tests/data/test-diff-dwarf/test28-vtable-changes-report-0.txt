@@ -1,0 +1,27 @@
+Functions changes summary: 0 Removed, 1 Changed, 2 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+Function symbols changes summary: 0 Removed, 0 Added function symbol not referenced by debug info
+Variable symbols changes summary: 0 Removed, 3 Added variable symbols not referenced by debug info
+
+2 Added functions:
+
+  [A] 'method virtual S::~S(int)'
+    note that this adds a new entry to the vtable of struct S
+  [A] 'method virtual S::~S(int)'
+    note that this adds a new entry to the vtable of struct S
+
+1 function with some indirect sub-type change:
+
+  [C] 'method void S::bar()' has some indirect sub-type changes:
+    method void S::bar() is now declared virtual
+      note that this is an ABI incompatible change to the vtable of struct S
+    implicit parameter 0 of type 'S* const' changed:
+      entity changed from 'S* const' to 'S*'
+      type size hasn't changed
+
+3 Added variable symbols not referenced by debug info:
+
+  [A] _ZTI1S
+  [A] _ZTS1S
+  [A] _ZTV1S
+

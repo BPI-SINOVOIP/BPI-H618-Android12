@@ -1,0 +1,28 @@
+<abi-instr path='data/test-read-write/test10.xml'>
+  <type-decl name='char' size-in-bits='8' alignment-in-bits='8' id='type-id-1'/>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-2'/>
+  <pointer-type-def type-id='type-id-2' size-in-bits='64' alignment-in-bits='64' id='type-id-3'/>
+  <namespace-decl name='ns0'>
+    <class-decl name='base0' size-in-bits='40' alignment-in-bits='8' visibility='default' id='type-id-4'>
+      <member-type access='public'>
+        <typedef-decl name='TINT' type-id='type-id-2' id='type-id-5'/>
+      </member-type>
+      <data-member access='private'>
+        <var-decl name='m_first' type-id='type-id-1'/>
+      </data-member>
+      <data-member access='public' static='yes'>
+        <var-decl name='m_second' type-id='type-id-2'/>
+      </data-member>
+    </class-decl>
+  </namespace-decl>
+  <namespace-decl name='ns1'>
+    <class-decl name='C' size-in-bits='40' alignment-in-bits='8' visibility='default' id='type-id-6'>
+      <base-class access='public' type-id='type-id-4'/>
+      <member-function access='public'>
+        <function-decl name='get_first' mangled-name='blibli' binding='global' size-in-bits='8' alignment-in-bits='8'>
+          <return type-id='type-id-1'/>
+        </function-decl>
+      </member-function>
+    </class-decl>
+  </namespace-decl>
+</abi-instr>

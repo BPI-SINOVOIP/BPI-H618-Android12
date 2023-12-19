@@ -1,0 +1,32 @@
+Functions changes summary: 0 Removed, 3 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+3 functions with some indirect sub-type change:
+
+  [C] 'function void f1(A&)' at test37-v1.cc:19:1 has some indirect sub-type changes:
+    parameter 1 of type 'A&' has sub-type changes:
+      in referenced type 'struct A' at test37-v1.cc:3:1:
+        type size changed from 32 to 8 (in bits)
+        1 data member change:
+          type of 'int m0' changed:
+            type name changed from 'int' to 'char'
+            type size changed from 32 to 8 (in bits)
+
+  [C] 'function void f2(B&)' at test37-v1.cc:23:1 has some indirect sub-type changes:
+    parameter 1 of type 'B&' has sub-type changes:
+      in referenced type 'struct B' at test37-v1.cc:8:1:
+        type size changed from 32 to 8 (in bits)
+        1 data member change:
+          type of 'int m0' changed:
+            type name changed from 'int' to 'char'
+            type size changed from 32 to 8 (in bits)
+
+  [C] 'function void f3(C&)' at test37-v1.cc:27:1 has some indirect sub-type changes:
+    parameter 1 of type 'C&' has sub-type changes:
+      in referenced type 'struct C' at test37-v1.cc:13:1:
+        type size changed from 32 to 8 (in bits)
+        1 data member change:
+          type of 'int m0' changed:
+            type name changed from 'int' to 'char'
+            type size changed from 32 to 8 (in bits)
+

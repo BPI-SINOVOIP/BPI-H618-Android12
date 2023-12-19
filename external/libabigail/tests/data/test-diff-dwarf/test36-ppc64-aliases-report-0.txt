@@ -1,0 +1,24 @@
+Functions changes summary: 0 Removed, 4 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+4 functions with some indirect sub-type change:
+
+  [C] 'method S::S(int)' has some indirect sub-type changes:
+    implicit parameter 0 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S':
+        type size changed from 32 to 64 (in bits)
+        1 data member insertion:
+          'int m1', at offset 32 (in bits)
+
+  [C] 'method S::S()' has some indirect sub-type changes:
+    implicit parameter 0 of type 'S*' has sub-type changes:
+      pointed to type 'struct S' changed, as reported earlier
+
+  [C] 'method S::~S(int)' has some indirect sub-type changes:
+    implicit parameter 0 of type 'S*' has sub-type changes:
+      pointed to type 'struct S' changed, as reported earlier
+
+  [C] 'function void foo(S&)' has some indirect sub-type changes:
+    parameter 1 of type 'S&' has sub-type changes:
+      referenced type 'struct S' changed, as reported earlier
+

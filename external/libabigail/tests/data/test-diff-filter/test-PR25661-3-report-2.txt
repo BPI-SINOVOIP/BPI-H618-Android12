@@ -1,0 +1,12 @@
+Functions changes summary: 0 Removed, 1 Changed, 0 Added function
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'function void foo(S*)' at test-PR25661-3-v1.c:21:1 has some indirect sub-type changes:
+    parameter 1 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S' at test-PR25661-3-v1.c:1:1:
+        type size hasn't changed
+        data member 'S::a' was replaced by anonymous data member:
+          'union {struct {struct {int a;};}; int new_union_member;}'
+

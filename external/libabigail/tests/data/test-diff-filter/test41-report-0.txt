@@ -1,0 +1,66 @@
+Functions changes summary: 8 Removed, 3 Changed (7 filtered out), 16 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+Function symbols changes summary: 1 Removed, 0 Added function symbol not referenced by debug info
+Variable symbols changes summary: 0 Removed, 0 Added variable symbol not referenced by debug info
+
+8 Removed functions:
+
+  [D] 'method void abigail::xml_writer::write_context::record_decl_only_type_as_emitted(abigail::ir::type_base*)'    {_ZN7abigail10xml_writer13write_context32record_decl_only_type_as_emittedEPNS_2ir9type_baseE}
+  [D] 'method std::_Deque_base<unsigned int, std::allocator<unsigned int> >::~_Deque_base()'    {_ZNSt11_Deque_baseIjSaIjEED2Ev, aliases _ZNSt11_Deque_baseIjSaIjEED1Ev}
+  [D] 'method void std::deque<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_push_back_aux<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)'    {_ZNSt5dequeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE16_M_push_back_auxIJS5_EEEvDpOT_}
+  [D] 'method void std::deque<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::emplace_back<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)'    {_ZNSt5dequeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE12emplace_backIJS5_EEEvDpOT_}
+  [D] 'method void std::deque<unsigned int, std::allocator<unsigned int> >::_M_push_back_aux<unsigned int const&>(const unsigned int&)'    {_ZNSt5dequeIjSaIjEE16_M_push_back_auxIJRKjEEEvDpOT_}
+  [D] 'method void std::tr1::_Sp_counted_base<(__gnu_cxx::_Lock_policy)2u>::_M_release()'    {_ZNSt3tr116_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EE10_M_releaseEv}
+  [D] 'method std::pair<bool, long unsigned int> std::tr1::__detail::_Prime_rehash_policy::_M_need_rehash(std::size_t, std::size_t, std::size_t) const'    {_ZNKSt3tr18__detail20_Prime_rehash_policy14_M_need_rehashEmmm}
+  [D] 'method std::tr1::__shared_count<(__gnu_cxx::_Lock_policy)2u>& std::tr1::__shared_count<(__gnu_cxx::_Lock_policy)2u>::operator=(const std::tr1::__shared_count<(__gnu_cxx::_Lock_policy)2u>&)'    {_ZNSt3tr114__shared_countILN9__gnu_cxx12_Lock_policyE2EEaSERKS3_}
+
+16 Added functions:
+
+  [A] 'method std::__cxx11::string abigail::xml_writer::write_context::get_id_for_class_tmpl(const abigail::ir::class_tdecl_sptr&)'    {_ZN7abigail10xml_writer13write_context21get_id_for_class_tmplB5cxx11ERKNSt3tr110shared_ptrINS_2ir11class_tdeclEEE}
+  [A] 'method std::__cxx11::string abigail::xml_writer::write_context::get_id_for_fn_tmpl(const abigail::ir::function_tdecl_sptr&)'    {_ZN7abigail10xml_writer13write_context18get_id_for_fn_tmplB5cxx11ERKNSt3tr110shared_ptrINS_2ir14function_tdeclEEE}
+  [A] 'method void abigail::xml_writer::write_context::record_type_id_as_emitted(const std::__cxx11::string&)'    {_ZN7abigail10xml_writer13write_context25record_type_id_as_emittedERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE}
+  [A] 'method void abigail::xml_writer::write_context::sort_types(abigail::xml_writer::type_ptr_map&, std::vector<abigail::ir::type_base *, std::allocator<abigail::ir::type_base *> >&)'    {_ZN7abigail10xml_writer13write_context10sort_typesERNSt3tr113unordered_mapIPNS_2ir9type_baseENS_15interned_stringENS0_11type_hasherENS_10diff_utils19deep_ptr_eq_functorESaISt4pairIKS6_S7_EEEERSt6vectorIS6_SaIS6_EE}
+  [A] 'method void abigail::xml_writer::write_context::sort_types(const std::vector<std::tr1::shared_ptr<abigail::ir::function_type>, std::allocator<std::tr1::shared_ptr<abigail::ir::function_type> > >&, std::vector<std::tr1::shared_ptr<abigail::ir::type_base>, std::allocator<std::tr1::shared_ptr<abigail::ir::type_base> > >&)'    {_ZN7abigail10xml_writer13write_context10sort_typesERKSt6vectorINSt3tr110shared_ptrINS_2ir13function_typeEEESaIS7_EERS2_INS4_INS5_9type_baseEEESaISD_EE}
+  [A] 'method void std::_Deque_base<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::_M_create_nodes(std::_Deque_base<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::_Map_pointer, std::_Deque_base<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::_Map_pointer)'    {_ZNSt11_Deque_baseINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE15_M_create_nodesEPPS5_S9_}
+  [A] 'method void std::_Deque_base<unsigned int, std::allocator<unsigned int> >::_M_create_nodes(std::_Deque_base<unsigned int, std::allocator<unsigned int> >::_Map_pointer, std::_Deque_base<unsigned int, std::allocator<unsigned int> >::_Map_pointer)'    {_ZNSt11_Deque_baseIjSaIjEE15_M_create_nodesEPPjS3_}
+  [A] 'method std::_Deque_iterator<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> &, std::__cxx11::basic_string<char> *> std::__uninitialized_copy<false>::__uninit_copy<std::_Deque_iterator<std::__cxx11::basic_string<char>, const std::__cxx11::basic_string<char> &, const std::__cxx11::basic_string<char> *>, std::_Deque_iterator<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> &, std::__cxx11::basic_string<char> *> >(std::_Deque_iterator<std::__cxx11::basic_string<char>, const std::__cxx11::basic_string<char> &, const std::__cxx11::basic_string<char> *>, std::_Deque_iterator<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> &, std::__cxx11::basic_string<char> *>)'    {_ZNSt20__uninitialized_copyILb0EE13__uninit_copyISt15_Deque_iteratorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKS8_PS9_ES2_IS8_RS8_PS8_EEET0_T_SH_SG_}
+  [A] 'method void std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::_M_destroy_data_aux(std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::iterator, std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::iterator)'    {_ZNSt5dequeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE19_M_destroy_data_auxESt15_Deque_iteratorIS5_RS5_PS5_ESB_}
+  [A] 'method void std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::_M_push_back_aux(const std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::value_type&)'    {_ZNSt5dequeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE16_M_push_back_auxERKS5_}
+  [A] 'method void std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::_M_reallocate_map(size_type, bool)'    {_ZNSt5dequeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE17_M_reallocate_mapEmb}
+  [A] 'method void std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >::deque(const std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > >&)'    {_ZNSt5dequeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EEC2ERKS7_}
+  [A] 'method void std::deque<unsigned int, std::allocator<unsigned int> >::_M_reallocate_map(size_type, bool)'    {_ZNSt5dequeIjSaIjEE17_M_reallocate_mapEmb}
+  [A] 'method void std::stack<std::__cxx11::basic_string<char>, std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > > >::push(const std::stack<std::__cxx11::basic_string<char>, std::deque<std::__cxx11::basic_string<char>, std::allocator<std::__cxx11::basic_string<char> > > >::value_type&)'    {_ZNSt5stackINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt5dequeIS5_SaIS5_EEE4pushERKS5_}
+  [A] 'method virtual std::tr1::_Sp_counted_base<__gnu_cxx::_Lock_policy::_S_atomic>::~_Sp_counted_base()'    {_ZNSt3tr116_Sp_counted_baseILN9__gnu_cxx12_Lock_policyE2EED2Ev}
+    note that this adds a new entry to the vtable of class std::tr1::_Sp_counted_base<__gnu_cxx::_Lock_policy::_S_atomic>
+  [A] 'function void std::tr1::__enable_shared_from_this_helper<__gnu_cxx::_Lock_policy::_S_atomic>(const std::tr1::__shared_count<__gnu_cxx::_Lock_policy::_S_atomic>&, ...)'    {_ZNSt3tr132__enable_shared_from_this_helperILN9__gnu_cxx12_Lock_policyE2EEEvRKNS_14__shared_countIXT_EEEz}
+
+3 functions with some indirect sub-type change:
+
+  [C] 'method void abigail::xml_writer::write_context::record_type_as_emitted(const abigail::ir::type_base_sptr&)' at abg-writer.cc:473:1 has some indirect sub-type changes:
+    parameter 1 of type 'const abigail::ir::type_base_sptr&' has sub-type changes:
+      in referenced type 'const abigail::ir::type_base_sptr':
+        in unqualified underlying type 'typedef abigail::ir::type_base_sptr' at abg-fwd.h:110:1:
+          underlying type 'class std::tr1::shared_ptr<abigail::ir::type_base>' at shared_ptr.h:983:1 changed:
+            type size hasn't changed
+            1 base class deletion:
+              class std::tr1::__shared_ptr<abigail::ir::type_base, (__gnu_cxx::_Lock_policy)2u> at shared_ptr.h:539:1
+            1 base class insertion:
+              class std::tr1::__shared_ptr<abigail::ir::type_base, __gnu_cxx::_Lock_policy::_S_atomic> at shared_ptr.h:539:1
+
+  [C] 'method bool abigail::xml_writer::write_context::type_is_emitted(const abigail::ir::type_base_sptr&)' at abg-writer.cc:497:1 has some indirect sub-type changes:
+    method bool abigail::xml_writer::write_context::type_is_emitted(const abigail::ir::type_base_sptr&) is not declared inline anymore
+
+  [C] 'function bool abigail::xml_writer::write_corpus_to_native_xml(const abigail::ir::corpus_sptr, unsigned int, std::ostream&, const bool)' at abg-writer.cc:3862:1 has some indirect sub-type changes:
+    parameter 1 of type 'const abigail::ir::corpus_sptr' has sub-type changes:
+      in unqualified underlying type 'typedef abigail::ir::corpus_sptr' at abg-fwd.h:101:1:
+        underlying type 'class std::tr1::shared_ptr<abigail::ir::corpus>' at shared_ptr.h:983:1 changed:
+          type size hasn't changed
+          1 base class deletion:
+            class std::tr1::__shared_ptr<abigail::ir::corpus, (__gnu_cxx::_Lock_policy)2u> at shared_ptr.h:539:1
+          1 base class insertion:
+            class std::tr1::__shared_ptr<abigail::ir::corpus, __gnu_cxx::_Lock_policy::_S_atomic> at shared_ptr.h:539:1
+
+1 Removed function symbol not referenced by debug info:
+
+  [D] _ZN7abigail10xml_writer13write_contextD1Ev
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+# SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+@PYTHON3_INTERPRETER@ "@abs_top_builddir@/tests/runtestdefaultsupprs.py"

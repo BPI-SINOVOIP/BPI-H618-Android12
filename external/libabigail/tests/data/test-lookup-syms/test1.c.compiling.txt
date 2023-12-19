@@ -1,0 +1,9 @@
+To re-compile test1.so (on a 64-bits machine), please do:
+
+gcc -g -shared -Wl,--version-script=test1.version-script -o test1.so test1.c
+
+
+To re-compile test1-32.so, please do:
+
+gcc -g -m32 -shared -Wl,--version-script=test1.version-script -o test1.so test1.c
+

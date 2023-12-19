@@ -1,0 +1,11 @@
+Functions changes summary: 0 Removed, 1 Changed (2 filtered out), 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+1 function with some indirect sub-type change:
+
+  [C] 'function void foo(S)' has some indirect sub-type changes:
+    parameter 1 of type 'struct S' has sub-type changes:
+      type size changed from 32 to 64 (in bits)
+      1 data member insertion:
+        'char m1', at offset 32 (in bits)
+

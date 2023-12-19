@@ -1,0 +1,7 @@
+[suppress_variable]
+  name_regexp = std::.*
+  drop = true
+
+[suppress_variable]
+  name_regexp = __gnu_cxx::.*
+  drop = true

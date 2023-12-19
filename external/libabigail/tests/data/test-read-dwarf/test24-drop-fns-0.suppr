@@ -1,0 +1,8 @@
+[suppress_function]
+ #
+ # Remove functions from the C++ standard library if we are not
+ # looking at the standard library itself.
+ #
+ file_name_not_regexp = libstdc++.*
+ name_regexp = std::.*
+ drop = yes

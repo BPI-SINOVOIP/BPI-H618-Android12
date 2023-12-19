@@ -1,0 +1,28 @@
+Functions changes summary: 0 Removed, 4 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+4 functions with some indirect sub-type change:
+
+  [C] 'function void bar(s*)' has some indirect sub-type changes:
+    parameter 1 of type 's*' has sub-type changes:
+      in pointed to type 'class s':
+        type size changed from 32 to 64 (in bits)
+        1 data member insertion:
+          'char m1', at offset 32 (in bits)
+
+  [C] 'function void foo(s&)' has some indirect sub-type changes:
+    parameter 1 of type 's&' has sub-type changes:
+      referenced type 'class s' changed, as reported earlier
+
+  [C] 'method s::s(const s&)' has some indirect sub-type changes:
+    'method s::s(const s&)' access changed from 'public' to 'private'
+    implicit parameter 0 of type 's*' has sub-type changes:
+      pointed to type 'class s' changed, as reported earlier
+    parameter 1 of type 'const s&' has sub-type changes:
+      in referenced type 'const s':
+        unqualified underlying type 'class s' changed, as reported earlier
+
+  [C] 'method s::s()' has some indirect sub-type changes:
+    implicit parameter 0 of type 's*' has sub-type changes:
+      pointed to type 'class s' changed, as reported earlier
+

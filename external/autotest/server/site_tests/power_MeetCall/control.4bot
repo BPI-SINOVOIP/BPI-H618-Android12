@@ -1,0 +1,40 @@
+# Copyright 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+from autotest_lib.server import utils
+
+AUTHOR = "puthik"
+NAME = "power_MeetCall.4bot"
+PURPOSE = "Use bond api to create meet bot and test hangout meet."
+TIME = "SHORT"
+TEST_CATEGORY = "Functional"
+TEST_CLASS = "power"
+TEST_TYPE = "server"
+
+DOC = """
+This test uses bond api to create meet bot and test hangout meet.
+
+To run the test manually:
+- Install the cred from https://crbug.com/874835#c3 to
+  /creds/service_accounts/bond_service_account.json in chroot
+- Ran the following command in chroot to install rsa to python2
+  sudo cp -r /usr/lib64/python{3.6,2.7}/site-packages/rsa
+
+"""
+
+from autotest_lib.client.common_lib import utils
+
+args_dict = utils.args_to_dict(args)
+args = {
+    'pdash_note': args_dict.get('pdash_note', ''),
+    'tag' : NAME.split('.')[1],
+    'num_bots' : 4,
+    'duration' : 180,
+}
+
+def run(machine):
+    host = hosts.create_host(machine)
+    job.run_test("power_MeetCall", host=host, args=args)
+
+parallel_simple(run, machines)

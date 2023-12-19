@@ -1,0 +1,128 @@
+<abi-corpus version='2.0' path='data/test-read-dwarf/test1'>
+  <elf-needed>
+    <dependency name='libstdc++.so.6'/>
+    <dependency name='libm.so.6'/>
+    <dependency name='libgcc_s.so.1'/>
+    <dependency name='libc.so.6'/>
+  </elf-needed>
+  <elf-function-symbols>
+    <elf-symbol name='_Z3fooR2s0' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZN2b0C1Ev' type='func-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZN2b0C2Ev' type='func-type' binding='weak-binding' visibility='default-visibility' alias='_ZN2b0C1Ev' is-defined='yes'/>
+    <elf-symbol name='_ZN2b1C1Ev' type='func-type' binding='weak-binding' visibility='default-visibility' alias='_ZN2b1C2Ev' is-defined='yes'/>
+    <elf-symbol name='_ZN2b1C2Ev' type='func-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZN2s07mem_funEv' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZN2s0C1Ev' type='func-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZN2s0D1Ev' type='func-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='__libc_csu_fini' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='__libc_csu_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_fini' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_init' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_start' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='main' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <elf-variable-symbols>
+    <elf-symbol name='_IO_stdin_used' size='4' type='object-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTI2b0' size='16' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTI2b1' size='16' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTI2s0' size='56' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTS2b0' size='4' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTS2b1' size='4' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTS2s0' size='4' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTT2s0' size='8' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTV2s0' size='32' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTVN10__cxxabiv117__class_type_infoE@@CXXABI_1.3' size='88' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+    <elf-symbol name='_ZTVN10__cxxabiv121__vmi_class_type_infoE@@CXXABI_1.3' size='88' type='object-type' binding='weak-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-variable-symbols>
+  <abi-instr address-size='64' path='test1.cc' comp-dir-path='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf' language='LANG_C_plus_plus'>
+    <type-decl name='char' size-in-bits='8' id='a84c031d'/>
+    <type-decl name='double' size-in-bits='64' id='a0eb0f08'/>
+    <type-decl name='int' size-in-bits='32' id='95e97e5e'/>
+    <type-decl name='long long int' size-in-bits='64' id='1eb56b1e'/>
+    <type-decl name='unsigned char' size-in-bits='8' id='002ac4a6'/>
+    <type-decl name='void' id='48b5725f'/>
+    <class-decl name='b0' size-in-bits='128' is-struct='yes' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='1' column='1' id='96c6f7f7'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='m0' type-id='1eb56b1e' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='3' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='m1' type-id='a84c031d' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='4' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='b1' size-in-bits='128' is-struct='yes' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='7' column='1' id='95c6f664'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='m0' type-id='a0eb0f08' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='9' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='m1' type-id='a84c031d' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='10' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='s0' size-in-bits='384' is-struct='yes' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='13' column='1' id='10ec88de'>
+      <base-class access='public' layout-offset-in-bits='192' is-virtual='yes' type-id='96c6f7f7'/>
+      <base-class access='public' layout-offset-in-bits='256' is-virtual='yes' type-id='95c6f664'/>
+      <member-type access='public'>
+        <typedef-decl name='integer' type-id='95e97e5e' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='15' column='1' id='61814d27'/>
+      </member-type>
+      <member-type access='public'>
+        <typedef-decl name='byte' type-id='002ac4a6' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='16' column='1' id='92bf8355'/>
+      </member-type>
+      <data-member access='public' layout-offset-in-bits='64'>
+        <var-decl name='m0' type-id='61814d27' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='18' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='96'>
+        <var-decl name='m1' type-id='92bf8355' visibility='default' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='19' column='1'/>
+      </data-member>
+      <member-function access='public' constructor='yes'>
+        <function-decl name='s0' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='21' column='1' visibility='default' binding='global' size-in-bits='64'>
+          <parameter type-id='a1a34114' is-artificial='yes'/>
+          <parameter type-id='95e97e5e' is-artificial='yes'/>
+          <parameter type-id='63e171df' is-artificial='yes'/>
+          <return type-id='48b5725f'/>
+        </function-decl>
+      </member-function>
+      <member-function access='public' destructor='yes'>
+        <function-decl name='~s0' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='27' column='1' visibility='default' binding='global' size-in-bits='64'>
+          <parameter type-id='a1a34114' is-artificial='yes'/>
+          <parameter type-id='95e97e5e' is-artificial='yes'/>
+          <parameter type-id='63e171df' is-artificial='yes'/>
+          <return type-id='48b5725f'/>
+        </function-decl>
+      </member-function>
+      <member-function access='public' constructor='yes'>
+        <function-decl name='s0' mangled-name='_ZN2s0C1Ev' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='21' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN2s0C1Ev'>
+          <parameter type-id='a1a34114' is-artificial='yes'/>
+          <parameter type-id='95e97e5e' is-artificial='yes'/>
+          <parameter type-id='63e171df' is-artificial='yes'/>
+          <return type-id='48b5725f'/>
+        </function-decl>
+      </member-function>
+      <member-function access='public' destructor='yes'>
+        <function-decl name='~s0' mangled-name='_ZN2s0D1Ev' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='27' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN2s0D1Ev'>
+          <parameter type-id='a1a34114' is-artificial='yes'/>
+          <parameter type-id='95e97e5e' is-artificial='yes'/>
+          <parameter type-id='63e171df' is-artificial='yes'/>
+          <return type-id='48b5725f'/>
+        </function-decl>
+      </member-function>
+      <member-function access='public'>
+        <function-decl name='mem_fun' mangled-name='_ZN2s07mem_funEv' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='36' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_ZN2s07mem_funEv'>
+          <parameter type-id='f2bcd35f' name='this' is-artificial='yes'/>
+          <return type-id='61814d27'/>
+        </function-decl>
+      </member-function>
+    </class-decl>
+    <qualified-type-def type-id='95a32e30' id='95a32e31'/>
+    <reference-type-def kind='lvalue' type-id='10ec88de' size-in-bits='64' id='95a32e30'/>
+    <pointer-type-def type-id='10ec88de' size-in-bits='64' id='a1a34114'/>
+    <qualified-type-def type-id='a1a34114' const='yes' id='f2bcd35f'/>
+    <pointer-type-def type-id='48b5725f' size-in-bits='64' id='eaa32e2f'/>
+    <pointer-type-def type-id='eaa32e2f' size-in-bits='64' id='63e171df'/>
+    <function-decl name='foo' mangled-name='_Z3fooR2s0' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='42' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='_Z3fooR2s0'>
+      <parameter type-id='95a32e31' name='s' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='42' column='1'/>
+      <return type-id='48b5725f'/>
+    </function-decl>
+    <function-decl name='main' mangled-name='main' filepath='/home/dodji/git/libabigail/dwarf/tests/data/test-read-dwarf/test1.cc' line='48' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='main'>
+      <return type-id='95e97e5e'/>
+    </function-decl>
+  </abi-instr>
+</abi-corpus>

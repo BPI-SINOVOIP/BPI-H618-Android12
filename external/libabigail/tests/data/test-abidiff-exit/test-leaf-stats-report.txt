@@ -1,0 +1,20 @@
+Leaf changes summary: 2 artifacts changed
+Changed leaf types summary: 0 leaf type changed
+Removed/Changed/Added functions summary: 0 Removed, 1 Changed, 0 Added function
+Removed/Changed/Added variables summary: 0 Removed, 1 Changed, 0 Added variable
+
+1 function with some sub-type change:
+
+  [C] 'function int changed_fun()' has some sub-type changes:
+    return type changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)
+
+1 Changed variable:
+
+  [C] 'int changed_var' was changed to 'long int changed_var':
+    size of symbol changed from 4 to 8
+    type of variable changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)
+

@@ -1,0 +1,15 @@
+variables defined in library 'libtest6-var-changed-libapp-v1.so'
+have sub-types that are different from what application 'test6-var-changed-app' expects:
+
+  S0* bar:
+    in pointed to type 'struct S0':
+      type size changed from 32 to 64 (in bits)
+      1 data member insertion:
+        'char m1', at offset 32 (in bits)
+
+  S1* foo:
+    in pointed to type 'struct S1':
+      type size changed from 64 to 32 (in bits)
+      1 data member deletion:
+        'unsigned char m1', at offset 32 (in bits)
+

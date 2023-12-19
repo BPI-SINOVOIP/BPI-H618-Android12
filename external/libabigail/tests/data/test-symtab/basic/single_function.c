@@ -1,0 +1,1 @@
+void exported_function(){}

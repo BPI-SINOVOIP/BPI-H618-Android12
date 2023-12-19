@@ -1,0 +1,33 @@
+<abi-corpus version='2.0' path='data/test-read-dwarf/test-PR26568-2.o'>
+  <elf-function-symbols>
+    <elf-symbol name='fun' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <abi-instr address-size='64' path='test-PR26568-2.c' comp-dir-path='/home/dodji/git/libabigail/fixes/tests/data/test-read-dwarf' language='LANG_C89'>
+    <type-decl name='int' size-in-bits='32' id='type-id-1'/>
+    <type-decl name='long int' size-in-bits='64' id='type-id-2'/>
+    <type-decl name='void' id='type-id-3'/>
+    <union-decl name='A' size-in-bits='64' visibility='default' filepath='/home/dodji/git/libabigail/fixes/tests/data/test-read-dwarf/test-PR26568-2.c' line='1' column='1' id='type-id-4'>
+      <data-member access='public'>
+        <var-decl name='' type-id='type-id-5' visibility='default'/>
+      </data-member>
+      <data-member access='public'>
+        <var-decl name='' type-id='type-id-6' visibility='default'/>
+      </data-member>
+    </union-decl>
+    <class-decl name='__anonymous_struct__' size-in-bits='32' is-struct='yes' is-anonymous='yes' visibility='default' filepath='/home/dodji/git/libabigail/fixes/tests/data/test-read-dwarf/test-PR26568-2.c' line='2' column='1' id='type-id-5'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='x' type-id='type-id-1' visibility='default' filepath='/home/dodji/git/libabigail/fixes/tests/data/test-read-dwarf/test-PR26568-2.c' line='3' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='__anonymous_struct__1' size-in-bits='64' is-struct='yes' is-anonymous='yes' visibility='default' filepath='/home/dodji/git/libabigail/fixes/tests/data/test-read-dwarf/test-PR26568-2.c' line='5' column='1' id='type-id-6'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='y' type-id='type-id-2' visibility='default' filepath='/home/dodji/git/libabigail/fixes/tests/data/test-read-dwarf/test-PR26568-2.c' line='6' column='1'/>
+      </data-member>
+    </class-decl>
+    <pointer-type-def type-id='type-id-4' size-in-bits='64' id='type-id-7'/>
+    <function-decl name='fun' mangled-name='fun' filepath='/home/dodji/git/libabigail/fixes/tests/data/test-read-dwarf/test-PR26568-2.c' line='10' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='fun'>
+      <parameter type-id='type-id-7' name='a' filepath='/home/dodji/git/libabigail/fixes/tests/data/test-read-dwarf/test-PR26568-2.c' line='10' column='1'/>
+      <return type-id='type-id-3'/>
+    </function-decl>
+  </abi-instr>
+</abi-corpus>

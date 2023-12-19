@@ -1,0 +1,33 @@
+<abi-corpus path='test-v1.o' architecture='elf-amd-x86_64' tracking-non-reachable-types='yes'>
+  <elf-function-symbols>
+    <elf-symbol name='foo' type='func-type' binding='global-binding' visibility='default-visibility' is-defined='yes'/>
+  </elf-function-symbols>
+  <abi-instr version='1.0' address-size='64' path='test-v1.c' comp-dir-path='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690' language='LANG_C89'>
+    <type-decl name='char' size-in-bits='8' id='type-id-1'/>
+    <type-decl name='int' size-in-bits='32' id='type-id-2'/>
+    <type-decl name='void' id='type-id-3'/>
+    <class-decl name='reachable_struct1' size-in-bits='32' is-struct='yes' visibility='default' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='1' column='1' id='type-id-4'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='m0' type-id='type-id-2' visibility='default' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='3' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='unreachable_struct2' size-in-bits='64' is-struct='yes' is-non-reachable='yes' visibility='default' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='6' column='1' id='type-id-5'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='m1' type-id='type-id-2' visibility='default' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='8' column='1'/>
+      </data-member>
+      <data-member access='public' layout-offset-in-bits='32'>
+        <var-decl name='m2' type-id='type-id-1' visibility='default' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='9' column='1'/>
+      </data-member>
+    </class-decl>
+    <class-decl name='unreachable_struct3' size-in-bits='32' is-struct='yes' is-non-reachable='yes' visibility='default' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='12' column='1' id='type-id-6'>
+      <data-member access='public' layout-offset-in-bits='0'>
+        <var-decl name='m1' type-id='type-id-2' visibility='default' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='14' column='1'/>
+      </data-member>
+    </class-decl>
+    <pointer-type-def type-id='type-id-4' size-in-bits='64' id='type-id-7'/>
+    <function-decl name='foo' mangled-name='foo' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='17' column='1' visibility='default' binding='global' size-in-bits='64' elf-symbol-id='foo'>
+      <parameter type-id='type-id-7' name='s' filepath='/home/dodji/git/libabigail/compare-all-types/prtests/PR24690/test-v1.c' line='17' column='1'/>
+      <return type-id='type-id-3'/>
+    </function-decl>
+  </abi-instr>
+</abi-corpus>

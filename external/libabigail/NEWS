@@ -1,0 +1,1030 @@
+1.8
+===
+Dodji Seketeli (62):
+      Bump version number to 1.8
+      Update fedabipkgdiff tests according to commit b602f46c
+      abipkgdiff: fix documentation of --impacted-interface
+      dwarf-reader: Fix bloom filter access in GNU_HASH section
+      Update tests/data/test-abidiff-exit/test-leaf-peeling-report.txt
+      Update the mailing list registration form on the web page
+      abipkgdiff: Fix race condition while using private types suppr specs
+      Fix compilation with g++ 4.8.5 on el7
+      Bug 25977 - runtestabidiffexit regression on EL7
+      Bug 25986 - Wrong name of function type used in change report
+      Add -g back to ABIGAIL_DEVEL
+      {default,leaf}-reporter: group data members changes reports together
+      dwarf-reader: support several anonymous data members in a given class
+      Bug 25661 - Support data member replacement by anonymous data member
+      Bug 25989 - type_topo_comp doesn't meet irreflexive requirements
+      abigail.m4: Fix copyright notice
+      Bug 26127 - abidw --annotate emits incomplete function types
+      Bug 26135 - Wrong linkage name causes anonymous classes miscomparison
+      Support declaration-only enums in DWARF reader.
+      reader: Remove useless support for WIP types
+      Pimpl-ify traversable_base and remove its unused traverse method
+      dwarf-reader: re-indent a block of code
+      Bug 26261 - Fix logic for canonicalizing DW_TAG_subroutine_type DIEs
+      Use flat representation to canonicalize anonymous classes and unions
+      writer: Avoid using dynamic hashing in type maps
+      Fix thinko in get_vmlinux_path_from_kernel_dist
+      Bug 26309 - Wrong leaf reporting of changes to typedef underlying type
+      Make abidiff and abidw support several --headers-dir{1,2} options
+      Bug 26568 - Union should support more than one anonymous member
+      Consider the implicit 'this' parameter when comparing methods
+      Fix redundancy detection in the diff graph
+      Structurally compare the few non-canonicalized types in general
+      configure: Support ABIGAIL_NO_OPTIMIZATION_DEBUG environment variable
+      abg-tools-utils: Fix comment
+      Bug 26770 - Spurious declaration-only-ness induces spurious type changes
+      update-test-output.py: Update syntax
+      Update test-libandroid.so.abi
+      Bug PR26739 - Handle qualified typedef array types
+      writer: Sort decls and fix topological sorting for types
+      ir: Add equality op to array_type_def::subrange_type::bound_value
+      Make sure to canonicalize all types but decl-only classes
+      Bug 26769 - Fix missing types in abixml output
+      abipkgdiff: Add a new --self-check option
+      fedabipkgdiff: make --self-compare use abipkgdiff --self-check
+      dwarf-reader: support artificially generated translation units
+      tests/data/test-fedabipkgdiff: Update reference output
+      abipkgdiff: Avoid uncertainty when sorting worker tasks
+      reader: Read array subrange length into an uint64_t
+      Bug 26780 - Fix array subrange bounds (de)serialization
+      writer: Emit definitions of declarations when they are present
+      ir: Introduce internal pretty representation for anonymous classes
+      reader: Don't lose anonymous-ness of decl-only classes
+      dwarf-reader: Avoid having several functions with the same symbol
+      abidw: make --abidiff report any change against own ABIXML
+      abipkgdiff: make --self-check to fail on any change against own ABIXML
+      writer: fix off-by-one error in assertion
+      reader: Fix off-by-one error in assert
+      dwarf-reader: Bug 26908 - don't crash on empty DW_TAG_partial_unit
+      configure: add --enable-rpm415 option
+      Add check-self-compare to release regression testing
+      Update the Changelog for 1.8
+      Update NEWS file for 1.8
+
+Giuliano Procida (112):
+      Correct spelling of "alignment".
+      Correct various inconsequential typos.
+      Add space missing between "[C]" tag and description of changed item.
+      Fix the reporting of leaf change statistics.
+      abisym: Remove leading space in output.
+      abg-comparison.cc: Remove stray function declaration.
+      Fix spurious new lines after diff sections.
+      Add more leaf change reporting.
+      Fix interaction of --redundant and --leaf-changes-only options.
+      abg-leaf-reporter.cc: Fix indentation of function parameter diffs.
+      Eliminate some unnecessary blank lines in diff output.
+      Output 2-space indentation consistently.
+      Treat function type changes as local.
+      Tag add/remove/change lines unconditionally with [A], [D], [C].
+      dwarf-reader: Use all bits of Bloom filter words.
+      Ensure change_kind enum values are used consistently.
+      Eliminate redundancy in representation of local change kinds.
+      abg-ir.cc: Fix peel_typedef_type(const type_base*).
+      abg-ir.cc: Remove always-true check.
+      abg-ir.cc: Improve types_have_similar_structure.
+      abidiff: Remove some more unnecessary blank lines.
+      abg-reader.cc: Fix code indentation and tabify.
+      abg-ir.cc: Add types_have_similar_structure tests.
+      abidiff: Clean up new lines between sections.
+      abidiff: Remove blank line after base class diffs.
+      abidiff: Fix enum impacted interfaces blank line.
+      abidiff: Remove member function diff blank lines.
+      abidiff: Fix variable declaration formatting.
+      abidiff: Eliminate leaf mode double blank lines.
+      abidiff: Remove new lines after parameter diffs.
+      Fix size calculations for multidimensional arrays.
+      abidiff: Remove blank line after typedef changes.
+      test-diff-suppr.cc: Add missing tests.
+      abidiffpkg: Remove stray test report file.
+      abg-dwarf-reader.cc: Avoid division by zero.
+      Rename test-abidiff-exit/test-leaf[0-3] files.
+      test-abidiff-exit.cc: Drop redundant --redundant.
+      abidiff: More compact references to prior diffs.
+      abg-reporter-priv.cc: Fix anonymous member size change reports.
+      abg-reporter-priv.cc: Improve readability of represent helper function.
+      abidiff: Document and refresh tests.
+      Fix variable suppression name_not_regex.
+      test35-leaf.suppr: fix regex typo.
+      test24-soname-suppr*txt: Fix suppression syntax.
+      Add tests for declaration-only struct diffs.
+      abidiff: Blank line after declaration-only diff.
+      abidiff: Omit declaration-only type size 0 diffs.
+      Move regex definitions to own files.
+      Move libxml bits out of abg-sptr-utils.h.
+      Simplify generation of symbol whitelist regex.
+      Remove excess whitespace.
+      Remove stray semicolons.
+      Eliminate redundant conditional operators.
+      Make set_drops_artifact_from_ir non-const.
+      Hoist some common expressions evaluating offsets.
+      Tidy #includes in a few files.
+      Document ^_^ regex in generate_from_strings.
+      Escape names used in symbol whitelisting regex.
+      abg-suppression.cc: More uniform variable naming.
+      Add POSIX regex wrapper functions.
+      Use regex::compile wrapper instead of regcomp.
+      Tidy checks for sufficient suppression properties.
+      Use regex::match wrapper instead of regexec.
+      Refactor read_parameter_spec_from_string logic.
+      abg-reader.cc: Remove key_replacement_type_map.
+      Let std::unordered_map::operator[] insert keys.
+      doc: Fix sufficient suppression property lists.
+      Tidy get_pretty_representation qualified_name.
+      clang-format: set continuation indentation to 2
+      Fix HARMLESS_SYMBOL_ALIAS_CHANGE_CATEGORY spelling
+      Eliminate non-ASCII characters.
+      abg-writer: Add support for stable hash type ids.
+      Fix leaf-mode formatting of decl <-> defn diffs.
+      Fix bug that suppressed DWARF read tests.
+      get_canonical_type_for: restore environment better
+      Improve code comments and whitespace.
+      Refactor d.context() as ctxt in report(enum_diff).
+      Tidy build_enum_type state variables.
+      Rename declaration-definition change category.
+      abg-ir.cc: Remove unused re_canonicalize function.
+      Support incomplete enums in core and diff code.
+      Add declaration-only enums to XML reader/writer.
+      Add tests for declaration-only enums.
+      Use pointers not strings in type graph comparison.
+      abg-writer.cc: Clean up new line emission.
+      reporter: Fix report whitespace typos.
+      Fix corpus_diff::has_net_changes for --leaf-changes-only mode
+      abg-ir.cc: Tidy some operator== definitions
+      Fix --type-id-style hash for empty internal names.
+      abg-comparison.cc: Tidy some corpus_diff code
+      abg-ir.cc: Refactor operator== methods with helper function
+      abg-comparison.h: Remove stray declaration
+      Remove unused is_reference_or_pointer_diff.
+      Simplify peel_typedef_pointer_or_reference_type
+      Fix inheritance of scope_decl::insert_member_decl
+      Enable Clang's -Werror-overloaded-virtual.
+      abg-ir.cc: Fix incorrect pop of compared types.
+      Remove ABI XML test data file blank lines
+      abg-writer.cc: Fix indentation of XML output
+      abg-ir.cc: Remove duplicated line of code
+      Make decl_names_equal more accurate
+      Fix decl_base comparison function
+      Fix maybe_report_data_members_replaced_by_anon_dm
+      Improve documentation of abidiff --type-id-style
+      DWARF: look up DW_AT_declaration non-recursively
+      DWARF: track chained DIE declaration-only status
+      abg-corpus.cc: report architecture discrepancies
+      Add missing newlines to end of test files.
+      Fix two wrongs in test suppression regex
+      Stabilise sort of canonical types
+      Improve and stabilise sort of member functions
+      Improve enum synthetic type names
+
+Mark Wielaard (10):
+      Add --header-file option to add individual public header files.
+      Add --drop-private-types to abidw.
+      Add --drop-undefined-syms to abidw.
+      Add no-parameter-names to drop function parameter names.
+      Add --no-elf-needed option to drop DT_NEEDED list from corpus.
+      Rename read_elf_symbol_binding to read_elf_symbol_visibility.
+      Add --no-write-default-sizes option.
+      Don't iterate before the start of a RandomAccessOutputIterator.
+      dwarf-reader: get subrange_type bounds signedness from underlying type
+      Assume subrange bounds types are unsigned if no underlying type is given.
+
+Matthias Maennich (38):
+      dwarf-reader: gnu_hash_tab lookup: fix overflow in bloom hash calculation
+      configure: add support for thread sanitizer (--enable-tsan)
+      abg-workers: guard bring_workers_down to avoid dead lock
+      abidiff: fix documentation of --impacted-interfaces
+      configure: add support for memory sanitizer (--enable-msan)
+      test-read-dwarf: ensure in_elf_path exists and add missing test files
+      dwarf-reader: remove superfluous ABG_ASSERT
+      make: add distcheck-fast target
+      abg-dwarf-reader: simplify symbol map update
+      tests: parallelize diff-suppr test
+      abg-dwarf-reader split: create abg-elf-helpers.{h,cc} and test case
+      abg-elf-helpers: move some elf helpers from abg-dwarf-reader
+      abg-elf-helpers: move some versioning helpers from abg-dwarf-reader
+      abg-elf-helpers: move some kernel helpers from abg-dwarf-reader
+      abg-elf-helpers: consolidate the is_linux_kernel* helpers
+      abg-dwarf-reader: migrate more ELF helpers to elf-helpers
+      abg-elf-helpers: migrate more elf helpers (architecture specific helpers)
+      abg-elf-helpers: migrate maybe_adjust_et_rel_sym_addr_to_abs_addr
+      test-types-stability: parallelize test case alternatives
+      tests: reorder test execution to optimize 'make check' runtime
+      corpus/writer: sort emitted translation units by path name
+      configure: set -Wno-error-overloaded-virtual for clang builds
+      tests/.gitignore: ignore all files starting with runtest*
+      dwarf-reader: read_context: drop some unused accessor methods
+      cxx-compat: add test suite for cxx-compat
+      configure: add ABIGAIL_DEBUG options
+      configure: add more diagnostic options when ABIGAIL_DEVEL is set
+      tests: Add symtab test suite
+      tests: Add kernel symtab test suite
+      dwarf-reader: Remove unused code
+      dwarf-reader: read_context: drop unused symbol versioning code
+      abg-reporter: fully qualify std::string and std::ostream
+      abipkgdiff: remove unused includes of elfutils/libdw.h and elf.h
+      dwarf-reader: get_die_source: always initialize return value
+      cleanup: std::weak_ptr use: replace manual lock by std::weak_ptr::lock
+      dwarf-reader: fix lookup for repeated translation unit paths
+      dwarf-reader: Ignore zero length location expressions from DW_AT_location
+      abipkgdiff: minor cleanups
+
+1.7
+==
+Dodji Seketeli:
+      Internal pretty repr of union cannot be flat representation
+      Fix anonymous union constructed under the wrong context
+      Propagate private type diff category through refs/qualified type diffs
+      Add test for the fix for PR24410
+      Fix "Add test for the fix for PR24410"
+      Bug 24430 - Fold away const for array types
+      Bug 24431 - ELF reader can't interpret ksymtab with Kernel 4.19+
+      Bug 24431 - ELF reader fails to determine __ksymtab format
+      Enable building with AddressSanitizer activated
+      Fix a memory leak in real_path
+      Delay canonicalization for array and qualified types
+      abg-tools-utils.cc: Plug a leak in find_file_under_dir
+      Add --enable-{asan,ubsan} configure options
+      Canonicalize types non tied to any DWARF DIE
+      Don't try to de-duplicate all anonymous struct DIEs
+      Use canonical types hash maps for type IDs in abixml writer
+      Handle several member anonymous types of the same kind
+      Better handle several anonymous types of the same kind
+      Fix logic of get_binary_load_address
+      Handle Linux kernel binaries with no __ksymtab section
+      Bug 24560 - Assertion failure on an abixml with an anonymous type
+      Bug 24552 - abidiff fails comparing a corpus against a corpus group
+      Take anonymous scopes into account when comparing decls
+      [dwarf-reader] const-ify Dwarf_Die* use in many places
+      [dwarf-reader] Re-use function types inside a given TU
+      [dwarf-reader] Better use of linkage name for fn decl de-duplication
+      [dwarf-reader] Optimize speed of compare_as_decl_dies
+      [dwarf-reader] Fix indentation in compare_dies_string_attribute_value
+      Fully account for anonymous-ness of scopes when comparing decl names
+      Bug 24731 - Wrongly reporting union members order change
+      Make abidiff --harmless show harmless changes in unions
+      [dwarf-reader] Constify the first parameter of maybe_canonicalize_type
+      [dwarf-reader] Make sure to canonicalize anonymous types
+      Implement a poor-man's RTTI for performance
+      [xml-writter] Avoid using RTTI when dynamically hashing types
+      [xml-writter] Speedup function_type::get_cached_name
+      [xml-writer] Remove a useless kludge
+      Misc indent cleanup
+      Implement fast comparison of Linux Kernel types when applicable
+      [ir] Fix indentation and add comments
+      Add timing to the verbose logs of abidw
+      Bug 24787 - Filter out enum changes into compatible integer types
+      Serialize canonical types to avoid testing if types have been emitted
+      Detect the presence of R_AARCH64_{ABS64, PREL32} macros
+      Bug 25007 - Don't use section-relative symbol values on ET_REL binaries
+      Remove the elf_symbol::get_value property
+      Guard testing v4.19+ AARCH64 kernel module loading for EL6 support
+      Fix reading of relocation sections when endianness mismatches
+      [has_type_change] Better detect type size changes
+      Better propagation of suppressed-ness to function types
+      Support the "name_not_regexp" property in the [suppress_type] section
+      PR25042 - Support string form DW_FORM_strx{1,4} from DWARF 5
+      Fix a typo in a comment of abg-dwar-reader.cc
+      Fix thinkos in DW_FORM_strx detection in configure.ac
+      PR25058 - Support decl DIEs referring to symbols using DW_AT_ranges
+      PR25058 - Better support fn DIEs referring to symbols using DW_AT_ranges
+      [abg-comparison.cc] Fix comments typo
+      Support symbol_name_not_regexp in [suppress_{function, variable}]
+      Bug 25095 - Apply symbol white lists to ELF symbols
+      Bug 25128 - Leaf diff reporter shouldn't compare decl-only classes
+      Bug 25128 - Handle decl-only classes that differ only in size
+      Small style fix in abg-default-reporter.cc
+      Bug 24690 - Support comparing non-reachable types of a binary
+      Misc typo fixes
+      Bug 25409 - Fix reading layout-offset-in-bits attribute of data-member
+      suppression: Better handle soname/filename properties evaluation
+      abixml-reader: Support SONAME related properties on file suppression
+      tools-utils: Drop redefinition of fopen when BAD_FTS is defined
+      gen-changelog.py: Update the script for python3
+
+Giuliano Procida:
+      Remove redundant mention of libtool in COMPILING documentation.
+      Fix typo in COMPILING.
+      Don't ignore options when diffing translation units (.bi files).
+      Sort kernel module object files before processing them.
+      Fix stray comma in leaf-changes-only mode.
+
+Jessica Yu:
+      Support pre and post v4.19 ksymtabs for Linux kernel modules
+
+Mark Wielaard:
+      Fix an undefined behaviour in has_var_type_cv_qual_change
+      Don't try to read a build_id as string in find_alt_debug_info_link.
+
+Matthias Maennich:
+      dwarf-reader: fix undefined behaviour in get_binary_load_address
+      Add .clang-format approximation
+      abg-writer: Simplify 'annotate' propagation
+      Add deprecation facilities
+      abg-writer: Refactor write_translation_unit API
+      abg-writer: Refactor write_corpus API
+      abg-writer: Refactor write_corpus_group API
+      write_context: allow mutating the ostream used
+      abidw: Consolidate setting options
+      Make write_architecture and write_corpus_path flags in the write_context
+      abidw: add option to omit the compilation directory
+      abidw: add option to only emit file names (--short-locs)
+      abg-writer: drop deprecated API
+      .gitignore: Add libabigail-?.* *.orig files
+      .clang-format: Add more options for match existing coding style
+      abg-reporter.h: add missing includes / using declarations
+      Drop requirement to compile with GNU extensions
+      Update tests/.gitignore to ignore runtesttoolsutils
+      Add compatibility layer for C++11 mode
+      abg-tools-utils: add missing header include guards
+      Ensure a consistent C++ standard use
+      abg-dwarf-reader: detect kernel modules without exports as such
+      dwarf-reader: read_corpus_from_elf: unconditionally load elf properties
+      kmidiff: fix help message
+      dwarf-reader: refactor try_reading_first_ksymtab_entry_using{pre,}_v4_19_format
+      dwarf-reader: add support for symbol namespaces in ksymtab entries
+      abg-dwarf-reader: resolve relocation sections by index
+      dwarf-reader: relax restriction about relocation sections in try_reading_first_ksymtab_entry
+      Add (undocumented) support for version suffixes
+      abidiff/kmidiff: do not default-suppress added symbols
+      abg-reader: handle empty corpus nodes in xml representation
+      corpus: is_empty: consider actual translation unit contents
+      writer: completely skip over empty corpora
+      KMI Whitelists: Add functionality to make whitelists additive
+      KMI Whitelists: Drop old whitelist extraction methods
+      clang-format: Better approximation for binary operators and assignments
+      dwarf-reader: handle symtab.section_header.sh_entsize == 0
+      dwarf-reader: handle binaries with missing symtab
+      Fix / add include guards
+      abg-fwd: drop duplicate forward declaration for corpus_sptr
+      Testing: add Catch Unit test framework
+      Fix some parameter name inconsistencies
+      abg-comparison: prefer .empty() over implicit bool conversion of .size()
+      abg-dwarf-reader: zero initialize local Dwarf_Addr values
+      abg-workers: Rework the worker queue to improve concurrent behaviour
+      abg-fwd.h: fix mismatched tags for ir_node_visitor
+      abilint: fix return types bool -> int
+      abg-reader: clarify boolean use of assignment
+      diff-utils: point: fix postfix decrement/increment operator
+      add missing virtual destructors
+      viz-dot: remove unused members from dot
+      suppressions: drop unused parameter from type_is_suppressed
+      ir: drop unused data members from {environment,qualified_name}_setter
+      distinct_diff: avoid expression with side effects within typeid
+      dwarf-reader: fix recursion in expr_result::operator&
+      Update .gitignore files to ignore typical dev side products
+      dwarf-reader: Fix comments for try_reading_first_ksymtab_entry_using_{pre_,}v4_19_format
+      dwarf-reader: templatize read_int_from_array_of_bytes
+      Bug 24431 Read 32bit values when testing for the v4.19 symbol table format
+      Bug 24431 Treat __ksymtab as int32_t for v4.19+ kernels
+
+
+1.6
+===
+Dodji Seketeli:
+      Bump version number to 1.6
+      Update website for 1.5
+      Support having several debuginfo search dirs for a binary
+      Add a --fail-no-debug-info to abidiff
+      Some light style change in abidiff.cc
+      Add basic support for Fortran binaries
+      Update copyright for 2019
+      Bug 23044 - Assertions with side effects
+      Separate public types of first binary from those of the second
+      Add (very) basic support for Rust
+      Support some new DWARF language encoding for C and C++
+      Fix a thinko
+      Overhaul detection the DW_LANG_* enumerators from dwarf.h
+      Fix a typo in the recent Rust support and update regression tests
+      Conditionalize the Rust support regression test
+      Properly add the new rust tests to EXTRA_DIST
+      Bug 20175 - Classify CV qual changes in variable type as harmless
+      Better comments in the comparison engine
+      Bug 24139 - Support suppressing some enumerator changes
+      Small apidoc fix
+      Bug 24157 - Wrong support of Ada ranges
+      Bug 24188 - Assertion failed while analysing a Fortran binary
+      Avoid over-suppressing fns & vars when analysing the Kernel
+      Do not build DIE -> parent map just because we see an asm TU
+      PR24257 - Handle DW_TAG_typedef with no underlying type
+      Better detection of void* to something* change
+      Add ir::{lookup_data_member, get_function_parameter}
+      Better pointer name equality optimization in DIE de-duplication code
+      Misc cleanups
+      Bug 24378 - DW_TAG_subroutine_type as a DIE scope causes infinite loop
+      Add missing assignment operators
+
+Mark Wielaard:
+      Conditionalize the use of DW_LANG_C_plus_plus_03 and DW_LANG_Rust
+
+Xiao Jia via libabigail:
+      Some documentation fixes
+
+1.5
+===
+Dodji Seketeli:
+      Bug 23533 - Accept '=' in ini property values
+      PR23641 - Type definition DIE matched by a supprspec but not its decl
+      PR23641 - confusion when a type definition DIE is matched by a supprspec and its decl DIEs aren't
+      Bug 23708 - categorize void* to pointer change as harmless
+      Bug rhbz1638554 - assertion failed in is_mostly_distinct_diff
+      Bump version number to 1.5
+      Allow use of python even when fedabipkgdiff is disabled
+      Make test-ir-walker work on ELF binaries directly
+      Fix apidoc of dwarf_reader::get_soname_of_elf_file
+      Add option to avoid walking abigail::ir nodes twice
+      Fix propagation of private type suppression category
+      Categorize CV qualifier changes on fn return types as harmless
+      Misc comment fix
+      Add default suppression specification for the krb5 project
+      Add default suppression specification for the libvirt project
+      Better support array with unknown upper bound
+      Define UINT64_MAX when it's not defined
+
+1.4
+===
+Dodji Seketeli:
+      Fix typo in tests/runtestdefaultsupprs.py
+      Remove references, arrays and fn parms from leaf diff nodes
+      Improve detection of local *type* changes
+      Better detect when diff nodes only carry local type changes
+      Better detect when pointer and qualified types carry local changes
+      Use the flat representation for anonymous struct/unions
+      Add test44-anon-struct-union-v{0,1}.o to source distribution
+      Explicitely detect anonymous data member changes
+      Identify a function using its symbol name and version
+      Fix indentation of help string in abipkgdiff
+      Fix redundancy detection through fn ptr and typedef paths
+      Filter out changes like type to const type
+      Initial basic support of union type in suppression specifications
+      Ensure die_function_type_is_method_type returns a class type die
+      Fix race between runtestdefaultsupprs{py3.sh,.py}
+      Allow square brackets in ini property values
+      Properly add test materials for test-diff-suppr/test38-char-class-in-ini*
+
+1.3
+===
+Chenxiong Qi:
+      Bug 22722 - Make fedabipkgdiff and its tests support both python 3 and 2
+
+Dodji Seketeli:
+      Report change locations in leaf reports
+      Skip changes to function *types* in the leaf reporter
+      Make abipkgdiff avoid comparing private DSOs from RPMs
+      Detect the presence of 'rpm' as it's now needed by abipkgdiff
+      Do not enable fedabipkgdiff tests if fedabipkgdiff itself is disabled
+      Don't crash when invoking kmidiff with no debug info root dir
+      Don't possibly forget type definition when reading a CorpusGroup
+      Do not show decl-only-to-def changes in the leaf reporter
+      Overhaul of the report diff stats summary
+      Do not mark "distinct" diff nodes as being redundant
+      Fix meaning of "harmless name change" to avoid overfiltering
+      Better handle category propagation of pointer changes
+      Improve function changes reporting in leaf and default mode
+      Don't filter out typedef changes with redundant underlying type changes
+      Only show leaf type changes in the leaf type changes section
+      Fix leaf report of class data member changes
+      Always show redundant changes in leaf mode
+      Avoid reporting an enum change if it has already been reported
+      When we say a change was reported earlier give its source location
+      [abipkgdiff]: in leaf mode we always show redundant changes
+      Update tests for the "better leaf mode redundancy management" patchset
+      Use absolute builddir paths in automake test files
+      Represent sizes and offsets in bytes and hexadecimal values
+      Initial support of anonymous data members
+      Show data member offsets in bytes too
+      Sort the output of the leaf reporter
+      Use the dynamically selected python for Koji configure tests
+      Use the correct python interpreter in runtestdefaultsupprs.py
+      Handle cases where no python2 interpreter is found
+      Don't bail because "rpm" issued an error
+
+Jonathan Wakely:
+      Remove assertion with side-effects
+      Remove unused local set<string> variables
+      Rename misleading remove_trailing_white_spaces functions
+      Use std::string::substr instead of appending single chars
+
+1.2
+===
+Dodji Seketeli:
+      Add newline at end of version string display
+      Initial support for Ada ranges
+      Bug 22913 - Correctly de-dup pointers to anonymous structs inside a TU
+      Fix the output indentation of abidiff --help
+      Fix indentation in the DWARF reader
+      Update abipkgdiff documentation wrt suppression specifications
+      Fix typo in abipkgdiff documentation
+
+1.1
+===
+Dodji Seketeli:
+      Bug 22076 - Disable fedabipkgdiff for old koji clients
+      Bug 22436 - make abipkgdiff accept several debuginfo packages
+      Bug 22488 - Make abipkgdiff handle different binaries with same basename
+      Bug 22437 - Make fedabipkgdiff use all debug info RPMs of a sub-RPM
+      Bug 22684 - Add --d{1,2} options to kmidiff
+      Bug 22692 - Consider Java as a language that supports the ODR
+      Fully report diagnostic about alternate debug info file not found
+      Update & cleanup the tools manuals summary
+      Improve comments wording in fedabipkgdiff
+      Update copyright notice for all source files
+      Fix version revision number printing in tools --help option
+      abipkgdiff --verbose shouldn't trigger --fail-no-dbg
+      Fix logic in common_prefix
+      Fix symlinks paths handling in abipkgdiff
+      Suppress duplicates when listing package content
+      Make kmidiff show the wrong option when it complains about it
+      Only consider local changes when filtering subtype changes
+      Skip class types with changed names in leaf reports
+      Correctly link with pthread
+
+1.0
+=====
+Ben Woodard:
+      Fix some clang compile problems
+      Fix more clang build warnings
+
+Chenxiong Qi:
+      More document for local RPMs comparison
+      Follow moved packages when download
+      Read Koji config via Koji API
+      Warn properly when cannot find peer RPM
+      Fix wrong variable name
+      Bug 20380 - Compare two local RPMs
+      Bug 20087 - Clean cache before or after ABI comparison
+
+Dodji Seketeli:
+      Forgot to consider libtest33-v{0,1}.so in test-diff-suppr.cc
+      A suppressed diff node implies suppressing all equivalent nodes too
+      Make bash completion files non-executable
+      Allow pretty printing function decls for internal purposes
+      Setup per-corpus type maps indexed by type names
+      Implement de-duplication for types and decls at DWARF loading time
+      Support naming typedef and use them to speed up type canonicalization
+      Fix pretty representation of array types
+      Introduce on-the-fly type canonicalization
+      Very light speed improvements
+      Add tests/data/test-diff-suppr/test33-report-0.txt to tarball
+      Rename tests/update-test-read-dwarf-output.py
+      Fix aborting when reading .foo symbols from a ppc64 binary
+      Fix template_decl::hash::operator()
+      Don't early-canonicalize function types when reading abixml
+      Naming typedefs of classes are not read properly from abixml
+      make is_anonymous_type work for unions and classes
+      Misc style cleanup
+      Make abg-fwd.h use *_sptr typedefs
+      Handle per translation unit and per corpus types maps
+      [dwarf-reader] Handle per translation-unit type de-duplication
+      Update tests/data/test-read-write/test27.xml
+      Update tests/data/test-diff-pkg/libICE-1.0.6-1.el6.x86_64.rpm--libICE-1.0.9-2.el7.x86_64.rpm-report-0.txt
+      Fix a typo in method name computation
+      Cleanup ODR-based type canonicalization optimization gating logic
+      Fix qualified name caching for some types
+      [dwarf-reader] Don't early canonicalize function types
+      [abixml writer] Fix comparison of pointer to types
+      [abixml writer] Make sure all function types are emitted
+      Update tests/data/test-diff-dwarf-abixml/test0-pr19026-libvtkIOSQL-6.1.so.1.abi
+      Update tests/data/test-read-dwarf/*.abi files
+      Avoid unnecessary updates to type lookup maps
+      Speedup set_member_is_static
+      Misc comments and apidoc fixes
+      Misc style fixes
+      [apidoc] Allow brief description at the top of class description pages
+      Update copyright year on a bunch of files
+      Adjust some reference outputs of the test-read-dwarf test harness
+      Better de-duplicate classes, unions, enums in non-odr contexts
+      Add debug routines to dump locations to a stream
+      Support Linux Kernel binaries
+      Support Linux Kernel ABI whitelist files
+      Remove unused functions from abg-ir.cc
+      Update copyright notice for abg-fwd.h, abg-ir.h and test-abidiff.cc
+      Fix performance regression while analyzing libjvm.so
+      Add missing deep comparison operators for {function, method}_decl_sptr
+      Speed up pretty representing (function) types
+      Handle several virtual member functions having the same vtable offset
+      [dwarf reader] Fix pretty printing static methods from DWARF
+      [dwarf reader] Do not over de-duplicate function *definitions*
+      [dwarf reader] Allow updating and de-duplicating member functions
+      [dwarf reader] properly separate function decls and types in lookup
+      [dwarf reader] Don't abort when trying to canonicalize a non-type
+      [comparison engine] Don't crash when the context is null
+      Support virtual member functions with vtable offset not yet set
+      Fix some include logic in abg-suppression.cc
+      Fix suppression category propagation in diff node graph
+      Add --harmless option to abipkgdiff
+      Fix test-diff-pkg after commit 2dcc606
+      Make abidw --headers-dir work with the --out-file option
+      Fix help string for --header-dirs
+      Adjust reference output of test-annotate
+      Fix indentation in src/abg-writer.cc
+      Misc style fixes
+      Fix silent failure of tests/runtestfedabipkgdiff.py
+      Add missing new line to an error message of runtestfedabipkgdiff.py
+      Add missing tests input files to distribution files
+      fedabipkgdiff refuses to compare packages with the same release number
+      Fix typo in help string of abipkgdiff
+      Several fixes and enhancements to abigail::workers
+      Add a "make check-valgrind-helgrind-recursive" target
+      Do not ignore valgrind checks returning an error
+      Make abipkgdiff.cc use the abigail::workers interface
+      Display the command that failed the runtestfedabipkgdiff.py test
+      Move test-read-dwarf.cc to abigail::workers
+      Make the helgrind suppressions less specific
+      Silence Helgrind reports about exception stack unwinding
+      More Helgrind suppressions
+      Make Helgrind suppressions less specific to libgcc_s version
+      Fix virtual members sorting to unbreak the build on EL6
+      Consider file path when sorting virtual member functions
+      Fix data race on worker::queue::priv::bring_workers_down
+      Shut down a helgrind false positive in the "system" libc call
+      Launch fedabipkgdiff tests first
+      Fix some random deadlock while running fedabipkgidiff in tests
+      Fix a race condition in queue::priv::do_bring_workers_down
+      Fix buffer overrun in 'equals' function for arrays
+      Fix array subranges (wrongly) having the same lower bound
+      Ensure build_qualified_type can return non-qualified types
+      Remove useless overloads of is_type
+      Invalidate function and variable ID cache when invoking ::set_symbol
+      Rename fn_parm_diff::get_type_diff into fn_parm_diff::type_diff
+      Don't consider changes to basic types as being redundant
+      Misc cleanups in abg-writer.cc
+      Update the description of what abipkgdiff does
+      Speedup comparison of decl-only classes
+      Speed up access to the definition of a class declaration-only type
+      Avoid building DIE -> parent DIE map when analyzing a C binary
+      Do not forget to erase temporary directories in abipkgdiff
+      Avoid comparing kernel.img file from the grub2 package
+      Fix some typos in abidiff.cc
+      Create a Corpus Group API extension
+      Initial support to lookup types per location
+      Support loading and comparing two kernel trees
+      Avoid loading a translation unit twice from abixml
+      Make abipkgdiff compare two kernel packages
+      Make abidw support the --kmi-whitelist option
+      Introduce the --kmi-whitelist option to abidiff
+      Update the reference output of regression tests after kabidiff work
+      Rename write_corpus_to_native_xml into write_corpus
+      Avoid emitting duplicated decls in abixml
+      Avoid emitting some empty translation units to abixml
+      Fix indentation glitch before the </abi-corpus> tag in abixml
+      Adjust test reference outputs after changes in abg-writer.cc
+      Initial support of the serialization of the KMI of a Linux Kernel Tree
+      Initial support of de-serializing the KMI of a Linux Kernel Tree
+      Speedup access to unreferenced symbols when loading corpus_group
+      Avoid de-duplicating different C types that have identical name
+      Allow selective resolution of class declaration
+      Speedup DIE representation computing esp function signature in C
+      Do not report about voffset when it's not set in debug info
+      Fix innacurate test condition when reading an enum type from abixml
+      Cache function type name computation results
+      Add --vmlinux{1,2} option to abidw and kmidiff
+      Allow re-using the ELF/DWARF read_context when loading a corpus group
+      Add documentation for the kmidiff tool
+      Allow selective resolution of class declaration
+      Do not report about voffset when it's not set in debug info
+      Filter top cv qualifier changes on function parameter types
+      Support ELF symbol visibility property
+      Symbols with the same zero value are not aliases
+      Fix doc glitch in abidiff.rst
+      Misc style fixes
+      Don't add empty translation unit to corpus
+      Better handle decl-only classes being different from their definition
+      Fix a typo when reporting size change wrt a decl-only class
+      Fix typo in comments
+      speed up class type lookup in a corpus
+      Replace --lkaw with -w and --lkaw-pkg with --wp
+      Add missing space in abipkgdiff error message
+      Use shorter lines in abipkgdiff.cc
+      Fix support of the --wp option of abipkgdiff
+      Support up to two --wp options for abipkgdiff
+      Avoid crashing when the elf file could not be read
+      Fix some make distcheck failures
+      Misc style fixes
+      Finer detection of local changes of var_decl type
+      Avoid adding the same data member twice in the DWARF reader
+      Don't crash on classes that differ in their virtual member fn count
+      22160 - Annotate state flag unitialized in abidw
+      Add missing newlines to kmidiff's usage strings
+      Renamed offset_offset_map type name into offset_offset_map_type
+      Remove redundant (useless) typedef declaration
+      Use an unordered map for canonical DIE offsets
+      [abixml writer] Store pointers to emitted types rather than type-ids
+      [abixml writer] Use an unordered set when appropriate
+      Initialize naked canonical type
+      Misc style fixes in abg-writer.cc
+      Add missing comment to type declaration
+      Update copyright year to tools/abidiff.cc
+      Allow several kinds of reports to be emitted
+      Initial implementation of a --leaf-changes-only option to abidiff
+      Add a --leaf-changes-only option to abipkgdiff
+      Add --full-impact option to kmidiff
+      Add --impacted-changes option to kmidiff
+      Cleanup a switch-case logic to avoid a GCC 7.2.1 warning
+      Fix a indentation warning from GCC 7.2.1
+      Handle exceptions when global_config is not yet set in fedabipkgdiff
+      Add a --suppressions option to fedabipkgdiff
+      Remove useless vertical space from src/abg-writer.cc
+      Allow setting options to instances of xml_writer::write_context
+      Wire the --no-show-locs option to abidw
+      Support systems where fts.h can't be used with _FILE_OFFSET_BITS set
+      Bug 20670 - abipkgdiff aborts if $XDG_CACHE_HOME does not exist
+      Bug 20887 - Show relative change of offsets
+      Bug 20927 - Segfault when $HOME is not set
+      Bug 21058 - abipkgdiff wrongly drops non-public types
+      Bug 20476 - Compare virtual member functions when comparing classes
+      Bug 21228 - Handle cloning union member functions
+      Bug 21296 - Reporting diff of const ref against non-const ref aborts
+      Bug 21567 - Fedabipkgdiff matches build distro names too tightly
+      Bug 21627 - Libabigail doesn't consider translation unit compile dir
+      Bug 21629 - equivalent DIEs must be of the same DIE source
+      Bug 21630 - A this pointer DIE can be const
+      Bug 21631 - Forgot a "break" statement in stv_to_elf_symbol_visibility
+      Bug 21153 - abipkgdiff reports undetermined interface subtype changes
+      Bug 21644 - abipkgdiff does not emit diagnostics about comparison errors
+      Bug 21730 - Make abipkgdiff compare Linux Kernel packages as expected
+      Bug 22015 - Failing to return global scope of a DIE in certain cases
+      Bug 22122 - Fail to represent 'const array'
+      Bug 22190 - crash in read_context::get_or_compute_canonical_die
+      Bug 22438 - Emit a clear message when debug info is not found
+
+Mark Wielaard:
+      Declare eval_last_constant_dwarf_sub_expr with [u]int64_t not [s]size_t.
+      readdir_r() is deprecated, use readdir().
+      Fix -Wmisleading-indentation warning in abg-leaf-reporter.cc.
+      Bug 22075 - data_member_diff_comp forgets data members names
+
+Ondrej Oprala:
+      Fix a few remarks made by cppcheck
+      abipkgdiff doesn't mention --no-default-suppression in help
+      Check --enable-rpm dependencies more rigorously
+      Properly report missing files for abipkgdiff
+      Fix comparison used instead of an assignment
+      Clean up scripts/*
+      Fix cppcheck error: "Same iterator is used with different containers"
+      cppcheck: mitigate performance warnings
+      Bug 19272 - abipkgdiff doesn't report arch change
+      Bug 18754 - Add the "--no-added-syms" option to abidiff
+      Bug 20970 - Add a --annotate option to abidw
+
+Sinny Kumari:
+      Add --self-compare option in fedabipkgdiff
+      Check if return_codes list is empty in fedabipkgdiff
+
+Slava Barinov:
+      Fix types in header to meet sources
+
+
+1.0.rc6
+=======
+Chenxiong Qi:
+      Update bash completion for fedabipkgdiff
+      Add fedabipkgdiff bash completion to dist
+      Add --abipkgdiff option in manual and bash completion
+      Make fedabipkgdiff consistent with Libabigail's other tests
+
+Dodji Seketeli:
+      Bug 20332 - too many ...'s counted as parameters
+      Bug 20194 - Fail to recognize void type represented by DW_TAG_base_type
+      Bug 20199 - Consider integral type synonyms as being equal
+      Bug 20420 - Wrong ODR-based type comparison optimization on qualified type
+      Bug 20534 - abipkgdiff wrongly displays the name of added binary files
+      Bug 20740 - Broken check for dwarf_getalt in configure.ac
+      Add a new overload for is_type_decl
+      Better recognize qualified void type
+      Fix spurious type size change report for distinct_diff
+      Prepare support for symbol visibility control
+      Add ABG_ASSERT_NOT_REACHED macro
+      Cleanup is_class and is_compatible_with_class_type
+      Generalize DIE source concept in DWARF reader
+      Support DW_TAG_type_unit
+      Control symbols exported from libabigail.so
+      Don't walk diff trees indefinitely when applying suppressions
+      Fix misleading indentation issues
+      Do not emit empty namespaces in abixml
+      Add new helper functions
+      Pimplify the abigail::ir::scope_decl type
+      Drop suppressed ABI artifacts from the IR
+      Add default suppression specification for webkitgtk
+      Add default suppression specifications for C++ binaries
+      Better handle fedabipkgdiff dependencies detection
+      Update reference output of runtestreaddwarf
+      Define a new interned_string_set_type typedef
+      Prevent infinite loops while comparing two function_type
+      Apply ODR-based type comparison optimization to function types
+      Cleanup class_decl inifite comparison detection
+      Cleanup functions to detect infinite comparison of class_decl
+      Cleanup namespace importing in abg-interned-str.h
+      Canonicalize function types when reading from DWARF
+      Fix abigail::ir::get_type_scope()
+      Cleanup some entry points in abg-fwd.h
+      Cleanup void and variadic parameter type interfaces
+      Consider a method_decl as always being a member decl
+      Factorize out parsing of integral types
+      Factorize out string representation of array_type_def::subrange_type
+      Avoid stripping typedefs too much
+      Apply harmless and harmful filters in one pass
+      Rename config::property_vector into config::properties_type
+      Support empty properties in INI files
+      Support union types
+      Better diagnostics when wget is missing
+      Lexicographically sort union data members in change reports
+      Support reading data member offset from DW_AT_bit_offset
+      Fix indentation in abg-writer.cc
+      Fix offset type mismatch
+      Fix a compiler warning issued by GCC 6.2.1
+      Avoid using size_t to get DWARF data
+
+Matthias Klose:
+      Fix typo in abipkgdiff
+
+1.0.rc5
+=======
+Chenxiong Qi:
+      Bug 19428 - New fedabipkgdiff utility
+      Bug 20085 - Add --dso-only option to fedabipkgdiff
+      Bug 20135 - Make fedabipkgdiff compare ABIs using devel packages
+      Add integration tests for fedabipkgdiff
+      Fix package NVR comparison in fedabipkgdiff
+      Use consistent string format in fedabipkgdiff
+      Fix pep8 error in fedabipkgdiff
+
+Dodji Seketeli:
+      Bug 19964 - Cannot load function aliases on ppc64
+      Bug 20015 - support file_name_not_regexp and soname_not_regexp in suppr specs
+      Bug 20180 - Support system-wide suppression specifications
+      Bug 19967 - System-level suppressions for glibc
+      Fix python interpreter path for el6      
+      Add doc, info, man and html-doc targets to top-level Makefile
+      Update documentation to require doxygen and python-sphinx for building
+      Make API documentation of thread pools visible
+      Show SONAME of removed/added libraries in abipkgdiff
+      Fix indentation in concepts manual
+      Fix typo in concept manual
+      Doc not show classes' inherited members in apidoc
+      Fix mention of tool's name in abidiff error message
+      Add several shortcuts to options for abicompat
+      Fix indentation for abidiff manual
+      Split suppression engine off of abg-comparison.{cc,h}
+      Implement a [suppress_file] suppression directive
+      Remove config.h.in from the repository
+      Do not run fedabipkgdiff tests if --enable-fedabipkgdiff is turned off
+      Update the COMMIT-LOG-GUIDELINES file
+      Update the CONTRIBUTING file
+      Support running "make check-valgrind"
+      Fix a read passed-the-end in abg-dwarf-reader.cc
+      Plug leak of diff_context_sptr after calling compute_diff
+      Plug leak of regex_t in suppression engine
+      Remove circular ref from class_decl::priv::definition_of_declaration
+      Plug leak of shared private data of class_diff type
+      Plug leak of debug info handles
+      Fix invocation of delete operator in test-read-dwarf.cc
+      Speedup diff node child insertion
+      Plug leak of diffs of member variables of class type
+      Avoid unnecessary computation of type name in suppression evaluation
+      Minimize number of string::length calculation
+      Light optimizations by passing reference to smart pointers around
+      Optimize out some shared_ptr use
+      Add missing API doc strings
+      Enhance API doc for diff_context::add_diff
+      Fix bash completion configure status
+      Fix white space in abg-comparison.cc
+      Fix whitespaces in autotools files
+      Document how to handle regression tests in CONTRIBUTING
+      Fix the number of removed functions in change report
+      Make abi{pkg}diff filter out changes about private types
+      Add a 'check-valgrind' target to the top-most Makefile.am
+      Add test data for tests/runtestfedabipkgdiff.py
+      Fix some wording in the Libabigail overview manual page
+      Update reference to tools in libabigail-concepts manual
+      Fix suppr spec wording in abipkgdiff manual
+      Better diagnostics when abipkgdiff has an extra argument
+      Add --abipkgdiff option to fedabipkgdiff
+      Don't require all version symbol sections to present
+      Escape all characters when reading a string in ini files
+      Improve python modules detection
+      Cleanup function_decl::parameter::get_pretty_representation
+      Misc white space and comment cleanups
+      Use ODR-based optimization on C/C++ translation unit only
+      Misc cleanup in abg-reader.cc
+
+Sinny Kumari:
+      Bug 19961 - Distinguish between PI executable and shared library
+      Change parent directory for keeping extracted packages in abipkgdiff
+
+1.0.rc4
+=======
+Dodji Seketeli:
+      Bug 19844 - Cannot try to canonicalize a type that is being constructed
+      Bug 19846 - variable decl associated with the wrong debug info section
+      Bug 19867 - abipkgdiff skips symbolic links
+      Bug 19885 - Cannot associate a function DIE to a symbol on powerpc64
+      Ease use of soname_regexp/file_name_regexp in suppr specs
+      More docs about ABIDIFF_ABI_INCOMPATIBLE_CHANGE
+      Update copyright dates for the manuals
+      Fix typos on the web page
+      Fix typos in the manual of abidiff
+      Fix typos in the suppression specifications manual
+      Fix a typo in include/abg-tools-utils.h
+      Fix typos in comments in src/abg-dwarf-reader.cc
+      Fix comments in tests/test-diff-pkg.cc
+      Fix logs in abipkgdiff and add some more
+
+Roland McGrath:
+      Fix typo in configure --enable-deb help text
+
+1.0.rc3
+=======
+Dodji Seketeli:
+      Upate build instructions on the website
+      Bug 19138 - Failure to relate variables address from DWARF and ELF
+      Include missing <algorithm> to abg-dwarf-reader.cc
+      Make enum values take 64 bits on all platforms
+      Use worker threads pattern to speed up some tests
+      Sort the tests run in tests/ by running the slowest ones first
+      Bug 19434 - invalid character in attribute value
+      Bug 19141 - Libabigail doesn't support common ELF symbols
+      Pass parm of elf_symbol::add_alias by reference
+      Bug 19204 - libabigail aborts on DWARF referencing non-existing DIE
+      Comparing aliases of the same symbol must be done by pointer
+      Do not crash when looking up a type from global scope
+      Fix abicompat's handling of library types not used by the application
+      Fix synthesizing of pointer type
+      Fix synthesizing of reference type
+      Bug 19596 - Incorrect exit status for incompatible ABI change
+      Use proper WIFEXITED and WEXITSTATUS macros to get exit code
+      Bug 19604 - abidiff --suppressions doesn't complain about invalid file name
+      Make abipkgdiff return correct exit code on usage error
+      Make abipkgdiff check for the presence of suppression spec files
+      Talk about mandatory properties in suppress_* directives
+      Add a comment about libabigail needing elfutils 0.159 at least.
+      Bug 19606 - Need better error message for invalid options
+      Prefix abidiff error message with the 'abidiff' program name
+      Emit more informational messages on unrecognized options
+      Bug 19619 - failing to suppress added aliased function reports for C++
+      Add function lookup by linkage name to libabigail::corpus
+      Bug 19638 - DWARF reader fails to link clone function to its declaration
+      Add --verbose option to abidiff
+      Bug 19658 - Type canonicalization slow for the 2nd binary loaded
+      Add missing inequality operators for ABI artifacts
+      Fix crash when handling templates with empty patterns
+      Implement string interning for Libabigail
+      Some small speed optimizations
+      Bug 19706 - Core dump from abidiff with suppression
+      Update mentions to the build dependencies in the doc
+      Make libabigail link with pthread
+      Add --verbose to abidw
+      Fixup virtual member functions with linkage and no underlying symbol
+      Bug 19596 - Suppressed removed symbol changes still considered incompatible
+      Bug 19778 - diff_has_ancestor_filtered_out() loops forever
+      Bug 19780 - abipkgdiff doesn't support parallel execution
+      Fix reference to test file in Makefile.am
+      Walk function_type_diff tree in a deterministic way
+
+Mark Wielaard:
+      Fix GCC6 -Wmisleading-indentation warnings.
+      Make make more silent.
+      Remove defined but not used functions pointed out by GCC6.
+
+Ondrej Oprala:
+      Escape the value of the filepath attribute.
+
+1.0.rc2
+======
+Dodji Seketeli:
+      Fix regression on the support for alternate debug info files
+      Lexicographically sort added/removed base classes in change report
+
+1.0.rc1
+=======
+Dodji Seketeli:
+      Bug 19336 - Better handle redundantly qualified reference types
+      Bug 19126 - abidw segv on a dwz compressed version of r300_dri.so
+      Bug 19355 - Libabigail slow on r300_dri.so
+      Do not use designated initializers in abipkgdiff.cc
+      Read enum values in the size_t and write them in ssize_t
+      Do not abort when there is no binary to compare in a package
+      Add missing new line to abidiff help message
+      Constify is_qualified_type()
+      Find more spots where to discriminate internal and non-internal names
+      Do not forget to peel qualified type off when peeling types
+      Fix comparison in qualified_type_diff::has_changes
+      Avoid try/catch code paths when that is possible
+      Fix internal name for pointers, typedefs and arrays
+      Filter out harmless diagnostics glitches due to some ODR violation
+      [PERF] Pass a bunch of perf-sensitive smart pointers by reference
+      [PERF] Turn some pimpl pointers into naked pointers
+      [PERF] Access naked pointers for canonical types and function types
+      [PERF] Speedup comparing declaration-only class_decls
+      Speed up class_decl::find_base_class
+      Avoid adding the same base class twice
+      Support two different variables having the same underlying symbol
+      Add a NEWS file
+      Fix abidw -v
+
+Ondrej Oprala:
+      Add bash-completion scripts for the libabigail tools
+      Abidiff: Remove doubled line in help.
+      Fix a function doc
+      Support printing the file, line and column information in change reports

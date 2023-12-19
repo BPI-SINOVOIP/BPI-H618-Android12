@@ -1,0 +1,24 @@
+Functions changes summary: 0 Removed, 2 Changed, 0 Added functions
+Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function void bar(b_type*)' has some indirect sub-type changes:
+    parameter 1 of type 'b_type*' has sub-type changes:
+      in pointed to type 'struct b_type':
+        type size changed from 32 to 64 (in bits)
+        1 data member insertion:
+          'char m_char', at offset 0 (in bits)
+        1 data member change:
+          'int m_int' offset changed from 0 to 32 (in bits) (by +32 bits)
+
+  [C] 'function void foo(a_type*)' has some indirect sub-type changes:
+    parameter 1 of type 'a_type*' has sub-type changes:
+      in pointed to type 'typedef a_type':
+        underlying type 'struct a_type' changed:
+          type size changed from 32 to 64 (in bits)
+          1 data member insertion:
+            'char m_char', at offset 0 (in bits)
+          1 data member change:
+            'int m_int' offset changed from 0 to 32 (in bits) (by +32 bits)
+

@@ -1,0 +1,24 @@
+AUTHOR = "puthik"
+NAME = "power_MeetClient.manual"
+PURPOSE = "Measures Meet performance."
+CRITERIA = "This test is a benchmark."
+TIME = "LONG"
+TEST_CATEGORY = "Benchmark"
+TEST_CLASS = "power"
+TEST_TYPE = "client"
+
+DOC = """
+This test uses given meet_code, username, password to test Meet perfomance.
+
+Example call with test_that
+
+test_that ${IP} power_MeetClient.manual --args "meet_code=${CODE} \
+username=${USERNAME} password=${PASSWORD}"
+"""
+
+args_dict = utils.args_to_dict(args)
+meet_code = args_dict['meet_code']
+username = args_dict['username']
+password = args_dict['password']
+job.run_test('power_MeetClient', meet_code=meet_code, pdash_note=meet_code,
+              username=username, password=password, tag=NAME.split('.')[1])

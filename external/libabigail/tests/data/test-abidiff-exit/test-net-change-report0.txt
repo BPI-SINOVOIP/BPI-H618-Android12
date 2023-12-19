@@ -1,0 +1,43 @@
+Functions changes summary: 1 Removed, 2 Changed, 1 Added functions
+Variables changes summary: 1 Removed, 1 Changed, 1 Added variables
+
+1 Removed function:
+
+  [D] 'function int fun_removed()'    {fun_removed}
+
+1 Added function:
+
+  [A] 'function long int fun_added()'    {fun_added}
+
+2 functions with some indirect sub-type change:
+
+  [C] 'function int fun_changed()' has some indirect sub-type changes:
+    return type changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)
+
+  [C] 'function void victim(type_changed*)' has some indirect sub-type changes:
+    parameter 1 of type 'type_changed*' has sub-type changes:
+      in pointed to type 'struct type_changed':
+        type size changed from 32 to 64 (in bits)
+        1 data member change:
+          type of 'int x' changed:
+            type name changed from 'int' to 'long int'
+            type size changed from 32 to 64 (in bits)
+
+1 Removed variable:
+
+  [D] 'int var_removed'    {var_removed}
+
+1 Added variable:
+
+  [A] 'long int var_added'    {var_added}
+
+1 Changed variable:
+
+  [C] 'int var_changed' was changed to 'long int var_changed':
+    size of symbol changed from 4 to 8
+    type of variable changed:
+      type name changed from 'int' to 'long int'
+      type size changed from 32 to 64 (in bits)
+

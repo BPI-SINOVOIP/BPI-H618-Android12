@@ -1,0 +1,111 @@
+================ changes of 'libnss3.so'===============
+  Functions changes summary: 0 Removed, 1 Changed (62 filtered out), 0 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  1 function with some indirect sub-type change:
+
+    [C] 'function SECStatus CERT_AddOCSPAcceptableResponses(CERTOCSPRequest*, SECOidTag, ...)' at ocsp.c:2199:1 has some indirect sub-type changes:
+      parameter 2 of type 'typedef SECOidTag' has sub-type changes:
+        underlying type 'enum __anonymous_enum__1' at secoidt.h:34:1 changed:
+          type size hasn't changed
+          1 enumerator insertion:
+            '__anonymous_enum__1::SEC_OID_TLS_ECDHE_PSK' value '347'
+          1 enumerator change:
+            '__anonymous_enum__1::SEC_OID_TOTAL' from value '347' to '348' at secoidt.h:34:1
+
+================ end of changes of 'libnss3.so'===============
+
+================ changes of 'libssl3.so'===============
+  Functions changes summary: 0 Removed, 2 Changed (7 filtered out), 1 Added functions
+  Variables changes summary: 0 Removed, 1 Changed, 0 Added variable
+
+  1 Added function:
+
+    [A] 'function SECStatus SSL_ConfigServerCert(PRFileDesc*, CERTCertificate*, SECKEYPrivateKey*, const SSLExtraServerCertData*, unsigned int)'    {SSL_ConfigServerCert@@NSS_3.24}
+
+  2 functions with some indirect sub-type change:
+
+    [C] 'function SSLKEAType NSS_FindCertKEAType(CERTCertificate*)' at sslcert.c:939:1 has some indirect sub-type changes:
+      return type changed:
+        underlying type 'enum __anonymous_enum__' at sslt.h:38:1 changed:
+          type size hasn't changed
+          1 enumerator insertion:
+            '__anonymous_enum__1::ssl_kea_ecdh_psk' value '5'
+          1 enumerator change:
+            '__anonymous_enum__::ssl_kea_size' from value '5' to '6' at sslt.h:40:1
+
+    [C] 'function SECStatus SSL_GetCipherSuiteInfo(PRUint16, SSLCipherSuiteInfo*, PRUintn)' at sslinfo.c:294:1 has some indirect sub-type changes:
+      parameter 2 of type 'SSLCipherSuiteInfo*' has sub-type changes:
+        in pointed to type 'typedef SSLCipherSuiteInfo' at sslt.h:252:1:
+          underlying type 'struct SSLCipherSuiteInfoStr' at sslt.h:178:1 changed:
+            type size hasn't changed
+            1 data member insertion:
+              'SSLAuthType authType', at offset 736 (in bits) at sslt.h:250:1
+            1 data member changes (1 filtered):
+              type of 'SSLAuthType authAlgorithm' changed:
+                underlying type 'enum __anonymous_enum__' at sslt.h:87:1 changed:
+                  type size hasn't changed
+                  1 enumerator deletion:
+                    '__anonymous_enum__::ssl_auth_rsa' value '1'
+                  7 enumerator insertions:
+                    '__anonymous_enum__::ssl_auth_rsa_decrypt' value '1'
+                    '__anonymous_enum__::ssl_auth_ecdh_rsa' value '5'
+                    '__anonymous_enum__::ssl_auth_ecdh_ecdsa' value '6'
+                    '__anonymous_enum__::ssl_auth_rsa_sign' value '7'
+                    '__anonymous_enum__::ssl_auth_rsa_pss' value '8'
+                    '__anonymous_enum__::ssl_auth_psk' value '9'
+                    '__anonymous_enum__::ssl_auth_size' value '10'
+
+  1 Changed variable:
+
+    [C] 'const PRUint16 SSL_ImplementedCiphers[74]' was changed to 'const PRUint16 SSL_ImplementedCiphers[69]' at sslenum.c:51:1:
+      size of symbol changed from 148 to 138
+      type of variable changed:
+        type name changed from 'PRUint16[74]' to 'const PRUint16[69]'
+        array type size changed from 1184 to 1104
+        array type subrange 1 changed length from 74 to 69
+
+================ end of changes of 'libssl3.so'===============
+
+================ changes of 'libsmime3.so'===============
+  Functions changes summary: 0 Removed, 1 Changed (127 filtered out), 0 Added functions
+  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
+
+  1 function with some indirect sub-type change:
+
+    [C] 'function PK11SymKey* NSS_CMSContentInfo_GetBulkKey(NSSCMSContentInfo*)' at cmscinfo.c:359:1 has some indirect sub-type changes:
+      parameter 1 of type 'NSSCMSContentInfo*' has sub-type changes:
+        in pointed to type 'typedef NSSCMSContentInfo' at cmst.h:54:1:
+          underlying type 'struct NSSCMSContentInfoStr' at cmst.h:131:1 changed:
+            type size hasn't changed
+            1 data member changes (2 filtered):
+              type of 'NSSCMSContent content' changed:
+                underlying type 'union NSSCMSContentUnion' at cmst.h:118:1 changed:
+                  type size hasn't changed
+                  1 data member changes (3 filtered):
+                    type of 'NSSCMSEncryptedData* encryptedData' changed:
+                      in pointed to type 'typedef NSSCMSEncryptedData' at cmst.h:65:1:
+                        underlying type 'struct NSSCMSEncryptedDataStr' at cmst.h:468:1 changed:
+                          type size hasn't changed
+                          1 data member changes (1 filtered):
+                            type of 'NSSCMSAttribute** unprotectedAttr' changed:
+                              in pointed to type 'NSSCMSAttribute*':
+                                in pointed to type 'typedef NSSCMSAttribute' at cmst.h:69:1:
+                                  underlying type 'struct NSSCMSAttributeStr' at cmst.h:487:1 changed:
+                                    type size hasn't changed
+                                    1 data member change:
+                                      type of 'SECOidData* typeTag' changed:
+                                        in pointed to type 'typedef SECOidData' at secoidt.h:16:1:
+                                          underlying type 'struct SECOidDataStr' at secoidt.h:500:1 changed:
+                                            type size hasn't changed
+                                            1 data member change:
+                                              type of 'SECOidTag offset' changed:
+                                                underlying type 'enum __anonymous_enum__1' at secoidt.h:34:1 changed:
+                                                  type size hasn't changed
+                                                  1 enumerator insertion:
+                                                    '__anonymous_enum__1::SEC_OID_TLS_ECDHE_PSK' value '347'
+                                                  1 enumerator change:
+                                                    '__anonymous_enum__1::SEC_OID_TOTAL' from value '347' to '348' at secoidt.h:34:1
+
+================ end of changes of 'libsmime3.so'===============
+

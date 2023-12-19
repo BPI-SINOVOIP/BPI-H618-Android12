@@ -1,0 +1,21 @@
+<abi-instr address-size='64' path='data/test-read-write/test23.xml'>
+  <type-decl name='char' size-in-bits='8' alignment-in-bits='8' id='type-id-1'/>
+  <type-decl name='int' size-in-bits='32' alignment-in-bits='32' id='type-id-2'/>
+  <type-decl name='long int' size-in-bits='64' alignment-in-bits='64' id='type-id-3'/>
+  <type-decl name='long long int' size-in-bits='64' alignment-in-bits='64' id='type-id-4'/>
+  <type-decl name='void' id='type-id-5'/>
+  <function-decl name='foo' mangled-name='_Z3foocl' filepath='/home/dodji/test-bidw/test-v0.cc' line='5' column='1' visibility='default' binding='global' size-in-bits='64' alignment-in-bits='64'>
+    <parameter type-id='type-id-1' name='c' filepath='/home/dodji/test-bidw/test-v0.cc' line='5' column='1'/>
+    <parameter type-id='type-id-3' name='l' filepath='/home/dodji/test-bidw/test-v0.cc' line='5' column='1'/>
+    <return type-id='type-id-4'/>
+  </function-decl>
+  <function-decl name='bar' mangled-name='_Z3bariz' filepath='/home/dodji/test-bidw/test-v0.cc' line='9' column='1' visibility='default' binding='global' size-in-bits='64' alignment-in-bits='64'>
+    <parameter type-id='type-id-3' name='c' filepath='/home/dodji/test-bidw/test-v0.cc' line='9' column='1'/>
+    <parameter is-variadic='yes'/>
+    <return type-id='type-id-5'/>
+  </function-decl>
+  <function-decl name='main' filepath='/home/dodji/test-bidw/test-v0.cc' line='17' column='1' visibility='default' binding='global' size-in-bits='64' alignment-in-bits='64'>
+    <return type-id='type-id-2'/>
+  </function-decl>
+  <var-decl name='global' type-id='type-id-2' visibility='default' filepath='/home/dodji/test-bidw/test-v0.cc' line='2' column='1'/>
+</abi-instr>

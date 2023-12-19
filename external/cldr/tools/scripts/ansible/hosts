@@ -1,0 +1,18 @@
+[staging]
+cldr-smoke.unicode.org
+
+[prod]
+st.unicode.org
+
+# "surveytool" includes both prod and staging
+[surveytool:children]
+staging
+prod
+
+# encrypt all of the surveytool hosts
+[letsencrypt:children]
+surveytool
+
+# auto-backup cldr db only for production
+[backupdb:children]
+prod

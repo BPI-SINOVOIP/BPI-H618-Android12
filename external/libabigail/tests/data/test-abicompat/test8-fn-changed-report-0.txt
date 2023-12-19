@@ -1,0 +1,10 @@
+functions defined in library 'libtest8-fn-changed-libapp-v1.so'
+have sub-types that are different from what application 'test8-fn-changed-app' expects:
+
+  function int foo(S*):
+    parameter 1 of type 'S*' has sub-type changes:
+      in pointed to type 'struct S' at test8-fn-changed-libapp-v1.h:1:1:
+        type size changed from 32 to 64 (in bits)
+        1 data member insertion:
+          'char m1', at offset 32 (in bits) at test8-fn-changed-libapp-v1.h:4:1
+

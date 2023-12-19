@@ -1,0 +1,4 @@
+[suppress_function]
+ file_name_regexp = test38-char-class-in-ini-v[[:digit:]].*
+ symbol_name_regexp = bar
+ change_kind = added-function
