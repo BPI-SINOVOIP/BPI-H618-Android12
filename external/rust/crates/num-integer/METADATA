@@ -1,0 +1,19 @@
+name: "num-integer"
+description: "Integer traits and functions"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/num-integer"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/num-integer/num-integer-0.1.44.crate"
+  }
+  version: "0.1.44"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 1
+    day: 28
+  }
+}

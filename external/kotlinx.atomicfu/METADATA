@@ -1,0 +1,19 @@
+name: "kotlinx.atomicfu"
+description: "The idiomatic way to use atomic operations in Kotlin."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/Kotlin/kotlinx.atomicfu"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/Kotlin/kotlinx.atomicfu"
+  }
+  version: "0.14.4"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 11
+    day: 25
+  }
+}

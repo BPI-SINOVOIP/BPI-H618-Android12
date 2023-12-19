@@ -1,0 +1,24 @@
+name: Rust
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install nightly Rust
+      run: |
+        rustup toolchain install nightly
+        rustup default nightly
+
+    - name: Check rustfmt
+      run: |
+        rustup component add rustfmt --toolchain stable
+        cargo +stable fmt --all -- --check
+
+    - name: Run tests
+      run: ./ci/script.sh

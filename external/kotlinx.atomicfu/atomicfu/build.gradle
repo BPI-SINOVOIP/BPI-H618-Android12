@@ -1,0 +1,311 @@
+/*
+ * Copyright 2016-2020 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+ */
+
+apply plugin: 'kotlin-multiplatform'
+apply from: rootProject.file("gradle/targets.gradle")
+
+ext {
+    nativeMainSets = []
+    nativeTestSets = []
+    nativeCompilations = []
+
+    addNative = { preset ->
+        nativeMainSets.add(preset.compilations['main'].kotlinSourceSets.first())
+        nativeTestSets.add(preset.compilations['test'].kotlinSourceSets.first())
+        nativeCompilations.add(preset.compilations['main'])
+    }
+}
+
+kotlin {
+    targets.metaClass.addTarget = { preset ->
+        addNative(delegate.fromPreset(preset, preset.name))
+    }
+
+    // JS -- always
+    js {
+        // TODO: Commented out because browser tests do not work on TeamCity
+        // browser()
+        nodejs()
+    }
+
+    targets {
+        // JVM -- always
+        fromPreset(presets.jvm, 'jvm')
+
+        if (project.ext.ideaActive) {
+            addNative(fromPreset(project.ext.ideaPreset, 'native'))
+        } else {
+            addTarget(presets.linuxX64)
+            addTarget(presets.iosArm64)
+            addTarget(presets.iosArm32)
+            addTarget(presets.iosX64)
+            addTarget(presets.macosX64)
+            addTarget(presets.mingwX64)
+            addTarget(presets.tvosArm64)
+            addTarget(presets.tvosX64)
+            addTarget(presets.watchosArm32)
+            addTarget(presets.watchosArm64)
+            addTarget(presets.watchosX86)
+        }
+    }
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
+            }
+        }
+        commonTest {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-test-common'
+                implementation 'org.jetbrains.kotlin:kotlin-test-annotations-common'
+            }
+        }
+        jsMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib-js'
+            }
+        }
+        jsTest {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-test-js'
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+            }
+        }
+        jvmTest {
+            dependencies {
+                implementation 'org.jetbrains.kotlin:kotlin-reflect'
+                implementation 'org.jetbrains.kotlin:kotlin-test'
+                implementation 'org.jetbrains.kotlin:kotlin-test-junit'
+                implementation "junit:junit:$junit_version"
+            }
+        }
+        nativeMain { dependsOn commonMain }
+
+        nativeTest {}
+
+        if (!project.ext.ideaActive) {
+            configure(nativeMainSets) {
+                dependsOn nativeMain
+            }
+
+            configure(nativeTestSets) {
+                dependsOn nativeTest
+            }
+        }
+    }
+
+    configure(nativeCompilations) {
+        cinterops {
+            interop {
+                defFile 'src/nativeInterop/cinterop/interop.def'
+            }
+        }
+    }
+}
+
+// Hack for publishing as HMPP: pack the cinterop klib as a source set:
+if (!project.ext.ideaActive) {
+    kotlin.sourceSets {
+        nativeInterop
+        nativeMain.dependsOn(nativeInterop)
+    }
+
+    apply from: "$rootDir/gradle/interop-as-source-set-klib.gradle"
+
+    registerInteropAsSourceSetOutput(
+            kotlin.linuxX64().compilations["main"].cinterops["interop"],
+            kotlin.sourceSets["nativeInterop"]
+    )
+}
+
+configurations {
+    transformer
+}
+
+apply from: rootProject.file('gradle/compile-options.gradle')
+
+ext.configureKotlin(org.jetbrains.kotlin.gradle.tasks.KotlinCompile)
+
+dependencies {
+    transformer project(":atomicfu-transformer")
+}
+
+// ==== CONFIGURE JS =====
+
+def compileJsLegacy = tasks.hasProperty("compileKotlinJsLegacy")
+        ? compileKotlinJsLegacy
+        : compileKotlinJs
+
+tasks.withType(compileJsLegacy.getClass()) {
+    kotlinOptions {
+        moduleKind = "umd"
+        sourceMap = true
+        metaInfo = true
+    }
+}
+
+compileJsLegacy.configure {
+    kotlinOptions {
+        // NOTE: Module base-name must be equal to the package name declared in package.json
+        def baseName = "kotlinx-atomicfu"
+        outputFile = new File(outputFile.parent, baseName + ".js")
+    }
+}
+
+apply from: file("$rootProject.projectDir/gradle/node-js.gradle")
+apply from: file("$rootProject.projectDir/gradle/publish-npm-js.gradle")
+
+// Workaround the problem with Node downloading
+repositories.whenObjectAdded {
+    if (it instanceof IvyArtifactRepository) {
+        metadataSources {
+            artifact()
+        }
+    }
+}
+
+def compileTestJsLegacy = tasks.hasProperty("compileTestKotlinJsLegacy")
+        ? compileTestKotlinJsLegacy
+        : compileTestKotlinJs
+
+def transformedJsFile = compileTestJsLegacy.kotlinOptions.outputFile
+compileTestJsLegacy.configure {
+    kotlinOptions {
+        // NOTE: Module base-name must be equal to the package name declared in package.json
+        def baseName = "kotlinx-atomicfu"
+        outputFile = new File(outputFile.parent, baseName + ".js")
+    }
+}
+def originalJsFile = compileTestJsLegacy.kotlinOptions.outputFile
+
+task transformJS(type: JavaExec, dependsOn: [compileTestJsLegacy]) {
+    main = "kotlinx.atomicfu.transformer.AtomicFUTransformerJSKt"
+    args = [originalJsFile, transformedJsFile]
+    classpath = configurations.transformer
+    inputs.file(originalJsFile)
+    outputs.file(transformedJsFile)
+}
+
+if (project.tasks.findByName('jsLegacyNodeTest')) {
+    jsLegacyNodeTest.dependsOn transformJS
+} else {
+    jsNodeTest.dependsOn transformJS
+}
+
+// ==== CONFIGURE JVM =====
+
+def classesPreAtomicFuDir = file("$buildDir/classes/kotlin/jvm/test")
+def classesPostTransformFU = file("$buildDir/classes/kotlin/jvm/postTransformedFU")
+def classesPostTransformVH = file("$buildDir/classes/kotlin/jvm/postTransformedVH")
+def classesPostTransformBOTH = file("$buildDir/classes/kotlin/jvm/postTransformedBOTH")
+
+task transformFU(type: JavaExec, dependsOn: compileTestKotlinJvm) {
+    main = "kotlinx.atomicfu.transformer.AtomicFUTransformerKt"
+    args = [classesPreAtomicFuDir, classesPostTransformFU, "FU"]
+    classpath = configurations.transformer
+    inputs.dir(classesPreAtomicFuDir)
+    outputs.dir(classesPostTransformFU)
+}
+
+task transformBOTH(type: JavaExec, dependsOn: compileTestKotlinJvm) {
+    main = "kotlinx.atomicfu.transformer.AtomicFUTransformerKt"
+    args = [classesPreAtomicFuDir, classesPostTransformBOTH, "BOTH"]
+    classpath = configurations.transformer
+    inputs.dir(classesPreAtomicFuDir)
+    outputs.dir(classesPostTransformBOTH)
+}
+
+task transformVH(type: JavaExec, dependsOn: compileTestKotlinJvm) {
+    main = "kotlinx.atomicfu.transformer.AtomicFUTransformerKt"
+    args = [classesPreAtomicFuDir, classesPostTransformVH, "VH"]
+    classpath = configurations.transformer
+    inputs.dir(classesPreAtomicFuDir)
+    outputs.dir(classesPostTransformVH)
+}
+
+task checkJdk16() {
+    doLast {
+        if (!System.env.JDK_16) {
+            throw new GradleException("JDK_16 environment variable is not defined. " +
+                    "Can't build against JDK 1.6 runtime and run JDK 1.6 compatibility tests. " +
+                    "Please ensure JDK 1.6 is installed and that JDK_16 points to it.")
+        }
+    }
+}
+
+task transformedTestFU_6(type: Test, dependsOn: [checkJdk16, transformFU]) {
+    executable = "$System.env.JDK_16/bin/java"
+    classpath = configurations.jvmTestRuntimeClasspath + project.files(classesPostTransformFU)
+    testClassesDirs = project.files(classesPostTransformFU)
+    exclude '**/*LFTest.*'
+}
+
+task transformedTestFU_current(type: Test, dependsOn: transformFU) {
+    classpath = files(configurations.jvmTestRuntimeClasspath, classesPostTransformFU)
+    testClassesDirs = project.files(classesPostTransformFU)
+    exclude '**/*LFTest.*'
+}
+
+task transformedTestBOTH_6(type: Test, dependsOn: [checkJdk16, transformBOTH]) {
+    executable = "$System.env.JDK_16/bin/java"
+    classpath = files(configurations.jvmTestRuntimeClasspath, classesPostTransformBOTH)
+    testClassesDirs = project.files(classesPostTransformBOTH)
+    exclude '**/*LFTest.*'
+}
+
+task transformedTestBOTH_current(type: Test, dependsOn: transformBOTH) {
+    classpath = files(configurations.jvmTestRuntimeClasspath, classesPostTransformBOTH)
+    testClassesDirs = project.files(classesPostTransformBOTH)
+    exclude '**/*LFTest.*'
+}
+
+task transformedTestVH(type: Test, dependsOn: transformVH) {
+    classpath = files(configurations.jvmTestRuntimeClasspath, classesPostTransformVH)
+    testClassesDirs = project.files(classesPostTransformVH)
+    exclude '**/*LFTest.*'
+}
+
+transformedTestVH.onlyIf {
+    logger.println(JavaVersion.current())
+    JavaVersion.current().ordinal() >= JavaVersion.VERSION_1_9.ordinal()
+}
+
+task jvmTestAll(dependsOn: [
+        transformedTestFU_6,
+        transformedTestFU_current,
+        transformedTestBOTH_6,
+        transformedTestBOTH_current,
+        transformedTestVH])
+
+tasks.withType(Test) {
+    testLogging {
+        showStandardStreams = true
+        events "passed", "failed"
+    }
+}
+
+jvmTest {
+    exclude "**/AtomicfuBytecodeTest*" // run it only for transformed code
+}
+
+jvmTest.dependsOn jvmTestAll
+
+afterEvaluate {
+    publishing.publications {
+        metadata.artifactId = 'atomicfu-common'
+
+        kotlinMultiplatform {
+            apply from: "$rootDir/gradle/publish-mpp-root-module-in-platform.gradle"
+            publishPlatformArtifactsInRootModule(jvm)
+        }
+    }
+}
+
+tasks.matching { it.name == "generatePomFileForKotlinMultiplatformPublication"}.configureEach {
+    dependsOn(tasks["generatePomFileForJvmPublication"])
+}

@@ -1,0 +1,21 @@
+[package]
+name = "rutabaga_gfx"
+version = "0.1.0"
+authors = ["The Chromium OS Authors"]
+edition = "2018"
+
+[features]
+gfxstream = []
+virgl_renderer = []
+virgl_renderer_next = []
+minigbm = []
+# To try out Vulkano, delete the following line and uncomment the line in "dependencies".  vulkano
+# features are just a prototype and not integrated yet into the ChromeOS build system.
+vulkano = []
+
+[dependencies]
+data_model = { path = "../data_model" }
+libc = "*"
+base = { path = "../base" }
+sync = { path = "../sync" }
+#vulkano = {git = "https:/github.com/vulkano-rs/vulkano.git", optional = true}

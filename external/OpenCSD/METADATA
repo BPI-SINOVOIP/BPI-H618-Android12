@@ -1,0 +1,19 @@
+name: "OpenCSD"
+description: "This library provides an API suitable for the decode of ARM(r) CoreSight(tm) trace streams."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/Linaro/OpenCSD"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/Linaro/OpenCSD.git"
+  }
+  version: "v1.0.0"
+  license_type: RESTRICTED
+  last_upgrade_date {
+    year: 2021
+    month: 1
+    day: 8
+  }
+}

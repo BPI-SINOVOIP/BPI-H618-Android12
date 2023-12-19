@@ -1,0 +1,315 @@
+//===-- memtag.h ------------------------------------------------*- C++ -*-===//
+//
+// Part of the LLVM Project, under the Apache License v2.0 with LLVM Exceptions.
+// See https://llvm.org/LICENSE.txt for license information.
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
+//
+//===----------------------------------------------------------------------===//
+
+#ifndef SCUDO_MEMTAG_H_
+#define SCUDO_MEMTAG_H_
+
+#include "internal_defs.h"
+
+#if SCUDO_LINUX
+#include <sys/auxv.h>
+#include <sys/prctl.h>
+#endif
+
+namespace scudo {
+
+#if defined(__aarch64__) || defined(SCUDO_FUZZ)
+
+// We assume that Top-Byte Ignore is enabled if the architecture supports memory
+// tagging. Not all operating systems enable TBI, so we only claim architectural
+// support for memory tagging if the operating system enables TBI.
+#if SCUDO_LINUX && !defined(SCUDO_DISABLE_TBI)
+inline constexpr bool archSupportsMemoryTagging() { return true; }
+#else
+inline constexpr bool archSupportsMemoryTagging() { return false; }
+#endif
+
+inline constexpr uptr archMemoryTagGranuleSize() { return 16; }
+
+inline uptr untagPointer(uptr Ptr) { return Ptr & ((1ULL << 56) - 1); }
+
+inline uint8_t extractTag(uptr Ptr) { return (Ptr >> 56) & 0xf; }
+
+#else
+
+inline constexpr bool archSupportsMemoryTagging() { return false; }
+
+inline uptr archMemoryTagGranuleSize() {
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline uptr untagPointer(uptr Ptr) {
+  (void)Ptr;
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline uint8_t extractTag(uptr Ptr) {
+  (void)Ptr;
+  UNREACHABLE("memory tagging not supported");
+}
+
+#endif
+
+#if defined(__aarch64__)
+
+#if SCUDO_LINUX
+
+inline bool systemSupportsMemoryTagging() {
+#ifndef HWCAP2_MTE
+#define HWCAP2_MTE (1 << 18)
+#endif
+  return getauxval(AT_HWCAP2) & HWCAP2_MTE;
+}
+
+inline bool systemDetectsMemoryTagFaultsTestOnly() {
+#ifndef PR_GET_TAGGED_ADDR_CTRL
+#define PR_GET_TAGGED_ADDR_CTRL 56
+#endif
+#ifndef PR_MTE_TCF_SHIFT
+#define PR_MTE_TCF_SHIFT 1
+#endif
+#ifndef PR_MTE_TCF_NONE
+#define PR_MTE_TCF_NONE (0UL << PR_MTE_TCF_SHIFT)
+#endif
+#ifndef PR_MTE_TCF_MASK
+#define PR_MTE_TCF_MASK (3UL << PR_MTE_TCF_SHIFT)
+#endif
+  return (static_cast<unsigned long>(
+              prctl(PR_GET_TAGGED_ADDR_CTRL, 0, 0, 0, 0)) &
+          PR_MTE_TCF_MASK) != PR_MTE_TCF_NONE;
+}
+
+#else // !SCUDO_LINUX
+
+inline bool systemSupportsMemoryTagging() { return false; }
+
+inline bool systemDetectsMemoryTagFaultsTestOnly() { return false; }
+
+#endif // SCUDO_LINUX
+
+inline void disableMemoryTagChecksTestOnly() {
+  __asm__ __volatile__(
+      R"(
+      .arch_extension memtag
+      msr tco, #1
+      )");
+}
+
+inline void enableMemoryTagChecksTestOnly() {
+  __asm__ __volatile__(
+      R"(
+      .arch_extension memtag
+      msr tco, #0
+      )");
+}
+
+class ScopedDisableMemoryTagChecks {
+  size_t PrevTCO;
+
+public:
+  ScopedDisableMemoryTagChecks() {
+    __asm__ __volatile__(
+        R"(
+        .arch_extension memtag
+        mrs %0, tco
+        msr tco, #1
+        )"
+        : "=r"(PrevTCO));
+  }
+
+  ~ScopedDisableMemoryTagChecks() {
+    __asm__ __volatile__(
+        R"(
+        .arch_extension memtag
+        msr tco, %0
+        )"
+        :
+        : "r"(PrevTCO));
+  }
+};
+
+inline uptr selectRandomTag(uptr Ptr, uptr ExcludeMask) {
+  uptr TaggedPtr;
+  __asm__ __volatile__(
+      R"(
+      .arch_extension memtag
+      irg %[TaggedPtr], %[Ptr], %[ExcludeMask]
+      )"
+      : [TaggedPtr] "=r"(TaggedPtr)
+      : [Ptr] "r"(Ptr), [ExcludeMask] "r"(ExcludeMask));
+  return TaggedPtr;
+}
+
+inline uptr addFixedTag(uptr Ptr, uptr Tag) { return Ptr | (Tag << 56); }
+
+inline uptr storeTags(uptr Begin, uptr End) {
+  DCHECK(Begin % 16 == 0);
+  uptr LineSize, Next, Tmp;
+  __asm__ __volatile__(
+      R"(
+    .arch_extension memtag
+
+    // Compute the cache line size in bytes (DCZID_EL0 stores it as the log2
+    // of the number of 4-byte words) and bail out to the slow path if DCZID_EL0
+    // indicates that the DC instructions are unavailable.
+    DCZID .req %[Tmp]
+    mrs DCZID, dczid_el0
+    tbnz DCZID, #4, 3f
+    and DCZID, DCZID, #15
+    mov %[LineSize], #4
+    lsl %[LineSize], %[LineSize], DCZID
+    .unreq DCZID
+
+    // Our main loop doesn't handle the case where we don't need to perform any
+    // DC GZVA operations. If the size of our tagged region is less than
+    // twice the cache line size, bail out to the slow path since it's not
+    // guaranteed that we'll be able to do a DC GZVA.
+    Size .req %[Tmp]
+    sub Size, %[End], %[Cur]
+    cmp Size, %[LineSize], lsl #1
+    b.lt 3f
+    .unreq Size
+
+    LineMask .req %[Tmp]
+    sub LineMask, %[LineSize], #1
+
+    // STZG until the start of the next cache line.
+    orr %[Next], %[Cur], LineMask
+  1:
+    stzg %[Cur], [%[Cur]], #16
+    cmp %[Cur], %[Next]
+    b.lt 1b
+
+    // DC GZVA cache lines until we have no more full cache lines.
+    bic %[Next], %[End], LineMask
+    .unreq LineMask
+  2:
+    dc gzva, %[Cur]
+    add %[Cur], %[Cur], %[LineSize]
+    cmp %[Cur], %[Next]
+    b.lt 2b
+
+    // STZG until the end of the tagged region. This loop is also used to handle
+    // slow path cases.
+  3:
+    cmp %[Cur], %[End]
+    b.ge 4f
+    stzg %[Cur], [%[Cur]], #16
+    b 3b
+
+  4:
+  )"
+      : [Cur] "+&r"(Begin), [LineSize] "=&r"(LineSize), [Next] "=&r"(Next),
+        [Tmp] "=&r"(Tmp)
+      : [End] "r"(End)
+      : "memory");
+  return Begin;
+}
+
+inline void storeTag(uptr Ptr) {
+  __asm__ __volatile__(R"(
+    .arch_extension memtag
+    stg %0, [%0]
+  )"
+                       :
+                       : "r"(Ptr)
+                       : "memory");
+}
+
+inline uptr loadTag(uptr Ptr) {
+  uptr TaggedPtr = Ptr;
+  __asm__ __volatile__(
+      R"(
+      .arch_extension memtag
+      ldg %0, [%0]
+      )"
+      : "+r"(TaggedPtr)
+      :
+      : "memory");
+  return TaggedPtr;
+}
+
+#else
+
+inline bool systemSupportsMemoryTagging() {
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline bool systemDetectsMemoryTagFaultsTestOnly() {
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline void disableMemoryTagChecksTestOnly() {
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline void enableMemoryTagChecksTestOnly() {
+  UNREACHABLE("memory tagging not supported");
+}
+
+struct ScopedDisableMemoryTagChecks {
+  ScopedDisableMemoryTagChecks() {}
+};
+
+inline uptr selectRandomTag(uptr Ptr, uptr ExcludeMask) {
+  (void)Ptr;
+  (void)ExcludeMask;
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline uptr addFixedTag(uptr Ptr, uptr Tag) {
+  (void)Ptr;
+  (void)Tag;
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline uptr storeTags(uptr Begin, uptr End) {
+  (void)Begin;
+  (void)End;
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline void storeTag(uptr Ptr) {
+  (void)Ptr;
+  UNREACHABLE("memory tagging not supported");
+}
+
+inline uptr loadTag(uptr Ptr) {
+  (void)Ptr;
+  UNREACHABLE("memory tagging not supported");
+}
+
+#endif
+
+inline void setRandomTag(void *Ptr, uptr Size, uptr ExcludeMask,
+                         uptr *TaggedBegin, uptr *TaggedEnd) {
+  *TaggedBegin = selectRandomTag(reinterpret_cast<uptr>(Ptr), ExcludeMask);
+  *TaggedEnd = storeTags(*TaggedBegin, *TaggedBegin + Size);
+}
+
+inline void *untagPointer(void *Ptr) {
+  return reinterpret_cast<void *>(untagPointer(reinterpret_cast<uptr>(Ptr)));
+}
+
+inline void *loadTag(void *Ptr) {
+  return reinterpret_cast<void *>(loadTag(reinterpret_cast<uptr>(Ptr)));
+}
+
+inline void *addFixedTag(void *Ptr, uptr Tag) {
+  return reinterpret_cast<void *>(
+      addFixedTag(reinterpret_cast<uptr>(Ptr), Tag));
+}
+
+template <typename Config>
+inline constexpr bool allocatorSupportsMemoryTagging() {
+  return archSupportsMemoryTagging() && Config::MaySupportMemoryTagging;
+}
+
+} // namespace scudo
+
+#endif

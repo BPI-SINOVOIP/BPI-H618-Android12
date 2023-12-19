@@ -1,0 +1,47 @@
+erofs-utils (1.2.1-1) unstable; urgency=medium
+
+ * A quick maintenance release includes the following updates:
+   - fix reported build issues due to different configurations;
+   - (mkfs.erofs, AOSP) fix sub-directory prefix for canned fs_config;
+   - update some obsoleted email address;
+
+ -- Gao Xiang <xiang@kernel.org>  Sun, 10 Jan 2021 00:00:00 +0800
+
+erofs-utils (1.2-1) unstable; urgency=medium
+
+ * This release includes the following features and bugfixes:
+   - (mkfs.erofs) support selinux file contexts;
+   - (mkfs.erofs) support $SOURCE_DATE_EPOCH;
+   - (mkfs.erofs) support a pre-defined UUID;
+   - (mkfs.erofs) fix random padding for reproducable builds;
+   - (mkfs.erofs) several fixes around hard links;
+   - (mkfs.erofs) minor code cleanups;
+   - (mkfs.erofs, AOSP) support Android fs_config;
+   - (experimental, disabled by default) add erofsfuse approach;
+
+ -- Gao Xiang <xiang@kernel.org>  Sun, 06 Dec 2020 00:00:00 +0800
+
+erofs-utils (1.1-1) unstable; urgency=low
+
+ * a maintenance release includes the following updates:
+   - (mkfs.erofs) add a manual for mkfs.erofs;
+   - (mkfs.erofs) add superblock checksum support;
+   - (mkfs.erofs) add filesystem UUID support;
+   - (mkfs.erofs) add exclude files support;
+   - (mkfs.erofs) fix compiling issues under specific conditions;
+   - (mkfs.erofs) minor code cleanups;
+
+ -- Gao Xiang <xiang@kernel.org>  Tue, 14 Apr 2020 00:00:00 +0800
+
+erofs-utils (1.0-1) unstable; urgency=low
+
+ * first release with the following new features:
+   - (mkfs.erofs) uncompressed file support;
+   - (mkfs.erofs) uncompressed tail-end packing inline data support;
+   - (mkfs.erofs) lz4 / lz4HC compressed file support;
+   - (mkfs.erofs) special file support;
+   - (mkfs.erofs) inline / shared xattrs support;
+   - (mkfs.erofs) Posix ACL support;
+
+ -- Gao Xiang <xiang@kernel.org>  Thu, 24 Oct 2019 00:00:00 +0800
+

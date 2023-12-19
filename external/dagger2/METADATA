@@ -1,0 +1,17 @@
+name: "dagger2"
+description:
+    "A fast dependency injector for Android and Java."
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://dagger.dev"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/google/dagger"
+  }
+  version: "dagger-2.19.1"
+  last_upgrade_date { year: 2020 month: 11 day: 18 }
+  license_type: NOTICE
+}

@@ -1,0 +1,19 @@
+name: "pin-project"
+description: "A crate for safe and ergonomic pin-projection."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/pin-project"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/pin-project/pin-project-1.0.6.crate"
+  }
+  version: "1.0.6"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

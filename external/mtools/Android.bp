@@ -1,0 +1,111 @@
+// Copyright 2021 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+// *** THIS PACKAGE HAS SPECIAL LICENSING CONDITIONS.  PLEASE
+//     CONSULT THE OWNERS AND opensource-licensing@google.com BEFORE
+//     DEPENDING ON IT IN YOUR PROJECT. ***
+package {
+    default_applicable_licenses: ["external_mtools_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "external_mtools_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "legacy_by_exception_only", // by exception only
+    ],
+    license_text: [
+        "COPYING",
+    ],
+}
+
+cc_binary_host {
+    name: "mtools",
+    srcs: [
+        "buffer.c",
+        "charsetConv.c",
+        "codepages.c",
+        "config.c",
+        "copyfile.c",
+        "devices.c",
+        "dirCache.c",
+        "directory.c",
+        "direntry.c",
+        "expand.c",
+        "fat.c",
+        "fat_free.c",
+        "file.c",
+        "file_name.c",
+        "filter.c",
+        "floppyd_io.c",
+        "force_io.c",
+        "hash.c",
+        "init.c",
+        "llong.c",
+        "lockdev.c",
+        "match.c",
+        "mainloop.c",
+        "mattrib.c",
+        "mbadblocks.c",
+        "mcat.c",
+        "mcd.c",
+        "mclasserase.c",
+        "mcopy.c",
+        "mdel.c",
+        "mdir.c",
+        "mdoctorfat.c",
+        "mdu.c",
+        "mformat.c",
+        "minfo.c",
+        "misc.c",
+        "missFuncs.c",
+        "mk_direntry.c",
+        "mlabel.c",
+        "mmd.c",
+        "mmount.c",
+        "mmove.c",
+        "mpartition.c",
+        "mshortname.c",
+        "mshowfat.c",
+        "mzip.c",
+        "mtools.c",
+        "old_dos.c",
+        "patchlevel.c",
+        "plain_io.c",
+        "precmd.c",
+        "privileges.c",
+        "scsi.c",
+        "signal.c",
+        "stream.c",
+        "streamcache.c",
+        "strtonum.c",
+        "subdir.c",
+        "unixdir.c",
+        "tty.c",
+        "vfat.c",
+        "xdf_io.c",
+    ],
+    cflags: [
+        "-DSYSCONFDIR=\"/etc\"",
+        "-Wno-missing-field-initializers",
+        "-Wno-unused-parameter",
+        "-Wno-unused-result",
+    ],
+    symlinks: [
+        "mcopy",
+        "mmd",
+    ],
+}

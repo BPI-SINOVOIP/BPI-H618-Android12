@@ -1,0 +1,19 @@
+name: "pin-project-internal"
+description: "Implementation detail of the `pin-project` crate."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/pin-project-internal"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/pin-project-internal/pin-project-internal-1.0.6.crate"
+  }
+  version: "1.0.6"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

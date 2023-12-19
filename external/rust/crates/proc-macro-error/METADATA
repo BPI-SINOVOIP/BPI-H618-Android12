@@ -1,0 +1,19 @@
+name: "proc-macro-error"
+description: "Almost drop-in replacement to panics in proc-macros"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/proc-macro-error"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/proc-macro-error/proc-macro-error-1.0.4.crate"
+  }
+  version: "1.0.4"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 9
+    day: 29
+  }
+}

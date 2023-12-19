@@ -1,0 +1,29 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "external_libvpx_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-BSD
+    default_applicable_licenses: ["external_libvpx_license"],
+}
+
+cc_library_static {
+    name: "libwebm",
+    srcs: ["mkvparser/mkvparser.cc"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    export_include_dirs: ["."],
+    sanitize: {
+        // Enable CFI if this becomes a shared library.
+        // cfi: true,
+    },
+    min_sdk_version: "29",
+    host_supported: true,
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+}

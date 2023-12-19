@@ -1,0 +1,15 @@
+Since we do not run build.rs during an Android build,
+we need to set up the version number in src/lib.rs
+until we have a smarter way to patch it based on new
+version number in Cargo.toml.
+
+To update this package, please make sure that the following code
+in src/lib.rs is up to data.
+
+        // Hack: hard code version number here because Android.bp
+        // rust modules cannot pass it though env variable yet.
+        w.write_generated_by("rust-protobuf", "2.16.2");
+
+If there are non-trivial changes in build.rs or src/lib.rs,
+please rerun cargo2android.py and verify the differences in
+Android.bp and src/lib.rs.

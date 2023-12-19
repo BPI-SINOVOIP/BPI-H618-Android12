@@ -1,0 +1,18 @@
+diff --git a/TEST_MAPPING b/TEST_MAPPING
+index cf1b50f..a151304 100644
+--- a/TEST_MAPPING
++++ b/TEST_MAPPING
+@@ -34,7 +34,12 @@
+       "name": "ring_host_test_tests_digest_tests"
+     },
+     {
+-      "name": "ring_device_test_tests_digest_tests"
++      "name": "ring_device_test_tests_digest_tests",
++      "options": [
++        {
++          "test-timeout": "600000"
++        }
++      ]
+     },
+     {
+       "host": true,

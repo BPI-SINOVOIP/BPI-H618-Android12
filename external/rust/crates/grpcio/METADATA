@@ -1,0 +1,19 @@
+name: "grpcio"
+description: "The rust language implementation of gRPC, base on the gRPC c core library."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/grpcio"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/grpcio/grpcio-0.8.2.crate"
+  }
+  version: "0.8.2"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

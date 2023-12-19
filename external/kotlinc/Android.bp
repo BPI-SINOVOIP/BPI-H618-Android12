@@ -1,0 +1,109 @@
+package {
+    default_applicable_licenses: ["external_kotlinc_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+//
+// large-scale-change included anything that looked like it might be a license
+// text as a license_text. e.g. LICENSE, NOTICE, COPYING etc.
+//
+// Please consider removing redundant or irrelevant files from 'license_text:'.
+// See: http://go/android-license-faq
+license {
+    name: "external_kotlinc_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-BSD",
+        "SPDX-license-identifier-BSL-1.0",
+        "SPDX-license-identifier-CC0-1.0",
+        "SPDX-license-identifier-EPL",
+        "SPDX-license-identifier-GPL",
+        "SPDX-license-identifier-GPL-2.0",
+        "SPDX-license-identifier-ISC",
+        "SPDX-license-identifier-JSON",
+        "SPDX-license-identifier-LGPL",
+        "SPDX-license-identifier-LGPL-2.1",
+        "SPDX-license-identifier-LGPL-3.0",
+        "SPDX-license-identifier-MIT",
+        "SPDX-license-identifier-MPL",
+        "SPDX-license-identifier-MPL-1.0",
+        "legacy_notice",
+        "legacy_restricted",
+    ],
+    license_text: [
+        "LICENSE",
+        "license/**/*",
+    ],
+}
+
+java_import {
+    name: "kotlin-annotations",
+    host_supported: true,
+    jars: ["lib/annotations-13.0.jar"],
+    sdk_version: "core_current",
+    notice: "license/NOTICE.txt",
+}
+
+// exclude_dirs is used to remove META-INF resources for java multi-release
+// jar support that soong does not support. https://openjdk.java.net/jeps/238
+
+java_import {
+    name: "kotlin-reflect",
+    host_supported: true,
+    jars: ["lib/kotlin-reflect.jar"],
+    sdk_version: "core_current",
+    exclude_dirs: ["META-INF/versions"],
+    notice: "license/NOTICE.txt",
+}
+
+java_import {
+    name: "kotlin-stdlib",
+    host_supported: true,
+    jars: ["lib/kotlin-stdlib.jar"],
+    sdk_version: "core_current",
+    exclude_dirs: ["META-INF/versions"],
+    notice: "license/NOTICE.txt",
+}
+
+java_import {
+    name: "kotlin-stdlib-jdk7",
+    host_supported: true,
+    jars: ["lib/kotlin-stdlib-jdk7.jar"],
+    sdk_version: "core_current",
+    exclude_dirs: ["META-INF/versions"],
+    notice: "license/NOTICE.txt",
+}
+
+java_import {
+    name: "kotlin-stdlib-jdk8",
+    host_supported: true,
+    jars: ["lib/kotlin-stdlib-jdk8.jar"],
+    sdk_version: "core_current",
+    exclude_dirs: ["META-INF/versions"],
+    notice: "license/NOTICE.txt",
+}
+
+java_import {
+    name: "kotlin-test",
+    host_supported: true,
+    jars: [
+        "lib/kotlin-test.jar",
+        "lib/kotlin-test-junit.jar",
+    ],
+    sdk_version: "core_current",
+    exclude_dirs: ["META-INF/versions"],
+    notice: "license/NOTICE.txt",
+}

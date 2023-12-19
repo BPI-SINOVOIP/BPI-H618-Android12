@@ -1,0 +1,14 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index c26f0c5..ce06601 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -66,6 +66,9 @@
+ //!   the `Array` trait. The actual usage of the crate is not expected to break
+ //!   significantly in this transition.
+ 
++// ANDROID: Unconditionally use std to allow building as a dylib.
++extern crate std;
++
+ #[allow(unused_imports)]
+ use core::{
+   borrow::{Borrow, BorrowMut},

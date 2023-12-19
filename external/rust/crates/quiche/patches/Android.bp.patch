@@ -1,0 +1,156 @@
+diff --git a/Android.bp b/Android.bp
+index aced8a6..578cc68 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -43,25 +43,38 @@ cc_library_headers {
+     min_sdk_version: "29",
+ }
+ 
+-rust_ffi_shared {
+-    name: "libquiche_shared",
++rust_defaults {
++    name: "libquiche_defaults",
+     stem: "libquiche",
+     host_supported: true,
+     crate_name: "quiche",
+     srcs: ["src/lib.rs"],
+     edition: "2018",
+     features: [
+-        "boringssl-vendored",
++        "boringssl",
+         "default",
+     ],
+-    rustlibs: [
++    // Link all crates statically to create a self-contained .so library.
++    rlibs: [
+         "liblazy_static",
+         "liblibc",
+         "liblibm",
+         "liblog_rust",
+         "libring",
+     ],
+-    static_libs: [
++    prefer_rlib: true,
++    // For DnsResolver (Mainline module introduced in Q).
++    apex_available: [
++        "//apex_available:platform",
++        "com.android.resolv",
++    ],
++    min_sdk_version: "29",
++}
++
++rust_ffi {
++    name: "libquiche_ffi",
++    defaults: ["libquiche_defaults"],
++    shared_libs: [
+         "libcrypto",
+         "libssl",
+     ],
+@@ -69,52 +82,20 @@ rust_ffi_shared {
+ 
+ rust_library {
+     name: "libquiche",
+-    host_supported: true,
+-    crate_name: "quiche",
+-    srcs: ["src/lib.rs"],
+-    edition: "2018",
+-    features: [
+-        "boringssl-vendored",
+-        "default",
+-    ],
+-    rustlibs: [
+-        "liblazy_static",
+-        "liblibc",
+-        "liblibm",
+-        "liblog_rust",
+-        "libring",
+-    ],
+-    static_libs: [
++    defaults: ["libquiche_defaults"],
++    shared_libs: [
+         "libcrypto",
+         "libssl",
+     ],
+-    apex_available: [
+-        "//apex_available:platform",
+-        "com.android.resolv",
+-    ],
+-    min_sdk_version: "29",
+ }
+ 
+-rust_ffi_static {
++// This target is used by doh_unit_test to prevent compatibility issues
++// because doh_unit_test needs to be run on the R platform.
++rust_library_rlib {
+     name: "libquiche_static",
+-    stem: "libquiche",
+-    host_supported: true,
+-    crate_name: "quiche",
+-    srcs: ["src/lib.rs"],
+-    edition: "2018",
+-    features: [
+-        "boringssl-vendored",
+-        "default",
+-    ],
+-    rustlibs: [
+-        "liblazy_static",
+-        "liblibc",
+-        "liblibm",
+-        "liblog_rust",
+-        "libring",
+-    ],
++    defaults: ["libquiche_defaults"],
+     static_libs: [
+-        "libcrypto",
++        "libcrypto_static",
+         "libssl",
+     ],
+ }
+@@ -127,7 +108,7 @@ rust_defaults {
+     auto_gen_config: true,
+     edition: "2018",
+     features: [
+-        "boringssl-vendored",
++        "boringssl",
+         "default",
+     ],
+     rustlibs: [
+@@ -139,10 +120,12 @@ rust_defaults {
+         "libring",
+         "liburl",
+     ],
+-    static_libs: [
+-        "libcrypto",
+-        "libssl",
+-    ],
++    data: [
++        "examples/cert.crt",
++        "examples/cert.key",
++        "examples/cert-big.crt",
++        "examples/rootca.crt",
++    ]
+ }
+ 
+ rust_test_host {
+@@ -151,11 +134,21 @@ rust_test_host {
+     test_options: {
+         unit_test: true,
+     },
++    shared_libs: [
++        "libcrypto",
++        "libssl",
++    ],
+ }
+ 
+ rust_test {
+     name: "quiche_device_test_src_lib",
+     defaults: ["quiche_defaults"],
++    // To run this test in R platform, it's required to statically link
++    // libcrypto and libssl.
++    static_libs: [
++        "libcrypto_static",
++        "libssl",
++    ],
+ }
+ 
+ // dependent_library ["feature_list"]

@@ -1,0 +1,19 @@
+name: "crossbeam-epoch"
+description: "Epoch-based garbage collection"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/crossbeam-epoch"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/crossbeam-epoch/crossbeam-epoch-0.9.3.crate"
+  }
+  version: "0.9.3"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

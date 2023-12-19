@@ -1,0 +1,19 @@
+name: "ryu"
+description: "Fast floating point to string conversion"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/ryu"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/ryu/ryu-1.0.5.crate"
+  }
+  version: "1.0.5"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 8
+    day: 21
+  }
+}

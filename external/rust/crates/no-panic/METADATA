@@ -1,0 +1,19 @@
+name: "no-panic"
+description: "Attribute macro to require that the compiler prove a function can\'t ever panic."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/no-panic"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/no-panic/no-panic-0.1.15.crate"
+  }
+  version: "0.1.15"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 29
+  }
+}

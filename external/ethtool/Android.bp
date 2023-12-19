@@ -1,0 +1,81 @@
+package {
+    default_applicable_licenses: ["external_ethtool_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+//
+// large-scale-change included anything that looked like it might be a license
+// text as a license_text. e.g. LICENSE, NOTICE, COPYING etc.
+//
+// Please consider removing redundant or irrelevant files from 'license_text:'.
+// See: http://go/android-license-faq
+license {
+    name: "external_ethtool_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-GPL",
+        "SPDX-license-identifier-GPL-2.0",
+        "SPDX-license-identifier-LGPL",
+    ],
+    license_text: [
+        "COPYING",
+        "LICENSE",
+    ],
+}
+
+cc_binary {
+    name: "ethtool",
+    srcs: [
+        "amd8111e.c",
+        "at76c50x-usb.c",
+        "de2104x.c",
+        "dsa.c",
+        "e100.c",
+        "e1000.c",
+        "et131x.c",
+        "ethtool.c",
+        "fec.c",
+        "fec_8xx.c",
+        "fjes.c",
+        "ibm_emac.c",
+        "igb.c",
+        "ixgb.c",
+        "ixgbe.c",
+        "ixgbevf.c",
+        "lan78xx.c",
+        "marvell.c",
+        "natsemi.c",
+        "pcnet32.c",
+        "qsfp.c",
+        "realtek.c",
+        "rxclass.c",
+        "sfc.c",
+        "sff-common.c",
+        "sfpdiag.c",
+        "sfpid.c",
+        "smsc911x.c",
+        "stmmac.c",
+        "tg3.c",
+        "tse.c",
+        "vioc.c",
+        "vmxnet3.c",
+    ],
+    cflags: [
+        "-Wno-missing-field-initializers",
+        "-DPACKAGE=\"ethtool\"",
+        "-DVERSION=\"5.3\"",
+        "-std=gnu11",
+    ]
+}

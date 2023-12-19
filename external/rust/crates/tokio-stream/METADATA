@@ -1,0 +1,19 @@
+name: "tokio-stream"
+description: "Utilities to work with `Stream` and `tokio`."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/tokio-stream"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/tokio-stream/tokio-stream-0.1.5.crate"
+  }
+  version: "0.1.5"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 2
+  }
+}

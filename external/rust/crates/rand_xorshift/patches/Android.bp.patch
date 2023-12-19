@@ -1,0 +1,24 @@
+diff --git a/Android.bp b/Android.bp
+index 704654e..0e6db92 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -19,7 +19,8 @@ rust_defaults {
+     auto_gen_config: true,
+     edition: "2018",
+     rustlibs: [
+-        "libbincode",
++        // ANDROID: not really used
++        //"libbincode",
+         "librand_core",
+     ],
+ }
+@@ -42,7 +43,8 @@ rust_defaults {
+     auto_gen_config: true,
+     edition: "2018",
+     rustlibs: [
+-        "libbincode",
++        // ANDROID: not really used
++        //"libbincode",
+         "librand_core",
+         "librand_xorshift",
+     ],

@@ -1,0 +1,26 @@
+name: "BCC"
+description: "BCC is a toolkit for creating efficient kernel tracing and manipulation programs"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/iovisor/bcc"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/iovisor/bcc.git"
+  }
+  version: "v0.8.0"
+  # would be NOTICE save for:
+  #   examples/networking/dns_matching/dns_matching.c
+  #   examples/tracing/vfsreadlat.c
+  #   snapcraft/snapcraft.yaml
+  #   src/cc/compat/linux/bpf.h
+  #   src/cc/compat/linux/bpf_common.h
+  #   src/cc/compat/linux/virtual_bpf.h
+  license_type: RESTRICTED
+  last_upgrade_date {
+    year: 2019
+    month: 2
+    day: 1
+  }
+}

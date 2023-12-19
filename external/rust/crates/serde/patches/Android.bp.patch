@@ -1,0 +1,13 @@
+diff --git b/Android.bp a/Android.bp
+index 41d67cc..277296f 100644
+--- b/Android.bp
++++ a/Android.bp
+@@ -64,7 +64,7 @@
+         "range_inclusive",
+         "serde_derive",
+         "std_atomic",
+-        "std_atomic64",
++        // "std_atomic64", // not for arm/arm64
+         "systemtime_checked_add",
+     ],
+     proc_macros: ["libserde_derive"],

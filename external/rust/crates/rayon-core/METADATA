@@ -1,0 +1,19 @@
+name: "rayon-core"
+description: "Core APIs for Rayon"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/rayon-core"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/rayon-core/rayon-core-1.9.0.crate"
+  }
+  version: "1.9.0"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 21
+  }
+}

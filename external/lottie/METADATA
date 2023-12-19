@@ -1,0 +1,14 @@
+name: "lottie"
+description: "Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with bodymovin and renders the vector animations natively on mobile and through React Native! See: https://github.com/airbnb/lottie-android"
+third_party {
+  url {
+    type: GIT
+    value: "https://github.com/airbnb/lottie-android"
+  }
+  version: "v3.3.0"
+  last_upgrade_date {
+    year: 2019
+    month: 12
+    day: 3
+  }
+}

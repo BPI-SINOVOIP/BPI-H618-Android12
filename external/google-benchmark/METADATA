@@ -1,0 +1,19 @@
+name: "google-benchmark"
+description: "A library to support the benchmarking of functions, similar to unit-tests."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/google/benchmark"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/google/benchmark.git"
+  }
+  version: "ea5a5bbff491fd625c6e3458f6edd680b8bd5452"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 12
+  }
+}

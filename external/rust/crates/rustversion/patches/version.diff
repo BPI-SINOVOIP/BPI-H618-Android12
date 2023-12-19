@@ -1,0 +1,40 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index 2614105..18d170d 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -165,7 +165,16 @@ use crate::version::Version;
+ use proc_macro::{Delimiter, Group, Ident, Punct, Spacing, Span, TokenStream, TokenTree};
+ use std::iter::FromIterator;
+ 
+-const RUSTVERSION: Version = include!(concat!(env!("OUT_DIR"), "/version.rs"));
++// ANDROID: Soong is providing the version of rustc via an env variable.
++const ANDROID_RUSTVERSION: &str = env!("ANDROID_RUST_VERSION");
++fn rust_version() -> Version {
++    let v: Vec<&str> = ANDROID_RUSTVERSION.split('.').collect();
++    Version {
++        minor: v[1].parse().unwrap(),
++        patch: v[2].parse().unwrap(),
++        channel: version::Channel::Stable,
++    }
++}
+ 
+ #[proc_macro_attribute]
+ pub fn stable(args: TokenStream, input: TokenStream) -> TokenStream {
+@@ -226,7 +235,7 @@ fn try_cfg(introducer: &str, args: TokenStream, input: TokenStream) -> Result<To
+     let expr = expr::parse(full_args)?;
+     token::parse_end(full_args)?;
+ 
+-    if expr.eval(RUSTVERSION) {
++    if expr.eval(rust_version()) {
+         Ok(input)
+     } else {
+         Ok(TokenStream::new())
+@@ -241,7 +250,7 @@ pub fn attr(args: TokenStream, input: TokenStream) -> TokenStream {
+ }
+ 
+ fn try_attr(args: attr::Args, input: TokenStream) -> Result<TokenStream> {
+-    if !args.condition.eval(RUSTVERSION) {
++    if !args.condition.eval(rust_version()) {
+         return Ok(input);
+     }
+ 

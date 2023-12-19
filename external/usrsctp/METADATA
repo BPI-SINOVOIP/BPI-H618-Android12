@@ -1,0 +1,17 @@
+name: "usrsctp"
+description:
+    "A portable SCTP userland stack"
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/sctplab/usrsctp"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/sctplab/usrsctp.git"
+  }
+  version: "fbadabe48671c3273d2cf3e478e38cdd4d471c15"
+  last_upgrade_date { year: 2020 month: 6 day: 3 }
+  license_type: NOTICE
+}

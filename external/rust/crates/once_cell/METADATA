@@ -1,0 +1,19 @@
+name: "once_cell"
+description: "Single assignment cells and lazy values."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/once_cell"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/once_cell/once_cell-1.7.2.crate"
+  }
+  version: "1.7.2"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

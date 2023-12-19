@@ -1,0 +1,19 @@
+name: "half"
+description: "Half-precision floating point f16 and bf16 types for Rust implementing the IEEE 754-2008 standard binary16 and bfloat16 types."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/half"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/half/half-1.7.1.crate"
+  }
+  version: "1.7.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

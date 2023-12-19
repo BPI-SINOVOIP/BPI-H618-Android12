@@ -1,0 +1,40 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index c85fb01..25b0444 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -56,7 +56,8 @@
+ //! let checksum = crc16(checksum_range);
+ //! ```
+ 
+-#![no_std]
++// ANDROID: include standard library to build as a dylib
++//#![no_std]
+ #![cfg_attr(
+     feature = "unstable_const",
+     feature(
+@@ -78,9 +79,9 @@
+ #[doc(hidden)]
+ pub mod __priv {
+     #[doc(hidden)]
+-    pub use core::mem;
++    pub use std::mem;  // ANDROID: use std instead of core, since we're not building with no-std.
+     #[doc(hidden)]
+-    pub use core::ptr;
++    pub use std::ptr;  // ANDROID: use std instead of core, since we're not building with no-std.
+ 
+     /// Use type inference to obtain the size of the pointee (without actually using the pointer).
+     #[doc(hidden)]
+diff --git a/src/span_of.rs b/src/span_of.rs
+index 0592dbd..369e5c6 100644
+--- a/src/span_of.rs
++++ b/src/span_of.rs
+@@ -155,7 +155,8 @@ macro_rules! span_of {
+ 
+ #[cfg(test)]
+ mod tests {
+-    use core::mem;
++    // ANDROID: use std instead of core, since we're not building wiht no-std.
++    use std::mem;
+ 
+     #[test]
+     fn span_simple() {

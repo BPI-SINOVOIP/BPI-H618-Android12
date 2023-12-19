@@ -1,0 +1,19 @@
+name: "futures-core"
+description: "The core traits and types in for the `futures` library."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/futures-core"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/futures-core/futures-core-0.3.13.crate"
+  }
+  version: "0.3.13"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 3
+    day: 4
+  }
+}

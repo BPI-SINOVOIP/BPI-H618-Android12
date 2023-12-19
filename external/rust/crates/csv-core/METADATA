@@ -1,0 +1,19 @@
+name: "csv-core"
+description: "Bare bones CSV parsing with no_std support."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/csv-core"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/csv-core/csv-core-0.1.10.crate"
+  }
+  version: "0.1.10"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 21
+  }
+}

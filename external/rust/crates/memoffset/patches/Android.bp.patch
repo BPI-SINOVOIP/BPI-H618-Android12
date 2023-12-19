@@ -1,0 +1,14 @@
+diff --git a/Android.bp b/Android.bp
+index eb63f7c..efa8362 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -48,7 +52,8 @@ rust_defaults {
+         "--cfg tuple_ty",
+     ],
+     rustlibs: [
+-        "libdoc_comment",
++        // ANDROID: disable for now just to avoid another dependency.
++        //"libdoc_comment",
+     ],
+ }
+ 

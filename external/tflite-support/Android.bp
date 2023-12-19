@@ -1,0 +1,98 @@
+package {
+    default_applicable_licenses: ["external_tflite-support_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+// See: http://go/android-license-faq
+license {
+    name: "external_tflite-support_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-BSD",
+        "SPDX-license-identifier-MIT",
+    ],
+    license_text: [
+        "LICENSE",
+    ],
+}
+
+cc_library_static {
+    name: "tflite_support",
+    sdk_version: "current",
+    min_sdk_version: "30",
+    stl: "libc++_static",
+    export_include_dirs: ["."],
+    srcs: [
+        "tensorflow_lite_support/cc/utils/common_utils.cc",
+        "tensorflow_lite_support/custom_ops/kernel/sentencepiece/sentencepiece_tokenizer_tflite.cc",
+        "tensorflow_lite_support/custom_ops/kernel/sentencepiece/optimized_encoder.cc",
+        "tensorflow_lite_support/custom_ops/kernel/ragged/ragged_range_tflite.cc",
+        "tensorflow_lite_support/custom_ops/kernel/ragged/ragged_tensor_to_tensor_tflite.cc",
+    ],
+    cflags: [
+        "-Werror",
+        "-Wall",
+        "-O2",
+        "-Wno-missing-field-initializers",
+        "-Wno-unused-parameter",
+        "-Wno-unused-variable",
+    ],
+    generated_headers: [
+        "tflite_support_spm_config",
+        "tflite_support_spm_encoder_config"
+    ],
+    header_libs: [
+        "tensorflow_headers",
+        "flatbuffer_headers",
+    ],
+    static_libs: [
+        "libtextclassifier_abseil",
+        "libtflite_static",
+    ],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.extservices",
+    ],
+
+    visibility: ["//external/libtextclassifier:__subpackages__"],
+}
+
+
+// -----------------
+// Generate headers with FlatBuffer schema compiler.
+// -----------------
+genrule_defaults {
+    name: "tflite_support_fbgen",
+    tools: ["flatc"],
+    // "depfile" is used here in conjunction with flatc's -M to gather the deps
+    cmd: "$(location flatc) --cpp --no-union-value-namespacing --gen-object-api --keep-prefix -I external/tflite-support -M $(in) >$(depfile) && " +
+        "$(location flatc) --cpp --no-union-value-namespacing --gen-object-api --keep-prefix -I external/tflite-support -o $$(dirname $(out)) $(in)",
+    depfile: true,
+}
+
+genrule {
+    name: "tflite_support_spm_config",
+    srcs: ["tensorflow_lite_support/custom_ops/kernel/sentencepiece/config.fbs"],
+    out: ["tensorflow_lite_support/custom_ops/kernel/sentencepiece/config_generated.h"],
+    defaults: ["tflite_support_fbgen"],
+}
+
+genrule {
+    name: "tflite_support_spm_encoder_config",
+    srcs: ["tensorflow_lite_support/custom_ops/kernel/sentencepiece/encoder_config.fbs"],
+    out: ["tensorflow_lite_support/custom_ops/kernel/sentencepiece/encoder_config_generated.h"],
+    defaults: ["tflite_support_fbgen"],
+}

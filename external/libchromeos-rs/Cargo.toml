@@ -1,0 +1,19 @@
+[package]
+name = "libchromeos"
+version = "0.1.0"
+authors = ["The Chromium OS Authors"]
+edition = "2018"
+
+[dependencies]
+data_model = { path = "../crosvm/data_model" } # provided by ebuild
+libc = "0.2"
+log = "0.4"
+protobuf = "2.1"
+intrusive-collections = "0.9"
+futures = { version = "0.3", default-features = false, features = ["alloc"] }
+
+[dev-dependencies]
+futures = { version = "0.3", features = ["async-await"] }
+futures-executor = { version = "0.3", features = ["thread-pool"] }
+futures-util = "0.3"
+

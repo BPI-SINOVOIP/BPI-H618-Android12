@@ -1,0 +1,19 @@
+name: "futures"
+description: "An implementation of futures and streams featuring zero allocations, composability, and iterator-like interfaces."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/futures"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/futures/futures-0.3.13.crate"
+  }
+  version: "0.3.13"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

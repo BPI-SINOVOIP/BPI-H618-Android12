@@ -1,0 +1,4 @@
+Allows a process to perform operations on files, even
+where file owner ID should otherwise need be equal to
+the UID, except where CAP_FSETID is applicable. It
+doesn't override MAC and DAC restrictions.

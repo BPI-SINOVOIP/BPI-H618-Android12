@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Call requires API level R (current min is 29): `android.system.ErrnoException#rethrowAsSocketException`"
+        errorLine1="            throw errnoException.rethrowAsSocketException();"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="external/conscrypt/repackaged/platform/src/main/java/com/android/org/conscrypt/Platform.java"
+            line="134"
+            column="34"/>
+    </issue>
+
+</issues>

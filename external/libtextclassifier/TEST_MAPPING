@@ -1,0 +1,35 @@
+{
+  "presubmit": [
+    {
+      "name": "TextClassifierServiceTest",
+      "options": [
+        {
+          "exclude-annotation": "androidx.test.filters.FlakyTest"
+        }
+      ]
+    },
+    {
+      "name": "libtextclassifier_tests"
+    },
+    {
+      "name": "libtextclassifier_java_tests"
+    },
+    {
+      "name": "TextClassifierNotificationTests"
+    }
+  ],
+  "mainline-presubmit": [
+    {
+      "name": "TextClassifierNotificationTests[com.google.android.extservices.apex]"
+    },
+    {
+      "name": "TextClassifierServiceTest[com.google.android.extservices.apex]"
+    },
+    {
+      "name": "libtextclassifier_tests[com.google.android.extservices.apex]"
+    },
+    {
+      "name": "libtextclassifier_java_tests[com.google.android.extservices.apex]"
+    }
+  ]
+}

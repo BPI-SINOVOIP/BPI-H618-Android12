@@ -1,0 +1,16 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index 01c81e2..927fc9a 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -37,8 +37,9 @@
+ #![no_std]
+ #![cfg_attr(feature = "bench", feature(test, unicode_internals))]
+ 
+-#[cfg(test)]
+-#[macro_use]
++// #[cfg(test)]
++// ANDROID: Unconditionally use std to allow building as a dylib.
++// #[macro_use]
+ extern crate std;
+ 
+ #[cfg(feature = "bench")]

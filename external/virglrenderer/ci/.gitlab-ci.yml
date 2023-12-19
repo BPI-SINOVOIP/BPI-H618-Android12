@@ -1,0 +1,120 @@
+variables:
+  FDO_DISTRIBUTION_TAG: "2021-02-04"
+  FDO_DISTRIBUTION_VERSION: buster
+  FDO_UPSTREAM_REPO: "virgl/virglrenderer"
+  TEST_IMAGE: "$CI_REGISTRY_IMAGE/debian/$FDO_DISTRIBUTION_VERSION:$FDO_DISTRIBUTION_TAG"
+
+include:
+  - project: 'freedesktop/ci-templates'
+    ref: 4a73f030d0602042cfa44ed94dc5e744b52f57aa
+    file: '/templates/debian.yml'
+
+stages:
+  - build
+  - sanity test
+  - test
+
+build docker image:
+  stage: build
+  extends: .fdo.container-ifnot-exists@debian
+  stage: build
+  variables:
+    GIT_STRATEGY: none # no need to pull the whole tree for rebuilding the image
+    FDO_DISTRIBUTION_EXEC: 'bash ci/build-container.sh'
+  only:
+    - branches
+    - tags
+    - merge_requests
+    - schedules
+
+.tests_base:
+  image: $TEST_IMAGE
+  variables:
+    NUM_THREADS: 4
+  script:
+    - ci/run_tests.sh $TEST_SUITE
+    - echo -e "\nThat's all folks\n"
+  only:
+    - branches
+    - tags
+    - merge_requests
+    - schedules
+
+  artifacts:
+    when: always
+    paths:
+      - results/
+
+.make_check_base:
+  stage: sanity test
+  extends: .tests_base
+
+mesa check meson:
+  variables:
+    TEST_SUITE: '--make-check-meson'
+  extends: .make_check_base
+
+make check clang-fuzzer:
+  variables:
+    TEST_SUITE: '--make-check-clang-fuzzer'
+  extends: .make_check_base
+
+make check trace-stderr:
+  variables:
+    TEST_SUITE: '--make-check-trace-stderr'
+  extends: .make_check_base
+
+.tests:
+  stage: test
+  extends: .tests_base
+
+piglit - gl host:
+  variables:
+    TEST_SUITE: '--piglit-gl'
+  extends: .tests
+
+piglit - gles host:
+  variables:
+    TEST_SUITE: '--piglit-gles'
+  extends: .tests
+
+cts gl - gl host:
+  variables:
+    TEST_SUITE: '--deqp-gl-gl-tests'
+  extends: .tests
+
+cts gles2 - gl host:
+  variables:
+    TEST_SUITE: '--deqp-gl-gles2-tests'
+  extends: .tests
+
+cts gles3 - gl host:
+  variables:
+    TEST_SUITE: '--deqp-gl-gles3-tests'
+  extends: .tests
+
+cts gles31 - gl host:
+  variables:
+    TEST_SUITE: '--deqp-gl-gles31-tests'
+  extends: .tests
+
+
+cts gl - gles host:
+  variables:
+    TEST_SUITE: '--deqp-gles-gl-tests'
+  extends: .tests
+
+cts gles2 - gles host:
+  variables:
+    TEST_SUITE: '--deqp-gles-gles2-tests'
+  extends: .tests
+
+cts gles3 - gles host:
+  variables:
+    TEST_SUITE: '--deqp-gles-gles3-tests'
+  extends: .tests
+
+cts gles31 - gles host:
+  variables:
+    TEST_SUITE: '--deqp-gles-gles31-tests'
+  extends: .tests

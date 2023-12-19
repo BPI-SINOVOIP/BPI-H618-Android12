@@ -1,0 +1,19 @@
+name: "criterion-plot"
+description: "Criterion\'s plotting library"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/criterion-plot"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/criterion-plot/criterion-plot-0.4.3.crate"
+  }
+  version: "0.4.3"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 21
+  }
+}

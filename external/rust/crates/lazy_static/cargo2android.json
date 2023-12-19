@@ -1,0 +1,12 @@
+{
+  "apex-available": [
+    "//apex_available:platform",
+    "com.android.resolv",
+    "com.android.virt"
+  ],
+  "device": true,
+  "min-sdk-version": "29",
+  "patch": "patches/Android.bp.diff",
+  "run": true,
+  "tests": true
+}

@@ -1,0 +1,18 @@
+{
+  "presubmit": [
+    {
+      "name": "TextClassifierServiceTest",
+      "options": [
+        {
+          "exclude-annotation": "androidx.test.filters.FlakyTest"
+        }
+      ]
+    },
+    {
+       "name": "bluetooth_flatbuffer_tests"
+    },
+    {
+       "name": "CtsTfliteNnapiDelegateTestCases"
+    }
+ ]
+}

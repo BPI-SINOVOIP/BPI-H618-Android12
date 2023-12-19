@@ -1,0 +1,13 @@
+# Copyright 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+SUBSYSTEM!="sound", GOTO="sci_end"
+ACTION!="change", GOTO="sci_end"
+KERNEL!="card*", GOTO="sci_end"
+
+GOTO="sci_action"
+
+LABEL="sci_action"
+RUN+="/sbin/initctl start sound_card_init SOUND_CARD_ID=$attr{id}"
+LABEL="sci_end"

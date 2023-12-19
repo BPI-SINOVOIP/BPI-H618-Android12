@@ -1,0 +1,19 @@
+name: "clang-sys"
+description: "Rust bindings for libclang."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/clang-sys"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/clang-sys/clang-sys-1.1.1.crate"
+  }
+  version: "1.1.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 22
+  }
+}

@@ -1,0 +1,34 @@
+From 422cda3fba39e9a99397fbd8e10ee1f7e85ef241 Mon Sep 17 00:00:00 2001
+From: Haibo Huang <hhb@google.com>
+Date: Thu, 4 Feb 2021 16:29:09 -0800
+Subject: [PATCH] Enable arm64 builds
+
+Kokoro build server has 10.15 and XCode 12.2. It is able to build arm64.
+
+Change-Id: I8dcf6a909b9075c4f9d40516a0ab28f421cdcb8d
+---
+ Lib/_osx_support.py | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/Lib/_osx_support.py b/Lib/_osx_support.py
+index 37975fe..47d88af 100644
+--- a/Lib/_osx_support.py
++++ b/Lib/_osx_support.py
+@@ -187,13 +187,7 @@ def _supports_universal_builds():
+ 
+ def _supports_arm64_builds():
+     """Returns True if arm64 builds are supported on this system"""
+-    # There are two sets of systems supporting macOS/arm64 builds:
+-    # 1. macOS 11 and later, unconditionally
+-    # 2. macOS 10.15 with Xcode 12.2 or later
+-    # For now the second category is ignored.
+-    osx_version = _get_system_version_tuple()
+-    return osx_version >= (11, 0) if osx_version else False
+-
++    return True
+ 
+ def _find_appropriate_compiler(_config_vars):
+     """Find appropriate C compiler for extension module builds"""
+-- 
+2.30.0.365.g02bc693789-goog
+

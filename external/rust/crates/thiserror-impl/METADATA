@@ -1,0 +1,19 @@
+name: "thiserror-impl"
+description: "Implementation detail of the `thiserror` crate"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/thiserror-impl"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/thiserror-impl/thiserror-impl-1.0.24.crate"
+  }
+  version: "1.0.24"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 18
+  }
+}

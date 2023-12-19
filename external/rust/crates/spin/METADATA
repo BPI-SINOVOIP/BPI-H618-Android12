@@ -1,0 +1,19 @@
+name: "spin"
+description: "Spin-based synchronization primitives"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/spin"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/spin/spin-0.7.1.crate"
+  }
+  version: "0.7.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 1
+    day: 12
+  }
+}

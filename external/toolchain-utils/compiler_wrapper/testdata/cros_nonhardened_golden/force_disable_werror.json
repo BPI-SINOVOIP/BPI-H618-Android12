@@ -1,0 +1,228 @@
+[
+  {
+    "wd": "/tmp/stable",
+    "env": [
+      "FORCE_DISABLE_WERROR=1"
+    ],
+    "wrapper": {
+      "cmd": {
+        "path": "./x86_64-cros-linux-gnu-clang",
+        "args": [
+          "main.cc"
+        ]
+      }
+    },
+    "cmds": [
+      {
+        "cmd": {
+          "path": "ccache",
+          "args": [
+            "../../usr/bin/clang",
+            "--sysroot=/usr/x86_64-cros-linux-gnu",
+            "-Qunused-arguments",
+            "-Wno-tautological-constant-compare",
+            "-Wno-tautological-unsigned-enum-zero-compare",
+            "-Wno-unknown-warning-option",
+            "-Wno-section",
+            "-static-libgcc",
+            "-Wno-final-dtor-non-final-class",
+            "-Werror=poison-system-directories",
+            "-fexperimental-new-pass-manager",
+            "-Wno-compound-token-split-by-macro",
+            "-fcrash-diagnostics-dir=/tmp/stable/clang_crash_diagnostics",
+            "main.cc",
+            "-Wno-implicit-int-float-conversion",
+            "-Wno-compound-token-split-by-space",
+            "-Wno-string-concatenation",
+            "-mno-movbe",
+            "-B../../bin",
+            "-target",
+            "x86_64-cros-linux-gnu"
+          ],
+          "env_updates": [
+            "CCACHE_DIR=/var/cache/distfiles/ccache",
+            "CCACHE_UMASK=002",
+            "CCACHE_CPP2=yes"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "wd": "/tmp/stable",
+    "env": [
+      "FORCE_DISABLE_WERROR=1"
+    ],
+    "wrapper": {
+      "cmd": {
+        "path": "./x86_64-cros-linux-gnu-clang",
+        "args": [
+          "main.cc"
+        ]
+      }
+    },
+    "cmds": [
+      {
+        "cmd": {
+          "path": "ccache",
+          "args": [
+            "../../usr/bin/clang",
+            "--sysroot=/usr/x86_64-cros-linux-gnu",
+            "-Qunused-arguments",
+            "-Wno-tautological-constant-compare",
+            "-Wno-tautological-unsigned-enum-zero-compare",
+            "-Wno-unknown-warning-option",
+            "-Wno-section",
+            "-static-libgcc",
+            "-Wno-final-dtor-non-final-class",
+            "-Werror=poison-system-directories",
+            "-fexperimental-new-pass-manager",
+            "-Wno-compound-token-split-by-macro",
+            "-fcrash-diagnostics-dir=/tmp/stable/clang_crash_diagnostics",
+            "main.cc",
+            "-Wno-implicit-int-float-conversion",
+            "-Wno-compound-token-split-by-space",
+            "-Wno-string-concatenation",
+            "-mno-movbe",
+            "-B../../bin",
+            "-target",
+            "x86_64-cros-linux-gnu"
+          ],
+          "env_updates": [
+            "CCACHE_DIR=/var/cache/distfiles/ccache",
+            "CCACHE_UMASK=002",
+            "CCACHE_CPP2=yes"
+          ]
+        },
+        "stderr": "-Werror originalerror",
+        "exitcode": 1
+      },
+      {
+        "cmd": {
+          "path": "ccache",
+          "args": [
+            "../../usr/bin/clang",
+            "--sysroot=/usr/x86_64-cros-linux-gnu",
+            "-Qunused-arguments",
+            "-Wno-tautological-constant-compare",
+            "-Wno-tautological-unsigned-enum-zero-compare",
+            "-Wno-unknown-warning-option",
+            "-Wno-section",
+            "-static-libgcc",
+            "-Wno-final-dtor-non-final-class",
+            "-Werror=poison-system-directories",
+            "-fexperimental-new-pass-manager",
+            "-Wno-compound-token-split-by-macro",
+            "-fcrash-diagnostics-dir=/tmp/stable/clang_crash_diagnostics",
+            "main.cc",
+            "-Wno-implicit-int-float-conversion",
+            "-Wno-compound-token-split-by-space",
+            "-Wno-string-concatenation",
+            "-mno-movbe",
+            "-B../../bin",
+            "-target",
+            "x86_64-cros-linux-gnu",
+            "-Wno-error",
+            "-Wno-error=poison-system-directories"
+          ],
+          "env_updates": [
+            "CCACHE_DIR=/var/cache/distfiles/ccache",
+            "CCACHE_UMASK=002",
+            "CCACHE_CPP2=yes"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "wd": "/tmp/stable",
+    "env": [
+      "FORCE_DISABLE_WERROR=1"
+    ],
+    "wrapper": {
+      "cmd": {
+        "path": "./x86_64-cros-linux-gnu-clang",
+        "args": [
+          "main.cc"
+        ]
+      },
+      "stderr": "-Werror originalerror",
+      "exitcode": 1
+    },
+    "cmds": [
+      {
+        "cmd": {
+          "path": "ccache",
+          "args": [
+            "../../usr/bin/clang",
+            "--sysroot=/usr/x86_64-cros-linux-gnu",
+            "-Qunused-arguments",
+            "-Wno-tautological-constant-compare",
+            "-Wno-tautological-unsigned-enum-zero-compare",
+            "-Wno-unknown-warning-option",
+            "-Wno-section",
+            "-static-libgcc",
+            "-Wno-final-dtor-non-final-class",
+            "-Werror=poison-system-directories",
+            "-fexperimental-new-pass-manager",
+            "-Wno-compound-token-split-by-macro",
+            "-fcrash-diagnostics-dir=/tmp/stable/clang_crash_diagnostics",
+            "main.cc",
+            "-Wno-implicit-int-float-conversion",
+            "-Wno-compound-token-split-by-space",
+            "-Wno-string-concatenation",
+            "-mno-movbe",
+            "-B../../bin",
+            "-target",
+            "x86_64-cros-linux-gnu"
+          ],
+          "env_updates": [
+            "CCACHE_DIR=/var/cache/distfiles/ccache",
+            "CCACHE_UMASK=002",
+            "CCACHE_CPP2=yes"
+          ]
+        },
+        "stderr": "-Werror originalerror",
+        "exitcode": 1
+      },
+      {
+        "cmd": {
+          "path": "ccache",
+          "args": [
+            "../../usr/bin/clang",
+            "--sysroot=/usr/x86_64-cros-linux-gnu",
+            "-Qunused-arguments",
+            "-Wno-tautological-constant-compare",
+            "-Wno-tautological-unsigned-enum-zero-compare",
+            "-Wno-unknown-warning-option",
+            "-Wno-section",
+            "-static-libgcc",
+            "-Wno-final-dtor-non-final-class",
+            "-Werror=poison-system-directories",
+            "-fexperimental-new-pass-manager",
+            "-Wno-compound-token-split-by-macro",
+            "-fcrash-diagnostics-dir=/tmp/stable/clang_crash_diagnostics",
+            "main.cc",
+            "-Wno-implicit-int-float-conversion",
+            "-Wno-compound-token-split-by-space",
+            "-Wno-string-concatenation",
+            "-mno-movbe",
+            "-B../../bin",
+            "-target",
+            "x86_64-cros-linux-gnu",
+            "-Wno-error",
+            "-Wno-error=poison-system-directories"
+          ],
+          "env_updates": [
+            "CCACHE_DIR=/var/cache/distfiles/ccache",
+            "CCACHE_UMASK=002",
+            "CCACHE_CPP2=yes"
+          ]
+        },
+        "stdout": "somemessage",
+        "stderr": "someerror",
+        "exitcode": 1
+      }
+    ]
+  }
+]

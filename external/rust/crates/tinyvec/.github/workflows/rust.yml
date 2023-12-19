@@ -1,0 +1,39 @@
+name: Rust
+
+on:
+  push: {}
+  pull_request: {}
+
+jobs:
+  build_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        rust:
+        - 1.34.0
+        - stable
+        - beta
+        - nightly
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: ${{ matrix.rust }}
+        default: true
+    - name: Build the crate on minimal version.
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
+    - name: Test on Stable/Beta
+      if: matrix.rust != '1.34.0'
+      uses: actions-rs/cargo@v1
+      with:
+        command: test
+        args: --features=alloc --features=grab_spare_slice --features=rustc_1_40
+    - name: Test on Nightly with All Features
+      if: matrix.rust == 'nightly'
+      uses: actions-rs/cargo@v1
+      with:
+        command: test
+        args: --all-features

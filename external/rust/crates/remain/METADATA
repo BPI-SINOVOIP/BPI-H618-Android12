@@ -1,0 +1,19 @@
+name: "remain"
+description: "Compile-time checks that an enum, struct, or match is written in sorted order."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/remain"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/remain/remain-0.2.2.crate"
+  }
+  version: "0.2.2"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 7
+    day: 10
+  }
+}

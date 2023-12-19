@@ -1,0 +1,18 @@
+This sample program needs to be built as follows (when built with Go
+prior to 1.15):
+
+   CGO_LDFLAGS_ALLOW="-Wl,-?-wrap[=,][^-.@][^,]*" go build web.go
+
+go1.15+ does not require the CGO_LDFLAGS_ALLOW variable and can build
+this code with
+
+   go build web.go
+
+A more complete walk through of what this code does is provided here:
+
+   https://sites.google.com/site/fullycapable/building-go-programs-that-manipulate-capabilities
+
+Go compilers prior to go1.11.13 are not expected to work. Report more
+recent issues to:
+
+   https://bugzilla.kernel.org/buglist.cgi?component=libcap&list_id=1065141&product=Tools&resolution=---

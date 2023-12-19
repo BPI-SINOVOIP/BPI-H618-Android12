@@ -1,0 +1,13 @@
+name: "Ukey2"
+description:
+    "UKEY2 is a Diffie-Hellman based authenticated key exchange protocol."
+
+third_party {
+  url {
+    type: ARCHIVE
+    value: "https://github.com/google/ukey2.git"
+  }
+  version: "0275885d8e6038c39b8a8ca55e75d1d4d1727f47"
+  license_type: NOTICE
+  last_upgrade_date { year: 2021 month: 2 day: 8 }
+}

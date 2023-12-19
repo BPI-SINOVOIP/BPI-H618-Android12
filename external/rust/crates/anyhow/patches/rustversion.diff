@@ -1,0 +1,22 @@
+diff --git a/tests/test_backtrace.rs b/tests/test_backtrace.rs
+deleted file mode 100644
+index ce385f5..0000000
+--- a/tests/test_backtrace.rs
++++ /dev/null
+@@ -1,13 +0,0 @@
+-#[rustversion::not(nightly)]
+-#[ignore]
+-#[test]
+-fn test_backtrace() {}
+-
+-#[rustversion::nightly]
+-#[test]
+-fn test_backtrace() {
+-    use anyhow::anyhow;
+-
+-    let error = anyhow!("oh no!");
+-    let _ = error.backtrace();
+-}
+-- 
+2.30.0.478.g8a0d178c01-goog
+

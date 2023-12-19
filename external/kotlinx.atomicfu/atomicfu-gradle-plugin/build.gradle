@@ -1,0 +1,65 @@
+/*
+ * Copyright 2017-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+ */
+
+apply plugin: 'kotlin'
+apply plugin: 'java-gradle-plugin'
+
+apply from: rootProject.file('gradle/compile-options.gradle')
+
+ext.configureKotlin(org.jetbrains.kotlin.gradle.tasks.KotlinCompile)
+
+dependencies {
+    compile gradleApi()
+    compile project(":atomicfu-transformer")
+    compile 'org.jetbrains.kotlin:kotlin-stdlib'
+
+    compileOnly "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+    testCompile gradleTestKit()
+    testCompile 'org.jetbrains.kotlin:kotlin-test'
+    testCompile 'org.jetbrains.kotlin:kotlin-test-junit'
+    testCompile 'junit:junit:4.12'
+}
+
+configurations {
+    testPluginClasspath
+}
+
+dependencies {
+    testPluginClasspath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+}
+
+evaluationDependsOn(':atomicfu')
+def atomicfu = project(':atomicfu')
+def atomicfuJvmJarTask = atomicfu.tasks.getByName(atomicfu.kotlin.targets.jvm.artifactsTaskName)
+
+def jsLegacy = atomicfu.kotlin.targets.hasProperty("jsLegacy")
+        ? atomicfu.kotlin.targets.jsLegacy
+        : atomicfu.kotlin.targets.js
+def atomicfuJsJarTask = atomicfu.tasks.getByName(jsLegacy.artifactsTaskName)
+
+def atomicfuMetadataJarTask = atomicfu.tasks.getByName(atomicfu.kotlin.targets.metadata.artifactsTaskName)
+
+// Write the plugin's classpath to a file to share with the tests
+task createClasspathManifest {
+    dependsOn(atomicfuJvmJarTask)
+    dependsOn(atomicfuJsJarTask)
+    dependsOn(atomicfuMetadataJarTask)
+
+    def outputDir = file("$buildDir/$name")
+    outputs.dir outputDir
+
+    doLast {
+        outputDir.mkdirs()
+        file("$outputDir/plugin-classpath.txt").text = (sourceSets.main.runtimeClasspath + configurations.testPluginClasspath).join("\n")
+        file("$outputDir/atomicfu-jvm.txt").text = atomicfuJvmJarTask.archivePath
+        file("$outputDir/atomicfu-js.txt").text = atomicfuJsJarTask.archivePath
+        file("$outputDir/atomicfu-metadata.txt").text = atomicfuMetadataJarTask.archivePath
+    }
+}
+
+// Add the classpath file to the test runtime classpath
+dependencies {
+    testRuntime files(createClasspathManifest)
+}

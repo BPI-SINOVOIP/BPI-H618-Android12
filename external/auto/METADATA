@@ -1,0 +1,17 @@
+name: "auto"
+description:
+    "A collection of source code generators for Java."
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/google/auto"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/google/auto"
+  }
+  version: "auto-value-1.7.4"
+  last_upgrade_date { year: 2020 month: 11 day: 18 }
+  license_type: NOTICE
+}

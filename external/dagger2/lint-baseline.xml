@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="5" by="lint 4.1.0" client="cli" variant="all" version="4.1.0">
+
+    <issue
+        id="NewApi"
+        message="Multi-catch with these reflection exceptions requires API level 19 (current min is 14) because they get compiled to the common but new super type `ReflectiveOperationException`. As a workaround either create individual catch statements, or catch `Exception`."
+        errorLine1="    } catch (ClassNotFoundException"
+        errorLine2="             ^">
+        <location
+            file="external/dagger2/java/dagger/hilt/android/internal/testing/TestApplicationComponentManager.java"
+            line="85"
+            column="14"/>
+    </issue>
+
+</issues>

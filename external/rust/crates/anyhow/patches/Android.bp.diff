@@ -1,0 +1,28 @@
+diff --git a/Android.bp b/Android.bp
+index 1099708..a2e3476 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -54,11 +54,8 @@ rust_defaults {
+     ],
+     rustlibs: [
+         "libfutures",
+-        "libsyn",
+         "libthiserror",
+-        "libtrybuild",
+     ],
+-    proc_macros: ["librustversion"],
+ }
+ 
+ rust_test_host {
+@@ -91,11 +88,8 @@ rust_defaults {
+     rustlibs: [
+         "libanyhow",
+         "libfutures",
+-        "libsyn",
+         "libthiserror",
+-        "libtrybuild",
+     ],
+-    proc_macros: ["librustversion"],
+ }
+ 
+ rust_test_host {

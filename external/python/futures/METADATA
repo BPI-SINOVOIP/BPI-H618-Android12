@@ -1,0 +1,17 @@
+name: "futures"
+description:
+    "Python PyPI futures package"
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://pypi.python.org/pypi/futures/3.2.0"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/agronholm/pythonfutures"
+  }
+  version: "3.2.0"
+  license_type: NOTICE
+  last_upgrade_date { year: 2018 month: 1 day: 4 }
+}

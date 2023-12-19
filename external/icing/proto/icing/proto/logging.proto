@@ -1,0 +1,213 @@
+// Copyright 2019 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+
+package icing.lib;
+
+import "icing/proto/scoring.proto";
+
+option java_package = "com.google.android.icing.proto";
+option java_multiple_files = true;
+option objc_class_prefix = "ICNG";
+
+// Stats of the top-level function IcingSearchEngine::Initialize().
+// Next tag: 11
+message InitializeStatsProto {
+  // Overall time used for the function call.
+  optional int32 latency_ms = 1;
+
+  // The cause of IcingSearchEngine recovering from a previous bad state during
+  // initialization.
+  enum RecoveryCause {
+    // No recovery happened.
+    NONE = 0;
+
+    // Data loss in ground truth.
+    DATA_LOSS = 1;
+
+    // Data in index is inconsistent with ground truth.
+    INCONSISTENT_WITH_GROUND_TRUTH = 2;
+
+    // Changes were made to the schema, but possibly not fully applied to the
+    // document store and the index - requiring a recovery.
+    SCHEMA_CHANGES_OUT_OF_SYNC = 3;
+
+    // Random I/O errors.
+    IO_ERROR = 4;
+  }
+
+  // Possible recovery causes for document store:
+  // - DATA_LOSS
+  // - SCHEMA_CHANGES_OUT_OF_SYNC
+  // - IO_ERROR
+  optional RecoveryCause document_store_recovery_cause = 2;
+
+  // Possible recovery causes for index:
+  // - INCONSISTENT_WITH_GROUND_TRUTH
+  // - SCHEMA_CHANGES_OUT_OF_SYNC
+  // - IO_ERROR
+  optional RecoveryCause index_restoration_cause = 3;
+
+  // Possible recovery causes for index:
+  // - IO_ERROR
+  optional RecoveryCause schema_store_recovery_cause = 4;
+
+  // Time used to recover the document store.
+  optional int32 document_store_recovery_latency_ms = 5;
+
+  // Time used to restore the index.
+  optional int32 index_restoration_latency_ms = 6;
+
+  // Time used to restore the index.
+  optional int32 schema_store_recovery_latency_ms = 7;
+
+  // Status regarding how much data is lost during the initialization.
+  enum DocumentStoreDataStatus {
+    // Document store is successfully initialized or fully recovered.
+    NO_DATA_LOSS = 0;
+
+    // Ground truth data is partially lost.
+    PARTIAL_LOSS = 1;
+
+    // Ground truth data is completely lost.
+    COMPLETE_LOSS = 2;
+  }
+  optional DocumentStoreDataStatus document_store_data_status = 8;
+
+  // Number of documents currently in document store. Those may
+  // include alive, deleted, and expired documents.
+  optional int32 num_documents = 9;
+
+  // Number of schema types currently in schema store.
+  optional int32 num_schema_types = 10;
+}
+
+// Stats of the top-level function IcingSearchEngine::Put().
+// Next tag: 7
+message PutDocumentStatsProto {
+  // Overall time used for the function call.
+  optional int32 latency_ms = 1;
+
+  // Time used to store the document.
+  optional int32 document_store_latency_ms = 2;
+
+  // Time used to index the document. It does not include the time to merge
+  // indices.
+  optional int32 index_latency_ms = 3;
+
+  // Time used to merge the indices.
+  optional int32 index_merge_latency_ms = 4;
+
+  // Document size in bytes.
+  optional int32 document_size = 5;
+
+  message TokenizationStats {
+    // Whether the number of tokens to be indexed exceeded the max number of
+    // tokens per document.
+    optional bool exceeded_max_token_num = 2;
+
+    // Number of tokens added to the index.
+    optional int32 num_tokens_indexed = 1;
+  }
+  optional TokenizationStats tokenization_stats = 6;
+}
+
+// Stats of the top-level function IcingSearchEngine::Search() and
+// IcingSearchEngine::GetNextPage().
+// Next tag: 17
+message QueryStatsProto {
+  // The UTF-8 length of the query string
+  optional int32 query_length = 16;
+
+  // Number of terms in the query string.
+  optional int32 num_terms = 1;
+
+  // Number of namespaces filtered.
+  optional int32 num_namespaces_filtered = 2;
+
+  // Number of schema types filtered.
+  optional int32 num_schema_types_filtered = 3;
+
+  // Strategy of scoring and ranking.
+  optional ScoringSpecProto.RankingStrategy.Code ranking_strategy = 4;
+
+  // Whether the function call is querying the first page. If it’s
+  // not, Icing will fetch the results from cache so that some steps
+  // may be skipped.
+  optional bool is_first_page = 5;
+
+  // The requested number of results in one page.
+  optional int32 requested_page_size = 6;
+
+  // The actual number of results returned in the current page.
+  optional int32 num_results_returned_current_page = 7;
+
+  // Number of documents scored.
+  optional int32 num_documents_scored = 8;
+
+  // How many of the results in the page returned were snippeted.
+  optional int32 num_results_with_snippets = 15;
+
+  // Overall time used for the function call.
+  optional int32 latency_ms = 10;
+
+  // Time used to parse the query, including 2 parts: tokenizing and
+  // transforming tokens into an iterator tree.
+  optional int32 parse_query_latency_ms = 11;
+
+  // Time used to score the raw results.
+  optional int32 scoring_latency_ms = 12;
+
+  // Time used to rank the scored results.
+  optional int32 ranking_latency_ms = 13;
+
+  // Time used to fetch the document protos. Note that it includes the
+  // time to snippet if ‘has_snippets’ is true.
+  optional int32 document_retrieval_latency_ms = 14;
+
+  reserved 9;
+}
+
+// Stats of the top-level functions IcingSearchEngine::Delete,
+// IcingSearchEngine::DeleteByNamespace, IcingSearchEngine::DeleteBySchemaType,
+// IcingSearchEngine::DeleteByQuery.
+// Next tag: 4
+message DeleteStatsProto {
+  // Overall time used for the function call.
+  optional int32 latency_ms = 1;
+
+  message DeleteType {
+    enum Code {
+      // Default. Should never be used.
+      UNKNOWN = 0;
+
+      // Delete one document.
+      SINGLE = 1;
+
+      // Delete by query.
+      QUERY = 2;
+
+      // Delete by namespace.
+      NAMESPACE = 3;
+
+      // Delete by schema type.
+      SCHEMA_TYPE = 4;
+    }
+  }
+  optional DeleteType.Code delete_type = 2;
+
+  // Number of documents deleted by this call.
+  optional int32 num_documents_deleted = 3;
+}

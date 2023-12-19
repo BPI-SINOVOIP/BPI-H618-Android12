@@ -1,0 +1,19 @@
+name: "shlex"
+description: "Split a string into shell words, like Python\'s shlex."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/shlex"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/shlex/shlex-1.0.0.crate"
+  }
+  version: "1.0.0"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 9
+  }
+}

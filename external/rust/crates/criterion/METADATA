@@ -1,0 +1,19 @@
+name: "criterion"
+description: "Statistics-driven micro-benchmarking library"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/criterion"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/criterion/criterion-0.3.4.crate"
+  }
+  version: "0.3.4"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 2
+  }
+}

@@ -1,0 +1,66 @@
+[package]
+name = "devices"
+version = "0.1.0"
+authors = ["The Chromium OS Authors"]
+edition = "2018"
+
+[features]
+audio = []
+direct = []
+gpu = ["gpu_display","rutabaga_gfx"]
+tpm = ["protos/trunks", "tpm2"]
+video-decoder = []
+video-encoder = []
+minigbm = ["rutabaga_gfx/minigbm"]
+x = ["gpu_display/x"]
+virgl_renderer = ["gpu", "rutabaga_gfx/virgl_renderer"]
+gfxstream = ["gpu", "rutabaga_gfx/gfxstream"]
+
+[dependencies]
+acpi_tables = {path = "../acpi_tables" }
+audio_streams = { path = "../../adhd/audio_streams" } # ignored by ebuild
+base = { path = "../base" }
+bit_field = { path = "../bit_field" }
+cros_async = { path = "../cros_async" }
+data_model = { path = "../data_model" }
+disk = { path = "../disk" }
+enumn = { path = "../enumn" }
+fuse = {path = "../fuse" }
+gpu_display = { path = "../gpu_display", optional = true }
+rutabaga_gfx = { path = "../rutabaga_gfx", optional = true }
+hypervisor = { path = "../hypervisor" }
+kvm_sys = { path = "../kvm_sys" }
+libc = "*"
+libchromeos = { path = "../../libchromeos-rs" } # ignored by ebuild
+libcras = { path = "../../adhd/cras/client/libcras" } # ignored by ebuild
+linux_input_sys = { path = "../linux_input_sys" }
+minijail = { path = "../../minijail/rust/minijail" } # ignored by ebuild
+net_sys = { path = "../net_sys" }
+net_util = { path = "../net_util" }
+p9 = { path = "../../vm_tools/p9" }
+power_monitor = { path = "../power_monitor" }
+protos = { path = "../protos", optional = true }
+rand_ish = { path = "../rand_ish" }
+remain = "*"
+resources = { path = "../resources" }
+serde = { version = "1", features = [ "derive" ] }
+smallvec = "1.6.1"
+sync = { path = "../sync" }
+sys_util = { path = "../sys_util" }
+thiserror = "1.0.20"
+tpm2 = { path = "../tpm2", optional = true }
+usb_util = { path = "../usb_util" }
+vfio_sys = { path = "../vfio_sys" }
+vhost = { path = "../vhost" }
+vmm_vhost = { version = "*", features = ["vhost-user-master"] }
+virtio_sys = { path = "../virtio_sys" }
+vm_control = { path = "../vm_control" }
+vm_memory = { path = "../vm_memory" }
+
+[dependencies.futures]
+version = "*"
+features = ["std"]
+default-features = false
+
+[dev-dependencies]
+tempfile = { path = "../tempfile" }

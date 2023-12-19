@@ -1,0 +1,19 @@
+name: "extern/abseil-cpp"
+description:
+    "An open-source collection of C++ code designed to augment the C++ standard "
+    "library"
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://abseil.io"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/abseil/abseil-cpp.git"
+  }
+  license_type: NOTICE
+  version: "20200923.2"
+  last_upgrade_date { year: 2020 month: 10 day: 28 }
+}
+

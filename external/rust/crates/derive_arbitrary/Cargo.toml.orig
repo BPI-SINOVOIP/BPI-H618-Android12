@@ -1,0 +1,26 @@
+[package]
+name = "derive_arbitrary"
+version = "1.0.0" # Make sure it matches the version of the arbitrary crate itself.
+authors = [
+    "The Rust-Fuzz Project Developers",
+    "Nick Fitzgerald <fitzgen@gmail.com>",
+    "Manish Goregaokar <manishsmail@gmail.com>",
+    "Andre Bogus <bogusandre@gmail.com>",
+    "Corey Farwell <coreyf@rwell.org>",
+]
+categories = ["development-tools::testing"]
+edition = "2018"
+keywords = ["arbitrary", "testing", "derive", "macro"]
+readme = "README.md"
+description = "Derives arbitrary traits"
+license = "MIT/Apache-2.0"
+repository = "https://github.com/rust-fuzz/arbitrary"
+documentation = "https://docs.rs/arbitrary/"
+
+[dependencies]
+proc-macro2 = "1.0"
+quote = "1.0"
+syn = { version = "1.0", features = ['derive'] }
+
+[lib]
+proc_macro = true

@@ -1,0 +1,78 @@
+--- Android.bp	2021-04-14 17:32:44.882379059 +0000
++++ Android.bp	2021-04-14 17:33:25.765957305 +0000
+@@ -40,7 +40,10 @@
+     name: "liblibsqlite3_sys",
+     host_supported: true,
+     crate_name: "libsqlite3_sys",
+-    srcs: ["src/lib.rs"],
++    srcs: [
++        "src/lib.rs",
++        ":libsqlite3_bindgen",
++    ],
+     edition: "2018",
+     features: [
+         "default",
+@@ -48,13 +51,14 @@
+         "pkg-config",
+         "vcpkg",
+     ],
+-    shared_libs: ["libsqlite3"],
++    shared_libs: [
++        "libsqlite",
++    ],
+ }
+ 
+ rust_defaults {
+     name: "libsqlite3-sys_defaults",
+     crate_name: "libsqlite3_sys",
+-    srcs: ["src/lib.rs"],
+     test_suites: ["general-tests"],
+     auto_gen_config: true,
+     edition: "2018",
+@@ -64,11 +68,17 @@
+         "pkg-config",
+         "vcpkg",
+     ],
+-    shared_libs: ["libsqlite3"],
++    shared_libs: [
++        "libsqlite",
++    ],
+ }
+ 
+ rust_test_host {
+     name: "libsqlite3-sys_host_test_src_lib",
++    srcs: [
++        "src/lib.rs",
++        ":libsqlite3_bindgen",
++    ],
+     defaults: ["libsqlite3-sys_defaults"],
+     test_options: {
+         unit_test: true,
+@@ -77,13 +87,23 @@
+ 
+ rust_test {
+     name: "libsqlite3-sys_device_test_src_lib",
++    srcs: [
++        "src/lib.rs",
++        ":libsqlite3_bindgen",
++    ],
+     defaults: ["libsqlite3-sys_defaults"],
+ }
+ 
+ // dependent_library ["feature_list"]
+ //   pkg-config-0.3.19
+ 
+-Errors in cargo.out:
+-error: linking with `cc` failed: exit code: 1
+-error: aborting due to previous error
+-error: could not compile `libsqlite3-sys`
++rust_bindgen {
++    name: "libsqlite3_bindgen",
++    host_supported: true,
++    crate_name: "sqlite3_bindgen",
++    custom_bindgen: "sqlite3_bindgen_build",
++    wrapper_src: "wrapper.h",
++    source_stem: "bindgen",
++    cflags: ["-I external/sqlite/dist"],
++    defaults: ["sqlite-defaults"],
++}

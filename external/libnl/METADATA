@@ -1,0 +1,19 @@
+name: "libnl"
+description: "Netlink Library Suite"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/thom311/libnl"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/thom311/libnl.git"
+  }
+  version: "libnl3_5_0"
+  license_type: RESTRICTED
+  last_upgrade_date {
+    year: 2020
+    month: 3
+    day: 10
+  }
+}

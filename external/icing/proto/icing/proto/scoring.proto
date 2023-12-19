@@ -1,0 +1,86 @@
+// Copyright 2019 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+
+package icing.lib;
+
+option java_package = "com.google.android.icing.proto";
+option java_multiple_files = true;
+option objc_class_prefix = "ICNG";
+
+// Encapsulates the configurations on how Icing should score and rank the search
+// results.
+// TODO(b/170347684): Change all timestamps to seconds.
+// Next tag: 3
+message ScoringSpecProto {
+  // OPTIONAL: Indicates how the search results will be ranked.
+  message RankingStrategy {
+    enum Code {
+      // No ranking strategy specified, documents may be returned in an
+      // arbitrary order.
+      NONE = 0;
+
+      // Ranked by user-provided document scores.
+      DOCUMENT_SCORE = 1;
+
+      // Ranked by document creation timestamps.
+      CREATION_TIMESTAMP = 2;
+
+      // The following ranking strategies are based on usage reporting. Please
+      // see usage.proto for more information. If one of the usage ranking
+      // strategy is used but none of result documents have reported usage, the
+      // documents will be returned in the default reverse insertion order.
+
+      // Ranked by count of reports with usage type 1.
+      USAGE_TYPE1_COUNT = 3;
+
+      // Ranked by count of reports with usage type 2.
+      USAGE_TYPE2_COUNT = 4;
+
+      // Ranked by count of reports with usage type 3.
+      USAGE_TYPE3_COUNT = 5;
+
+      // Ranked by last used timestamp with usage type 1. The timestamps are
+      // compared in seconds.
+      USAGE_TYPE1_LAST_USED_TIMESTAMP = 6;
+
+      // Ranked by last used timestamp with usage type 2. The timestamps are
+      // compared in seconds.
+      USAGE_TYPE2_LAST_USED_TIMESTAMP = 7;
+
+      // Ranked by last used timestamp with usage type 3. The timestamps are
+      // compared in seconds.
+      USAGE_TYPE3_LAST_USED_TIMESTAMP = 8;
+
+      // Ranked by relevance score, currently computed as BM25F score.
+      RELEVANCE_SCORE = 9;
+    }
+  }
+  optional RankingStrategy.Code rank_by = 1;
+
+  // OPTIONAL: Indicates the order of returned search results, the default is
+  // DESC, meaning that results with higher scores come first. This order field
+  // will be ignored if 'rank_by' is NONE.
+  message Order {
+    enum Code {
+      // Search results will be returned in a descending order.
+      DESC = 0;
+
+      // Search results will be returned in a ascending order.
+      ASC = 1;
+    }
+  }
+  optional Order.Code order_by = 2;
+}

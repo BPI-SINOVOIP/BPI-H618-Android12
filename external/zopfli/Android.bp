@@ -1,0 +1,88 @@
+package {
+    default_applicable_licenses: ["external_zopfli_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'filegroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+//
+// large-scale-change included anything that looked like it might be a license
+// text as a license_text. e.g. LICENSE, NOTICE, COPYING etc.
+//
+// Please consider removing redundant or irrelevant files from 'license_text:'.
+// http://go/android-license-faq
+license {
+    name: "external_zopfli_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-Zlib",
+    ],
+    license_text: [
+        "COPYING",
+        "NOTICE",
+    ],
+}
+
+cc_library {
+    name: "libzopfli",
+    host_supported: true,
+
+    cflags: [
+        "-O2",
+        "-Wno-unused-parameter",
+        "-Werror",
+    ],
+    srcs: [
+        "src/zopfli/blocksplitter.c",
+        "src/zopfli/cache.c",
+        "src/zopfli/deflate.c",
+        "src/zopfli/gzip_container.c",
+        "src/zopfli/hash.c",
+        "src/zopfli/katajainen.c",
+        "src/zopfli/lz77.c",
+        "src/zopfli/squeeze.c",
+        "src/zopfli/tree.c",
+        "src/zopfli/util.c",
+        "src/zopfli/zlib_container.c",
+        "src/zopfli/zopfli_lib.c",
+    ],
+    export_include_dirs: ["src"],
+
+    target: {
+        windows: {
+            enabled: true,
+        },
+    },
+}
+
+cc_binary_host {
+    name: "zopflipng",
+
+    cflags: [
+        "-O2",
+        "-Wno-unused-parameter",
+        "-Werror",
+    ],
+    srcs: [
+        "src/zopflipng/lodepng/lodepng.cpp",
+        "src/zopflipng/lodepng/lodepng_util.cpp",
+        "src/zopflipng/zopflipng_lib.cc",
+        "src/zopflipng/zopflipng_bin.cc",
+    ],
+
+    static_libs: [
+        "libzopfli",
+    ],
+
+}

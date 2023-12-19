@@ -1,0 +1,3 @@
+local_modifications:
+  "Cherry-picked https://github.com/qwandor/vsock-rs/commit/4f73c26fc9a95e36e3ac4d304a02b6a424d7bcfd to fix Android build. This should be included in the next upstream release."
+  See patches/src.lib.diff

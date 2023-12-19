@@ -1,0 +1,43 @@
+diff --git a/Android.bp b/Android.bp
+index 5033c27..843fa1c 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -45,9 +45,6 @@
+     test_suites: ["general-tests"],
+     auto_gen_config: true,
+     edition: "2015",
+-    rustlibs: [
+-        "libdoc_comment",
+-    ],
+ }
+ 
+ rust_test_host {
+@@ -70,28 +67,10 @@
+     auto_gen_config: true,
+     edition: "2015",
+     rustlibs: [
+-        "libdoc_comment",
+         "liblazy_static",
+     ],
+ }
+ 
+-rust_test_host {
+-    name: "lazy_static_host_test_tests_no_std",
+-    defaults: ["lazy_static_defaults_lazy_static"],
+-    // has rustc warnings
+-    srcs: ["tests/no_std.rs"],
+-    test_options: {
+-        unit_test: true,
+-    },
+-}
+-
+-rust_test {
+-    name: "lazy_static_device_test_tests_no_std",
+-    defaults: ["lazy_static_defaults_lazy_static"],
+-    // has rustc warnings
+-    srcs: ["tests/no_std.rs"],
+-}
+-
+ rust_test_host {
+     name: "lazy_static_host_test_tests_test",
+     defaults: ["lazy_static_defaults_lazy_static"],

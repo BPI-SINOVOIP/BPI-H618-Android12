@@ -1,0 +1,19 @@
+name: "serde"
+description: "A generic serialization/deserialization framework"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/serde"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/serde/serde-1.0.125.crate"
+  }
+  version: "1.0.125"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 13
+  }
+}

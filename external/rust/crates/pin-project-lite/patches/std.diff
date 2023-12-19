@@ -1,0 +1,14 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index 304b0da..4c70e26 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -81,6 +81,9 @@
+ // mem::take and #[non_exhaustive] requires Rust 1.40
+ #![allow(clippy::mem_replace_with_default, clippy::manual_non_exhaustive)]
+ 
++// ANDROID: Use std to allow building as a dylib.
++extern crate std;
++
+ /// A macro that creates a projection type covering all the fields of struct.
+ ///
+ /// This macro creates a projection type according to the following rules:

@@ -1,0 +1,20 @@
+[package]
+name = "rustversion"
+version = "1.0.4"
+authors = ["David Tolnay <dtolnay@gmail.com>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+description = "Conditional compilation according to rustc compiler version"
+repository = "https://github.com/dtolnay/rustversion"
+documentation = "https://docs.rs/rustversion"
+readme = "README.md"
+build = "build/build.rs"
+
+[lib]
+proc-macro = true
+
+[dev-dependencies]
+trybuild = "1.0.35"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]

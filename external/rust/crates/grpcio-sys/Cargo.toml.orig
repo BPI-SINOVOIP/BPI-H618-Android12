@@ -1,0 +1,73 @@
+[package]
+name = "grpcio-sys"
+version = "0.8.1"
+authors = ["The TiKV Project Developers"]
+license = "Apache-2.0"
+keywords = ["grpc", "bindings"]
+repository = "https://github.com/tikv/grpc-rs"
+homepage = "https://github.com/tikv/grpc-rs"
+documentation = "https://docs.rs/grpcio-sys"
+description = "FFI bindings to gRPC c core library"
+categories = ["external-ffi-bindings", "network-programming"]
+build = "build.rs"
+edition = "2018"
+exclude = [
+    "grpc/doc/*",
+    "grpc/etc/*",
+    "grpc/examples/*",
+    "grpc/Makefile",
+    "grpc/templates/*",
+    "grpc/src/android/*",
+    "grpc/src/csharp/*",
+    "grpc/src/node/*",
+    "grpc/src/objective-c/*",
+    "grpc/src/php/*",
+    "grpc/src/python/*",
+    "grpc/src/ruby/*",
+    "grpc/test/core/end2end/*",
+    "grpc/third_party/zlib/*",
+    "grpc/third_party/abseil-cpp/absl/time/internal/cctz/testdata",
+    "grpc/third_party/benchmark/*",
+    "grpc/third_party/bloaty/*",
+    "grpc/third_party/boringssl-with-bazel/*",
+    "grpc/third_party/libuv/*",
+    "grpc/third_party/gflags/*",
+    "grpc/third_party/googletest/*",
+    "grpc/third_party/objective_c/*",
+    "grpc/third_party/protobuf/*",
+    "grpc/third_party/toolchans/*",
+    "grpc/third_party/envoy-api/*",
+    "grpc/third_party/googleapis/*",
+    "grpc/third_party/protoc-gen-validate/*",
+    "grpc/third_party/udpa/*",
+    "grpc/tools/run_tests/generated/*",
+    "grpc/test/core/",
+    "!grpc/test/core/security/*.cc",
+    "!grpc/test/core/util/cmdline.cc",
+    "grpc/test/cpp",
+]
+
+[dependencies]
+libc = "0.2"
+openssl-sys = { version = "0.9", optional = true, features = ["vendored"] }
+libz-sys = { version = "1.0.25", features = ["static"] }
+
+[features]
+default = ["use-bindgen"]
+secure = []
+openssl = ["secure"]
+openssl-vendored = ["openssl", "openssl-sys"]
+no-omit-frame-pointer = []
+# If this feature is disabled, bindgen will not be used and the previously generated bindings will
+# be compiled instead. This only work for the supported targets and will make compilation fails for
+# the other ones.
+use-bindgen = ["bindgen"]
+
+[build-dependencies]
+cc = "1.0"
+cmake = "0.1"
+pkg-config = "0.3"
+walkdir = "2.2.9"
+# Because of rust-lang/cargo#5237, bindgen should not be upgraded util a minor or major release.
+bindgen = { version = "0.57.0", default-features = false, optional = true, features = ["runtime"] }
+boringssl-src = "0.2.0"

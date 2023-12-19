@@ -1,0 +1,19 @@
+name: "async-stream"
+description: "Asynchronous streams using async & await notation"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/async-stream"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/async-stream/async-stream-0.3.0.crate"
+  }
+  version: "0.3.0"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 8
+  }
+}

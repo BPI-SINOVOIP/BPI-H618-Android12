@@ -1,0 +1,12 @@
+diff --git a/Android.bp b/Android.bp
+index 49626bd..5c40f99 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -23,7 +23,6 @@ rust_library {
+         "liblibc",
+         "librand_chacha",
+         "librand_core",
+-        "librand_hc",
+     ],
+ }
+ 

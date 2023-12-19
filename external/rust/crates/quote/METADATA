@@ -1,0 +1,19 @@
+name: "quote"
+description: "Quasi-quoting macro quote!(...)"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/quote"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/quote/quote-1.0.9.crate"
+  }
+  version: "1.0.9"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 12
+  }
+}

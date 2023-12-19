@@ -1,0 +1,19 @@
+name: "log"
+description: "A lightweight logging facade for Rust"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/log"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/log/log-0.4.14.crate"
+  }
+  version: "0.4.14"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 2
+  }
+}

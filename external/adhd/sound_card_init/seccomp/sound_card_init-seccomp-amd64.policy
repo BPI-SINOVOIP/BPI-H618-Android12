@@ -1,0 +1,82 @@
+# Copyright 2020 The Chromium OS Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+access: 1
+arch_prctl: 1
+bind: 1
+brk: 1
+clone: 1
+close: 1
+connect: 1
+dup2: 1
+dup: 1
+epoll_create1: 1
+epoll_ctl: 1
+epoll_wait: 1
+execve: 1
+exit: 1
+exit_group: 1
+fcntl: 1
+fstat: 1
+futex: 1
+getcwd: 1
+getdents: 1
+getdents64: 1
+getegid: 1
+geteuid: 1
+getgid: 1
+getgroups: 1
+getpgid: 1
+getpgrp: 1
+getpid: 1
+getppid: 1
+getpriority: 1
+getrandom: 1
+getresgid: 1
+getresuid: 1
+getsid: 1
+getsockname: 1
+getuid: 1
+ioctl: arg1 == 0x5401 || arg1 == 0xc4c85512 || arg1 == 0x540f || arg1 == 0x80045500 || arg1 == 0xc4c85513 || arg1 == 0x81785501 || arg1 == 0x5413 || arg1 == 0xc1105511 || arg1 == 0x81785501 || arg1 == 0x80045500 || arg1 == 0xc008551a || arg1 == 0xc4c85512 || arg1 == 0xc008551b || arg1 == 0xc1105511
+lseek: 1
+madvise: 1
+mmap: arg2 in ~PROT_EXEC || arg2 in ~PROT_WRITE
+mprotect: arg2 in ~PROT_EXEC || arg2 in ~PROT_WRITE
+munmap: 1
+nanosleep: 1
+clock_nanosleep: 1
+openat: 1
+pipe2: 1
+ppoll: 1
+prctl: arg0 == 0x3 || arg0 == 0x4
+prlimit64: 1
+read: 1
+recvfrom: 1
+recvmsg: 1
+restart_syscall: 1
+rt_sigaction: 1
+rt_sigprocmask: 1
+rt_sigreturn: 1
+sched_getaffinity: 1
+sched_yield: 1
+sendmsg: 1
+sendto: 1
+set_robust_list: 1
+set_tid_address: 1
+setgid: 1
+setgroups: 1
+setpriority: 1
+setresgid: 1
+setresuid: 1
+setuid: 1
+sigaltstack: 1
+socket: arg0 == 0x10 || arg0 == 0x1
+socketpair: 1
+stat: 1
+statx: 1
+umask: 1
+uname: 1
+unlink: 1
+wait4: 1
+write: 1

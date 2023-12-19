@@ -1,0 +1,19 @@
+name: "tinyvec_macros"
+description: "Some macros for tiny containers"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/tinyvec_macros"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/tinyvec_macros/tinyvec_macros-0.1.0.crate"
+  }
+  version: "0.1.0"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 15
+  }
+}

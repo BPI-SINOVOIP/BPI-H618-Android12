@@ -1,0 +1,19 @@
+name: "ring"
+description: "Safe, fast, small crypto using Rust."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/ring"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/ring/ring-0.16.19.crate"
+  }
+  version: "0.16.19"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 7
+  }
+}

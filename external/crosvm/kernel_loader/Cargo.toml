@@ -1,0 +1,10 @@
+[package]
+name = "kernel_loader"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+libc = "*"
+base = { path = "../base" }
+tempfile = "*"
+vm_memory = { path = "../vm_memory" }

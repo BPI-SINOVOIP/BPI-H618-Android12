@@ -1,0 +1,19 @@
+name: "bitflags"
+description: "A macro to generate structures which behave like bitflags."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/bitflags"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/bitflags/bitflags-1.2.1.crate"
+  }
+  version: "1.2.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2019
+    month: 12
+    day: 12
+  }
+}

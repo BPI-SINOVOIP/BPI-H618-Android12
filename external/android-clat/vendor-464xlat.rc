@@ -1,0 +1,15 @@
+# Certain vendors disable 464xlat by setting a vendor property.
+# The connectivity code in the Tethering APEX needs to disable
+# 464xlat when the property is set, but it is only allowed to
+# access non-vendor system properties. So copy the property to
+# a property available to system APIs in android.sysprop.
+#
+# Arguably this script should live close to the code that uses
+# it, but scrips in APEXes are not allowed to use "on property".
+# So put it here close to clatd, which is at least related to
+# 464xlat.
+on property:persist.vendor.net.doxlat=true
+    setprop net.464xlat.cellular.enabled true
+
+on property:persist.vendor.net.doxlat=false
+    setprop net.464xlat.cellular.enabled false

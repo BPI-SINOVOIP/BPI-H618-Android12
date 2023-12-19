@@ -1,0 +1,17 @@
+name: "openssh"
+description:
+    "Secure Shell (SSH) protocol client, server and utilities"
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://www.openssh.com/"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/openssh/openssh-portable"
+  }
+  version: "8.3p1"
+  last_upgrade_date { year: 2020 month: 8 day: 20 }
+  license_type: NOTICE
+}

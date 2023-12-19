@@ -1,0 +1,14 @@
+name: "p9"
+description:
+    "Server implementation of the [9p] file system protocol. Taken from "
+    "chromium/platform2, vm_tools/p9."
+
+third_party {
+  url {
+    type: GIT
+    value: "https://chromium.googlesource.com/chromiumos/platform2"
+  }
+  version: "2c3e8252c684673e83278a0124a998e997dbbcc2"
+  last_upgrade_date { year: 2020 month: 12 day: 3 }
+  license_type: NOTICE
+}

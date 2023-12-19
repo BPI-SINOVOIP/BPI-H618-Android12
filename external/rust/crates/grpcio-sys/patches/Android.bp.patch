@@ -1,0 +1,116 @@
+diff --git a/Android.bp b/Android.bp
+index 45707bc..d0369e6 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -38,7 +38,10 @@ rust_library {
+     name: "libgrpcio_sys",
+     host_supported: true,
+     crate_name: "grpcio_sys",
+-    srcs: ["src/lib.rs"],
++    srcs: [
++        "src/lib.rs",
++        ":libgrpc_bindgen",
++    ],
+     edition: "2018",
+     features: [
+         "bindgen",
+@@ -50,50 +53,58 @@ rust_library {
+         "liblibc",
+         "liblibz_sys",
+     ],
+-    static_libs: [
+-        "libabsl_bad_optional_access",
+-        "libabsl_bad_variant_access",
+-        "libabsl_base",
+-        "libabsl_city",
+-        "libabsl_civil_time",
+-        "libabsl_cord",
+-        "libabsl_debugging_internal",
+-        "libabsl_demangle_internal",
+-        "libabsl_exponential_biased",
+-        "libabsl_graphcycles_internal",
+-        "libabsl_hash",
+-        "libabsl_hashtablez_sampler",
+-        "libabsl_int128",
+-        "libabsl_log_severity",
+-        "libabsl_malloc_internal",
+-        "libabsl_raw_hash_set",
+-        "libabsl_raw_logging_internal",
+-        "libabsl_spinlock_wait",
+-        "libabsl_stacktrace",
+-        "libabsl_status",
+-        "libabsl_statusor",
+-        "libabsl_str_format_internal",
+-        "libabsl_strings",
+-        "libabsl_strings_internal",
+-        "libabsl_symbolize",
+-        "libabsl_synchronization",
+-        "libabsl_throw_delegate",
+-        "libabsl_time",
+-        "libabsl_time_zone",
+-        "libaddress_sorting",
+-        "libcares",
+-        "libcrypto",
+-        "libgpr",
+-        "libgrpc",
+-        "libgrpc_wrap",
+-        "libre2",
+-        "libssl",
+-        "libupb",
+-        "libz",
++    shared_libs: [
++        "libgrpc++",
++        "libgrpc_wrap"
++     ],
++}
++
++cc_defaults {
++    name: "libgrpcio_sys_defaults",
++    cflags: [
++        "-DGRPC_SYS_SECURE",
+     ],
+-    shared_libs: ["libstdc++"],
++    cpp_std: "c++11",
++    shared_libs: ["libgrpc++"],
++}
++
++cc_library {
++    name: "libgrpc_wrap",
++    defaults: ["libgrpcio_sys_defaults"],
++    host_supported: true,
++    srcs: ["grpc_wrap.cc"],
+ }
+ 
++rust_bindgen {
++    name: "libgrpc_bindgen",
++    defaults: ["libgrpcio_sys_defaults"],
++    host_supported: true,
++    wrapper_src: "android/bindgen_wrapper.hpp",
++    source_stem: "grpc-bindings",
++    crate_name: "grpc_bindgen",
++    bindgen_flags: [
++        "--size_t-is-usize",
++        "--constified-enum-module grpc_status_code",
++        "--default-enum-style rust",
++        "--allowlist-function=\\bgrpc_.*",
++        "--allowlist-function=\\bgpr_.*",
++        "--allowlist-function=\\bgrpcwrap_.*",
++        "--allowlist-var=\\bGRPC_.*",
++        "--allowlist-type=\\bgrpc_.*",
++        "--allowlist-type=\\bgpr_.*",
++        "--allowlist-type=\\bgrpcwrap_.*",
++        "--allowlist-type=\\bcensus_context.*",
++        "--allowlist-type=\\bverify_peer_options.*",
++        "--blocklist-type=(__)?pthread.*",
++        "--blocklist-function=\\bgpr_mu_.*",
++        "--blocklist-function=\\bgpr_cv_.*",
++        "--blocklist-function=\\bgpr_once_.*",
++        "--blocklist-type=gpr_mu",
++        "--blocklist-type=gpr_cv",
++        "--blocklist-type=gpr_once",
++    ]
++ }
++
+ // dependent_library ["feature_list"]
+ //   bindgen-0.57.0 "runtime"
+ //   bitflags-1.2.1 "default"

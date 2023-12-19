@@ -1,0 +1,19 @@
+name: "OSS-Fuzz"
+description: "OSS-Fuzz: Continuous Fuzzing for Open Source Software"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/google/oss-fuzz"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/google/oss-fuzz.git"
+  }
+  version: "947169dc86572e121c3e138f366a9f39ac6266ae"
+  license_type: RESTRICTED
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

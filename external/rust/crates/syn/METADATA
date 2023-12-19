@@ -1,0 +1,19 @@
+name: "syn"
+description: "Parser for Rust source code"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/syn"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/syn/syn-1.0.69.crate"
+  }
+  version: "1.0.69"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 13
+  }
+}

@@ -1,0 +1,99 @@
+// Copyright 2019 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+
+package icing.lib;
+
+import "icing/proto/logging.proto";
+import "icing/proto/status.proto";
+
+option java_package = "com.google.android.icing.proto";
+option java_multiple_files = true;
+option objc_class_prefix = "ICNG";
+
+// Next tag: 5
+message IcingSearchEngineOptions {
+  // Directory to persist files for Icing. Required.
+  // If Icing was previously initialized with this directory, it will reload
+  // the index saved by the last instance.
+  optional string base_dir = 1;
+
+  // The maximum number of tokens to be allowed per document. If a document
+  // exceeds this number of tokens, then only the first max_tokens_per_doc
+  // will be indexed.
+  //
+  // Clients may use this value to prevent the possibility of a select few
+  // documents from exhausting limits in the index that are shared between all
+  // documents (ie max allowed index size).
+  //
+  // Valid values: [1, INT_MAX], Current default is 1/5 of the default of
+  // max_document_size.
+  // Optional.
+  optional int32 max_tokens_per_doc = 2 [default = 13107];
+
+  // The maximum allowable token length. All tokens in excess of this size
+  // will be truncated to max_token_length before being indexed.
+  //
+  // Clients may use this option to prevent unnecessary indexing of long tokens.
+  // Depending on the use case, indexing all of
+  // 'Supercalifragilisticexpialidocious' may be unnecessary - a user is
+  // unlikely to type that entire query. So only indexing the first n bytes may
+  // still provide the desired behavior without wasting resources.
+  //
+  // Valid values: [1, INT_MAX]
+  // Optional.
+  optional int32 max_token_length = 3 [default = 30];
+
+  // The size (measured in bytes) at which Icing's internal indices should be
+  // merged. Icing buffers changes together before merging them into a more
+  // compact format. When the buffer exceeds index_merge_size during a Put
+  // operation, the buffer is merged into the larger, more compact index.
+  //
+  // This more compact index is more efficient to search over as the index
+  // grows larger and has smaller system health impact.
+  //
+  // Setting a low index_merge_size increases the frequency of merges -
+  // increasing indexing-time latency and flash wear. Setting a high
+  // index_merge_size leads to larger resource usage and higher query latency.
+  // Valid values: [1, INT_MAX]
+  // Optional.
+  optional int32 index_merge_size = 4 [default = 1048576];  // 1 MiB
+}
+
+// Result of a call to IcingSearchEngine.Initialize
+// Next tag: 3
+message InitializeResultProto {
+  // Status code can be one of:
+  //   OK
+  //   WARNING_DATA_LOSS
+  //   INVALID_ARGUMENT
+  //   NOT_FOUND
+  //   INTERNAL
+  //
+  // See status.proto for more details.
+  //
+  // TODO(b/147699081): Fix error codes: +ABORTED, -NOT_FOUND.
+  // go/icing-library-apis.
+  optional StatusProto status = 1;
+
+  // Stats of the function call. Inside InitializeStatsProto, the function call
+  // latency 'latency_ms' will always be populated. The other fields will be
+  // accurate only when the status above is OK or WARNING_DATA_LOSS. See
+  // logging.proto for details.
+  optional InitializeStatsProto initialize_stats = 2;
+
+  // TODO(b/147699081): Add a field to indicate lost_schema and lost_documents.
+  // go/icing-library-apis.
+}

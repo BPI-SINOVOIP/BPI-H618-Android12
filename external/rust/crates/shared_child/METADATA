@@ -1,0 +1,19 @@
+name: "shared_child"
+description: "a library for using child processes from multiple threads"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/shared_child"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/shared_child/shared_child-0.3.5.crate"
+  }
+  version: "0.3.5"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 13
+  }
+}

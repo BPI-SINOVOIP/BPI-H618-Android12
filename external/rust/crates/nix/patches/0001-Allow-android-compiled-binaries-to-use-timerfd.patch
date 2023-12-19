@@ -1,0 +1,26 @@
+From e09a4f4e8661e8036819deb97dc1d9fcf2a49d2b Mon Sep 17 00:00:00 2001
+From: Zach Johnson <zachoverflow@google.com>
+Date: Tue, 17 Nov 2020 11:05:57 -0800
+Subject: [PATCH] Allow android compiled binaries to use timerfd
+
+Bug: 171749953
+Test: compile
+Change-Id: Iaf16615cf834df02537e3b569ab08dd98a497a70
+---
+ src/sys/mod.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/sys/mod.rs b/src/sys/mod.rs
+index bf7f541..b8b9e6f 100644
+--- a/src/sys/mod.rs
++++ b/src/sys/mod.rs
+@@ -103,5 +103,5 @@ pub mod wait;
+ #[cfg(any(target_os = "android", target_os = "linux"))]
+ pub mod inotify;
+ 
+-#[cfg(target_os = "linux")]
++#[cfg(any(target_os = "android", target_os = "linux"))]
+ pub mod timerfd;
+-- 
+2.29.2.299.gdc1121823c-goog
+

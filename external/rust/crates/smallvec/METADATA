@@ -1,0 +1,19 @@
+name: "smallvec"
+description: "\'Small vector\' optimization: store up to a small number of items on the stack"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/smallvec"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/smallvec/smallvec-1.6.1.crate"
+  }
+  version: "1.6.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 1
+    day: 8
+  }
+}

@@ -1,0 +1,33 @@
+[package]
+name = "sound_card_init"
+version = "0.1.0"
+authors = ["The Chromium OS Authors"]
+edition = "2018"
+description = "Sound Card Initializer"
+
+[workspace]
+members = [
+    "amp",
+    "dsm"
+]
+
+[dependencies]
+amp = { path = "amp" }
+audio_streams = "*"
+cros_alsa = "*"
+dsm = { path = "dsm" }
+getopts = "0.2"
+libcras = "*"
+remain = "0.2.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.8.11"
+sof_sys = "*"
+sys_util = "*"
+
+[patch.crates-io]
+audio_streams = { path = "../audio_streams" }  # ignored by ebuild
+cros_alsa = { path = "../cros_alsa" } # ignored by ebuild
+cros_alsa_derive = { path = "../cros_alsa/cros_alsa_derive" } # ignored by ebuild
+libcras = { path = "../cras/client/libcras" }  # ignored by ebuild
+sof_sys = { path = "../sof_sys" }  # ignored by ebuild
+sys_util = { path = "../../../platform/crosvm/sys_util" } # ignored by ebuild

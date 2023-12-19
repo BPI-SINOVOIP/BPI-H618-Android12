@@ -1,0 +1,14 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index 9ec6df0..0cd8302 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -40,6 +40,9 @@
+ 
+ #![no_std]
+ 
++// ANDROID: Use std to allow building as a dylib.
++extern crate std;
++
+ include!(concat!(env!("OUT_DIR"), "/count.rs"));
+ 
+ #[doc(hidden)]

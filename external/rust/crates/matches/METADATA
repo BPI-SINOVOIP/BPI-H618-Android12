@@ -1,0 +1,19 @@
+name: "matches"
+description: "A macro to evaluate, as a boolean, whether an expression matches a pattern."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/matches"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/matches/matches-0.1.8.crate"
+  }
+  version: "0.1.8"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 15
+  }
+}

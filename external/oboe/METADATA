@@ -1,0 +1,14 @@
+name: "Oboe"
+description: "Native audio API for Android that calls AAudio or OpenSL ES."
+third_party {
+  url {
+    type: GIT
+    value: "https://github.com/google/oboe"
+  }
+  version: "bab1c7de64aa1395c83be384056e2bad061ea272"
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 9
+  }
+}

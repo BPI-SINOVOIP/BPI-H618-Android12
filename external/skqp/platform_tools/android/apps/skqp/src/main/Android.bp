@@ -1,0 +1,32 @@
+// Copyright 2019 Google LLC.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "external_skqp_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    //   SPDX-license-identifier-CC0-1.0
+    //   SPDX-license-identifier-MIT
+    //   legacy_unencumbered
+    default_applicable_licenses: ["external_skqp_license"],
+}
+
+android_test {
+    name: "CtsSkQPTestCases",
+    defaults: ["cts_defaults"],
+
+    libs: ["android.test.runner.stubs"],
+    jni_libs: ["libskqp_app"],
+    compile_multilib: "both",
+
+    static_libs: [
+        "android-support-design",
+        "ctstestrunner-axt",
+    ],
+    srcs: ["java/**/*.java"],
+    sdk_version: "test_current",
+}

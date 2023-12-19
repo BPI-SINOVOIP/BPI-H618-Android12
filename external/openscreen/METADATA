@@ -1,0 +1,19 @@
+name: "openscreen"
+description: "The openscreen library implements the Open Screen Protocol and the Chromecast protocols (both control and streaming)."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://chromium.googlesource.com/openscreen/"
+  }
+  url {
+    type: GIT
+    value: "https://chromium.googlesource.com/openscreen"
+  }
+  version: "207f3b2b5814bbbe2530b3d0f8fb4da1665a02ce"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

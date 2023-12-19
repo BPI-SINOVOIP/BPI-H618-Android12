@@ -1,0 +1,53 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "external_libhevc_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    default_applicable_licenses: ["external_libhevc_license"],
+}
+
+cc_fuzz {
+    name: "hevc_dec_fuzzer",
+    host_supported: true,
+    srcs: [
+        "hevc_dec_fuzzer.cpp",
+    ],
+    static_libs: [
+        "libhevcdec",
+        "liblog",
+    ],
+    target: {
+        darwin: {
+            enabled: false,
+        },
+    },
+    fuzz_config: {
+        cc: [
+            "android-media-fuzzing-reports@google.com",
+        ],
+        componentid: 155276,
+    },
+}
+
+cc_fuzz {
+    name: "hevc_enc_fuzzer",
+    host_supported: true,
+    srcs: [
+        "hevc_enc_fuzzer.cpp",
+    ],
+    static_libs: [
+        "libhevcenc",
+        "liblog",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    fuzz_config: {
+        cc: [
+            "android-media-fuzzing-reports@google.com",
+        ],
+        componentid: 155276,
+    },
+}

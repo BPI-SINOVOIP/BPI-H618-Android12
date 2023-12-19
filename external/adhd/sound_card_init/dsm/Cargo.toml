@@ -1,0 +1,15 @@
+[package]
+name = "dsm"
+version = "0.1.0"
+authors = ["The Chromium OS Authors"]
+edition = "2018"
+description = "The boot time calibration logic for smart amp"
+
+[dependencies]
+cros_alsa = "*"
+audio_streams = "*"
+libcras = "*"
+remain = "0.2.1"
+serde = { version = "1.0", features = ["derive"]}
+serde_yaml = "0.8.11"
+sys_util = "*"

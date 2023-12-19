@@ -1,0 +1,19 @@
+[package]
+name = "base"
+version = "0.1.0"
+authors = ["The Chromium OS Authors"]
+edition = "2018"
+
+[features]
+chromeos = ["sys_util/chromeos"]
+
+[dependencies]
+cros_async = { path = "../cros_async" }
+data_model = { path = "../data_model" }
+libc = "*"
+serde = { version = "1", features = [ "derive" ] }
+serde_json = "*"
+smallvec = "1.6.1"
+sync = { path = "../sync" }
+sys_util = { path = "../sys_util" }
+thiserror = "1.0.20"

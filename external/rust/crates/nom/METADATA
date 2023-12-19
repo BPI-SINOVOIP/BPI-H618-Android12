@@ -1,0 +1,19 @@
+name: "nom"
+description: "A byte-oriented, zero-copy, parser combinators library"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/nom"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/nom/nom-5.1.2.crate"
+  }
+  version: "5.1.2"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 10
+    day: 26
+  }
+}

@@ -1,0 +1,78 @@
+package {
+    default_applicable_licenses: ["external_kotlinx.coroutines_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'fileGroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+//
+// large-scale-change included anything that looked like it might be a license
+// text as a license_text. e.g. LICENSE, NOTICE, COPYING etc.
+//
+// Please consider removing redundant or irrelevant files from 'license_text:'.
+// See: http://go/android-license-faq
+license {
+    name: "external_kotlinx.coroutines_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-MIT",
+    ],
+    license_text: [
+        "LICENSE",
+        "LICENSE.txt",
+        "license/**/*",
+    ],
+}
+
+java_library {
+    name: "kotlinx_coroutines",
+    host_supported: true,
+    // This should be "core_current", but that causes nullability issues
+    // for returned platform types that are explicitly marked @Nullable in
+    // SDK 29 and current.
+    sdk_version: "28",
+    srcs: ["kotlinx-coroutines-core/jvm/src/**/*.kt"],
+    common_srcs: ["kotlinx-coroutines-core/common/src/**/*.kt"],
+    exclude_srcs: [
+        "kotlinx-coroutines-core/jvm/src/debug/**/*.kt",
+        "kotlinx-coroutines-core/jvm/src/test_/TestCoroutineContext.kt",
+    ],
+    static_libs: [
+        "kotlinx_atomicfu",
+    ],
+    kotlincflags: [
+        "-Xmulti-platform",
+        "-Xuse-experimental=kotlin.ExperimentalMultiplatform",
+        "-Xuse-experimental=kotlin.Experimental",
+        "-Xuse-experimental=kotlin.experimental.ExperimentalTypeInference",
+        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xuse-experimental=kotlinx.coroutines.FlowPreview",
+        "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi",
+        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
+    ],
+}
+
+java_library {
+    name: "kotlinx_coroutines_android",
+    sdk_version: "28",
+    srcs: ["ui/kotlinx-coroutines-android/src/**/*.kt"],
+    kotlincflags: [
+        "-Xuse-experimental=kotlinx.coroutines.InternalCoroutinesApi",
+        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+    ],
+    libs: [
+        "kotlinx_coroutines",
+        "androidx.annotation_annotation",
+    ],
+}

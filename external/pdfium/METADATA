@@ -1,0 +1,9 @@
+# *** THIS PACKAGE HAS SPECIAL LICENSING CONDITIONS.  PLEASE
+#     CONSULT THE OWNERS AND opensource-licensing@google.com BEFORE
+#     DEPENDING ON IT IN YOUR PROJECT. ***
+third_party {
+  # would be NOTICE save for OFL 1.1 in:
+  #   testing/resources/pixel/bug_925736.pdf
+  #   testing/resources/text_font.pdf
+  license_type: BY_EXCEPTION_ONLY
+}

@@ -1,0 +1,19 @@
+name: "form_urlencoded"
+description: "Parser and serializer for the application/x-www-form-urlencoded syntax, as used by HTML forms."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/form_urlencoded"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/form_urlencoded/form_urlencoded-1.0.1.crate"
+  }
+  version: "1.0.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 19
+  }
+}

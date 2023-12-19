@@ -1,0 +1,12 @@
+{
+    "apex-available": [
+      "//apex_available:platform",
+      "com.android.resolv"
+    ],
+    "min_sdk_version": "29",
+    "dependencies": true,
+    "tests": true,
+    "device": true,
+    "run": true,
+    "patch": "patches/Android.bp.patch"
+  }

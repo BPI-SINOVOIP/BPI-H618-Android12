@@ -1,0 +1,19 @@
+name: "syn-mid"
+description: "Providing the features between \"full\" and \"derive\" of syn."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/syn-mid"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/syn-mid/syn-mid-0.5.3.crate"
+  }
+  version: "0.5.3"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 1
+    day: 5
+  }
+}

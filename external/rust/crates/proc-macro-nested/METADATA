@@ -1,0 +1,19 @@
+name: "proc-macro-nested"
+description: "Support for nested proc-macro-hack invocations"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/proc-macro-nested"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/proc-macro-nested/proc-macro-nested-0.1.6.crate"
+  }
+  version: "0.1.6"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 7
+    day: 10
+  }
+}

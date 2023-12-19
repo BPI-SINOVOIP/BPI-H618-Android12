@@ -1,0 +1,19 @@
+name: "scopeguard"
+description: "A RAII scope guard that will run a given closure when it goes out of scope, even if the code between panics (assuming unwinding panic).  Defines the macros `defer!`, `defer_on_unwind!`, `defer_on_success!` as shorthands for guards with one of the implemented strategies."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/scopeguard"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/scopeguard/scopeguard-1.1.0.crate"
+  }
+  version: "1.1.0"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 10
+    day: 14
+  }
+}

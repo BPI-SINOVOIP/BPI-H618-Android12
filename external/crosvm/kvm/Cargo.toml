@@ -1,0 +1,13 @@
+[package]
+name = "kvm"
+version = "0.1.0"
+authors = ["The Chromium OS Authors"]
+edition = "2018"
+
+[dependencies]
+data_model = { path = "../data_model" }
+kvm_sys = { path = "../kvm_sys" }
+libc = "*"
+base = { path = "../base" }
+sync = { path = "../sync" }
+vm_memory = { path = "../vm_memory" }

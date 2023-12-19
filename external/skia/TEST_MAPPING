@@ -1,0 +1,18 @@
+{
+  "presubmit": [
+    {
+      "name": "CtsGraphicsTestCases"
+    },
+    {
+      "name": "minikin_tests"
+    },
+    {
+      "name": "librenderengine_test"
+    }
+  ],
+  "imports": [
+    {
+      "path": "cts/tests/tests/uirendering"
+    }
+  ]
+}

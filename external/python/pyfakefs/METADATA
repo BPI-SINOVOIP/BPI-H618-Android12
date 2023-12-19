@@ -1,0 +1,20 @@
+name: "pyfakefs"
+description:
+    "pyfakefs implements a fake file system that mocks the Python file system "
+    "modules. Using pyfakefs, your tests operate on a fake file system in "
+    "memory without touching the real disk. The software under test requires no "
+    "modification to work with pyfakefs."
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "http://pyfakefs.org/"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/jmcgeheeiv/pyfakefs.git"
+  }
+  version: "v3.7"
+  license_type: NOTICE
+  last_upgrade_date { year: 2019 month: 12 day: 18 }
+}

@@ -1,0 +1,19 @@
+name: "ppv-lite86"
+description: "Implementation of the crypto-simd API for x86"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/ppv-lite86"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/ppv-lite86/ppv-lite86-0.2.10.crate"
+  }
+  version: "0.2.10"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 11
+    day: 2
+  }
+}

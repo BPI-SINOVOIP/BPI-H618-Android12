@@ -1,0 +1,117 @@
+package {
+    default_applicable_licenses: ["external_usrsctp_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "external_usrsctp_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-BSD",
+    ],
+    license_text: [
+        "LICENSE.md",
+    ],
+}
+
+cc_defaults {
+    name: "usrsctplib_defaults",
+    srcs: [
+        "usrsctplib/netinet/sctp_asconf.c",
+        "usrsctplib/netinet/sctp_auth.c",
+        "usrsctplib/netinet/sctp_bsd_addr.c",
+        "usrsctplib/netinet/sctp_callout.c",
+        "usrsctplib/netinet/sctp_cc_functions.c",
+        "usrsctplib/netinet/sctp_crc32.c",
+        "usrsctplib/netinet/sctp_indata.c",
+        "usrsctplib/netinet/sctp_input.c",
+        "usrsctplib/netinet/sctp_output.c",
+        "usrsctplib/netinet/sctp_pcb.c",
+        "usrsctplib/netinet/sctp_peeloff.c",
+        "usrsctplib/netinet/sctp_sha1.c",
+        "usrsctplib/netinet/sctp_ss_functions.c",
+        "usrsctplib/netinet/sctp_sysctl.c",
+        "usrsctplib/netinet/sctp_timer.c",
+        "usrsctplib/netinet/sctp_userspace.c",
+        "usrsctplib/netinet/sctp_usrreq.c",
+        "usrsctplib/netinet/sctputil.c",
+        "usrsctplib/netinet6/sctp6_usrreq.c",
+        "usrsctplib/user_environment.c",
+        "usrsctplib/user_mbuf.c",
+        "usrsctplib/user_recv_thread.c",
+        "usrsctplib/user_socket.c",
+    ],
+    local_include_dirs: [
+        "usrsctplib",
+        "usrsctplib/netinet",
+    ],
+    export_include_dirs: [
+        ".",
+        "usrsctplib",
+        "usrsctplib/netinet",
+    ],
+    cflags: [
+        "-Wno-unused-function",
+        "-Wno-deprecated-declarations",
+        "-Wno-unused-parameter",
+        "-Wno-address-of-packed-member",
+        "-Wno-unreachable-code-loop-increment",
+        "-DSCTP_PROCESS_LEVEL_LOCKS",
+        "-DSCTP_SIMPLE_ALLOCATOR",
+        "-DSCTP_USE_OPENSSL_SHA1",
+        "-D__Userspace__",
+        "-UINET",
+        "-UINET6",
+        "-D__Userspace_os_Linux",
+        "-D_GNU_SOURCE",
+        // TODO has different build flags for mac
+    ],
+    shared_libs: [
+        "libcrypto",
+    ],
+    host_supported: true,
+}
+
+cc_library_static {
+    name: "usrsctplib",
+    // vendor needed for libpreprocessing effects.
+    vendor: true,
+    defaults: ["usrsctplib_defaults"],
+    visibility: ["//external/webrtc:__subpackages__"],
+}
+
+cc_library_static {
+    name: "usrsctp_fuzz_lib",
+    defaults: ["usrsctplib_defaults"],
+}
+
+cc_fuzz {
+    name: "fuzzer_connect",
+    srcs: [
+        "fuzzer/fuzzer_connect.c",
+    ],
+    static_libs: [
+        "usrsctp_fuzz_lib",
+    ],
+    shared_libs: [
+        "libcrypto",
+    ],
+    host_supported: true,
+    corpus: ["CORPUS_CONNECT/*"],
+}
+
+cc_fuzz {
+    name: "fuzzer_listen",
+    srcs: [
+        "fuzzer/fuzzer_listen.c",
+    ],
+    static_libs: [
+        "usrsctp_fuzz_lib",
+    ],
+    shared_libs: [
+        "libcrypto",
+    ],
+    host_supported: true,
+    corpus: ["CORPUS_LISTEN/*"],
+}

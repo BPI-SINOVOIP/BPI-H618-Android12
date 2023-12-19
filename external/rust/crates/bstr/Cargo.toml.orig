@@ -1,0 +1,41 @@
+[package]
+name = "bstr"
+version = "0.2.15"  #:version
+authors = ["Andrew Gallant <jamslam@gmail.com>"]
+description = "A string type that is not required to be valid UTF-8."
+documentation = "https://docs.rs/bstr"
+homepage = "https://github.com/BurntSushi/bstr"
+repository = "https://github.com/BurntSushi/bstr"
+readme = "README.md"
+keywords = ["string", "str", "byte", "bytes", "text"]
+license = "MIT OR Apache-2.0"
+categories = ["text-processing", "encoding"]
+exclude = ["/.github"]
+
+[badges]
+travis-ci = { repository = "BurntSushi/bstr" }
+appveyor = { repository = "BurntSushi/bstr" }
+
+[lib]
+bench = false
+
+[features]
+default = ["std", "unicode"]
+std = ["memchr/use_std"]
+unicode = ["lazy_static", "regex-automata"]
+serde1 = ["std", "serde1-nostd", "serde/std"]
+serde1-nostd = ["serde"]
+
+[dependencies]
+memchr = { version =  "2.1.2", default-features = false }
+lazy_static = { version = "1.2", optional = true }
+regex-automata = { version = "0.1.5", default-features = false, optional = true }
+serde = { version = "1.0.85", default-features = false, optional = true }
+
+[dev-dependencies]
+quickcheck = { version = "1", default-features = false }
+ucd-parse = "0.1.3"
+unicode-segmentation = "1.2.1"
+
+[profile.release]
+debug = true

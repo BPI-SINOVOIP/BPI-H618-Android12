@@ -1,0 +1,19 @@
+name: "memoffset"
+description: "offset_of functionality for Rust structs."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/memoffset"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/memoffset/memoffset-0.6.3.crate"
+  }
+  version: "0.6.3"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 8
+  }
+}

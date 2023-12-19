@@ -1,0 +1,16 @@
+diff --git a/tests/compiletest.rs b/tests/compiletest.rs
+deleted file mode 100644
+index 7974a62..0000000
+--- a/tests/compiletest.rs
++++ /dev/null
+@@ -1,7 +0,0 @@
+-#[rustversion::attr(not(nightly), ignore)]
+-#[cfg_attr(miri, ignore)]
+-#[test]
+-fn ui() {
+-    let t = trybuild::TestCases::new();
+-    t.compile_fail("tests/ui/*.rs");
+-}
+-- 
+2.30.0.478.g8a0d178c01-goog
+

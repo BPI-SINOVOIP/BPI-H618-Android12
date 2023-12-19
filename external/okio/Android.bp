@@ -1,0 +1,32 @@
+package {
+    default_applicable_licenses: ["external_okio_license"],
+}
+
+// Added automatically by a large-scale-change
+// See: http://go/android-license-faq
+license {
+    name: "external_okio_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "LICENSE.txt",
+    ],
+}
+
+java_library {
+    name: "okio-lib",
+    srcs: [
+        "okio/src/jvmMain/**/*.kt",
+        "okio/src/commonMain/**/*.kt",
+    ],
+    static_libs: [
+        "guava-android-annotation-stubs",
+    ],
+    kotlincflags: [
+        "-Xmulti-platform",
+    ],
+    sdk_version: "current",
+    java_version: "1.7",
+}

@@ -1,0 +1,21 @@
+[package]
+name = "spin"
+version = "0.7.1"
+authors = [
+	"Mathijs van de Nes <git@mathijs.vd-nes.nl>",
+	"John Ericson <git@JohnEricson.me>",
+	"Joshua Barretto <joshua.s.barretto@gmail.com>",
+]
+license = "MIT"
+repository = "https://github.com/mvdnes/spin-rs.git"
+keywords = ["spinlock", "mutex", "rwlock"]
+description = "Spin-based synchronization primitives"
+
+[dependencies]
+lock_api_crate = { package = "lock_api", version = "0.4", optional = true }
+
+[features]
+default = ["ticket_mutex"]
+lock_api = ["lock_api_crate"]
+ticket_mutex = []
+std = []

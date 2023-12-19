@@ -1,0 +1,8 @@
+description = 'Conscrypt: API Doclet'
+
+def toolsJar = org.gradle.internal.jvm.Jvm.current().toolsJar
+if (toolsJar != null) {
+    dependencies {
+        compile files(toolsJar)
+    }
+}

@@ -1,0 +1,19 @@
+name: "url"
+description: "URL library for Rust, based on the WHATWG URL Standard"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/url"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/url/url-2.2.2.crate"
+  }
+  version: "2.2.2"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 5
+    day: 7
+  }
+}

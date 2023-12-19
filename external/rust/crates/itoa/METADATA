@@ -1,0 +1,19 @@
+name: "itoa"
+description: "Fast functions for printing integer primitives to an io::Write"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/itoa"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/itoa/itoa-0.4.7.crate"
+  }
+  version: "0.4.7"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 29
+  }
+}

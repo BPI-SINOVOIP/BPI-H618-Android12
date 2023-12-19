@@ -1,0 +1,19 @@
+name: "gdbstub"
+description: "An implementation of the GDB Remote Serial Protocol in Rust"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/gdbstub"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/gdbstub/gdbstub-0.4.5.crate"
+  }
+  version: "0.4.5"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 1
+  }
+}

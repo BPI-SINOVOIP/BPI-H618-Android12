@@ -1,0 +1,19 @@
+name: "structopt-derive"
+description: "Parse command line argument by defining a struct, derive crate."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/structopt-derive"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/structopt-derive/structopt-derive-0.4.14.crate"
+  }
+  version: "0.4.14"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 11
+    day: 30
+  }
+}

@@ -1,0 +1,66 @@
+# Copyright 2020 The Pigweed Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not
+# use this file except in compliance with the License. You may obtain a copy of
+# the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+# License for the specific language governing permissions and limitations under
+# the License.
+
+import("//build_overrides/pigweed.gni")
+
+import("$dir_pw_build/python.gni")
+import("$dir_pw_docgen/docs.gni")
+
+pw_python_package("py") {
+  generate_setup = {
+    name = "pw_rpc"
+    version = "0.0.1"
+  }
+
+  sources = [
+    "pw_rpc/__init__.py",
+    "pw_rpc/callback_client.py",
+    "pw_rpc/client.py",
+    "pw_rpc/codegen.py",
+    "pw_rpc/codegen_nanopb.py",
+    "pw_rpc/codegen_raw.py",
+    "pw_rpc/console_tools/__init__.py",
+    "pw_rpc/console_tools/console.py",
+    "pw_rpc/console_tools/functions.py",
+    "pw_rpc/console_tools/watchdog.py",
+    "pw_rpc/descriptors.py",
+    "pw_rpc/ids.py",
+    "pw_rpc/packets.py",
+    "pw_rpc/plugin.py",
+    "pw_rpc/plugin_nanopb.py",
+    "pw_rpc/plugin_raw.py",
+  ]
+  tests = [
+    "tests/callback_client_test.py",
+    "tests/client_test.py",
+    "tests/console_tools/console_tools_test.py",
+    "tests/console_tools/functions_test.py",
+    "tests/descriptors_test.py",
+    "tests/ids_test.py",
+    "tests/packets_test.py",
+  ]
+  python_deps = [
+    "$dir_pw_protobuf/py",
+    "$dir_pw_protobuf_compiler/py",
+    "$dir_pw_status/py",
+  ]
+  python_test_deps = [ "$dir_pw_build/py" ]
+  pylintrc = "$dir_pigweed/.pylintrc"
+  proto_library = "..:protos"
+}
+
+pw_doc_group("docs") {
+  sources = [ "docs.rst" ]
+  other_deps = [ ":py" ]
+}

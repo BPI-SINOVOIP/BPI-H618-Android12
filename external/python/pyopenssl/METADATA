@@ -1,0 +1,19 @@
+name: "pyopenssl"
+description: "A Python wrapper around the OpenSSL library"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://pyopenssl.org/en/stable/"
+  }
+  url {
+    type: GIT
+    value: "https://github.com/pyca/pyopenssl"
+  }
+  version: "20.0.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 12
+    day: 15
+  }
+}

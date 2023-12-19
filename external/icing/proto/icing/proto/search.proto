@@ -1,0 +1,280 @@
+// Copyright 2019 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto2";
+
+package icing.lib;
+
+import "icing/proto/document.proto";
+import "icing/proto/logging.proto";
+import "icing/proto/status.proto";
+import "icing/proto/term.proto";
+
+option java_package = "com.google.android.icing.proto";
+option java_multiple_files = true;
+option objc_class_prefix = "ICNG";
+
+// Client-supplied specifications on what documents to retrieve.
+// Next tag: 5
+message SearchSpecProto {
+  // REQUIRED: The "raw" query string that users may type. For example, "cat"
+  // will search for documents with the term cat in it.
+  optional string query = 1;
+
+  // Indicates how the query terms should match terms in the index.
+  //
+  // TermMatchType.Code=UNKNOWN
+  // Should never purposely be set and may lead to undefined behavior. This is
+  // used for backwards compatibility reasons.
+  //
+  // TermMatchType.Code=EXACT_ONLY
+  // Query terms will only match exact tokens in the index.
+  // Ex. A query term "foo" will only match indexed token "foo", and not "foot"
+  // or "football"
+  //
+  // TermMatchType.Code=PREFIX
+  // Query terms will match indexed tokens when the query term is a prefix of
+  // the token.
+  // Ex. A query term "foo" will match indexed tokens like "foo", "foot", and
+  // "football".
+  optional TermMatchType.Code term_match_type = 2;
+
+  // OPTIONAL: Only search for documents that have the specified namespaces. If
+  // unset, the query will search over all namespaces. Note that this applies to
+  // the entire 'query'. To issue different queries for different namespaces,
+  // separate Search()'s will need to be made.
+  repeated string namespace_filters = 3;
+
+  // OPTIONAL: Only search for documents that have the specified schema types.
+  // If unset, the query will search over all schema types. Note that this
+  // applies to the entire 'query'. To issue different queries for different
+  // schema types, separate Search()'s will need to be made.
+  repeated string schema_type_filters = 4;
+}
+
+// Client-supplied specifications on what to include/how to format the search
+// results.
+// Next tag: 6
+message ResultSpecProto {
+  // The results will be returned in pages, and num_per_page specifies the
+  // number of documents in one page.
+  optional int32 num_per_page = 1 [default = 10];
+
+  // Whether to collect and return debug_info in the SearchResultProto.
+  optional bool debug_info = 2;
+
+  // How to provide snippeting information in the SearchResultProto.
+  // Next tag: 5
+  message SnippetSpecProto {
+    // Only the first num_to_snippet documents will have snippet information
+    // provided. If set to 0, snippeting is disabled.
+    optional int32 num_to_snippet = 1;
+
+    // Only the first num_matches_per_property matches for a single section will
+    // have snippet information provided. If set to 0, snippeting is disabled.
+    optional int32 num_matches_per_property = 2;
+
+    // How large of a window to provide. Windows start at max_window_bytes / 2
+    // bytes before the middle of the matching token and end at max_window_bytes
+    // / 2 bytes after the middle of the matching token. Windowing respects
+    // token boundaries.
+    // Therefore, the returned window may be smaller than requested. Setting
+    // max_window_bytes to 0 will disable windowing information. If matches
+    // enabled is also set to false, then snippeting is disabled.
+    // Ex. max_window_bytes = 16. "foo bar baz bat rat" with a query of "baz"
+    // will return a window of "bar baz bat" which is only 11 bytes long.
+    optional int32 max_window_bytes = 3;
+  }
+  optional SnippetSpecProto snippet_spec = 3;
+
+  // How to specify a subset of properties to retrieve. If no type property mask
+  // has been specified for a schema type, then *all* properties of that schema
+  // type will be retrieved.
+  repeated TypePropertyMask type_property_masks = 4;
+
+  // Groupings of namespaces whose total returned results should be
+  // limited together.
+  // Next tag: 3
+  message ResultGrouping {
+    // The namespaces in this grouping.
+    repeated string namespaces = 1;
+
+    // The maximum number of results in this grouping that should be returned.
+    optional int32 max_results = 2;
+  }
+
+  // How to limit the number of results returned per set of namespaces. If
+  // results match for a namespace that is not present in any result groupings,
+  // then those results will be returned without limit.
+  //
+  // Non-existent namespaces will be ignored.
+  //
+  // Example : Suppose that there are four namespaces each with three results
+  // matching the query for "foo". Without any result groupings, Icing would
+  // return the following results:
+  // ["ns0doc0", "ns0doc1", "ns1doc0", "ns3doc0", "ns0doc2", "ns3doc1",
+  //  "ns2doc1", "ns3doc2", "ns2doc0", "ns1doc1", "ns2doc2", "ns1doc1"].
+  //
+  // and the following result groupings:
+  // [ { ["namespace0"], 2 }, { ["namespace1", "namespace2"], 2} ]
+  //
+  // The following results will be returned:
+  // ["ns0doc0", "ns0doc1", "ns1doc0", "ns3doc0", "ns3doc1", "ns2doc1",
+  //  "ns3doc2"].
+  repeated ResultGrouping result_groupings = 5;
+}
+
+// The representation of a single match within a DocumentProto property.
+// Next tag: 10
+message SnippetMatchProto {
+  // The index of the byte in the string at which the match begins and the
+  // length in bytes of the match.
+  optional int32 exact_match_byte_position = 2;
+  optional int32 exact_match_byte_length = 3;
+
+  // The index of the UTF-16 code unit in the string at which the match begins
+  // and the length in UTF-16 code units of the match. This is for use with
+  // UTF-16 encoded strings like Java.lang.String.
+  optional int32 exact_match_utf16_position = 6;
+  optional int32 exact_match_utf16_length = 7;
+
+  // The index of the byte in the string at which the suggested snippet window
+  // begins and the length in bytes of the window.
+  optional int32 window_byte_position = 4;
+  optional int32 window_byte_length = 5;
+
+  // The index of the UTF-16 code unit in the string at which the suggested
+  // snippet window begins and the length in UTF-16 code units of the window.
+  // This is for use with UTF-16 encoded strings like Java.lang.String.
+  optional int32 window_utf16_position = 8;
+  optional int32 window_utf16_length = 9;
+
+  reserved 1;
+}
+
+// A Proto representing all snippets for a single DocumentProto.
+// Next tag: 2
+message SnippetProto {
+  // A pair of property name and all snippet matches that correspond to the
+  // property values in the corresponding DocumentProto.
+  // Next tag: 3
+  message EntryProto {
+    // A property path indicating which property in the DocumentProto these
+    // snippets correspond to. Property paths will contain 1) property names,
+    // 2) the property separator character '.' used to represent nested property
+    // and 3) indices surrounded by brackets to represent a specific value in
+    // that property.
+    //
+    // Example properties:
+    // - 'body'               : the first and only string value of a top-level
+    //                          property called 'body'.
+    // - 'sender.name'        : the first and only string value of a property
+    //                          called 'name' that is a subproperty of a
+    //                          property called 'sender'.
+    // - 'bcc[1].emailaddress': the first and only string value of a property
+    //                          called 'emailaddress' that is a subproperty of
+    //                          the second document value of a property called
+    //                          'bcc'.
+    // - 'attachments[0]'     : the first (of more than one) string value of a
+    //                          property called 'attachments'.
+    // NOTE: If there is only a single value for a property (like
+    // 'sender.name'), then no value index will be added to the property path.
+    // An index of [0] is implied. If there is more than one value for a
+    // property, then the value index will be added to the property path (like
+    // 'attachements[0]').
+    optional string property_name = 1;
+
+    repeated SnippetMatchProto snippet_matches = 2;
+  }
+  // Properties that do not appear in entries do not contain any matches.
+  repeated EntryProto entries = 1;
+}
+
+// Icing lib-supplied results from a search results.
+// Next tag: 6
+message SearchResultProto {
+  // Status code can be one of:
+  //   OK
+  //   FAILED_PRECONDITION
+  //   INVALID_ARGUMENT
+  //   ABORTED
+  //   INTERNAL
+  //
+  // See status.proto for more details.
+  //
+  // TODO(b/147699081): Fix error codes: +ABORTED.
+  // go/icing-library-apis.
+  optional StatusProto status = 1;
+
+  // The Results that matched the query. Empty if there was an error.
+  // Next tag: 4
+  message ResultProto {
+    // Document that matches the SearchSpecProto.
+    optional DocumentProto document = 1;
+
+    // Snippeting information for the document if requested in the
+    // ResultSpecProto. A default instance, if not requested.
+    optional SnippetProto snippet = 2;
+
+    // The score that the document was ranked by. The meaning of this score is
+    // determined by ScoringSpecProto.rank_by.
+    optional double score = 3;
+  }
+  repeated ResultProto results = 2;
+
+  // Various debug fields. Not populated if ResultSpecProto.debug_info = false.
+  // Next tag: 4
+  message DebugInfoProto {
+    // The internal representation of the actual query string that was executed.
+    // This may be different from the SearchSpecProto.query if the original
+    // query was malformed.
+    optional string executed_query = 3;
+
+    reserved 1, 2;
+  }
+  optional DebugInfoProto debug_info = 3;
+
+  // An opaque token used internally to keep track of information needed for
+  // pagination. A valid pagination token is required to fetch other pages of
+  // results. A value 0 means that there're no more pages.
+  // LINT.IfChange(next_page_token)
+  optional uint64 next_page_token = 4;
+  // LINT.ThenChange(//depot/google3/icing/result/result-state-manager.h:kInvalidNextPageToken)
+
+  // Stats for query execution performance.
+  optional QueryStatsProto query_stats = 5;
+}
+
+// Next tag: 3
+message TypePropertyMask {
+  // The schema type to which these property masks should apply.
+  // If the schema type is the wildcard ("*"), then the type property masks
+  // will apply to all results of types that don't have their own, specific
+  // type property mask entry.
+  optional string schema_type = 1;
+
+  // The property masks specifying the property to be retrieved. Property
+  // masks must be composed only of property names, property separators (the
+  // '.' character). For example, "subject", "recipients.name". Specifying no
+  // property masks will result in *no* properties being retrieved.
+  repeated string paths = 2;
+}
+
+// Next tag: 2
+message GetResultSpecProto {
+  // How to specify a subset of properties to retrieve. If no type property mask
+  // has been specified for a schema type, then *all* properties of that schema
+  // type will be retrieved.
+  repeated TypePropertyMask type_property_masks = 1;
+}

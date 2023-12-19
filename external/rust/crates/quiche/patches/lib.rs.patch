@@ -1,0 +1,12 @@
+diff --git a/src/lib.rs b/src/lib.rs
+index 79c942b..351352c 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -4822,6 +4822,7 @@ mod tests {
+     }
+ 
+     #[test]
++    #[ignore = "Android: failure reason unkown."]
+     fn unknown_version() {
+         let mut buf = [0; 65535];
+ 

@@ -1,0 +1,19 @@
+name: "structopt"
+description: "Parse command line argument by defining a struct."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/structopt"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/structopt/structopt-0.3.21.crate"
+  }
+  version: "0.3.21"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 11
+    day: 30
+  }
+}

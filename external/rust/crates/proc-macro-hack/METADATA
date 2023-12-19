@@ -1,0 +1,19 @@
+name: "proc-macro-hack"
+description: "Procedural macros in expression position"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/proc-macro-hack"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/proc-macro-hack/proc-macro-hack-0.5.19.crate"
+  }
+  version: "0.5.19"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2020
+    month: 10
+    day: 28
+  }
+}

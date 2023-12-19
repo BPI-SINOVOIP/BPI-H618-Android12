@@ -1,0 +1,229 @@
+//
+// Copyright (C) 2019 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+package {
+    default_applicable_licenses: ["external_scudo_license"],
+}
+
+// Added automatically by a large-scale-change that took the approach of
+// 'apply every license found to every target'. While this makes sure we respect
+// every license restriction, it may not be entirely correct.
+//
+// e.g. GPL in an MIT project might only apply to the contrib/ directory.
+//
+// Please consider splitting the single license below into multiple licenses,
+// taking care not to lose any license_kind information, and overriding the
+// default license using the 'licenses: [...]' property on targets as needed.
+//
+// For unused files, consider creating a 'filegroup' with "//visibility:private"
+// to attach the license to, and including a comment whether the files may be
+// used in the current project.
+// http://go/android-license-faq
+license {
+    name: "external_scudo_license",
+    visibility: [":__subpackages__"],
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+        "SPDX-license-identifier-BSD",
+        "SPDX-license-identifier-MIT",
+        "SPDX-license-identifier-NCSA",
+    ],
+    license_text: [
+        "LICENSE.TXT",
+    ],
+}
+
+cc_defaults {
+    name: "libscudo_defaults",
+    native_coverage: false,
+    ramdisk_available: true,
+    vendor_ramdisk_available: true,
+    recovery_available: true,
+    host_supported: true,
+    native_bridge_supported: true,
+
+    rtti: false,
+    stl: "none",
+
+    cflags: [
+        "-O3",
+        "-fno-rtti",
+        // This option speeds up alloc/free code paths by about 5% to 7%.
+        "-fno-stack-protector",
+        "-fno-emulated-tls",
+
+        "-Wall",
+        "-Wextra",
+        "-Wunused",
+        "-Wno-unused-result",
+
+        "-Werror=pointer-to-int-cast",
+        "-Werror=int-to-pointer-cast",
+        "-Werror=type-limits",
+        "-Werror",
+
+        // Always force alignment to 16 bytes even on 32 bit.
+        // Android assumes that allocations of multiples of 16 bytes
+        // will be aligned to at least 16 bytes.
+        "-DSCUDO_MIN_ALIGNMENT_LOG=4",
+
+        // Allow scudo to use android_unsafe_frame_pointer_chase(), which is
+        // normally a private function.
+        "-DHAVE_ANDROID_UNSAFE_FRAME_POINTER_CHASE",
+    ],
+    cppflags: [
+        "-nostdinc++",
+        "-fno-exceptions",
+    ],
+
+    include_dirs: [
+        "external/scudo/standalone/include",
+    ],
+
+    system_shared_libs: [],
+
+    srcs: [
+        "standalone/checksum.cpp",
+        "standalone/common.cpp",
+        "standalone/flags.cpp",
+        "standalone/flags_parser.cpp",
+        "standalone/linux.cpp",
+        "standalone/release.cpp",
+        "standalone/report.cpp",
+        "standalone/string_utils.cpp",
+        "standalone/wrappers_c_bionic.cpp"
+    ],
+    arch: {
+        arm: {
+            cflags: ["-mcrc"],
+            srcs: ["standalone/crc32_hw.cpp"],
+        },
+        arm64: {
+            cflags: ["-mcrc"],
+            srcs: ["standalone/crc32_hw.cpp"],
+        },
+        x86_64: {
+            cflags: ["-msse4.2"],
+            srcs: ["standalone/crc32_hw.cpp"],
+        },
+        x86: {
+            cflags: ["-msse4.2"],
+            srcs: ["standalone/crc32_hw.cpp"],
+        },
+    },
+
+    target: {
+        linux_glibc: {
+            enabled: true,
+        },
+        android: {
+            header_libs: ["bionic_libc_platform_headers"],
+        },
+        linux_bionic: {
+            header_libs: ["bionic_libc_platform_headers"],
+        },
+        native_bridge: {
+            cflags: ["-DSCUDO_DISABLE_TBI"],
+        },
+    },
+
+    header_libs: ["libc_headers"],
+}
+
+cc_library_static {
+    name: "libscudo",
+    defaults: ["libscudo_defaults"],
+    cflags: [
+      "-D_BIONIC=1",
+      "-DSCUDO_HAS_PLATFORM_TLS_SLOT",
+    ],
+    visibility: [
+      "//bionic:__subpackages__",
+      "//frameworks/libs/native_bridge_support/libc:__subpackages__",
+      "//system/core/debuggerd:__subpackages__",
+    ],
+}
+
+cc_library_static {
+    name: "libscudo_for_testing",
+    defaults: ["libscudo_defaults"],
+}
+
+cc_test {
+    name: "scudo_unit_tests",
+    // Temporarily disabled on host due to a 15-20s per-test timeout,
+    // which is currently exceeded by ScudoCombinedTest.BasicCombined.
+    host_supported: false,
+    srcs: [
+        "standalone/tests/atomic_test.cpp",
+        "standalone/tests/bytemap_test.cpp",
+        "standalone/tests/checksum_test.cpp",
+        "standalone/tests/chunk_test.cpp",
+        "standalone/tests/combined_test.cpp",
+        "standalone/tests/flags_test.cpp",
+        "standalone/tests/list_test.cpp",
+        "standalone/tests/map_test.cpp",
+        "standalone/tests/mutex_test.cpp",
+        "standalone/tests/primary_test.cpp",
+        "standalone/tests/quarantine_test.cpp",
+        "standalone/tests/release_test.cpp",
+        "standalone/tests/report_test.cpp",
+        "standalone/tests/scudo_unit_test_main.cpp",
+        "standalone/tests/secondary_test.cpp",
+        "standalone/tests/size_class_map_test.cpp",
+        "standalone/tests/stats_test.cpp",
+        "standalone/tests/strings_test.cpp",
+        "standalone/tests/tsd_test.cpp",
+        "standalone/tests/vector_test.cpp",
+    ],
+    static_libs: ["libscudo_for_testing"],
+    include_dirs: [
+        "external/scudo/standalone",
+        "external/scudo/standalone/include",
+    ],
+    cflags: [
+        "-Wno-unused-parameter",
+        "-fno-emulated-tls",
+    ],
+    target: {
+        android: {
+            header_libs: ["bionic_libc_platform_headers"],
+        },
+        linux_bionic: {
+            header_libs: ["bionic_libc_platform_headers"],
+        },
+    },
+    test_suites: ["general-tests"],
+    bootstrap: true,
+}
+
+cc_fuzz {
+    name: "scudo_get_error_info_fuzzer",
+    host_supported: true,
+    compile_multilib: "64",
+    static_libs: ["libscudo"],
+    include_dirs: [
+        "external/scudo/standalone",
+        "external/scudo/standalone/include",
+    ],
+    cflags: [
+        "-Wno-unneeded-internal-declaration",
+    ],
+    srcs: ["standalone/fuzz/get_error_info_fuzzer.cpp"],
+    fuzz_config: {
+        componentid: 87896
+    },
+}

@@ -1,0 +1,17 @@
+[package]
+name = "cras_rust"
+version = "0.1.0"
+authors = ["The Chromium OS Authors"]
+edition = "2018"
+
+[lib]
+path = "src/rate_estimator.rs"
+crate-type = ["staticlib"]
+
+[dependencies]
+libc = "0.2.44"
+
+[profile.release]
+lto = true
+panic = "abort"
+overflow-checks = true

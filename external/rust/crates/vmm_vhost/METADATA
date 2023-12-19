@@ -1,0 +1,17 @@
+name: "rust_vmm_vhost"
+description:
+    "A pure rust library for vDPA, vhost and vhost-user."
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://github.com/rust-vmm/vhost"
+  }
+  url {
+    type: GIT
+    value: "https://chromium.googlesource.com/chromiumos/third_party/rust-vmm/vhost"
+  }
+  version: "98298cb96972c20e05bffed58861456b48328d43"
+  last_upgrade_date { year: 2021 month: 4 day: 9 }
+  license_type: NOTICE
+}

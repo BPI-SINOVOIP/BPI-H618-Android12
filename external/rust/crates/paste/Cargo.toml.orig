@@ -1,0 +1,21 @@
+[package]
+name = "paste"
+version = "1.0.5"
+authors = ["David Tolnay <dtolnay@gmail.com>"]
+edition = "2018"
+license = "MIT OR Apache-2.0"
+description = "Macros for all your token pasting needs"
+repository = "https://github.com/dtolnay/paste"
+categories = ["no-std"]
+readme = "README.md"
+
+[lib]
+proc-macro = true
+
+[dev-dependencies]
+paste-test-suite = { version = "0", path = "tests/macros" }
+rustversion = "1.0"
+trybuild = "1.0"
+
+[package.metadata.docs.rs]
+targets = ["x86_64-unknown-linux-gnu"]

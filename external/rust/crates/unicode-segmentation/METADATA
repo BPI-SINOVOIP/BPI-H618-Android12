@@ -1,0 +1,19 @@
+name: "unicode-segmentation"
+description: "This crate provides Grapheme Cluster, Word and Sentence boundaries according to Unicode Standard Annex #29 rules."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/unicode-segmentation"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/unicode-segmentation/unicode-segmentation-1.7.1.crate"
+  }
+  version: "1.7.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 1
+    day: 12
+  }
+}

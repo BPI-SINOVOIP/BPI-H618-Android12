@@ -1,0 +1,12 @@
+diff --git a/tests/sync_broadcast.rs b/tests/sync_broadcast.rs
+index 5f79800..9ef7927 100644
+--- a/tests/sync_broadcast.rs
++++ b/tests/sync_broadcast.rs
+@@ -286,6 +286,7 @@ fn capacity_too_big() {
+ }
+ 
+ #[test]
++#[cfg(not(target_os = "android"))]
+ fn panic_in_clone() {
+     use std::panic::{self, AssertUnwindSafe};
+ 

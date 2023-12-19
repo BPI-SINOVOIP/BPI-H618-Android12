@@ -1,0 +1,35 @@
+// Generated file DO NOT EDIT
+// Run android/download_latest.sh
+name: "geonames"
+description:
+    "Assorted files downloaded from https://www.geonames.org/"
+
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://www.geonames.org/"
+  }
+  url {
+    type: OTHER
+    value: "Downloaded from https://download.geonames.org/export/dump/cities1000.zip on 2020-11-10, SHA1=f293844bc9bec4638dfa60ed28a4cfd2562e0244, see android/version_info/cities1000.zip.headers"
+  }
+  url {
+    type: OTHER
+    value: "Downloaded from https://download.geonames.org/export/dump/cities15000.zip on 2020-11-10, SHA1=c9a6e27be706285e93f074906248802e6e8cc737, see android/version_info/cities15000.zip.headers"
+  }
+  url {
+    type: OTHER
+    value: "Downloaded from https://download.geonames.org/export/dump/cities500.zip on 2020-11-10, SHA1=69a244fc1d97b637596752c6aa8b860c731667d8, see android/version_info/cities500.zip.headers"
+  }
+  url {
+    type: OTHER
+    value: "Downloaded from https://download.geonames.org/export/dump/cities5000.zip on 2020-11-10, SHA1=9da4ddf0bd4802794c946484ce578780a2b60c44, see android/version_info/cities5000.zip.headers"
+  }
+  url {
+    type: OTHER
+    value: "Downloaded from https://download.geonames.org/export/dump/readme.txt on 2020-11-10, SHA1=7dc17472faed8f71aebc3e4cf22af181ef2002fe, see android/version_info/readme.txt.headers"
+  }
+  version: "As of 2020-11-10"
+  last_upgrade_date { year: 2020 month: 11 day: 10 }
+  license_type: NOTICE
+}

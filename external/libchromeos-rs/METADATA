@@ -1,0 +1,14 @@
+name: "libchromeos-rs"
+description:
+    "libchromeos-rs contains Rust code that can be reused across any Chrome OS "
+    "project. The crate is copied from a bigger platform2 repo."
+
+third_party {
+  url {
+    type: GIT
+    value: "https://chromium.googlesource.com/chromiumos/platform2"
+  }
+  version: "a39ed76e487e191a009cba4676bdd9a33006cbc0"
+  last_upgrade_date { year: 2020 month: 12 day: 8 }
+  license_type: NOTICE
+}

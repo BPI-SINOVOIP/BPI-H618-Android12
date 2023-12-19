@@ -1,0 +1,19 @@
+name: "grpcio-sys"
+description: "FFI bindings to gRPC c core library"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/grpcio-sys"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/grpcio-sys/grpcio-sys-0.8.1.crate"
+  }
+  version: "0.8.1"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 2
+  }
+}

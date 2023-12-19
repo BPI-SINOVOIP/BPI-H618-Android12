@@ -1,0 +1,15 @@
+--- a/Android.bp
++++ b/Android.bp
+@@ -45,6 +45,12 @@ rust_library {
+     crate_name: "android_log_sys",
+     srcs: ["src/lib.rs"],
+     edition: "2015",
++    target: {
++        linux_glibc: {
++            // liblog is not added as a dependency for linux_glibc target
++            enabled: false,
++        },
++    },
+     apex_available: [
+         "//apex_available:platform",
+         "com.android.resolv",

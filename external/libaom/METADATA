@@ -1,0 +1,11 @@
+third_party {
+  # would be NOTICE save for Alliance for Open Media patent license:
+  #   libaom/PATENTS
+  # and in headers for 930 other files like:
+  #   config/arm/config/aom_config.asm
+  #   config/arm/config/aom_config.c
+  #   ...
+  #   tools/txfm_analyzer/txfm_graph.h
+  #   tools/wrap-commit-msg.py
+  license_type: RECIPROCAL
+}

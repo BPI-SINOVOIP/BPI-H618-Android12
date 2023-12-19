@@ -1,0 +1,20 @@
+name: "flate2"
+description: "DEFLATE compression and decompression exposed as Read/BufRead/Write streams. Supports miniz_oxide, miniz.c, and multiple zlib implementations. Supports zlib, gzip, and raw deflate streams."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/flate2"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/flate2/flate2-1.0.20.crate"
+  }
+  version: "1.0.20"
+  # Dual-licensed, using the least restrictive per go/thirdpartylicenses#same.
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 5
+    day: 11
+  }
+}

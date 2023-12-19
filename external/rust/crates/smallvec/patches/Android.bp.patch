@@ -1,0 +1,13 @@
+diff --git a/Android.bp b/Android.bp
+index e99d7e0..12fdabd 100644
+--- a/Android.bp
++++ b/Android.bp
+@@ -42,4 +42,8 @@ rust_library {
+     crate_name: "smallvec",
+     srcs: ["src/lib.rs"],
+     edition: "2018",
++    apex_available: [
++        "//apex_available:platform",
++        "com.android.virt",
++    ],
+ }

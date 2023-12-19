@@ -1,0 +1,28 @@
+name: "kotlinc"
+description: "Standalone Kotlin command-line compiler tools."
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://kotlinlang.org/"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://github.com/JetBrains/kotlin/releases/download/v1.4.30/kotlin-compiler-1.4.30.zip"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://github.com/JetBrains/intellij-community/raw/171/lib/src/trove4j_src.jar"
+  }
+  version: "v1.4.30"
+  # would be RECIPROCAL save for:
+  #   license/third_party/rhino_LICENSE.txt
+  #   license/third_party/testdata/findbugs_license.txt
+  #   license/third_party/trove_license.txt
+  #   license/third_party/trove_readme_license.txt
+  license_type: RESTRICTED
+  last_upgrade_date {
+    year: 2021
+    month: 2
+    day: 17
+  }
+}

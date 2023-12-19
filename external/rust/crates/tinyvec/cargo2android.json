@@ -1,0 +1,11 @@
+{
+  "apex-available": [
+    "//apex_available:platform",
+    "com.android.resolv"
+  ],
+  "min_sdk_version": "29",
+  "dependencies": true,
+  "features": "alloc,default,tinyvec_macros",
+  "device": true,
+  "run": true
+}

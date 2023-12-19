@@ -1,0 +1,19 @@
+name: "textwrap"
+description: "Powerful library for word wrapping, indenting, and dedenting strings"
+third_party {
+  url {
+    type: HOMEPAGE
+    value: "https://crates.io/crates/textwrap"
+  }
+  url {
+    type: ARCHIVE
+    value: "https://static.crates.io/crates/textwrap/textwrap-0.13.4.crate"
+  }
+  version: "0.13.4"
+  license_type: NOTICE
+  last_upgrade_date {
+    year: 2021
+    month: 4
+    day: 2
+  }
+}
