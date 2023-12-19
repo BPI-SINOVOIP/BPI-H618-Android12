@@ -1,0 +1,14 @@
+third_party {
+  # would be NOTICE save for GPL in:
+  #   darwin-x86/1.48.0/share/doc/rust/LICENSE-THIRD-PARTY
+  #   darwin-x86/1.49.0/share/doc/rust/LICENSE-THIRD-PARTY
+  #   linux-x86/1.48.0/share/doc/rust/LICENSE-THIRD-PARTY
+  #   linux-x86/1.48.0/src/stdlibs/library/backtrace/crates/backtrace-sys/src/libbacktrace/move-if-change
+  #   linux-x86/1.48.0/src/stdlibs/library/backtrace/crates/backtrace-sys/src/libbacktrace/config/lead-dot.m4
+  #   linux-x86/1.48.0/src/stdlibs/library/backtrace/crates/backtrace-sys/src/libbacktrace/config/warnings.m4
+  #   linux-x86/1.49.0/share/doc/rust/LICENSE-THIRD-PARTY
+  #   linux-x86/1.49.0/src/stdlibs/library/backtrace/crates/backtrace-sys/src/libbacktrace/move-if-change
+  #   linux-x86/1.49.0/src/stdlibs/library/backtrace/crates/backtrace-sys/src/libbacktrace/config/lead-dot.m4
+  #   linux-x86/1.49.0/src/stdlibs/library/backtrace/crates/backtrace-sys/src/libbacktrace/config/warnings.m4
+  license_type: RESTRICTED
+}

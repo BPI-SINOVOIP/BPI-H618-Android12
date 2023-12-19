@@ -1,0 +1,60 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "prebuilts_rust_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    //   SPDX-license-identifier-GPL
+    //   SPDX-license-identifier-GPL-2.0
+    //   SPDX-license-identifier-LGPL
+    //   SPDX-license-identifier-MIT
+    //   SPDX-license-identifier-NCSA
+    //   SPDX-license-identifier-OpenSSL
+    //   legacy_permissive
+    default_applicable_licenses: ["prebuilts_rust_license"],
+}
+
+rust_prebuilt_library {
+    name: "libstd_x86_64-apple-darwin",
+    stem: "libstd",
+    suffix: "-b7fb7394110e9327",
+    crate_name: "std",
+    link_dirs: ["1.51.0/lib/rustlib/x86_64-apple-darwin/lib/"],
+    target: {
+        darwin: {
+            dylib: {
+                srcs: ["1.51.0/lib/rustlib/x86_64-apple-darwin/lib/libstd-b7fb7394110e9327.dylib"],
+            },
+            rlib: {
+                srcs: ["1.51.0/lib/rustlib/x86_64-apple-darwin/lib/libstd-b7fb7394110e9327.rlib"],
+            },
+            enabled: true,
+        },
+    },
+    enabled: false,
+    host_supported: true,
+    sysroot: true,
+}
+
+rust_prebuilt_library {
+    name: "libtest_x86_64-apple-darwin",
+    stem: "libtest",
+    suffix: "-14915b0897f7875e",
+    crate_name: "test",
+    link_dirs: ["1.51.0/lib/rustlib/x86_64-apple-darwin/lib/"],
+    target: {
+        darwin: {
+            dylib: {
+                srcs: ["1.51.0/lib/rustlib/x86_64-apple-darwin/lib/libtest-14915b0897f7875e.dylib"],
+            },
+            rlib: {
+                srcs: ["1.51.0/lib/rustlib/x86_64-apple-darwin/lib/libtest-14915b0897f7875e.rlib"],
+            },
+            enabled: true,
+        },
+    },
+    enabled: false,
+    host_supported: true,
+    sysroot: true,
+}
