@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.lifecycle",
+    "module": "lifecycle-runtime",
+    "version": "2.4.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-common",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.arch.core",
+          "module": "core-common",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lifecycle-runtime-2.4.0-alpha01.aar",
+          "url": "lifecycle-runtime-2.4.0-alpha01.aar",
+          "size": 11336,
+          "sha512": "39841131b8b55e06f58169d00c964c45e4bf130516f8057491e707ec8b5b717c9d19ad5d37975d95342c9ec5cb7fce9a6f7b35e050d1e45210eede0b2458b4df",
+          "sha256": "ff81a14b3ede26bfab0e04257d52820ed07cb55ccf020b7c0c063db964109e63",
+          "sha1": "fb4006960780a7f7e67f1cc317b352b3b47427a1",
+          "md5": "5d95b814d055e95a4f9a6d71b5da6942"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.arch.core",
+          "module": "core-runtime",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-common",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.arch.core",
+          "module": "core-common",
+          "version": {
+            "requires": "2.1.0"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "lifecycle-runtime-2.4.0-alpha01.aar",
+          "url": "lifecycle-runtime-2.4.0-alpha01.aar",
+          "size": 11336,
+          "sha512": "39841131b8b55e06f58169d00c964c45e4bf130516f8057491e707ec8b5b717c9d19ad5d37975d95342c9ec5cb7fce9a6f7b35e050d1e45210eede0b2458b4df",
+          "sha256": "ff81a14b3ede26bfab0e04257d52820ed07cb55ccf020b7c0c063db964109e63",
+          "sha1": "fb4006960780a7f7e67f1cc317b352b3b47427a1",
+          "md5": "5d95b814d055e95a4f9a6d71b5da6942"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "lifecycle-runtime-2.4.0-alpha01-sources.jar",
+          "url": "lifecycle-runtime-2.4.0-alpha01-sources.jar",
+          "size": 8927,
+          "sha512": "3a9f03beaffff0b273188c91a18f234962052eed4257f5b18b5098d09e2ed9799e3870b5b8cc63eeb429f03ef294f3109365c794bb84b11742048d1a1a0a4288",
+          "sha256": "a1757f478939a9ae47e3a005f5c3ce051e50859d54478e3b931fdb06738269a9",
+          "sha1": "ae7040cf314de81d20ac69f28f5ab6c9a2c0d1ab",
+          "md5": "a34ad95ef12973e07a73efde45a2504e"
+        }
+      ]
+    }
+  ]
+}

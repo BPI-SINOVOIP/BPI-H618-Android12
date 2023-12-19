@@ -1,0 +1,175 @@
+// Signature format: 2.0
+package org.chromium.net {
+
+  public abstract class CallbackException extends org.chromium.net.CronetException {
+    ctor protected CallbackException(String, Throwable);
+  }
+
+  public abstract class CronetEngine {
+    ctor public CronetEngine();
+    method public abstract java.net.URLStreamHandlerFactory createURLStreamHandlerFactory();
+    method public abstract byte[] getGlobalMetricsDeltas();
+    method public abstract String getVersionString();
+    method public abstract org.chromium.net.UrlRequest.Builder newUrlRequestBuilder(String, org.chromium.net.UrlRequest.Callback, java.util.concurrent.Executor);
+    method public abstract java.net.URLConnection openConnection(java.net.URL) throws java.io.IOException;
+    method public abstract void shutdown();
+    method public abstract void startNetLogToFile(String, boolean);
+    method public abstract void stopNetLog();
+  }
+
+  public static class CronetEngine.Builder {
+    ctor public CronetEngine.Builder(android.content.Context);
+    method public org.chromium.net.CronetEngine.Builder addPublicKeyPins(String, java.util.Set<byte[]>, boolean, java.util.Date);
+    method public org.chromium.net.CronetEngine.Builder addQuicHint(String, int, int);
+    method public org.chromium.net.CronetEngine build();
+    method public org.chromium.net.CronetEngine.Builder enableBrotli(boolean);
+    method public org.chromium.net.CronetEngine.Builder enableHttp2(boolean);
+    method public org.chromium.net.CronetEngine.Builder enableHttpCache(int, long);
+    method public org.chromium.net.CronetEngine.Builder enablePublicKeyPinningBypassForLocalTrustAnchors(boolean);
+    method public org.chromium.net.CronetEngine.Builder enableQuic(boolean);
+    method public String getDefaultUserAgent();
+    method public org.chromium.net.CronetEngine.Builder setLibraryLoader(org.chromium.net.CronetEngine.Builder.LibraryLoader);
+    method public org.chromium.net.CronetEngine.Builder setStoragePath(String);
+    method public org.chromium.net.CronetEngine.Builder setUserAgent(String);
+    field public static final int HTTP_CACHE_DISABLED = 0; // 0x0
+    field public static final int HTTP_CACHE_DISK = 3; // 0x3
+    field public static final int HTTP_CACHE_DISK_NO_HTTP = 2; // 0x2
+    field public static final int HTTP_CACHE_IN_MEMORY = 1; // 0x1
+  }
+
+  public abstract static class CronetEngine.Builder.LibraryLoader {
+    ctor public CronetEngine.Builder.LibraryLoader();
+    method public abstract void loadLibrary(String);
+  }
+
+  public abstract class CronetException extends java.io.IOException {
+    ctor protected CronetException(String, Throwable);
+  }
+
+  public final class InlineExecutionProhibitedException extends java.util.concurrent.RejectedExecutionException {
+    ctor public InlineExecutionProhibitedException();
+  }
+
+  public abstract class NetworkException extends org.chromium.net.CronetException {
+    ctor protected NetworkException(String, Throwable);
+    method public abstract int getCronetInternalErrorCode();
+    method public abstract int getErrorCode();
+    method public abstract boolean immediatelyRetryable();
+    field public static final int ERROR_ADDRESS_UNREACHABLE = 9; // 0x9
+    field public static final int ERROR_CONNECTION_CLOSED = 5; // 0x5
+    field public static final int ERROR_CONNECTION_REFUSED = 7; // 0x7
+    field public static final int ERROR_CONNECTION_RESET = 8; // 0x8
+    field public static final int ERROR_CONNECTION_TIMED_OUT = 6; // 0x6
+    field public static final int ERROR_HOSTNAME_NOT_RESOLVED = 1; // 0x1
+    field public static final int ERROR_INTERNET_DISCONNECTED = 2; // 0x2
+    field public static final int ERROR_NETWORK_CHANGED = 3; // 0x3
+    field public static final int ERROR_OTHER = 11; // 0xb
+    field public static final int ERROR_QUIC_PROTOCOL_FAILED = 10; // 0xa
+    field public static final int ERROR_TIMED_OUT = 4; // 0x4
+  }
+
+  public abstract class QuicException extends org.chromium.net.NetworkException {
+    ctor protected QuicException(String, Throwable);
+    method public abstract int getQuicDetailedErrorCode();
+  }
+
+  public abstract class UploadDataProvider implements java.io.Closeable {
+    ctor public UploadDataProvider();
+    method public void close() throws java.io.IOException;
+    method public abstract long getLength() throws java.io.IOException;
+    method public abstract void read(org.chromium.net.UploadDataSink, java.nio.ByteBuffer) throws java.io.IOException;
+    method public abstract void rewind(org.chromium.net.UploadDataSink) throws java.io.IOException;
+  }
+
+  public final class UploadDataProviders {
+    method public static org.chromium.net.UploadDataProvider create(java.io.File);
+    method public static org.chromium.net.UploadDataProvider create(android.os.ParcelFileDescriptor);
+    method public static org.chromium.net.UploadDataProvider create(java.nio.ByteBuffer);
+    method public static org.chromium.net.UploadDataProvider create(byte[], int, int);
+    method public static org.chromium.net.UploadDataProvider create(byte[]);
+  }
+
+  public abstract class UploadDataSink {
+    ctor public UploadDataSink();
+    method public abstract void onReadError(Exception);
+    method public abstract void onReadSucceeded(boolean);
+    method public abstract void onRewindError(Exception);
+    method public abstract void onRewindSucceeded();
+  }
+
+  public abstract class UrlRequest {
+    ctor public UrlRequest();
+    method public abstract void cancel();
+    method public abstract void followRedirect();
+    method public abstract void getStatus(org.chromium.net.UrlRequest.StatusListener);
+    method public abstract boolean isDone();
+    method public abstract void read(java.nio.ByteBuffer);
+    method public abstract void start();
+  }
+
+  public abstract static class UrlRequest.Builder {
+    ctor public UrlRequest.Builder();
+    method public abstract org.chromium.net.UrlRequest.Builder addHeader(String, String);
+    method public abstract org.chromium.net.UrlRequest.Builder allowDirectExecutor();
+    method public abstract org.chromium.net.UrlRequest build();
+    method public abstract org.chromium.net.UrlRequest.Builder disableCache();
+    method public abstract org.chromium.net.UrlRequest.Builder setHttpMethod(String);
+    method public abstract org.chromium.net.UrlRequest.Builder setPriority(int);
+    method public abstract org.chromium.net.UrlRequest.Builder setUploadDataProvider(org.chromium.net.UploadDataProvider, java.util.concurrent.Executor);
+    field public static final int REQUEST_PRIORITY_HIGHEST = 4; // 0x4
+    field public static final int REQUEST_PRIORITY_IDLE = 0; // 0x0
+    field public static final int REQUEST_PRIORITY_LOW = 2; // 0x2
+    field public static final int REQUEST_PRIORITY_LOWEST = 1; // 0x1
+    field public static final int REQUEST_PRIORITY_MEDIUM = 3; // 0x3
+  }
+
+  public abstract static class UrlRequest.Callback {
+    ctor public UrlRequest.Callback();
+    method public void onCanceled(org.chromium.net.UrlRequest, org.chromium.net.UrlResponseInfo);
+    method public abstract void onFailed(org.chromium.net.UrlRequest, org.chromium.net.UrlResponseInfo, org.chromium.net.CronetException);
+    method public abstract void onReadCompleted(org.chromium.net.UrlRequest, org.chromium.net.UrlResponseInfo, java.nio.ByteBuffer) throws java.lang.Exception;
+    method public abstract void onRedirectReceived(org.chromium.net.UrlRequest, org.chromium.net.UrlResponseInfo, String) throws java.lang.Exception;
+    method public abstract void onResponseStarted(org.chromium.net.UrlRequest, org.chromium.net.UrlResponseInfo) throws java.lang.Exception;
+    method public abstract void onSucceeded(org.chromium.net.UrlRequest, org.chromium.net.UrlResponseInfo);
+  }
+
+  public static class UrlRequest.Status {
+    field public static final int CONNECTING = 10; // 0xa
+    field public static final int DOWNLOADING_PAC_FILE = 5; // 0x5
+    field public static final int ESTABLISHING_PROXY_TUNNEL = 8; // 0x8
+    field public static final int IDLE = 0; // 0x0
+    field public static final int INVALID = -1; // 0xffffffff
+    field public static final int READING_RESPONSE = 14; // 0xe
+    field public static final int RESOLVING_HOST = 9; // 0x9
+    field public static final int RESOLVING_HOST_IN_PAC_FILE = 7; // 0x7
+    field public static final int RESOLVING_PROXY_FOR_URL = 6; // 0x6
+    field public static final int SENDING_REQUEST = 12; // 0xc
+    field public static final int SSL_HANDSHAKE = 11; // 0xb
+    field public static final int WAITING_FOR_AVAILABLE_SOCKET = 2; // 0x2
+    field public static final int WAITING_FOR_CACHE = 4; // 0x4
+    field public static final int WAITING_FOR_DELEGATE = 3; // 0x3
+    field public static final int WAITING_FOR_RESPONSE = 13; // 0xd
+    field public static final int WAITING_FOR_STALLED_SOCKET_POOL = 1; // 0x1
+  }
+
+  public abstract static class UrlRequest.StatusListener {
+    ctor public UrlRequest.StatusListener();
+    method public abstract void onStatus(int);
+  }
+
+  public abstract class UrlResponseInfo {
+    ctor public UrlResponseInfo();
+    method public abstract java.util.Map<java.lang.String,java.util.List<java.lang.String>> getAllHeaders();
+    method public abstract java.util.List<java.util.Map.Entry<java.lang.String,java.lang.String>> getAllHeadersAsList();
+    method public abstract int getHttpStatusCode();
+    method public abstract String getHttpStatusText();
+    method public abstract String getNegotiatedProtocol();
+    method public abstract String getProxyServer();
+    method public abstract long getReceivedByteCount();
+    method public abstract String getUrl();
+    method public abstract java.util.List<java.lang.String> getUrlChain();
+    method public abstract boolean wasCached();
+  }
+
+}
+

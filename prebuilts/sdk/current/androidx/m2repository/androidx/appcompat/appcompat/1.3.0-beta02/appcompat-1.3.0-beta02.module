@@ -1,0 +1,216 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.appcompat",
+    "module": "appcompat",
+    "version": "1.3.0-beta02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.5.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.cursoradapter",
+          "module": "cursoradapter",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment",
+          "version": {
+            "requires": "1.3.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat-resources",
+          "version": {
+            "requires": "1.3.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.drawerlayout",
+          "module": "drawerlayout",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.savedstate",
+          "module": "savedstate",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "appcompat-1.3.0-beta02.aar",
+          "url": "appcompat-1.3.0-beta02.aar",
+          "size": 1081902,
+          "sha512": "2d4fb1629d44bb3f4dced1e53a462d17b6210e6da449014ebe751873191d8e4fdffd67b1b5d24ebb97a32f9342d13517cf627782c4b7c40b06eee1e053401541",
+          "sha256": "941680f783a84f587e7a977efe7825fee8facf49c85fab802d57539ad56c29c5",
+          "sha1": "b19be8da70e80cbe6b4d5477c940892cda79b855",
+          "md5": "ade207caad325901a1f9c42b638c19cc"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.5.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.cursoradapter",
+          "module": "cursoradapter",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment",
+          "version": {
+            "requires": "1.3.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat-resources",
+          "version": {
+            "requires": "1.3.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.drawerlayout",
+          "module": "drawerlayout",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.savedstate",
+          "module": "savedstate",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-runtime",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "appcompat-1.3.0-beta02.aar",
+          "url": "appcompat-1.3.0-beta02.aar",
+          "size": 1081902,
+          "sha512": "2d4fb1629d44bb3f4dced1e53a462d17b6210e6da449014ebe751873191d8e4fdffd67b1b5d24ebb97a32f9342d13517cf627782c4b7c40b06eee1e053401541",
+          "sha256": "941680f783a84f587e7a977efe7825fee8facf49c85fab802d57539ad56c29c5",
+          "sha1": "b19be8da70e80cbe6b4d5477c940892cda79b855",
+          "md5": "ade207caad325901a1f9c42b638c19cc"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "appcompat-1.3.0-beta02-sources.jar",
+          "url": "appcompat-1.3.0-beta02-sources.jar",
+          "size": 459688,
+          "sha512": "b104dc024505ee8ac0fe9583d56fb37ed6362baf875e360d06cd42593021119002392f7ae92115fc004aee180234f7b520ea69caf76014afc73979d54e2f93e5",
+          "sha256": "17642f90d44fb0354dd8aca82f01b7229481893bf992ec2f6fbd88de544b4ace",
+          "sha1": "58b75c070cf25a7b47655a9d72cf65f2bc8fd2bf",
+          "md5": "58b8e29129caf416b2e30ba80f76fa89"
+        }
+      ]
+    }
+  ]
+}

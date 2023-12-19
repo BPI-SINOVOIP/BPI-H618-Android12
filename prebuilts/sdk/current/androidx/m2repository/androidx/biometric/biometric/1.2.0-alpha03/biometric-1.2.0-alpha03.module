@@ -1,0 +1,153 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.biometric",
+    "module": "biometric",
+    "version": "1.2.0-alpha03",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.3.2"
+          }
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment",
+          "version": {
+            "requires": "1.2.5"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "biometric-1.2.0-alpha03.aar",
+          "url": "biometric-1.2.0-alpha03.aar",
+          "size": 213921,
+          "sha512": "26422e3e844071221bc0cbd6590ae919bc1260661ce1c6d897fb896765be8f88162d17ae0ba66451d5e5b29e9b109e6d97bd7e7b00c400b5d9afa2bd6e2dced9",
+          "sha256": "abb709f47d508d12503d03b71a250a1ba3f6a782206adc3d3be08895680c8c0c",
+          "sha1": "4e0f46dc914d7c6ac0485a6536017dceaccd0ae5",
+          "md5": "7995b8adc44109f6800a0139049b4859"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.activity",
+          "module": "activity",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-livedata-core",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.3.2"
+          }
+        },
+        {
+          "group": "androidx.fragment",
+          "module": "fragment",
+          "version": {
+            "requires": "1.2.5"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "biometric-1.2.0-alpha03.aar",
+          "url": "biometric-1.2.0-alpha03.aar",
+          "size": 213921,
+          "sha512": "26422e3e844071221bc0cbd6590ae919bc1260661ce1c6d897fb896765be8f88162d17ae0ba66451d5e5b29e9b109e6d97bd7e7b00c400b5d9afa2bd6e2dced9",
+          "sha256": "abb709f47d508d12503d03b71a250a1ba3f6a782206adc3d3be08895680c8c0c",
+          "sha1": "4e0f46dc914d7c6ac0485a6536017dceaccd0ae5",
+          "md5": "7995b8adc44109f6800a0139049b4859"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "biometric-1.2.0-alpha03-sources.jar",
+          "url": "biometric-1.2.0-alpha03-sources.jar",
+          "size": 66116,
+          "sha512": "f579f29cbde3df214d2a0324f73858b920d338a37ef82593418c8d9e93a1f2f10650ebd1f8d679eb7c377916bea14d847124afd8be2097a43e8708bad3aac82c",
+          "sha256": "33f26c29adfb25a7399563349c913eeb60f0183480188ab781ac1c725d66fad3",
+          "sha1": "85ac30351d096b0e7bce84dfcb8d4b02cd3c87d3",
+          "md5": "6966c20ac5ea76fb3e14956a768a0e54"
+        }
+      ]
+    }
+  ]
+}

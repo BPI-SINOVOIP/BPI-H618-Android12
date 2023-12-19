@@ -1,0 +1,118 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.vectordrawable",
+    "module": "vectordrawable",
+    "version": "1.2.0-alpha03",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "vectordrawable-1.2.0-alpha03.aar",
+          "url": "vectordrawable-1.2.0-alpha03.aar",
+          "size": 33462,
+          "sha512": "7da122721e6065a5faad59777b9c17b88c2a3aff5e28cb8b27a0ab97847ae59da204f84d7b73eb38ada3213005f5209147ecdab31ee6d1c8b646fc7e1aaac070",
+          "sha256": "d7e60975cdaab6bbaebb8ca1b5c777231d8202fa288d3912d39c17b050a8ff9e",
+          "sha1": "be9c94ea913cbedf504fdf739beb62369f3c198f",
+          "md5": "3beed428286656efa6a81a29960eeb41"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "vectordrawable-1.2.0-alpha03.aar",
+          "url": "vectordrawable-1.2.0-alpha03.aar",
+          "size": 33462,
+          "sha512": "7da122721e6065a5faad59777b9c17b88c2a3aff5e28cb8b27a0ab97847ae59da204f84d7b73eb38ada3213005f5209147ecdab31ee6d1c8b646fc7e1aaac070",
+          "sha256": "d7e60975cdaab6bbaebb8ca1b5c777231d8202fa288d3912d39c17b050a8ff9e",
+          "sha1": "be9c94ea913cbedf504fdf739beb62369f3c198f",
+          "md5": "3beed428286656efa6a81a29960eeb41"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "vectordrawable-1.2.0-alpha03-sources.jar",
+          "url": "vectordrawable-1.2.0-alpha03-sources.jar",
+          "size": 19436,
+          "sha512": "fca46eb523c8a7b7f01c7ef9912d27049495cb88b15e5726913271f15e2345a88b0823b18b7d54b72c9b7af4f439b874a0e864899e25cd3d05e10183433d2da3",
+          "sha256": "dee66a043066da41fe08993c6f71b2c1438ee0e0c1b02b91d51565f113c68c7a",
+          "sha1": "c5434534565f08c2d7c1615ccdf4d86e5e3c4bee",
+          "md5": "e5ee5446587095e67bf2d1236a361b6f"
+        }
+      ]
+    }
+  ]
+}

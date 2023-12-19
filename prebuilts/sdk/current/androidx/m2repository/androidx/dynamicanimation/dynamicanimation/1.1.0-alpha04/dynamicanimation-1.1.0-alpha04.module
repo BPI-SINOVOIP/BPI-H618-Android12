@@ -1,0 +1,104 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.dynamicanimation",
+    "module": "dynamicanimation",
+    "version": "1.1.0-alpha04",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamicanimation-1.1.0-alpha04.aar",
+          "url": "dynamicanimation-1.1.0-alpha04.aar",
+          "size": 35264,
+          "sha512": "d721b5a8a3271117b315c5a45ecfc486147fef24a57ae4767da46273a7d57565973db2e268744eb5e582f401313b8de739219a40a4e9385d43e7a82240e2b07a",
+          "sha256": "6a7f3466fae88f7111e46fd01b1c6dabdfa56147d897a2a95a64da7e778777f4",
+          "sha1": "b43decad030710d387234f83c618c850c388b29c",
+          "md5": "f522323df58372ac2b77282b015332ad"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "dynamicanimation-1.1.0-alpha04.aar",
+          "url": "dynamicanimation-1.1.0-alpha04.aar",
+          "size": 35264,
+          "sha512": "d721b5a8a3271117b315c5a45ecfc486147fef24a57ae4767da46273a7d57565973db2e268744eb5e582f401313b8de739219a40a4e9385d43e7a82240e2b07a",
+          "sha256": "6a7f3466fae88f7111e46fd01b1c6dabdfa56147d897a2a95a64da7e778777f4",
+          "sha1": "b43decad030710d387234f83c618c850c388b29c",
+          "md5": "f522323df58372ac2b77282b015332ad"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "dynamicanimation-1.1.0-alpha04-sources.jar",
+          "url": "dynamicanimation-1.1.0-alpha04-sources.jar",
+          "size": 24034,
+          "sha512": "5b8ba87a60f1ce9ede5aaf03753ff97a818ab02bcc5622103175985e0c25ddc0b87ffaad397c96fede43bd48f7f44938f7445e273663e751f036816070917e17",
+          "sha256": "109ec881c6fc8462cdc2014cb810dcd1433d1d4573038fe629b1a28d714670bd",
+          "sha1": "c6fc389167e4fb1d6f27b97027f8ffb04c0d631f",
+          "md5": "6229fbe15d0750c7fa76b10198b99c38"
+        }
+      ]
+    }
+  ]
+}

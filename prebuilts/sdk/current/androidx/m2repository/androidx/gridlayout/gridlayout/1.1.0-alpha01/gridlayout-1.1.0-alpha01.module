@@ -1,0 +1,104 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.gridlayout",
+    "module": "gridlayout",
+    "version": "1.1.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gridlayout-1.1.0-alpha01.aar",
+          "url": "gridlayout-1.1.0-alpha01.aar",
+          "size": 43376,
+          "sha512": "425bec78d6a84cf88e4091e639ca28981b3f49f6620510e44a3c08b779458b1aa75e774c26997693f07bf71fd4faaf101cfb53b9dbd9605c05eed8bdcbb95afa",
+          "sha256": "e324c0c3a8777ea6d47cd6553b9bd8988f6f298d7f93a610d19a88382e3bdd3e",
+          "sha1": "ede33fc101fc34dddd22382e99d4900a72494757",
+          "md5": "1b1d04b81c9e5c7d770f3bea9594272b"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.3.0-beta01"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "gridlayout-1.1.0-alpha01.aar",
+          "url": "gridlayout-1.1.0-alpha01.aar",
+          "size": 43376,
+          "sha512": "425bec78d6a84cf88e4091e639ca28981b3f49f6620510e44a3c08b779458b1aa75e774c26997693f07bf71fd4faaf101cfb53b9dbd9605c05eed8bdcbb95afa",
+          "sha256": "e324c0c3a8777ea6d47cd6553b9bd8988f6f298d7f93a610d19a88382e3bdd3e",
+          "sha1": "ede33fc101fc34dddd22382e99d4900a72494757",
+          "md5": "1b1d04b81c9e5c7d770f3bea9594272b"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "gridlayout-1.1.0-alpha01-sources.jar",
+          "url": "gridlayout-1.1.0-alpha01-sources.jar",
+          "size": 24251,
+          "sha512": "71a2913db00070f14cf142797240970ddac9800b94b3da354dded49e08ca2b12eaaf245c5b06db68d789eff592786903fc7150ae4aef504973f8fe3d2f01e68e",
+          "sha256": "ab7779ce81f3e3b65336a5d2fe5b2097f7dc603152a942ec1b42bb6e634e6983",
+          "sha1": "509bceae04fdcb49ac9293fdece53b1cf94ad2d6",
+          "md5": "57aa0d2063bb406d4834a26681bc2ac1"
+        }
+      ]
+    }
+  ]
+}

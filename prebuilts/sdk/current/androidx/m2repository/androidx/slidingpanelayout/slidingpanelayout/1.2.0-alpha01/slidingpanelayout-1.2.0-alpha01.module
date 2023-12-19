@@ -1,0 +1,118 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.slidingpanelayout",
+    "module": "slidingpanelayout",
+    "version": "1.2.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.customview",
+          "module": "customview",
+          "version": {
+            "requires": "1.2.0-alpha01"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "slidingpanelayout-1.2.0-alpha01.aar",
+          "url": "slidingpanelayout-1.2.0-alpha01.aar",
+          "size": 24646,
+          "sha512": "96020370c69cc6a051896966106b93c996d791ca31f62995762dcc336985477c79da98f4a51bc821a079b6b281ec00eee79cfa483987b602715db9ce4f3c0ba0",
+          "sha256": "7f68e24f2b352856a16cf6e6cf7b33f68dd21b99504621bf578540d1e797f311",
+          "sha1": "548229cc460df5ebc8c3cef4973769740d8660b3",
+          "md5": "6a70844c1c2c41bed5fd949c2f5bfc56"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.customview",
+          "module": "customview",
+          "version": {
+            "requires": "1.2.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "slidingpanelayout-1.2.0-alpha01.aar",
+          "url": "slidingpanelayout-1.2.0-alpha01.aar",
+          "size": 24646,
+          "sha512": "96020370c69cc6a051896966106b93c996d791ca31f62995762dcc336985477c79da98f4a51bc821a079b6b281ec00eee79cfa483987b602715db9ce4f3c0ba0",
+          "sha256": "7f68e24f2b352856a16cf6e6cf7b33f68dd21b99504621bf578540d1e797f311",
+          "sha1": "548229cc460df5ebc8c3cef4973769740d8660b3",
+          "md5": "6a70844c1c2c41bed5fd949c2f5bfc56"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "slidingpanelayout-1.2.0-alpha01-sources.jar",
+          "url": "slidingpanelayout-1.2.0-alpha01-sources.jar",
+          "size": 14146,
+          "sha512": "8baf68a32a7d7aa152556d8e5a6b84d7b5577a3b38245676b80e0daf3e916ef63e9b7f68367de31f7d8278dc2d425e05ebe4e2393a149a732a9e480d862ee549",
+          "sha256": "c385f59b24433e4caadbee47132e986e6792294ab44a055f2279f2b4c6d926e1",
+          "sha1": "95b21969f1a8da8a553563fcb28e5569bedb5c8b",
+          "md5": "ede3d13aff236d30dc72b62af4e0f650"
+        }
+      ]
+    }
+  ]
+}

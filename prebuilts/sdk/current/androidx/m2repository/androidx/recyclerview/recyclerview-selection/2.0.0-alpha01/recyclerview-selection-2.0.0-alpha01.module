@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.recyclerview",
+    "module": "recyclerview-selection",
+    "version": "2.0.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.recyclerview",
+          "module": "recyclerview",
+          "version": {
+            "requires": "1.2.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "recyclerview-selection-2.0.0-alpha01.aar",
+          "url": "recyclerview-selection-2.0.0-alpha01.aar",
+          "size": 102042,
+          "sha512": "f208241160ad40c2d1b31e2e977af733f320533fa79f091e2ec3e25d307d218f7692443e597a6db51bc016d32db0bdfb7c8abc9b4941a762c567e470132ff3da",
+          "sha256": "fc92d6f6d92203167bd941010bef238eadaa6813d51397de33666949d77bac98",
+          "sha1": "f063234f97d6fe499e597c694f93f55d142302eb",
+          "md5": "31a225c002b52ce80b7e2b52c0d0cba5"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.recyclerview",
+          "module": "recyclerview",
+          "version": {
+            "requires": "1.2.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "recyclerview-selection-2.0.0-alpha01.aar",
+          "url": "recyclerview-selection-2.0.0-alpha01.aar",
+          "size": 102042,
+          "sha512": "f208241160ad40c2d1b31e2e977af733f320533fa79f091e2ec3e25d307d218f7692443e597a6db51bc016d32db0bdfb7c8abc9b4941a762c567e470132ff3da",
+          "sha256": "fc92d6f6d92203167bd941010bef238eadaa6813d51397de33666949d77bac98",
+          "sha1": "f063234f97d6fe499e597c694f93f55d142302eb",
+          "md5": "31a225c002b52ce80b7e2b52c0d0cba5"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "recyclerview-selection-2.0.0-alpha01-sources.jar",
+          "url": "recyclerview-selection-2.0.0-alpha01-sources.jar",
+          "size": 86126,
+          "sha512": "3d11436008ce24b5d65f957ba7d89daa8b058e03fd049d560984fe52e232f7befe7094612418583e8156b95b4c90c1cceba693f877a9ed022cc7e28393895da0",
+          "sha256": "a724e0d618b80eb4c7b1ea108e9c3410735e56324ef1e1a2106ba329bd8a730d",
+          "sha1": "f9eb90a5622ed9e03c535f82daa2cffaa79ef9e6",
+          "md5": "e40ee86112bc4affac2966b7bf7b1824"
+        }
+      ]
+    }
+  ]
+}

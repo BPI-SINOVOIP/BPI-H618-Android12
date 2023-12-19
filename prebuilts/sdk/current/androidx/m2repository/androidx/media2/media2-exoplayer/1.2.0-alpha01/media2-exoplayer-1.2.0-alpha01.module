@@ -1,0 +1,79 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.media2",
+    "module": "media2-exoplayer",
+    "version": "1.2.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "media2-exoplayer-1.2.0-alpha01.aar",
+          "url": "media2-exoplayer-1.2.0-alpha01.aar",
+          "size": 1233620,
+          "sha512": "2dec2c86013995ec68b2305774a9a935f46e2d311dd3549abee153d9c606a810507d512fc925aaa189db6d1644dc41f4810e0baedd26f7263bbead68aa029f4d",
+          "sha256": "daf5834d8a51362ef92d70b2703b2ca60ba333e5c18823029ff3506a7edd55c5",
+          "sha1": "a85b39d49544d0af20ca98858793bf0f63512706",
+          "md5": "30b2c56e6a77fe0f15cc944c3830cb0f"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "media2-exoplayer-1.2.0-alpha01.aar",
+          "url": "media2-exoplayer-1.2.0-alpha01.aar",
+          "size": 1233620,
+          "sha512": "2dec2c86013995ec68b2305774a9a935f46e2d311dd3549abee153d9c606a810507d512fc925aaa189db6d1644dc41f4810e0baedd26f7263bbead68aa029f4d",
+          "sha256": "daf5834d8a51362ef92d70b2703b2ca60ba333e5c18823029ff3506a7edd55c5",
+          "sha1": "a85b39d49544d0af20ca98858793bf0f63512706",
+          "md5": "30b2c56e6a77fe0f15cc944c3830cb0f"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "media2-exoplayer-1.2.0-alpha01-sources.jar",
+          "url": "media2-exoplayer-1.2.0-alpha01-sources.jar",
+          "size": 261,
+          "sha512": "747d2f00a7f5f379582e33e452f30f3a25732a510971d9ed5161355bf7ef0fc507fef30883960dbfc780d36b6e8215fba01086b4ee053358805686e2f2c1aa85",
+          "sha256": "69e1a62e5752ca3f43fb1607f161379bbe88b64af89c1a543c126160adf7cc53",
+          "sha1": "5b8f86fea035328fc9e8c660773037a3401ce25f",
+          "md5": "e7e9f45eb9d74540092920528bb0abf0"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.room",
+    "module": "room-testing",
+    "version": "2.3.0-beta02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.3.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.3.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.0.1"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-framework",
+          "version": {
+            "requires": "2.0.1"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.3.0-beta02"
+          }
+        },
+        {
+          "group": "junit",
+          "module": "junit",
+          "version": {
+            "requires": "4.12"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "room-testing-2.3.0-beta02.aar",
+          "url": "room-testing-2.3.0-beta02.aar",
+          "size": 12190,
+          "sha512": "7431fc64ca0c3c781583a0f9d1a47c047ab2bb5b476db2e2dbe64a6cbf86fc660a71616c2fcef1b9933f969f4f77315437b717a07844b181b8581d43327c45cb",
+          "sha256": "6a9a8e29f064aa38c6017e9187190e0a428778eb52d96ad44540499461180062",
+          "sha1": "e5c9ae2dbf337b80cf37ddb686264af69dc65cc0",
+          "md5": "73293edaea9f00f18f3c77d8cc40731e"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.arch.core",
+          "module": "core-runtime",
+          "version": {
+            "requires": "2.0.1"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-common",
+          "version": {
+            "requires": "2.3.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.3.0-beta02"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite",
+          "version": {
+            "requires": "2.0.1"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-framework",
+          "version": {
+            "requires": "2.0.1"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-migration",
+          "version": {
+            "requires": "2.3.0-beta02"
+          }
+        },
+        {
+          "group": "junit",
+          "module": "junit",
+          "version": {
+            "requires": "4.12"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "room-testing-2.3.0-beta02.aar",
+          "url": "room-testing-2.3.0-beta02.aar",
+          "size": 12190,
+          "sha512": "7431fc64ca0c3c781583a0f9d1a47c047ab2bb5b476db2e2dbe64a6cbf86fc660a71616c2fcef1b9933f969f4f77315437b717a07844b181b8581d43327c45cb",
+          "sha256": "6a9a8e29f064aa38c6017e9187190e0a428778eb52d96ad44540499461180062",
+          "sha1": "e5c9ae2dbf337b80cf37ddb686264af69dc65cc0",
+          "md5": "73293edaea9f00f18f3c77d8cc40731e"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "room-testing-2.3.0-beta02-sources.jar",
+          "url": "room-testing-2.3.0-beta02-sources.jar",
+          "size": 6048,
+          "sha512": "10a5560b3125217164040100487c13740fdcd582b6cc71c06c39ed688b19e22ab39ca83ace56bea230c54d909da429712b6c9210bff0b9a8bcbc8e1d130a558d",
+          "sha256": "7d07c0892a965abe5c487b7bc60b2d1ae3ca9498b4381a5086cbe8598b804aee",
+          "sha1": "ef0953091956b2a9b110ccd07b4dd77a6671a64c",
+          "md5": "c409c8587684a0c30942882a5916bba8"
+        }
+      ]
+    }
+  ]
+}

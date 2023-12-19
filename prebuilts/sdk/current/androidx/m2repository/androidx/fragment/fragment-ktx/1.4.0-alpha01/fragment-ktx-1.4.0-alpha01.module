@@ -1,0 +1,205 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.fragment",
+    "module": "fragment-ktx",
+    "version": "1.4.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.fragment",
+          "module": "fragment",
+          "version": {
+            "requires": "1.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-ktx",
+          "version": {
+            "requires": "1.2.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.collection",
+          "module": "collection-ktx",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-livedata-core-ktx",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "androidx.savedstate",
+          "module": "savedstate-ktx",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "fragment-ktx-1.4.0-alpha01.aar",
+          "url": "fragment-ktx-1.4.0-alpha01.aar",
+          "size": 15205,
+          "sha512": "896f7c7af3d6c7a568ee7df88f4aa4559c2e8f24d35cf0ceb78de691637344a453b1531b9b932aa2e264774a03c410d0a1be4a1ba5c3a6bcac9e208246f60868",
+          "sha256": "ef6ffd13b1baf399c37b506a8d92b0cabb8ab1117f87f87168286fe0dc24d759",
+          "sha1": "d54940a6e97d2f2172ba15bb862d6b3000e338d9",
+          "md5": "b4b318aa950c28122a99a38bfe38e421"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.fragment",
+          "module": "fragment",
+          "version": {
+            "requires": "1.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-ktx",
+          "version": {
+            "requires": "1.2.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.collection",
+          "module": "collection-ktx",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-livedata-core-ktx",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "androidx.savedstate",
+          "module": "savedstate-ktx",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "reason": "Mirror fragment dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "fragment-ktx-1.4.0-alpha01.aar",
+          "url": "fragment-ktx-1.4.0-alpha01.aar",
+          "size": 15205,
+          "sha512": "896f7c7af3d6c7a568ee7df88f4aa4559c2e8f24d35cf0ceb78de691637344a453b1531b9b932aa2e264774a03c410d0a1be4a1ba5c3a6bcac9e208246f60868",
+          "sha256": "ef6ffd13b1baf399c37b506a8d92b0cabb8ab1117f87f87168286fe0dc24d759",
+          "sha1": "d54940a6e97d2f2172ba15bb862d6b3000e338d9",
+          "md5": "b4b318aa950c28122a99a38bfe38e421"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "fragment-ktx-1.4.0-alpha01-sources.jar",
+          "url": "fragment-ktx-1.4.0-alpha01-sources.jar",
+          "size": 6158,
+          "sha512": "476292abaed3998c04465525063852d295c5abe1df6bd19dd546c5356dbf9f9131a21d9704c7eb9a11231de7546311fc4c20dfb8cbab99634128fa44ff705670",
+          "sha256": "8d2f635ee0969b1709aaaf4681ad2c857a95ade73736e5900f7b0809518794bd",
+          "sha1": "b64a27a0cae3596d8bfba86d5fdb427c38b5a7ed",
+          "md5": "66eec5468ecf2711c475d79392354ed3"
+        }
+      ]
+    }
+  ]
+}

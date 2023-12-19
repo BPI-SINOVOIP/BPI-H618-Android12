@@ -1,0 +1,106 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.appsearch",
+    "module": "appsearch-compiler",
+    "version": "1.0.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "appsearch-compiler-1.0.0-alpha01.jar",
+          "url": "appsearch-compiler-1.0.0-alpha01.jar",
+          "size": 40106,
+          "sha512": "3c24b9c5333b8532ec947d84781937313bf8d08139ad3ad65c76948387421d7a79cb18ef819a3da5dc33afb6569dc621cb7c15e2f242652b5076536073afc362",
+          "sha256": "df3a8fd7606596037c6e65e7253ab1de66b9c6632610b546ff1e44bf7d0365f6",
+          "sha1": "37d3e8fef10ea4b1073269d5ade79c80204fbcb8",
+          "md5": "87d05c4a3608ead5e0d3fc8d662edf34"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup",
+          "module": "javapoet",
+          "version": {
+            "requires": "1.13.0"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "appsearch-compiler-1.0.0-alpha01.jar",
+          "url": "appsearch-compiler-1.0.0-alpha01.jar",
+          "size": 40106,
+          "sha512": "3c24b9c5333b8532ec947d84781937313bf8d08139ad3ad65c76948387421d7a79cb18ef819a3da5dc33afb6569dc621cb7c15e2f242652b5076536073afc362",
+          "sha256": "df3a8fd7606596037c6e65e7253ab1de66b9c6632610b546ff1e44bf7d0365f6",
+          "sha1": "37d3e8fef10ea4b1073269d5ade79c80204fbcb8",
+          "md5": "87d05c4a3608ead5e0d3fc8d662edf34"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "appsearch-compiler-1.0.0-alpha01-sources.jar",
+          "url": "appsearch-compiler-1.0.0-alpha01-sources.jar",
+          "size": 25290,
+          "sha512": "faf8361d4428fcc1981a93442f26beeab7d020d922e2d0c6d5d1fef65f5a1acde812f376b0f3b746663295f260e78b7fa0afba34962af3c7a408a0fc5de335f2",
+          "sha256": "d6afe12447c78fce00ca90dc6a7b3998259d8add3f7b1099b65da9ee0aee542d",
+          "sha1": "1b2e1361107e97659541c3fd976f680061d9b766",
+          "md5": "a7935ef7504ab1eb446b0da9715d0f25"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.navigation",
+    "module": "navigation-ui-ktx",
+    "version": "2.4.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-ui",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-runtime-ktx",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-ui-ktx-2.4.0-alpha01.aar",
+          "url": "navigation-ui-ktx-2.4.0-alpha01.aar",
+          "size": 32804,
+          "sha512": "b33a50db7abf993dd475dbddd5da3aec306dec510bc33b66c35d9d99a182fcb405a2f5368282fa6f166316e5b70d354b5fedddae3206fd4a4ab534c6d93e61a8",
+          "sha256": "68071807f839100e67c1d841678122dca244a0962fc6b5b610e590c372ec72d4",
+          "sha1": "e6a4bfe1fe1bb81a9eb1b6546dac2d9334521a74",
+          "md5": "d4b988b03654e57b5014f808e15b2de3"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-ui",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-runtime-ktx",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-ui-ktx-2.4.0-alpha01.aar",
+          "url": "navigation-ui-ktx-2.4.0-alpha01.aar",
+          "size": 32804,
+          "sha512": "b33a50db7abf993dd475dbddd5da3aec306dec510bc33b66c35d9d99a182fcb405a2f5368282fa6f166316e5b70d354b5fedddae3206fd4a4ab534c6d93e61a8",
+          "sha256": "68071807f839100e67c1d841678122dca244a0962fc6b5b610e590c372ec72d4",
+          "sha1": "e6a4bfe1fe1bb81a9eb1b6546dac2d9334521a74",
+          "md5": "d4b988b03654e57b5014f808e15b2de3"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "navigation-ui-ktx-2.4.0-alpha01-sources.jar",
+          "url": "navigation-ui-ktx-2.4.0-alpha01-sources.jar",
+          "size": 8817,
+          "sha512": "2e48363c0ecc9c3fa7dac4e28b83a500db14be7bff58c4f3ab6432c1279c1ec819499075466ed2824fb1f44794ace25409041df4829e314bf8b9cede6cc66e91",
+          "sha256": "d318b4af383bff8177a3c0813e58d39f474ff35a02d1c1ff409c57ff5921c342",
+          "sha1": "16c0f2db3ad7b5456a930eb9c3c6dd2584573313",
+          "md5": "9c93e7210a7ed54f565146c1d073f525"
+        }
+      ]
+    }
+  ]
+}

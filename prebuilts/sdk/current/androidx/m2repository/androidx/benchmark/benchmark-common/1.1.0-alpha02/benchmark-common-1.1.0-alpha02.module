@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.benchmark",
+    "module": "benchmark-common",
+    "version": "1.1.0-alpha02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "benchmark-common-1.1.0-alpha02.aar",
+          "url": "benchmark-common-1.1.0-alpha02.aar",
+          "size": 132548,
+          "sha512": "5406f6b02603719f923ea725813a91131be5cb6047a990be4694e34ff8d2fdd188c9029c344e4adc2ee3bde97f0624ad71fecd20d9113894526f888823be07d9",
+          "sha256": "e55f385903a717f5a37dec96a41c0b740f3c62b1f699918aaf27b1266d215e54",
+          "sha1": "0522dc477413895a06642c588ccfa302818c4182",
+          "md5": "821dcf3e0aad9ac0981687d0eb38c8b6"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation-experimental",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        },
+        {
+          "group": "androidx.tracing",
+          "module": "tracing-ktx",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.test",
+          "module": "monitor",
+          "version": {
+            "requires": "1.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "benchmark-common-1.1.0-alpha02.aar",
+          "url": "benchmark-common-1.1.0-alpha02.aar",
+          "size": 132548,
+          "sha512": "5406f6b02603719f923ea725813a91131be5cb6047a990be4694e34ff8d2fdd188c9029c344e4adc2ee3bde97f0624ad71fecd20d9113894526f888823be07d9",
+          "sha256": "e55f385903a717f5a37dec96a41c0b740f3c62b1f699918aaf27b1266d215e54",
+          "sha1": "0522dc477413895a06642c588ccfa302818c4182",
+          "md5": "821dcf3e0aad9ac0981687d0eb38c8b6"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "benchmark-common-1.1.0-alpha02-sources.jar",
+          "url": "benchmark-common-1.1.0-alpha02-sources.jar",
+          "size": 42056,
+          "sha512": "dfdddd67f36f8558865548c85d8c5f3d6e1e2ed712eaaaacaf499f7e2f9d129740dd8ed9cfa2825204e7adf88d83fc63de4f80968670a1a4a7a5c0cf063dc725",
+          "sha256": "1fca3f633b20426c88357f465efb4e487d216e0927643c0d489310df23d5bbf6",
+          "sha1": "1ce38144c8791930b0192fc147094f4330072747",
+          "md5": "d7ecc171784dfe09db6c9863ac8bc295"
+        }
+      ]
+    }
+  ]
+}

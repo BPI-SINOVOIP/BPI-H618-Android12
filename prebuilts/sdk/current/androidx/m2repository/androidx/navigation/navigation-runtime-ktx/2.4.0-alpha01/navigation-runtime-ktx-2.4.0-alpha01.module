@@ -1,0 +1,157 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.navigation",
+    "module": "navigation-runtime-ktx",
+    "version": "2.4.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-runtime",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-common-ktx",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-ktx",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "reason": "Mirror navigation-runtime dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.2.0"
+          },
+          "reason": "Mirror navigation-runtime dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-runtime-ktx-2.4.0-alpha01.aar",
+          "url": "navigation-runtime-ktx-2.4.0-alpha01.aar",
+          "size": 18060,
+          "sha512": "6d2eb5d0d431a45136be9d38f4c96ebd9901eeca57653d6b4a9733834428b7cf679156142cabe36e418b159395531d102ddd4e9268c517e527bca220e8c0af16",
+          "sha256": "79527953c51fc208d0c3929ca8ba9091fc04424fd88a2dde68c82a8e40459e2c",
+          "sha1": "7b4a03d8e32412667e6e5db8c6b8f77d76f3b8c7",
+          "md5": "93d693f02ddec425d6de3c5126805403"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-runtime",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.navigation",
+          "module": "navigation-common-ktx",
+          "version": {
+            "requires": "2.4.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-ktx",
+          "version": {
+            "requires": "1.1.0"
+          },
+          "reason": "Mirror navigation-runtime dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-viewmodel-ktx",
+          "version": {
+            "requires": "2.2.0"
+          },
+          "reason": "Mirror navigation-runtime dependency graph for -ktx artifacts"
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-runtime-ktx-2.4.0-alpha01.aar",
+          "url": "navigation-runtime-ktx-2.4.0-alpha01.aar",
+          "size": 18060,
+          "sha512": "6d2eb5d0d431a45136be9d38f4c96ebd9901eeca57653d6b4a9733834428b7cf679156142cabe36e418b159395531d102ddd4e9268c517e527bca220e8c0af16",
+          "sha256": "79527953c51fc208d0c3929ca8ba9091fc04424fd88a2dde68c82a8e40459e2c",
+          "sha1": "7b4a03d8e32412667e6e5db8c6b8f77d76f3b8c7",
+          "md5": "93d693f02ddec425d6de3c5126805403"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "navigation-runtime-ktx-2.4.0-alpha01-sources.jar",
+          "url": "navigation-runtime-ktx-2.4.0-alpha01-sources.jar",
+          "size": 6476,
+          "sha512": "eb3a6474b9cca80750e760928e28827fd71ee74ff9f16fa65a625bbf455dd0f2410cd1d06a9ff53ad6986ab73523b5cb886258948d59a770289efc0b86b90911",
+          "sha256": "180d7291abcfaa6c5f0aefc87982457aa3ad556f39ebf4fa83e726228844f229",
+          "sha1": "35a8a642bb3f816a58f98a9227e49b65333b4555",
+          "md5": "58e3e9ce65059355a1c1e4127fcc9c15"
+        }
+      ]
+    }
+  ]
+}

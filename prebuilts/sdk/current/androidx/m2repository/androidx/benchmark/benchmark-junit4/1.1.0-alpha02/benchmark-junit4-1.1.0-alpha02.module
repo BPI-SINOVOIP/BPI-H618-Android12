@@ -1,0 +1,160 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.benchmark",
+    "module": "benchmark-junit4",
+    "version": "1.1.0-alpha02",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.benchmark",
+          "module": "benchmark-common",
+          "version": {
+            "requires": "1.1.0-alpha02"
+          }
+        },
+        {
+          "group": "junit",
+          "module": "junit",
+          "version": {
+            "requires": "4.12"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "benchmark-junit4-1.1.0-alpha02.aar",
+          "url": "benchmark-junit4-1.1.0-alpha02.aar",
+          "size": 14862,
+          "sha512": "09537e377b68b4b53593f2c333a10e22893f648f76467ee55cbfa282476b5d8720955179004f913f7711b2fd2153a2e7be6781c9598aaa71c7597c22abe32053",
+          "sha256": "b62429c0f0811ec856320a59cdd8b9c3fa48587e090779fde7379f48c4be1a39",
+          "sha1": "c183dbd7352189952c8ff662899b92230a2fed4b",
+          "md5": "4869f6c82af08bfe12e8d7a560fd568c"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.benchmark",
+          "module": "benchmark-common",
+          "version": {
+            "requires": "1.1.0-alpha02"
+          }
+        },
+        {
+          "group": "junit",
+          "module": "junit",
+          "version": {
+            "requires": "4.12"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.4.30"
+          }
+        },
+        {
+          "group": "androidx.annotation",
+          "module": "annotation",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.test",
+          "module": "rules",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.test",
+          "module": "runner",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.tracing",
+          "module": "tracing-ktx",
+          "version": {
+            "requires": "1.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "benchmark-junit4-1.1.0-alpha02.aar",
+          "url": "benchmark-junit4-1.1.0-alpha02.aar",
+          "size": 14862,
+          "sha512": "09537e377b68b4b53593f2c333a10e22893f648f76467ee55cbfa282476b5d8720955179004f913f7711b2fd2153a2e7be6781c9598aaa71c7597c22abe32053",
+          "sha256": "b62429c0f0811ec856320a59cdd8b9c3fa48587e090779fde7379f48c4be1a39",
+          "sha1": "c183dbd7352189952c8ff662899b92230a2fed4b",
+          "md5": "4869f6c82af08bfe12e8d7a560fd568c"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "benchmark-junit4-1.1.0-alpha02-sources.jar",
+          "url": "benchmark-junit4-1.1.0-alpha02-sources.jar",
+          "size": 6258,
+          "sha512": "099a35ebbd1f5b245c02859773574b826221b22de632206de9fa861f54d0f85cb506b3e03345d53a76ca2a3519f974cbaac40b974a504b94133b185171aa881f",
+          "sha256": "da54f74b951e2245110f62b3dd446a671a7c8fcaf00c25bb4ec9214d4d6ba7a1",
+          "sha1": "65ecc5bb0c3ef4b9732746fefc41964caf33f4d2",
+          "md5": "9a925671036185b53b77b836633c3b34"
+        }
+      ]
+    }
+  ]
+}

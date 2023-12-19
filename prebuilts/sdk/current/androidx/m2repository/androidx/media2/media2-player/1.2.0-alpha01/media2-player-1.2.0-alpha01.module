@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "androidx.media2",
+    "module": "media2-player",
+    "version": "1.2.0-alpha01",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "6.8.1",
+      "buildId:": "7164647"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.media2",
+          "module": "media2-common",
+          "version": {
+            "requires": "1.2.0-alpha01"
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "listenablefuture",
+          "version": {
+            "requires": "1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "media2-player-1.2.0-alpha01.aar",
+          "url": "media2-player-1.2.0-alpha01.aar",
+          "size": 201105,
+          "sha512": "37049534678f517be9be8dbd96228b31c6c3bb706968ed30ebe3a8d792cd202e9769ce679fd8e590b8f2801f16a2ae1c1c72dc2bdcdeb246a5cebf8a7e5134f6",
+          "sha256": "2d32b9461681f4424b9a20c4eded741da7f27addc9056e2123881ece00334da3",
+          "sha1": "83dd918b69bebd39cac9322c2c99406cb75f88fc",
+          "md5": "04a86b9b1fe100169763415f51a5cd47"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.collection",
+          "module": "collection",
+          "version": {
+            "requires": "1.1.0"
+          }
+        },
+        {
+          "group": "androidx.concurrent",
+          "module": "concurrent-futures",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "androidx.media2",
+          "module": "media2-exoplayer",
+          "version": {
+            "requires": "1.2.0-alpha01"
+          }
+        },
+        {
+          "group": "androidx.media2",
+          "module": "media2-common",
+          "version": {
+            "requires": "1.2.0-alpha01"
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "listenablefuture",
+          "version": {
+            "requires": "1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "media2-player-1.2.0-alpha01.aar",
+          "url": "media2-player-1.2.0-alpha01.aar",
+          "size": 201105,
+          "sha512": "37049534678f517be9be8dbd96228b31c6c3bb706968ed30ebe3a8d792cd202e9769ce679fd8e590b8f2801f16a2ae1c1c72dc2bdcdeb246a5cebf8a7e5134f6",
+          "sha256": "2d32b9461681f4424b9a20c4eded741da7f27addc9056e2123881ece00334da3",
+          "sha1": "83dd918b69bebd39cac9322c2c99406cb75f88fc",
+          "md5": "04a86b9b1fe100169763415f51a5cd47"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "media2-player-1.2.0-alpha01-sources.jar",
+          "url": "media2-player-1.2.0-alpha01-sources.jar",
+          "size": 88090,
+          "sha512": "25176ee895fe6f360c9b46febc271e66494c2398a97f475935b53484a1ec976f19c39d85424ef597d4b8648ce1096426c6e59116b5051c8f1cb8e88294352828",
+          "sha256": "c5d9803528622df7e25aa24c4bddeea6047e6ff72f00c01ffcf03e7ab0799bff",
+          "sha1": "b3b02a0b803d670970b13b94f9ab7551a7c0cc7c",
+          "md5": "d0ed0247e9581afa2dd281bd8b5c4cd3"
+        }
+      ]
+    }
+  ]
+}
