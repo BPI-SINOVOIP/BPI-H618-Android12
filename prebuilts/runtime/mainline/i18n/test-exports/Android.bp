@@ -1,0 +1,420 @@
+// This is auto-generated. DO NOT EDIT.
+
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "prebuilts_runtime_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    //   SPDX-license-identifier-Unicode-DFS
+    default_applicable_licenses: ["prebuilts_runtime_license"],
+}
+
+java_import {
+    name: "i18n-module-test-exports_core-icu4j-for-host@current",
+    sdk_member_name: "core-icu4j-for-host",
+    visibility: [
+        "//art/build",
+        "//external/icu/android_icu4j",
+        "//external/robolectric-shadows",
+        "//frameworks/layoutlib",
+        "//packages/modules/RuntimeI18n/apex",
+    ],
+    apex_available: ["//apex_available:platform"],
+    jars: ["java/core-icu4j-for-host.jar"],
+}
+
+java_import {
+    name: "core-icu4j-for-host",
+    prefer: false,
+    visibility: [
+        "//art/build",
+        "//external/icu/android_icu4j",
+        "//external/robolectric-shadows",
+        "//frameworks/layoutlib",
+        "//packages/modules/RuntimeI18n/apex",
+    ],
+    apex_available: ["//apex_available:platform"],
+    jars: ["java/core-icu4j-for-host.jar"],
+}
+
+cc_prebuilt_library_shared {
+    name: "i18n-module-test-exports_libicui18n@current",
+    sdk_member_name: "libicui18n",
+    visibility: ["//visibility:public"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.i18n",
+    ],
+    host_supported: true,
+    installable: false,
+    unique_host_soname: true,
+    shared_libs: ["i18n-module-test-exports_libicuuc@current"],
+    export_include_dirs: ["common_os/include/external/icu/icu4c/source/i18n"],
+    target: {
+        host: {
+            enabled: false,
+        },
+        android: {
+            compile_multilib: "both",
+        },
+        android_arm64: {
+            srcs: ["android/arm64/lib/libicui18n.so"],
+        },
+        android_x86_64: {
+            srcs: ["android/x86_64/lib/libicui18n.so"],
+        },
+        android_arm: {
+            srcs: ["android/arm/lib/libicui18n.so"],
+        },
+        android_x86: {
+            srcs: ["android/x86/lib/libicui18n.so"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/lib/libicui18n-host.so"],
+        },
+        linux_glibc: {
+            compile_multilib: "both",
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/lib/libicui18n-host.so"],
+        },
+        linux_glibc_x86: {
+            enabled: true,
+            srcs: ["linux_glibc/x86/lib/libicui18n-host.so"],
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libicui18n",
+    prefer: false,
+    visibility: ["//visibility:public"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.i18n",
+    ],
+    host_supported: true,
+    unique_host_soname: true,
+    shared_libs: ["libicuuc"],
+    export_include_dirs: ["common_os/include/external/icu/icu4c/source/i18n"],
+    target: {
+        host: {
+            enabled: false,
+        },
+        android: {
+            compile_multilib: "both",
+        },
+        android_arm64: {
+            srcs: ["android/arm64/lib/libicui18n.so"],
+        },
+        android_x86_64: {
+            srcs: ["android/x86_64/lib/libicui18n.so"],
+        },
+        android_arm: {
+            srcs: ["android/arm/lib/libicui18n.so"],
+        },
+        android_x86: {
+            srcs: ["android/x86/lib/libicui18n.so"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/lib/libicui18n-host.so"],
+        },
+        linux_glibc: {
+            compile_multilib: "both",
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/lib/libicui18n-host.so"],
+        },
+        linux_glibc_x86: {
+            enabled: true,
+            srcs: ["linux_glibc/x86/lib/libicui18n-host.so"],
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "i18n-module-test-exports_libicuuc@current",
+    sdk_member_name: "libicuuc",
+    visibility: ["//visibility:public"],
+    apex_available: ["com.android.i18n"],
+    host_supported: true,
+    installable: false,
+    unique_host_soname: true,
+    target: {
+        host: {
+            enabled: false,
+        },
+        android: {
+            compile_multilib: "both",
+            shared_libs: [
+                "libbase",
+                "liblog",
+            ],
+            export_include_dirs: [
+                "android/include/external/icu/icu4c/source/common",
+                "android/include/external/icu/android_icu4c/include",
+            ],
+        },
+        android_arm64: {
+            srcs: ["android/arm64/lib/libicuuc.so"],
+        },
+        android_x86_64: {
+            srcs: ["android/x86_64/lib/libicuuc.so"],
+        },
+        android_arm: {
+            srcs: ["android/arm/lib/libicuuc.so"],
+        },
+        android_x86: {
+            srcs: ["android/x86/lib/libicuuc.so"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+            export_include_dirs: [
+                "linux_bionic/include/external/icu/icu4c/source/common",
+                "linux_bionic/include/external/icu/android_icu4c/include",
+                "linux_bionic/include/external/icu/libandroidicuinit/include",
+            ],
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/lib/libicuuc-host.so"],
+        },
+        linux_glibc: {
+            compile_multilib: "both",
+            export_include_dirs: [
+                "linux_glibc/include/external/icu/icu4c/source/common",
+                "linux_glibc/include/external/icu/android_icu4c/include",
+                "linux_glibc/include/external/icu/libandroidicuinit/include",
+            ],
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/lib/libicuuc-host.so"],
+        },
+        linux_glibc_x86: {
+            enabled: true,
+            srcs: ["linux_glibc/x86/lib/libicuuc-host.so"],
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libicuuc",
+    prefer: false,
+    visibility: ["//visibility:public"],
+    apex_available: ["com.android.i18n"],
+    host_supported: true,
+    unique_host_soname: true,
+    target: {
+        host: {
+            enabled: false,
+        },
+        android: {
+            compile_multilib: "both",
+            shared_libs: [
+                "libbase",
+                "liblog",
+            ],
+            export_include_dirs: [
+                "android/include/external/icu/icu4c/source/common",
+                "android/include/external/icu/android_icu4c/include",
+            ],
+        },
+        android_arm64: {
+            srcs: ["android/arm64/lib/libicuuc.so"],
+        },
+        android_x86_64: {
+            srcs: ["android/x86_64/lib/libicuuc.so"],
+        },
+        android_arm: {
+            srcs: ["android/arm/lib/libicuuc.so"],
+        },
+        android_x86: {
+            srcs: ["android/x86/lib/libicuuc.so"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+            export_include_dirs: [
+                "linux_bionic/include/external/icu/icu4c/source/common",
+                "linux_bionic/include/external/icu/android_icu4c/include",
+                "linux_bionic/include/external/icu/libandroidicuinit/include",
+            ],
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/lib/libicuuc-host.so"],
+        },
+        linux_glibc: {
+            compile_multilib: "both",
+            export_include_dirs: [
+                "linux_glibc/include/external/icu/icu4c/source/common",
+                "linux_glibc/include/external/icu/android_icu4c/include",
+                "linux_glibc/include/external/icu/libandroidicuinit/include",
+            ],
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/lib/libicuuc-host.so"],
+        },
+        linux_glibc_x86: {
+            enabled: true,
+            srcs: ["linux_glibc/x86/lib/libicuuc-host.so"],
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "i18n-module-test-exports_libicu_jni@current",
+    sdk_member_name: "libicu_jni",
+    visibility: [
+        "//external/icu/android_icu4j/libcore_bridge/src/native",
+        "//packages/modules/RuntimeI18n/apex",
+    ],
+    apex_available: ["com.android.i18n"],
+    host_supported: true,
+    installable: false,
+    shared_libs: [
+        "libbase",
+        "i18n-module-test-exports_libicuuc@current",
+        "i18n-module-test-exports_libicui18n@current",
+        "liblog",
+        "libnativehelper",
+    ],
+    target: {
+        host: {
+            enabled: false,
+        },
+        android: {
+            compile_multilib: "both",
+        },
+        android_arm64: {
+            srcs: ["android/arm64/lib/libicu_jni.so"],
+        },
+        android_x86_64: {
+            srcs: ["android/x86_64/lib/libicu_jni.so"],
+        },
+        android_arm: {
+            srcs: ["android/arm/lib/libicu_jni.so"],
+        },
+        android_x86: {
+            srcs: ["android/x86/lib/libicu_jni.so"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/lib/libicu_jni.so"],
+        },
+        linux_glibc: {
+            compile_multilib: "both",
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/lib/libicu_jni.so"],
+        },
+        linux_glibc_x86: {
+            enabled: true,
+            srcs: ["linux_glibc/x86/lib/libicu_jni.so"],
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libicu_jni",
+    prefer: false,
+    visibility: [
+        "//external/icu/android_icu4j/libcore_bridge/src/native",
+        "//packages/modules/RuntimeI18n/apex",
+    ],
+    apex_available: ["com.android.i18n"],
+    host_supported: true,
+    shared_libs: [
+        "libbase",
+        "libicuuc",
+        "libicui18n",
+        "liblog",
+        "libnativehelper",
+    ],
+    target: {
+        host: {
+            enabled: false,
+        },
+        android: {
+            compile_multilib: "both",
+        },
+        android_arm64: {
+            srcs: ["android/arm64/lib/libicu_jni.so"],
+        },
+        android_x86_64: {
+            srcs: ["android/x86_64/lib/libicu_jni.so"],
+        },
+        android_arm: {
+            srcs: ["android/arm/lib/libicu_jni.so"],
+        },
+        android_x86: {
+            srcs: ["android/x86/lib/libicu_jni.so"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/lib/libicu_jni.so"],
+        },
+        linux_glibc: {
+            compile_multilib: "both",
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/lib/libicu_jni.so"],
+        },
+        linux_glibc_x86: {
+            enabled: true,
+            srcs: ["linux_glibc/x86/lib/libicu_jni.so"],
+        },
+    },
+}
+
+module_exports_snapshot {
+    name: "i18n-module-test-exports@current",
+    visibility: ["//visibility:public"],
+    host_supported: true,
+    native_shared_libs: [
+        "i18n-module-test-exports_libicui18n@current",
+        "i18n-module-test-exports_libicuuc@current",
+        "i18n-module-test-exports_libicu_jni@current",
+    ],
+    target: {
+        android: {
+            java_libs: ["i18n-module-test-exports_core-icu4j-for-host@current"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+        },
+        host: {
+            enabled: false,
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+        },
+        linux_glibc_x86: {
+            enabled: true,
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+        },
+    },
+}

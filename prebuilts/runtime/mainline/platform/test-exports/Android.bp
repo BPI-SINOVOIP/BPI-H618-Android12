@@ -1,0 +1,72 @@
+// This is auto-generated. DO NOT EDIT.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_prebuilt_library_shared {
+    name: "platform-mainline-test-exports_libtombstoned_client@current",
+    sdk_member_name: "libtombstoned_client",
+    visibility: ["//visibility:public"],
+    apex_available: ["//apex_available:platform"],
+    installable: false,
+    compile_multilib: "both",
+    shared_libs: [
+        "libbase",
+        "libcutils",
+    ],
+    export_include_dirs: [
+        "include/system/core/debuggerd/tombstoned/include",
+        "include/system/core/debuggerd/common/include",
+    ],
+    arch: {
+        arm64: {
+            srcs: ["arm64/lib/libtombstoned_client.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/lib/libtombstoned_client.so"],
+        },
+        arm: {
+            srcs: ["arm/lib/libtombstoned_client.so"],
+        },
+        x86: {
+            srcs: ["x86/lib/libtombstoned_client.so"],
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libtombstoned_client",
+    prefer: false,
+    visibility: ["//visibility:public"],
+    apex_available: ["//apex_available:platform"],
+    compile_multilib: "both",
+    shared_libs: [
+        "libbase",
+        "libcutils",
+    ],
+    export_include_dirs: [
+        "include/system/core/debuggerd/tombstoned/include",
+        "include/system/core/debuggerd/common/include",
+    ],
+    arch: {
+        arm64: {
+            srcs: ["arm64/lib/libtombstoned_client.so"],
+        },
+        x86_64: {
+            srcs: ["x86_64/lib/libtombstoned_client.so"],
+        },
+        arm: {
+            srcs: ["arm/lib/libtombstoned_client.so"],
+        },
+        x86: {
+            srcs: ["x86/lib/libtombstoned_client.so"],
+        },
+    },
+}
+
+module_exports_snapshot {
+    name: "platform-mainline-test-exports@current",
+    visibility: ["//visibility:public"],
+    native_shared_libs: ["platform-mainline-test-exports_libtombstoned_client@current"],
+}

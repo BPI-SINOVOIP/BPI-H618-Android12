@@ -1,0 +1,141 @@
+// This is auto-generated. DO NOT EDIT.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_prebuilt_binary {
+    name: "runtime-module-host-exports_linkerconfig@current",
+    sdk_member_name: "linkerconfig",
+    visibility: ["//visibility:public"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.runtime",
+    ],
+    device_supported: false,
+    host_supported: true,
+    installable: false,
+    stl: "c++_static",
+    compile_multilib: "64",
+    target: {
+        host: {
+            enabled: false,
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/bin/linkerconfig"],
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/bin/linkerconfig"],
+        },
+    },
+}
+
+cc_prebuilt_binary {
+    name: "linkerconfig",
+    prefer: false,
+    visibility: ["//visibility:public"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.runtime",
+    ],
+    device_supported: false,
+    host_supported: true,
+    stl: "c++_static",
+    compile_multilib: "64",
+    target: {
+        host: {
+            enabled: false,
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/bin/linkerconfig"],
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/bin/linkerconfig"],
+        },
+    },
+}
+
+cc_prebuilt_binary {
+    name: "runtime-module-host-exports_linker@current",
+    sdk_member_name: "linker",
+    visibility: ["//visibility:public"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.runtime",
+    ],
+    device_supported: false,
+    host_supported: true,
+    installable: false,
+    stl: "none",
+    compile_multilib: "64",
+    system_shared_libs: [],
+    static_executable: true,
+    nocrt: true,
+    target: {
+        host: {
+            enabled: false,
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["x86_64/bin/linker64"],
+        },
+    },
+}
+
+cc_prebuilt_binary {
+    name: "linker",
+    prefer: false,
+    visibility: ["//visibility:public"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.runtime",
+    ],
+    device_supported: false,
+    host_supported: true,
+    stl: "none",
+    compile_multilib: "64",
+    system_shared_libs: [],
+    static_executable: true,
+    nocrt: true,
+    target: {
+        host: {
+            enabled: false,
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["x86_64/bin/linker64"],
+        },
+    },
+}
+
+module_exports_snapshot {
+    name: "runtime-module-host-exports@current",
+    visibility: ["//visibility:public"],
+    device_supported: false,
+    host_supported: true,
+    compile_multilib: "64",
+    target: {
+        linux_bionic: {
+            native_binaries: [
+                "runtime-module-host-exports_linkerconfig@current",
+                "runtime-module-host-exports_linker@current",
+            ],
+        },
+        linux_glibc: {
+            native_binaries: ["runtime-module-host-exports_linkerconfig@current"],
+        },
+        host: {
+            enabled: false,
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+        },
+    },
+}

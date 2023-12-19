@@ -1,0 +1,192 @@
+// This is auto-generated. DO NOT EDIT.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_import {
+    name: "conscrypt-module-test-exports_conscrypt-for-host@current",
+    sdk_member_name: "conscrypt-for-host",
+    visibility: [
+        "//art/build",
+        "//external/conscrypt",
+        "//external/robolectric-shadows",
+    ],
+    apex_available: ["//apex_available:platform"],
+    jars: ["java/conscrypt-for-host.jar"],
+}
+
+java_import {
+    name: "conscrypt-for-host",
+    prefer: false,
+    visibility: [
+        "//art/build",
+        "//external/conscrypt",
+        "//external/robolectric-shadows",
+    ],
+    apex_available: ["//apex_available:platform"],
+    jars: ["java/conscrypt-for-host.jar"],
+}
+
+java_test_import {
+    name: "conscrypt-module-test-exports_conscrypt-tests@current",
+    sdk_member_name: "conscrypt-tests",
+    visibility: [
+        "//cts/tests/libcore/luni",
+        "//external/conscrypt",
+        "//external/conscrypt/apex/tests",
+    ],
+    apex_available: ["//apex_available:platform"],
+    jars: ["java/conscrypt-tests.jar"],
+    test_config: "java/conscrypt-tests-AndroidTest.xml",
+}
+
+java_test_import {
+    name: "conscrypt-tests",
+    prefer: false,
+    visibility: [
+        "//cts/tests/libcore/luni",
+        "//external/conscrypt",
+        "//external/conscrypt/apex/tests",
+    ],
+    apex_available: ["//apex_available:platform"],
+    jars: ["java/conscrypt-tests.jar"],
+    test_config: "java/conscrypt-tests-AndroidTest.xml",
+}
+
+cc_prebuilt_library_shared {
+    name: "conscrypt-module-test-exports_libjavacrypto@current",
+    sdk_member_name: "libjavacrypto",
+    visibility: ["//external/conscrypt:__subpackages__"],
+    apex_available: [
+        "com.android.conscrypt",
+        "test_com.android.conscrypt",
+    ],
+    host_supported: true,
+    installable: false,
+    shared_libs: [
+        "libcrypto",
+        "liblog",
+        "libssl",
+    ],
+    target: {
+        host: {
+            enabled: false,
+        },
+        android: {
+            compile_multilib: "both",
+        },
+        android_arm64: {
+            srcs: ["android/arm64/lib/libjavacrypto.so"],
+        },
+        android_x86_64: {
+            srcs: ["android/x86_64/lib/libjavacrypto.so"],
+        },
+        android_arm: {
+            srcs: ["android/arm/lib/libjavacrypto.so"],
+        },
+        android_x86: {
+            srcs: ["android/x86/lib/libjavacrypto.so"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/lib/libjavacrypto.so"],
+        },
+        linux_glibc: {
+            compile_multilib: "both",
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/lib/libjavacrypto.so"],
+        },
+        linux_glibc_x86: {
+            enabled: true,
+            srcs: ["linux_glibc/x86/lib/libjavacrypto.so"],
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libjavacrypto",
+    prefer: false,
+    visibility: ["//external/conscrypt:__subpackages__"],
+    apex_available: [
+        "com.android.conscrypt",
+        "test_com.android.conscrypt",
+    ],
+    host_supported: true,
+    shared_libs: [
+        "libcrypto",
+        "liblog",
+        "libssl",
+    ],
+    target: {
+        host: {
+            enabled: false,
+        },
+        android: {
+            compile_multilib: "both",
+        },
+        android_arm64: {
+            srcs: ["android/arm64/lib/libjavacrypto.so"],
+        },
+        android_x86_64: {
+            srcs: ["android/x86_64/lib/libjavacrypto.so"],
+        },
+        android_arm: {
+            srcs: ["android/arm/lib/libjavacrypto.so"],
+        },
+        android_x86: {
+            srcs: ["android/x86/lib/libjavacrypto.so"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+            srcs: ["linux_bionic/x86_64/lib/libjavacrypto.so"],
+        },
+        linux_glibc: {
+            compile_multilib: "both",
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+            srcs: ["linux_glibc/x86_64/lib/libjavacrypto.so"],
+        },
+        linux_glibc_x86: {
+            enabled: true,
+            srcs: ["linux_glibc/x86/lib/libjavacrypto.so"],
+        },
+    },
+}
+
+module_exports_snapshot {
+    name: "conscrypt-module-test-exports@current",
+    visibility: ["//external/conscrypt:__subpackages__"],
+    host_supported: true,
+    native_shared_libs: ["conscrypt-module-test-exports_libjavacrypto@current"],
+    target: {
+        android: {
+            java_libs: ["conscrypt-module-test-exports_conscrypt-for-host@current"],
+            java_tests: ["conscrypt-module-test-exports_conscrypt-tests@current"],
+        },
+        linux_bionic: {
+            compile_multilib: "64",
+        },
+        host: {
+            enabled: false,
+        },
+        linux_glibc_x86_64: {
+            enabled: true,
+        },
+        linux_glibc_x86: {
+            enabled: true,
+        },
+        linux_bionic_x86_64: {
+            enabled: true,
+        },
+    },
+}

@@ -1,0 +1,27 @@
+// This is auto-generated. DO NOT EDIT.
+
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_import {
+    name: "tzdata-module-test-exports_tzdata-testing@current",
+    sdk_member_name: "tzdata-testing",
+    visibility: ["//visibility:public"],
+    apex_available: ["//apex_available:platform"],
+    jars: ["java/tzdata-testing.jar"],
+}
+
+java_import {
+    name: "tzdata-testing",
+    prefer: false,
+    visibility: ["//visibility:public"],
+    apex_available: ["//apex_available:platform"],
+    jars: ["java/tzdata-testing.jar"],
+}
+
+module_exports_snapshot {
+    name: "tzdata-module-test-exports@current",
+    visibility: ["//visibility:public"],
+    java_libs: ["tzdata-module-test-exports_tzdata-testing@current"],
+}
