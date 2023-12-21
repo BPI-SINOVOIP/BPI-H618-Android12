@@ -15,12 +15,16 @@
 #
 
 PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/bananapi_m4berry.mk \
     $(LOCAL_DIR)/apollo_p7.mk \
     $(LOCAL_DIR)/apollo_p7l.mk \
     $(LOCAL_DIR)/apollo_p1.mk \
     $(LOCAL_DIR)/apollo_p2.mk \
 
 COMMON_LUNCH_CHOICES := \
+    bananapi_m4berry-eng \
+    bananapi_m4berry-userdebug \
+    bananapi_m4berry-user \
     apollo_p7-eng \
     apollo_p7-userdebug \
     apollo_p7-user \

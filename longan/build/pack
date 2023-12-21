@@ -135,6 +135,8 @@ case "x${PACK_PLATFORM}" in
 		;;
 esac
 
+PACK_TIME=`date +%Y-%m-%d`
+
 OTA_TEST_NAME="ota_test"
 
 export PATH=${LICHEE_TOOLS_DIR}/pack/pctools/linux/mod_update:${LICHEE_TOOLS_DIR}/pack/pctools/linux/openssl:${LICHEE_TOOLS_DIR}/pack/pctools/linux/eDragonEx:${LICHEE_TOOLS_DIR}/pack/pctools/linux/fsbuild200:${LICHEE_TOOLS_DIR}/pack/pctools/linux/android:$PATH
@@ -642,7 +644,7 @@ function do_prepare()
 	sed -i 's/\\\\/\//g' ${LICHEE_PACK_OUT_DIR}/image.cfg
 	sed -i 's/^imagename/;imagename/g' ${LICHEE_PACK_OUT_DIR}/image.cfg
 
-	IMG_NAME="${PACK_IC}_${PACK_TYPE}${PACK_PLATFORM_VERSION}_${PACK_BOARD}_${PACK_DEBUG}"
+	IMG_NAME="${PACK_TIME}-${PACK_BOARD}-${PACK_TYPE}${PACK_PLATFORM_VERSION}-${PACK_DEBUG}"
 
 	if [ "x${PACK_MODE}" = "xdump" -o "x${PACK_MODE}" = "xota_test" ] ; then
 		IMG_NAME="${IMG_NAME}_${PACK_MODE}"
