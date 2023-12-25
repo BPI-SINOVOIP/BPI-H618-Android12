@@ -35,7 +35,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.language=en
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=320
+    ro.sf.lcd_density=240
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.minui.default_rotation=ROTATION_NONE \
