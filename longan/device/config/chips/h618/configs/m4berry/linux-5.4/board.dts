@@ -28,16 +28,6 @@
 		twi5 = &twi5;
 	};
 
-	usb0_drvvbus: usb0-drvvvbus {
-		compatible = "regulator-fixed";
-		regulator-name = "usb0-drvvbus";
-		regulator-min-microvolt = <5000000>;
-		regulator-max-microvolt = <5000000>;
-		regulator-enable-ramp-delay = <1000>;
-		gpio = <&pio PH 8 GPIO_ACTIVE_HIGH>;
-		enable-active-high;
-	};
-
 	box_start_os0 {
 		compatible = "allwinner,box_start_os";
 		start_type = <0x1>;
@@ -46,7 +36,7 @@
 		pmukey_num = <0x0>;
 		led_power = <0x0>;
 		led_state = <0x0>;
-		pinctrl-0 = <&standby_blue>;
+		/*pinctrl-0 = <&standby_blue>;*/
 		pinctrl-1 = <&standby_red>;
 		/*pinctrl-2 = <&standby_bt>;*/
 	};
@@ -121,7 +111,7 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&uart5_ph_pins>;
 	pinctrl-1 = <&uart5_ph_sleep>;
-	status = "disabled";
+	status = "okay";
 };
 
 &sdc2 {
@@ -221,12 +211,12 @@
 	};
 
 	uart2_ph_pins: uart2-ph-pins {
-		pins = "PG15", "PG16";
+		pins = "PH5", "PH6";
 		function = "uart2";
 	};
 
 	uart2_ph_sleep: uart2-ph-sleep {
-		pins = "PG15", "PG16";
+		pins = "PH5", "PH6";
 		function = "gpio_in";
 	};
 
@@ -522,7 +512,7 @@
 	};
 
 	standby_red: standby@0 {
-		allwinner,pins = "PH6";
+		allwinner,pins = "PC12";
 		allwinner,function = "gpio_out";
 		allwinner,muxsel = <1>;
 		allwinner,data = <1>;
@@ -588,7 +578,7 @@
 	pinctrl-1 = <&twi3_pins_b>;
 	pinctrl-names = "default", "sleep";
 	twi_drv_used = <1>;
-	status = "disabled";
+	status = "okay";
 };
 
 &twi4 {
@@ -684,13 +674,13 @@
 
 &gmac0 {
 	phy-mode = "rgmii";
-	use_ephy25m = <1>;
+	use_ephy25m = <0>;
 	pinctrl-0 = <&gmac0_pins_a>;
 	pinctrl-1 = <&gmac0_pins_b>;
 	pinctrl-names = "default", "sleep";
 	tx-delay = <7>;
 	rx-delay = <31>;
-	status = "disabled";
+	status = "okay";
 };
 
 &gmac1 {
@@ -700,7 +690,7 @@
 	pinctrl-names = "default", "sleep";
 	tx-delay = <7>;
 	rx-delay = <31>;
-	status = "okay";
+	status = "disabled";
 };
 
 /* for disp */
@@ -842,7 +832,7 @@
 
 	gpio_para {
 		gpio_num = <1>;
-		gpio_pin_1 = <&pio PH 6 GPIO_ACTIVE_HIGH>;
+		gpio_pin_1 = <&pio PC 11 GPIO_ACTIVE_HIGH>;
 		normal_led = "gpio_pin_1";
 		easy_light_used = <1>;
 		normal_led_light = <1>;
@@ -1092,12 +1082,12 @@
 };
 
 &ehci0 {
-	drvvbus-supply		= <&usb0_drvvbus>;
+	/*drvvbus-supply		= <&usb0_drvvbus>;*/
 	status			= "okay";
 };
 
 &ohci0 {
-	drvvbus-supply		= <&usb0_drvvbus>;
+	/*drvvbus-supply		= <&usb0_drvvbus>;*/
 	status			= "okay";
 };
 
@@ -1109,12 +1099,12 @@
 };
 
 &ehci1 {
-	drvvbus-supply		= <&usb0_drvvbus>;
+	/*drvvbus-supply		= <&usb0_drvvbus>;*/
 	status			= "okay";
 };
 
 &ohci1 {
-	drvvbus-supply		= <&usb0_drvvbus>;
+	/*drvvbus-supply		= <&usb0_drvvbus>;*/
 	status			= "okay";
 };
 
@@ -1126,12 +1116,12 @@
 };
 
 &ehci2 {
-	drvvbus-supply		= <&usb0_drvvbus>;
+	/*drvvbus-supply		= <&usb0_drvvbus>;*/
 	status			= "okay";
 };
 
 &ohci2 {
-	drvvbus-supply		= <&usb0_drvvbus>;
+	/*drvvbus-supply		= <&usb0_drvvbus>;*/
 	status			= "okay";
 };
 
@@ -1143,12 +1133,12 @@
 };
 
 &ehci3 {
-	drvvbus-supply		= <&usb0_drvvbus>;
+	/*drvvbus-supply		= <&usb0_drvvbus>;*/
 	status			= "okay";
 };
 
 &ohci3 {
-	drvvbus-supply		= <&usb0_drvvbus>;
+	/*drvvbus-supply		= <&usb0_drvvbus>;*/
 	status			= "okay";
 };
 

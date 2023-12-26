@@ -15,15 +15,6 @@
 	model = "Bananapi M4Berry";
 	compatible = "allwinner,h616", "arm,sun50iw9p1";
 
-	reg_usb0_vbus: usb0-vbus {
-		compatible = "regulator-fixed";
-		gpio = <&pio PH 8 1 2 0 1>;
-		regulator-name = "usb0-vbus";
-		regulator-min-microvolt = <5000000>;
-		regulator-max-microvolt = <5000000>;
-		enable-active-high;
-	};
-
 	box_start_os0 {
 		compatible = "allwinner,box_start_os";
 		start_type = <0x1>;
