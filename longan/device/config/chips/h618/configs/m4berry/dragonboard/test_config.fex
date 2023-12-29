@@ -61,7 +61,7 @@ run_type    = 1
 ;-------------------------------------------------------------------------------
 [wifi]
 display_name= "WIFI"
-activated   = 1
+activated   = 0
 program     = "wifitester.sh"
 category    = 0
 run_type    = 1
@@ -87,7 +87,7 @@ module_args =
 ;-------------------------------------------------------------------------------
 [nand]
 display_name = "NAND闪存"
-activated   = 1
+activated   = 0
 program     = "nandtester.sh"
 category    = 0
 run_type    = 1
@@ -171,7 +171,7 @@ samplerate  = 48000
 
 [tv]
 display_name= "TV"
-activated   = 1
+activated   = 0
 program     = "tvtester.sh"
 category    = 1
 run_type    = 1

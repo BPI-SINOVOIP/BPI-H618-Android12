@@ -49,7 +49,7 @@ bldo1_vol		   = 1001800
 
 [card_boot]
 logical_start   = 40960
-sprite_gpio0    = port:PH6<1><default><default><1>
+sprite_gpio0    = port:PC12<1><default><default><1>
 
 ;----------------------------------------------------------------------------------
 ;   ir_boot_recovery_used : 1: used this function  0: not used
@@ -71,7 +71,7 @@ sprite_gpio0    = port:PH6<1><default><default><1>
 ;----------------------------------------------------------------------------------
 
 [ir_boot_recovery]
-ir_boot_recovery_used       = 1
+ir_boot_recovery_used       = 0
 ir_work_mode                = 1
 ir_press_times              = 2
 ir_detect_time              = 1
@@ -110,7 +110,7 @@ key_work_mode           = 0
 short_press_mode        = 0
 long_press_mode         = 1
 key_press_time          = 2000
-recovery_key = port:PH09<0><default><default><default>
+recovery_key            = port:PG0<0><default><default><default>
 
 
 ;---------------------------------------------------------------------------------------------------------
@@ -156,6 +156,9 @@ sdc_io_1v8	= 1
 [gpio_bias]
 pc_bias		= 1800
 
+;---------------------------------------------------------------------------------------------------------
+; pmic s_twi0
+;---------------------------------------------------------------------------------------------------------
 [twi_para]
 twi_port        = 0
 twi_scl         = port:PL0<3><default><default><default>
@@ -170,7 +173,7 @@ uart_debug_tx   = port:PH00<2><1><default><default>
 uart_debug_rx   = port:PH01<2><1><default><default>
 
 [jtag_para]
-jtag_enable     = 1
+jtag_enable     = 0
 jtag_ms         = port:PH9<3><default><default><default>
 jtag_ck         = port:PH10<3><default><default><default>
 jtag_do         = port:PH11<3><default><default><default>
