@@ -251,6 +251,7 @@
     <string name="hotspotname_password_invalid">Hotspot password setup not valid</string>
     <string name="hotspot_action_try_again">Try again</string>
     <string name="connectivity_summary_pppoe_connected">PPPoE connected</string>
+
     <!-- screen rotaion -->
     <string name="screen_orientation_settings">Screen orientation</string>
     <string name="screen_rotation_title">Screen rotation</string>
@@ -266,6 +267,28 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+    </string-array>
+
+    <!-- screen density -->
+    <string name="screen_density_settings">Screen density</string>
+    <string name="screen_density_title">Screen density</string>
+    <string name="screen_density_summary">Now density value is %1$s</string>
+    <string-array name="screen_density_entries">
+        <item>160</item>
+        <item>213</item>
+        <item>240</item>
+        <item>280</item>
+        <item>320</item>
+        <item>360</item>
+    </string-array>
+
+    <string-array name="screen_density_values">
+        <item>160</item>
+        <item>213</item>
+        <item>240</item>
+        <item>280</item>
+        <item>320</item>
+        <item>360</item>
     </string-array>
 
     <!-- Bluetooth settings -->

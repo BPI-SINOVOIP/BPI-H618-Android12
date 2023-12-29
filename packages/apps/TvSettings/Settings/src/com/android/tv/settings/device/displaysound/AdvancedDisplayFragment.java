@@ -41,6 +41,7 @@ import com.android.tv.settings.device.display.HdmiAdvancePreferenceController;
 import com.android.tv.settings.device.display.HdmiPreferenceController;
 import com.android.tv.settings.device.display.CvbsPreferenceController;
 import com.android.tv.settings.device.display.ScreenOrientationController;
+import com.android.tv.settings.device.display.ScreenDensityController;
 
 /**
  * The "Advanced display settings" screen in TV Settings.
@@ -71,6 +72,7 @@ public class AdvancedDisplayFragment extends PreferenceControllerFragment {
         controllers.add(new HdmiPreferenceController(context));
         controllers.add(new CvbsPreferenceController(context));
         controllers.add(new ScreenOrientationController(context));
+	controllers.add(new ScreenDensityController(context));
         controllers.add(new HdmiAdvancePreferenceController(context));
         return controllers;
     }

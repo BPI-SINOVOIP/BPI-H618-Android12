@@ -179,6 +179,40 @@
     <string name="screen_orientation_settings">屏幕方向</string>
     <string name="screen_rotation_title">屏幕旋转</string>
     <string name="screen_rotation_summary">当前屏幕旋转:%1$s</string>
+    <string-array name="screen_rotation_entries">
+        <item>0</item>
+        <item>90</item>
+        <item>180</item>
+        <item>270</item>
+    </string-array>
+    <string-array name="screen_rotation_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string name="screen_density_settings">屏幕密度</string>
+    <string name="screen_density_title">屏幕密度</string>
+    <string name="screen_density_summary">当前屏幕密度:%1$s</string>
+    <string-array name="screen_density_entries">
+        <item>160</item>
+        <item>213</item>
+        <item>240</item>
+        <item>280</item>
+        <item>320</item>
+        <item>360</item>
+    </string-array>
+
+    <string-array name="screen_density_values">
+        <item>160</item>
+        <item>213</item>
+        <item>240</item>
+        <item>280</item>
+        <item>320</item>
+        <item>360</item>
+    </string-array>
+
     <!-- Bluetooth settings -->
     <string name="bluetooth_settings">蓝牙</string>
     <!-- Title for paired device group [CHAR LIMIT=none] -->

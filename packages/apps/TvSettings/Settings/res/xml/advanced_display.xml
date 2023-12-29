@@ -83,7 +83,18 @@
                  android:summary="@string/screen_rotation_summary"
                  android:entries="@array/screen_rotation_entries"
                  android:entryValues="@array/screen_rotation_values" />
-     </PreferenceCategory>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:key="screen_density_settings"
+            android:title="@string/screen_density_settings">
+            <ListPreference
+                 android:key="screen_density"
+                 android:title="@string/screen_density_title"
+                 android:summary="@string/screen_density_summary"
+                 android:entries="@array/screen_density_entries"
+                 android:entryValues="@array/screen_density_values" />
+    </PreferenceCategory>
 
     <com.android.tv.settings.widget.SwitchWithSoundPreference
         android:key="game_mode"
