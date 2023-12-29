@@ -91,7 +91,7 @@
          PackageManager.FEATURE_TELEPHONY system feature, which is
          available on *any* device with a telephony radio, even if the
          device is data-only. -->
-    <bool name="config_voice_capable">true</bool>
+    <bool name="config_voice_capable">false</bool>
 
     <!-- Flag indicating whether the current device allows sms service.
          If true, this means that the device supports both sending and
@@ -719,7 +719,7 @@
     </array>
 
     <bool name="config_shutdownForceScreenOff">true</bool>
-    <integer name="config_longPressOnPowerBehavior">3</integer>
+    <integer name="config_longPressOnPowerBehavior">1</integer>
     <!-- control normal led and standby led flick when key event input -->
     <integer name="config_ledNormalFlicker">2</integer>
     <!-- If supported and enabled, are dreams activated when asleep and charging? (by default) -->
@@ -731,4 +731,9 @@
 
     <bool name="config_zramWriteback">true</bool>
     <bool name="config_disableLockscreenByDefault">true</bool>
+
+    <string-array translatable="false" name="config_globalActionsList">
+        <item>power</item>
+        <item>restart</item>
+    </string-array>
 </resources>
