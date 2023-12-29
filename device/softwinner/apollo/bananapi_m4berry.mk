@@ -35,7 +35,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.language=en
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=240
+    ro.sf.lcd_density=213
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.minui.default_rotation=ROTATION_NONE \
@@ -49,3 +49,4 @@ PRODUCT_AAPT_PREF_CONFIG :=xhdpi
 
 $(call inherit-product, $(PRODUCT_DEVICE_PATH)/*/config.mk)
 $(call inherit-product, $(PRODUCT_PLATFORM_PATH)/common/*/config.mk)
+$(call inherit-product, vendor/bananapi/apps/apps.mk)

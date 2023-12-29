@@ -17,16 +17,15 @@
     <Preference
         android:key="app1"
         android:icon="@drawable/aw_about_icon"
-        android:title="@string/com_softwinner_TvdFileManager" >
+        android:title="@string/cm_aptoidetv_pt" >
         <intent
             android:targetClass=""
             android:targetPackage="" />
     </Preference>
-
     <Preference
         android:key="app2"
         android:icon="@drawable/aw_about_icon"
-        android:title="@string/com_android_gallery3d">
+        android:title="@string/com_softwinner_TvdFileManager" >
         <intent
             android:targetClass=""
             android:targetPackage="" />
@@ -35,6 +34,15 @@
     <Preference
         android:key="app3"
         android:icon="@drawable/aw_about_icon"
+        android:title="@string/com_android_gallery3d">
+        <intent
+            android:targetClass=""
+            android:targetPackage="" />
+    </Preference>
+
+    <Preference
+        android:key="app4"
+        android:icon="@drawable/aw_about_icon"
         android:title="@string/com_softwinner_miracast">
         <intent
             android:targetClass=""
@@ -42,7 +50,7 @@
     </Preference>
 
     <Preference
-        android:key="app4"
+        android:key="app5"
         android:icon="@drawable/aw_about_icon"
         android:title="@string/com_android_music">
         <intent

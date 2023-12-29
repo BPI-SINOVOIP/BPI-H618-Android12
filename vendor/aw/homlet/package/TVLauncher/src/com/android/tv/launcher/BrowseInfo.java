@@ -397,17 +397,20 @@ public class BrowseInfo extends BrowseInfoBase implements ApplicationsState.Call
             }
         }
     }
-		final String PKG_CAMERA = "com.android.camera2";
-		final String PKG_GALLERY = "com.android.gallery3d";
-		final String PKG_MIRACAST = "com.softwinner.miracastReceiver";
-		final String PKG_MUSIC = "com.android.music";
-		final String PKG_PANOPLAYER = "com.allwinnertech.panoplayer";
-		final String PKG_TVDFILEMANAGER = "com.softwinner.TvdFileManager";
-		final String PKG_AIRPLAY = "com.hpplay.happyplay.aw";
-        final String PKG_HDMI = "com.allwinner.hdmi";
+
+    final String PKG_APTOIDETV = "cm.aptoidetv.pt";
+    final String PKG_CAMERA = "com.android.camera2";
+    final String PKG_GALLERY = "com.android.gallery3d";
+    final String PKG_MIRACAST = "com.softwinner.miracastReceiver";
+    final String PKG_MUSIC = "com.android.music";
+    final String PKG_PANOPLAYER = "com.allwinnertech.panoplayer";
+    final String PKG_TVDFILEMANAGER = "com.softwinner.TvdFileManager";
+    final String PKG_AIRPLAY = "com.hpplay.happyplay.aw";
+    final String PKG_HDMI = "com.allwinner.hdmi";
 
     private final Map<String, String> LOVE_APP_CPN = new HashMap<String, String>() {
         {
+            put("cm.aptoidetv.pt", "cm.aptoidetv.pt.activity.MainActivity");
             put("com.softwinner.TvdFileManager", "com.softwinner.TvdFileManager.MainUI");
             put("com.android.gallery3d", "com.android.gallery3d.app.GalleryActivity");
             put("com.softwinner.miracastReceiver", "com.softwinner.miracastReceiver.Miracast");
@@ -417,31 +420,35 @@ public class BrowseInfo extends BrowseInfoBase implements ApplicationsState.Call
 
     String getAppIconUri(String pkgname) {
         String iconUri = null;
-				if(PKG_CAMERA.equals(pkgname)){
-					iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_camera);
-					return iconUri;
-				}else if(PKG_GALLERY.equals(pkgname)){
-					iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_gallery);
-					return iconUri;
-				}else if(PKG_MIRACAST.equals(pkgname)){
-					iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_miracast);
-					return iconUri;
-				}else if(PKG_MUSIC.equals(pkgname)){
-					iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_music);
-					return iconUri;
-				}else if(PKG_PANOPLAYER.equals(pkgname)){
-					iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_panoplayer);
-					return iconUri;
-				}else if(PKG_TVDFILEMANAGER.equals(pkgname)){
-					iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_tvdfilemanager);
-					return iconUri;
-				}else if(PKG_AIRPLAY.equals(pkgname)){
-					iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_airplay);
-					return iconUri;
-				}else if(PKG_HDMI.equals(pkgname)){
-					iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_hdmi);
-					return iconUri;
-				}
+        if(PKG_APTOIDETV.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_aptoidetv);
+            return iconUri;
+        }else if(PKG_CAMERA.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_camera);
+            return iconUri;
+        }else if(PKG_GALLERY.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_gallery);
+            return iconUri;
+        }else if(PKG_MIRACAST.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_miracast);
+            return iconUri;
+        }else if(PKG_MUSIC.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_music);
+            return iconUri;
+        }else if(PKG_PANOPLAYER.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_panoplayer);
+            return iconUri;
+        }else if(PKG_TVDFILEMANAGER.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_tvdfilemanager);
+            return iconUri;
+        }else if(PKG_AIRPLAY.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_airplay);
+            return iconUri;
+        }else if(PKG_HDMI.equals(pkgname)){
+            iconUri = UriUtils.getAndroidResourceUri(mContext,R.drawable.aw_icon_hdmi);
+            return iconUri;
+        }
+
         PackageManager pm = mContext.getPackageManager();
         ApplicationInfo appinfo = null;
         try{
