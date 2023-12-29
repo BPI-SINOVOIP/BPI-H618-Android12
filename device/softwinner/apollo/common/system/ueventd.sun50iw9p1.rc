@@ -45,3 +45,6 @@ firmware_directories /vendor/etc/firmware/
 
 # sysfs properties
 /sys/devices/virtual/input/input*   delay          0660  root   input
+
+# rtkbt
+/dev/rtkbt_dev              0660    bluetooth  net_bt_admin

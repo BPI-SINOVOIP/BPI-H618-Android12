@@ -149,6 +149,7 @@ static const struct wifi_hardware_info wifi_list[] = {
     {0x0, 0x0bda0179, "rtl8188eu",     "8188eu",     "8188eu",     "realtek",  0},
     {0x0, 0x0bda818b, "rtl8192eu",     "8192eu",     "8192eu",     "realtek",  0},
     {0x0, 0x0bdab720, "rtl8723bu",     "8723bu",     "8723bu",     "realtek",  1},
+    {0x0, 0x0bdac820, "rtl8821cu",     "8821cu",     "8821cu",     "realtek",  1},
     {0x0, 0x0bdac82c, "rtl8822cu",     "88x2cu",     "88x2cu",     "realtek",  1},
     {0x0, 0x0bdaf179, "rtl8188fu",     "8188fu",     "8188fu",     "realtek",  0},
     {0x1, 0x02d0a9a6, "ap6212",        "bcmdhd",     "bcmdhd",     "broadcom", 1},

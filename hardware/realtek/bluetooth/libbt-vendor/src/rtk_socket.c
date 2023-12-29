@@ -55,7 +55,7 @@
 /******************************************************************************
 **  functions
 ******************************************************************************/
-uint32_t Skt_Read(int fd, uint8_t *p_buf, uint32_t len)
+uint32_t Skt_Read(int fd, uint8_t *p_buf, uint32_t len, bool* condition)
 {
     int n_read = 0;
     struct pollfd pfd;
@@ -67,8 +67,10 @@ uint32_t Skt_Read(int fd, uint8_t *p_buf, uint32_t len)
 
     while (n_read < (int)len)
     {
+        if(condition && !(*condition))
+            return n_read;
         pfd.fd = fd;
-        pfd.events = POLLIN|POLLHUP;
+        pfd.events = POLLIN|POLLHUP|POLLNVAL|POLLRDHUP;
 
         /* make sure there is data prior to attempting read to avoid blocking
            a read for more than poll timeout */
@@ -85,7 +87,7 @@ uint32_t Skt_Read(int fd, uint8_t *p_buf, uint32_t len)
             break;
         }
 
-        if (pfd.revents & (POLLHUP|POLLNVAL) )
+        if (pfd.revents & (POLLHUP|POLLNVAL|POLLRDHUP) )
         {
             return 0;
         }
@@ -115,7 +117,7 @@ uint32_t Skt_Read(int fd, uint8_t *p_buf, uint32_t len)
 int Skt_Read_noblock(int fd, uint8_t *p_buf, uint32_t len)
 {
     int n_read = 0;
-    struct pollfd pfd;
+    struct pollfd pfd = {0};
 
     if (fd == -1)
     {
@@ -124,14 +126,14 @@ int Skt_Read_noblock(int fd, uint8_t *p_buf, uint32_t len)
     }
 
     pfd.fd = fd;
-    pfd.events = POLLIN|POLLHUP;
+    pfd.events = POLLIN|POLLHUP|POLLRDHUP;
 
     if (poll(&pfd, 1, 0) == 0)
     {
         return 0;
     }
 
-    if (pfd.revents & (POLLHUP|POLLNVAL) )
+    if (pfd.revents & (POLLHUP|POLLNVAL|POLLRDHUP) )
     {
         return 0;
     }

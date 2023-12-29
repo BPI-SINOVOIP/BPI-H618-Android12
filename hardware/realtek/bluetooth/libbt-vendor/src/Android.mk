@@ -24,6 +24,7 @@ LOCAL_SRC_FILES := \
 LOCAL_C_INCLUDES += \
         $(LOCAL_PATH)/../include \
         $(LOCAL_PATH)/../codec/sbc \
+        $(LOCAL_PATH)/../codec/plc \
         $(BDROID_DIR)/hci/include
 
 LOCAL_SHARED_LIBRARIES := \
@@ -33,14 +34,6 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_WHOLE_STATIC_LIBRARIES := \
         libbt-codec
-
-ifeq ($(BOARD_HAVE_BLUETOOTH_NAME), rtl8723bs)
-LOCAL_CFLAGS += -DRTL_8723BS_BT_USED
-endif
-
-ifeq ($(BOARD_HAVE_BLUETOOTH_NAME), rtl8723bs_vq0)
-LOCAL_CFLAGS += -DRTL_8723BS_VQ0_BT_USED
-endif
 
 LOCAL_MODULE := libbt-vendor
 LOCAL_MODULE_TAGS := optional

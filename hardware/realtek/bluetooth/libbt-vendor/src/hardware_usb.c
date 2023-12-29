@@ -17,7 +17,7 @@
  ******************************************************************************/
 
 #define LOG_TAG "bt_hwcfg_usb"
-#define RTKBT_RELEASE_NAME "20190125_BT_ANDROID_9.0"
+#define RTKBT_RELEASE_NAME "20230424_BT_ANDROID_12.0"
 
 #include <utils/Log.h>
 #include <sys/types.h>
@@ -56,11 +56,22 @@ extern int getmacaddr(unsigned char * addr);
 extern struct rtk_epatch_entry *rtk_get_patch_entry(bt_hw_cfg_cb_t *cfg_cb);
 extern int rtk_get_bt_firmware(uint8_t** fw_buf, char* fw_short_name);
 extern uint8_t rtk_get_fw_project_id(uint8_t *p_buf);
+extern rtkbt_cts_info_t rtkbt_cts_info;
+extern uint16_t rtk_get_v1_final_fw(bt_hw_cfg_cb_t* cfg_cb);
+extern uint32_t rtk_get_v2_final_fw(bt_hw_cfg_cb_t* cfg_cb);
+extern uint8_t rtk_check_epatch_signature(bt_hw_cfg_cb_t* cfg_cb, uint8_t rule);
+extern uint8_t rtk_get_fw_parsing_rule(uint8_t *p_buf);
 
+#define EXTRA_CONFIG_FILE "/vendor/etc/bluetooth/rtk_btconfig.txt"
+static struct rtk_bt_vendor_config_entry *extra_extry;
+static struct rtk_bt_vendor_config_entry *extra_entry_inx = NULL;
 
 /******************************************************************************
 **  Static variables
 ******************************************************************************/
+//Extension Section IGNATURE:0x77FD0451
+static const uint8_t EXTENSION_SECTION_SIGNATURE[4]={0x51,0x04,0xFD,0x77};
+
 //static bt_hw_cfg_cb_t hw_cfg_cb;
 
 typedef struct {
@@ -77,6 +88,39 @@ typedef struct {
     uint16_t    mac_offset;
     uint32_t    max_patch_size;
 } usb_patch_info;
+
+typedef struct {
+    uint16_t hci_version;
+    uint16_t hci_revision;
+    uint16_t lmp_subversion;
+    char    *chip_name;
+} usb_chip_info;
+
+static usb_chip_info usb_chip_info_table[] = {
+{HCI_VERSION_5_1   ,   0x000C   ,   0x8822   ,   "8822CU-CG or 8822CU-VN-CG or 8822CU-VB-CG or 8822CU-VBN-CG"},
+{HCI_VERSION_4_1   ,   0x000B   ,   0x8822   ,   "8822BU"},
+{HCI_VERSION_4_2   ,   0x000C   ,   0x8821   ,   "8821CU or 8821CUH"},
+{HCI_VERSION_5_2   ,   0x000C   ,   0x8852   ,   "8852CU"},
+{HCI_VERSION_5_2   ,   0x000B   ,   0x8852   ,   "8852BU"},
+{HCI_VERSION_5_2   ,   0x000A   ,   0x8852   ,   "8852AU"},
+{HCI_VERSION_5_2   ,   0x000F   ,   0x8723   ,   "8733BU_8723FU"},
+{HCI_VERSION_4_2   ,   0x000C   ,   0x8821   ,   "8821CU or 8821CUH"},
+{HCI_VERSION_5_0   ,   0x000A   ,   0x8725   ,   "8725AU"},
+{HCI_VERSION_4_2   ,   0x000D   ,   0x8723   ,   "8723DU"},
+{HCI_VERSION_4_1   ,   0x000C   ,   0x8723   ,   "8723CS"},
+{HCI_VERSION_2_1   ,   0x000B   ,   0x8703   ,   "8703BS"},
+{HCI_VERSION_4_0   ,   0x000A   ,   0x8821   ,   "8821AU"},
+{HCI_VERSION_4_0   ,   0x000B   ,   0x8723   ,   "8723BU"},
+{HCI_VERSION_4_2   ,   0x000A   ,   0x8761   ,   "8761AU or 8761AUV"},
+{HCI_VERSION_5_1   ,   0x000B   ,   0x8761   ,   "8761BUV"},
+{HCI_VERSION_4_0   ,   0x000B   ,   0x8723   ,   "8723BU"},
+{HCI_VERSION_4_2   ,   0x000D   ,   0x8723   ,   "8723DU"},
+{HCI_VERSION_4_0   ,   0x000A   ,   0x8821   ,   "8821AU"},
+{HCI_VERSION_4_1   ,   0x000B   ,   0x8822   ,   "8822BU"},
+{HCI_VERSION_5_2   ,   0x000B   ,   0x8852   ,   "8852BU or 8852BPU"},
+{HCI_VERSION_5_3   ,   0x000E    ,    0x8822     ,     "8822EU"},
+{HCI_VERSION_5_3   ,   0x000B    ,    0x8851     ,     "8851BU"}
+};
 
 static usb_patch_info usb_fw_patch_table[] = {
 /* { vid, pid, lmp_sub_default, lmp_sub, everion, mp_fw_name, fw_name, config_name, fw_cache, fw_len, mac_offset } */
@@ -117,6 +161,9 @@ static usb_patch_info usb_fw_patch_table[] = {
 { 0x0BDA, 0x8761, 0x8761, 0, 0, "mp_rtl8761a_fw", "rtl8761au8192ee_fw", "rtl8761a_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_1_2, MAX_PATCH_SIZE_24K}, /* RTL8761AU + 8192EE for LI */
 { 0x0BDA, 0x8A60, 0x8761, 0, 0, "mp_rtl8761a_fw", "rtl8761au8812ae_fw", "rtl8761a_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_1_2, MAX_PATCH_SIZE_24K}, /* RTL8761AU + 8812AE */
 { 0x0BDA, 0x8771, 0x8761, 0, 0, "mp_rtl8761b_fw", "rtl8761b_fw", "rtl8761b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8761BU */
+{ 0x0BDA, 0xB771, 0x8761, 0, 0, "mp_rtl8761b_fw", "rtl8761b_fw", "rtl8761b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8761BU */
+{ 0x0BDA, 0xa725, 0x8761, 0, 0, "mp_rtl8725a_fw", "rtl8725a_fw", "rtl8725a_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8725AU */
+{ 0x0BDA, 0xa72A, 0x8761, 0, 0, "mp_rtl8725a_fw", "rtl8725a_fw", "rtl8725a_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8725AU BT only */
 
 { 0x0BDA, 0x8821, 0x8821, 0, 0, "mp_rtl8821a_fw", "rtl8821a_fw", "rtl8821a_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_1_2, MAX_PATCH_SIZE_24K}, /* RTL8821AE */
 { 0x0BDA, 0x0821, 0x8821, 0, 0, "mp_rtl8821a_fw", "rtl8821a_fw", "rtl8821a_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_1_2, MAX_PATCH_SIZE_24K}, /* RTL8821AE */
@@ -126,19 +173,88 @@ static usb_patch_info usb_fw_patch_table[] = {
 { 0x13D3, 0x3461, 0x8821, 0, 0, "mp_rtl8821a_fw", "rtl8821a_fw", "rtl8821a_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_1_2, MAX_PATCH_SIZE_24K}, /* RTL8821AE */
 { 0x13D3, 0x3462, 0x8821, 0, 0, "mp_rtl8821a_fw", "rtl8821a_fw", "rtl8821a_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_1_2, MAX_PATCH_SIZE_24K}, /* RTL8821AE */
 
-{ 0x0BDA, 0xB822, 0x8822, 0, 0, "mp_rtl8822b_fw", "rtl8822b_fw", "rtl8822b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_24K}, /* RTL8822BE */
-{ 0x0BDA, 0xB82C, 0x8822, 0, 0, "mp_rtl8822b_fw", "rtl8822b_fw", "rtl8822b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_24K}, /* RTL8822BU */
-{ 0x0BDA, 0xB023, 0x8822, 0, 0, "mp_rtl8822b_fw", "rtl8822b_fw", "rtl8822b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_24K}, /* RTL8822BE */
+{ 0x0BDA, 0xB822, 0x8822, 0, 0, "mp_rtl8822b_fw", "rtl8822b_fw", "rtl8822b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_25K}, /* RTL8822BE */
+{ 0x0BDA, 0xB82C, 0x8822, 0, 0, "mp_rtl8822b_fw", "rtl8822b_fw", "rtl8822b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_25K}, /* RTL8822BU */
+{ 0x0BDA, 0xB81D, 0x8822, 0, 0, "mp_rtl8822b_fw", "rtl8822b_fw", "rtl8822b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_25K}, /* RTL8822BU BT only */
+{ 0x0BDA, 0xB82E, 0x8822, 0, 0, "mp_rtl8822b_fw", "rtl8822b_fw", "rtl8822b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_25K}, /* RTL8822BU-VN */
+{ 0x0BDA, 0xB023, 0x8822, 0, 0, "mp_rtl8822b_fw", "rtl8822b_fw", "rtl8822b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_25K}, /* RTL8822BE */
 { 0x0BDA, 0xB703, 0x8703, 0, 0, "mp_rtl8723c_fw", "rtl8723c_fw", "rtl8723c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_24K}, /* RTL8723CU */
 { 0x0BDA, 0xC82C, 0x8822, 0, 0, "mp_rtl8822c_fw", "rtl8822c_fw", "rtl8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8822CU */
+{ 0x0BDA, 0xC82E, 0x8822, 0, 0, "mp_rtl8822c_fw", "rtl8822c_fw", "rtl8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8822CU-VN */
+{ 0x0BDA, 0xC81D, 0x8822, 0, 0, "mp_rtl8822c_fw", "rtl8822c_fw", "rtl8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8822CU BT only */
+{ 0x0BDA, 0xC82F, 0x8822, 0, 0, "mp_rtl8822c_fw", "rtl8822c_fw", "rtl8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8822CE-VS */
 { 0x0BDA, 0xC822, 0x8822, 0, 0, "mp_rtl8822c_fw", "rtl8822c_fw", "rtl8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8822CE */
+{ 0x0BDA, 0xB00C, 0x8822, 0, 0, "mp_rtl8822c_fw", "rtl8822c_fw", "rtl8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_40K}, /* RTL8822CE */
+{ 0x0BDA, 0xA822, 0x8822, 0, 0, "mp_rtl8822e_8822c_fw", "rtl8822e_8822c_fw", "rtl8822e_8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_145K}, /* RTL8822EU */
+{ 0x0BDA, 0xA82A, 0x8822, 0, 0, "mp_rtl8822e_8822c_fw", "rtl8822e_8822c_fw", "rtl8822e_8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_145K}, /* RTL8822EU */
+{ 0x0BDA, 0xA82B, 0x8822, 0, 0, "mp_rtl8822e_8822c_fw", "rtl8822e_8822c_fw", "rtl8822e_8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_145K}, /* RTL8822EU */
+{ 0x0BDA, 0xE822, 0x8822, 0, 0, "mp_rtl8822e_8822c_fw", "rtl8822e_8822c_fw", "rtl8822e_8822c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_145K}, /* RTL8822EU */
 /* todo: RTL8703BU */
 
 { 0x0BDA, 0xD723, 0x8723, 0, 0, "mp_rtl8723d_fw", "rtl8723d_fw", "rtl8723d_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8723DU */
+{ 0x0BDA, 0xD72A, 0x8723, 0, 0, "mp_rtl8723d_fw", "rtl8723d_fw", "rtl8723d_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8723DU BT only */
 { 0x0BDA, 0xD720, 0x8723, 0, 0, "mp_rtl8723d_fw", "rtl8723d_fw", "rtl8723d_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8723DE */
+{ 0x0BDA, 0xB733, 0x8723, 0, 0, "mp_rtl8733b_8723f_fw", "rtl8733b_8723f_fw", "rtl8733b_8723f_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_49_2K}, /* RTL8723FU */
+{ 0x0BDA, 0xB73A, 0x8723, 0, 0, "mp_rtl8733b_8723f_fw", "rtl8733b_8723f_fw", "rtl8733b_8723f_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_49_2K}, /* RTL8723FU */
+{ 0x0BDA, 0xF72B, 0x8723, 0, 0, "mp_rtl8733b_8723f_fw", "rtl8733b_8723f_fw", "rtl8733b_8723f_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_49_2K}, /* RTL8723FU */
+//RTL8821C
 { 0x0BDA, 0xB820, 0x8821, 0, 0, "mp_rtl8821c_fw", "rtl8821c_fw", "rtl8821c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8821CU */
 { 0x0BDA, 0xC820, 0x8821, 0, 0, "mp_rtl8821c_fw", "rtl8821c_fw", "rtl8821c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8821CU */
+{ 0x0BDA, 0xC82A, 0x8821, 0, 0, "mp_rtl8821c_fw", "rtl8821c_fw", "rtl8821c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8821CU BT only */
 { 0x0BDA, 0xC821, 0x8821, 0, 0, "mp_rtl8821c_fw", "rtl8821c_fw", "rtl8821c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8821CE */
+{ 0x13D3, 0x3529, 0x8821, 0, 0, "mp_rtl8821c_fw", "rtl8821c_fw", "rtl8821c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8821CE */
+{ 0x13D3, 0x3532, 0x8821, 0, 0, "mp_rtl8821c_fw", "rtl8821c_fw", "rtl8821c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8821CE */
+{ 0x13D3, 0x3533, 0x8821, 0, 0, "mp_rtl8821c_fw", "rtl8821c_fw", "rtl8821c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8821CE */
+{ 0x13D3, 0x3552, 0x8821, 0, 0, "mp_rtl8821c_fw", "rtl8821c_fw", "rtl8821c_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_3PLUS, MAX_PATCH_SIZE_40K}, /* RTL8821CE */
+//RTL8851B
+{ 0x0BDA, 0xB851, 0x8851, 0, 0, "mp_rtl8851b_fw", "rtl8851b_fw", "rtl8851b_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_65_2K}, /*RTL8851BU */
+//RTL8852A
+{ 0x0BDA, 0x885A, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x8852, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AE */
+{ 0x0BDA, 0xA852, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x2852, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x385A, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x3852, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x1852, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x4852, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x04CA, 0x4006, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x13D3, 0x3561, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x13D3, 0x3562, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x588A, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x589A, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0x590A, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x1358, 0xC125, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0BDA, 0xE852, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x0CB8, 0xC549, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x1358, 0xC127, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x13D3, 0x3565, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x13D3, 0x3566, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+{ 0x04C5, 0x165C, 0x8852, 0, 0, "mp_rtl8852au_fw", "rtl8852au_fw", "rtl8852au_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_69_2K}, /*RTL8852AU */
+//RTL8852B
+{ 0x0BDA, 0x024C, 0x8852, 0, 0, "mp_rtl8852bu_fw", "rtl8852bu_fw", "rtl8852bu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_65_2K}, /*RTL8852B */
+{ 0x0BDA, 0xA85B, 0x8852, 0, 0, "mp_rtl8852bu_fw", "rtl8852bu_fw", "rtl8852bu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_65_2K}, /*RTL8852B */
+{ 0x0BDA, 0xB85B, 0x8852, 0, 0, "mp_rtl8852bu_fw", "rtl8852bu_fw", "rtl8852bu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_65_2K}, /*RTL8852B */
+{ 0x0BDA, 0x4853, 0x8852, 0, 0, "mp_rtl8852bu_fw", "rtl8852bu_fw", "rtl8852bu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_65_2K}, /*RTL8852B */
+{ 0x13D3, 0x3570, 0x8852, 0, 0, "mp_rtl8852bu_fw", "rtl8852bu_fw", "rtl8852bu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_65_2K}, /*RTL8852B */
+//RTL8852C
+{ 0x0BDA, 0xC85A, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0BDA, 0xC85D, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0BDA, 0x885C, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852CU */
+{ 0x0BDA, 0x5852, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0BDA, 0xC85C, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0BDA, 0x886C, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0BDA, 0x887C, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x04CA, 0x4007, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0BDA, 0xC801, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0BDA, 0xC802, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0BDA, 0xC803, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x04C5, 0x1675, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x0CB8, 0xC558, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x13D3, 0x3587, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+{ 0x13D3, 0x3586, 0x8852, 0, 0, "mp_rtl8852cu_fw", "rtl8852cu_fw", "rtl8852cu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_78K}, /*RTL8852C */
+//RTL8852BP
+{ 0x0BDA, 0xA85C, 0x8852, 0, 0, "mp_rtl8852bpu_fw", "rtl8852bpu_fw", "rtl8852bpu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_65_2K}, /*RTL8852BP */
+{ 0x0BDA, 0xA850, 0x8852, 0, 0, "mp_rtl8852bpu_fw", "rtl8852bpu_fw", "rtl8852bpu_config", NULL, 0 ,CONFIG_MAC_OFFSET_GEN_4PLUS, MAX_PATCH_SIZE_65_2K}, /*RTL8852BPE */
 /* todo: RTL8703CU */
 
 /* NOTE: must append patch entries above the null entry */
@@ -162,23 +278,156 @@ uint16_t usb_project_id[] = {
     ROM_LMP_NONE,
     ROM_LMP_8822c,
     ROM_LMP_8761b,
-    ROM_LMP_NONE
+    ROM_LMP_NONE,
+    ROM_LMP_NONE,   //0x10
+    ROM_LMP_NONE,
+    ROM_LMP_8852a,  //0x12
+    ROM_LMP_8723f,
+    ROM_LMP_8852b,
+    ROM_LMP_8763c,  //bbpro2
+    ROM_LMP_8773b,  //bblite
+    ROM_LMP_8762a,  //bee
+    ROM_LMP_8762b,  //bee2
+    ROM_LMP_8852c,//25
+    ROM_LMP_NONE,
+    ROM_LMP_NONE,
+    ROM_LMP_NONE,
+    ROM_LMP_NONE,
+    ROM_LMP_NONE,
+    ROM_LMP_NONE,
+    ROM_LMP_NONE,
+    ROM_LMP_8822e,
+    ROM_LMP_8852bp,//34 8852bp
+    ROM_LMP_8851a,
+    ROM_LMP_8851b
 };
-//signature: realtech
-static const uint8_t RTK_EPATCH_SIGNATURE[8]={0x52,0x65,0x61,0x6C,0x74,0x65,0x63,0x68};
-//Extension Section IGNATURE:0x77FD0451
-static const uint8_t EXTENSION_SECTION_SIGNATURE[4]={0x51,0x04,0xFD,0x77};
+
+static void usb_line_process(char *buf, unsigned short *offset, int *t)
+{
+    char *head = buf;
+    char *ptr = buf;
+    char *argv[32];
+    int argc = 0;
+    unsigned char len = 0;
+    int i = 0;
+    static int alt_size = 0;
+
+    if(buf[0] == '\0' || buf[0] == '#' || buf[0] == '[')
+        return;
+    if(alt_size > MAX_ALT_CONFIG_SIZE-4)
+    {
+        ALOGW("Extra Config file is too large");
+        return;
+    }
+    if(extra_entry_inx == NULL)
+        extra_entry_inx = extra_extry;
+    ALOGI("line_process:%s", buf);
+    while((ptr = strsep(&head, ", \t")) != NULL)
+    {
+        if(!ptr[0])
+            continue;
+        argv[argc++] = ptr;
+        if(argc >= 32) {
+            ALOGW("Config item is too long");
+            break;
+        }
+    }
+
+    if(argc <4) {
+        ALOGE("Invalid Config item, ignore");
+        return;
+    }
+
+    offset[(*t)] = (unsigned short)((strtoul(argv[0], NULL, 16)) | (strtoul(argv[1], NULL, 16) << 8));
+    ALOGI("Extra Config offset %04x", offset[(*t)]);
+    extra_entry_inx->offset = offset[(*t)];
+    (*t)++;
+    len = (unsigned char)strtoul(argv[2], NULL, 16);
+    if(len != (unsigned char)(argc - 3)) {
+        ALOGE("Extra Config item len %d is not match, we assume the actual len is %d", len, (argc-3));
+        len = argc -3;
+    }
+    extra_entry_inx->entry_len = len;
+
+    alt_size += len + sizeof(struct rtk_bt_vendor_config_entry);
+    if(alt_size > MAX_ALT_CONFIG_SIZE)
+    {
+        ALOGW("Extra Config file is too large");
+        extra_entry_inx->offset = 0;
+        extra_entry_inx->entry_len = 0;
+        alt_size -= (len + sizeof(struct rtk_bt_vendor_config_entry));
+        return;
+    }
+    for(i = 0; i < len; i++)
+    {
+        extra_entry_inx->entry_data[i] = (uint8_t)strtoul(argv[3+i], NULL, 16);
+        ALOGI("data[%d]:%02x", i, extra_entry_inx->entry_data[i]);
+    }
+    extra_entry_inx = (struct rtk_bt_vendor_config_entry *)((uint8_t *)extra_entry_inx + len + sizeof(struct rtk_bt_vendor_config_entry));
+}
+
+static void usb_parse_extra_config(const char *path, usb_patch_info *patch_entry, unsigned short *offset, int *t)
+{
+    int fd, ret;
+    unsigned char buf[1024];
+    if(!patch_entry) return;
+    fd = open(path, O_RDONLY);
+    if(fd == -1) {
+        ALOGI("Couldn't open extra config %s, err:%s", path, strerror(errno));
+        return;
+    }
+
+    ret = read(fd, buf, sizeof(buf));
+    if(ret == -1) {
+        ALOGE("Couldn't read %s, err:%s", path, strerror(errno));
+        close(fd);
+        return;
+    }
+    else if(ret == 0) {
+        ALOGE("%s is empty", path);
+        close(fd);
+        return;
+    }
+
+    if(ret > 1022) {
+        ALOGE("Extra config file is too big");
+        close(fd);
+        return;
+    }
+    buf[ret++] = '\n';
+    buf[ret++] = '\0';
+    close(fd);
+    char *head = (void *)buf;
+    char *ptr = (void *)buf;
+    ptr = strsep(&head, "\n\r");
+    if(strncmp(ptr, patch_entry->config_name, strlen(ptr)))
+    {
+        ALOGW("Extra config file not set for %s, ignore", patch_entry->config_name);
+        return;
+    }
+    while((ptr = strsep(&head, "\n\r")) != NULL)
+    {
+        if(!ptr[0])
+            continue;
+        usb_line_process(ptr, offset, t);
+    }
+}
 
 static inline int getUsbAltSettings(usb_patch_info *patch_entry, unsigned short *offset)//(patch_info *patch_entry, unsigned short *offset, int max_group_cnt)
 {
     int n = 0;
     if(patch_entry)
         offset[n++] = patch_entry->mac_offset;
+    else
+      return n;
 /*
 //sample code, add special settings
 
     offset[n++] = 0x15B;
 */
+    if(extra_extry)
+        usb_parse_extra_config(EXTRA_CONFIG_FILE, patch_entry, offset, &n);
+
     return n;
 }
 
@@ -186,9 +435,29 @@ static inline int getUsbAltSettingVal(usb_patch_info *patch_entry, unsigned shor
 {
     int res = 0;
 
-    switch(offset)
+    int i = 0;
+    struct rtk_bt_vendor_config_entry *ptr = extra_extry;
+    if(!patch_entry) return res;
+
+    while(ptr->offset)
     {
-/*
+        if(ptr->offset == offset)
+        {
+            if(offset != patch_entry->mac_offset)
+            {
+                memcpy(val, ptr->entry_data, ptr->entry_len);
+                res = ptr->entry_len;
+                ALOGI("Get Extra offset:%04x, val:", offset);
+                for(i = 0; i < ptr->entry_len; i++)
+                    ALOGI("%02x", ptr->entry_data[i]);
+            }
+            break;
+        }
+        ptr = (struct rtk_bt_vendor_config_entry *)((uint8_t *)ptr + ptr->entry_len + sizeof(struct rtk_bt_vendor_config_entry));
+    }
+
+/*    switch(offset)
+    {
 //sample code, add special settings
         case 0x15B:
             val[0] = 0x0B;
@@ -197,11 +466,12 @@ static inline int getUsbAltSettingVal(usb_patch_info *patch_entry, unsigned shor
             val[3] = 0x0B;
             res = 4;
             break;
-*/
+
         default:
             res = 0;
             break;
     }
+*/
     if((patch_entry)&&(offset == patch_entry->mac_offset)&&(res == 0))
     {
         if(getmacaddr(val) == 0){
@@ -222,6 +492,16 @@ static void rtk_usb_update_altsettings(usb_patch_info *patch_entry, unsigned cha
     size_t config_len = *config_len_ptr;
     unsigned int  i = 0;
     int count = 0,temp = 0, j;
+
+    if(!patch_entry) return;
+
+    if((extra_extry = (struct rtk_bt_vendor_config_entry *)malloc(MAX_ALT_CONFIG_SIZE)) == NULL)
+    {
+        ALOGE("malloc buffer for extra_extry failed");
+    }
+    else
+        memset(extra_extry, 0, MAX_ALT_CONFIG_SIZE);
+
 
     ALOGI("ORG Config len=%08zx:\n", config_len);
     for(i = 0; i <= config_len; i+= 0x10)
@@ -253,8 +533,23 @@ static void rtk_usb_update_altsettings(usb_patch_info *patch_entry, unsigned cha
     {
         for(j = 0; j < count;j++)
         {
-            if(le16_to_cpu(entry->offset) == offset[j])
-                offset[j] = 0;
+            if(le16_to_cpu(entry->offset) == offset[j]) {
+                if(offset[j] == patch_entry->mac_offset)
+                    offset[j] = 0;
+                else
+                {
+                    struct rtk_bt_vendor_config_entry *t = extra_extry;
+                    while(t->offset) {
+                        if(t->offset == le16_to_cpu(entry->offset))
+                        {
+                            if(t->entry_len == entry->entry_len)
+                                offset[j] = 0;
+                            break;
+                        }
+                        t = (struct rtk_bt_vendor_config_entry *)((uint8_t *)t + t->entry_len + sizeof(struct rtk_bt_vendor_config_entry));
+                    }
+                }
+            }
         }
         if(getUsbAltSettingVal(patch_entry, le16_to_cpu(entry->offset), val) == entry->entry_len){
             ALOGI("rtk_update_altsettings: replace %04x[%02x]", le16_to_cpu(entry->offset), entry->entry_len);
@@ -280,6 +575,13 @@ static void rtk_usb_update_altsettings(usb_patch_info *patch_entry, unsigned cha
     }
     config->data_len = cpu_to_le16(i);
     *config_len_ptr = i + sizeof(struct rtk_bt_vendor_config);
+
+    if(extra_extry)
+    {
+        free(extra_extry);
+        extra_extry = NULL;
+        extra_entry_inx = NULL;
+    }
 
     ALOGI("NEW Config len=%08zx:\n", *config_len_ptr);
     for(i = 0; i<= (*config_len_ptr); i+= 0x10)
@@ -365,13 +667,22 @@ static void rtk_usb_parse_config_file(unsigned char** config_buf, size_t* filele
 static uint32_t rtk_usb_get_bt_config(unsigned char** config_buf,
         char * config_file_short_name, uint16_t mac_offset)
 {
-    char bt_config_file_name[PATH_MAX] = {0};
+    char bt_config_file_name[PATH_MAX] = {0},*p = NULL;
     struct stat st;
     size_t filelen;
     int fd;
     //FILE* file = NULL;
 
     sprintf(bt_config_file_name, BT_CONFIG_DIRECTORY, config_file_short_name);
+    ALOGI("BT config file: %s", bt_config_file_name);
+    if(rtkbt_cts_info.finded){
+        strcat(bt_config_file_name,"_vendor");
+        if(stat(bt_config_file_name, &st) < 0){
+            p = strstr(bt_config_file_name,"_vendor");
+            if(p != NULL)
+                *p = '\0';
+        }
+    }
     ALOGI("BT config file: %s", bt_config_file_name);
 
     if (stat(bt_config_file_name, &st) < 0)
@@ -437,45 +748,10 @@ static usb_patch_info *rtk_usb_get_fw_table_entry(uint16_t vid, uint16_t pid)
 static void rtk_usb_get_bt_final_patch(bt_hw_cfg_cb_t* cfg_cb)
 {
     uint8_t proj_id = 0;
-    struct rtk_epatch_entry* entry = NULL;
-    struct rtk_epatch *patch = (struct rtk_epatch *)cfg_cb->fw_buf;
+    uint8_t res = 0;
+    uint8_t parsing_rule = cfg_cb->parsing_rule; // 1: Legacy format, 2: New format
+    uint32_t fw_patch_len = 0;
     //int iBtCalLen = 0;
-
-    if(cfg_cb->lmp_subversion == LMPSUBVERSION_8723a)
-    {
-        if(memcmp(cfg_cb->fw_buf, RTK_EPATCH_SIGNATURE, 8) == 0)
-        {
-            ALOGE("8723as check signature error!");
-            cfg_cb->dl_fw_flag = 0;
-            goto free_buf;
-        }
-        else
-        {
-            cfg_cb->total_len = cfg_cb->fw_len + cfg_cb->config_len;
-            if (!(cfg_cb->total_buf = malloc(cfg_cb->total_len)))
-            {
-                ALOGE("can't alloc memory for fw&config, errno:%d", errno);
-                cfg_cb->dl_fw_flag = 0;
-                goto free_buf;
-            }
-            else
-            {
-                ALOGI("8723as, fw copy direct");
-                memcpy(cfg_cb->total_buf, cfg_cb->fw_buf, cfg_cb->fw_len);
-                memcpy(cfg_cb->total_buf+cfg_cb->fw_len, cfg_cb->config_buf, cfg_cb->config_len);
-                //cfg_cb->lmp_sub_current = *(uint16_t *)(cfg_cb->total_buf + cfg_cb->total_len - cfg_cb->config_len - 4);
-                cfg_cb->dl_fw_flag = 1;
-                goto free_buf;
-            }
-        }
-    }
-
-    if (memcmp(cfg_cb->fw_buf, RTK_EPATCH_SIGNATURE, 8))
-    {
-        ALOGE("check signature error");
-        cfg_cb->dl_fw_flag = 0;
-        goto free_buf;
-    }
 
     /* check the extension section signature */
     if (memcmp(cfg_cb->fw_buf + cfg_cb->fw_len - 4, EXTENSION_SECTION_SIGNATURE, 4))
@@ -485,49 +761,34 @@ static void rtk_usb_get_bt_final_patch(bt_hw_cfg_cb_t* cfg_cb)
         goto free_buf;
     }
 
+    //cfg_cb->parsing_rule = rtk_get_fw_parsing_rule(cfg_cb->fw_buf + cfg_cb->fw_len - 5);
+    res = rtk_check_epatch_signature(cfg_cb, parsing_rule);
+    if(res){
+        goto free_buf;
+    }
+
     proj_id = rtk_get_fw_project_id(cfg_cb->fw_buf + cfg_cb->fw_len - 5);
     if(usb_project_id[proj_id] != hw_cfg_cb.lmp_subversion_default)
     {
-        ALOGE("usb_project_id is 0x%08x, fw project_id is %d, does not match!!!",
-                        usb_project_id[proj_id], hw_cfg_cb.lmp_subversion);
+        ALOGE("usb_project_id is 0x%02x, fw project_id is %02x, does not match!!!",
+                        usb_project_id[proj_id], hw_cfg_cb.lmp_subversion_default);
         cfg_cb->dl_fw_flag = 0;
         goto free_buf;
     }
 
-    entry = rtk_get_patch_entry(cfg_cb);
-    if (entry)
-    {
-        cfg_cb->total_len = entry->patch_length + cfg_cb->config_len;
+    if(1 == parsing_rule){
+        fw_patch_len = rtk_get_v1_final_fw(cfg_cb);
+    }else if(2 == parsing_rule){
+        fw_patch_len = rtk_get_v2_final_fw(cfg_cb);
     }
-    else
-    {
-        cfg_cb->dl_fw_flag = 0;
+    if(fw_patch_len == 0){
         goto free_buf;
     }
-
-    ALOGI("total_len = 0x%x", cfg_cb->total_len);
-
-    if (!(cfg_cb->total_buf = malloc(cfg_cb->total_len)))
-    {
-        ALOGE("Can't alloc memory for multi fw&config, errno:%d", errno);
-        cfg_cb->dl_fw_flag = 0;
-        goto free_buf;
-    }
-    else
-    {
-        memcpy(cfg_cb->total_buf, cfg_cb->fw_buf + entry->patch_offset, entry->patch_length);
-        memcpy(cfg_cb->total_buf + entry->patch_length - 4, &patch->fw_version, 4);
-        memcpy(&entry->svn_version, cfg_cb->total_buf + entry->patch_length - 8, 4);
-        memcpy(&entry->coex_version, cfg_cb->total_buf + entry->patch_length - 12, 4);
-
-        ALOGI("BTCOEX:20%06d-%04x svn_version:%d lmp_subversion:0x%x hci_version:0x%x hci_revision:0x%x chip_type:%d Cut:%d libbt-vendor_uart version:%s, patch->fw_version = %x\n",
-        ((entry->coex_version >> 16) & 0x7ff) + ((entry->coex_version >> 27) * 10000),
-        (entry->coex_version & 0xffff), entry->svn_version, cfg_cb->lmp_subversion, cfg_cb->hci_version, cfg_cb->hci_revision, cfg_cb->chip_type, cfg_cb->eversion+1, RTK_VERSION, patch->fw_version);
-    }
-
+    
+    ALOGI(" fw_patch_len = 0x%x ", fw_patch_len);
     if (cfg_cb->config_len)
     {
-        memcpy(cfg_cb->total_buf+entry->patch_length, cfg_cb->config_buf, cfg_cb->config_len);
+        memcpy(cfg_cb->total_buf+fw_patch_len, cfg_cb->config_buf, cfg_cb->config_len);
     }
 
     cfg_cb->dl_fw_flag = 1;
@@ -546,10 +807,6 @@ free_buf:
         cfg_cb->config_len = 0;
     }
 
-    if(entry)
-    {
-        free(entry);
-    }
 }
 
 static int usb_hci_download_patch_h4(HC_BT_HDR *p_buf, int index, uint8_t *data, int len)
@@ -568,7 +825,7 @@ static int usb_hci_download_patch_h4(HC_BT_HDR *p_buf, int index, uint8_t *data,
     retval = bt_vendor_cbacks->xmit_cb(HCI_VSC_DOWNLOAD_FW_PATCH, p_buf, hw_usb_config_cback);
     return retval;
 }
-
+/*
 static void rtk_usb_get_fw_version(bt_hw_cfg_cb_t* cfg_cb)
 {
     struct rtk_epatch *patch = (struct rtk_epatch *)cfg_cb->fw_buf;
@@ -581,8 +838,25 @@ static void rtk_usb_get_fw_version(bt_hw_cfg_cb_t* cfg_cb)
     {
         cfg_cb->lmp_sub_current = (uint16_t)patch->fw_version;
     }
-
 }
+*/
+static void dump_usb_chip_name(bt_hw_cfg_cb_t cfg_cb){
+    uint32_t i = 0,ret = 0;
+    for (i =0; i< sizeof(usb_chip_info_table)/sizeof(usb_chip_info);i++){
+        if((cfg_cb.hci_version == usb_chip_info_table[i].hci_version) && (cfg_cb.hci_revision == usb_chip_info_table[i].hci_revision) 
+        && (cfg_cb.lmp_subversion == usb_chip_info_table[i].lmp_subversion)){
+            ret = property_set("vendor.realtek.bluetooth.chip_name",usb_chip_info_table[i].chip_name);
+            if(ret)
+                BTVNDDBG("%s err:%s",__func__,strerror(errno));
+            BTVNDDBG("%s chip name:%s",__func__,usb_chip_info_table[i].chip_name);
+            return;
+        }else
+             continue;
+    }
+    BTVNDDBG("%s chip name: unknown chip ",__func__);
+    property_set("vendor.realtek.bluetooth.chip_name","unknown chip");
+}
+
 /*******************************************************************************
 **
 ** Function         hw_usb_config_cback
@@ -595,15 +869,15 @@ static void rtk_usb_get_fw_version(bt_hw_cfg_cb_t* cfg_cb)
 void hw_usb_config_cback(void *p_mem)
 {
     HC_BT_HDR   *p_evt_buf = NULL;
-    uint8_t     *p = NULL;//, *pp=NULL;
+    uint8_t     *p = NULL, *pp=NULL;
     uint8_t     status = 0;
-    uint16_t    opcode = 0;
+    uint16_t    opcode = 0,t;
     HC_BT_HDR   *p_buf = NULL;
     uint8_t     is_proceeding = FALSE;
-    //int         i = 0;
+    int         i = 0;
     uint8_t     iIndexRx = 0;
     //patch_info* prtk_patch_file_info = NULL;
-    usb_patch_info* prtk_usb_patch_file_info = NULL;
+    static usb_patch_info* prtk_usb_patch_file_info = NULL;
     //uint32_t    host_baudrate = 0;
 
 #if (USE_CONTROLLER_BDADDR == TRUE)
@@ -636,106 +910,17 @@ void hw_usb_config_cback(void *p_mem)
             case HW_CFG_RESET_CHANNEL_CONTROLLER:
             {
                 usleep(300000);
-                hw_cfg_cb.state = HW_CFG_READ_LOCAL_VER;
+                hw_cfg_cb.state = HW_CFG_READ_ECO_VER;
                 p = (uint8_t *) (p_buf + 1);
-                UINT16_TO_STREAM(p, HCI_READ_LMP_VERSION);
+                UINT16_TO_STREAM(p, HCI_VSC_READ_ROM_VERSION);
                 *p++ = 0;
                 p_buf->len = HCI_CMD_PREAMBLE_SIZE;
-                is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_READ_LMP_VERSION, p_buf, hw_usb_config_cback);
-                break;
-            }
-            case HW_CFG_READ_LOCAL_VER:
-            {
-                if (status == 0)
-                {
-                    p = ((uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OP1001_HCI_VERSION_OFFSET);
-                    STREAM_TO_UINT16(hw_cfg_cb.hci_version, p);
-                    p = ((uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OP1001_HCI_REVISION_OFFSET);
-                    STREAM_TO_UINT16(hw_cfg_cb.hci_revision, p);
-                    p = (uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OP1001_LMP_SUBVERSION_OFFSET;
-                    STREAM_TO_UINT16(hw_cfg_cb.lmp_subversion, p);
-
-                    prtk_usb_patch_file_info = rtk_usb_get_fw_table_entry(hw_cfg_cb.vid, hw_cfg_cb.pid);
-                    if((prtk_usb_patch_file_info == NULL) || (prtk_usb_patch_file_info->lmp_sub_default == 0))
-                    {
-                        ALOGE("get patch entry error");
-                        is_proceeding = FALSE;
-                        break;
-                    }
-                    hw_cfg_cb.config_len = rtk_usb_get_bt_config(&hw_cfg_cb.config_buf, prtk_usb_patch_file_info->config_name, prtk_usb_patch_file_info->mac_offset);
-                    hw_cfg_cb.fw_len = rtk_get_bt_firmware(&hw_cfg_cb.fw_buf, prtk_usb_patch_file_info->patch_name);
-                    rtk_usb_get_fw_version(&hw_cfg_cb);
-
-                    hw_cfg_cb.lmp_subversion_default = prtk_usb_patch_file_info->lmp_sub_default;
-                    BTVNDDBG("lmp_subversion = 0x%x hw_cfg_cb.hci_version = 0x%x hw_cfg_cb.hci_revision = 0x%x, hw_cfg_cb.lmp_sub_current = 0x%x", hw_cfg_cb.lmp_subversion, hw_cfg_cb.hci_version, hw_cfg_cb.hci_revision, hw_cfg_cb.lmp_sub_current);
-
-                    if(prtk_usb_patch_file_info->lmp_sub_default == hw_cfg_cb.lmp_subversion)
-                    {
-                        BTVNDDBG("%s: Cold BT controller startup", __func__);
-                        //hw_cfg_cb.state = HW_CFG_START;
-                        //goto CFG_USB_START;
-                        hw_cfg_cb.state = HW_CFG_READ_ECO_VER;
-                        p = (uint8_t *) (p_buf + 1);
-                        UINT16_TO_STREAM(p, HCI_VSC_READ_ROM_VERSION);
-                        *p++ = 0;
-                        p_buf->len = HCI_CMD_PREAMBLE_SIZE;
-                        is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_VSC_READ_ROM_VERSION, p_buf, hw_usb_config_cback);
-                    }
-                    else if (hw_cfg_cb.lmp_subversion != hw_cfg_cb.lmp_sub_current)
-                    {
-                        BTVNDDBG("%s: Warm BT controller startup with updated lmp", __func__);
-                        goto RESET_HW_CONTROLLER;
-                    }
-                    else
-                    {
-                        BTVNDDBG("%s: Warm BT controller startup with same lmp", __func__);
-                        userial_vendor_usb_ioctl(DWFW_CMPLT, NULL);
-                        free(hw_cfg_cb.total_buf);
-                        hw_cfg_cb.total_len = 0;
-
-                        bt_vendor_cbacks->dealloc(p_buf);
-                        bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
-
-                        hw_cfg_cb.state = 0;
-                        is_proceeding = TRUE;
-                    }
-
- /*                   if(hw_cfg_cb.lmp_subversion == LMPSUBVERSION_8723a)
-                    {
-                        hw_cfg_cb.state = HW_CFG_START;
-                        goto CFG_USB_START;
-                    }
-                    else
-                    {
-                        hw_cfg_cb.state = HW_CFG_READ_ECO_VER;
-                        p = (uint8_t *) (p_buf + 1);
-                        UINT16_TO_STREAM(p, HCI_VSC_READ_ROM_VERSION);
-                        *p++ = 0;
-                        p_buf->len = HCI_CMD_PREAMBLE_SIZE;
-                        is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_VSC_READ_ROM_VERSION, p_buf, hw_usb_config_cback);
-                    }*/
-                }
-                break;
-            }
-RESET_HW_CONTROLLER:
-            case HW_RESET_CONTROLLER:
-            {
-                if (status == 0)
-                {
-                    //usleep(300000);//300ms
-                    userial_vendor_usb_ioctl(RESET_CONTROLLER, NULL);//reset controller
-                    hw_cfg_cb.state = HW_CFG_READ_ECO_VER;
-                    p = (uint8_t *) (p_buf + 1);
-                    UINT16_TO_STREAM(p, HCI_VSC_READ_ROM_VERSION);
-                    *p++ = 0;
-                    p_buf->len = HCI_CMD_PREAMBLE_SIZE;
-                    is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_VSC_READ_ROM_VERSION, p_buf, hw_usb_config_cback);
-                }
+                is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_VSC_READ_ROM_VERSION, p_buf, hw_usb_config_cback);
                 break;
             }
             case HW_CFG_READ_ECO_VER:
             {
-                if(status == 0)
+                if(status == 0 && p_evt_buf)
                 {
                     hw_cfg_cb.eversion = *((uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OPFC6D_EVERSION_OFFSET);
                     BTVNDDBG("hw_usb_config_cback chip_id of the IC:%d", hw_cfg_cb.eversion+1);
@@ -750,42 +935,229 @@ RESET_HW_CONTROLLER:
                     break;
                 }
 
-                hw_cfg_cb.state = HW_CFG_START;
-                    goto CFG_USB_START;
-
-            }
-CFG_USB_START:
-            case HW_CFG_START:
-            {
                 //get efuse config file and patch code file
                 prtk_usb_patch_file_info = rtk_usb_get_fw_table_entry(hw_cfg_cb.vid, hw_cfg_cb.pid);
-
                 if((prtk_usb_patch_file_info == NULL) || (prtk_usb_patch_file_info->lmp_sub_default == 0))
                 {
                     ALOGE("get patch entry error");
                     is_proceeding = FALSE;
                     break;
                 }
-                hw_cfg_cb.max_patch_size = prtk_usb_patch_file_info->max_patch_size;
+
+                hw_cfg_cb.lmp_subversion_default = prtk_usb_patch_file_info->lmp_sub_default;
+
                 hw_cfg_cb.config_len = rtk_usb_get_bt_config(&hw_cfg_cb.config_buf, prtk_usb_patch_file_info->config_name, prtk_usb_patch_file_info->mac_offset);
+                hw_cfg_cb.fw_len = rtk_get_bt_firmware(&hw_cfg_cb.fw_buf, prtk_usb_patch_file_info->patch_name);
+                ALOGE("hw_cfg_cb.config_len %d", hw_cfg_cb.config_len);
                 if (hw_cfg_cb.config_len)
                 {
-                    ALOGE("update altsettings");
-                    rtk_usb_update_altsettings(prtk_usb_patch_file_info, hw_cfg_cb.config_buf, &(hw_cfg_cb.config_len));
+                   ALOGE("update altsettings");
+                   rtk_usb_update_altsettings(prtk_usb_patch_file_info, hw_cfg_cb.config_buf, &(hw_cfg_cb.config_len));
                 }
-
-                hw_cfg_cb.fw_len = rtk_get_bt_firmware(&hw_cfg_cb.fw_buf, prtk_usb_patch_file_info->patch_name);
                 if (hw_cfg_cb.fw_len < 0)
                 {
-                    ALOGE("Get BT firmware fail");
-                    hw_cfg_cb.fw_len = 0;
+                   ALOGE("Get BT firmware fail");
+                   hw_cfg_cb.fw_len = 0;
+                   is_proceeding = FALSE;
+                   break;
+                }
+                else{
+                    hw_cfg_cb.parsing_rule = rtk_get_fw_parsing_rule(hw_cfg_cb.fw_buf + hw_cfg_cb.fw_len - 5);
+                    if(hw_cfg_cb.parsing_rule == 2)
+                    {
+                        hw_cfg_cb.state = HW_CFG_READ_KEY_ID;
+                        p = (uint8_t *) (p_buf + 1);
+                        UINT16_TO_STREAM(p, HCI_VSC_READ_KEY_ID);
+                        *p++ = 5;
+                        UINT8_TO_STREAM(p, 0x10);
+                        UINT32_TO_STREAM(p, 0xB000ADA4);
+                        p_buf->len = HCI_CMD_PREAMBLE_SIZE + HCI_CMD_READ_CHIP_KEY_ID_SIZE;
+                        pp = (uint8_t *) (p_buf + 1);
+                        for (i = 0; i < p_buf->len; i++)
+                            BTVNDDBG("get key id command data[%d]= 0x%x", i, *(pp+i));
+                        is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_VSC_READ_KEY_ID, p_buf, hw_usb_config_cback);
+                        break;
+                    }else{
+                        rtk_usb_get_bt_final_patch(&hw_cfg_cb);
+                        if(rtkbt_cts_info.finded)
+                            goto RESET_HW_CONTROLLER;
+cfg_usb_fc61_rec:
+                        p = (uint8_t *)(p_buf + 1);
+                        UINT16_TO_STREAM(p, HCI_VSC_READ_CHIP_TYPE);
+                        *p++ = 5;
+                        UINT8_TO_STREAM(p, 0x10);
+                        UINT32_TO_STREAM(p, 0x80280438);
+                        p_buf->len = HCI_CMD_PREAMBLE_SIZE + HCI_CMD_READ_CHIP_TYPE_SIZE;
+                        hw_cfg_cb.state = HW_CFG_READ_FC61_LMP_SUB;
+                        is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_VSC_READ_CHIP_TYPE, p_buf, hw_usb_config_cback);
+                        break;
+                    }
+                }
+                break;
+            }
+            case HW_CFG_READ_FC61_LMP_SUB:
+                if (status == 0 && p_evt_buf)
+                {
+                    BTVNDDBG("Initialize Read FC61 Lmp Sub Version status = %d, length = %d", status, p_evt_buf->len);
+                    p = (uint8_t *)(p_evt_buf + 1) ;
+                    for (i = 0; i < p_evt_buf->len; i++)
+                        BTVNDDBG("Initialize Read FC61 Lmp Sub Version event data[%d]= 0x%x", i, *(p+i));
+                    p = (uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OPFC61_CHIPTYPE_OFFSET;
+                    STREAM_TO_UINT16(t, p);
+                    if(t != 0x8822)
+                        goto CFG_USB_LMP;
+                    hw_cfg_cb.lmp_subversion = t;
+                    hw_cfg_cb.state = HW_CFG_READ_FC61_HCI_SUB;
+                    p = (uint8_t *) (p_buf + 1);
+                    UINT16_TO_STREAM(p, HCI_VSC_READ_CHIP_TYPE);
+                    *p++ = 5;
+                    UINT8_TO_STREAM(p, 0x10);
+                    UINT32_TO_STREAM(p, 0x8028043A);
+                    p_buf->len = HCI_CMD_PREAMBLE_SIZE + HCI_CMD_READ_CHIP_TYPE_SIZE;
+                    is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_VSC_READ_CHIP_TYPE, p_buf, hw_usb_config_cback);
+                }
+                else{
+                    is_proceeding = FALSE;
+                }
+                break;
+            case HW_CFG_READ_FC61_HCI_SUB:
+                if (status == 0 && p_evt_buf){    
+                    BTVNDDBG("Initialize Read FC61 Hci Sub Version status = %d, length = %d", status, p_evt_buf->len);
+                    p = (uint8_t *)(p_evt_buf + 1) ;
+                    for (i = 0; i < p_evt_buf->len; i++)
+                        BTVNDDBG("Initialize Read FC61 Hci Sub Version event data[%d]= 0x%x", i, *(p+i));
+                    p = (uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OPFC61_CHIPTYPE_OFFSET;
+                    STREAM_TO_UINT16(t, p);
+                    if(t != 0x000e)
+                        goto CFG_USB_LMP;
+                    hw_cfg_cb.hci_version = (uint8_t)HCI_VERSION_5_2;
+                    hw_cfg_cb.hci_revision = (uint8_t)t;
+                    BTVNDDBG("lmp_subversion = 0x%x hw_cfg_cb.hci_version = 0x%x hw_cfg_cb.hci_revision = 0x%x", hw_cfg_cb.lmp_subversion, hw_cfg_cb.hci_version, hw_cfg_cb.hci_revision);
+                    dump_usb_chip_name(hw_cfg_cb);
+                    goto W_C_P;
+                }
+                else{
+                    is_proceeding = FALSE;
+                }
+                break;
+CFG_USB_LMP:
+            case HW_CFG_READ_LMP:
+                if(rtkbt_cts_info.finded)
+                    goto RESET_HW_CONTROLLER;
+                hw_cfg_cb.state = HW_CFG_READ_LOCAL_VER;
+                p = (uint8_t *) (p_buf + 1);
+                UINT16_TO_STREAM(p, HCI_READ_LMP_VERSION);
+                *p++ = 0;
+                p_buf->len = HCI_CMD_PREAMBLE_SIZE;
+                is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_READ_LMP_VERSION, p_buf, hw_usb_config_cback);
+                break;
+            case HW_CFG_READ_KEY_ID:
+            {
+                if (status == 0 && p_evt_buf)
+                {
+                    BTVNDDBG("READ_KEY_ID status = %d, length = %d", status, p_evt_buf->len);
+                    p = (uint8_t *)(p_evt_buf + 1) ;
+                    for (i = 0; i < p_evt_buf->len; i++)
+                       BTVNDDBG("READ_KEY_ID event data[%d]= 0x%x", i, *(p+i));
+                    if(status == 0)
+                    {
+                       hw_cfg_cb.keyid = ((*((uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OPFC61_KEY_ID_OFFSET)));
+                    }
+
+                    rtk_usb_get_bt_final_patch(&hw_cfg_cb);
+                    goto cfg_usb_fc61_rec;
+                    /*
+                    hw_cfg_cb.state = HW_CFG_READ_LOCAL_VER;
+                    p = (uint8_t *) (p_buf + 1);
+                    UINT16_TO_STREAM(p, HCI_READ_LMP_VERSION);
+                    *p++ = 0;
+                    p_buf->len = HCI_CMD_PREAMBLE_SIZE;
+                    is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_READ_LMP_VERSION, p_buf, hw_usb_config_cback);
+                    break;*/
+                }
+                else{
                     is_proceeding = FALSE;
                     break;
                 }
-                else{
-                    //hw_cfg_cb.project_id_mask = prtk_usb_patch_file_info->project_id_mask;
-                    rtk_usb_get_bt_final_patch(&hw_cfg_cb);
+            }
+            case HW_CFG_READ_LOCAL_VER:
+            {
+                if (status == 0 && p_evt_buf)
+                {
+                    p = ((uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OP1001_HCI_VERSION_OFFSET);
+                    STREAM_TO_UINT16(hw_cfg_cb.hci_version, p);
+                    p = ((uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OP1001_HCI_REVISION_OFFSET);
+                    STREAM_TO_UINT16(hw_cfg_cb.hci_revision, p);
+                    p = (uint8_t *)(p_evt_buf + 1) + HCI_EVT_CMD_CMPL_OP1001_LMP_SUBVERSION_OFFSET;
+                    STREAM_TO_UINT16(hw_cfg_cb.lmp_subversion, p);
+
+                    BTVNDDBG("lmp_subversion = 0x%x hw_cfg_cb.hci_version = 0x%x hw_cfg_cb.hci_revision = 0x%x, hw_cfg_cb.lmp_sub_current = 0x%x",
+                        hw_cfg_cb.lmp_subversion, hw_cfg_cb.hci_version, hw_cfg_cb.hci_revision, hw_cfg_cb.lmp_sub_current);
+                    dump_usb_chip_name(hw_cfg_cb);
+W_C_P:
+                    if((prtk_usb_patch_file_info->lmp_sub_default == hw_cfg_cb.lmp_subversion) || rtkbt_cts_info.finded)
+                    {
+                        BTVNDDBG("%s: Cold BT controller startup", __func__);
+                        hw_cfg_cb.state = HW_CFG_START;
+                        goto CFG_USB_START;
+                    }
+                    else if (hw_cfg_cb.lmp_subversion != hw_cfg_cb.lmp_sub_current)
+                    {
+                        BTVNDDBG("%s: Warm BT controller startup with updated lmp", __func__);
+                        goto RESET_HW_CONTROLLER;
+                    }
+                    else
+                    {
+                        BTVNDDBG("%s: Warm BT controller startup with same lmp", __func__);
+                        userial_vendor_usb_ioctl(DWFW_CMPLT, &hw_cfg_cb.lmp_sub_current);
+
+                        bt_vendor_cbacks->dealloc(p_buf);
+                        bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_SUCCESS);
+
+                        hw_cfg_cb.state = 0;
+                        is_proceeding = TRUE;
+                        if(hw_cfg_cb.config_len)
+                        {
+                            free(hw_cfg_cb.config_buf);
+                            hw_cfg_cb.config_len = 0;
+                        }
+                        if(hw_cfg_cb.fw_len)
+                        {
+                            free(hw_cfg_cb.fw_buf);
+                            hw_cfg_cb.fw_len= 0;
+                        }
+                        if(hw_cfg_cb.total_len)
+                        {
+                            free(hw_cfg_cb.total_buf);
+                            hw_cfg_cb.total_len = 0;
+                        }
+                    }
+
                 }
+                else {
+                    is_proceeding = FALSE;
+                }
+                break;
+            }
+RESET_HW_CONTROLLER:
+            case HW_RESET_CONTROLLER:
+            {
+                if (status == 0)
+                {
+                    userial_vendor_usb_ioctl(RESET_CONTROLLER, NULL);//reset controller
+                    hw_cfg_cb.state = HW_CFG_READ_LOCAL_VER;
+                    p = (uint8_t *) (p_buf + 1);
+                    UINT16_TO_STREAM(p, HCI_READ_LMP_VERSION);
+                    *p++ = 0;
+                    p_buf->len = HCI_CMD_PREAMBLE_SIZE;
+                    is_proceeding = bt_vendor_cbacks->xmit_cb(HCI_READ_LMP_VERSION, p_buf, hw_usb_config_cback);
+                }
+                break;
+            }
+CFG_USB_START:
+            case HW_CFG_START:
+            {
+                hw_cfg_cb.max_patch_size = prtk_usb_patch_file_info->max_patch_size;
 
                 BTVNDDBG("Check total_len(0x%08x) max_patch_size(0x%08x)", hw_cfg_cb.total_len, hw_cfg_cb.max_patch_size);
                 if (hw_cfg_cb.total_len > hw_cfg_cb.max_patch_size)
@@ -827,10 +1199,10 @@ DOWNLOAD_USB_FW:
                     BTVNDDBG("bt vendor lib: HW_CFG_DL_FW_PATCH status:%i, iIndexRx:%i", status, iIndexRx);
                     hw_cfg_cb.patch_frag_idx++;
 
-                    if(iIndexRx&0x80)
+                    if(iIndexRx & 0x80)
                     {
                         BTVNDDBG("vendor lib fwcfg completed");
-                        userial_vendor_usb_ioctl(DWFW_CMPLT, NULL);
+                        userial_vendor_usb_ioctl(DWFW_CMPLT, &hw_cfg_cb.lmp_sub_current);
                         free(hw_cfg_cb.total_buf);
                         hw_cfg_cb.total_len = 0;
 
@@ -880,7 +1252,7 @@ DOWNLOAD_USB_FW:
             if (p_buf != NULL)
                 bt_vendor_cbacks->dealloc(p_buf);
 
-            userial_vendor_usb_ioctl(DWFW_CMPLT, NULL);
+            userial_vendor_usb_ioctl(DWFW_CMPLT, &hw_cfg_cb.lmp_sub_current);
             bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_FAIL);
         }
 
@@ -921,7 +1293,7 @@ void hw_usb_config_start(char transtype, uint32_t usb_id)
     hw_cfg_cb.dl_fw_flag = 1;
     hw_cfg_cb.chip_type = CHIPTYPE_NONE;
     hw_cfg_cb.pid = usb_id & 0x0000ffff;
-    hw_cfg_cb.vid = (usb_id>>16) & 0x0000ffff;
+    hw_cfg_cb.vid = (usb_id >> 16) & 0x0000ffff;
     BTVNDDBG("RTKBT_RELEASE_NAME: %s",RTKBT_RELEASE_NAME);
     BTVNDDBG("\nRealtek libbt-vendor_usb Version %s \n",RTK_VERSION);
     HC_BT_HDR  *p_buf = NULL;
@@ -944,12 +1316,12 @@ void hw_usb_config_start(char transtype, uint32_t usb_id)
             p = (uint8_t *) (p_buf + 1);
 
             p = (uint8_t *)(p_buf + 1);
-            UINT16_TO_STREAM(p, HCI_VENDOR_RESET);
+            UINT16_TO_STREAM(p, HCI_VSC_READ_ROM_VERSION);
             *p++ = 0;
             p_buf->len = HCI_CMD_PREAMBLE_SIZE;
 
-            hw_cfg_cb.state = HW_CFG_RESET_CHANNEL_CONTROLLER;
-            bt_vendor_cbacks->xmit_cb(HCI_VENDOR_RESET, p_buf, hw_usb_config_cback);
+            hw_cfg_cb.state = HW_CFG_READ_ECO_VER;
+            bt_vendor_cbacks->xmit_cb(HCI_VSC_READ_ROM_VERSION, p_buf, hw_usb_config_cback);
         }
         else {
             ALOGE("%s buffer alloc fail!", __func__);

@@ -4,6 +4,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
+        ./plc/sbcplc.c \
         ./sbc/sbc.c \
         ./sbc/sbc_primitives.c \
         ./sbc/sbc_primitives_mmx.c \

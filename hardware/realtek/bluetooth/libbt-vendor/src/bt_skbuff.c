@@ -267,14 +267,16 @@ RtbQueueInit(
 )
 {
     RTB_QUEUE_HEAD* RtbQueue = NULL;
-
+    int ret = 0;
     RtbQueue = malloc(sizeof(RTB_QUEUE_HEAD));
     if(RtbQueue)
     {
-        pthread_mutex_init(&RtbQueue->Lock, NULL);
-        ListInitializeHeader(&RtbQueue->List);
-        RtbQueue->QueueLen = 0;
-        return RtbQueue;
+        ret = pthread_mutex_init(&RtbQueue->Lock, NULL);
+        if(!ret) {
+          ListInitializeHeader(&RtbQueue->List);
+          RtbQueue->QueueLen = 0;
+          return RtbQueue;
+        }
     }
 
     //error code comes here
@@ -559,7 +561,7 @@ RtbCloneBuffer(
         {
             return NULL;
         }
-        if(pDataBuffer->Data)
+        if(pDataBuffer && pDataBuffer->Data)
             memcpy(pNewBuffer->Data, pDataBuffer->Data, pDataBuffer->Length);
         else
         {

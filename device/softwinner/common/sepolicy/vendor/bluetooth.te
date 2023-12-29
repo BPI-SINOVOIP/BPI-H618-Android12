@@ -1,0 +1,2 @@
+allow bluetooth tmpfs:dir { write };
+allow bluetooth rtk_bt_device:chr_file rw_file_perms;

@@ -61,11 +61,13 @@ on property:vendor.init.lpm.load=1
     chmod 0666 /sys/devices/platform/mtty/rfkill/rfkill1/type
     chmod 0660 /dev/ttyBT0
     chown bluetooth net_bt_admin /dev/ttyBT0
+
     # only for aic device
     chmod 0666 /sys/devices/platform/aic-bsp/rfkill/rfkill1/state
     chmod 0666 /sys/devices/platform/aic-bsp/rfkill/rfkill1/type
     chmod 0660 /dev/aicbt_dev
     chown bluetooth net_bt_admin /dev/aicbt_dev
+
     # only for realtek usb device
     chmod 0660 /dev/rtkbt_dev
     chown bluetooth net_bt_admin /dev/rtkbt_dev

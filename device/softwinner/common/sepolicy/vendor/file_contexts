@@ -250,3 +250,7 @@
 #hdcp
 /vendor/bin/hdcptool u:object_r:hdcptool_exec:s0
 /vendor/bin/hdcptool.sh u:object_r:hdcptool_exec:s0
+
+#rtkbt
+/dev/rtkbt_dev u:object_r:rtk_bt_device:s0
+/data/vendor/bluetooth(/.*)? u:object_r:bluetooth_vendor_data_file:s0

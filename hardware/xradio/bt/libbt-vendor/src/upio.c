@@ -285,6 +285,7 @@ int upio_set_bluetooth_power(int on)
 
 int upio_set_btwake(int action)
 {
+#if (BT_WAKE_VIA_PROC == TRUE)
     int fd = -1;
     int ret = -1;
 
@@ -305,7 +306,7 @@ int upio_set_btwake(int action)
 
     if (fd >= 0)
         close(fd);
-
+#endif
     return 0;
 }
 
@@ -425,33 +426,6 @@ void upio_set(uint8_t pio, uint8_t action, uint8_t polarity)
 
             UPIODBG("proc btwake assertion");
 
-            if (fd >= 0)
-                close(fd);
-#else
-            if (upio_state[UPIO_BT_WAKE] == action) {
-                UPIODBG("BT_WAKE is %s already", lpm_state[action]);
-                return ;
-            }
-
-            if (action == UPIO_DEASSERT) {
-                buffer = '0';
-                UPIODBG("set bt sleep");
-            } else {
-                buffer = '1';
-                UPIODBG("set bt wakeup");
-            }
-
-            fd = open(VENDOR_BTWAKE_PROC_NODE, O_RDWR);
-            if (fd < 0) {
-                ALOGE("upio_set : open(%s) for write failed: %s (%d)",
-                        VENDOR_BTWAKE_PROC_NODE, strerror(errno), errno);
-                return;
-            }
-
-            if (write(fd, &buffer, 1) < 0) {
-                ALOGE("upio_set : write(%s) failed: %s (%d)",
-                        VENDOR_BTWAKE_PROC_NODE, strerror(errno), errno);
-            }
             if (fd >= 0)
                 close(fd);
 #endif

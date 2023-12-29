@@ -26,6 +26,7 @@ LOCAL_SRC_FILES := \
 LOCAL_C_INCLUDES += \
         $(LOCAL_PATH)/../include \
         $(LOCAL_PATH)/../codec/sbc \
+        $(LOCAL_PATH)/../codec/plc \
         $(BDROID_DIR)/hci/include
 
 LOCAL_SHARED_LIBRARIES := \

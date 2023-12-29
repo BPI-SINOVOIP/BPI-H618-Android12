@@ -53,6 +53,7 @@ typedef enum {
     SCO_CTRL_CMD_SUSPEND,
     SCO_CTRL_GET_AUDIO_CONFIG,
     SCO_CTRL_CMD_OFFLOAD_START,
+    SCO_CTRL_CMD_CLOSE,
 } tSCO_CTRL_CMD;
 
 #define SCO_SAMPLE_RATE_8K   1
@@ -66,7 +67,7 @@ typedef enum {
 **  Constants & Macros
 ******************************************************************************/
 
-uint32_t Skt_Read(int fd, uint8_t *p_buf, uint32_t len);
+uint32_t Skt_Read(int fd, uint8_t *p_buf, uint32_t len, bool* condition);
 int Skt_Read_noblock(int fd, uint8_t *p_buf, uint32_t len);
 bool Skt_Send(int fd, uint8_t *p_buf, uint16_t msglen);
 int Skt_Send_noblock(int fd, uint8_t *p_buf, uint16_t msglen);

@@ -26,7 +26,7 @@
 
 #undef NDEBUG
 #define LOG_TAG "libbt_vendor"
-#define RTKBT_RELEASE_NAME "20190125_BT_ANDROID_9.0"
+#define RTKBT_RELEASE_NAME "20230424_BT_ANDROID_12.0"
 #include <utils/Log.h>
 #include "bt_vendor_rtk.h"
 #include "upio.h"
@@ -43,10 +43,11 @@ extern bool rtk_btsnoop_net_dump;
 extern bool rtk_btsnoop_save_log;
 extern char rtk_btsnoop_path[];
 extern uint8_t coex_log_enable;
+extern rtkbt_cts_info_t rtkbt_cts_info;
 extern void hw_config_start(char transtype);
 extern void hw_usb_config_start(char transtype,uint32_t val);
-extern void RTK_btservice_init();
-
+extern void hci_close_firmware_log_file(int fd);
+extern int hci_firmware_log_fd;
 #if (HW_END_WITH_HCI_RESET == TRUE)
 void hw_epilog_process(void);
 #endif
@@ -57,6 +58,7 @@ void hw_epilog_process(void);
 bt_vendor_callbacks_t *bt_vendor_cbacks = NULL;
 uint8_t vnd_local_bd_addr[6]={0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 bool rtkbt_auto_restart = false;
+bool rtkbt_capture_fw_log = false;
 
 /******************************************************************************
 **  Local type definitions
@@ -77,6 +79,12 @@ static const tUSERIAL_CFG userial_H5_cfg =
 {
     (USERIAL_DATABITS_8 | USERIAL_PARITY_EVEN | USERIAL_STOPBITS_1),
     USERIAL_BAUD_115200,
+    USERIAL_HW_FLOW_CTRL_OFF
+};
+const tUSERIAL_CFG userial_H45_cfg =
+{
+    (USERIAL_DATABITS_8 | USERIAL_PARITY_EVEN | USERIAL_STOPBITS_1),
+    USERIAL_BAUD_1_5M,
     USERIAL_HW_FLOW_CTRL_OFF
 };
 static const tUSERIAL_CFG userial_H4_cfg =
@@ -221,10 +229,6 @@ static void load_rtkbt_stack_conf()
         else if(!strcmp(rtk_trim(line_ptr), "H5LogOutput")) {
             h5_log_enable = strtol(rtk_trim(split+1), &endptr, 0);
         }
-        else if(!strcmp(rtk_trim(line_ptr), "RtkBtsnoopDump")) {
-            if(!strcmp(rtk_trim(split+1), "true"))
-                rtk_btsnoop_dump = true;
-        }
         else if(!strcmp(rtk_trim(line_ptr), "RtkBtsnoopNetDump")) {
             if(!strcmp(rtk_trim(split+1), "true"))
                 rtk_btsnoop_net_dump = true;
@@ -232,16 +236,16 @@ static void load_rtkbt_stack_conf()
         else if(!strcmp(rtk_trim(line_ptr), "BtSnoopFileName")) {
             sprintf(rtk_btsnoop_path, "%s_rtk", rtk_trim(split+1));
         }
-        else if(!strcmp(rtk_trim(line_ptr), "BtSnoopSaveLog")) {
-            if(!strcmp(rtk_trim(split+1), "true"))
-                rtk_btsnoop_save_log = true;
-        }
         else if(!strcmp(rtk_trim(line_ptr), "BtCoexLogOutput")) {
             coex_log_enable = strtol(rtk_trim(split+1), &endptr, 0);
         }
         else if(!strcmp(rtk_trim(line_ptr), "RtkBtAutoRestart")) {
             if(!strcmp(rtk_trim(split+1), "true"))
                 rtkbt_auto_restart = true;
+        }
+        else if(!strcmp(rtk_trim(line_ptr), "RtkBtCaptureFwLog")) {
+            if(!strcmp(rtk_trim(split+1), "true"))
+                rtkbt_capture_fw_log = true;
         }
     }
 
@@ -255,6 +259,7 @@ static void rtkbt_stack_conf_cleanup()
     h5_log_enable = 0;
     rtk_btsnoop_dump = false;
     rtk_btsnoop_net_dump = false;
+    rtkbt_capture_fw_log = false;
 }
 
 static void load_rtkbt_conf()
@@ -317,6 +322,9 @@ static void load_rtkbt_conf()
         else if(!strcmp(rtk_trim(split + 1), "H4")) {
             rtkbt_transtype |= RTKBT_TRANS_H4;
         }
+        else if(!strcmp(rtk_trim(split + 1), "H45")){
+            rtkbt_transtype |= RTKBT_TRANS_H45;
+        }
     }
     else if(strcmp(rtkbt_device_node, "/dev/rtkbt_dev")) {
         //default use h5
@@ -332,6 +340,19 @@ static void load_rtkbt_conf()
     }
 }
 
+static void byte_reverse(unsigned char* data, int len)
+{
+    int i;
+    int tmp;
+
+    for(i = 0; i < len/2; i++) {
+        tmp = len - i - 1;
+        data[i] ^= data[tmp];
+        data[tmp] ^= data[i];
+        data[i] ^= data[tmp];
+    }
+}
+
 /*****************************************************************************
 **
 **   BLUETOOTH VENDOR INTERFACE LIBRARY FUNCTIONS
@@ -343,6 +364,7 @@ static int init(const bt_vendor_callbacks_t* p_cb, unsigned char *local_bdaddr)
     ALOGI("RTKBT_RELEASE_NAME: %s",RTKBT_RELEASE_NAME);
     ALOGI("init");
 
+    char value[100];
     load_rtkbt_conf();
     load_rtkbt_stack_conf();
     if (p_cb == NULL)
@@ -364,7 +386,25 @@ static int init(const bt_vendor_callbacks_t* p_cb, unsigned char *local_bdaddr)
 
     /* This is handed over from the stack */
     memcpy(vnd_local_bd_addr, local_bdaddr, 6);
+    byte_reverse(vnd_local_bd_addr, 6);
 
+    property_get("persist.vendor.btsnoop.enable", value, "false");
+    if(strncmp(value, "true", 4) == 0) {
+        rtk_btsnoop_dump = true;
+    }
+
+    property_get("persist.vendor.btsnoopsavelog", value, "false");
+    if(strncmp(value, "true", 4) == 0) {
+        rtk_btsnoop_save_log = true;
+    }
+
+    property_get("vendor.realtek.bluetooth.en",value,"false");
+    memset(rtkbt_cts_info.addr,0xff,6);
+    if(strncmp(value, "true", 4) == 0){
+        rtkbt_cts_info.finded = true;
+    }
+
+    ALOGE("rtk_btsnoop_dump = %d, rtk_btsnoop_save_log = %d", rtk_btsnoop_dump, rtk_btsnoop_save_log);
     if(rtk_btsnoop_dump)
         rtk_btsnoop_open();
     if(rtk_btsnoop_net_dump)
@@ -413,10 +453,17 @@ static int op(bt_vendor_opcode_t opcode, void *param)
                     hw_config_start(rtkbt_transtype);
                 }
                 else {
-                  retval = userial_vendor_usb_ioctl(GET_USB_INFO, NULL);
-                  hw_usb_config_start(RTKBT_TRANS_H4,retval);
+                  int usb_info = 0;
+                  retval = userial_vendor_usb_ioctl(GET_USB_INFO, &usb_info);
+                  if(retval == -1) {
+                    ALOGE("get usb info fail");
+                    if(bt_vendor_cbacks)
+                       bt_vendor_cbacks->fwcfg_cb(BT_VND_OP_RESULT_FAIL);
+                    return retval;
+                  }
+                  else
+                    hw_usb_config_start(RTKBT_TRANS_H4, usb_info);
                 }
-                RTK_btservice_init();
             }
             break;
 
@@ -446,7 +493,7 @@ static int op(bt_vendor_opcode_t opcode, void *param)
 
                 /* retval contains numbers of open fd of HCI channels */
                 }
-                else if((rtkbt_transtype & RTKBT_TRANS_UART) && (rtkbt_transtype & RTKBT_TRANS_H4)) {
+                else if((rtkbt_transtype & RTKBT_TRANS_UART) && ((rtkbt_transtype & RTKBT_TRANS_H4) || (rtkbt_transtype & RTKBT_TRANS_H45))) {
                     int (*fd_array)[] = (int (*)[]) param;
                     int fd, idx;
                     if(userial_vendor_open((tUSERIAL_CFG *) &userial_H4_cfg) != -1) {
@@ -499,7 +546,12 @@ static int op(bt_vendor_opcode_t opcode, void *param)
 
         case BT_VND_OP_LPM_SET_MODE:
             {
-
+                bt_vendor_lpm_mode_t mode = *(bt_vendor_lpm_mode_t *) param;
+                //for now if the mode is BT_VND_LPM_DISABLE, we guess the hareware bt
+                //interface is closing, we shall not send any cmd to the interface.
+                if(mode == BT_VND_LPM_DISABLE) {
+                    userial_set_bt_interface_state(0);
+                }
             }
             break;
 
@@ -551,6 +603,9 @@ static void cleanup( void )
         rtk_btsnoop_close();
     if(rtk_btsnoop_net_dump)
         rtk_btsnoop_net_close();
+	if(rtkbt_capture_fw_log){
+		hci_close_firmware_log_file(hci_firmware_log_fd);
+	}
     rtkbt_stack_conf_cleanup();
 }
 

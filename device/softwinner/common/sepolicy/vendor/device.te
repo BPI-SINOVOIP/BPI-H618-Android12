@@ -7,3 +7,6 @@ type sst_storage_device, dev_type, fs_type;
 type ab_block_device, dev_type;
 type drm_heap_device, dev_type;
 type i2c_device, dev_type, mlstrustedobject;
+
+# rtkbt
+type rtk_bt_device, dev_type;

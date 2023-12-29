@@ -860,7 +860,7 @@ static SBC_ALWAYS_INLINE ssize_t sbc_pack_frame_internal(uint8_t *data,
 	uint32_t audio_sample;
 
 	int ch, sb, blk;	/* channel, subband, block and bit counters */
-	int bits[2][8];		/* bits distribution */
+	int bits[2][8] = {0};		/* bits distribution */
 	uint32_t levels[2][8];	/* levels are derived from that */
 	uint32_t sb_sample_delta[2][8];
 

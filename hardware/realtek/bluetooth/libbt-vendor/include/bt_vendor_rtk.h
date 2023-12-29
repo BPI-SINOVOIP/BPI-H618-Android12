@@ -50,12 +50,16 @@
 #include <cutils/properties.h>
 #include "rtk_common.h"
 
-#define RTK_VERSION "5.0.1"
+#define RTK_VERSION "5.1.1"
 /******************************************************************************
 **  Constants & Macros
 ******************************************************************************/
+//for mesh
+//#define VENDOR_MESH_RTK
+
 #define RTKBT_TRANS_H4          0x20
 #define RTKBT_TRANS_H5          0x10
+#define RTKBT_TRANS_H45         0x40
 #define RTKBT_TRANS_UART        0x01
 #define RTKBT_TRANS_USB         0x02
 
@@ -77,11 +81,13 @@
 #define BTVNDDBG(param, ...) {}
 #endif
 
-#define DOWN_FW_CFG             _IOW('H', 201, int)
-#define SET_ISO_CFG             _IOW('H', 202, int)
-#define GET_USB_INFO            _IOW('H', 203, int)
-#define RESET_CONTROLLER        _IOW('H', 204, int)
-#define DWFW_CMPLT              _IOW('H', 205, int)
+#define DOWN_FW_CFG             _IOW('E', 176, int)
+#define SET_ISO_CFG             _IOW('E', 177, int)
+#define RESET_CONTROLLER        _IOW('E', 178, int)
+#define DWFW_CMPLT              _IOW('E', 179, int)
+
+#define GET_USB_INFO            _IOR('E', 180, int)
+#define SET_ISO_MIN_HANDLE      _IOR('E', 181, int)
 
 
 /* Device port name where Bluetooth controller attached */
@@ -91,7 +97,7 @@
 
 /* Location of firmware patch files */
 #ifndef FW_PATCHFILE_LOCATION
-#define FW_PATCHFILE_LOCATION "/vendor/etc/firmware/"  /* maguro */
+#define FW_PATCHFILE_LOCATION "/vendor/firmware/"  /* maguro */
 #endif
 
 #ifndef UART_TARGET_BAUD_RATE

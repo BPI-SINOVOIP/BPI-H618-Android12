@@ -3,6 +3,12 @@
 menu "Bluetooth device drivers"
 	depends on BT
 
+config BT_RTKBTUSB
+    tristate "RTK HCI USB driver"
+    depends on USB
+    help
+       RTK Bluetooth HCI USB driver
+
 config BT_INTEL
 	tristate
 	select REGMAP

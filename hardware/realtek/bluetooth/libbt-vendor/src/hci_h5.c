@@ -384,7 +384,7 @@ static void H5LogMsg(const char *fmt_str, ...)
 static void rtkbt_h5_send_hw_error()
 {
     unsigned char p_buf[100];
-    const char *str = "host stack: h5 send error";
+    const char *str = "host stack: h5 send error\n";
     int length = strlen(str) + 1 + 4;
     p_buf[0] = HCIT_TYPE_EVENT;//event
     p_buf[1] = HCI_VSE_SUBCODE_DEBUG_INFO_SUB_EVT;//firmwre event log
@@ -397,7 +397,7 @@ static void rtkbt_h5_send_hw_error()
     p_buf[0] = HCIT_TYPE_EVENT;//event
     p_buf[1] = HCI_HARDWARE_ERROR_EVT;//hardware error
     p_buf[2] = 0x01;//len
-    p_buf[3] = 0xfb;//h5 error code
+    p_buf[3] = H5_HWERR_CODE_RTK;//h5 error code
     userial_recv_rawdata_hook(p_buf,length);
 }
 
@@ -774,10 +774,11 @@ static sk_buff * h5_prepare_pkt(tHCI_H5_CB *h5, uint8_t *data, signed long len, 
     case H5_ACK_PKT:
     case H5_VDRSPEC_PKT:
     case H5_LINK_CTL_PKT:
+    case HCI_SCODATA_PKT:
     rel = H5_UNRELIABLE_PKT;// unreliable
     break;
     default:
-    ALOGE("Unknown packet type");
+        ALOGE("Unknown packet type");
     return NULL;
     }
 
@@ -1121,6 +1122,10 @@ static void rtk_notify_hw_h5_init_result(uint8_t status)
     sk_buff     *rx_skb;
     rx_skb = skb_alloc_and_init(HCI_EVENT_PKT, sync_event, sizeof(sync_event));
 
+    if(!rx_skb) {
+        ALOGE("%s, rx_skb alloc fail!", __func__);
+        return;
+    }
     pthread_mutex_lock(&rtk_h5.data_mutex);
     skb_queue_tail(rtk_h5.recv_data, rx_skb);
     pthread_cond_signal(&rtk_h5.data_cond);
@@ -1209,6 +1214,7 @@ int h5_enqueue(IN sk_buff *skb)
     case H5_LINK_CTL_PKT:
     case H5_ACK_PKT:
     case H5_VDRSPEC_PKT:
+    case HCI_SCODATA_PKT:
         skb_queue_tail(rtk_h5.unrel, skb);/* 3-wire LinkEstablishment*/
         break;
     default:
@@ -1369,100 +1375,12 @@ uint8_t isRtkInternalCommand(uint16_t opcode)
 
 }
 
-
-/*******************************************************************************
-**
-** Function         internal_event_intercept_h5
-**
-** Description      This function is called to parse received HCI event and
-**                  - update the Num_HCI_Command_Packets
-**                  - intercept the event if it is the result of an early
-**                    issued internal command.
-**
-** Returns          TRUE : if the event had been intercepted for internal process
-**                  FALSE : send this event to core stack
-**
-*******************************************************************************/
-uint8_t internal_event_intercept_h5(void)
-{
-    bool h5_int_command = 0;//if it the H5 int command like H5 vendor cmd or Coex cmd h5_int_command=1;
-    tHCI_H5_CB *p_cb = &rtk_h5;
-    sk_buff * skb = rtk_h5.rx_skb;
-    //uint8_t *ph5_payload = NULL;
-    //ph5_payload = (uint8_t *)(p_cb->p_rcv_msg + 1);
-
-    //process fw change baudrate and patch download
-    uint8_t     *p;
-    uint8_t     event_code;
-    uint16_t    opcode, len;
-    p = (uint8_t *)(p_cb->p_rcv_msg + 1);
-
-    event_code = *p++;
-    len = *p++;
-    H5LogMsg("event_code(0x%x), len = %d", event_code, len);
-    if (event_code == HCI_COMMAND_COMPLETE_EVT)
-    {
-        num_hci_cmd_pkts = *p++;
-        STREAM_TO_UINT16(opcode, p);
-        H5LogMsg("event_code(0x%x)  opcode (0x%x) p_cb->int_cmd_rsp_pending %d", event_code,opcode,p_cb->int_cmd_rsp_pending);
-
-        if (p_cb->int_cmd_rsp_pending > 0)
-        {
-            H5LogMsg("CommandCompleteEvent for command (0x%04X)", opcode);
-            if (opcode == p_cb->int_cmd[p_cb->int_cmd_rd_idx].opcode)
-            {
-                //ONLY HANDLE H5 INIT CMD COMMAND COMPLETE EVT
-                h5_int_command = 1;
-                if(opcode == HCI_VSC_UPDATE_BAUDRATE)
-                {
-                    //need to set a timer, add wait for retransfer packet from controller.
-                    //if there is no packet rx from controller, we can assure baudrate change success.
-                    H5LogMsg("CommandCompleteEvent for command 2 h5_start_wait_controller_baudrate_ready_timer (0x%04X)", opcode);
-                    h5_start_wait_controller_baudrate_ready_timer();
-                }
-                else
-                {
-
-                    if (p_cb->int_cmd[p_cb->int_cmd_rd_idx].cback != NULL)
-                    {
-                        H5LogMsg("CommandCompleteEvent for command (0x%04X) p_cb->int_cmd[p_cb->int_cmd_rd_idx].cback(p_cb->p_rcv_msg)", opcode);
-                        p_cb->int_cmd[p_cb->int_cmd_rd_idx].cback(p_cb->p_rcv_msg);
-                    }
-                    else
-                    {
-                        H5LogMsg("CommandCompleteEvent for command Missing cback function buffer_allocator->free(p_cb->p_rcv_msg) (0x%04X)", opcode);
-                        free(p_cb->p_rcv_msg);
-                    }
-                }
-
-                p_cb->int_cmd_rd_idx = ((p_cb->int_cmd_rd_idx+1) & INT_CMD_PKT_IDX_MASK);
-                p_cb->int_cmd_rsp_pending--;
-            }
-        }
-        else {
-            if(opcode == HCI_VSC_UPDATE_BAUDRATE)
-            {
-                h5_int_command |= 0x80;
-                rtk_h5.internal_skb = skb;
-                //need to set a timer, add wait for retransfer packet from controller.
-                //if there is no packet rx from controller, we can assure baudrate change success.
-                H5LogMsg("CommandCompleteEvent for command 2 h5_start_wait_controller_baudrate_ready_timer (0x%04X)", opcode);
-                h5_start_wait_controller_baudrate_ready_timer();
-            }
-        }
-    }
-
-    return h5_int_command;
-
-}
-
-
-/**
+/*****************************************************************************
 * Check if it's a hci frame, if it is, complete it with response or parse the cmd complete event
 *
 * @param skb socket buffer
 *
-*/
+******************************************************************************/
 static uint8_t hci_recv_frame(sk_buff *skb, uint8_t pkt_type)
 {
     uint8_t intercepted = 0;
@@ -2127,27 +2045,6 @@ void hci_h5_cleanup(void)
     rtk_h5.internal_skb = NULL;
 }
 
-
-/*******************************************************************************
-**
-** Function        hci_h5_parse_msg
-**
-** Description     Construct HCI EVENT/ACL packets and send them to stack once
-**                 complete packet has been received.
-**
-** Returns         Number of need to be red bytes
-**
-*******************************************************************************/
-uint16_t  hci_h5_parse_msg(uint8_t *byte, uint16_t count)
-{
-    uint8_t     h5_byte;
-    h5_byte  = *byte;
-    //H5LogMsg("hci_h5_receive_msg byte:%d",h5_byte);
-    h5_recv(&rtk_h5, &h5_byte, count);
-    return 1;
-}
-
-
 /*******************************************************************************
 **
 ** Function        hci_h5_receive_msg
@@ -2207,6 +2104,11 @@ uint16_t hci_h5_send_cmd(serial_data_type_t type, uint8_t *data, uint16_t length
 {
     sk_buff * skb = NULL;
     uint16_t bytes_to_send, opcode;
+
+    if(type != DATA_TYPE_COMMAND) {
+        ALOGE("%s Receive wrong type type : %d", __func__, type);
+        return -1;
+    }
 
     skb = skb_alloc_and_init(type, data, length);
     if(!skb) {

@@ -34,7 +34,7 @@
 *
 ******************************************************************************/
 #define LOG_TAG "rtk_parse"
-#define RTKBT_RELEASE_NAME "20190125_BT_ANDROID_9.0"
+#define RTKBT_RELEASE_NAME "20230424_BT_ANDROID_12.0"
 
 #include <utils/Log.h>
 #include <stdlib.h>
@@ -44,6 +44,7 @@
 #include <errno.h>
 #include <signal.h>
 #include <time.h>
+#include <math.h>
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
@@ -66,6 +67,53 @@
 
 #define RTK_COEX_VERSION "3.0"
 
+//#define RTK_ROLE_SWITCH_RETRY
+extern bool rtkbt_capture_fw_log;
+
+#ifdef RTK_ROLE_SWITCH_RETRY
+#ifndef MAX_LINKS
+#define MAX_LINKS          7
+#endif
+
+#ifndef BD_ADDR_LEN
+#define BD_ADDR_LEN     6
+typedef uint8_t BD_ADDR[BD_ADDR_LEN];
+#endif
+
+typedef enum {
+  ROLE_SWITCH_COMMAND_NONE,
+  ROLE_SWITCH_COMMAND_PENDING,
+  ROLE_SWITCH_COMMAND_SUCCESS,
+  ROLE_SWITCH_COMMAND_DISALLOW
+} role_switch_state;
+
+/******************************************************************************
+**  role switch monitor structions
+******************************************************************************/
+typedef struct
+{
+    bool             in_use;                 /* TRUE when in use, FALSE when not */
+    role_switch_state          state;
+    BD_ADDR             remote_bd_addr;             /* The BD address of the remote     */
+    bool             isMaster;                 /* is_Master  */
+    unsigned short              handle;              /* Link handle                      */
+    timer_t         timer_hci_role_switch_cmd;                 /* CB Timer Entry */
+    unsigned short               count;              /* role swith event(slave) count                    */
+    time_t                  time;
+    double   diff_s;             /*time diff between two successive role switch (slave)event */
+}role_monitor_cb;
+BD_ADDR EMPTY_ADDR = {0,0,0,0,0,0};
+role_monitor_cb  role_monitor_pool[MAX_LINKS];   /* Role Switch Control Block pool  */
+#define          TIME_LIMIT_FOR_ROLE_SWITCH  (60*5)   /*5 minutes*/
+#define          UNKOWN_HANDLE              (0XFF)
+#define          HCI_CMD_VNDR_ROLESWITCH       0xFCAD
+
+typedef void (*tTIMER_HANDLE_ROLE_SWITCH)(union sigval sigval_value);
+static void rtk_start_role_switch_schedule(role_monitor_cb  * p);
+#endif
+
+bool is_fw_log = FALSE;
+
 char invite_req[] = "INVITE_REQ";
 char invite_rsp[] = "INVITE_RSP";
 char attend_req[] = "ATTEND_REQ";
@@ -85,10 +133,7 @@ char bt_leave[] =   "BT_LEAVE";
 #define L2CAP_DISCONNECTION_REQ     0x06
 #define L2CAP_DISCONNECTION_RSP     0x07
 
-#define TIMER_A2DP_PACKET_COUNT     (SIGRTMAX -5)
-#define TIMER_PAN_PACKET_COUNT      (SIGRTMAX -6)
-#define TIMER_HOGP_PACKET_COUNT     (SIGRTMAX -7)
-#define TIMER_POLLING               (SIGRTMAX -8)
+#define TIMER_POLLING               (SIGRTMAX -1)
 
 #define PAN_PACKET_COUNT                5
 #define PACKET_COUNT_TIOMEOUT_VALUE     1000//ms
@@ -97,6 +142,7 @@ char bt_leave[] =   "BT_LEAVE";
 #define HCI_VENDOR_ENABLE_PROFILE_REPORT_COMMAND        (0x0018 | HCI_GRP_VENDOR_SPECIFIC)
 #define HCI_VENDOR_SET_PROFILE_REPORT_COMMAND           (0x0019 | HCI_GRP_VENDOR_SPECIFIC)
 #define HCI_VENDOR_MAILBOX_CMD                          (0x008F | HCI_GRP_VENDOR_SPECIFIC)
+#define HCI_VENDOR_NEW_SET_PROFILE_REPORT_COMMAND       (0x001B | HCI_GRP_VENDOR_SPECIFIC)
 
 #define HCI_VENDOR_ADD_BITPOOL_FW                       (0x0051 | HCI_GRP_VENDOR_SPECIFIC)
 
@@ -120,6 +166,7 @@ char bt_leave[] =   "BT_LEAVE";
 //sub event from fw
 #define HCI_VENDOR_PTA_REPORT_EVENT         0x24
 #define    HCI_VENDOR_PTA_AUTO_REPORT_EVENT    0x25
+#define    HCI_VENDOR_FW_LOG_REPORT_EVENT    0x20
 
 //vendor cmd to wifi driver
 #define HCI_OP_HCI_EXTENSION_VERSION_NOTIFY (0x0100 | HCI_GRP_VENDOR_SPECIFIC)
@@ -189,7 +236,8 @@ enum {
     profile_hogp = 5,
     profile_voice = 6,
     profile_sink = 7,
-    profile_max = 8
+    profile_le_audio = 8,
+    profile_max = 9
 };
 
 typedef struct RTK_COEX_INFO {
@@ -214,8 +262,16 @@ typedef struct RTK_CONN_PROF {
     RT_LIST_ENTRY list;
     uint16_t handle;
     uint8_t type;                   //0:l2cap, 1:sco/esco, 2:le
-    uint8_t profile_bitmap;         //0:SCO, 1:HID, 2:A2DP, 3:FTP/PAN/OPP, 4: HID_interval, 5:HOGP, 6:VOICE
-    int8_t  profile_refcount[8];    //0:SCO, 1:HID, 2:A2DP, 3:FTP/PAN/OPP, 4:TBD, 5:HOGP, 6:VOICE
+    timer_t  timer_a2dp_packet_count;
+    timer_t  timer_pan_packet_count;
+    timer_t  timer_hogp_packet_count;
+    uint32_t a2dp_packet_count;
+    uint32_t pan_packet_count;
+    uint32_t hogp_packet_count;
+    uint32_t voice_packet_count;
+    uint16_t profile_bitmap;         //0:SCO, 1:HID, 2:A2DP, 3:FTP/PAN/OPP, 4: HID_interval, 5:HOGP, 6:VOICE
+    uint16_t profile_status;
+    int8_t  profile_refcount[profile_max];    //0:SCO, 1:HID, 2:A2DP, 3:FTP/PAN/OPP, 4:TBD, 5:HOGP, 6:VOICE
 }tRTK_CONN_PROF;
 
 //profile info for all
@@ -229,9 +285,6 @@ typedef struct RTK_PROF {
     pthread_mutex_t btwifi_mutex;
     pthread_t thread_monitor;
     pthread_t thread_data;
-    timer_t  timer_a2dp_packet_count;
-    timer_t  timer_pan_packet_count;
-    timer_t  timer_hogp_packet_count;
     timer_t  timer_polling;
     //struct sockaddr_nl src_addr;    //for netlink
     struct sockaddr_in server_addr; //server addr for kernel socket
@@ -240,9 +293,9 @@ typedef struct RTK_PROF {
     uint32_t pan_packet_count;
     uint32_t hogp_packet_count;
     uint32_t voice_packet_count;
-    uint8_t  profile_bitmap;
-    uint8_t  profile_status;
-    int8_t   profile_refcount[8];
+    uint16_t  profile_bitmap;
+    uint16_t  profile_status;
+    int8_t   profile_refcount[profile_max];
     uint8_t  ispairing;
     uint8_t  isinquirying;
     uint8_t  ispaging;
@@ -281,12 +334,18 @@ volatile int poweroff_allowed = 0;
 uint8_t coex_log_enable = 0;
 static volatile bool coex_cmd_send = false;
 
+/*0xfc1b for coex profile info*/
+bool fc1b_4_coex = false;
+extern uint16_t iso_min_conn_handle; //The actual BIS handle is not currently resolved, it is assumed that at most one BIG exists
+
 #define BIT(_I)                         (uint16_t)(1<<(_I))
 #define is_profile_connected(profile)   ((rtk_prof.profile_bitmap & BIT(profile)) >0)
-#define is_profile_busy(profile)        ((rtk_prof.profile_status & BIT(profile)) >0)
 
 static void timeout_handler(int signo, siginfo_t * info, void *context);
 static void notify_func(union sigval sig);
+static void hogp_notify_func(union sigval sig);
+static void a2dp_notify_func(union sigval sig);
+static void pan_notify_func(union sigval sig);
 
 static int coex_msg_send(char *tx_msg, int msg_size);
 static int coex_msg_recv(uint8_t *recv_msg, uint8_t *msg_size);
@@ -341,6 +400,11 @@ void print_sbc_header(struct sbc_frame_hdr *hdr)
     RtkLogMsg("subbands %u", subbands[hdr->subbands]);
 }
 
+static bool is_conn_profile_busy(tRTK_CONN_PROF *phci_conn, int profile)
+{
+    return ((phci_conn->profile_status & BIT(profile)) >0);
+}
+
 static timer_t OsAllocateTimer(int signo)
 {
     struct sigevent sigev;
@@ -358,6 +422,74 @@ static timer_t OsAllocateTimer(int signo)
     sigev.sigev_value.sival_int = signo;
 
     //ALOGE("OsAllocateTimer rtk_parse sigev.sigev_notify_thread_id = syscall(__NR_gettid)!");
+
+    //Create the Timer using timer_create signal
+    if (timer_create(CLOCK_REALTIME, &sigev, &timerid) == 0)
+    {
+        return timerid;
+    }
+    else
+    {
+        ALOGE("timer_create error!");
+        return (timer_t)-1;
+    }
+}
+
+static timer_t OsAllocateHogpTimer(int signo)
+{
+    struct sigevent sigev;
+    timer_t timerid = (timer_t)-1;
+
+    memset(&sigev, 0, sizeof(sigev));
+    sigev.sigev_notify = SIGEV_THREAD;
+    sigev.sigev_notify_function = hogp_notify_func;
+    sigev.sigev_value.sival_int = signo;
+
+    //Create the Timer using timer_create signal
+    if (timer_create(CLOCK_REALTIME, &sigev, &timerid) == 0)
+    {
+        return timerid;
+    }
+    else
+    {
+        ALOGE("timer_create error!");
+        return (timer_t)-1;
+    }
+}
+
+static timer_t OsAllocateA2dpTimer(int signo)
+{
+    struct sigevent sigev;
+    timer_t timerid = (timer_t)-1;
+
+    memset(&sigev, 0, sizeof(sigev));
+    sigev.sigev_notify = SIGEV_THREAD;
+    sigev.sigev_notify_function = a2dp_notify_func;
+    sigev.sigev_value.sival_int = signo;
+    RtkLogMsg("OsAllocateA2dpTimer signo:%d handle:%d", signo, signo-SIGRTMIN);
+
+    //Create the Timer using timer_create signal
+    if (timer_create(CLOCK_REALTIME, &sigev, &timerid) == 0)
+    {
+        return timerid;
+    }
+    else
+    {
+        ALOGE("timer_create error!");
+        return (timer_t)-1;
+    }
+}
+
+static timer_t OsAllocatePanTimer(int signo)
+{
+    struct sigevent sigev;
+    timer_t timerid = (timer_t)-1;
+
+    memset(&sigev, 0, sizeof(sigev));
+    sigev.sigev_notify = SIGEV_THREAD;
+    sigev.sigev_notify_function = pan_notify_func;
+    sigev.sigev_value.sival_int = signo;
+    RtkLogMsg("OsAllocatePanTimer signo:%d handle:%d", signo, signo-SIGRTMIN);
 
     //Create the Timer using timer_create signal
     if (timer_create(CLOCK_REALTIME, &sigev, &timerid) == 0)
@@ -456,49 +588,33 @@ int start_polling_timer(int value)
     return OsStartTimer(rtk_prof.timer_polling, value, 1);
 }
 
-int alloc_hogp_packet_count_timer()
+int alloc_hogp_packet_count_timer(tRTK_CONN_PROF * phci_conn)
 {
-/*
-    struct sigaction sigact;
-
-    sigemptyset(&sigact.sa_mask);
-    sigact.sa_flags = SA_SIGINFO;
-
-    //register the Signal Handler
-    sigact.sa_sigaction = timeout_handler;
-
-    // Set up sigaction to catch signal first timer
-    if (sigaction(TIMER_HOGP_PACKET_COUNT, &sigact, NULL) == -1)
-    {
-        ALOGE("alloc_hogp_packet_count_timer, sigaction failed");
+    // Create and set the timer when to expire
+    if(phci_conn->timer_hogp_packet_count != (timer_t)-1) {
+        ALOGE("alloc_hogp_packet_count_timer for handle %x already created", phci_conn->handle);
         return -1;
     }
-*/
-    // Create and set the timer when to expire
-    rtk_prof.timer_hogp_packet_count= OsAllocateTimer(TIMER_HOGP_PACKET_COUNT);
-    RtkLogMsg("alloc hogp packet");
+    phci_conn->timer_hogp_packet_count = OsAllocateHogpTimer(SIGRTMIN + phci_conn->handle);
+    RtkLogMsg("alloc hogp packet timer for handle %x", phci_conn->handle);
 
     return 0;
 }
 
-int free_hogp_packet_count_timer()
-{
-    return OsFreeTimer(rtk_prof.timer_hogp_packet_count);
-}
 
-int stop_hogp_packet_count_timer()
+int stop_hogp_packet_count_timer(timer_t timer_id)
 {
     RtkLogMsg("stop hogp packet");
-    return OsStopTimer(rtk_prof.timer_hogp_packet_count);
+    return OsStopTimer(timer_id);
 }
 
-int start_hogp_packet_count_timer()
+int start_hogp_packet_count_timer(timer_t timer_id)
 {
     RtkLogMsg("start hogp packet");
-    return OsStartTimer(rtk_prof.timer_hogp_packet_count, PACKET_COUNT_TIOMEOUT_VALUE, 1);
+    return OsStartTimer(timer_id, PACKET_COUNT_TIOMEOUT_VALUE, 1);
 }
 
-int alloc_a2dp_packet_count_timer()
+int alloc_a2dp_packet_count_timer(tRTK_CONN_PROF * phci_conn)
 {
 /*
     struct sigaction sigact;
@@ -517,69 +633,72 @@ int alloc_a2dp_packet_count_timer()
     }
 */
     // Create and set the timer when to expire
-    rtk_prof.timer_a2dp_packet_count= OsAllocateTimer(TIMER_A2DP_PACKET_COUNT);
-    RtkLogMsg("alloc a2dp packet");
-
-    return 0;
-}
-
-int free_a2dp_packet_count_timer()
-{
-    return OsFreeTimer(rtk_prof.timer_a2dp_packet_count);
-}
-
-int stop_a2dp_packet_count_timer()
-{
-    RtkLogMsg("stop a2dp packet");
-    return OsStopTimer(rtk_prof.timer_a2dp_packet_count);
-}
-
-int start_a2dp_packet_count_timer()
-{
-    RtkLogMsg("start a2dp packet");
-    return OsStartTimer(rtk_prof.timer_a2dp_packet_count, PACKET_COUNT_TIOMEOUT_VALUE, 1);
-}
-
-int alloc_pan_packet_count_timer()
-{
-/*
-    struct sigaction sigact;
-
-    sigemptyset(&sigact.sa_mask);
-    sigact.sa_flags = SA_SIGINFO;
-
-    //register the Signal Handler
-    sigact.sa_sigaction = timeout_handler;
-
-    // Set up sigaction to catch signal first timer
-    if (sigaction(TIMER_PAN_PACKET_COUNT, &sigact, NULL) == -1)
-    {
-        ALOGE("alloc_pan_packet_count_timer, sigaction failed");
+    if(phci_conn->timer_a2dp_packet_count != (timer_t)-1) {
+        ALOGE("alloc_a2dp_packet_count_timer for handle %x already created", phci_conn->handle);
         return -1;
     }
-*/
-    // Create and set the timer when to expire
-    rtk_prof.timer_pan_packet_count= OsAllocateTimer(TIMER_PAN_PACKET_COUNT);
+    phci_conn->timer_a2dp_packet_count = OsAllocateA2dpTimer(SIGRTMIN + phci_conn->handle);
+    RtkLogMsg("alloc a2dp packet timer for handle %x, timerid:%lld", phci_conn->handle, (long long)phci_conn->timer_a2dp_packet_count);
 
-    RtkLogMsg("alloc pan packet");
     return 0;
 }
 
-int free_pan_packet_count_timer()
+
+int stop_a2dp_packet_count_timer(timer_t timer_id)
 {
-    return OsFreeTimer(rtk_prof.timer_pan_packet_count);
+    RtkLogMsg("stop a2dp packet");
+    return OsStopTimer(timer_id);
 }
 
-int stop_pan_packet_count_timer()
+int start_a2dp_packet_count_timer(timer_t timer_id)
+{
+    RtkLogMsg("start a2dp packet");
+    return OsStartTimer(timer_id, PACKET_COUNT_TIOMEOUT_VALUE, 1);
+}
+
+int alloc_pan_packet_count_timer(tRTK_CONN_PROF * phci_conn)
+{
+    // Create and set the timer when to expire
+    if(phci_conn->timer_pan_packet_count != (timer_t)-1) {
+        ALOGE("alloc_pan_packet_count_timer for handle %x already created", phci_conn->handle);
+        return -1;
+    }
+    phci_conn->timer_pan_packet_count = OsAllocatePanTimer(SIGRTMIN + phci_conn->handle);
+    RtkLogMsg("alloc pan packet timer for handle %x timerid:%lld", phci_conn->handle, (long long)phci_conn->timer_pan_packet_count);
+
+    return 0;
+}
+
+
+int stop_pan_packet_count_timer(timer_t timer_id)
 {
     RtkLogMsg("stop pan packet");
-    return OsStopTimer(rtk_prof.timer_pan_packet_count);
+    return OsStopTimer(timer_id);
 }
 
-int start_pan_packet_count_timer()
+int start_pan_packet_count_timer(timer_t timer_id)
 {
     RtkLogMsg("start pan packet");
-    return OsStartTimer(rtk_prof.timer_pan_packet_count, PACKET_COUNT_TIOMEOUT_VALUE, 1);
+    return OsStartTimer(timer_id, PACKET_COUNT_TIOMEOUT_VALUE, 1);
+}
+
+void free_conn_packet_count_timer(tRTK_CONN_PROF * phci_conn)
+{
+    if(phci_conn->timer_a2dp_packet_count != (timer_t)-1) {
+        RtkLogMsg("free_conn_packet_count_timer a2dp for handle:%x timerid:%lld", phci_conn->handle, phci_conn->timer_a2dp_packet_count);
+        OsFreeTimer(phci_conn->timer_a2dp_packet_count);
+        phci_conn->timer_a2dp_packet_count = (timer_t)-1;
+    }
+    if(phci_conn->timer_pan_packet_count != (timer_t)-1) {
+        RtkLogMsg("free_conn_packet_count_timer pan for handle:%x timerid:%lld", phci_conn->handle, phci_conn->timer_pan_packet_count);
+        OsFreeTimer(phci_conn->timer_pan_packet_count);
+        phci_conn->timer_pan_packet_count = (timer_t)-1;
+    }
+    if(phci_conn->timer_hogp_packet_count != (timer_t)-1) {
+        RtkLogMsg("free_conn_packet_count_timer hogp for handle:%x timerid:%lld", phci_conn->handle, phci_conn->timer_hogp_packet_count);
+        OsFreeTimer(phci_conn->timer_hogp_packet_count);
+        phci_conn->timer_hogp_packet_count = (timer_t)-1;
+    }
 }
 
 static int8_t psm_to_profile_index(uint16_t psm)
@@ -634,6 +753,7 @@ tRTK_CONN_PROF* allocate_connection_by_handle(uint16_t handle)
 
     return phci_conn;
 }
+
 
 void init_connection_hash(tRTK_PROF* h5)
 {
@@ -710,11 +830,12 @@ uint8_t list_allocate_add(uint16_t handle, uint16_t psm, int8_t profile_index, u
 
 void delete_profile_from_hash(tRTK_PROF_INFO* desc)
 {
+    //RtkLogMsg("delete profile for handle: %x, psm:%x, dcid:%x, scid:%x", desc->handle, desc->psm, desc->dcid, desc->scid);
     if (desc)
     {
-        RtkLogMsg("delete profile for handle: %x, psm:%x, dcid:%x, scid:%x", desc->handle, desc->psm, desc->dcid, desc->scid);
         ListDeleteNode(&desc->list);
         free(desc);
+        desc = NULL;
     }
 }
 
@@ -797,6 +918,7 @@ void delete_coex_from_hash(tRTK_COEX_INFO* desc)
     {
         ListDeleteNode(&desc->list);
         free(desc);
+        desc = NULL;
     }
 }
 
@@ -818,8 +940,12 @@ void flush_coex_hash(tRTK_PROF* h5)
 
 static void rtk_cmd_complete_cback(void *p_mem)
 {
-    if(p_mem)
-        bt_vendor_cbacks->dealloc(p_mem);
+    uint16_t opcode = 0;
+    HC_BT_HDR *p_evt_buf = NULL;
+    if(p_mem){
+        p_evt_buf = (HC_BT_HDR *) p_mem;
+        opcode = p_evt_buf->data[4] << 8 | p_evt_buf->data[3];
+    }
     pthread_mutex_lock(&rtk_prof.coex_mutex);
     RT_LIST_ENTRY* iter = ListGetTop(&(rtk_prof.coex_list));
     tRTK_COEX_INFO* desc = NULL;
@@ -834,16 +960,23 @@ static void rtk_cmd_complete_cback(void *p_mem)
         coex_cmd_send = false;
     }
     pthread_mutex_unlock(&rtk_prof.coex_mutex);
-
+    ALOGI("%s, @cmdtofw last Opcode:%04x", __func__, opcode);
     if(rtk_prof.current_cback) {
         rtk_prof.current_cback(p_mem);
         rtk_prof.current_cback = NULL;
     }
 
+    if(p_mem)
+        bt_vendor_cbacks->dealloc(p_mem);
+
     if(desc) {
-        ALOGE("%s, transmit_command Opcode:%x",__func__, desc->opcode);
-        rtk_prof.current_cback = desc->p_cback;
-        bt_vendor_cbacks->xmit_cb(desc->opcode, desc->p_buf, rtk_cmd_complete_cback);
+        pthread_mutex_lock(&rtk_prof.coex_mutex);
+        if(rtk_prof.bt_on) {
+          ALOGI("%s, @cmdtofw transmit_command Opcode:%x", __func__, desc->opcode);
+          rtk_prof.current_cback = desc->p_cback;
+          bt_vendor_cbacks->xmit_cb(desc->opcode, desc->p_buf, rtk_cmd_complete_cback);
+        }
+        pthread_mutex_unlock(&rtk_prof.coex_mutex);
     }
 
     free(desc);
@@ -874,8 +1007,8 @@ void rtk_vendor_cmd_to_fw(uint16_t opcode, uint8_t parameter_len, uint8_t* param
     uint8_t *p = (uint8_t *) (p_buf + 1);
     UINT16_TO_STREAM(p, opcode);
     *p++ = parameter_len;
-    RtkLogMsg("rtk_vendor_cmd_to_fw: Opcode:%x, parameter_len = %d",opcode, parameter_len);
-
+    //RtkLogMsg("rtk_vendor_cmd_to_fw: Opcode:%x, parameter_len = %d",opcode, parameter_len);
+    ALOGI("rtk_vendor_cmd_to_fw: @cmdtofw Opcode:%x, coex_cmd_send = %d",opcode, coex_cmd_send);
     if(parameter_len > 0)
     {
         memcpy(p, parameter, parameter_len);
@@ -883,6 +1016,10 @@ void rtk_vendor_cmd_to_fw(uint16_t opcode, uint8_t parameter_len, uint8_t* param
     if(bt_vendor_cbacks)
     {
         pthread_mutex_lock(&rtk_prof.coex_mutex);
+        if(!rtk_prof.bt_on) {
+          pthread_mutex_unlock(&rtk_prof.coex_mutex);
+          return;
+        }
         if(!coex_cmd_send) {
             coex_cmd_send = true;
             RtkLogMsg("begin transmit_command Opcode:%x",opcode);
@@ -912,6 +1049,313 @@ void rtk_vendor_cmd_to_fw(uint16_t opcode, uint8_t parameter_len, uint8_t* param
     return ;
 }
 
+
+#ifdef RTK_ROLE_SWITCH_RETRY
+
+static timer_t OsAllocateTimer_role_switch(tTIMER_HANDLE_ROLE_SWITCH timer_callback,role_monitor_cb *p_cb)
+{
+    struct sigevent sigev;
+    timer_t timerid;
+
+    memset(&sigev, 0, sizeof(struct sigevent));
+    sigev.sigev_notify = SIGEV_THREAD;
+    sigev.sigev_notify_function = timer_callback;
+    sigev.sigev_value.sival_ptr = p_cb;
+
+    ALOGD("OsAllocateTimer bt_service sigev.sigev_notify_thread_id = syscall(__NR_gettid)!");
+
+    if (timer_create(CLOCK_REALTIME, &sigev, &timerid) == 0)
+    {
+        return timerid;
+    }
+    else
+    {
+        ALOGE("timer_create error!");
+        return (timer_t)-1;
+    }
+}
+
+static int OsFreeTimer_role_switch(timer_t timerid)
+{
+    int ret = 0;
+    if(timerid == (timer_t)-1) {
+        ALOGE("OsFreeTimer fail timer id error");
+        return -1;
+    }
+    ret = timer_delete(timerid);
+    if(ret != 0)
+        ALOGE("timer_delete fail with errno(%d)", errno);
+
+    return ret;
+}
+
+ static int OsStartTimer_role_switch(timer_t timerid, int msec, int mode)
+ {
+    struct itimerspec itval;
+
+    if(timerid == (timer_t)-1) {
+        ALOGE("OsStartTimer fail timer id error");
+        return -1;
+    }
+    itval.it_value.tv_sec = msec / 1000;
+    itval.it_value.tv_nsec = (long)(msec % 1000) * (1000000L);
+    //ALOGE("OsStartTimer_role_switch  = %ld itval.it_value.tv_nsec = %ld libs_liu",itval.it_value.tv_sec,itval.it_value.tv_nsec);
+    if (mode == 1)
+    {
+        itval.it_interval.tv_sec    = itval.it_value.tv_sec;
+        itval.it_interval.tv_nsec = itval.it_value.tv_nsec;
+    }
+    else
+    {
+        itval.it_interval.tv_sec = 0;
+        itval.it_interval.tv_nsec = 0;
+    }
+
+    //Set the Timer when to expire through timer_settime
+    //ALOGE("OsStartTimer_role_switch  = %ld itval.it_value.tv_nsec = %ld libs_liu end timerid = %ld",itval.it_value.tv_sec,itval.it_value.tv_nsec,(long)timerid);
+    if (timer_settime(timerid, 0, &itval, NULL) != 0)
+    {
+        ALOGE("time_settime error!");
+        return -1;
+    }
+    ALOGI("OsStartTimer_role_switch  = %ld itval.it_value.tv_nsec = %ld",itval.it_value.tv_sec,itval.it_value.tv_nsec);
+
+    return 0;
+
+}
+
+static int OsStopTimer_role_switch(timer_t timerid)
+{
+   return OsStartTimer_role_switch(timerid, 0, 0);
+}
+
+int find_remote_device_by_address(BD_ADDR address){
+    int  index = 0;
+    role_monitor_cb    *p_cb = &(role_monitor_pool[0]);
+    for (index = 0; index < MAX_LINKS; index++,p_cb++){
+        if((p_cb->in_use)&&(!memcmp (p_cb->remote_bd_addr, address, BD_ADDR_LEN))){
+            return index;
+        }
+    }
+    ALOGE( "find_remote_device_by_address  device not found");
+    return -1;
+}
+
+
+int find_pending_role_switch_process(){
+    int  index = 0;
+    role_monitor_cb    *p_cb = &(role_monitor_pool[0]);
+    for (index = 0; index < MAX_LINKS; index++,p_cb++){
+        if((p_cb->in_use)&&(p_cb->state == ROLE_SWITCH_COMMAND_PENDING)){
+            return index;
+        }
+    }
+    ALOGE( "find_pending_role_switch_process  device not found");
+    return -1;
+}
+
+
+int allocate_role_switch_pool_by_handle(uint16_t handle,BD_ADDR remote_address)
+{
+    int  index = 0;
+    role_monitor_cb    *p_cb = &(role_monitor_pool[0]);
+    /*check there is no same address exist*/
+    if(((index = find_remote_device_by_address(remote_address)) != -1)){
+        if(role_monitor_pool[index].handle == UNKOWN_HANDLE){
+            ALOGI( "allocate_role_switch_pool_by_handle slot has been exist and is waiting update\n");
+            role_monitor_pool[index].handle = handle;
+            return index;
+        }else{
+            ALOGE( "allocate_role_switch_pool_by_handle slot has been exist it ,return \n");
+            return -1;
+        }
+    }
+    for (index = 0; index < MAX_LINKS; index++,p_cb++){
+        if(!(p_cb->in_use)){
+            p_cb->count = 0;
+            p_cb->diff_s = 0;
+            p_cb->handle = handle;
+            p_cb->time = 0;
+            p_cb->in_use = TRUE;
+            p_cb->timer_hci_role_switch_cmd = (timer_t)-1;
+            memcpy(p_cb->remote_bd_addr,remote_address,BD_ADDR_LEN);
+            return index;
+        }
+    }
+    ALOGE( "allocate_role_switch_pool_by_handle  no slot found");
+    return -1;
+
+}
+
+static void rtk_record_connection_info(uint8_t* p){
+    uint8_t status = 0;
+    uint16_t handle = 0;
+    int index = 0;
+    BD_ADDR remote_address;
+    status = *p++;
+    if(status != 0){
+        ALOGE("rtk_record_connection_info handle = 0x%x status = %d connection failed! ignore !",handle,status);
+        return;
+    }
+    STREAM_TO_UINT16 (handle, p);
+    //ALOGE("rtk_record_connection_info handle = 0x%x",handle);
+    memcpy(remote_address,p,BD_ADDR_LEN);
+    //ALOGE("rtk_record_connection_info remote_address = %x %x %x %x %x %x libs_liu",remote_address[0],remote_address[1],
+     //   remote_address[2],remote_address[3],remote_address[4],remote_address[5]);
+    index = allocate_role_switch_pool_by_handle(handle,remote_address);
+    if(index <0){
+        ALOGE("rtk_record_connection_info index = 0x%x",index);
+        return;
+    }
+    ALOGD("rtk_record_connection_info index = 0x%x",index);
+}
+
+static void rtk_connection_info_clear(uint8_t* p){
+
+    uint8_t status = 0;
+    uint16_t handle = 0;
+    status = *p++;
+    STREAM_TO_UINT16(handle, p);
+    ALOGE("rtk_connection_info_clear handle = 0x%x libs_liu",handle);
+
+    int  index = 0;
+    role_monitor_cb    *p_cb = &(role_monitor_pool[0]);
+    for (index = 0; index < MAX_LINKS; index++,p_cb++){
+        if((p_cb->in_use)&&(p_cb->handle == handle)){
+            //ALOGE("rtk_connection_info_clear  begin to clear this slot  p_cb->timer_hci_role_switch_cmd = %ld",(long)p_cb->timer_hci_role_switch_cmd);
+            p_cb->in_use = FALSE;
+            p_cb->state = ROLE_SWITCH_COMMAND_NONE;
+            p_cb->handle = 0;
+            p_cb->diff_s = 0;
+            p_cb->count = 0;
+            p_cb->isMaster = FALSE;
+            OsStopTimer_role_switch(p_cb->timer_hci_role_switch_cmd);
+            OsFreeTimer_role_switch(p_cb->timer_hci_role_switch_cmd);
+            p_cb->timer_hci_role_switch_cmd = (timer_t)-1;
+            memcpy(p_cb->remote_bd_addr,EMPTY_ADDR,BD_ADDR_LEN);
+            return;
+        }
+    }
+    ALOGD( "rtk_connection_info_clear  done");
+    return ;
+}
+
+static void Rtk_Role_switch_Event_Cback(void *arg)
+{
+    if(arg != NULL)
+    {
+        HC_BT_HDR  *p_buf = NULL;
+        p_buf = (HC_BT_HDR *)arg;
+        uint8_t *p = p_buf->data;
+        ALOGE( " Rtk_Role_switch_Event_Cback event_code = %d length = %d",p[0],p[1]);
+
+        /*find out which one inititor this process*/
+        int index = find_pending_role_switch_process();
+        if(index == -1)
+            return;
+        role_monitor_cb    *p_cb = &(role_monitor_pool[index]);
+        p_cb->state = ROLE_SWITCH_COMMAND_SUCCESS;
+        if(p[5] == 0x0c){
+            p_cb->state = ROLE_SWITCH_COMMAND_DISALLOW;
+            ALOGE( " Rtk_Role_switch_Event_Cback  command is disallowed libs_liu");
+            p_cb->count  = 1;
+            rtk_start_role_switch_schedule(p_cb);
+        }
+
+    }else{
+        ALOGE("%s Rtk_Role_switch_Event_Cback arg == NULL, it should not happend", __func__);
+    }
+}
+
+
+
+static void rtk_send_role_switch_handler(union sigval sigev_value){
+     role_monitor_cb * p_cb = (role_monitor_cb *)sigev_value.sival_ptr;
+     if(!p_cb->in_use){
+        ALOGE( "rtk_send_role_switch_handler  p_cb now is not in use ,return !");
+        return;
+     }
+     p_cb->state = ROLE_SWITCH_COMMAND_PENDING;
+    /*begin to send hci command to controller*/
+    uint8_t param_len = 7;
+    uint8_t param[param_len];
+    memcpy(param,p_cb->remote_bd_addr,BD_ADDR_LEN);
+    param[param_len-1] = 0;
+    rtk_vendor_cmd_to_fw(HCI_CMD_VNDR_ROLESWITCH,param_len , param, Rtk_Role_switch_Event_Cback);
+    /*remember to free the timer*/
+    OsStopTimer_role_switch(p_cb->timer_hci_role_switch_cmd);
+    OsFreeTimer_role_switch(p_cb->timer_hci_role_switch_cmd);
+    p_cb->timer_hci_role_switch_cmd = (timer_t)-1;
+
+}
+
+static void rtk_start_role_switch_schedule(role_monitor_cb  * p){
+    role_monitor_cb *p_cb = p;
+    double time_out;
+    if(p_cb == NULL){
+        ALOGE("rtk_start_role_switch_schedule  p_cb==NULL");
+        return;
+    }
+    if(p_cb->diff_s > TIME_LIMIT_FOR_ROLE_SWITCH){
+        ALOGE("rtk_start_role_switch_schedule p_cb->diff_s is larger then threshold value");
+        p_cb->count = 0;
+    }
+    time_out = pow((double)2,(double)(p_cb->count))*500;
+    if(time_out > TIME_LIMIT_FOR_ROLE_SWITCH*1000){
+        ALOGE("rtk_start_role_switch_schedule time_out is too large,do not try again");
+    }
+
+    p_cb->timer_hci_role_switch_cmd = OsAllocateTimer_role_switch(rtk_send_role_switch_handler,p_cb);
+    if(p_cb->timer_hci_role_switch_cmd == (timer_t)-1) {
+        ALOGE("%s : alloc reply timer fail!", __func__);
+        return;
+    }
+    ALOGE("%s : time_out = %lf", __func__,time_out);
+    OsStartTimer_role_switch(p_cb->timer_hci_role_switch_cmd, (int)time_out, 1);
+}
+
+static void rtk_handle_role_change_evt(uint8_t* p){
+    uint8_t status = 0;
+    int index = 0;
+    uint8_t new_role = 0;
+    status = *p++;
+    BD_ADDR remote_address;
+    ALOGE("rtk_handle_role_change_evt  status = %d",status);
+    memcpy(remote_address,p,BD_ADDR_LEN);
+    ALOGE("rtk_handle_role_change_evt remote_address = %x %x %x %x %x %x",remote_address[0],remote_address[1],
+        remote_address[2],remote_address[3],remote_address[4],remote_address[5]);
+    p += BD_ADDR_LEN;
+    new_role = *p;
+    if(new_role == 0){
+        ALOGE("rtk_handle_role_change_evt  now is Mastar ,do nothing");
+    }else{
+        ALOGE("rtk_handle_role_change_evt  now is slave ");
+        /*find the slot */
+        index = find_remote_device_by_address(remote_address);
+        if(index < 0){
+            ALOGE("rtk_handle_role_change_evt device not found ,maybe role change comming first and alloc one libs_liu");
+            index = allocate_role_switch_pool_by_handle(UNKOWN_HANDLE,remote_address);
+             if(index <0){
+                ALOGE("allocate_role_switch_pool_by_handle failed  index = 0x%x libs_liu",index);
+                return;
+             }
+        }
+        /*get time_r*/
+        role_monitor_cb  * p_cb = &(role_monitor_pool[index]);
+        time_t now = time(NULL);
+        p_cb->diff_s = difftime(now,p_cb->time);
+        ALOGE("rtk_handle_role_change_evt p_cb->diff_s =%lf  libs_liu",p_cb->diff_s);
+        p_cb->time = now;
+        p_cb->count++;
+        p_cb->isMaster = FALSE;
+        /*begin to schedule timer*/
+        rtk_start_role_switch_schedule(p_cb);
+    }
+
+}
+
+#endif
+
 void rtk_notify_profileinfo_to_fw()
 {
     RT_LIST_HEAD* head = NULL;
@@ -929,7 +1373,10 @@ void rtk_notify_profileinfo_to_fw()
             handle_number++;
     }
 
-    buffer_size = 1 + handle_number*3 + 1;
+    if(fc1b_4_coex)
+        buffer_size = 1 + handle_number*6;
+    else
+        buffer_size = 1 + handle_number*3 + 1;
 
     p_buf = (uint8_t *) malloc(buffer_size);
 
@@ -944,110 +1391,140 @@ void rtk_notify_profileinfo_to_fw()
     *p++ = handle_number;
     RtkLogMsg("rtk_notify_profileinfo_to_fw, NumberOfHandles is %x", handle_number);
     head = &rtk_prof.conn_hash;
+    rtk_prof.profile_status = 0;
     LIST_FOR_EACH_SAFELY(iter, temp, head)
     {
         hci_conn = LIST_ENTRY(iter, tRTK_CONN_PROF, list);
         if (hci_conn && hci_conn->profile_bitmap)
         {
+            rtk_prof.profile_status |= (hci_conn->profile_status & 0xFF);
             UINT16_TO_STREAM(p, hci_conn->handle);
             RtkLogMsg("rtk_notify_profileinfo_to_fw, handle is %x",hci_conn->handle);
-            *p++ = hci_conn->profile_bitmap;
-            RtkLogMsg("rtk_notify_profileinfo_to_fw, profile_bitmap is %x",hci_conn->profile_bitmap);
+            if(fc1b_4_coex)
+            {
+                UINT16_TO_STREAM(p, hci_conn->profile_bitmap);
+                UINT16_TO_STREAM(p, hci_conn->profile_status);
+                RtkLogMsg("rtk_notify_profileinfo_to_fw, profile_bitmap is 0x%x profile_status is 0x%x",
+                           hci_conn->profile_bitmap, hci_conn->profile_status);
+            }
+            else
+            {
+                *p++ = (uint8_t)hci_conn->profile_bitmap;
+                RtkLogMsg("rtk_notify_profileinfo_to_fw, profile_bitmap is 0x%x",hci_conn->profile_bitmap);
+            }
             handle_number --;
         }
         if(0 == handle_number)
             break;
     }
 
-    *p++ = rtk_prof.profile_status;
-    RtkLogMsg("rtk_notify_profileinfo_to_fw, profile_status is %x",rtk_prof.profile_status);
-
-    rtk_vendor_cmd_to_fw(HCI_VENDOR_SET_PROFILE_REPORT_COMMAND, buffer_size, p_buf, NULL);
+    if(fc1b_4_coex)
+    {
+        rtk_vendor_cmd_to_fw(HCI_VENDOR_NEW_SET_PROFILE_REPORT_COMMAND, buffer_size, p_buf, NULL);
+    }
+    else
+    {
+        *p++ = (uint8_t)rtk_prof.profile_status;
+        RtkLogMsg("rtk_notify_profileinfo_to_fw, profile_status is %x",rtk_prof.profile_status);
+        rtk_vendor_cmd_to_fw(HCI_VENDOR_SET_PROFILE_REPORT_COMMAND, buffer_size, p_buf, NULL);
+    }
 
     free(p_buf);
 
     return ;
 }
 
-void update_profile_state(uint8_t profile_index, uint8_t is_busy)
+void update_conn_profile_state(tRTK_CONN_PROF * phci_conn, uint8_t profile_index, uint8_t is_busy)
 {
     uint8_t need_update = FALSE;
 
     if((rtk_prof.profile_bitmap & BIT(profile_index)) == 0)
     {
-        ALOGE("update_profile_state: ERROR!!! profile(Index: %x) does not exist", profile_index);
+        ALOGE("update_conn_profile_state: ERROR!!! profile(Index: %x) does not exist", profile_index);
         return;
     }
 
     if(is_busy)
     {
-        if((rtk_prof.profile_status & BIT(profile_index)) == 0)
+        if((phci_conn->profile_status & BIT(profile_index)) == 0)
         {
             need_update = TRUE;
-            rtk_prof.profile_status |= BIT(profile_index);
+            phci_conn->profile_status |= BIT(profile_index);
         }
     }
     else
     {
-        if((rtk_prof.profile_status & BIT(profile_index)) > 0)
+        if((phci_conn->profile_status & BIT(profile_index)) > 0)
         {
             need_update = TRUE;
-            rtk_prof.profile_status &= ~(BIT(profile_index));
+            phci_conn->profile_status &= ~(BIT(profile_index));
         }
     }
 
     if(need_update)
     {
-        RtkLogMsg("update_profile_state, rtk_prof.profie_bitmap = %x", rtk_prof.profile_bitmap);
-        RtkLogMsg("update_profile_state, rtk_prof.profile_status = %x", rtk_prof.profile_status);
+        RtkLogMsg("update_conn_profile_state, rtk_prof.profie_bitmap = %x", rtk_prof.profile_bitmap);
+        RtkLogMsg("update_conn_profile_state, phci_conn->profie_bitmap = %x", phci_conn->profile_bitmap);
+        RtkLogMsg("update_conn_profile_state, phci_conn->profile_status = %x", phci_conn->profile_status);
         rtk_notify_profileinfo_to_fw();
     }
 }
 
-void rtk_check_setup_timer(int8_t profile_index)
+void rtk_check_setup_timer(tRTK_CONN_PROF * phci_conn, int8_t profile_index)
 {
     if(profile_index == profile_a2dp) {
         rtk_prof.a2dp_packet_count = 0;
-        start_a2dp_packet_count_timer();
+        phci_conn->a2dp_packet_count = 0;
+        alloc_a2dp_packet_count_timer(phci_conn);
+        start_a2dp_packet_count_timer(phci_conn->timer_a2dp_packet_count);
     }
     if(profile_index == profile_pan) {
         rtk_prof.pan_packet_count = 0;
-        start_pan_packet_count_timer();
+        phci_conn->pan_packet_count = 0;
+        alloc_pan_packet_count_timer(phci_conn);
+        start_pan_packet_count_timer(phci_conn->timer_pan_packet_count);
     }
     //hogp & voice share one timer now
     if((profile_index == profile_hogp) || (profile_index == profile_voice)) {
+        alloc_hogp_packet_count_timer(phci_conn);
         if((0 == rtk_prof.profile_refcount[profile_hogp])
                 && (0 == rtk_prof.profile_refcount[profile_voice])) {
             rtk_prof.hogp_packet_count = 0;
             rtk_prof.voice_packet_count = 0;
-            start_hogp_packet_count_timer();
+            phci_conn->hogp_packet_count = 0;
+            phci_conn->voice_packet_count = 0;
+            start_hogp_packet_count_timer(phci_conn->timer_hogp_packet_count);
         }
     }
 }
 
-void rtk_check_del_timer(int8_t profile_index)
+void rtk_check_del_timer(tRTK_CONN_PROF * phci_conn, int8_t profile_index)
 {
     if(profile_a2dp == profile_index)
     {
         rtk_prof.a2dp_packet_count = 0;
-        stop_a2dp_packet_count_timer();
+        phci_conn->a2dp_packet_count = 0;
+        stop_a2dp_packet_count_timer(phci_conn->timer_a2dp_packet_count);
     }
     if(profile_pan == profile_index)
     {
         rtk_prof.pan_packet_count = 0;
-        stop_pan_packet_count_timer();
+        phci_conn->pan_packet_count = 0;
+        stop_pan_packet_count_timer(phci_conn->timer_pan_packet_count);
     }
     if(profile_hogp == profile_index)
     {
         rtk_prof.hogp_packet_count = 0;
+        phci_conn->hogp_packet_count = 0;
         if(rtk_prof.profile_refcount[profile_voice] == 0)
-            stop_hogp_packet_count_timer();
+            stop_hogp_packet_count_timer(phci_conn->timer_hogp_packet_count);
     }
     if(profile_voice == profile_index)
     {
         rtk_prof.voice_packet_count = 0;
+        phci_conn->voice_packet_count = 0;
         if(rtk_prof.profile_refcount[profile_hogp] == 0)
-            stop_hogp_packet_count_timer();
+            stop_hogp_packet_count_timer(phci_conn->timer_hogp_packet_count);
     }
 }
 void update_profile_connection(tRTK_CONN_PROF * phci_conn, int8_t profile_index, uint8_t is_add)
@@ -1065,12 +1542,6 @@ void update_profile_connection(tRTK_CONN_PROF * phci_conn, int8_t profile_index,
         {
             need_update = TRUE;
             rtk_prof.profile_bitmap |= BIT(profile_index);
-
-            //SCO is always busy
-            if(profile_index == profile_sco)
-                rtk_prof.profile_status |= BIT(profile_index);
-
-            rtk_check_setup_timer(profile_index);
         }
         rtk_prof.profile_refcount[profile_index]++;
 
@@ -1078,6 +1549,9 @@ void update_profile_connection(tRTK_CONN_PROF * phci_conn, int8_t profile_index,
         {
             need_update = TRUE;
             phci_conn->profile_bitmap |= BIT(profile_index);
+            if((profile_index == profile_sco) || (profile_index == profile_le_audio))
+                phci_conn->profile_status |= BIT(profile_index);
+            rtk_check_setup_timer(phci_conn, profile_index);
         }
         phci_conn->profile_refcount[profile_index]++;
     }
@@ -1091,8 +1565,6 @@ void update_profile_connection(tRTK_CONN_PROF * phci_conn, int8_t profile_index,
             rtk_prof.profile_bitmap &= ~(BIT(profile_index));
 
             //If profile does not exist, Status is meaningless
-            rtk_prof.profile_status &= ~(BIT(profile_index));
-            rtk_check_del_timer(profile_index);
         }
 
         phci_conn->profile_refcount[profile_index]--;
@@ -1100,6 +1572,8 @@ void update_profile_connection(tRTK_CONN_PROF * phci_conn, int8_t profile_index,
         {
             need_update = TRUE;
             phci_conn->profile_bitmap &= ~(BIT(profile_index));
+            phci_conn->profile_status &= ~(BIT(profile_index));
+            rtk_check_del_timer(phci_conn, profile_index);
 
             //clear profile_hid_interval if need
             if(profile_hid == profile_index)
@@ -1107,6 +1581,7 @@ void update_profile_connection(tRTK_CONN_PROF * phci_conn, int8_t profile_index,
                 if((phci_conn->profile_bitmap &(BIT(profile_hid_interval))))
                 {
                     phci_conn->profile_bitmap &= ~(BIT(profile_hid_interval));
+                    phci_conn->profile_status &= ~(BIT(profile_hid_interval));
                     rtk_prof.profile_refcount[profile_hid_interval]--;
                 }
             }
@@ -1115,8 +1590,8 @@ void update_profile_connection(tRTK_CONN_PROF * phci_conn, int8_t profile_index,
 
     if(need_update)
     {
-        RtkLogMsg("update_profile_connection: rtk_h5.profile_bitmap = %x", rtk_prof.profile_bitmap);
-        for(kk=0; kk<8; kk++)
+        RtkLogMsg("update_profile_connection: rtk_h5.profile_bitmap = 0x%x", rtk_prof.profile_bitmap);
+        for(kk=0; kk<9; kk++)
             RtkLogMsg("update_profile_connection: rtk_h5.profile_refcount[%d] = %d", kk, rtk_prof.profile_refcount[kk]);
         rtk_notify_profileinfo_to_fw();
     }
@@ -1143,10 +1618,12 @@ void update_hid_active_state(uint16_t handle, uint16_t interval)
         {
             need_update = 1;
             phci_conn->profile_bitmap |= BIT(profile_hid_interval);
+            phci_conn->profile_status |= BIT(profile_hid);
 
             rtk_prof.profile_refcount[profile_hid_interval]++;
-            if(rtk_prof.profile_refcount[profile_hid_interval] == 1)
-                rtk_prof.profile_status |= BIT(profile_hid);
+            if(rtk_prof.profile_refcount[profile_hid_interval] == 1) {
+                rtk_prof.profile_bitmap |= BIT(profile_hid_interval);
+            }
         }
     }
     else
@@ -1155,10 +1632,12 @@ void update_hid_active_state(uint16_t handle, uint16_t interval)
         {
             need_update = 1;
             phci_conn->profile_bitmap &= ~(BIT(profile_hid_interval));
+            phci_conn->profile_status &= ~(BIT(profile_hid));
 
             rtk_prof.profile_refcount[profile_hid_interval]--;
-            if(rtk_prof.profile_refcount[profile_hid_interval] == 0)
-                rtk_prof.profile_status &= ~(BIT(profile_hid));
+            if(rtk_prof.profile_refcount[profile_hid_interval] == 0) {
+                rtk_prof.profile_bitmap &= ~(BIT(profile_hid_interval));
+            }
         }
     }
 
@@ -1293,16 +1772,16 @@ void packets_count(uint16_t handle, uint16_t scid, uint16_t length, uint8_t dire
             return ;
         }
 
-        if((prof_info->profile_index == profile_a2dp) && (length > 100))//avdtp media data
+        if((prof_info->profile_index == profile_a2dp) && (length > 50))//avdtp media data
         {
-            if(!is_profile_busy(profile_a2dp)){
+            if(!is_conn_profile_busy(hci_conn, profile_a2dp)){
                 struct sbc_frame_hdr *sbc_header;
                 struct rtp_header *rtph;
                 uint8_t bitpool;
-                update_profile_state(profile_a2dp, TRUE);
+                update_conn_profile_state(hci_conn, profile_a2dp, TRUE);
                 if (!direction) {
                     update_profile_connection(hci_conn, profile_sink, true);
-                    update_profile_state(profile_sink, TRUE);
+                    update_conn_profile_state(hci_conn, profile_sink, TRUE);
                 }
                 rtph = (struct rtp_header *)user_data;
                 RtkLogMsg("rtp: v %u, cc %u, pt %u", rtph->v, rtph->cc, rtph->pt);
@@ -1316,10 +1795,14 @@ void packets_count(uint16_t handle, uint16_t scid, uint16_t length, uint8_t dire
                 rtk_vendor_cmd_to_fw(HCI_VENDOR_ADD_BITPOOL_FW, 1, &bitpool, NULL);
             }
             rtk_prof.a2dp_packet_count++;
+            hci_conn->a2dp_packet_count++;
         }
 
         if(prof_info->profile_index == profile_pan)
+        {
             rtk_prof.pan_packet_count++;
+            hci_conn->pan_packet_count++;
+        }
     }
 }
 
@@ -1337,71 +1820,111 @@ static void timeout_handler(int signo, siginfo_t * info, void *context)
             rtk_vendor_cmd_to_fw(HCI_VENDOR_MAILBOX_CMD, 1, temp_cmd, NULL);
         }
     }
-    else if (signo == TIMER_A2DP_PACKET_COUNT)
+    else
     {
-        RtkLogMsg("count a2dp packet timeout, a2dp_packet_count = %d",rtk_prof.a2dp_packet_count);
-        if(rtk_prof.a2dp_packet_count == 0)
+        ALOGE("rtk_parse_data timer unspported signo(%d)", signo);
+    }
+}
+
+static void hogp_timeout_handler(int signo, siginfo_t * info, void *context)
+{
+    RTK_UNUSED(info);
+    RTK_UNUSED(context);
+    uint16_t conn_handle = (signo - SIGRTMIN);
+    tRTK_CONN_PROF *phci_conn = find_connection_by_handle(&rtk_prof, conn_handle);
+    if (phci_conn)
+    {
+        RtkLogMsg("count hogp packet timeout, hogp_packet_count = %d for handle %x",phci_conn->hogp_packet_count, conn_handle);
+        if(phci_conn->hogp_packet_count == 0)
         {
-            if(is_profile_busy(profile_a2dp))
+            if(is_conn_profile_busy(phci_conn, profile_hogp))
             {
-                RtkLogMsg("timeout_handler: a2dp busy->idle!");
-                update_profile_state(profile_a2dp, FALSE);
-                if (is_profile_busy(profile_sink)) {
-                    RtkLogMsg("timeout_handler: sink busy->idle!");
-                    update_profile_state(profile_sink, FALSE);
+                RtkLogMsg("hogp_timeout_handler: hogp busy->idle!");
+                update_conn_profile_state(phci_conn, profile_hogp, FALSE);
+            }
+        }
+        rtk_prof.hogp_packet_count = 0;
+        phci_conn->hogp_packet_count = 0;
+
+        RtkLogMsg("count hogp packet timeout, voice_packet_count = %d for handle %x",phci_conn->voice_packet_count, conn_handle);
+        if(phci_conn->voice_packet_count == 0)
+        {
+            if(is_conn_profile_busy(phci_conn, profile_voice))
+            {
+                RtkLogMsg("hogp_timeout_handler: voice busy->idle!");
+                update_conn_profile_state(phci_conn, profile_voice, FALSE);
+            }
+        }
+        rtk_prof.voice_packet_count = 0;
+        phci_conn->voice_packet_count = 0;
+    }
+    else
+    {
+        ALOGE("hogp_timeout_handler no conn for handle(%d)", conn_handle);
+    }
+}
+
+static void a2dp_timeout_handler(int signo, siginfo_t * info, void *context)
+{
+    RTK_UNUSED(info);
+    RTK_UNUSED(context);
+    uint16_t conn_handle = (signo - SIGRTMIN);
+    tRTK_CONN_PROF *phci_conn = find_connection_by_handle(&rtk_prof, conn_handle);
+    if (phci_conn)
+    {
+        RtkLogMsg("count a2dp packet timeout, a2dp_packet_count = %d for handle %x",phci_conn->a2dp_packet_count, conn_handle);
+        if(phci_conn->a2dp_packet_count == 0)
+        {
+            if(is_conn_profile_busy(phci_conn, profile_a2dp))
+            {
+                RtkLogMsg("a2dp_timeout_handler: a2dp busy->idle!");
+                update_conn_profile_state(phci_conn, profile_a2dp, FALSE);
+                if (is_conn_profile_busy(phci_conn, profile_sink)) {
+                    RtkLogMsg("a2dp_timeout_handler: sink busy->idle!");
+                    update_conn_profile_state(phci_conn, profile_sink, FALSE);
                 }
             }
         }
         rtk_prof.a2dp_packet_count = 0;
+        phci_conn->a2dp_packet_count = 0;
     }
-    else if (signo == TIMER_HOGP_PACKET_COUNT)
+    else
     {
-        RtkLogMsg("count hogp packet timeout, hogp_packet_count = %d",rtk_prof.hogp_packet_count);
-        if(rtk_prof.hogp_packet_count == 0)
-        {
-            if(is_profile_busy(profile_hogp))
-            {
-                RtkLogMsg("timeout_handler: hogp busy->idle!");
-                update_profile_state(profile_hogp, FALSE);
-            }
-        }
-        rtk_prof.hogp_packet_count = 0;
+        ALOGE("a2dp_timeout_handler no conn for handle(%d)", conn_handle);
+    }
+}
 
-        RtkLogMsg("count hogp packet timeout, voice_packet_count = %d",rtk_prof.voice_packet_count);
-        if(rtk_prof.voice_packet_count == 0)
-        {
-            if(is_profile_busy(profile_voice))
-            {
-                RtkLogMsg("timeout_handler: voice busy->idle!");
-                update_profile_state(profile_voice, FALSE);
-            }
-        }
-        rtk_prof.voice_packet_count = 0;
-    }
-    else if (signo == TIMER_PAN_PACKET_COUNT)
+static void pan_timeout_handler(int signo, siginfo_t * info, void *context)
+{
+    RTK_UNUSED(info);
+    RTK_UNUSED(context);
+    uint16_t conn_handle = (signo - SIGRTMIN);
+    tRTK_CONN_PROF *phci_conn = find_connection_by_handle(&rtk_prof, conn_handle);
+    if (phci_conn)
     {
-        RtkLogMsg("count pan packet timeout, pan_packet_count = %d",rtk_prof.pan_packet_count);
-        if(rtk_prof.pan_packet_count < PAN_PACKET_COUNT)
+        RtkLogMsg("count pan packet timeout, pan_packet_count = %d for handle %x",phci_conn->pan_packet_count, conn_handle);
+        if(phci_conn->pan_packet_count < PAN_PACKET_COUNT)
         {
-            if(is_profile_busy(profile_pan))
+            if(is_conn_profile_busy(phci_conn, profile_pan))
             {
-                RtkLogMsg("timeout_handler: pan busy->idle!");
-                update_profile_state(profile_pan, FALSE);
+                RtkLogMsg("pan_timeout_handler: pan busy->idle!");
+                update_conn_profile_state(phci_conn, profile_pan, FALSE);
             }
         }
         else
         {
-            if(!is_profile_busy(profile_pan))
+            if(!is_conn_profile_busy(phci_conn, profile_pan))
             {
-                RtkLogMsg("timeout_handler: pan idle->busy!");
-                update_profile_state(profile_pan, TRUE);
+                RtkLogMsg("pan_timeout_handler: pan idle->busy!");
+                update_conn_profile_state(phci_conn, profile_pan, TRUE);
             }
         }
         rtk_prof.pan_packet_count = 0;
+        phci_conn->pan_packet_count = 0;
     }
     else
     {
-        ALOGE("rtk_parse_data timer unspported signo(%d)", signo);
+        ALOGE("pan_timeout_handler no conn for handle(%d)", conn_handle);
     }
 }
 
@@ -1409,6 +1932,24 @@ static void notify_func(union sigval sig)
 {
     int signo = sig.sival_int;
     timeout_handler(signo, NULL, NULL);
+}
+
+static void hogp_notify_func(union sigval sig)
+{
+    int signo = sig.sival_int;
+    hogp_timeout_handler(signo, NULL, NULL);
+}
+
+static void a2dp_notify_func(union sigval sig)
+{
+    int signo = sig.sival_int;
+    a2dp_timeout_handler(signo, NULL, NULL);
+}
+
+static void pan_notify_func(union sigval sig)
+{
+    int signo = sig.sival_int;
+    pan_timeout_handler(signo, NULL, NULL);
 }
 
 #if 0
@@ -2013,7 +2554,6 @@ int create_udpsocket_socket()
     {
         ALOGE("create udpsocket error...%s\n", strerror(errno));
         rtk_prof.coex_recv_thread_running = 0;
-        close(rtk_prof.udpsocket);
         RtkLogMsg("close socket %d", rtk_prof.udpsocket);
         pthread_mutex_unlock(&rtk_prof.btwifi_mutex);
         return -1 ;
@@ -2030,7 +2570,10 @@ int create_udpsocket_socket()
     rtk_prof.client_addr.sin_port = htons(CONNECT_PORT_WIFI);
 
     optval = 1;
-    setsockopt(rtk_prof.udpsocket, SOL_SOCKET, SO_REUSEADDR, (const void *)&optval , sizeof(int));
+    int ret = setsockopt(rtk_prof.udpsocket, SOL_SOCKET, SO_REUSEADDR, (const void *)&optval , sizeof(int));
+    if(ret == -1){
+        ALOGE("%s, setsockopt error: %s", __func__, strerror(errno));
+    }
 
     if (bind(rtk_prof.udpsocket, (struct sockaddr *)&rtk_prof.server_addr, sizeof(rtk_prof.server_addr)) < 0)
     {
@@ -2177,9 +2720,6 @@ void rtk_parse_init(void)
     pthread_mutex_init(&rtk_prof.profile_mutex, NULL);
     pthread_mutex_init(&rtk_prof.coex_mutex, NULL);
     pthread_mutex_init(&rtk_prof.btwifi_mutex, NULL);
-    alloc_a2dp_packet_count_timer();
-    alloc_pan_packet_count_timer();
-    alloc_hogp_packet_count_timer();
     alloc_polling_timer();
 
     init_profile_hash(&rtk_prof);
@@ -2190,14 +2730,28 @@ void rtk_parse_init(void)
         ALOGE("UDP socket fail, try to use rtk_btcoex chrdev");
         open_btcoex_chrdev();
     }
+#ifdef RTK_ROLE_SWITCH_RETRY
+    memset(role_monitor_pool,0,sizeof(role_monitor_pool));
+#endif
+}
+
+void free_count_timer()
+{
+    RT_LIST_HEAD* head = &rtk_prof.conn_hash;
+    RT_LIST_ENTRY* iter = NULL, *temp = NULL;
+    tRTK_CONN_PROF* desc = NULL;
+
+    LIST_FOR_EACH_SAFELY(iter, temp, head)
+    {
+        desc = LIST_ENTRY(iter, tRTK_CONN_PROF, list);
+        free_conn_packet_count_timer(desc);
+    }
 }
 
 void rtk_parse_cleanup()
 {
     RtkLogMsg("rtk_profile_cleanup");
-    free_a2dp_packet_count_timer();
-    free_pan_packet_count_timer();
-    free_hogp_packet_count_timer();
+    free_count_timer();
     free_polling_timer();
 
     flush_connection_hash(&rtk_prof);
@@ -2380,9 +2934,20 @@ static void rtk_handle_cmd_complete_evt(uint8_t*p, uint8_t len)
             break;
         }
 
-        case 0xfc1b:
+        case HCI_VENDOR_NEW_SET_PROFILE_REPORT_COMMAND:
             RtkLogMsg("received cmd complete event for fc1b");
-            poweroff_allowed = 1;
+            if(!fc1b_4_coex) {
+                status = *p++;
+                if(status == 0) {
+                    fc1b_4_coex = true;
+                }
+                poweroff_allowed = 1;
+                if(rtkbt_capture_fw_log ){
+                    ALOGI("%s, begin to enable fw log", __func__);
+                    uint8_t enable_fw_log_param[4] = {0x00,0x00,0x00,0x01};
+                    rtk_vendor_cmd_to_fw(HCI_ENABLE_FW_LOG, 4, enable_fw_log_param, NULL);
+                }
+            }
             break;
 
         case HCI_VENDOR_MAILBOX_CMD:
@@ -2424,7 +2989,11 @@ static void rtk_handle_connection_complete_evt(uint8_t* p)
             {
                 add_connection_to_hash(&rtk_prof, hci_conn);
                 hci_conn->profile_bitmap = 0;
-                memset(hci_conn->profile_refcount, 0, 8);
+                hci_conn->profile_status = 0;
+                hci_conn->timer_a2dp_packet_count = (timer_t)-1;
+                hci_conn->timer_pan_packet_count = (timer_t)-1;
+                hci_conn->timer_hogp_packet_count = (timer_t)-1;
+                memset(hci_conn->profile_refcount, 0, profile_max);
                 if((0 == link_type) ||(2 == link_type))//sco or esco
                 {
                     hci_conn->type = 1;
@@ -2442,7 +3011,8 @@ static void rtk_handle_connection_complete_evt(uint8_t* p)
         {
             RtkLogMsg("HCI Connection handle(0x%x) has already exist!", handle);
             hci_conn->profile_bitmap = 0;
-            memset(hci_conn->profile_refcount, 0, 8);
+            hci_conn->profile_status = 0;
+            memset(hci_conn->profile_refcount, 0, profile_max);
             if((0 == link_type)||(2 == link_type))//sco or esco
             {
                 hci_conn->type = 1;
@@ -2516,13 +3086,18 @@ static void rtk_handle_disconnect_complete_evt(uint8_t* p)
                     if(hci_conn->profile_bitmap & BIT(profile_voice))
                         update_profile_connection(hci_conn, profile_voice, FALSE);
 
-                    update_profile_connection(hci_conn, profile_hid, FALSE);
+                    if(hci_conn->profile_bitmap & BIT(profile_le_audio))
+                        update_profile_connection(hci_conn, profile_le_audio, FALSE);
+                    //if the conn is for profile_le_audio, then profile_hid bit of profile_bitmap must be 0, add else
+                    else
+                        update_profile_connection(hci_conn, profile_hid, FALSE);
                     break;
                 }
 
                 default:
                     break;
             }
+            free_conn_packet_count_timer(hci_conn);
             delete_connection_from_hash(hci_conn);
         }
         else
@@ -2559,7 +3134,11 @@ static void rtk_handle_le_connection_complete_evt(uint8_t* p, bool enhanced)
             if(hci_conn) {
                 add_connection_to_hash(&rtk_prof, hci_conn);
                 hci_conn->profile_bitmap = 0;
-                memset(hci_conn->profile_refcount, 0, 8);
+                hci_conn->profile_status = 0;
+                hci_conn->timer_a2dp_packet_count = (timer_t)-1;
+                hci_conn->timer_pan_packet_count = (timer_t)-1;
+                hci_conn->timer_hogp_packet_count = (timer_t)-1;
+                memset(hci_conn->profile_refcount, 0, profile_max);
                 hci_conn->type = 2;
                 update_profile_connection(hci_conn, profile_hid, TRUE); //for coex, le is the same as hid
                 update_hid_active_state(handle, interval);
@@ -2569,7 +3148,8 @@ static void rtk_handle_le_connection_complete_evt(uint8_t* p, bool enhanced)
         } else {
             RtkLogMsg("hci connection handle(0x%x) has already exist!", handle);
             hci_conn->profile_bitmap = 0;
-            memset(hci_conn->profile_refcount, 0, 8);
+            hci_conn->profile_status = 0;
+            memset(hci_conn->profile_refcount, 0, profile_max);
             hci_conn->type = 2;
             update_profile_connection(hci_conn, profile_hid, TRUE);
             update_hid_active_state(handle, interval);
@@ -2592,6 +3172,92 @@ static void rtk_handle_le_connection_update_complete_evt(uint8_t* p)
     update_hid_active_state(handle, interval);
 }
 
+static void rtk_handle_le_cis_established_evt(uint8_t* p)
+{
+    uint16_t handle;
+    uint8_t status;
+    tRTK_CONN_PROF* hci_conn = NULL;
+
+    status = *p++;
+    STREAM_TO_UINT16 (handle, p);
+    if(status == 0) {
+        hci_conn = find_connection_by_handle(&rtk_prof, handle);
+        if(hci_conn == NULL) {
+            hci_conn = allocate_connection_by_handle(handle);
+            if(hci_conn) {
+                add_connection_to_hash(&rtk_prof, hci_conn);
+                hci_conn->profile_bitmap = 0;
+                hci_conn->profile_status = 0;
+                hci_conn->timer_a2dp_packet_count = (timer_t)-1;
+                hci_conn->timer_pan_packet_count = (timer_t)-1;
+                hci_conn->timer_hogp_packet_count = (timer_t)-1;
+                memset(hci_conn->profile_refcount, 0, profile_max);
+                hci_conn->type = 2;
+                update_profile_connection(hci_conn, profile_le_audio, TRUE);
+            } else {
+                ALOGE("cis connection allocate fail");
+            }
+        } else {
+            RtkLogMsg("cis connection handle(0x%x) has already exist!", handle);
+            hci_conn->profile_bitmap = 0;
+            hci_conn->profile_status = 0;
+            memset(hci_conn->profile_refcount, 0, profile_max);
+            hci_conn->type = 2;
+            update_profile_connection(hci_conn, profile_le_audio, TRUE);
+        }
+    }
+}
+
+static void rtk_handle_le_big_complete_evt(uint8_t* p)
+{
+    uint16_t handle;
+    uint8_t status;
+    tRTK_CONN_PROF* hci_conn = NULL;
+
+    status = *p++;
+    handle = iso_min_conn_handle;
+    if(status == 0) {
+        hci_conn = find_connection_by_handle(&rtk_prof, handle);
+        if(hci_conn == NULL) {
+            hci_conn = allocate_connection_by_handle(handle);
+            if(hci_conn) {
+                add_connection_to_hash(&rtk_prof, hci_conn);
+                hci_conn->profile_bitmap = 0;
+                hci_conn->profile_status = 0;
+                memset(hci_conn->profile_refcount, 0, profile_max);
+                hci_conn->type = 2;
+                update_profile_connection(hci_conn, profile_le_audio, TRUE);
+            } else {
+                ALOGE("bis connection allocate fail");
+            }
+        } else {
+            RtkLogMsg("bis connection handle(0x%x) has already exist!", handle);
+            hci_conn->profile_bitmap = 0;
+            hci_conn->profile_status = 0;
+            memset(hci_conn->profile_refcount, 0, profile_max);
+            hci_conn->type = 2;
+            update_profile_connection(hci_conn, profile_le_audio, TRUE);
+        }
+    }
+}
+
+static void rtk_handle_le_terminate_big_complete_evt()
+{
+    uint16_t handle = iso_min_conn_handle;
+
+    tRTK_CONN_PROF *hci_conn = find_connection_by_handle(&rtk_prof, handle);
+    if(hci_conn)
+    {
+        if(hci_conn->profile_bitmap & BIT(profile_le_audio))
+            update_profile_connection(hci_conn, profile_le_audio, FALSE);
+        delete_connection_from_hash(hci_conn);
+    }
+    else
+    {
+        ALOGE("HCI Connection handle(0x%x) not found", handle);
+    }
+}
+
 static void rtk_handle_le_meta_evt(uint8_t* p)
 {
     uint8_t sub_event = *p++;
@@ -2605,7 +3271,15 @@ static void rtk_handle_le_meta_evt(uint8_t* p)
     case HCI_BLE_LL_CONN_PARAM_UPD_EVT:
         rtk_handle_le_connection_update_complete_evt(p);
         break;
-
+    case HCI_BLE_CIS_EST_EVT:
+        rtk_handle_le_cis_established_evt(p);
+        break;
+    case HCI_BLE_CREATE_BIG_CPL_EVT:
+        rtk_handle_le_big_complete_evt(p);
+        break;
+    case HCI_BLE_TERM_BIG_CPL_EVT:
+        rtk_handle_le_terminate_big_complete_evt();
+        break;
     default :
         break;
     }
@@ -2745,11 +3419,24 @@ void rtk_parse_internal_event_intercept(uint8_t *p_msg)
         case HCI_CONNECTION_COMP_EVT:
         case HCI_ESCO_CONNECTION_COMP_EVT:
             rtk_handle_connection_complete_evt(p);
+#ifdef RTK_ROLE_SWITCH_RETRY
+            /*update role switch pool ,record this info*/
+            rtk_record_connection_info(p);
+#endif
             break;
 
         case HCI_DISCONNECTION_COMP_EVT:
             rtk_handle_disconnect_complete_evt(p);
+#ifdef RTK_ROLE_SWITCH_RETRY
+            rtk_connection_info_clear(p);
+#endif
             break;
+
+#ifdef RTK_ROLE_SWITCH_RETRY
+        case HCI_ROLE_CHANGE_EVT:
+            rtk_handle_role_change_evt(p);
+            break;
+#endif
 
         case HCI_VENDOR_SPECIFIC_EVT:
         {
@@ -2760,6 +3447,8 @@ void rtk_parse_internal_event_intercept(uint8_t *p_msg)
                 if((len-2) != 8)
                     RtkLogMsg("rtk_parse_internal_event_intercept:HCI_VENDOR_SPECIFIC_EVT:HCI_VENDOR_PTA_AUTO_REPORT_EVENT len=%d", len);
                 rtk_notify_info_to_wifi(AUTO_REPORT, (len-2), (uint8_t *)p);
+            }else if(subcode == HCI_VENDOR_FW_LOG_REPORT_EVENT){
+				is_fw_log = TRUE;
             }
             break;
         }
@@ -2832,7 +3521,7 @@ void rtk_parse_l2cap_data(uint8_t *pp, uint8_t direction)
     STREAM_TO_UINT16 (pdu_len, pp);
     STREAM_TO_UINT16 (channel_ID, pp);
 
-    if(flag != RTK_START_PACKET_BOUNDARY)
+    if(flag == RTK_CONTINUATION_PACKET_BOUNDARY)
       return;
 
     if(channel_ID == 0x0001)
@@ -2929,7 +3618,7 @@ void rtk_delete_le_profile(BD_ADDR bdaddr, uint16_t handle, uint8_t profile_map)
 void rtk_add_le_data_count(uint8_t data_type)
 {
     RtkLogMsg("rtk_add_le_data_count, data_type is %x", data_type);
-
+/* unused function
     if((data_type == 1) || (data_type == 2))//1:keyboard, 2:mouse
     {
         rtk_prof.hogp_packet_count++;
@@ -2949,13 +3638,18 @@ void rtk_add_le_data_count(uint8_t data_type)
             update_profile_state(profile_voice, TRUE);
         }
     }
+*/
 }
 
 void rtk_set_bt_on(uint8_t bt_on) {
     RtkLogMsg("bt stack is init");
+    pthread_mutex_lock(&rtk_prof.coex_mutex);
     rtk_prof.bt_on = bt_on;
+    pthread_mutex_unlock(&rtk_prof.coex_mutex);
+    if(!bt_on)
+      return;
     uint8_t ttmp[1] = {1};
-    rtk_vendor_cmd_to_fw(0xfc1b, 1, ttmp, NULL);
+    rtk_vendor_cmd_to_fw(HCI_VENDOR_NEW_SET_PROFILE_REPORT_COMMAND, 1, ttmp, NULL);
 }
 
 static rtk_parse_manager_t parse_interface = {

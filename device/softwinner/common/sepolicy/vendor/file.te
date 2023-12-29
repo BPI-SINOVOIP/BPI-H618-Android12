@@ -14,3 +14,6 @@ type eink_data_file, file_type, data_file_type, core_data_file_type;
 
 # Incremental file system driver
 type vendor_incremental_module, vendor_file_type, file_type;
+
+# rtkbt
+type bluetooth_vendor_data_file, file_type, data_file_type;

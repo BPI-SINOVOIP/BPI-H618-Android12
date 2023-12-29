@@ -88,8 +88,8 @@ extern int timer_create(clockid_t clockid, struct sigevent *sevp,
 extern int timer_delete(timer_t timerid);
 
 int timer_settime(timer_t timerid, int flags,
-                                 const struct itimerspec *new_value,
-                                                          struct itimerspec * old_value);
+                      const struct itimerspec *new_value,
+                      struct itimerspec * old_value);
 /******************************************************************************
 **  Static variables
 ******************************************************************************/
@@ -216,6 +216,7 @@ void poll_timer_flush(void)
     struct itimerspec ts;
     struct sigevent se;
 
+    memset(&se, 0, sizeof(struct sigevent));
     BTPOLLDBG("poll_timer_flush: state %d", bt_poll_cb.state);
 
     if (bt_poll_cb.state != POLL_ENABLED)

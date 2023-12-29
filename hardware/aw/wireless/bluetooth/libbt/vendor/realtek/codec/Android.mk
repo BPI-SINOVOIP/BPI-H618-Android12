@@ -6,6 +6,7 @@ ifneq (,$(wildcard $(LOCAL_PATH)))
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
+        ./plc/sbcplc.c \
         ./sbc/sbc.c \
         ./sbc/sbc_primitives.c \
         ./sbc/sbc_primitives_mmx.c \
