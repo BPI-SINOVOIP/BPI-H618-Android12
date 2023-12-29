@@ -34,7 +34,7 @@
 #include <linux/of_net.h>
 #include <linux/of_gpio.h>
 #include <linux/io.h>
-//#include <linux/sunxi-sid.h>
+#include <linux/sunxi-sid.h>
 #include <linux/reset.h>
 #include "sunxi-gmac.h"
 #ifdef CONFIG_RTL8363_NB
@@ -70,6 +70,8 @@
 #define circ_space(head, tail, size) circ_cnt((tail), ((head) + 1), (size))
 
 #define circ_inc(n, s) (((n) + 1) % (s))
+
+#define RTL8211FCG_PHY_ID 0x001cc916
 
 #define GETH_MAC_ADDRESS "00:00:00:00:00:00"
 static char *mac_str = GETH_MAC_ADDRESS;
@@ -919,7 +921,9 @@ static int geth_phy_init(struct net_device *ndev)
 			if (!phydev_tmp)
 				continue;
 
-			if (phydev_tmp->phy_id == EPHY_ID) {
+			pr_err("BPI: addr=%d is not null, phydev_tmp->phy_id=%x \n", addr, phydev_tmp->phy_id);
+
+			if (phydev_tmp->phy_id == EPHY_ID || phydev_tmp->phy_id == RTL8211FCG_PHY_ID) {
 				phydev = phydev_tmp;
 				priv->phy_addr = addr;
 				break;
@@ -1270,7 +1274,7 @@ static const struct dev_pm_ops geth_pm_ops = {
 static const struct dev_pm_ops geth_pm_ops;
 #endif /* CONFIG_PM */
 
-#define sunxi_get_soc_chipid(x) {}
+//#define sunxi_get_soc_chipid(x) {}
 static void geth_chip_hwaddr(u8 *addr)
 {
 #define MD5_SIZE	16
@@ -1514,7 +1518,7 @@ static int geth_open(struct net_device *ndev)
 		}
 	}
 
-	ret = sunxi_mac_reset((void *)priv->base, &sunxi_udelay, 10000);
+	ret = sunxi_mac_reset((void *)priv->base, &sunxi_udelay, 50000);
 	if (ret) {
 		netdev_err(ndev, "Initialize hardware error\n");
 		goto desc_err;
@@ -2248,6 +2252,8 @@ static int geth_hw_init(struct platform_device *pdev)
 
 	if (!of_property_read_u32(np, "rx-delay", &value))
 		priv->rx_delay = value;
+		
+	pr_info("BPI: tx_delay=%d rx_delay=%d\n", priv->tx_delay, priv->rx_delay);
 
 	/* config pinctrl */
 	if (EXT_PHY == priv->phy_ext) {
@@ -2448,6 +2454,20 @@ static int geth_remove(struct platform_device *pdev)
 	return 0;
 }
 
+static void geth_shutdown(struct platform_device *pdev)
+{
+	struct net_device *ndev = platform_get_drvdata(pdev);
+	struct geth_priv *priv = netdev_priv(ndev);
+
+	device_remove_file(&pdev->dev, &dev_attr_gphy_test);
+
+	netif_napi_del(&priv->napi);
+	unregister_netdev(ndev);
+	geth_hw_release(pdev);
+	platform_set_drvdata(pdev, NULL);
+	free_netdev(ndev);
+}
+
 static const struct of_device_id geth_of_match[] = {
 	{.compatible = "allwinner,sunxi-gmac",},
 	{},
@@ -2457,6 +2477,7 @@ MODULE_DEVICE_TABLE(of, geth_of_match);
 static struct platform_driver geth_driver = {
 	.probe	= geth_probe,
 	.remove = geth_remove,
+	.shutdown = geth_shutdown,
 	.driver = {
 		   .name = "sunxi-gmac",
 		   .owner = THIS_MODULE,
