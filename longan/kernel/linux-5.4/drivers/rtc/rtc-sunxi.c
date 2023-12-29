@@ -709,6 +709,7 @@ static void __iomem *fake_poweroff_rtc_addr;
 
 static void poweroff_deal(void *data)
 {
+	pr_info("fake poweroff\n");
 	if (fake_poweroff_rtc_addr)
 		writel(0xe, fake_poweroff_rtc_addr);
 }

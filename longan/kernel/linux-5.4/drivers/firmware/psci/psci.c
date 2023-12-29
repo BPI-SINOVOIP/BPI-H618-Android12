@@ -275,6 +275,7 @@ static struct notifier_block psci_sys_reset_nb = {
 
 static void psci_sys_poweroff(void)
 {
+	pr_info("psci_sys_poweroff\n");
 	invoke_psci_fn(PSCI_0_2_FN_SYSTEM_OFF, 0, 0, 0);
 }
 
