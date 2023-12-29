@@ -478,7 +478,7 @@ s32 set_vsif_config(void *config, struct disp_device_dynamic_config *scfg)
 			/*reset vsif to default*/
 			if (core->dev_func.set_vsif_config(config, &core->mode.pVideo,
 				&core->mode.pProduct, scfg)) {
-				pr_info("Error: set vsif failed\n");
+				//pr_info("Error: set vsif failed\n");
 				return -1;
 			}
 		}
@@ -489,7 +489,7 @@ s32 set_vsif_config(void *config, struct disp_device_dynamic_config *scfg)
 
 	if (core->dev_func.set_vsif_config(config, &core->mode.pVideo, &core->mode.pProduct,
 									   scfg)) {
-		pr_info("Error: set vsif failed\n");
+		//pr_info("Error: set vsif failed\n");
 		return -1;
 	}
 

@@ -622,7 +622,7 @@ int packets_Configure(hdmi_tx_dev_t *dev, videoParams_t *video,
 	LOG_TRACE();
 
 	if (dev->snps_hdmi_ctrl.hdmi_on == 0) {
-		pr_info("DVI mode selected: packets not configured\n");
+		//pr_info("DVI mode selected: packets not configured\n");
 		return TRUE;
 	}
 

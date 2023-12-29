@@ -171,7 +171,7 @@ void rtkbt_heartbeat_cmpl_cback (void *p_params)
         status = pp_params[HCI_EVT_HEARTBEAT_STATUS_OFFSET];
         seqnum = pp_params[HCI_EVT_HEARTBEAT_SEQNUM_OFFSET_H]<<8 | pp_params[HCI_EVT_HEARTBEAT_SEQNUM_OFFSET_L];
     }
-    ALOGI("rtkbt_heartbeat_cmpl_cback: @bbb Current SeqNum = %d,should SeqNum=%d, status = %d", seqnum, nextSeqNum, status);
+    //ALOGI("rtkbt_heartbeat_cmpl_cback: @bbb Current SeqNum = %d,should SeqNum=%d, status = %d", seqnum, nextSeqNum, status);
     if(status == 0 &&( seqnum >= nextSeqNum  && seqnum <= heartbeatCmdCount))
     {
         if(seqnum == 1)
@@ -208,8 +208,8 @@ static void heartbeat_timed_out()//(union sigval arg)
             pthread_mutex_unlock(&heartbeat_mutex);
             return;
         }
-        ALOGE("heartbeat_timed_out: heartbeatCount = %d, expected nextSeqNum = %d",heartbeatCount, nextSeqNum);
-        ALOGE("heartbeat_timed_out,controller may be suspend! Now restart bluedroid stack\n");
+        ALOGD("heartbeat_timed_out: heartbeatCount = %d, expected nextSeqNum = %d",heartbeatCount, nextSeqNum);
+        ALOGD("heartbeat_timed_out,controller may be suspend! Now restart bluedroid stack\n");
         count = heartbeatCount;
         pthread_mutex_unlock(&heartbeat_mutex);
         usleep(1000);
@@ -223,7 +223,7 @@ static void heartbeat_timed_out()//(union sigval arg)
     {
 
         heartbeatCmdCount++;
-        ALOGE("heartbeat_timed_out: @bbb heartbeatCmdCount = %d, expected nextSeqNum = %d", heartbeatCmdCount, nextSeqNum);
+        //ALOGD("heartbeat_timed_out: @bbb heartbeatCmdCount = %d, expected nextSeqNum = %d", heartbeatCmdCount, nextSeqNum);
         userial_send_cmd_to_controller(heartbeat_cmd, 4);
 
         poll_timer_flush();
