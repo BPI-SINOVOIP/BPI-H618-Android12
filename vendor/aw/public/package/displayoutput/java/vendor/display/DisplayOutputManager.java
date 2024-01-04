@@ -338,7 +338,7 @@ public abstract class DisplayOutputManager {
     }
 
     // exten for hdmi interface
-    public final class SinkInfo {
+    public static final class SinkInfo {
         public int Type;
         public int[] SupportedModes;
         public int CurrentMode;

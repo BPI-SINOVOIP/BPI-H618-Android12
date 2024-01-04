@@ -26,513 +26,286 @@ import vendor.display.output.IDisplayOutputManager;
 
 public class HomletDisplayOutputManager extends DisplayOutputManager{
     private static final String TAG = "HomletDisplayOutputManager";
-    private IDisplayOutputManager mService = null;
-    private static boolean DEBUG_ON = false;
+    private DisplayOutputManagerImpl mImpl = null;
 
-    public HomletDisplayOutputManager(){
-        if (mService != null){
-            return;
-        }
-
-        IBinder binder = Binder.allowBlocking(ServiceManager.waitForDeclaredService(
-                    "vendor.display.output.IDisplayOutputManager/default"));
-        if (binder != null) {
-            mService = IDisplayOutputManager.Stub.asInterface(binder);
-            Log.d(TAG, "get IDisplayOutputManager service success");
-        } else {
-            Log.d(TAG, "get IDisplayOutputManager service failed");
-        }
-    }
-    private static void debug(String msg) {
-        if (DEBUG_ON)
-            Log.d(TAG, msg);
+    public HomletDisplayOutputManager() {
+        mImpl = new DisplayOutputManagerImpl();
+        mImpl.setTAG(TAG);
     }
 
-    /*@hide*/
-    public static final int DISPLAY_OUTPUT_TYPE_MASK = 0xff00;
-    /*@hide*/
-    public static final int DISPLAY_OUTPUT_MODE_MASK = 0xff;
-
-    public int getDisplayOutput(int display){
-        int retval = 0;
-        try {
-          retval = mService.getDisplayOutput(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getDisplayOutput(int display) {
+        return mImpl.getDisplayOutput(display);
     }
 
-    public int setDisplayOutput(int display, int format){
-    int retval = 0;
-        try {
-          retval = mService.setDisplayOutput(display,format);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplayOutput(int display, int format) {
+        return mImpl.setDisplayOutput(display, format);
     }
 
-    public int getDisplayOutputType(int display){
-        int retval = 0;
-        try {
-          retval = mService.getDisplayOutputType(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getDisplayOutputType(int display) {
+        return mImpl.getDisplayOutputType(display);
     }
 
-    public int getDisplayOutputMode(int display){
-        int retval = 0;
-        try {
-          retval = mService.getDisplayOutputMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getDisplayOutputMode(int display) {
+        return mImpl.getDisplayOutputMode(display);
     }
 
-    public int setDisplayOutputMode(int display, int mode){
-        int retval = 0;
-        try {
-          retval = mService.setDisplayOutputMode(display,mode);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplayOutputMode(int display, int mode) {
+        return mImpl.setDisplayOutputMode(display, mode);
     }
 
+    @Override
     public int getDisplayOutputPixelFormat(int display) {
-        int retval = 0;
-        try {
-          retval = mService.getDisplayOutputPixelFormat(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.getDisplayOutputPixelFormat(display);
     }
 
+    @Override
     public int setDisplayOutputPixelFormat(int display, int format) {
-        int retval = 0;
-        try {
-          retval = mService.setDisplayOutputPixelFormat(display, format);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.setDisplayOutputPixelFormat(display, format);
     }
 
+    @Override
     public int getDisplayOutputCurDataspaceMode(int display) {
-        int retval = 0;
-        try {
-          retval = mService.getDisplayOutputCurDataspaceMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.getDisplayOutputCurDataspaceMode(display);
     }
 
+    @Override
     public int getDisplayOutputDataspaceMode(int display) {
-        int retval = 0;
-        try {
-          retval = mService.getDisplayOutputDataspaceMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.getDisplayOutputDataspaceMode(display);
     }
 
+    @Override
     public int setDisplayOutputDataspaceMode(int display, int mode) {
-        int retval = 0;
-        try {
-          retval = mService.setDisplayOutputDataspaceMode(display, mode);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.setDisplayOutputDataspaceMode(display, mode);
     }
 
-    public boolean isSupportHdmiMode(int display, int mode){
-        boolean retval = false;
-        try {
-          retval = mService.isSupportHdmiMode(display,mode);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public boolean isSupportHdmiMode(int display, int mode) {
+        return mImpl.isSupportHdmiMode(display, mode);
     }
 
-    public int[] getSupportModes(int display, int type){
-        int[] retval = null;
-        try {
-          retval = mService.getSupportModes(display,type);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int[] getSupportModes(int display, int type) {
+        return mImpl.getSupportModes(display, type);
     }
 
-     /* interface for 3D mode setting */
-    public int getDisplaySupport3DMode(int display){
-        int retval = 0;
-        try {
-          retval = mService.getDisplaySupport3DMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    /* interface for 3D mode setting */
+    @Override
+    public int getDisplaySupport3DMode(int display) {
+        return mImpl.getDisplaySupport3DMode(display);
     }
 
-    public int setDisplay3DMode(int display, int mode){
-        int retval = 0;
-        try {
-          retval = mService.setDisplay3DMode(display, mode, 0);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplay3DMode(int display, int mode) {
+        return mImpl.setDisplay3DMode(display, mode);
     }
 
-    public int setDisplay3DMode(int display, int mode, int videoCropHeight){
-        int retval = 0;
-        try {
-          retval = mService.setDisplay3DMode(display, mode, videoCropHeight);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplay3DMode(int display, int mode, int videoCropHeight) {
+        return mImpl.setDisplay3DMode(display, mode, videoCropHeight);
     }
 
-    public int setDisplay3DLayerOffset(int display, int offset){
-        int retval = 0;
-        try {
-          retval = mService.setDisplay3DLayerOffset(display,offset);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplay3DLayerOffset(int display, int offset) {
+        return mImpl.setDisplay3DLayerOffset(display, offset);
     }
 
+    @Override
     public boolean isCurrent3Doutput(int display) {
-        if (getDisplayOutputMode(display) == DISPLAY_TVFORMAT_1080P_24HZ_3D_FP)
-            return true;
-        else
-            return false;
+        return mImpl.isCurrent3Doutput(display);
     }
 
-     /* interface for screen margin/offset setting */
-    public int[] getDisplayMargin(int display){
-        int[] retval = null;
-        try {
-            retval = mService.getDisplayMargin(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    /* interface for screen margin/offset setting */
+    @Override
+    public int[] getDisplayMargin(int display) {
+        return mImpl.getDisplayMargin(display);
     }
 
-    public int[] getDisplayOffset(int display){
-        int[] retval = null;
-        try {
-          retval = mService.getDisplayOffset(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int[] getDisplayOffset(int display) {
+        return mImpl.getDisplayOffset(display);
     }
 
-    public int setDisplayMargin(int display, int margin_x, int margin_y){
-        int retval = 0;
-        try {
-          retval = mService.setDisplayMargin(display,margin_x,margin_y);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplayMargin(int display, int margin_x, int margin_y) {
+        return mImpl.setDisplayMargin(display, margin_x, margin_y);
     }
 
-    public int setDisplayOffset(int display, int offset_x, int offset_y){
-        int retval = 0;
-        try {
-          retval = mService.setDisplayOffset(display,offset_x,offset_y);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    /* just for defalut platform*/
+    @Override
+    public boolean getHdmiFullscreen(int display) {
+        return mImpl.getHdmiFullscreen(display);
+    }
+    @Override
+    public int setHdmiFullscreen(int display, boolean full) {
+        return mImpl.setHdmiFullscreen(display, full);
     }
 
-     /* interface for display enhance effect */
-    public int getDisplayEdge(int display){
-        int retval = 0;
-        try {
-            retval = mService.getEnhanceComponent(display, ENHANCE_EDGE);
-          //retval = mService.getDisplayEdge(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplayOffset(int display, int offset_x, int offset_y) {
+        return mImpl.setDisplayOffset(display, offset_x, offset_y);
     }
 
-    public int setDisplayEdge(int display, int value){
-        int retval = 0;
-        try {
-            retval = mService.setEnhanceComponent(display, ENHANCE_EDGE, value);
-          //retval = mService.setDisplayEdge(display,value);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    /* interface for display enhance effect */
+    @Override
+    public int getDisplayEdge(int display) {
+        return mImpl.getDisplayEdge(display);
     }
 
-    public int getDisplayDetail(int display){
-        int retval = 0;
-        try {
-            retval = mService.getEnhanceComponent(display, ENHANCE_DETAIL);
-          //retval = mService.getDisplayDetail(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplayEdge(int display, int value) {
+        return mImpl.setDisplayEdge(display, value);
     }
 
-    public int setDisplayDetail(int display, int value){
-        int retval = 0;
-        try {
-            retval = mService.setEnhanceComponent(display, ENHANCE_DETAIL, value);
-          //retval = mService.setDisplayDetail(display,value);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getDisplayDetail(int display) {
+        return mImpl.getDisplayDetail(display);
     }
 
-    public int getDisplayBright(int display){
-        int retval = 0;
-        try {
-            retval = mService.getEnhanceComponent(display, ENHANCE_BRIGHT);
-          //retval = mService.getDisplayBright(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplayDetail(int display, int value) {
+        return mImpl.setDisplayDetail(display, value);
     }
 
-    public int setDisplayBright(int display, int value){
-        int retval = 0;
-        try {
-            retval = mService.setEnhanceComponent(display, ENHANCE_BRIGHT, value);
-          //retval = mService.setDisplayBright(display,value);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getDisplayBright(int display) {
+        return mImpl.getDisplayBright(display);
     }
 
-    public int getDisplayDenoise(int display){
-        int retval = 0;
-        try {
-            retval = mService.getEnhanceComponent(display, ENHANCE_DENOISE);
-          //retval = mService.getDisplayDenoise(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplayBright(int display, int value) {
+        return mImpl.setDisplayBright(display, value);
     }
 
-    public int setDisplayDenoise(int display, int value){
-        int retval = 0;
-        try {
-            retval = mService.setEnhanceComponent(display, ENHANCE_DENOISE, value);
-          //retval = mService.setDisplayDenoise(display,value);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getDisplayDenoise(int display) {
+        return mImpl.getDisplayDenoise(display);
     }
 
-    public int getDisplaySaturation(int display){
-        int retval = 0;
-        try {
-            retval = mService.getEnhanceComponent(display, ENHANCE_SATURATION);
-          //retval = mService.getDisplaySaturation(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplayDenoise(int display, int value) {
+        return mImpl.setDisplayDenoise(display, value);
     }
 
-    public int setDisplaySaturation(int display, int value){
-        int retval = 0;
-        try {
-            retval = mService.setEnhanceComponent(display, ENHANCE_SATURATION, value);
-          //retval = mService.setDisplaySaturation(display,value);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public boolean getBlackWhiteMode(int display) {
+        return mImpl.getBlackWhiteMode(display);
     }
 
-    public int getDisplayContrast(int display){
-        int retval = 0;
-        try {
-            retval = mService.getEnhanceComponent(display, ENHANCE_CONTRAST);
-          //retval = mService.getDisplayContrast(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setBlackWhiteMode(int display, boolean on) {
+        return mImpl.setBlackWhiteMode(display, on);
     }
 
-    public int setDisplayContrast(int display, int value){
-        int retval = 0;
-        try {
-            retval = mService.setEnhanceComponent(display, ENHANCE_CONTRAST, value);
-          //retval = mService.setDisplayContrast(display,value);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getDisplaySaturation(int display) {
+        return mImpl.getDisplaySaturation(display);
     }
 
-    public int getDisplayEnhanceMode(int display){
-        int retval = 0;
-        try {
-            retval = mService.getEnhanceComponent(display, ENHANCE_MODE);
-          //retval = mService.getDisplayEnhanceMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int setDisplaySaturation(int display, int value) {
+        return mImpl.setDisplaySaturation(display, value);
     }
 
-    public int setDisplayEnhanceMode(int display, int value){
-        int retval = 0;
-        try {
-            retval = mService.setEnhanceComponent(display, ENHANCE_MODE, value);
-          //retval = mService.setDisplayEnhanceMode(display, value);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getDisplayContrast(int display) {
+        return mImpl.getDisplayContrast(display);
+    }
+
+    @Override
+    public int setDisplayContrast(int display, int value) {
+        return mImpl.setDisplayContrast(display, value);
+    }
+
+    @Override
+    public int getDisplayEnhanceMode(int display) {
+        return mImpl.getDisplayEnhanceMode(display);
+    }
+
+    @Override
+    public int setDisplayEnhanceMode(int display, int value) {
+        return mImpl.setDisplayEnhanceMode(display, value);
+    }
+
+    @Override
+    public boolean getReadingMode(int display) {
+        return mImpl.getReadingMode(display);
+    }
+
+    @Override
+    public int setReadingMode(int display, boolean value) {
+        return mImpl.setReadingMode(display, value);
+    }
+
+    @Override
+    public int getSmartBacklight(int display) {
+        return mImpl.getSmartBacklight(display);
+    }
+
+    @Override
+    public int setSmartBacklight(int display, int value) {
+        return mImpl.setSmartBacklight(display, value);
+    }
+
+    @Override
+    public int getColorTemperature(int display) {
+        return mImpl.getColorTemperature(display);
+    }
+
+    @Override
+    public int setColorTemperature(int display, int value) {
+        return mImpl.setColorTemperature(display, value);
     }
 
     static public int getDisplayModeFromFormat(int format) {
-        return format & DISPLAY_OUTPUT_MODE_MASK;
+        return DisplayOutputManagerImpl.getDisplayModeFromFormat(format);
     }
 
     static public int getDisplayTypeFromFormat(int format) {
-        return (format & DISPLAY_OUTPUT_TYPE_MASK) >> 8;
+        return DisplayOutputManagerImpl.getDisplayTypeFromFormat(format);
     }
 
+    @Override
     public int makeDisplayFormat(int type, int mode) {
-        return ((type << 8) & DISPLAY_OUTPUT_TYPE_MASK) | (mode & DISPLAY_OUTPUT_MODE_MASK);
+        return mImpl.makeDisplayFormat(type, mode);
     }
 
+    @Override
     public boolean supportedSNRSetting(int display) {
-        boolean retval = false;
-        try {
-            retval = mService.supportedSNRSetting(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.supportedSNRSetting(display);
     }
 
+    @Override
     public int getSNRFeatureMode(int display) {
-        int mode = SNR_FEATURE_MODE_DISABLE;
-        try {
-            mode = mService.getSNRFeatureMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return mode;
+        return mImpl.getSNRFeatureMode(display);
     }
 
+    @Override
     public int[] getSNRStrength(int display) {
-        int[] retval = null;
-        try {
-            retval = mService.getSNRStrength(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.getSNRStrength(display);
     }
 
+    @Override
     public int setSNRConfig(int display, int mode, int ystrength, int ustrength, int vstrength) {
-        int retval = 0;
-        try {
-            retval = mService.setSNRConfig(display, mode, ystrength, ustrength, vstrength);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.setSNRConfig(display, mode, ystrength, ustrength, vstrength);
     }
 
-    public int getHdmiUserSetting(int display){
-        int retval = 0;
-        try {
-            retval = mService.getHdmiUserSetting(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getHdmiUserSetting(int display) {
+        return mImpl.getHdmiUserSetting(display);
     }
 
-    public int getHdmiNativeMode(int display){
-        int retval = 0;
-        try {
-            retval = mService.getHdmiNativeMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+    @Override
+    public int getHdmiNativeMode(int display) {
+        return mImpl.getHdmiNativeMode(display);
     }
 
+    @Override
     public SinkInfo getSinkInfo(int display) {
-        SinkInfo info = new SinkInfo();
-        int type = getDisplayOutputType(display);
-
-        if (type == DISPLAY_OUTPUT_TYPE_HDMI) {
-            info.Type = DISPLAY_OUTPUT_TYPE_HDMI;
-            info.SupportedModes = getSupportModes(display, info.Type);
-            info.CurrentMode = getDisplayOutputMode(display);
-            info.UserSetting = getHdmiUserSetting(display);
-
-            int nativeMode = getHdmiNativeMode(display);
-            info.IsNative = (nativeMode == info.CurrentMode);
-        }
-        return info;
-    }
-
-    /* hdcp for homlet platform */
-    public int configHdcp(boolean enable) {
-        int retval = 0;
-        try {
-          retval = mService.configHdcp(enable);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
-    }
-
-    public int getConnectedHdcpLevel() {
-        int retval = 0;
-        try {
-            retval = mService.getConnectedHdcpLevel();
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
-    }
-
-    public int getAuthorizedStatus() {
-        int retval = 0;
-        try {
-            retval = mService.getAuthorizedStatus();
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        return retval;
+        return mImpl.getSinkInfo(display);
     }
 }

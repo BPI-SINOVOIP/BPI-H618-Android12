@@ -17,436 +17,145 @@
 package vendor.display;
 
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.ServiceManager;
-import android.os.RemoteException;
-import android.util.Log;
-
-import vendor.display.output.IDisplayOutputManager;
-import vendor.display.config.V1_0.IDisplayConfig;
-import vendor.display.config.V1_0.EnhanceItem;
-
-public class DefaultDisplayOutputManager extends DisplayOutputManager{
+public class DefaultDisplayOutputManager extends DisplayOutputManager {
     private static final String TAG = "DefaultDisplayOutputManager";
-    private IDisplayOutputManager mService = null;
-    private static boolean DEBUG_ON = false;
+    private DisplayOutputManagerImpl mImpl = null;
 
-    public DefaultDisplayOutputManager(){
-        if (mService != null){
-            return;
-        }
-
-        IBinder binder = Binder.allowBlocking(ServiceManager.waitForDeclaredService(
-                    "vendor.display.output.IDisplayOutputManager/default"));
-        if (binder != null) {
-            mService = IDisplayOutputManager.Stub.asInterface(binder);
-            Log.d(TAG, "get IDisplayOutputManager service success");
-        } else {
-            Log.d(TAG, "get IDisplayOutputManager service failed");
-        }
+    public DefaultDisplayOutputManager() {
+        mImpl = new DisplayOutputManagerImpl();
+        mImpl.setTAG(TAG);
     }
 
-    private static void debug(String msg) {
-        if (DEBUG_ON)
-            Log.d(TAG, msg);
+    @Override
+    public int getDisplayOutputType(int display) {
+        return mImpl.getDisplayOutputType(display);
     }
 
-    public int getDisplayOutputMode(int display){
-        int retval = 0;
-        try {
-          retval = mService.getDisplayOutputMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        debug("Display." + display + " getDisplayOutputMode: " +
-                " value(" + retval + ")");
-        return retval;
+    @Override
+    public int getDisplayOutputMode(int display) {
+        return mImpl.getDisplayOutputMode(display);
     }
 
-    public int setDisplayOutputMode(int display, int mode){
-        int retval = 0;
-        try {
-          retval = mService.setDisplayOutputMode(display,mode);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        debug("Display." + display + " setDisplayOutputMode: " +
-                " value(" + retval + ")");
-        return retval;
+    @Override
+    public int setDisplayOutputMode(int display, int mode) {
+        return mImpl.setDisplayOutputMode(display,mode);
     }
 
     /* just for defalut platform*/
+    @Override
     public boolean getHdmiFullscreen(int display) {
-        boolean retval = false;
-        try {
-          retval = mService.getHdmiFullscreen(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        debug("Display." + display + " getHdmiFullscreen: " +
-                " value(" + retval + ")");
-        return retval;
+        return mImpl.getHdmiFullscreen(display);
     }
+    @Override
     public int setHdmiFullscreen(int display, boolean full) {
-        int retval = 0;
-        try {
-          retval = mService.setHdmiFullscreen(display, full);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        debug("Display." + display + " setHdmiFullscreen: " +
-                " value(" + full + ")");
-        return retval;
+        return mImpl.setHdmiFullscreen(display, full);
     }
-
 
     /* interface for 3D mode setting*/
-    public int getDisplay3DMode(int display){
-        int retval = 0;
-        try {
-          retval = mService.getDisplay3DMode(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        debug("Display." + display + " getDisplay3DMode: " +
-                " value(" + retval + ")");
-        return retval;
+    @Override
+    public int getDisplay3DMode(int display) {
+        return mImpl.getDisplay3DMode(display);
     }
 
-    public int setDisplay3DMode(int display, int mode){
-        int retval = 0;
-        try {
-          retval = mService.setDisplay3DMode(display, mode, 0);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        debug("Display." + display + " setDisplay3DMode: " +
-                " value(" + mode + ")");
-        return retval;
+    @Override
+    public int setDisplay3DMode(int display, int mode) {
+        return mImpl.setDisplay3DMode(display, mode);
     }
 
-    public int setDisplay3DMode(int display, int mode, int videoCropHeight){
-        int retval = 0;
-        try {
-          retval = mService.setDisplay3DMode(display, mode, videoCropHeight);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        debug("Display." + display + " setDisplay3DMode: " +
-                " value(" + mode + "-" + videoCropHeight + ")");
-        return retval;
+    @Override
+    public int setDisplay3DMode(int display, int mode, int videoCropHeight) {
+        return mImpl.setDisplay3DMode(display, mode, videoCropHeight);
     }
 
-     /* interface for screen margin/offset setting */
-    public int[] getDisplayMargin(int display){
-        int[] retval = null;
-        try {
-            retval = mService.getDisplayMargin(display);
-        } catch (RemoteException e) {
-            throw e.rethrowFromSystemServer();
-        }
-        debug("Display." + display + " getDisplayMargin: " +
-                " value(" + retval==null? "0":retval[0]+
-                "-" + retval==null?"0":retval[1] + ")");
-        return retval;
+    /* interface for screen margin/offset setting */
+    @Override
+    public int[] getDisplayMargin(int display) {
+        return mImpl.getDisplayMargin(display);
     }
 
-    public int setDisplayMargin(int display, int margin_x, int margin_y){
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return ERROR;
-        }
-        try {
-            mService.setDisplayMargin(display, margin_x, margin_y);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setDisplayMargin:", e);
-        }
-
-        debug("Display." + display + " setDisplayMargin: " +
-                " value(" + margin_x+"-"+margin_y + ") return: " + ret);
-        return ret;
+    @Override
+    public int setDisplayMargin(int display, int margin_x, int margin_y) {
+        return mImpl.setDisplayMargin(display, margin_x, margin_y);
     }
 
     /* interface for display enhance effect*/
-    public int getDisplayBright(int display){
-        int value = 0;
-
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return value;
-        }
-        try {
-            value = mService.getEnhanceComponent(display, ENHANCE_BRIGHT);
-        } catch (RemoteException e) {
-            Log.e(TAG, "getEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " Enhance: " +
-                EnhanceItem.toString(ENHANCE_BRIGHT) + " value: " + value);
-        return value;
+    @Override
+    public int getDisplayBright(int display) {
+        return mImpl.getDisplayBright(display);
     }
 
-    public int setDisplayBright(int display, int value){
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return ERROR;
-        }
-        try {
-            ret = mService.setEnhanceComponent(display, ENHANCE_BRIGHT, value);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " setEnhanceComponent: " +
-                EnhanceItem.toString(ENHANCE_BRIGHT) + " value(" + value + ") return: " + ret);
-        return ret;
+    @Override
+    public int setDisplayBright(int display, int value) {
+        return mImpl.setDisplayBright(display, value);
     }
 
-    public int getDisplaySaturation(int display){
-        int value = 0;
-
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return value;
-        }
-        try {
-            value = mService.getEnhanceComponent(display, ENHANCE_SATURATION);
-        } catch (RemoteException e) {
-            Log.e(TAG, "getEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " Enhance: " +
-                EnhanceItem.toString(ENHANCE_SATURATION) + " value: " + value);
-        return value;
+    @Override
+    public int getDisplaySaturation(int display) {
+        return mImpl.getDisplaySaturation(display);
     }
 
-    public int setDisplaySaturation(int display, int value){
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return ERROR;
-        }
-        try {
-            ret = mService.setEnhanceComponent(display, ENHANCE_SATURATION, value);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " setEnhanceComponent: " +
-                EnhanceItem.toString(ENHANCE_SATURATION) + " value(" + value + ") return: " + ret);
-        return ret;
+    @Override
+    public int setDisplaySaturation(int display, int value) {
+        return mImpl.setDisplaySaturation(display, value);
     }
 
-    public int getDisplayContrast(int display){
-        int value = 0;
-
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return value;
-        }
-        try {
-            value = mService.getEnhanceComponent(display, ENHANCE_CONTRAST);
-        } catch (RemoteException e) {
-            Log.e(TAG, "getEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " Enhance: " +
-                EnhanceItem.toString(ENHANCE_CONTRAST) + " value: " + value);
-        return value;
+    @Override
+    public int getDisplayContrast(int display) {
+        return mImpl.getDisplayContrast(display);
     }
 
-    public int setDisplayContrast(int display, int value){
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return ERROR;
-        }
-        try {
-            ret = mService.setEnhanceComponent(display, ENHANCE_CONTRAST, value);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " setEnhanceComponent: " +
-                EnhanceItem.toString(ENHANCE_CONTRAST) + " value(" + value + ") return: " + ret);
-        return ret;
+    @Override
+    public int setDisplayContrast(int display, int value) {
+        return mImpl.setDisplayContrast(display, value);
     }
 
-    public int getDisplayEnhanceMode(int display){
-        int value = 0;
-
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return value;
-        }
-        try {
-            value = mService.getEnhanceComponent(display, ENHANCE_MODE);
-        } catch (RemoteException e) {
-            Log.e(TAG, "getEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " Enhance: " +
-                EnhanceItem.toString(ENHANCE_MODE) + " value: " + value);
-        return value;
+    @Override
+    public int getDisplayEnhanceMode(int display) {
+        return mImpl.getDisplayEnhanceMode(display);
     }
 
-    public int setDisplayEnhanceMode(int display, int value){
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return ERROR;
-        }
-        try {
-            ret = mService.setEnhanceComponent(display, ENHANCE_MODE, value);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " setEnhanceComponent: " +
-                EnhanceItem.toString(ENHANCE_MODE) + " value(" + value + ") return: " + ret);
-        return ret;
+    @Override
+    public int setDisplayEnhanceMode(int display, int value) {
+        return mImpl.setDisplayEnhanceMode(display, value);
     }
 
+    @Override
     public boolean getBlackWhiteMode(int display) {
-        boolean value = false;
-
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return value;
-        }
-        try {
-            value = mService.getBlackWhiteMode(display);
-        } catch (RemoteException e) {
-            Log.e(TAG, "getBlackWhiteMode:", e);
-        }
-
-        debug("Display." + display + " getBlackWhiteMode: value: " + value);
-        return value;
+        return mImpl.getBlackWhiteMode(display);
     }
 
+    @Override
     public int setBlackWhiteMode(int display, boolean on) {
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-                return ERROR;
-        }
-        try {
-            ret = mService.setBlackWhiteMode(display, on);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setBlackWhiteMode:", e);
-        }
-
-        debug("Display." + display + " setBlackWhiteMode: value(" + on + ") return: " + ret);
-        return ret;
+        return mImpl.setBlackWhiteMode(display, on);
     }
 
-    public int getSmartBacklight(int display){
-        int value = 0;
-
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return value;
-        }
-        try {
-            value = mService.getSmartBacklight(display);
-        } catch (RemoteException e) {
-            Log.e(TAG, "getEnhanceComponent:", e);
-        }
-
-        debug("Display." + display + " getSmartBacklight: " +
-                " value: " + value);
-        return value;
+    @Override
+    public int getSmartBacklight(int display) {
+        return mImpl.getSmartBacklight(display);
     }
 
-    public int setSmartBacklight(int display, int value){
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return ERROR;
-        }
-        try {
-            ret = mService.setSmartBacklight(display, value);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setSmartBacklight:", e);
-        }
-
-        debug("Display." + display + " setSmartBacklight: " +
-                " value(" + value + ") return: " + ret);
-        return ret;
+    @Override
+    public int setSmartBacklight(int display, int value) {
+        return mImpl.setSmartBacklight(display, value);
     }
 
+    @Override
     public boolean getReadingMode(int display){
-        boolean value = false;
-
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return value;
-        }
-
-        try {
-            value = mService.getReadingMode(display);
-        } catch (RemoteException e) {
-            Log.e(TAG, "getReadingMode:", e);
-        }
-        debug("Display." + display + " getReadingMode: " +
-                " value: " + value);
-        return value;
+        return mImpl.getReadingMode(display);
     }
 
-    public int setReadingMode(int display, boolean value){
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return ERROR;
-        }
-
-        try {
-            ret = mService.setReadingMode(display, value);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setReadingMode:", e);
-        }
-
-        debug("Display." + display + " setReadingMode: " +
-                " value(" + value + ") return: " + ret);
-        return ret;
+    @Override
+    public int setReadingMode(int display, boolean value) {
+        return mImpl.setReadingMode(display, value);
     }
 
-    public int getColorTemperature(int display){
-        int value = 0;
-
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return value;
-        }
-
-        try {
-            value = mService.getColorTemperature(display);
-        } catch (RemoteException e) {
-            Log.e(TAG, "getColorTemperature:", e);
-        }
-
-        debug("Display." + display + " getColorTemperature: " +
-                " value: " + value);
-        return value;
+    @Override
+    public int getColorTemperature(int display) {
+        return mImpl.getColorTemperature(display);
     }
 
-    public int setColorTemperature(int display, int value){
-        int ret = ERROR;
-        if (mService == null) {
-            Log.d(TAG, "mService is null");
-            return ERROR;
-        }
-        try {
-            ret = mService.setColorTemperature(display, value);
-        } catch (RemoteException e) {
-            Log.e(TAG, "setColorTemperature:", e);
-        }
-
-        debug("Display." + display + " setColorTemperature: " +
-                " value(" + value + ") return: " + ret);
-        return ret;
+    @Override
+    public int setColorTemperature(int display, int value) {
+        return mImpl.setColorTemperature(display, value);
     }
 }

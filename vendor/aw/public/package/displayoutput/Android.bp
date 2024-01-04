@@ -1,9 +1,7 @@
 java_library_static{
     name: "softwinner.display.output",
     srcs: [
-        "java/vendor/display/DisplayOutputManager.java",
-        "java/vendor/display/DefaultDisplayOutputManager.java",
-        "java/vendor/display/HomletDisplayOutputManager.java",
+        "java/vendor/display/*",
     ],
     static_libs: [
         "vendor.display.output-V2-java",
