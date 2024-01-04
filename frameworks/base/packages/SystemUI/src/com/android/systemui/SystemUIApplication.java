@@ -113,15 +113,14 @@ public class SystemUIApplication extends Application implements
             Log.d(TAG,"is homlet");
             mBaseStartServices.add("com.android.systemui.util.NotificationChannels");
             mBaseStartServices.add("com.android.systemui.ScreenDecorations");
-        //bpi, tablet get service class from config_systemUIServiceComponents
-		//} else {
-        //    mBaseStartServices.add("com.android.systemui.util.NotificationChannels");
-        //    mBaseStartServices.add("com.android.systemui.ScreenDecorations");
-        //    mBaseStartServices.add("com.android.systemui.stackdivider.Divider");
-        //    mBaseStartServices.add("com.android.systemui.keyguard.KeyguardViewMediator");
-        //    mBaseStartServices.add("com.android.systemui.statusbar.phone.StatusBar");
-        //    mBaseStartServices.add("com.android.systemui.recents.Recents");
-        //    mBaseStartServices.add("com.android.systemui.globalactions.GlobalActionsComponent");
+	} else {
+            mBaseStartServices.add("com.android.systemui.util.NotificationChannels");
+            mBaseStartServices.add("com.android.systemui.ScreenDecorations");
+            mBaseStartServices.add("com.android.systemui.stackdivider.Divider");
+            mBaseStartServices.add("com.android.systemui.keyguard.KeyguardViewMediator");
+            mBaseStartServices.add("com.android.systemui.statusbar.phone.StatusBar");
+            mBaseStartServices.add("com.android.systemui.recents.Recents");
+            mBaseStartServices.add("com.android.systemui.globalactions.GlobalActionsComponent");
         }
 
         if (Process.myUserHandle().equals(UserHandle.SYSTEM)) {
