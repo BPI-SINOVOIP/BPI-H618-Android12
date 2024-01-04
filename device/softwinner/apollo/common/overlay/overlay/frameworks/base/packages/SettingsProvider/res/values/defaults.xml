@@ -25,7 +25,8 @@
     <!-- Disable the lockscreen -->
     <bool name="def_lockscreen_disabled">true</bool>
 
-    <bool name="def_bluetooth_on">true</bool>
+    <bool name="def_wifi_on">false</bool>
+    <bool name="def_bluetooth_on">false</bool>
     <bool name="def_accelerometer_rotation">false</bool>
     <!-- disabled auto timezone -->
     <bool name="def_auto_time_zone">false</bool>

@@ -39,13 +39,14 @@ func productDefaults(ctx android.LoadHookContext) {
     p := &props{}
 
     if ctx.AConfig().VendorConfig("vendor").String("platform") != "" {
-        var keyval string
-        keyval = ctx.AConfig().VendorConfig("vendor").String("platform")
-        if keyval == "homlet" {
+        //bpi, both tablet and homlet support
+	//var keyval string
+        //keyval = ctx.AConfig().VendorConfig("vendor").String("platform")
+        //if keyval == "homlet" {
             p.Cflags = append(p.Cflags,"-DSUPPORT_BDMV")
             p.Include_dirs = append(p.Include_dirs,"vendor/aw/homlet/framework/isomountmanager/include")
             p.Shared_libs = append(p.Shared_libs,"libisomountmanagerservice")
-        }
+        //}
     }
 
     ctx.AppendProperties(p)

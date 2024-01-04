@@ -1,6 +1,8 @@
 MY_LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_PLATFORM),homlet)
+ifeq ($(TARGET_PLATFORM),tablet)
+    include $(call all-named-subdir-makefiles,tablet)
+else ifeq ($(TARGET_PLATFORM),homlet)
     include $(call all-named-subdir-makefiles,homlet)
 else ifeq ($(TARGET_PLATFORM),auto)
     include $(call all-named-subdir-makefiles,auto)

@@ -716,9 +716,10 @@ DisplayOutputManagerService::DisplayOutputManagerService() {
     }
 
     std::string platform = base::GetProperty("ro.build.characteristics", "");
-    if (platform == "tv" || platform == "homlet") {
+	//bpi, both tablet and homlet use homlet display
+    if (platform == "tablet" || platform == "homlet") {
         mPlatform = HOMLET;
-        LOG(INFO) << "platform is homlet";
+        LOG(INFO) << "BPI: platform is homlet or tablet";
     } else {
         LOG(INFO) << "platform is default";
     }

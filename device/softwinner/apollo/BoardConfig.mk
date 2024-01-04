@@ -1,6 +1,10 @@
 # BoardConfig.mk
 #
+ifeq ($(BOARD_BUILD_BOX),true)
 TARGET_PLATFORM := homlet
+else
+TARGET_PLATFORM := tablet
+endif
 TARGET_BOARD_PLATFORM := apollo
 $(call soong_config_add,vendor,board,$(TARGET_BOARD_PLATFORM))
 $(call soong_config_add,vendor,platform,$(TARGET_PLATFORM))
@@ -177,5 +181,9 @@ WRITE_BACK_MODE := 0
 $(call soong_config_add,disp,writebackMode,$(WRITE_BACK_MODE))
 
 include hardware/aw/gpu/product_config.mk
-include vendor/aw/homlet/HomletBoardConfig.mk
+ifeq ($(BOARD_BUILD_BOX),true)
+include vendor/aw/common/HomletBoardConfig.mk
+else
+include vendor/aw/common/TabletBoardConfig.mk
+endif
 # include hardware/aw/display/pq/pq_config.mk

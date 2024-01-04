@@ -1998,16 +1998,17 @@ public final class SystemServer implements Dumpable {
             t.traceEnd();
 
             ///AW CODE: [feat] start service
-            if (SystemProperties.get("ro.product.platform").equals("homlet")||
-            "homlet".equals(SystemProperties.get("ro.build.characteristics", null))||
-            "stb".equals(SystemProperties.get("ro.build.characteristics", null))) {
+			//bpi, both tablet and homlet support
+            //if (SystemProperties.get("ro.product.platform").equals("homlet")||
+            //"homlet".equals(SystemProperties.get("ro.build.characteristics", null))||
+            //"stb".equals(SystemProperties.get("ro.build.characteristics", null))) {
                 if (mPackageManager.hasSystemFeature(PackageManager.FEATURE_PPPOE) ||
                     mPackageManager.hasSystemFeature(PackageManager.FEATURE_USB_HOST)) {
                     t.traceBegin("StartPppoe");
                     mSystemServiceManager.startService(PPPOE_SERVICE_CLASS);
                     t.traceEnd();
                 }
-            }
+            //}
             ///AW:add end
 
             t.traceBegin("StartConnectivityService");
@@ -2185,7 +2186,8 @@ public final class SystemServer implements Dumpable {
                 reportWtf("starting WiredAccessoryManager", e);
             }
 
-            if("homlet".equals(SystemProperties.get("ro.build.characteristics", "tablet"))) {
+            //bpi, both tablet and homlet support
+            //if("homlet".equals(SystemProperties.get("ro.build.characteristics", "tablet"))) {
                 try {
                     Slog.i(TAG, "Audio device manager Observer");
                     String optimizedDexOutputPath = Environment.getExternalStorageDirectory().toString();
@@ -2197,7 +2199,7 @@ public final class SystemServer implements Dumpable {
                 } catch (Throwable e) {
                     reportWtf("Failure starting AudioDeviceManagerObserver", e);
                 }
-            }
+            //}
 
             t.traceEnd();
 

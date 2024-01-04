@@ -42,6 +42,9 @@ LOCAL_SRC_FILES := \
 ifeq ($(TARGET_PLATFORM), auto)
 	LOCAL_SRC_FILES += disp2/TabletDeviceFactory.cpp \
 			vendorservice/default/VendorServiceAdapter.cpp
+else ifeq ($(TARGET_PLATFORM), tablet)
+	LOCAL_SRC_FILES += disp2/HomletDeviceFactory.cpp \
+			   vendorservice/homlet/VendorServiceAdapter.cpp
 else ifeq ($(TARGET_PLATFORM), homlet)
 	LOCAL_SRC_FILES += disp2/HomletDeviceFactory.cpp \
 			   vendorservice/homlet/VendorServiceAdapter.cpp

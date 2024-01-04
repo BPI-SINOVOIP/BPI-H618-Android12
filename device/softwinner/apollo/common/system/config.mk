@@ -1,6 +1,10 @@
 LOCAL_MODULE_PATH := $(shell dirname $(lastword $(MAKEFILE_LIST)))
 
-$(call inherit-product-if-exists, vendor/aw/homlet/homlet.mk)
+ifeq ($(BOARD_BUILD_BOX),true)
+$(call inherit-product-if-exists, vendor/aw/common/homlet.mk)
+else
+$(call inherit-product-if-exists, vendor/aw/common/tablet.mk)
+endif
 
 # properties
 # system properties
@@ -78,10 +82,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.soc.manufacturer=Allwinner \
     ro.soc.model=H618
 
-#systemui hide navigation
-PRODUCT_PROPERTY_OVERRIDES += \
-       qemu.hw.mainkeys = 1
-
 # theme overlay
 PRODUCT_PACKAGES += GoogleSearchGoOverlay
 PRODUCT_PACKAGES += AwAccentColorOverlay
@@ -153,7 +153,11 @@ BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 PRODUCT_FULL_TREBLE_OVERRIDE := true
 
 #this mean [ro.build.characteristics] values
-PRODUCT_CHARACTERISTICS := homlet
+ifeq ($(BOARD_BUILD_BOX),true)
+    PRODUCT_CHARACTERISTICS := homlet
+else
+    PRODUCT_CHARACTERISTICS := tablet
+endif
 
 CONFIG_USE_ANDROID_MAINLINE := true
 
@@ -181,11 +185,18 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     device/softwinner/common/config/awbms_config:$(TARGET_COPY_OUT_VENDOR)/etc/awbms_config \
-    device/softwinner/common/config/tv_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tv_core_hardware.xml \
     frameworks/native/data/etc/android.software.controls.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.controls.xml \
     $(LOCAL_MODULE_PATH)/preferred-apps/custom.xml:system/etc/preferred-apps/custom.xml \
     device/softwinner/common/config/android.hardware.location.network.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.location.network.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml \
+
+ifeq ($(BOARD_BUILD_BOX),true)
+PRODUCT_COPY_FILES += \
+    device/softwinner/common/config/tv_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tv_core_hardware.xml
+else
+PRODUCT_COPY_FILES += \
+    device/softwinner/common/config/tablet_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tablet_core_hardware.xml
+endif
 
 # usb and backup permissions file
 PRODUCT_COPY_FILES += \

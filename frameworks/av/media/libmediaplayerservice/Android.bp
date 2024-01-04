@@ -116,7 +116,7 @@ cc_library {
         "frameworks/av/media/libstagefright/wifi-display",
         "frameworks/av/media/libcedarx/android_adapter/awplayer",
         "frameworks/av/media/libcedarx/android_adapter/metadataretriever",
-        "vendor/aw/homlet/framework/isomountmanager/include",
+        "vendor/aw/common/framework/isomountmanager/include",
     ],
 
     local_include_dirs: ["include"],

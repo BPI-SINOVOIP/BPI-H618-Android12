@@ -43,7 +43,8 @@ public abstract class DisplayOutputManager {
         if(instance == null) {
             String platform = SystemProperties.get("ro.build.characteristics", "");
             Log.d(TAG, "ro.build.characteristics="+platform);
-            if (platform.equals("homlet") || platform.equals("tv")) {
+			//bpi, both tablet and homlet use homelet display
+            if (platform.equals("homlet") || platform.equals("tablet")) {
                 instance = new HomletDisplayOutputManager();
             } else {
                 instance = new DefaultDisplayOutputManager();

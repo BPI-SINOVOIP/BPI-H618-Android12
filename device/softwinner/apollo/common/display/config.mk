@@ -34,7 +34,6 @@ PRODUCT_COPY_FILES += \
     device/softwinner/apollo/common/display/esm.fex:$(TARGET_COPY_OUT_VENDOR)/etc/hdcp/esm.fex \
     device/softwinner/apollo/common/display/hdcptool.sh:$(TARGET_COPY_OUT_VENDOR)/bin/hdcptool.sh
 
-
 # display - hdmi-cec
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml

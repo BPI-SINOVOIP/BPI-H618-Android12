@@ -34,8 +34,13 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.sys.country=US \
     persist.sys.language=en
 
+ifeq ($(BOARD_BUILD_BOX),true)
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=280
+else
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=213
+endif
 
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.minui.default_rotation=ROTATION_NONE \

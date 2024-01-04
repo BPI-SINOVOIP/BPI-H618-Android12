@@ -35,15 +35,16 @@ func sampleLoadHook(ctx android.LoadHookContext) {
 
     p := &props{}
 
-    var config string
+    //bpi, both tablet and homlet support
+    //var config string
     // string of TARGET_PLATFORM
-    config = ctx.Config().VendorConfig("vendor").String("platform")
-    if (config == "homlet") {
+    //config = ctx.Config().VendorConfig("vendor").String("platform")
+    //if (config == "homlet") {
         var sharedlib []string
         sharedlib = append(sharedlib, "libdisplayd")
         sharedlib = append(sharedlib, "libedid")
         p.Shared_libs = sharedlib
-    }
+    //}
 
     ctx.AppendProperties(p)
 }

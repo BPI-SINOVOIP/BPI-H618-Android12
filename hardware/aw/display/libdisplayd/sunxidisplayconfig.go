@@ -47,7 +47,9 @@ func sampleLoadHook(ctx android.LoadHookContext) {
     p.Cflags = append(p.Cflags, cflags)
 
     // string of TARGET_PLATFORM
-    config = ctx.Config().VendorConfig("vendor").String("platform")
+    //bpi, both tablet and homlet use homlet config
+    //config = ctx.Config().VendorConfig("vendor").String("platform")
+    config = "homlet"
     cflags = "-D_platform_" + config + "_";
     p.Cflags = append(p.Cflags, cflags)
 

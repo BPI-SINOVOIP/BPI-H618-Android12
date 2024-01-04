@@ -964,12 +964,13 @@ public class ConnectivityManager {
     @Deprecated
     public static boolean isNetworkTypeValid(int networkType) {
         ///AW CODE: [feat] add TYPE_PPPOE and change the returned value
-        if (SystemProperties.get("ro.product.platform").equals("homlet")||
-        "homlet".equals(SystemProperties.get("ro.build.characteristics", null))||
-        "stb".equals(SystemProperties.get("ro.build.characteristics", null))) {
+		//bpi, both tablet and homlet support
+        //if (SystemProperties.get("ro.product.platform").equals("homlet")||
+        //"homlet".equals(SystemProperties.get("ro.build.characteristics", null))||
+        //"stb".equals(SystemProperties.get("ro.build.characteristics", null))) {
             return MIN_NETWORK_TYPE <= networkType && networkType <= MAX_NETWORK_TYPE;
-        }
-        return MIN_NETWORK_TYPE <= networkType && networkType <= TYPE_TEST;
+        //}
+        //return MIN_NETWORK_TYPE <= networkType && networkType <= TYPE_TEST;
         ///AW:add end
     }
 

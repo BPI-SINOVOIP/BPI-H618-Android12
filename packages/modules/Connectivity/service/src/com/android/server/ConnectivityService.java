@@ -1372,9 +1372,10 @@ public class ConnectivityService extends IConnectivityManager.Stub
                 NetworkCapabilities.TRANSPORT_CELLULAR, NetworkRequest.Type.BACKGROUND_REQUEST);
 
         ///AW CODE: [feat] set the mNetworkRequests
-        if (SystemProperties.get("ro.product.platform").equals("homlet") ||
-                SystemProperties.get("ro.build.characteristics").equals("homlet")||
-                SystemProperties.get("ro.build.characteristics").equals("stb")) {
+		//bpi, both tablet and homlet support
+        //if (SystemProperties.get("ro.product.platform").equals("homlet") ||
+        //        SystemProperties.get("ro.build.characteristics").equals("homlet")||
+        //        SystemProperties.get("ro.build.characteristics").equals("stb")) {
             final NetworkRequest mWifiRequest = createDefaultInternetRequestForTransport(
                                                  NetworkCapabilities.TRANSPORT_WIFI,
                                                  NetworkRequest.Type.REQUEST);
@@ -1396,7 +1397,7 @@ public class ConnectivityService extends IConnectivityManager.Stub
             mNetworkRequests.put(mPppoeRequest, pppoeNRI);
             mNetworkRequestInfoLogs.log("REGISTER " + pppoeNRI);
             Log.d("pppoeNRI:", ""+pppoeNRI);
-        }
+        //}
         ///AW: add end
 
         // The default WiFi request is a background request so that apps using WiFi are

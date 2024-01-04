@@ -798,10 +798,10 @@ public final class SystemServiceRegistry {
                 return new EthernetManager(ctx.getOuterContext(), service);
             }});
 
-
-        if (SystemProperties.get("ro.product.platform").equals("homlet")||
-            "homlet".equals(SystemProperties.get("ro.build.characteristics", null))||
-            "stb".equals(SystemProperties.get("ro.build.characteristics", null))){
+        //bpi, both tablet and homlet support
+        //if (SystemProperties.get("ro.product.platform").equals("homlet")||
+        //    "homlet".equals(SystemProperties.get("ro.build.characteristics", null))||
+        //    "stb".equals(SystemProperties.get("ro.build.characteristics", null))){
             registerService(Context.PPPOE_SERVICE, PppoeManager.class,
                     new CachedServiceFetcher<PppoeManager>() {
                 @Override
@@ -810,7 +810,7 @@ public final class SystemServiceRegistry {
                     IPppoeManager service = IPppoeManager.Stub.asInterface(b);
                     return new PppoeManager(ctx.getOuterContext(), service);
                 }});
-        }
+        //}
         registerService(Context.WIFI_NL80211_SERVICE, WifiNl80211Manager.class,
                 new CachedServiceFetcher<WifiNl80211Manager>() {
                     @Override

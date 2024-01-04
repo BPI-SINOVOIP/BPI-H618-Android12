@@ -23,15 +23,16 @@
     <string translatable="false" name="config_controlsPreferredPackages">
         com.google.android.apps.chromecast.app
     </string>
+
     <bool name="config_roundedCornerMultipleRadius">true</bool>
+
         <!-- Empty stub status/navigation bar -->
     <!-- com.android.systemui.statusbar.tv.TvStatusBar or com.android.systemui.statusbar.phone.StatusBar -->
-    <string name="config_statusBarComponent" translatable="false">com.android.systemui.statusbar.tv.TvStatusBar</string>
+    <string name="config_statusBarComponent" translatable="false">com.android.systemui.statusbar.phone.StatusBar</string>
 
     <!-- Disable KeyguardSerivce -->
     <bool name="config_enableKeyguardService">false</bool>
 
     <!-- homlet should use LEANBACK in Pip -->
-    <bool name="config_leanback_feature">true</bool>
-    <bool name="config_showNavigationBar">false</bool>
+    <bool name="config_leanback_feature">false</bool>
 </resources>
