@@ -1166,10 +1166,30 @@ public class NavigationBar implements View.OnAttachStateChangeListener,
         accessibilityButton.setOnLongClickListener(this::onAccessibilityLongClick);
         updateAccessibilityServicesState(mAccessibilityManager);
 
+
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        ButtonDispatcher poweroffButton = mNavigationBarView.getPoweroffButton();
+		poweroffButton.setOnClickListener(this:: onPoweroffClick);
+        poweroffButton.setOnTouchListener(this:: onPoweroffTouch);
+         // AW CODE end
+
         ButtonDispatcher imeSwitcherButton = mNavigationBarView.getImeSwitchButton();
         imeSwitcherButton.setOnClickListener(this::onImeSwitcherClick);
 
         updateScreenPinningGestures();
+    }
+
+    private boolean onPoweroffTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            Intent intent=new Intent(Intent.ACTION_NAVIGATIONBAR_POWEROFF);
+            mContext.sendBroadcast(intent);
+        }
+        return false;
+    }
+
+    private void onPoweroffClick(View v) {
+        Intent intent=new Intent(Intent.ACTION_NAVIGATIONBAR_POWEROFF);
+        mContext.sendBroadcast(intent);
     }
 
     @VisibleForTesting

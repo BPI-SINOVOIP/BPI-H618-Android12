@@ -101,7 +101,7 @@ import java.util.function.Consumer;
 public class NavigationBarView extends FrameLayout implements
         NavigationModeController.ModeChangedListener {
     final static boolean DEBUG = false;
-    final static String TAG = "StatusBar/NavBarView";
+    final static String TAG = "NavBarView";
 
     // slippery nav bar when everything is disabled, e.g. during setup
     final static boolean SLIPPERY_WHEN_DISABLED = true;
@@ -132,6 +132,13 @@ public class NavigationBarView extends FrameLayout implements
     private KeyButtonDrawable mBackIcon;
     private KeyButtonDrawable mHomeDefaultIcon;
     private KeyButtonDrawable mRecentIcon;
+    // AW CODE [feat]: custom virtual buttons in NavigationBar
+    private KeyButtonDrawable mPoweroffIcon;
+    private KeyButtonDrawable mVolumeDownIcon;
+    private KeyButtonDrawable mVolumeUpIcon;
+    private KeyButtonDrawable mScreenshotIcon;
+    private boolean mUseCustomVirtualButtons = false;
+    // AW CODE end
     private KeyButtonDrawable mDockedIcon;
     private Context mLightContext;
     private int mLightIconColor;
@@ -332,6 +339,13 @@ public class NavigationBarView extends FrameLayout implements
         mButtonDispatchers.put(R.id.home, new ButtonDispatcher(R.id.home));
         mButtonDispatchers.put(R.id.home_handle, new ButtonDispatcher(R.id.home_handle));
         mButtonDispatchers.put(R.id.recent_apps, new ButtonDispatcher(R.id.recent_apps));
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        mUseCustomVirtualButtons = mContext.getResources().getBoolean(R.bool.AWUI_config_use_custom_virtual_buttons);
+        mButtonDispatchers.put(R.id.poweroff, new ButtonDispatcher(R.id.poweroff));
+        mButtonDispatchers.put(R.id.volumeDown, new ButtonDispatcher(R.id.volumeDown));
+        mButtonDispatchers.put(R.id.volumeUp, new ButtonDispatcher(R.id.volumeUp));
+        mButtonDispatchers.put(R.id.screenshot, new ButtonDispatcher(R.id.screenshot));
+        // AW CODE end
         mButtonDispatchers.put(R.id.ime_switcher, imeSwitcherButton);
         mButtonDispatchers.put(R.id.accessibility_button, accessibilityButton);
         mButtonDispatchers.put(R.id.menu_container, mContextualButtonGroup);
@@ -483,6 +497,24 @@ public class NavigationBarView extends FrameLayout implements
         return mButtonDispatchers.get(R.id.recent_apps);
     }
 
+    // AW CODE [feat]: custom virtual buttons in NavigationBar
+    public ButtonDispatcher getPoweroffButton() {
+        return mButtonDispatchers.get(R.id.poweroff);
+    }
+
+    public ButtonDispatcher getVolumeDownButton() {
+        return mButtonDispatchers.get(R.id.volumeDown);
+    }
+
+    public ButtonDispatcher getVolumeUpButton() {
+        return mButtonDispatchers.get(R.id.volumeUp);
+    }
+
+    public ButtonDispatcher getScreenshotButton() {
+        return mButtonDispatchers.get(R.id.screenshot);
+    }
+    // AW CODE end
+
     public ButtonDispatcher getBackButton() {
         return mButtonDispatchers.get(R.id.back);
     }
@@ -531,7 +563,12 @@ public class NavigationBarView extends FrameLayout implements
         final boolean orientationChange = oldConfig.orientation != mConfiguration.orientation;
         final boolean densityChange = oldConfig.densityDpi != mConfiguration.densityDpi;
         final boolean dirChange = oldConfig.getLayoutDirection() != mConfiguration.getLayoutDirection();
-
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        mPoweroffIcon = getPoweroffDrawable();
+        mVolumeDownIcon = getVolumeDownDrawable();
+        mVolumeUpIcon = getVolumeUpDrawable();
+        mScreenshotIcon = getScreenshotDrawable();
+        // AW CODE end
         if (orientationChange || densityChange) {
             mDockedIcon = getDrawable(R.drawable.ic_sysbar_docked);
             mHomeDefaultIcon = getHomeDrawable();
@@ -612,6 +649,36 @@ public class NavigationBarView extends FrameLayout implements
     private void orientHomeButton(KeyButtonDrawable drawable) {
         drawable.setRotation(mIsVertical ? 90 : 0);
     }
+
+    // AW CODE [feat]: custom virtual buttons in NavigationBar
+    public KeyButtonDrawable getPoweroffDrawable() {
+        KeyButtonDrawable drawable = getDrawable(R.drawable.ic_sysbar_poweroff);
+        orientButton(drawable);
+        return drawable;
+    }
+
+    public KeyButtonDrawable getVolumeDownDrawable() {
+        KeyButtonDrawable drawable = getDrawable(R.drawable.ic_sysbar_volumeDown);
+        orientButton(drawable);
+        return drawable;
+    }
+
+    public KeyButtonDrawable getVolumeUpDrawable() {
+        KeyButtonDrawable drawable = getDrawable(R.drawable.ic_sysbar_volumeUp);
+        orientButton(drawable);
+        return drawable;
+    }
+
+    public KeyButtonDrawable getScreenshotDrawable() {
+        KeyButtonDrawable drawable = getDrawable(R.drawable.ic_sysbar_screenshot);
+        orientButton(drawable);
+        return drawable;
+    }
+
+    private void orientButton(KeyButtonDrawable drawable) {
+        drawable.setRotation(mIsVertical ? 90 : 0);
+    }
+    // AW CODE end
 
     private @DrawableRes int chooseNavigationIconDrawableRes(@DrawableRes int icon,
             @DrawableRes int quickStepIcon) {
@@ -711,7 +778,12 @@ public class NavigationBarView extends FrameLayout implements
         }
         getHomeButton().setImageDrawable(homeIcon);
         getBackButton().setImageDrawable(backIcon);
-
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        getPoweroffButton().setImageDrawable(mPoweroffIcon);
+        getVolumeDownButton().setImageDrawable(mVolumeDownIcon);
+        getVolumeUpButton().setImageDrawable(mVolumeUpIcon);
+        getScreenshotButton().setImageDrawable(mScreenshotIcon);
+        // AW CODE end
         updateRecentsIcon();
 
         // Update IME button visibility, a11y and rotate button always overrides the appearance
@@ -761,8 +833,22 @@ public class NavigationBarView extends FrameLayout implements
         getHomeButton().setVisibility(disableHome       ? View.INVISIBLE : View.VISIBLE);
         getRecentsButton().setVisibility(disableRecent  ? View.INVISIBLE : View.VISIBLE);
         getHomeHandle().setVisibility(disableHomeHandle ? View.INVISIBLE : View.VISIBLE);
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        boolean disableCustomNavBar = isCustomNavBarDisabled();
+        getPoweroffButton().setVisibility(disableCustomNavBar      ? View.INVISIBLE : View.VISIBLE);
+        getVolumeDownButton().setVisibility(disableCustomNavBar    ? View.INVISIBLE : View.VISIBLE);
+        getVolumeUpButton().setVisibility(disableCustomNavBar      ? View.INVISIBLE : View.VISIBLE);
+        getScreenshotButton().setVisibility(disableCustomNavBar    ? View.INVISIBLE : View.VISIBLE);
+        // AW CODE end
         notifyActiveTouchRegions();
     }
+
+    // AW CODE [feat]: custom virtual buttons in NavigationBar
+    @VisibleForTesting
+    boolean isCustomNavBarDisabled() {
+        return isGesturalMode(mNavBarMode) || !mUseCustomVirtualButtons;
+    }
+    // AW CODE end
 
     @VisibleForTesting
     boolean isRecentsButtonDisabled() {
@@ -1008,6 +1094,12 @@ public class NavigationBarView extends FrameLayout implements
         updateButtonLocation(getBackButton(), inScreenSpace, useNearestRegion);
         updateButtonLocation(getHomeButton(), inScreenSpace, useNearestRegion);
         updateButtonLocation(getRecentsButton(), inScreenSpace, useNearestRegion);
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        updateButtonLocation(getPoweroffButton(), inScreenSpace, useNearestRegion);
+        updateButtonLocation(getVolumeDownButton(), inScreenSpace, useNearestRegion);
+        updateButtonLocation(getVolumeUpButton(), inScreenSpace, useNearestRegion);
+        updateButtonLocation(getScreenshotButton(), inScreenSpace, useNearestRegion);
+        // AW CODE end
         updateButtonLocation(getImeSwitchButton(), inScreenSpace, useNearestRegion);
         updateButtonLocation(getAccessibilityButton(), inScreenSpace, useNearestRegion);
         if (includeFloatingButtons && mFloatingRotationButton.isVisible()) {
@@ -1317,7 +1409,12 @@ public class NavigationBarView extends FrameLayout implements
         dumpButton(pw, "rota", getRotateSuggestionButton());
         dumpButton(pw, "a11y", getAccessibilityButton());
         dumpButton(pw, "ime", getImeSwitchButton());
-
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        dumpButton(pw, "poweroff", getPoweroffButton());
+        dumpButton(pw, "volumeDown", getVolumeDownButton());
+        dumpButton(pw, "volumeUp", getVolumeUpButton());
+        dumpButton(pw, "screenshot", getScreenshotButton());
+        // AW CODE end
         if (mNavigationInflaterView != null) {
             mNavigationInflaterView.dump(pw);
         }

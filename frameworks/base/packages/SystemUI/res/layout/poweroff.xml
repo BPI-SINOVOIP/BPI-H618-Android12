@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.systemui.navigationbar.buttons.KeyButtonView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:systemui="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/poweroff"
+    android:layout_width="@dimen/navigation_key_width"
+    android:layout_height="match_parent"
+    android:layout_weight="0"
+    systemui:keyCode="-1"
+    android:scaleType="center"
+    android:contentDescription="@string/accessibility_key"
+    android:paddingStart="@dimen/navigation_key_padding"
+    android:paddingEnd="@dimen/navigation_key_padding"/>

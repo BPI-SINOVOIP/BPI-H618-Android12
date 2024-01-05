@@ -60,6 +60,13 @@ public class NavigationBarInflaterView extends FrameLayout
     public static final String BACK = "back";
     public static final String HOME = "home";
     public static final String RECENT = "recent";
+    // AW CODE [feat]: custom virtual buttons in NavigationBar
+    public static final String POWEROFF = "poweroff";
+    public static final String VOLUMEDOWN = "volumeDown";
+    public static final String VOLUMEUP = "volumeUp";
+    public static final String SCREENSHOT = "screenshot";
+    private boolean mUseCustomVirtualButtons = false;
+    // AW CODE end
     public static final String NAVSPACE = "space";
     public static final String CLIPBOARD = "clipboard";
     public static final String HOME_HANDLE = "home_handle";
@@ -107,6 +114,9 @@ public class NavigationBarInflaterView extends FrameLayout
         createInflaters();
         mOverviewProxyService = Dependency.get(OverviewProxyService.class);
         mNavBarMode = Dependency.get(NavigationModeController.class).addListener(this);
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        mUseCustomVirtualButtons = mContext.getResources().getBoolean(R.bool.AWUI_config_use_custom_virtual_buttons);
+		// AW CODE end
     }
 
     @VisibleForTesting
@@ -142,6 +152,8 @@ public class NavigationBarInflaterView extends FrameLayout
                 ? R.string.config_navBarLayoutHandle
                 : mOverviewProxyService.shouldShowSwipeUpUI()
                         ? R.string.config_navBarLayoutQuickstep
+                        : mUseCustomVirtualButtons
+                        ? R.string.AWUI_config_navBarLayout
                         : R.string.config_navBarLayout;
         return getContext().getString(defaultResource);
     }
@@ -374,6 +386,16 @@ public class NavigationBarInflaterView extends FrameLayout
             v = inflater.inflate(R.layout.back, parent, false);
         } else if (RECENT.equals(button)) {
             v = inflater.inflate(R.layout.recent_apps, parent, false);
+        // AW CODE [feat]: custom virtual buttons in NavigationBar
+        } else if (POWEROFF.equals(button)) {
+            v = inflater.inflate(R.layout.poweroff, parent, false);
+        } else if (VOLUMEDOWN.equals(button)) {
+            v = inflater.inflate(R.layout.volumeDown, parent, false);
+        } else if (VOLUMEUP.equals(button)) {
+            v = inflater.inflate(R.layout.volumeUp, parent, false);
+        } else if (SCREENSHOT.equals(button)) {
+            v = inflater.inflate(R.layout.screenshot, parent, false);
+        // AW CODE end
         } else if (MENU_IME_ROTATE.equals(button)) {
             v = inflater.inflate(R.layout.menu_ime, parent, false);
         } else if (NAVSPACE.equals(button)) {
