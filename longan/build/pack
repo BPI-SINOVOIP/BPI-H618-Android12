@@ -136,6 +136,10 @@ case "x${PACK_PLATFORM}" in
 esac
 
 PACK_TIME=`date +%Y-%m-%d`
+PACK_VENDOR="bananapi"
+if [ "$BOARD_BUILD_BOX" = "true" ]; then
+	PACK_VARIANT="-box"
+fi
 
 OTA_TEST_NAME="ota_test"
 
@@ -644,7 +648,7 @@ function do_prepare()
 	sed -i 's/\\\\/\//g' ${LICHEE_PACK_OUT_DIR}/image.cfg
 	sed -i 's/^imagename/;imagename/g' ${LICHEE_PACK_OUT_DIR}/image.cfg
 
-	IMG_NAME="${PACK_TIME}-${PACK_BOARD}-${PACK_TYPE}${PACK_PLATFORM_VERSION}-${PACK_DEBUG}"
+	IMG_NAME="${PACK_TIME}-${PACK_VENDOR}-${PACK_BOARD}-${PACK_TYPE}${PACK_PLATFORM_VERSION}${PACK_VARIANT}"
 
 	if [ "x${PACK_MODE}" = "xdump" -o "x${PACK_MODE}" = "xota_test" ] ; then
 		IMG_NAME="${IMG_NAME}_${PACK_MODE}"
