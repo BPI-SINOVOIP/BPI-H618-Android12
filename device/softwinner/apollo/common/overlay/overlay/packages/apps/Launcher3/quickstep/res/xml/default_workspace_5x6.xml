@@ -30,11 +30,4 @@
         launcher:packageName="com.google.android.googlequicksearchbox"
         launcher:className="com.google.android.apps.gsa.staticplugins.opa.EnterOpaActivityFromDeeplink" />
 
-    <resolve
-        launcher:screen="0"
-        launcher:x="-1"
-        launcher:y="-1" >
-        <favorite launcher:uri="#Intent;action=android.settings.SETTINGS;category=android.intent.category.DEFAULT;end" />
-    </resolve>
-
 </favorites>
