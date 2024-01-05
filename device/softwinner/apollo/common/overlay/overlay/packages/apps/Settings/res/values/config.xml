@@ -17,6 +17,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- "Show work policy info" intent action. TODO(b/134391103): Replace with final SystemAPI intent when it's available. -->
     <string name="config_work_policy_info_intent_action" translatable="false">com.google.android.settings.privacy.ACTION_SHOW_WORK_POLICY_INFO</string>
+
     <bool name="config_has_HSL">true</bool>
     <integer name="config_HSL_max_range">100</integer>
 
@@ -25,5 +26,11 @@
 
     <!-- Cell broacast receiver package name -->
     <string name="config_cell_broadcast_receiver_package" translatable="false">com.google.android.cellbroadcastreceiver</string>
+
+    <!-- Whether battery from app_info_settings is available or not. -->
+    <bool name="config_show_app_info_settings_battery">false</bool>
+
+    <!-- Whether top_level_battery should be shown or not. -->
+    <bool name="config_show_top_level_battery">false</bool>
 
 </resources>

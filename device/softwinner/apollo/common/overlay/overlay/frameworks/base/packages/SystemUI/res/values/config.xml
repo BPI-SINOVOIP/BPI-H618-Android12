@@ -35,4 +35,25 @@
 
     <!-- homlet should use LEANBACK in Pip -->
     <bool name="config_leanback_feature">false</bool>
+
+    <!-- The default tiles to display in QuickSettings -->
+    <string name="quick_settings_tiles_default" translatable="false">
+        internet,bt,dnd,airplane,cast,night,screenrecord
+    </string>
+
+    <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
+    <string name="quick_settings_tiles_stock" translatable="false">
+        internet,bt,dnd,airplane,cast,night,screenrecord,location,hotspot,inversion,saver,dark,work,night,reverse
+    </string>
+
+    <!-- The tiles to display in QuickSettings in retail mode -->
+    <string name="quick_settings_tiles_retail_mode" translatable="false">
+        night,dark,dnd,location
+    </string>
+
+    <string-array name="config_statusBarIconsToExclude" translatable="false">
+        <item>@*android:string/status_bar_rotate</item>
+        <item>@*android:string/status_bar_battery</item>
+    </string-array>
+
 </resources>
