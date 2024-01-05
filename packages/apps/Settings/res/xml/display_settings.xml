@@ -90,6 +90,14 @@
             android:title="@string/screen_zoom_title"
             android:fragment="com.android.settings.display.ScreenZoomSettings"
             settings:keywords="@string/keywords_display_size"/>
+
+        <com.android.settings.display.DensityListPreference
+            android:key="screen_density"
+            android:title="@string/screen_density"
+            android:summary="@string/summary_placeholder"
+            android:entries="@array/screen_density_entries"
+            android:entryValues="@array/screen_density_values"
+            settings:keywords="@string/keywords_screen_density" />
     </PreferenceCategory>
 
     <PreferenceCategory
