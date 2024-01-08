@@ -34,6 +34,24 @@
         <item>14</item>
     </string-array>
 
+    <!-- audio output mode -->
+    <string name="audio_output_mode_title">Audio output channel</string>
+    <!--<string name="audio_output_mode_summary">Set the default audio output channel</string>-->
+    <string name="audio_output_mode_summary"><xliff:g id="audio_output_mode_description">%1$s</xliff:g></string>
+    <!-- audio array -->
+    <string-array name="audio_output_mode_entries">
+        <item>AUDIO_CODEC</item>
+	<item>AUDIO_HDMI</item>
+	<item>AUDIO_SPDIF</item>
+	<item>AUDIO_USB</item>
+    </string-array>
+    <string-array name="audio_output_mode_values" translatable="false">
+        <item>0</item>
+	<item>1</item>
+	<item>2</item>
+        <item>3</item>
+    </string-array>
+
     <!-- color enhance -->
     <string name="color_enhance">Color Enhance</string>
     <string name="color_enhance_summary">It is better for playing games and video and picture.</string>

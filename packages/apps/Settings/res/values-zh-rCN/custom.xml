@@ -11,6 +11,20 @@
     <string name="hdmi_fullscreen_summary">设置HDMI输出是否全屏显示</string>
     <string name="hdmi_width_scale">HDMI输出宽度缩放</string>
     <string name="hdmi_height_scale">HDMI出高度缩放</string>
+
+    <!-- Audio output mode -->
+    <string name="audio_output_mode_title">音频输出通道</string>
+    <string name="audio_output_mode_summary"><xliff:g id="audio_output_mode_description">%1$s</xliff:g></string>
+    <!-- audio array -->
+    <string-array name="audio_output_mode_entries">
+        <item>AUDIO_CODEC</item>
+        <item>AUDIO_HDMI</item>
+    </string-array>
+    <string-array name="audio_output_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
     <!-- color enhance -->
     <string name="color_enhance">丽色系统</string>
     <string name="color_enhance_summary">丽色系统用于玩游戏,观看视频图片,效果更佳</string>

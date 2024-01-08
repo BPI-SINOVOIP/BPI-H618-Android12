@@ -37,6 +37,7 @@ import com.android.settings.core.OnActivityResultListener;
 import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.sound.HandsFreeProfileOutputPreferenceController;
+import com.android.settings.sound.AudioOutputModePreferenceController;
 import com.android.settings.widget.PreferenceCategoryController;
 import com.android.settingslib.core.AbstractPreferenceController;
 import com.android.settingslib.core.instrumentation.Instrumentable;
@@ -285,6 +286,9 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
                         dockAudioMediaPreferenceController,
                         bootSoundPreferenceController,
                         emergencyTonePreferenceController)));
+
+	//bpi, audio output mode
+        controllers.add(new AudioOutputModePreferenceController(context));
 
         return controllers;
     }

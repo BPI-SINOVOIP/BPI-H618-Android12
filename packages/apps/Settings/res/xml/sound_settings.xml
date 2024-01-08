@@ -21,6 +21,14 @@
     android:key="sound_settings"
     settings:keywords="@string/keywords_sounds">
 
+    <com.android.settings.sound.AudioOutputModeListPreference
+        android:key="audio_output_mode"
+        android:title="@string/audio_output_mode_title"
+	android:summary="@string/audio_output_mode_summary"
+	android:entries="@array/audio_output_mode_entries"
+        android:entryValues="@array/audio_output_mode_values"
+        android:order="-200"/>
+
     <!-- Remote volume group -->
     <PreferenceCategory
         android:key="remote_media_group"
