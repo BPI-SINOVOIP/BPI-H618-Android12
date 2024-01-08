@@ -32,13 +32,12 @@ import com.android.settings.R;
 public class AwDisplayPreferenceController extends AbstractPreferenceController implements
         PreferenceControllerMixin, Preference.OnPreferenceChangeListener {
 
-    private static final String HDMI_STATE = "/sys/class/extcon/hdmi/state";
     private static final String CVBS_STATE = "/sys/class/extcon/cvbs/state";
-    private static final String KEY_HDMI_SETTING = "second_screen_setting";
-    private static final String KEY_HDMI_OUTPUT_MODE = "second_screen_output_mode";
+    private static final String KEY_HDMI_SETTING = "hdmi_setting";
+    private static final String KEY_HDMI_OUTPUT_MODE = "hdmi_output_mode";
     private static final String KEY_HDMI_FULLSCREEN = "hdmi_fullscreen";
-    private static final String KEY_HDMI_WIDTH_SCALE = "second_screen_width_scale";
-    private static final String KEY_HDMI_HEIGHT_SCALE = "second_screen_height_scale";
+    private static final String KEY_HDMI_WIDTH_SCALE = "hdmi_width_scale";
+    private static final String KEY_HDMI_HEIGHT_SCALE = "hdmi_height_scale";
     private static final int HDMI_SCALE_MIN = 80;
     private static final int HDMI_SCALE_MAX = 100;
     private static final int NONE_DISPLAY = 0;
@@ -51,7 +50,7 @@ public class AwDisplayPreferenceController extends AbstractPreferenceController 
     private SeekBarPreference mHeightScale;
     private Context mContext;
     private DisplayOutputManager mManager;
-    private static final int DISPLAY1 = 1;
+    private static final int DISPLAY1 = 0;
     private int mMarginWidthValue;
     private int mMarginHeightValue;
 
@@ -90,11 +89,8 @@ public class AwDisplayPreferenceController extends AbstractPreferenceController 
 
     //support HDMI and CVBS
     private boolean checkHDMIState() {
-        if (new File(HDMI_STATE).exists()) {
-            display_type = HDMI_PLUG_IN;
-            return true;
-        }
-        return false;
+	 //bpi, always return true
+         return true;
     }
 
     private boolean checkCVBSState() {
@@ -107,7 +103,7 @@ public class AwDisplayPreferenceController extends AbstractPreferenceController 
 
     @Override
     public boolean isAvailable() {
-        //second display only support HDMI or CVBS, can not support them as the same time
+        //support HDMI or CVBS, can not support them as the same time
         return checkHDMIState() || checkCVBSState();
     }
 

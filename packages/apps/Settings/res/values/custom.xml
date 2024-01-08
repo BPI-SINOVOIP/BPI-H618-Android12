@@ -3,14 +3,14 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- second screen -->
-    <string name="second_screen_setting">second screen setting</string>
-    <string name="second_screen_output_mode">second screen output mode</string>
-    <string name="second_screen_output_mode_summary">Set the default second screen output standard.</string>
+    <!-- hdmi -->
+    <string name="hdmi_setting">hdmi setting</string>
+    <string name="hdmi_output_mode">hdmi output mode</string>
+    <string name="hdmi_output_mode_summary">Set the default hdmi output standard.</string>
     <string name="hdmi_fullscreen">hdmi fullscreen mode</string>
     <string name="hdmi_fullscreen_summary">Set true to show HDMI in fullscreen mode.</string>
-    <string name="second_screen_width_scale">second screen output width scale</string>
-    <string name="second_screen_height_scale">second screen output height scale</string>
+    <string name="hdmi_width_scale">hdmi output width scale</string>
+    <string name="hdmi_height_scale">hdmi output height scale</string>
     <!-- hdmi array -->
     <string-array name="hdmi_output_mode_entries">
         <item>HDMI 720P 60HZ</item>

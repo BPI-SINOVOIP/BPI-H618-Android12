@@ -174,12 +174,12 @@
             android:fragment="com.android.settings.display.VrDisplayPreferencePicker"/>
     </PreferenceCategory>
 
-    <PreferenceCategory android:key="second_screen_setting"
-        android:title="@string/second_screen_setting">
+    <PreferenceCategory android:key="hdmi_setting"
+        android:title="@string/hdmi_setting">
         <ListPreference
-            android:key="second_screen_output_mode"
-            android:title="@string/second_screen_output_mode"
-            android:summary="@string/second_screen_output_mode_summary"
+            android:key="hdmi_output_mode"
+            android:title="@string/hdmi_output_mode"
+            android:summary="@string/hdmi_output_mode_summary"
             android:entries="@array/hdmi_output_mode_entries"
             android:entryValues="@array/hdmi_output_mode_values" />
         <SwitchPreference
@@ -187,11 +187,11 @@
             android:title="@string/hdmi_fullscreen"
             android:summary="@string/hdmi_fullscreen_summary" />
         <com.android.settings.widget.SeekBarPreference
-            android:key="second_screen_width_scale"
-            android:title="@string/second_screen_width_scale" />
+            android:key="hdmi_width_scale"
+            android:title="@string/hdmi_width_scale" />
         <com.android.settings.widget.SeekBarPreference
-            android:key="second_screen_height_scale"
-            android:title="@string/second_screen_height_scale" />
+            android:key="hdmi_height_scale"
+            android:title="@string/hdmi_height_scale" />
     </PreferenceCategory>
 
     <PreferenceCategory android:key="enhance_mode_setting"
