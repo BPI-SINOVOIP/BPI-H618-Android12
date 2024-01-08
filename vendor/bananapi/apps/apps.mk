@@ -1,3 +1,5 @@
 
 PRODUCT_PACKAGES += \
-	AptoideTV
+	AptoideTV \
+	Lightning
+
