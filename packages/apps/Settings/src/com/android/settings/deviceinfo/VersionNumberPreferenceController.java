@@ -47,8 +47,7 @@ public class VersionNumberPreferenceController extends AbstractPreferenceControl
     private Preference mVersionNumber;
     static final String VERSION_NUMBER = "version_number";
     private static final int EVENT_UPDATE_STATS = 500;
-    //static final String VERSION_NUMBER_VALUE = SystemProperties.get("ro.build.Bigdroid.version");
-    static final String VERSION_NUMBER_VALUE = "BigdroidOS 2.0.0";
+    static final String VERSION_NUMBER_VALUE = SystemProperties.get("ro.build.Bigdroid.version");
 
     public VersionNumberPreferenceController(Context context, Lifecycle lifecycle) {
         super(context);
