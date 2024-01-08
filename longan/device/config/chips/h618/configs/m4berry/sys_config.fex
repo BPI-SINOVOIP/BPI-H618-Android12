@@ -49,7 +49,7 @@ bldo1_vol		   = 1001800
 
 [card_boot]
 logical_start   = 40960
-sprite_gpio0    = port:PC12<1><default><default><1>
+sprite_gpio0    = port:PC12<1><default><default><0>
 
 ;----------------------------------------------------------------------------------
 ;   ir_boot_recovery_used : 1: used this function  0: not used

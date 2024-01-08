@@ -706,7 +706,7 @@
 	pinctrl-names = "default", "sleep";
 	phy-rst = <&pio PI 16 GPIO_ACTIVE_HIGH>;
 	tx-delay = <7>;
-	rx-delay = <6>;
+	rx-delay = <31>;
 	status = "okay";
 };
 
@@ -849,7 +849,7 @@
 
 	gpio_para {
 		gpio_num = <1>;
-		gpio_pin_1 = <&pio PC 12 GPIO_ACTIVE_HIGH>;
+		gpio_pin_1 = <&pio PC 12 GPIO_ACTIVE_LOW>;
 		normal_led = "gpio_pin_1";
 		easy_light_used = <1>;
 		normal_led_light = <1>;
