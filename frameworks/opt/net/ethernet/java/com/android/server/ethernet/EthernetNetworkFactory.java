@@ -105,8 +105,9 @@ public class EthernetNetworkFactory extends NetworkFactory {
         }
 
         if (++network.refCount == 1) {
-            network.start();
+            //network.start();
         }
+        Log.w(TAG, "BPI: needNetworkFor, network.refCount = " +network.refCount);
     }
 
     @Override
@@ -118,8 +119,9 @@ public class EthernetNetworkFactory extends NetworkFactory {
         }
 
         if (--network.refCount == 0) {
-            network.stop();
+            //network.stop();
         }
+        Log.w(TAG, "BPI: releaseNetworkFor, network.refCount = " +network.refCount);
     }
 
     /**
