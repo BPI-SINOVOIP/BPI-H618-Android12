@@ -69,6 +69,7 @@ public class EthernetNetworkFactory extends NetworkFactory {
             new ConcurrentHashMap<>();
     private final Handler mHandler;
     private final Context mContext;
+    private static boolean mIfaceStatus = false;
 
     public static class ConfigurationException extends AndroidRuntimeException {
         public ConfigurationException(String msg) {
@@ -197,12 +198,17 @@ public class EthernetNetworkFactory extends NetworkFactory {
             Log.d(TAG, "updateInterfaceLinkState, iface: " + ifaceName + ", up: " + up);
         }
 
+        mIfaceStatus = up;
         NetworkInterfaceState iface = mTrackingInterfaces.get(ifaceName);
         return iface.updateLinkState(up);
     }
 
     boolean hasInterface(String interfacName) {
         return mTrackingInterfaces.containsKey(interfacName);
+    }
+
+    boolean isInterfaceup(String interfacName) {
+        return mIfaceStatus;
     }
 
     void updateIpConfiguration(String iface, IpConfiguration ipConfiguration) {

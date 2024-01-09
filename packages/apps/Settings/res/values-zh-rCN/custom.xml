@@ -51,5 +51,52 @@
 
     <string name="black_white_mode">黑白模式</string>
     <string name="black_white_mode_summary">黑白模式开启后禁止调节饱和度</string>
+
+    <!-- Begin ethernet configure -->
+    <string name="eth_settings_title">以太网</string>
+    <string name="eth_settings_summary">设置以太网dhcp或static模式</string>
+    <string name="eth_open_title">打开以太网</string>
+    <string name="eth_toggle_title">使用以太网</string>
+    <string name="eth_settings">配置以太网</string>
+    <string name="eth_dhcp_configure">动态IP配置</string>
+    <string name="eth_static_configure">静态IP配置</string>
+    <string name="eth_pppoe_configure">PPPoE配置</string>
+    <string name="eth_ip_address">IP地址</string>
+    <string name="eth_ip_string">0.0.0.0</string>
+    <string name="eth_mac_address">物理地址</string>
+    <string name="eth_mac_string">00:00:00:00:00:00</string>
+    <string name="eth_mask_address">子网掩码</string>
+    <string name="eth_mask_string">255.255.255.255</string>
+    <string name="eth_dns1_address">DNS1</string>
+    <string name="eth_dns1_string">0.0.0.0</string>
+    <string name="eth_dns2_address">DNS2</string>
+    <string name="eth_dns2_string">0.0.0.0</string>
+    <string name="eth_gw_address">默认网关</string>
+    <string name="eth_gw_string">0.0.0.0</string>
+    <string name="eth_dev_summaryoff">未连接</string>
+    <string name="eth_dev_summaryon">已连接 -- 使用设备: </string>
+    <string name="eth_ok">确定</string>
+    <string name="eth_cancel">取消</string>
+    <string name="eth_connect_mode">连接模式</string>
+    <string name="eth_mode_dhcp">DHCP 模式</string>
+    <string name="eth_mode_static">静态IP模式</string>
+    <string name="eth_mode_pppoe">PPPoE 模式</string>
+    <string name="eth_info">连接信息</string>
+    <string name="eth_off">要查看可用网络，请打开以太网。</string>
+    <string name="ethernet_config_static">使用静态设置</string>
+
+    <!-- PPPoE -->
+    <string name="pppoe_setting_user">用户名</string>
+    <string name="pppoe_setting_password">密码</string>
+
+    <!-- DHCP -->
+    <string name="dhcp_setting_user">用户名</string>
+    <string name="dhcp_setting_password">密码</string>
+    <string name="dhcp_use_ipoe">使用IPoE</string>
+    <!-- End ethernet configure -->
+
+    <string name="error_data_format">错误数据格式!</string>
+
+    <string name="not_support_eth">不支持以太网!</string>
 </resources>
 

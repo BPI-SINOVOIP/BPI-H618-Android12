@@ -41,6 +41,21 @@
             android:targetClass="Settings$WifiSettingsActivity" />
     </com.android.settings.widget.PrimarySwitchPreference>
 
+    <!--
+    <com.android.settings.widget.PrimarySwitchPreference
+        android:fragment="com.android.settings.ethernet.EthernetSettings"
+        android:key="main_toggle_ethernet"
+        android:title="@string/ethernet"
+        android:summary="@string/eth_settings_summary"
+        android:icon="@drawable/ic_settings_ethernet"
+        android:order="-20"
+        settings:allowDividerAbove="true">
+        <intent
+            android:action="android.settings.WIFI_SETTINGS"
+            android:targetClass="Settings$EthernetSettingsActivity" />
+    </com.android.settings.widget.PrimarySwitchPreference>
+    -->
+
     <com.android.settings.widget.AddPreference
         android:key="mobile_network_list"
         android:title="@string/network_settings_title"

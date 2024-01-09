@@ -52,6 +52,7 @@ import androidx.preference.PreferenceManager;
 
 import com.android.internal.util.ArrayUtils;
 import com.android.settings.Settings.WifiSettingsActivity;
+import com.android.settings.Settings.EthernetSettingsActivity;
 import com.android.settings.applications.manageapplications.ManageApplications;
 import com.android.settings.core.OnActivityResultListener;
 import com.android.settings.core.SettingsBaseActivity;
@@ -613,6 +614,10 @@ public class SettingsActivity extends SettingsBaseActivity
         final StringBuilder changedList = new StringBuilder();
         somethingChanged = setTileEnabled(changedList,
                 new ComponentName(packageName, WifiSettingsActivity.class.getName()),
+                pm.hasSystemFeature(PackageManager.FEATURE_WIFI), isAdmin) || somethingChanged;
+
+        somethingChanged = setTileEnabled(changedList,
+                new ComponentName(packageName, EthernetSettingsActivity.class.getName()),
                 pm.hasSystemFeature(PackageManager.FEATURE_WIFI), isAdmin) || somethingChanged;
 
         somethingChanged = setTileEnabled(changedList, new ComponentName(packageName,

@@ -79,7 +79,18 @@
         android:title="@string/wifi_saved_access_points_label"
         android:fragment="com.android.settings.wifi.savedaccesspoints2.SavedAccessPointsWifiSettings2"/>
 
+    <Preference
+        android:fragment="com.android.settings.ethernet.EthernetSettings"
+        android:key="internet_ethernet"
+        android:title="@string/eth_settings_title"
+        android:summary="@string/eth_settings_summary"
+        android:icon="@drawable/ic_ethernet"
+        settings:keywords="@string/keywords_internet"
+        settings:allowDividerAbove="true"
+        settings:useAdminDisabledSummary="true" />
+
     <com.android.settings.datausage.DataUsagePreference
         android:key="non_carrier_data_usage"
+        settings:allowDividerAbove="true"
         android:title="@string/non_carrier_data_usage"/>
 </PreferenceScreen>

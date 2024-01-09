@@ -180,6 +180,10 @@ final class EthernetTracker {
         return mFactory.hasInterface(iface);
     }
 
+    boolean isInterfaceup(String iface) {
+        return mFactory.isInterfaceup(iface);
+    }
+
     String[] getInterfaces(boolean includeRestricted) {
         return mFactory.getAvailableInterfaces(includeRestricted);
     }
@@ -332,6 +336,10 @@ final class EthernetTracker {
         if (config.hasFlag("running")) {
             updateInterfaceState(iface, true);
         }
+    }
+
+    public void updateIfaceState(String iface, boolean up) {
+        updateInterfaceState(iface, up);
     }
 
     private void updateInterfaceState(String iface, boolean up) {

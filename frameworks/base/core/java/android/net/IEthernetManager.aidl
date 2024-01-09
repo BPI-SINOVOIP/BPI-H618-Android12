@@ -28,9 +28,11 @@ import android.net.ITetheredInterfaceCallback;
 interface IEthernetManager
 {
     String[] getAvailableInterfaces();
+    void updateIfaceState(String iface, boolean up);
     IpConfiguration getConfiguration(String iface);
     void setConfiguration(String iface, in IpConfiguration config);
     boolean isAvailable(String iface);
+    boolean isInterfaceup(String iface);
     void addListener(in IEthernetServiceListener listener);
     void removeListener(in IEthernetServiceListener listener);
     void setIncludeTestInterfaces(boolean include);

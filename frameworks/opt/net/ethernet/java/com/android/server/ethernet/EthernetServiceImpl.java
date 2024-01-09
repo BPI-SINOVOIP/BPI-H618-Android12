@@ -85,6 +85,10 @@ public class EthernetServiceImpl extends IEthernetManager.Stub {
         mStarted.set(true);
     }
 
+    public void updateIfaceState(String iface, boolean up) {
+        mTracker.updateIfaceState(iface, up);
+    }
+
     @Override
     public String[] getAvailableInterfaces() throws RemoteException {
         enforceAccessPermission();
@@ -139,6 +143,17 @@ public class EthernetServiceImpl extends IEthernetManager.Stub {
         }
 
         return mTracker.isTrackingInterface(iface);
+    }
+
+    @Override
+    public boolean isInterfaceup(String iface) {
+        enforceAccessPermission();
+
+        if (mTracker.isRestrictedInterface(iface)) {
+            enforceUseRestrictedNetworksPermission();
+        }
+
+        return mTracker.isInterfaceup(iface);
     }
 
     /**

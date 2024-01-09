@@ -17,6 +17,7 @@
 package android.net;
 
 import android.annotation.NonNull;
+import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SystemApi;
 import android.annotation.SystemService;
@@ -112,6 +113,18 @@ public class EthernetManager {
     }
 
     /**
+     * a interface for open/close ethernet
+     * @hide
+     */
+    public void updateIfaceState(@Nullable String iface, boolean up) {
+        try {
+             mService.updateIfaceState(iface, up);
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    /**
      * Set Ethernet configuration.
      * @hide
      */
@@ -143,6 +156,21 @@ public class EthernetManager {
     public boolean isAvailable(String iface) {
         try {
             return mService.isAvailable(iface);
+        } catch (RemoteException e) {
+            throw e.rethrowFromSystemServer();
+        }
+    }
+
+    /**
+     * Indicates whether the interface is up.
+     *
+     * @param iface Ethernet interface name
+     * @hide
+     */
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
+    public boolean isInterfaceup(String iface) {
+        try {
+            return mService.isInterfaceup(iface);
         } catch (RemoteException e) {
             throw e.rethrowFromSystemServer();
         }

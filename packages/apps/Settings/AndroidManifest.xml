@@ -283,6 +283,26 @@
                 android:value="true" />
         </activity>
 
+        <activity android:name="Settings$EthernetSettingsActivity"
+            android:label="@string/eth_settings_title"
+            android:icon="@drawable/ic_settings_ethernet"
+            android:taskAffinity=""
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+                <category android:name="com.android.settings.SHORTCUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter android:priority="3">
+                <action android:name="com.android.settings.action.SETTINGS" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.category"
+                android:value="com.android.settings.category.wireless" />
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.ethernet.EthernetSettingsConfig" />
+        </activity>
+
         <activity
             android:name="Settings$NetworkProviderSettingsActivity"
             android:label="@string/network_dashboard_title"
