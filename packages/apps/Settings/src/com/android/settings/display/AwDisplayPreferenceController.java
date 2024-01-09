@@ -14,6 +14,8 @@
 package com.android.settings.display;
 
 import android.content.Context;
+import android.os.FileUtils;
+import android.util.Log;
 import androidx.preference.SwitchPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.PreferenceScreen;
@@ -25,6 +27,7 @@ import com.android.settings.widget.SeekBarPreference;
 import com.android.settingslib.core.AbstractPreferenceController;
 
 import java.io.File;
+import java.io.IOException;
 
 import vendor.display.DisplayOutputManager;
 import com.android.settings.R;
@@ -32,12 +35,13 @@ import com.android.settings.R;
 public class AwDisplayPreferenceController extends AbstractPreferenceController implements
         PreferenceControllerMixin, Preference.OnPreferenceChangeListener {
 
-    private static final String CVBS_STATE = "/sys/class/extcon/cvbs/state";
-    private static final String KEY_HDMI_SETTING = "hdmi_setting";
-    private static final String KEY_HDMI_OUTPUT_MODE = "hdmi_output_mode";
+    private static final String HDMI_STATE = "/sys/class/extcon/extcon0/state";
+    private static final String CVBS_STATE = "/sys/class/extcon/extcon1/state";
+    private static final String KEY_HDMI_SETTING = "second_screen_setting";
+    private static final String KEY_HDMI_OUTPUT_MODE = "second_screen_output_mode";
     private static final String KEY_HDMI_FULLSCREEN = "hdmi_fullscreen";
-    private static final String KEY_HDMI_WIDTH_SCALE = "hdmi_width_scale";
-    private static final String KEY_HDMI_HEIGHT_SCALE = "hdmi_height_scale";
+    private static final String KEY_HDMI_WIDTH_SCALE = "second_screen_width_scale";
+    private static final String KEY_HDMI_HEIGHT_SCALE = "second_screen_height_scale";
     private static final int HDMI_SCALE_MIN = 80;
     private static final int HDMI_SCALE_MAX = 100;
     private static final int NONE_DISPLAY = 0;
@@ -87,16 +91,39 @@ public class AwDisplayPreferenceController extends AbstractPreferenceController 
         }
     }
 
+    private boolean parseStateFromFile(String path) {
+        try {
+            String extcon = FileUtils.readTextFile(new File(path), 0, null).trim();
+            int start = extcon.indexOf("=");
+            String state = extcon.substring(start + 1);
+
+            Log.e("AwDisplay", "get " + path + " = " + state);
+
+            if ("1".equals(state)) {
+                return true;
+            } else if ("0".equals(state)) {
+                return false;
+            }
+        } catch (IOException e) {
+            Log.e(TAG, "Error reading " + path, e);
+        }
+
+        return false;
+    }
+
     //support HDMI and CVBS
     private boolean checkHDMIState() {
-	 //bpi, always return true
-         return true;
+        if (new File(HDMI_STATE).exists()) {
+            display_type = HDMI_PLUG_IN;
+            return parseStateFromFile(HDMI_STATE);
+        }
+        return false;
     }
 
     private boolean checkCVBSState() {
         if (new File(CVBS_STATE).exists()) {
             display_type = CVBS_PLUG_IN;
-            return true;
+            return parseStateFromFile(CVBS_STATE);
         }
         return false;
     }

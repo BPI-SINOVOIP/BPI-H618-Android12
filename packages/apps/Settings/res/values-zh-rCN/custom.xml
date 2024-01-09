@@ -3,14 +3,14 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- hdmi -->
-    <string name="hdmi_setting">HDMI设置</string>
-    <string name="hdmi_output_mode">HDMI输出模式</string>
-    <string name="hdmi_output_mode_summary">设置默认的HDMI输出制式</string>
+    <!-- hdmi or cvbs -->
+    <string name="second_screen_setting">屏幕设置</string>
+    <string name="second_screen_output_mode">屏幕输出模式</string>
+    <string name="second_screen_output_mode_summary">设置默认的屏幕输出制式</string>
     <string name="hdmi_fullscreen">HDMI全屏显示</string>
     <string name="hdmi_fullscreen_summary">设置HDMI输出是否全屏显示</string>
-    <string name="hdmi_width_scale">HDMI输出宽度缩放</string>
-    <string name="hdmi_height_scale">HDMI出高度缩放</string>
+    <string name="second_screen_width_scale">屏幕输出宽度缩放</string>
+    <string name="second_screen_height_scale">屏幕出高度缩放</string>
 
     <!-- Audio output mode -->
     <string name="audio_output_mode_title">音频输出通道</string>
