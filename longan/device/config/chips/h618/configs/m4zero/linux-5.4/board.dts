@@ -992,7 +992,7 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&s_cir0_pins_a>;
 	pinctrl-1 = <&s_cir0_pins_b>;
-	ir_power_key_code0 = <0xff>;
+	ir_power_key_code0 = <0x00>;
 	ir_addr_code0 = <0xfe01>;
 	ir_power_key_code1 = <0x1a>;
 	ir_addr_code1 = <0xfb04>;
