@@ -1518,7 +1518,7 @@ static int geth_open(struct net_device *ndev)
 		}
 	}
 
-	ret = sunxi_mac_reset((void *)priv->base, &sunxi_udelay, 50000);
+	ret = sunxi_mac_reset((void *)priv->base, &sunxi_udelay, 10000);
 	if (ret) {
 		netdev_err(ndev, "Initialize hardware error\n");
 		goto desc_err;
