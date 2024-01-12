@@ -409,7 +409,7 @@
 
 &key_boot_recovery {
 	device_type = "key_boot_recovery";
-	recovery_key_used = <0x1>;
+	recovery_key_used = <0x0>;
 	press_mode_enable = <0x0>;
 	key_work_mode = <0x0>;
 	short_press_mode = <0x0>;

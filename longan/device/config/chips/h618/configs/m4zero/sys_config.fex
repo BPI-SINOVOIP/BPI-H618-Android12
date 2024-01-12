@@ -104,7 +104,7 @@ ir_addr_code3               = 0xfe01
 ;   recovery_key      :  按键配置.
 ;----------------------------------------------------------------------------------
 [key_boot_recovery]
-recovery_key_used       = 1
+recovery_key_used       = 0
 press_mode_enable       = 0
 key_work_mode           = 0
 short_press_mode        = 0
