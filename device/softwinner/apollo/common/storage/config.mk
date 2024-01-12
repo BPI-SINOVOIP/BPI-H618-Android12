@@ -73,7 +73,7 @@ PRODUCT_COPY_FILES += \
     $(TARGET_FSTAB):$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.sun50iw9p1 \
     $(TARGET_FSTAB):$(TARGET_COPY_OUT_VENDOR_RAMDISK)/system/etc/recovery.fstab \
 
-PRODUCT_PACKAGES += Update
+#PRODUCT_PACKAGES += Update
 
 # storage
 PRODUCT_PROPERTY_OVERRIDES += \
