@@ -579,7 +579,7 @@ static int gpio_sw_probe(struct platform_device *dev)
 	sw_gpio_entry->pdata = pdata;
 
 	ret = map_gpio_to_name(io_area, gpio);
-	pr_info("gpio: %d, name: %s, ret = %d\n", gpio, io_area, ret);
+	pr_debug("gpio: %d, name: %s, ret = %d\n", gpio, io_area, ret);
 	if (ret == 0)
 		sw_gpio_entry->class.name = io_area;
 	else
@@ -728,7 +728,7 @@ static int sunxi_init_gpio_probe(struct platform_device *pdev)
 			}
 
 		}
-		pr_info("gpio_pin_%d(%d) gpio_is_valid\n", i + 1, gpio);
+		pr_debug("gpio_pin_%d(%d) gpio_is_valid\n", i + 1, gpio);
 
 		sw_pdata[i] = devm_kzalloc(&pdev->dev, sizeof(struct sw_gpio_pd), GFP_KERNEL);
 		if (IS_ERR_OR_NULL(sw_pdata[i])) {

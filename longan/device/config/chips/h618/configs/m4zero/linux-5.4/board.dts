@@ -42,6 +42,17 @@
 		};
 	};
 
+	gpio-leds {
+                compatible = "gpio-leds";
+                status = "okay";
+
+                sys_led {
+                        label="sys_led";
+                        gpio = <&pio PC 12 GPIO_ACTIVE_LOW>;
+                        linux,default-trigger = "heartbeat";
+                };
+        };
+
 	box_start_os0 {
 		compatible = "allwinner,box_start_os";
 		start_type = <0x1>;
@@ -854,11 +865,39 @@
 	};
 
 	gpio_para {
-		gpio_num = <1>;
-		gpio_pin_1 = <&pio PC 12 GPIO_ACTIVE_LOW>;
-		normal_led = "gpio_pin_1";
-		easy_light_used = <1>;
-		normal_led_light = <1>;
+		gpio_num = <28>;
+		gpio_pin_1 = <&pio PG 0  GPIO_ACTIVE_LOW>;
+		gpio_pin_2 = <&pio PG 1 GPIO_ACTIVE_LOW>;
+		gpio_pin_3 = <&pio PG 2 GPIO_ACTIVE_LOW>;
+		gpio_pin_4 = <&pio PG 3 GPIO_ACTIVE_LOW>;
+		gpio_pin_5 = <&pio PG 4 GPIO_ACTIVE_LOW>;
+		gpio_pin_6 = <&pio PG 5 GPIO_ACTIVE_LOW>;
+		gpio_pin_7 = <&pio PG 6 GPIO_ACTIVE_LOW>;
+		gpio_pin_8 = <&pio PG 7 GPIO_ACTIVE_LOW>;
+		gpio_pin_9 = <&pio PG 8 GPIO_ACTIVE_LOW>;
+		gpio_pin_10 = <&pio PG 9 GPIO_ACTIVE_LOW>;
+		gpio_pin_11 = <&pio PG 10 GPIO_ACTIVE_LOW>;
+		gpio_pin_12 = <&pio PG 11 GPIO_ACTIVE_LOW>;
+		gpio_pin_13 = <&pio PG 12 GPIO_ACTIVE_LOW>;
+		gpio_pin_14 = <&pio PG 13 GPIO_ACTIVE_LOW>;
+		gpio_pin_15 = <&pio PG 14 GPIO_ACTIVE_LOW>;
+		gpio_pin_16 = <&pio PG 15 GPIO_ACTIVE_LOW>;
+		gpio_pin_17 = <&pio PG 16 GPIO_ACTIVE_LOW>;
+		gpio_pin_18 = <&pio PG 17 GPIO_ACTIVE_LOW>;
+		gpio_pin_19 = <&pio PG 18 GPIO_ACTIVE_LOW>;
+		gpio_pin_20 = <&pio PG 19 GPIO_ACTIVE_LOW>;
+		gpio_pin_21 = <&pio PH 2 GPIO_ACTIVE_LOW>;
+		gpio_pin_22 = <&pio PH 3 GPIO_ACTIVE_LOW>;
+		gpio_pin_23 = <&pio PH 4 GPIO_ACTIVE_LOW>;
+		gpio_pin_24 = <&pio PH 5 GPIO_ACTIVE_LOW>;
+		gpio_pin_25 = <&pio PH 6 GPIO_ACTIVE_LOW>;
+		gpio_pin_26 = <&pio PH 7 GPIO_ACTIVE_LOW>;
+		gpio_pin_27 = <&pio PH 8 GPIO_ACTIVE_LOW>;
+		gpio_pin_28 = <&pio PH 9 GPIO_ACTIVE_LOW>;
+		//gpio_pin_29 = <&pio PC 12 GPIO_ACTIVE_LOW>;
+		//normal_led = "gpio_pin_1";
+		//easy_light_used = <1>;
+		//normal_led_light = <1>;
 		status = "okay";
 	};
 };
