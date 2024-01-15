@@ -45,8 +45,10 @@ public class ScreenTimeoutPreferenceController extends BasePreferenceController 
 
     public ScreenTimeoutPreferenceController(Context context, String key) {
         super(context, key);
-        mTimeoutEntries = context.getResources().getStringArray(R.array.screen_timeout_entries);
-        mTimeoutValues = context.getResources().getStringArray(R.array.screen_timeout_values);
+        mTimeoutEntries = context.getResources().getStringArray(R.array.dream_timeout_entries);
+        CharSequence[] temp = context.getResources().getStringArray(R.array.dream_timeout_values);
+        temp[0] = String.valueOf(Integer.MAX_VALUE);
+        mTimeoutValues = temp;
     }
 
     @Override
@@ -57,7 +59,12 @@ public class ScreenTimeoutPreferenceController extends BasePreferenceController 
     @Override
     public void updateState(Preference preference) {
         final long maxTimeout = getMaxScreenTimeout();
-        final RestrictedLockUtils.EnforcedAdmin admin = getPreferenceDisablingAdmin(maxTimeout);
+        int startPos = 0;
+        if (maxTimeout != Long.MAX_VALUE) {
+            //fix set maximum time to lock test of CtsVerifier
+            startPos = 1;
+        }
+        final RestrictedLockUtils.EnforcedAdmin admin = getPreferenceDisablingAdmin(maxTimeout, startPos);
         if (admin != null) {
             preference.setEnabled(false);
             preference.setSummary(mContext.getText(R.string.disabled_by_policy_title));
@@ -96,14 +103,14 @@ public class ScreenTimeoutPreferenceController extends BasePreferenceController 
      * restriction, or an admin that has set a very small MaximumTimeToLock timeout resulting in
      * no possible options for the user.
      */
-    private RestrictedLockUtils.EnforcedAdmin getPreferenceDisablingAdmin(long maxTimeout) {
+    private RestrictedLockUtils.EnforcedAdmin getPreferenceDisablingAdmin(long maxTimeout, int startPos) {
         final DevicePolicyManager dpm = mContext.getSystemService(DevicePolicyManager.class);
         RestrictedLockUtils.EnforcedAdmin admin = null;
         if (dpm != null) {
             admin = RestrictedLockUtilsInternal.checkIfRestrictionEnforced(
                     mContext, UserManager.DISALLOW_CONFIG_SCREEN_TIMEOUT,
                     UserHandle.myUserId());
-            if (admin == null && getLargestTimeout(maxTimeout) == null) {
+            if (admin == null && getLargestTimeout(maxTimeout, startPos) == null) {
                 admin = RestrictedLockUtilsInternal.checkIfMaximumTimeToLockIsSet(mContext);
             }
         }
@@ -121,10 +128,14 @@ public class ScreenTimeoutPreferenceController extends BasePreferenceController 
             return null;
         }
 
+        if (currentTimeout == Integer.MAX_VALUE && maxTimeout != Long.MAX_VALUE) {
+            return getLargestTimeout(maxTimeout, 1);
+        }
+
         if (currentTimeout > maxTimeout) {
             // The selected time out value is longer than the max timeout allowed by the admin.
             // Select the largest value from the list by default.
-            return getLargestTimeout(maxTimeout);
+            return getLargestTimeout(maxTimeout, 0);
         } else {
             return getCurrentTimeout(currentTimeout);
         }
@@ -139,10 +150,10 @@ public class ScreenTimeoutPreferenceController extends BasePreferenceController 
         return null;
     }
 
-    private CharSequence getLargestTimeout(long maxTimeout) {
+    private CharSequence getLargestTimeout(long maxTimeout, int startPos) {
         CharSequence largestTimeout = null;
         // The list of timeouts is sorted
-        for (int i = 0; i < mTimeoutValues.length; ++i) {
+        for (int i = startPos; i < mTimeoutValues.length; ++i) {
             if (Long.parseLong(mTimeoutValues[i].toString()) <= maxTimeout) {
                 largestTimeout = mTimeoutEntries[i];
             }
