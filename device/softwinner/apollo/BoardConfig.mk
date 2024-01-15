@@ -13,7 +13,11 @@ $(call soong_config_add,widevine,cryptolevel,$(BOARD_WIDEVINE_OEMCRYPTO_LEVEL))
 
 # Enable dex-preoptimization to speed up first boot sequence
 WITH_DEXPREOPT := true
+ifeq ($(BOARD_BUILD_OPENGAPPS), true)
+DONT_DEXPREOPT_PREBUILTS := true
+else
 DONT_DEXPREOPT_PREBUILTS := false
+endif
 TARGET_USE_NEON_OPTIMIZATION := true
 
 TARGET_CPU_SMP := true
