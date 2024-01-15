@@ -14,7 +14,7 @@ Get source code
 
     $ git clone https://github.com/BPI-SINOVOIP/BPI-H618-Android12 --depth=1
 
-Because github limit 100MB size for single file, please download the [oversize files]() and merge them to correct directory before build.
+Because github limit 100MB size for single file, please download the [oversize files](https://drive.google.com/drive/folders/1ye-uzyABf9LZEKp5R1f6FjARTZndTkEb?usp=sharing) and merge them to correct directory before build.
 
 Another way is get the source code tar archive from [BaiduPan(pincode: 8888)]() or [GoogleDrive]()
 
@@ -32,7 +32,7 @@ Build longan
     # or create buildconfig for m4zero build
     # ./build.sh autoconfig -i h618 -o android -n default -a arm64 -k linux-5.4 -b m4zero
 
-    $ build.sh
+    $ ./build.sh
 
 Build Android
 
