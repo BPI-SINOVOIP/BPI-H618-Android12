@@ -100,6 +100,13 @@ GLOBAL_REMOVED_PACKAGES += \
     Telecom \
     TelephonyProvider
 
+# audio utils
+PRODUCT_PACKAGES += \
+    tinymix \
+    tinyplay \
+    tinycap \
+    tinypcminfo
+
 ifneq ($(PRODUCT_HAS_UVC_CAMERA), true)
 PRODUCT_PACKAGES += \
     AWCamera
