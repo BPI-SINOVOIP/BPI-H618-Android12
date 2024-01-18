@@ -45,6 +45,7 @@ const int _hdmi_supported_modes[] = {
 
     DISP_TV_MOD_800_480P_60HZ,
     DISP_TV_MOD_1024_600P_60HZ,
+    DISP_TV_MOD_1440_2560P_60HZ,
 };
 
 const int _hdmi_supported_3d_modes[] = {

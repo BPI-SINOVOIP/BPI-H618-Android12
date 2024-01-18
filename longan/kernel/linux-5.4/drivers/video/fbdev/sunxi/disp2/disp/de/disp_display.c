@@ -1149,10 +1149,6 @@ s32 bsp_disp_get_screen_width_from_output_type(u32 disp, u32 output_type,
 			width = 1440;
 			height = 900;
 			break;
-		case DISP_TV_MOD_1440_2560P_70HZ:
-			width = 1440;
-			height = 2560;
-			break;
 		case DISP_VGA_MOD_1920_1080P_60:
 			width = 1920;
 			height = 1080;
@@ -1184,6 +1180,10 @@ s32 bsp_disp_get_screen_width_from_output_type(u32 disp, u32 output_type,
 		case DISP_TV_MOD_1024_600P_60HZ:
 			width = 1024;
 			height = 600;
+			break;
+		case DISP_TV_MOD_1440_2560P_60HZ:
+			width = 1440;
+			height = 2560;
 			break;
 		}
 	}
@@ -1286,10 +1286,6 @@ s32 bsp_disp_get_screen_height_from_output_type(u32 disp, u32 output_type,
 			width = 1440;
 			height = 900;
 			break;
-		case DISP_TV_MOD_1440_2560P_70HZ:
-			width = 1440;
-			height = 2560;
-			break;
 		case DISP_VGA_MOD_1920_1080P_60:
 			width = 1920;
 			height = 1080;
@@ -1321,6 +1317,10 @@ s32 bsp_disp_get_screen_height_from_output_type(u32 disp, u32 output_type,
 		case DISP_TV_MOD_1024_600P_60HZ:
 			width = 1024;
 			height = 600;
+			break;
+		case DISP_TV_MOD_1440_2560P_60HZ:
+			width = 1440;
+			height = 2560;
 			break;
 		}
 	}

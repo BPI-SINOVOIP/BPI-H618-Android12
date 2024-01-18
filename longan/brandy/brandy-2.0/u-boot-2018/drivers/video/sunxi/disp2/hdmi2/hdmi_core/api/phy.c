@@ -1087,7 +1087,7 @@ static u32 phy301_get_freq(u32 pClk)
 	else if (((pClk >= 237359) && (pClk <= 237369)) ||
 				((pClk >= 237595) && (pClk <= 237605)))
 		return 237600;
-	else if (pClk == 245250)
+	else if ((pClk == 245250) || (pClk == 244850))
 		return 245250;
 	else if (pClk == 245500)
 		return 245500;
