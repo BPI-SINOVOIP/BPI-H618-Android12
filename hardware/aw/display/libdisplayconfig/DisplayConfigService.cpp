@@ -32,10 +32,8 @@ using ::vendor::display::config::V1_0::implementation::DisplayConfig;
 DisplayConfigImpl* createDisplayConfigImplByPlatform(IHWCPrivateService& client)
 {
 #if   defined(_platform_tablet_)
-	ALOGE("BPI: tablet defined");
     return new TabletDisplayConfig(client);
 #elif defined(_platform_homlet_)
-    ALOGE("BPI: homelet defined");
     return new HomletDisplayConfig(client);
 #else
     // use TabletDisplayConfig for any other platform by default

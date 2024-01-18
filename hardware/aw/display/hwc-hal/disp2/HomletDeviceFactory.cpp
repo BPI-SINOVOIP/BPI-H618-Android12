@@ -15,6 +15,8 @@
  */
 
 #include <hardware/hwcomposer.h>
+#include "displayd/device_manager.h"
+
 #include "CompositionEngineV2Impl.h"
 #include "Debug.h"
 #include "disputils.h"
@@ -22,6 +24,7 @@
 #include "HomletDeviceFactory.h"
 #include "vendorservice/homlet/VendorServiceAdapter.h"
 #include "WriteBackManager.h"
+#include <cutils/properties.h>
 
 namespace sunxi {
 
@@ -103,6 +106,29 @@ DeviceBase::Config HomletDeviceFactory::makeLcdDefaultConfig() const
     return config;
 }
 
+#if 0
+struct HdmiModeInfo {
+    int mode;
+    int xres;
+    int yres;
+    int dpix;
+    int dpiy;
+    int refreshRate;
+};
+
+static const HdmiModeInfo _modeInfos[] = {
+    {DISP_TV_MOD_800_480P_60HZ,      800, 480, 160, 160, 60},
+    {DISP_TV_MOD_1024_600P_60HZ,     1024, 600, 160, 160, 60},
+    {DISP_TV_MOD_1440_2560P_60HZ,    1440, 2560, 160, 160, 60},
+
+    {DISP_TV_MOD_480P,               720, 480, 160, 160, 60},
+    {DISP_TV_MOD_720P_60HZ,          1280, 720, 160, 160, 60},
+    {DISP_TV_MOD_1080P_60HZ,         1920, 1080, 160, 160, 60},
+    {DISP_TV_MOD_3840_2160P_30HZ,    3840, 2160, 160, 160, 30},
+    {-1, -1, -1, -1, -1, -1},
+};
+#endif
+
 DeviceBase::Config HomletDeviceFactory::makeConfigFromHardwareInfo(int id)
 {
     DeviceBase::Config config = {
@@ -128,12 +154,37 @@ DeviceBase::Config HomletDeviceFactory::makeConfigFromHardwareInfo(int id)
         config = makeLcdDefaultConfig();
     }
 
+#if 0
+    if (info.InterfaceType == DISP_OUTPUT_TYPE_HDMI &&
+	    info.DisplayEnginePortId == 0) {
+	//bpi, get save propery and map to real x,y
+	char property[PROPERTY_VALUE_MAX] = {0};
+	if (0 >= property_get(HDMI_USER_STRATEGY, property, NULL)) {
+            DLOGE("BPI: makeConfigFromHardwareInfo(), property_get '%s' failed", HDMI_USER_STRATEGY);
+        } else {
+	        int strategy = atoi(property);
+	        DLOGE("BPI: makeConfigFromHardwareInfo(), hdmi user strategy: %d", strategy);
+
+	        for (int i = 0; _modeInfos[i].mode != -1; i++) {
+	            if (_modeInfos[i].mode == strategy) {
+	                config.width  = _modeInfos[i].xres;
+	                config.height = _modeInfos[i].yres;
+	                config.dpix = _modeInfos[i].dpix;
+	                config.dpix = _modeInfos[i].dpiy;
+		      DLOGE("BPI: makeConfigFromHardwareInfo(), width=%d height=%d", config.width, config.height);
+	                break;
+	            }
+		}
+	}
+    }
+#endif
+
     if (info.OverrideFramebufferSize &&
             info.FramebufferWidth != 0 && info.FramebufferHeight != 0) {
         config.width  = info.FramebufferWidth;
         config.height = info.FramebufferHeight;
         config.dpix = info.DpiX;
-        config.dpix = info.DpiY;
+        config.dpiy = info.DpiY;
     }
 
     return config;
