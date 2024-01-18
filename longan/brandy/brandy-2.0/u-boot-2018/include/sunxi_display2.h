@@ -239,7 +239,10 @@ enum disp_tv_mode
 	DISP_TV_MOD_4096_2160P_50HZ     = 0x25,
 	DISP_TV_MOD_2560_1440P_60HZ     = 0x26,
 	DISP_TV_MOD_1440_2560P_70HZ     = 0x27,
-	DISP_TV_MOD_1080_1920P_60HZ	= 0x28,
+	DISP_TV_MOD_1080_1920P_60HZ     = 0x28,
+	/* bpi, add vesa resolution */
+	DISP_TV_MOD_800_480P_60HZ         = 0x29,
+	/* bpi end */
 	DISP_TV_MOD_1280_1024P_60HZ     = 0x41,
 	DISP_TV_MOD_1024_768P_60HZ      = 0x42,
 	DISP_TV_MOD_900_540P_60HZ       = 0x43,

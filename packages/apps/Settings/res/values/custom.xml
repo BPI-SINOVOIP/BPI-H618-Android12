@@ -15,12 +15,12 @@
     <string-array name="hdmi_output_mode_entries">
         <item>HDMI 720P 60HZ</item>
         <item>HDMI 1080P 60HZ</item>
+	<item>HDMI 800x480 60HZ</item>
     </string-array>
     <string-array name="hdmi_output_mode_values" translatable="false">
-        <!-- Do not translate. -->
         <item>5</item>
-        <!-- Do not translate. -->
-        <item>10</item>
+	<item>10</item>
+	<item>41</item>
     </string-array>
     <!-- cvbs array -->
     <string-array name="cvbs_output_mode_entries">

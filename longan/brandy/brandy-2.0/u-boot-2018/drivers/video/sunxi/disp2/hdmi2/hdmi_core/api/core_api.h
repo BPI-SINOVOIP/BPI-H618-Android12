@@ -165,32 +165,32 @@ typedef struct {
 	/** 1 for interlaced, 0 progressive */
 	u8 mInterlaced;
 
-	u16 mHActive;
+	u16 mHActive;  //x
 
-	u16 mHBlanking;
+	u16 mHBlanking; //h_blank = h_front+h_sync+h_back
 
 	u16 mHBorder;
 
-	u16 mHImageSize; /*For picture aspect ratio*/
+	u16 mHImageSize; /*For picture aspect ratio*/ //16:9, 4:3
 
-	u16 mHSyncOffset;
+	u16 mHSyncOffset; //h_front
 
-	u16 mHSyncPulseWidth;
+	u16 mHSyncPulseWidth; //h_sync
 
 	/** 0 for Active low, 1 active high */
 	u8 mHSyncPolarity;
 
-	u16 mVActive;
+	u16 mVActive; //y
 
-	u16 mVBlanking;
+	u16 mVBlanking; //v_blank = v_front+v_sync_v_back
 
-	u16 mVBorder;
+	u16 mVBorder; 
 
-	u16 mVImageSize; /*For picture aspect ratio*/
+	u16 mVImageSize; /*For picture aspect ratio*///16:9, 4:3
 
-	u16 mVSyncOffset;
+	u16 mVSyncOffset; //v_front
 
-	u16 mVSyncPulseWidth;
+	u16 mVSyncPulseWidth; //v_sync
 
 	/** 0 for Active low, 1 active high */
 	u8 mVSyncPolarity;
