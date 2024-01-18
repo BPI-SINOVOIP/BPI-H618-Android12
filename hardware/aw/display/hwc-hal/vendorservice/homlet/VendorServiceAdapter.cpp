@@ -64,6 +64,7 @@ static const SunxiModeInfo _modeInfos[] = {
     {DISP_TV_MOD_720P_60HZ_3D_FP,  1280,  720, 60},
 
     {DISP_TV_MOD_800_480P_60HZ,  800,  480, 60},
+    {DISP_TV_MOD_1024_600P_60HZ,  1024,  600, 60},
 
     {-1, -1, -1, -1},
 };

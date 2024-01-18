@@ -307,6 +307,15 @@ static struct disp_rtwb_timings video_timing[] = {
 	.trd_mode = 0,
 	.fps = 60,
     },
+    {
+	.tv_mode = DISP_TV_MOD_1024_600P_60HZ,
+	.pixel_repeat = 0,
+	.x_res = 1024,
+	.y_res = 600,
+	.b_interlace = 0,
+	.trd_mode = 0,
+	.fps = 60,
+    },
 };
 
 static spinlock_t g_rtwb_data_lock;
