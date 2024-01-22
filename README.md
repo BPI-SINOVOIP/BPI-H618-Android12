@@ -12,11 +12,11 @@ Other environment requirements, please refer to google Android's official build 
 
 Get source code
 
-    $ git clone https://github.com/BPI-SINOVOIP/BPI-H618-Android12 --depth=1
+    $ git clone https://github.com/BPI-SINOVOIP/BPI-H618-Android12
 
 Because github limit 100MB size for single file, please download the [oversize files](https://drive.google.com/drive/folders/1ye-uzyABf9LZEKp5R1f6FjARTZndTkEb?usp=sharing) and merge them to correct directory before build.
 
-Another way is get the source code tar archive from [BaiduPan(pincode: 8888)]() or [GoogleDrive]()
+Another way is get the source code tar archive from [BaiduPan(pincode: 8888)](https://pan.baidu.com/s/1yMlLXauxZywujH8WkYqEcQ?pwd=8888) or [GoogleDrive](https://drive.google.com/drive/folders/1qQxQik4GJjOF1aEOs9a1YVFxJBPlyFnc?usp=sharing)
 
 ----------
 
