@@ -49,7 +49,7 @@ public final class Gpio {
                 break;
             }
         }
-        if (!checkLed()) ServiceReady = false;
+        checkLed();
     }
 
     private static native int nativeInit();
