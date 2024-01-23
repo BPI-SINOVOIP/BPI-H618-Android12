@@ -596,7 +596,7 @@ static int gpio_sw_probe(struct platform_device *dev)
 
 	/* init the gpio */
 	if (!gpio_sdcard_reused)
-		gpio_direction_output(gpio, (config == OF_GPIO_ACTIVE_LOW) ? 0 : 1);
+		gpio_sw_cfg_set(&sw_gpio_entry->class, 1);    //bpi, set cfg to out
 
 	mutex_unlock(&sw_gpio_entry->lock);
 
@@ -718,15 +718,13 @@ static int sunxi_init_gpio_probe(struct platform_device *pdev)
 			pr_err("get config err!\n");
 			ret = gpio;
 			goto err1;
-
 		}
 		if (!gpio_sdcard_reused) {
-			if (gpio_request(gpio, NULL)) {
+			if (gpio_request(gpio, "gpio_sw")) {
 				pr_err("gpio_pin_%d(%d) gpio_request fail\n", i + 1, gpio);
 				ret = -EINVAL;
 				goto err1;
 			}
-
 		}
 		pr_debug("gpio_pin_%d(%d) gpio_is_valid\n", i + 1, gpio);
 
