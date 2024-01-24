@@ -1,5 +1,6 @@
 
 PRODUCT_PACKAGES += \
 	AptoideTV \
-	Lightning
+	Lightning \
+	GpioManager
 
