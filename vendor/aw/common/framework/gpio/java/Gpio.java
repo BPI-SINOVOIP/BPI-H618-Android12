@@ -40,8 +40,8 @@ public final class Gpio {
     private static final String  PATHSTR      = "/sys/class/gpio_sw/P";
     private static final String  DATA_NAME   = "/data";
     private static final String  PULL_NAME     = "/pull";
-    private static final String  DRV_LEVEL_NAME = "/drv_level";
-    private static final String  MUL_SEL_NAME   = "/mul_sel";
+    private static final String  DRV_LEVEL_NAME = "/drv";
+    private static final String  MUL_SEL_NAME   = "/cfg";
     private static final String  LIGHT_NAME   = "/light";
 
     private static final String NORMAL_LED_PATH   = "/sys/class/gpio_sw/normal_led";
