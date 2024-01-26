@@ -46,8 +46,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
    qw \
 
-PRODUCT_PACKAGES += \
-   appsdisable
+#PRODUCT_PACKAGES += \
+#   appsdisable
 
 #add debug method for eng img
 ifeq ($(TARGET_BUILD_VARIANT),eng)

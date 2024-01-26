@@ -4,7 +4,6 @@ PRODUCT_PACKAGES += \
     mtop \
     slabinfo \
     fix_traceing \
-    gmsopt \
     cpu_monitor \
     iosimu \
     memtester \
@@ -20,3 +19,5 @@ PRODUCT_PACKAGES += \
     Screenshot \
     frame_monitor \
     newfs_msdos.recovery
+
+    #gmsopt
