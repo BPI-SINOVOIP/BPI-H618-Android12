@@ -169,12 +169,21 @@ static int gpio_sw_pull_set(struct gpio_sw_classdev *gpio_sw_cdev, int pull)
 {
 	unsigned long config;
 
-	if (pull >= 0 && pull <= 3) {
-		config = PIN_CONF_PACKED(SUNXI_PINCFG_TYPE_PUD, pull);
-		pinctrl_gpio_set_config(gpio_sw_cdev->item->gpio, config);
+	switch(pull){
+		case 0:
+			config = PIN_CONF_PACKED(PIN_CONFIG_BIAS_DISABLE, 0);
+			break;
+		case 1:
+			config = PIN_CONF_PACKED(PIN_CONFIG_BIAS_PULL_UP,  1);
+			break;
+		case 2:
+			config = PIN_CONF_PACKED(PIN_CONFIG_BIAS_PULL_DOWN,  2);
+			break;
 	}
 
+	pinctrl_gpio_set_config(gpio_sw_cdev->item->gpio, config);
 	gpio_sw_cdev->pull = pull;
+
 	return 0;
 }
 
@@ -189,7 +198,7 @@ static int gpio_sw_drv_set(struct gpio_sw_classdev *gpio_sw_cdev, int drv)
 	unsigned long config;
 
 	if (drv >= 0 && drv <= 3) {
-		config = PIN_CONF_PACKED(SUNXI_PINCFG_TYPE_DRV, drv);
+		config = PIN_CONF_PACKED(PIN_CONFIG_DRIVE_STRENGTH, drv);
 		pinctrl_gpio_set_config(gpio_sw_cdev->item->gpio, config);
 	}
 
