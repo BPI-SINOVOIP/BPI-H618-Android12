@@ -90,7 +90,9 @@ on charger
 
 on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
 
     chown system system /sys/class/thermal/thermal_zone0/policy
     chmod 0660 /sys/class/thermal/thermal_zone0/policy
