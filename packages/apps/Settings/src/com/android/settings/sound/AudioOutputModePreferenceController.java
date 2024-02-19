@@ -44,7 +44,8 @@ public class AudioOutputModePreferenceController extends AbstractPreferenceContr
     private static final int AUDIO_CODEC = 0;
     private static final int AUDIO_HDMI = 1;
     private static final int AUDIO_SPDIF = 2;
-    private static final int AUDIO_USB = 3;
+    private static final int AUDIO_I2S2 = 3;
+    private static final int AUDIO_USB = 4;
 
     private ArrayList<String> mChannels;
     private AudioManagerEx mAudioManagerEx;
@@ -52,7 +53,7 @@ public class AudioOutputModePreferenceController extends AbstractPreferenceContr
     public AudioOutputModePreferenceController(Context context) {
         super(context);
 
-	mAudioManagerEx = new AudioManagerEx(context);
+        mAudioManagerEx = new AudioManagerEx(context);
         mChannels = mAudioManagerEx.getActiveAudioDevices(AudioManagerEx.AUDIO_OUTPUT_ACTIVE);
     }
 
@@ -70,13 +71,13 @@ public class AudioOutputModePreferenceController extends AbstractPreferenceContr
     public void updateState(Preference preference) {
 
         final AudioOutputModeListPreference audioModeListPreference = 
-		(AudioOutputModeListPreference) preference;
-	int currentAudioMode = getAudioMode();
-	Log.d(TAG, "updateState: current audio output mode is " + currentAudioMode);
-	audioModeListPreference.setValue(String.valueOf(currentAudioMode));
+                (AudioOutputModeListPreference) preference;
+        int currentAudioMode = getAudioMode();
+        Log.d(TAG, "updateState: current audio output mode is " + currentAudioMode);
+        audioModeListPreference.setValue(String.valueOf(currentAudioMode));
 
-	updateAudioModePreferenceDescription(audioModeListPreference,
-		Long.parseLong(audioModeListPreference.getValue()));
+        updateAudioModePreferenceDescription(audioModeListPreference,
+                Long.parseLong(audioModeListPreference.getValue()));
     }
 
     @Override
@@ -117,7 +118,7 @@ public class AudioOutputModePreferenceController extends AbstractPreferenceContr
         if (preference.isDisabledByAdmin()) {
             summary = mContext.getString(com.android.settings.R.string.disabled_by_policy_title);
         } else {
-            if (0 > currentAudioMode || 3 < currentAudioMode) {
+            if (0 > currentAudioMode || 4 < currentAudioMode) {
                 summary = preference.getContext().getResources().getStringArray(R.array.audio_output_mode_entries)[1];
             } else {
                 final CharSequence audioModeDescription = getAudioOutputModeDescription(
@@ -133,7 +134,7 @@ public class AudioOutputModePreferenceController extends AbstractPreferenceContr
     }
 
     private void setAudioMode(int mode) {
-	/*String st = null;
+        /*String st = null;
         for(int i = 0; i < mChannels.size(); i++){
             if(st == null){
                 st = mChannels.get(i);
@@ -144,37 +145,41 @@ public class AudioOutputModePreferenceController extends AbstractPreferenceContr
         }
         Log.d(TAG, "setAudioMode: mChannels is " + st);*/
 
-	if (mChannels != null) {
+        if (mChannels != null) {
             mChannels.clear();
-	}
+        }
 
-	if(mode == AUDIO_CODEC) {
+        if(mode == AUDIO_CODEC) {
             mChannels.add("AUDIO_CODEC");
-	} else if (mode == AUDIO_HDMI) {
+        } else if (mode == AUDIO_HDMI) {
             mChannels.add("AUDIO_HDMI");
-	} else if (mode == AUDIO_SPDIF) {
+        } else if (mode == AUDIO_SPDIF) {
             mChannels.add("AUDIO_SPDIF");
-	} else if (mode == AUDIO_SPDIF) {
-	    mChannels.add("AUDIO_USB");
-	}
+        } else if (mode == AUDIO_I2S2) {
+            mChannels.add("AUDIO_I2S2");
+        } else if (mode == AUDIO_USB) {
+            mChannels.add("AUDIO_USB");
+        }
 
-	mAudioManagerEx.setAudioDeviceActive(mChannels, AudioManagerEx.AUDIO_OUTPUT_ACTIVE);
+        mAudioManagerEx.setAudioDeviceActive(mChannels, AudioManagerEx.AUDIO_OUTPUT_ACTIVE);
     }
 
     private int getAudioMode() {
-	for (String chst: mChannels) {
+        for (String chst: mChannels) {
             Log.d(TAG, "getAudioMode: mChannels is " + chst);
             if(chst.contains("CODEC")){
                 return AUDIO_CODEC;
-	    } else if(chst.contains("HDMI")){
+            } else if(chst.contains("HDMI")){
                 return AUDIO_HDMI;
-	    } else if(chst.contains("SPDIF")){
+            } else if(chst.contains("SPDIF")){
                 return AUDIO_SPDIF;
+            } else if(chst.contains("I2S2")){
+                return AUDIO_I2S2;
             } else if(chst.contains("USB")){
                 return AUDIO_USB;
             }
-	}
+        }
 
-	return AUDIO_HDMI;
+        return AUDIO_HDMI;
     }
 }

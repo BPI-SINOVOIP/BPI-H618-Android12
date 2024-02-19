@@ -17,6 +17,7 @@ public class AudioManagerEx extends AudioManager {
     public static final String AUDIO_NAME_AC107     = "AUDIO_AC107";
     public static final String AUDIO_NAME_HDMI      = "AUDIO_HDMI";
     public static final String AUDIO_NAME_SPDIF     = "AUDIO_SPDIF";
+    public static final String AUDIO_NAME_I2S2      = "AUDIO_I2S2";
 
     /* define type of device */
     public static final String AUDIO_INPUT_TYPE     = "audio_devices_in";
@@ -193,7 +194,12 @@ public class AudioManagerEx extends AudioManager {
                         audio = AUDIO_NAME_CODEC;
                         SystemProperties.set(PROP_RAWDATA_KEY, PROP_RAWDATA_MODE_PCM);
                         setParameter(PROP_RAWDATA_KEY, PROP_RAWDATA_MODE_PCM);
-                    }
+                    } else if (devices.contains(AUDIO_NAME_I2S2)) {
+                        Log.d(TAG,"AUDIO_NAME_I2S2");
+                        audio = AUDIO_NAME_I2S2;
+                        SystemProperties.set(PROP_RAWDATA_KEY, PROP_RAWDATA_MODE_PCM);
+                        setParameter(PROP_RAWDATA_KEY, PROP_RAWDATA_MODE_PCM);
+		    }
                 }
                 else{
                     if(devices.contains(AUDIO_NAME_HDMI) && hdmi){
@@ -209,6 +215,11 @@ public class AudioManagerEx extends AudioManager {
                     } else if (devices.contains(AUDIO_NAME_CODEC)) {
                         Log.d(TAG,"AUDIO_NAME_CODEC");
                         audio = AUDIO_NAME_CODEC;
+                        SystemProperties.set(PROP_RAWDATA_KEY, PROP_RAWDATA_MODE_PCM);
+                        setParameter(PROP_RAWDATA_KEY, PROP_RAWDATA_MODE_PCM);
+                    } else if (devices.contains(AUDIO_NAME_I2S2)) {
+                        Log.d(TAG,"AUDIO_NAME_I2S2");
+                        audio = AUDIO_NAME_I2S2;
                         SystemProperties.set(PROP_RAWDATA_KEY, PROP_RAWDATA_MODE_PCM);
                         setParameter(PROP_RAWDATA_KEY, PROP_RAWDATA_MODE_PCM);
                     }

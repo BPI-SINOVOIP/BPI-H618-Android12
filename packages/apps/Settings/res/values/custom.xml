@@ -47,13 +47,15 @@
         <item>AUDIO_CODEC</item>
 	<item>AUDIO_HDMI</item>
 	<item>AUDIO_SPDIF</item>
+	<item>AUDIO_I2S2</item>
 	<item>AUDIO_USB</item>
     </string-array>
     <string-array name="audio_output_mode_values" translatable="false">
         <item>0</item>
 	<item>1</item>
 	<item>2</item>
-        <item>3</item>
+	<item>3</item>
+	<item>4</item>
     </string-array>
 
     <!-- color enhance -->
