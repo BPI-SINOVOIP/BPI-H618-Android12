@@ -51,6 +51,7 @@
 	logical_start = <40960>;
 	/* 0x2--C 0xC--12 0x1--open*/
 	gpio0 = <0x54 0x2 0xc 0x1 0xffffffff 0xffffffff 0x0>;
+	//gpio1 = <0x54 0x2 0x2 0x1 0xffffffff 0xffffffff 0x0>;
 };
 
 &target {
@@ -515,8 +516,8 @@
 	hdmi_mode_check = <1>;
 
 	fb0_format = <0>;
-	fb0_width = <1280>;
-	fb0_height = <720>;
+	fb0_width = <1920>;
+	fb0_height = <1080>;
 
 	fb1_format = <0>;
 	fb1_width = <0>;

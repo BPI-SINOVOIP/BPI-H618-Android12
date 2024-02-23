@@ -485,21 +485,35 @@
 	};
 
 	ahub_daudio0_pins_a: ahub_daudio0@0 {
-		pins = "PA6", "PA7", "PA8", "PA9";
+		pins = "PI0", "PI1", "PI2";
 		function = "i2s0";
 		drive-strength = <20>;
 		bias-disable;
 	};
 
-	ahub_daudio0_pins_b: ahub_daudio0_sleep@0 {
-		pins = "PA6", "PA7", "PA8", "PA9";
+	ahub_daudio0_pins_b: ahub_daudio0@1 {
+		pins = "PI3";
+		function = "i2s0_dout0";
+		drive-strength = <20>;
+		bias-disable;
+	};
+
+	ahub_daudio0_pins_c: ahub_daudio0@2 {
+		pins = "PI4";
+		function = "i2s0_din0";
+		drive-strength = <20>;
+		bias-disable;
+	};
+
+	ahub_daudio0_pins_d: ahub_daudio0_sleep@0 {
+		pins = "PI0", "PI1", "PI2", "PI3", "PI4";
 		function = "gpio_in";
 		drive-strength = <20>;
 		bias-disable;
 	};
 
 	ahub_daudio2_pins_a: ahub_daudio2@0 {
-		pins = "PG11", "PG12";
+		pins = "PG10", "PG11", "PG12";
 		function = "i2s2";
 		drive-strength = <20>;
 		bias-disable;
@@ -520,7 +534,7 @@
 	};
 
 	ahub_daudio2_pins_d: ahub_daudio2_sleep@0 {
-		pins = "PG11", "PG12", "PG13", "PG14";
+		pins = "PG10", "PG11", "PG12", "PG13", "PG14";
 		function = "gpio_in";
 		drive-strength = <20>;
 		bias-disable;
@@ -624,6 +638,13 @@
 	pinctrl-names = "default", "sleep";
 	twi_drv_used = <1>;
 	status = "disabled";
+
+	pcm5122: pcm5122@4d {
+		compatible = "ti,pcm5122";
+		reg = <0x4d>;
+		#sound-dai-cells = <0>;
+		status = "disabled";
+	};
 };
 
 &twi5 {
@@ -899,7 +920,6 @@
 &rfkill {
 	compatible = "allwinner,sunxi-rfkill";
 	//chip_en = <&pio PC 2 GPIO_ACTIVE_HIGH>;
-	chip_en;
 	power_en;
 	pinctrl-0;
 	pinctrl-names;
@@ -1008,8 +1028,8 @@
 	hdmi_mode_check = <1>;
 
 	fb0_format = <0>;
-	fb0_width = <1280>;
-	fb0_height = <720>;
+	fb0_width = <1920>;
+	fb0_height = <1080>;
 
 	fb1_format = <0>;
 	fb1_width = <0>;
@@ -1182,6 +1202,14 @@
 	status = "okay";
 };
 
+&spdif {
+	status = "disabled";
+};
+
+&soundspdif {
+	status = "disabled";
+};
+
 /* 40pin spidifout, pin36 */
 /* audio dirver module -> spdif */
 &spdif_plat {
@@ -1194,6 +1222,7 @@
 };
 
 &spdif_mach {
+	soundcard-mach,playback-only;
 	status = "disabled";
 };
 
@@ -1212,8 +1241,8 @@
 	rx_pin		= <0>;
 	/* pinctrl_used; */
 	/* pinctrl-names= "default","sleep"; */
-	/* pinctrl-0	= <&ahub_daudio0_pins_a>; */
-	/* pinctrl-1	= <&ahub_daudio0_pins_b>; */
+	/* pinctrl-0	= <&ahub_daudio0_pins_a &ahub_daudio0_pins_b &ahub_daudio0_pins_c>; */
+	/* pinctrl-1	= <&ahub_daudio0_pins_d>; */
 	status		= "disabled";
 };
 
@@ -1270,6 +1299,7 @@
 };
 
 &ahub1_mach {
+	soundcard-mach,playback-only;
 	soundcard-mach,format		= "i2s";
 	soundcard-mach,frame-master	= <&ahub1_cpu>;
 	soundcard-mach,bitclock-master	= <&ahub1_cpu>;
@@ -1288,6 +1318,7 @@
 };
 
 &ahub2_mach {
+	soundcard-mach,playback-only;
 	soundcard-mach,format		= "i2s";
 	soundcard-mach,frame-master	= <&ahub2_cpu>;
 	soundcard-mach,bitclock-master	= <&ahub2_cpu>;
@@ -1295,13 +1326,14 @@
 	/* soundcard-mach,bitclock-inversion; */
 	soundcard-mach,slot-num		= <2>;
 	soundcard-mach,slot-width	= <32>;
-	status		= "okay";
+	status		= "disabled";
 	ahub2_cpu: soundcard-mach,cpu {
 		sound-dai = <&ahub2_plat>;
 		soundcard-mach,pll-fs	= <4>;	/* pll freq = 24.576M or 22.5792M * pll-fs */
 		soundcard-mach,mclk-fs	= <256>;/* mclk freq = pcm rate * mclk-fs */
 	};
 	ahub2_codec: soundcard-mach,codec {
+		sound-dai = <&pcm5122>;
 	};
 };
 
