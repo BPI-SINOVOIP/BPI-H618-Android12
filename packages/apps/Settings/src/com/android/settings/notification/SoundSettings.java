@@ -38,6 +38,7 @@ import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.sound.HandsFreeProfileOutputPreferenceController;
 import com.android.settings.sound.AudioOutputModePreferenceController;
+import com.android.settings.sound.AudioChannelsSelect;
 import com.android.settings.widget.PreferenceCategoryController;
 import com.android.settingslib.core.AbstractPreferenceController;
 import com.android.settingslib.core.instrumentation.Instrumentable;
@@ -54,6 +55,7 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
     private static final String TAG = "SoundSettings";
 
     private static final String SELECTED_PREFERENCE_KEY = "selected_preference";
+    private static final String KEY_AUDIO_OUTPUT_MODE = "audio_output_mode";
     private static final int REQUEST_CODE = 200;
     private static final int SAMPLE_CUTOFF = 2000;  // manually cap sample playback at 2 seconds
 
@@ -78,6 +80,8 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
     private UpdatableListPreferenceDialogFragment mDialogFragment;
     private String mHfpOutputControllerKey;
     private String mVibrationPreferencesKey = "vibration_preference_screen";
+    private Preference mAudioOutputPreference;
+    private AudioChannelsSelect mAudioSelector;
 
     @Override
     public int getMetricsCategory() {
@@ -98,6 +102,7 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
                             .findFragmentByTag(TAG);
             mDialogFragment = dialogFragment;
         }
+	mAudioOutputPreference = findPreference(KEY_AUDIO_OUTPUT_MODE);
     }
 
     @Override
@@ -122,6 +127,11 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
                     REQUEST_CODE,
                     null,
                     UserHandle.of(mRequestPreference.getUserId()));
+            return true;
+        }
+
+	if (preference == mAudioOutputPreference) {
+            mAudioSelector.showChannelsSelectDialog();
             return true;
         }
         return super.onPreferenceTreeClick(preference);
@@ -196,6 +206,8 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
             controller.setCallback(mVolumeCallback);
             getSettingsLifecycle().addObserver(controller);
         }
+
+	mAudioSelector = new AudioChannelsSelect(context);
     }
 
     // === Volumes ===
@@ -288,7 +300,7 @@ public class SoundSettings extends DashboardFragment implements OnActivityResult
                         emergencyTonePreferenceController)));
 
 	//bpi, audio output mode
-        controllers.add(new AudioOutputModePreferenceController(context));
+        //controllers.add(new AudioOutputModePreferenceController(context));
 
         return controllers;
     }
