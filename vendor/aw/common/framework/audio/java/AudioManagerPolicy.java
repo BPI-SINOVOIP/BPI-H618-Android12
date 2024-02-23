@@ -224,6 +224,9 @@ public class AudioManagerPolicy extends BroadcastReceiver {
             if(!isUSBAudioDeviceExist(audioOutputChannelName) || (audioOutputChannelName == null) || remove_usb){
                 Log.d(TAG," POLICY_0 Remove USB Audio or No USB Audio Output Device Connected!");
                 ArrayList<String> activedChannels = new ArrayList<String>();
+		if(audioOutputChannels.contains(AudioManagerEx.AUDIO_NAME_I2S2)){
+                    activedChannels.add(AudioManagerEx.AUDIO_NAME_I2S2);
+                }
                 if(audioOutputChannels.contains(AudioManagerEx.AUDIO_NAME_SPDIF)){
                     activedChannels.add(AudioManagerEx.AUDIO_NAME_SPDIF);
                 }
@@ -244,6 +247,7 @@ public class AudioManagerPolicy extends BroadcastReceiver {
             if(!isUSBAudioDeviceExist(audioOutputChannelName) || (audioOutputChannelName == null) || remove_usb){
                 Log.d(TAG," POLICY_1 Remove USB Audio or No USB Audio Output Device Connected!");
                 ArrayList<String> activedChannels = new ArrayList<String>();
+		activedChannels.add(AudioManagerEx.AUDIO_NAME_I2S2);
                 activedChannels.add(AudioManagerEx.AUDIO_NAME_SPDIF);
                 activedChannels.add(AudioManagerEx.AUDIO_NAME_CODEC);
                 activedChannels.add(AudioManagerEx.AUDIO_NAME_HDMI);
@@ -263,6 +267,9 @@ public class AudioManagerPolicy extends BroadcastReceiver {
                 Log.d(TAG," POLICY_2 Remove USB Audio or No USB Audio Output Device Connected!");
                 ArrayList<String> activedChannels = new ArrayList<String>();
                 boolean hdmiPlugIn = isHdmiPlugin();
+		if(audioOutputChannels.contains(AudioManagerEx.AUDIO_NAME_I2S2)){
+                    activedChannels.add(AudioManagerEx.AUDIO_NAME_I2S2);
+                }
                 if(audioOutputChannels.contains(AudioManagerEx.AUDIO_NAME_SPDIF)){
                     activedChannels.add(AudioManagerEx.AUDIO_NAME_SPDIF);
                 }
@@ -460,8 +467,10 @@ public class AudioManagerPolicy extends BroadcastReceiver {
         }
         ActivityManagerNative.broadcastStickyIntent(intent_hdmi_audio, null, UserHandle.USER_ALL);
         if(name.equals(AudioManagerEx.AUDIO_NAME_HDMI)
-            || (name.equals(AudioManagerEx.AUDIO_NAME_CODEC) && ((extra == null) || (extra != null) && !extra.equals(AudioDeviceManagerObserver.H2W_DEV)))
-            || (name.equals(AudioManagerEx.AUDIO_NAME_SPDIF))){
+            || (name.equals(AudioManagerEx.AUDIO_NAME_CODEC) && ((extra == null)
+	    || (extra != null) && !extra.equals(AudioDeviceManagerObserver.H2W_DEV)))
+            || (name.equals(AudioManagerEx.AUDIO_NAME_SPDIF))
+	    || (name.equals(AudioManagerEx.AUDIO_NAME_I2S2))){
 
         }else{
             handleExternalDevice(name, type, state, extra);

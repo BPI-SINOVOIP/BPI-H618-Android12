@@ -853,7 +853,7 @@ static char * get_audio_devices(struct sunxi_audio_device *adev, int in_out)
             }
 
             if (adev->dev_manager[card].flag_out == AUDIO_OUT
-                  && (strcmp(adev->dev_manager[card].name, "AUDIO_I2S2") != 0))
+                  /*&& (strcmp(adev->dev_manager[card].name, "AUDIO_I2S2") != 0) bpi */)
             {
                 strcat(out_devices, adev->dev_manager[card].name);
                 strcat(out_devices, ",");
