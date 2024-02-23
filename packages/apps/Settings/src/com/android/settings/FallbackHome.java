@@ -17,6 +17,7 @@
 package com.android.settings;
 
 import android.app.Activity;
+import android.app.AppGlobals;
 import android.app.WallpaperColors;
 import android.app.WallpaperManager;
 import android.app.WallpaperManager.OnColorsChangedListener;
@@ -25,7 +26,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ResolveInfo;
+import android.content.pm.IPackageManager;
 import android.os.AsyncTask;
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -46,6 +52,13 @@ public class FallbackHome extends Activity {
 
     private boolean mProvisioned;
     private WallpaperManager mWallManager;
+
+    private static final int SETTING_VALUE_ON = 1;
+    private static final String SURFACE_FLINGER_SERVICE_KEY = "SurfaceFlinger";
+    private static final String SURFACE_COMPOSER_INTERFACE_KEY = "android.ui.ISurfaceComposer";
+    private static final int SURFACE_FLINGER_DISABLE_OVERLAYS_CODE = 1008;
+
+    private static IBinder mSurfaceFlinger;
 
     private final Runnable mProgressTimeoutRunnable = () -> {
         View v = getLayoutInflater().inflate(
@@ -99,8 +112,35 @@ public class FallbackHome extends Activity {
         }
         getWindow().getDecorView().setSystemUiVisibility(flags);
 
+	if (mSurfaceFlinger == null) {
+            mSurfaceFlinger = ServiceManager.getService(SURFACE_FLINGER_SERVICE_KEY);
+        }
+
+        initHardwareOverlaysSetting(SETTING_VALUE_ON);
+
         registerReceiver(mReceiver, new IntentFilter(Intent.ACTION_USER_UNLOCKED));
         maybeFinish();
+    }
+
+    /* bpi, disable hwc overlays default */
+    public void initHardwareOverlaysSetting(int val) {
+        if (mSurfaceFlinger == null) {
+            return;
+        }
+
+        IPackageManager pm = AppGlobals.getPackageManager();
+        // magic communication with surface flinger.
+        try {
+            if (pm.isFirstBoot()) {
+                final Parcel data = Parcel.obtain();
+                data.writeInterfaceToken(SURFACE_COMPOSER_INTERFACE_KEY);
+                data.writeInt(val);
+                mSurfaceFlinger.transact(SURFACE_FLINGER_DISABLE_OVERLAYS_CODE, data, null, 0 /* flags */);
+                data.recycle();
+            }
+        } catch (RemoteException ex) {
+            // intentional no-op
+        }
     }
 
     @Override
