@@ -247,8 +247,8 @@ static struct disp_rtwb_timings video_timing[] = {
     {
 	.tv_mode = DISP_TV_MOD_2560_1440P_60HZ,
 	.pixel_repeat = 0,
-	.x_res = 3840,
-	.y_res = 2160,
+	.x_res = 2560,
+	.y_res = 1440,
 	.b_interlace = 0,
 	.trd_mode = 0,
 	.fps = 60,
