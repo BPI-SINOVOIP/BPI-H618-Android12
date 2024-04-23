@@ -56,7 +56,7 @@
 
 &target {
     boot_clock = <1416>;
-    advert_enable = <0>;
+    advert_enable = <1>;
 };
 
 &aliases {

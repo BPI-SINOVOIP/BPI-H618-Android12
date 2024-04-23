@@ -446,6 +446,7 @@ static int fat_read_file_ex(char *fatname, char *filename, char *addr)
 	return 0;
 }
 
+#if 0
 static int sunxi_advert_verify_head(struct __advert_head *adv_head)
 {
 	char *addr = (char *)CONFIG_SYS_SDRAM_BASE;
@@ -505,20 +506,27 @@ static __s32 check_sum(void *mem_base, __u32 size, __u32 src_sum)
 		return -1;
 	}
 }
+#endif
 
 int sunxi_advert_display(char *fatname, char *filename)
 {
+#if 0
 	struct __advert_head advert_head;
 
 	if (sunxi_advert_verify_head(&advert_head) < 0)
 		return -1;
 
-	if ((0 > fat_read_file_ex("Reserve0", "advert.bmp",
+	if ((0 > fat_read_file_ex("Reserve0", filename,
 				  (char *)CONFIG_SYS_SDRAM_BASE)) ||
 	    (0 > check_sum((u32 *)CONFIG_SYS_SDRAM_BASE, advert_head.length,
 			   advert_head.check_sum))) {
 		return -1;
 	}
+#else
+	if (0 > fat_read_file_ex("Reserve0", filename, (char *)CONFIG_SYS_SDRAM_BASE)) {
+		return -1;
+	}
+#endif
 
 	return show_bmp_on_fb((char *)CONFIG_SYS_SDRAM_BASE, FB_ID_0);
 }

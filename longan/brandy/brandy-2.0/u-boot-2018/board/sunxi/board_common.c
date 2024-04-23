@@ -629,7 +629,7 @@ void board_bootlogo_display(void)
 	ret = script_parser_fetch("/soc/target", "advert_enable",
 				  (int *)&advert_enable, sizeof(int) / 4);
 	if ((ret == 0) && (advert_enable == 1)) {
-		ret = sunxi_advert_display("Reserve0", "advert.bmp");
+		ret = sunxi_advert_display("Reserve0", "bootlogo.bmp");
 		if (ret == 0) {
 			return;
 		}
