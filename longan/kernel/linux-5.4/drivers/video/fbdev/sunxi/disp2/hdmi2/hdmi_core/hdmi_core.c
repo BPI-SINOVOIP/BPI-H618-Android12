@@ -950,7 +950,7 @@ s32 hdmi_mode_support(u32 mode)
 	for (i = 0; i < sizeof(hdmi_mode_tbl)/sizeof(struct disp_hdmi_mode); i++) {
 		if (hdmi_mode_tbl[i].mode == (enum disp_tv_mode)mode) {
 			hdmi_mode = hdmi_mode_tbl[i].hdmi_mode;
-#if 1
+#if 0
 			if (edid_sink_supports_vic_code(hdmi_mode) == true) {
 				VIDEO_INF("edid support this tv_mode:%d\n", mode);
 				return 1;
