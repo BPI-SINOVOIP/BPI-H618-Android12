@@ -238,10 +238,15 @@ enum disp_tv_mode
     DISP_TV_MOD_1080_1920P_60HZ     = 0x28,
     DISP_TV_MOD_800_480P_60HZ       = 0x29,
     DISP_TV_MOD_1024_600P_60HZ      = 0x2a,
+    DISP_TV_MOD_1280_800P_60HZ      = 0x2b,
+    DISP_TV_MOD_640_480P_60HZ       = 0x2c,
+    DISP_TV_MOD_960_544P_60HZ       = 0x2d,
+    DISP_TV_MOD_1920_1200P_60HZ     = 0x2e,
     DISP_TV_MOD_1280_1024P_60HZ     = 0x41,
     DISP_TV_MOD_1024_768P_60HZ      = 0x42,
     DISP_TV_MOD_900_540P_60HZ       = 0x43,
     DISP_TV_MOD_1920_720P_60HZ      = 0x44,
+    DISP_TV_MOD_2560_1600P_60HZ     = 0x45,
     /*
      * vga
      * NOTE:macro'value of new solution must between

@@ -927,6 +927,30 @@ s32 bsp_disp_get_screen_width_from_output_type(u32 disp, u32 output_type, u32 ou
 			width = 1080;
 			height = 1920;
 			break;
+		case DISP_TV_MOD_640_480P_60HZ:
+			width = 640;
+			height = 480;
+			break;
+		case DISP_TV_MOD_960_544P_60HZ:
+			width = 960;
+			height = 544;
+			break;
+		case DISP_TV_MOD_1280_800P_60HZ:
+			width = 1280;
+			height = 800;
+			break;
+		case DISP_TV_MOD_1920_720P_60HZ:
+			width = 1920;
+			height = 720;
+			break;
+		case DISP_TV_MOD_1920_1200P_60HZ:
+			width = 1920;
+			height = 1200;
+			break;
+		case DISP_TV_MOD_2560_1600P_60HZ:
+			width = 2560;
+			height = 1600;
+			break;
 		}
 	}
 	/* FIXME: add other output device res */
@@ -1062,6 +1086,30 @@ s32 bsp_disp_get_screen_height_from_output_type(u32 disp, u32 output_type, u32 o
 		case DISP_TV_MOD_1080_1920P_60HZ:
 			width = 1080;
 			height = 1920;
+			break;
+		case DISP_TV_MOD_640_480P_60HZ:
+			width = 640;
+			height = 480;
+			break;
+		case DISP_TV_MOD_960_544P_60HZ:
+			width = 960;
+			height = 544;
+			break;
+		case DISP_TV_MOD_1280_800P_60HZ:
+			width = 1280;
+			height = 800;
+			break;
+		case DISP_TV_MOD_1920_720P_60HZ:
+			width = 1920;
+			height = 720;
+			break;
+		case DISP_TV_MOD_1920_1200P_60HZ:
+			width = 1920;
+			height = 1200;
+			break;
+		case DISP_TV_MOD_2560_1600P_60HZ:
+			width = 2560;
+			height = 1600;
 			break;
 		}
 	}

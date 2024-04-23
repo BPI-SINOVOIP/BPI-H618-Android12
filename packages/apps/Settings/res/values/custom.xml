@@ -17,20 +17,34 @@
         <item>HDMI 720P 60Hz</item>
 	<item>HDMI 1080P 60Hz</item>
 	<item>HDMI 4K 30Hz</item>
+	<item>HDMI 640x480 60Hz</item>
 	<item>HDMI 800x480 60Hz</item>
+        <item>HDMI 960x544 60Hz</item>
 	<item>HDMI 1024x600 60Hz</item>
-	<item>HDMI 2560x1440 60Hz</item>
 	<item>HDMI 1080x1920 60Hz</item>
+	<item>HDMI 1280x800 60Hz</item>
+	<item>HDMI 1440x2560 60Hz</item>
+	<item>HDMI 1920x720 60Hz</item>
+	<item>HDMI 1920x1200 60Hz</item>
+	<item>HDMI 2560x1440 60Hz</item>
+        <item>HDMI 2560x1600 60Hz</item>
     </string-array>
     <string-array name="hdmi_output_mode_values" translatable="false">
 	<item>2</item>
         <item>5</item>
 	<item>10</item>
 	<item>28</item>
+	<item>44</item>
 	<item>41</item>
+        <item>45</item>
 	<item>42</item>
-	<item>38</item>
 	<item>40</item>
+	<item>43</item>
+	<item>39</item>
+	<item>68</item>
+        <item>46</item>
+	<item>38</item>
+        <item>69</item>
     </string-array>
     <!-- cvbs array -->
     <string-array name="cvbs_output_mode_entries">
