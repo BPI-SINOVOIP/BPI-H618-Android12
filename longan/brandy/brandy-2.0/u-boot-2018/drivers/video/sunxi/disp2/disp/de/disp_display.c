@@ -38,7 +38,9 @@ s32 bsp_disp_init(disp_bsp_init_para *para)
 #if defined (DE_VERSION_V33X) || defined(DE_VERSION_V35X)
 	disp_al_init_tcon(para);
 #endif
+#if defined(SUPPORT_LCD)
 	disp_init_lcd(para);
+#endif
 #if defined(SUPPORT_HDMI)
 	disp_init_hdmi(para);
 #endif

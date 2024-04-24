@@ -655,7 +655,9 @@ s32 drv_disp_init(void)
 		g_disp_drv.eink_manager[0] = disp_get_eink_manager(0);
 
 #endif
+#if defined(SUPPORT_LCD)
 	lcd_init();
+#endif
 #if defined(SUPPORT_HDMI) && (defined(CONFIG_HDMI_DISP2_SUNXI) || \
 				defined(CONFIG_HDMI2_DISP2_SUNXI))
 	hdmi_init();

@@ -221,6 +221,7 @@ static disp_fdt_node_map_t g_disp_fdt_node_map[] ={
 #ifdef SUPPORT_HDMI
 	{FDT_HDMI_PATH, -1},
 #endif
+#ifdef SUPPORT_LCD
 	{FDT_LCD0_PATH, -1},
 	{FDT_LCD1_PATH, -1},
 	{"/soc/lcd0_1", -1},
@@ -235,6 +236,7 @@ static disp_fdt_node_map_t g_disp_fdt_node_map[] ={
 	{"/soc/lcd1_1", -1},
 	{"/soc/lcd1_2", -1},
 	{"/soc/lcd1_3", -1},
+#endif
 #ifdef CONFIG_DISP2_TV_AC200
 	{FDT_AC200_PATH, -1},
 #endif
