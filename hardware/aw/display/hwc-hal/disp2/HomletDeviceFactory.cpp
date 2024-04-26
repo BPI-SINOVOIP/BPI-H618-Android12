@@ -106,7 +106,7 @@ DeviceBase::Config HomletDeviceFactory::makeLcdDefaultConfig() const
     return config;
 }
 
-#if 0
+#if 1
 struct HdmiModeInfo {
     int mode;
     int xres;
@@ -117,9 +117,17 @@ struct HdmiModeInfo {
 };
 
 static const HdmiModeInfo _modeInfos[] = {
+    {DISP_TV_MOD_640_480P_60HZ,      640, 480, 160, 160, 60},
     {DISP_TV_MOD_800_480P_60HZ,      800, 480, 160, 160, 60},
+    {DISP_TV_MOD_960_544P_60HZ,      960, 544, 160, 160, 60},
     {DISP_TV_MOD_1024_600P_60HZ,     1024, 600, 160, 160, 60},
+    {DISP_TV_MOD_1080_1920P_60HZ,    1080, 1920, 160, 160, 60},
+    {DISP_TV_MOD_1280_800P_60HZ,     1280, 800, 160, 160, 60},
     {DISP_TV_MOD_1440_2560P_60HZ,    1440, 2560, 160, 160, 60},
+    {DISP_TV_MOD_1920_720P_60HZ,     1920, 720, 160, 160, 60},
+    {DISP_TV_MOD_1920_1200P_60HZ,    1920, 1200, 160, 160, 60},
+    {DISP_TV_MOD_2560_1440P_60HZ,    2560, 1440, 160, 160, 60},
+    {DISP_TV_MOD_2560_1600P_60HZ,    2560, 1600, 160, 160, 60},
 
     {DISP_TV_MOD_480P,               720, 480, 160, 160, 60},
     {DISP_TV_MOD_720P_60HZ,          1280, 720, 160, 160, 60},
@@ -141,6 +149,28 @@ DeviceBase::Config HomletDeviceFactory::makeConfigFromHardwareInfo(int id)
         .refreshRate = 60,
     };
 
+#if 1
+    //bpi, get save propery and map to real x,y
+    char property[PROPERTY_VALUE_MAX] = {0};
+    if (0 >= property_get(HDMI_USER_STRATEGY, property, NULL)) {
+        DLOGE("BPI: makeConfigFromHardwareInfo(), property_get '%s' failed", HDMI_USER_STRATEGY);
+    } else {
+        int strategy = atoi(property);
+        DLOGE("BPI: makeConfigFromHardwareInfo(), hdmi user strategy: %d", strategy);
+
+        for (int i = 0; _modeInfos[i].mode != -1; i++) {
+            if (_modeInfos[i].mode == strategy) {
+                config.width  = _modeInfos[i].xres;
+                config.height = _modeInfos[i].yres;
+                config.dpix = _modeInfos[i].dpix;
+                config.dpix = _modeInfos[i].dpiy;
+                DLOGE("BPI: makeConfigFromHardwareInfo(), width=%d height=%d", config.width, config.height);
+                return config;
+            }
+        }
+    }
+#endif
+
     const std::vector<DeviceConfig::DeviceHardwareInfo>& devlist =
         mDeviceConfigInfo->getDeviceList();
 
@@ -153,31 +183,6 @@ DeviceBase::Config HomletDeviceFactory::makeConfigFromHardwareInfo(int id)
             info.DisplayEnginePortId == 0) {
         config = makeLcdDefaultConfig();
     }
-
-#if 0
-    if (info.InterfaceType == DISP_OUTPUT_TYPE_HDMI &&
-	    info.DisplayEnginePortId == 0) {
-	//bpi, get save propery and map to real x,y
-	char property[PROPERTY_VALUE_MAX] = {0};
-	if (0 >= property_get(HDMI_USER_STRATEGY, property, NULL)) {
-            DLOGE("BPI: makeConfigFromHardwareInfo(), property_get '%s' failed", HDMI_USER_STRATEGY);
-        } else {
-	        int strategy = atoi(property);
-	        DLOGE("BPI: makeConfigFromHardwareInfo(), hdmi user strategy: %d", strategy);
-
-	        for (int i = 0; _modeInfos[i].mode != -1; i++) {
-	            if (_modeInfos[i].mode == strategy) {
-	                config.width  = _modeInfos[i].xres;
-	                config.height = _modeInfos[i].yres;
-	                config.dpix = _modeInfos[i].dpix;
-	                config.dpix = _modeInfos[i].dpiy;
-		      DLOGE("BPI: makeConfigFromHardwareInfo(), width=%d height=%d", config.width, config.height);
-	                break;
-	            }
-		}
-	}
-    }
-#endif
 
     if (info.OverrideFramebufferSize &&
             info.FramebufferWidth != 0 && info.FramebufferHeight != 0) {

@@ -409,6 +409,11 @@ int HdmiDevice::performDefaultConfig(int enable)
         dirty++;
     }
 
+    //bpi, fix waveshare 7inch 1024x600(C) and 10.1inch 1280x800(B) incorrect edid display fail
+    if (config.mode == DISP_TV_MOD_1024_600P_60HZ ||
+        config.mode == DISP_TV_MOD_1280_800P_60HZ)
+        dirty++;
+
     if (dirty) {
         hwcBlank(1);
         setDeviceConfig(&newconfig);

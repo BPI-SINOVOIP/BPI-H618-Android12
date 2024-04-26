@@ -163,7 +163,6 @@ static void dumpDeviceMapping(sunxi::DeviceTable& map)
 void DeviceManager::setupDefaultOutput()
 {
     std::unique_lock<std::mutex> lock(mLock);
-    char property[PROPERTY_VALUE_MAX] = {0};
 
     /* Force a rebuild to get current output mapping. */
     std::vector<OutputDeviceInfo> mapping;
@@ -183,9 +182,10 @@ void DeviceManager::setupDefaultOutput()
         }
         controler->setLogicalId(id);
         if (type == DISP_OUTPUT_TYPE_HDMI) {
-            int strategy = 0 >= property_get(HDMI_USER_STRATEGY, property, NULL) ?
-                         HDMI_AUTO_MODE : atoi(property);
+	    //bpi, set real mode property
+            int strategy = controler->getDisplayMode();
             dd_info("setupDefaultOutput: hdmi user strategy: %d", strategy);
+	    setHdmiUserSetting(strategy);
             controler->setHdmiUserSetting(strategy);
         }
         controler->performDefaultConfig(mapping[i].enabled);

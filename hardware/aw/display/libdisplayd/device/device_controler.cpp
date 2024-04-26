@@ -223,6 +223,7 @@ int DeviceControler::getAspectRatio()
 
 int DeviceControler::getDisplayMode()
 {
+#if 0
     int mode = getMode();
     if (mode != mDeviceConfig.get().mode) {
         dd_error("[%s] Saved attribute is not match,"
@@ -238,6 +239,9 @@ int DeviceControler::getDisplayMode()
         }
     }
     return mode;
+#else
+    return getMode();
+#endif
 }
 
 int DeviceControler::getPixelFormat()
