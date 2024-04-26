@@ -982,6 +982,8 @@
 
 	ddc_en_io_ctrl = <0>;
 	power_io_ctrl = <0>;
+
+	boot_mask = <0>;
 };
 
 /* screenx_output_type  (0:none; 1:lcd; 2:tv; 3:hdmi;)
