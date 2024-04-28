@@ -15,6 +15,7 @@ package com.android.settings.display;
 
 import android.content.Context;
 import android.os.FileUtils;
+import android.os.PowerManager;
 import android.util.Log;
 import androidx.preference.SwitchPreference;
 import androidx.preference.ListPreference;
@@ -54,6 +55,7 @@ public class AwDisplayPreferenceController extends AbstractPreferenceController 
     private SeekBarPreference mHeightScale;
     private Context mContext;
     private DisplayOutputManager mManager;
+    private PowerManager mPowerManager;
     private static final int DISPLAY1 = 0;
     private int mMarginWidthValue;
     private int mMarginHeightValue;
@@ -62,6 +64,7 @@ public class AwDisplayPreferenceController extends AbstractPreferenceController 
         super(context);
         mContext = context;
         mManager = DisplayOutputManager.getInstance();
+        mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
     }
 
     @Override
@@ -164,7 +167,13 @@ public class AwDisplayPreferenceController extends AbstractPreferenceController 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (mOutputMode == preference) {
             int mode = Integer.parseInt((String) newValue);
-            mManager.setDisplayOutputMode(DISPLAY1, mode);
+            int ret = mManager.setDisplayOutputMode(DISPLAY1, mode);
+            Log.d(TAG, "setDisplayOutMode return " + ret);  
+	    if (ret == 0) {
+                mPowerManager.reboot(PowerManager.REBOOT_REQUESTED_BY_DEVICE_OWNER);
+            } else {
+                Log.e(TAG, "mode is not support");
+	    }
         } else if (mFullscreen == preference) {
             boolean full = (Boolean) newValue;
             mManager.setHdmiFullscreen(DISPLAY1, full);
