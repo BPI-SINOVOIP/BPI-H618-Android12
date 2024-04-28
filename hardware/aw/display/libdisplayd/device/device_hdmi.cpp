@@ -265,10 +265,6 @@ void HdmiDevice::userSetting2Config(disp_device_config *config)
     config->mode = (enum disp_tv_mode)performOptimalMode();
 
     switch (mPixelformat.get()) {
-    case PIXEL_FORMAT_RGB888_8bit:
-        config->format = DISP_CSC_TYPE_RGB;
-        config->bits   = DISP_DATA_8BITS;
-        break;
     case PIXEL_FORMAT_YUV422_10bit:
         config->format = DISP_CSC_TYPE_YUV422;
         config->bits   = DISP_DATA_10BITS;
@@ -278,8 +274,12 @@ void HdmiDevice::userSetting2Config(disp_device_config *config)
         config->bits   = DISP_DATA_10BITS;
         break;
     case PIXEL_FORMAT_YUV444_8bit:
-    default:
         config->format = DISP_CSC_TYPE_YUV444;
+        config->bits   = DISP_DATA_8BITS;
+        break;
+    default:
+    case PIXEL_FORMAT_RGB888_8bit:
+        config->format = DISP_CSC_TYPE_RGB;
         config->bits   = DISP_DATA_8BITS;
         break;
     }
