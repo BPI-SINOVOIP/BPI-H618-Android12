@@ -182,7 +182,7 @@ void DeviceManager::setupDefaultOutput()
         }
         controler->setLogicalId(id);
         if (type == DISP_OUTPUT_TYPE_HDMI) {
-	    //bpi, set real mode property
+	    //bpi, set kernel hdmi mode from dtb or disp_rsl.fex
             int strategy = controler->getDisplayMode();
             dd_info("setupDefaultOutput: hdmi user strategy: %d", strategy);
 	    setHdmiUserSetting(strategy);

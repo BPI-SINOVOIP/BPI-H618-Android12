@@ -247,11 +247,15 @@ int edid_sink_supports_vic_code(u32 vic_code)
 	struct edid *edid_block0 = p_core->mode.edid;
 	struct detailed_timing *dt;
 
+	pr_info("%s, BPI: vic_code=%d\n", __func__, vic_code);
+
 	if (p_core == NULL)
 		return false;
 
-	if (edid_exten == NULL)
+	if (edid_exten == NULL) {
+		pr_err("%s, edid extension block not exist\n", __func__);
 		return false;
+	}
 
 
 	for (i = 0; (i < 128) && (edid_exten->edid_mSvd[i].mCode != 0); i++) {
@@ -281,34 +285,79 @@ int edid_sink_supports_vic_code(u32 vic_code)
 		return false;
 	}
 
-	if (!edid_block0)
+	if (!edid_block0) {
+		pr_err("%s, edid_block0 is null \n", __func__);
 		return false;
+	}
 	dt = edid_block0->detailed_timings;
-	/*Check EDID Block0 detailed timing block*/
-	for (i = 0; i < 2; i++) {
-		if ((dtd.mPixelClock * (dtd.mPixelRepetitionInput + 1) == dt[i].pixel_clock * 10)
-			&& (dtd.mHActive == ((((dt[i].data.pixel_data.hactive_hblank_hi >> 4) & 0x0f) << 8)
-			| dt[i].data.pixel_data.hactive_lo))
-			&& ((dtd.mVActive / (dtd.mInterlaced + 1)) == ((((dt[i].data.pixel_data.vactive_vblank_hi >> 4) & 0x0f) << 8)
-			| dt[i].data.pixel_data.vactive_lo))
-			&& (dtd.mPixelClock == ((unsigned int)dt[i].pixel_clock * 10))) {
-			pr_info("detailed timing block:%d of edid block0 support\n", i);
-			return true;
+
+	//bpi, custom waveshare hdmi panel
+	if(vic_code == 1 || vic_code >= 0x201) {
+		//TODO
+		pr_info("timing: dtd.mPixelClock=%d, dtd.mHActive=%d, dtd.mVActive=%d\n", dtd.mPixelClock, dtd.mHActive, dtd.mVActive);
+		for (i = 0; i < 2; i++) {
+			pr_info("block0: dt[%d].pixel_clock=%d, dt[%d].mHActive=%d, dt[%d].mVActive=%d\n", i, dt[i].pixel_clock,
+				i, ((((dt[i].data.pixel_data.hactive_hblank_hi >> 4) & 0x0f) << 8) | dt[i].data.pixel_data.hactive_lo), 
+				i, ((((dt[i].data.pixel_data.vactive_vblank_hi >> 4) & 0x0f) << 8) | dt[i].data.pixel_data.vactive_lo));
+		}
+		for (i = 0; i < 2; i++) {
+			pr_info("block1: dt_ext[%d].pixel_clock=%d, dt_ext[%d].mHActive=%d, dt_ext[%d].mVActive=%d\n", i, dt_ext[i].pixel_clock,
+				i, ((((dt_ext[i].data.pixel_data.hactive_hblank_hi >> 4) & 0x0f) << 8) | dt_ext[i].data.pixel_data.hactive_lo), 
+				i, ((((dt_ext[i].data.pixel_data.vactive_vblank_hi >> 4) & 0x0f) << 8) | dt_ext[i].data.pixel_data.vactive_lo));
+		}
+
+		/*Check EDID Block0 detailed timing block*/
+		for (i = 0; i < 2; i++) {
+			if ((dtd.mPixelClock  == dt[i].pixel_clock * 10)
+				&& (dtd.mHActive == ((((dt[i].data.pixel_data.hactive_hblank_hi >> 4) & 0x0f) << 8) | dt[i].data.pixel_data.hactive_lo))
+				&& (dtd.mVActive  == ((((dt[i].data.pixel_data.vactive_vblank_hi >> 4) & 0x0f) << 8) | dt[i].data.pixel_data.vactive_lo))) {
+				pr_info("BPI: detailed timing block:%d of edid block0 support\n", i);
+				return true;
+			} else {
+				pr_info("BPI: detailed timing block:%d of edid block0 not support\n", i);
+			}
+		}
+
+		/*Check EDID Extension Block detailed timing block*/
+		for (i = 0; i < 2; i++) {
+			if ((dtd.mPixelClock  == dt_ext[i].pixel_clock * 10)
+				&& (dtd.mHActive == ((((dt_ext[i].data.pixel_data.hactive_hblank_hi >> 4) & 0x0f) << 8) | dt_ext[i].data.pixel_data.hactive_lo))
+				&& (dtd.mVActive == ((((dt_ext[i].data.pixel_data.vactive_vblank_hi >> 4) & 0x0f) << 8) | dt_ext[i].data.pixel_data.vactive_lo))) {
+				pr_info("BPI: detailed timing block:%d of edid block1 support\n", 2 + i);
+				return true;
+			} else {
+				pr_info("BPI: detailed timing block:%d of edid block1 not support\n", 2 + i);
+			}
+		}
+	} else {
+		/*Check EDID Block0 detailed timing block*/
+		for (i = 0; i < 2; i++) {
+			if ((dtd.mPixelClock * (dtd.mPixelRepetitionInput + 1) == dt[i].pixel_clock * 10)
+				&& (dtd.mHActive == ((((dt[i].data.pixel_data.hactive_hblank_hi >> 4) & 0x0f) << 8) | dt[i].data.pixel_data.hactive_lo))
+				&& ((dtd.mVActive / (dtd.mInterlaced + 1)) == ((((dt[i].data.pixel_data.vactive_vblank_hi >> 4) & 0x0f) << 8) | dt[i].data.pixel_data.vactive_lo))
+				&& (dtd.mPixelClock == ((unsigned int)dt[i].pixel_clock * 10))) {
+				pr_info("detailed timing block:%d of edid block0 support\n", i);
+				return true;
+			} else {
+				pr_info("detailed timing block:%d of edid block0 not support\n", i);
+			}
+		}
+
+		/*Check EDID Extension Block detailed timing block*/
+		for (i = 0; i < 2; i++) {
+			if ((dtd.mPixelClock * (dtd.mPixelRepetitionInput + 1) == dt_ext[i].pixel_clock * 10)
+				&& (dtd.mHActive == ((((dt_ext[i].data.pixel_data.hactive_hblank_hi >> 4) & 0x0f) << 8) | dt_ext[i].data.pixel_data.hactive_lo))
+				&& ((dtd.mVActive / (dtd.mInterlaced + 1)) == ((((dt_ext[i].data.pixel_data.vactive_vblank_hi >> 4) & 0x0f) << 8) | dt_ext[i].data.pixel_data.vactive_lo))
+				&& (dtd.mPixelClock == ((unsigned int)dt[i].pixel_clock * 10))) {
+				pr_info("detailed timing block:%d of edid block1 support\n", 2 + i);
+				return true;
+			} else {
+				pr_info("detailed timing block:%d of edid block1 not support\n", 2 + i);
+			}
 		}
 	}
 
-	/*Check EDID Extension Block detailed timing block*/
-	for (i = 0; i < 2; i++) {
-		if ((dtd.mPixelClock * (dtd.mPixelRepetitionInput + 1) == dt_ext[i].pixel_clock * 10)
-			&& (dtd.mHActive == ((((dt_ext[i].data.pixel_data.hactive_hblank_hi >> 4) & 0x0f) << 8)
-			| dt_ext[i].data.pixel_data.hactive_lo))
-			&& ((dtd.mVActive / (dtd.mInterlaced + 1)) == ((((dt_ext[i].data.pixel_data.vactive_vblank_hi >> 4) & 0x0f) << 8)
-			| dt_ext[i].data.pixel_data.vactive_lo))
-			&& (dtd.mPixelClock == ((unsigned int)dt[i].pixel_clock * 10))) {
-			pr_info("detailed timing block:%d of edid block0 support\n", 2 + i);
-			return true;
-		}
-	}
+	pr_info("%s, BPI: vic_code=%d return false\n", __func__, vic_code);
 
 	return false;
 }
@@ -442,9 +491,7 @@ static void edid_set_video_prefered(sink_edid_t *sink_cap, videoParams_t *pVideo
 		return;
 	}
 
-	if ((pVideo->mDtd.mCode == 0x201)
-		|| (pVideo->mDtd.mCode == 0x202)
-		|| (pVideo->mDtd.mCode == 0x203)) {
+	if ((pVideo->mDtd.mCode >= 0x201)) {
 		pVideo->mCea_code = 0;
 		pVideo->mHdmi_code = 0;
 		return;

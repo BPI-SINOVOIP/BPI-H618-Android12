@@ -265,9 +265,7 @@ static void edid_set_video_prefered(sink_edid_t *sink_cap,
 		return;
 	}
 
-	if ((pVideo->mDtd.mCode == 0x201)
-		|| (pVideo->mDtd.mCode == 0x202)
-		|| (pVideo->mDtd.mCode == 0x203)) {
+	if ((pVideo->mDtd.mCode >=  0x201)) {
 		pVideo->mCea_code = 0;
 		pVideo->mHdmi_code = 0;
 		return;
