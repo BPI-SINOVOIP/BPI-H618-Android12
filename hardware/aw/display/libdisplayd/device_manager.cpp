@@ -257,10 +257,20 @@ void DeviceManager::hotplug(int type, int connected)
         controler->performOptimalConfig(mapping[i].enabled);
         mDisplayDevices.emplace(id, controler);
 
+        /* bpi, mapping[i].enabled always 1 indicate primary display 0 always exist, 
+	 * but real hdmi state 0 when hdmi unplug will cause primary display 0 non-exist
+	 * which will trigger android service crash and zygote restart.
+	 */
         routing.mTables.push_back(
                 sunxi::DeviceTable::device_info(
                     id, controler->type(), controler->getDisplayMode(),
-                    mapping[i].enabled));
+                    controler->getHdmiConnectState(controler->type())/*mapping[i].enabled*/));
+
+            /*bpi, set HDMI_USER_STRATEGY prop for hotplug */
+            int strategy = controler->getDisplayMode();
+            dd_info("hotplug: hdmi user strategy: %d", strategy);
+            setHdmiUserSetting(strategy);
+            controler->setHdmiUserSetting(strategy);
     }
 
     /* 3. Notify hwc adapter service */

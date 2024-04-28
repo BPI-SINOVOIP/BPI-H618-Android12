@@ -63,6 +63,7 @@ public:
     int setDisplayMode(int mode);
     int setDisplayMargin(int l, int r, int t, int b);
     int setAspectRatio(int ratio);
+    int getHdmiConnectState(int type);
     int getDisplayMode();
     int getAspectRatio();
     int getPixelFormat();

@@ -221,6 +221,11 @@ int DeviceControler::getAspectRatio()
     return static_cast<int>(mAspectRatio.get());
 }
 
+int DeviceControler::getHdmiConnectState(int type)
+{
+    return platformGetDeviceConnectState(type);
+}
+
 int DeviceControler::getDisplayMode()
 {
 #if 0
