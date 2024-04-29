@@ -168,15 +168,29 @@ static int get_device_configs(disp_device_t *disp_dev_list, int *dev_num)
 		disp_getprop_by_name(node, prop, (uint32_t *)&(disp_dev->screen_id), 0);
 		sprintf(prop, "dev%d_do_hpd", id);
 		disp_getprop_by_name(node, prop, (uint32_t *)&(disp_dev->do_hpd), 0);
-		if (0 < read_bytes)
+
+		if (0 < read_bytes) {
+			printf("%s, disp_rsl.fex exist , get hdmi config->format =%d from it\n", __func__, disp_dev->format);
 			get_display_config(disp_dev, buf, read_bytes);
+		}
+
 		if ((0 >= read_bytes) || (-1 == disp_dev->mode)) {
+			printf("%s, BPI: disp_rsl.fex not exist , get hdmi config->format =%d from dtb\n", __func__, disp_dev->format);
 			sprintf(prop, "dev%d_output_mode", id);
 			disp_getprop_by_name(node, prop, (uint32_t *)&(disp_dev->mode), 0);
+
+#if 0
 			disp_dev->format =
 				(disp_dev->type == DISP_OUTPUT_TYPE_LCD)
 				? DISP_CSC_TYPE_RGB
 				: DISP_CSC_TYPE_YUV444;
+#else
+			sprintf(prop, "screen%d_output_format", id);
+			disp_getprop_by_name(node, prop, (uint32_t *)&(disp_dev->format), 0);
+#endif
+			sprintf(prop, "screen%d_output_dvi_hdmi", id);
+			disp_getprop_by_name(node, prop, (uint32_t *)&(disp_dev->dvi_hdmi), 0);
+
 			disp_dev->bits = DISP_DATA_8BITS;
 			disp_dev->eotf = DISP_EOTF_GAMMA22;
 			disp_dev->cs =
@@ -290,6 +304,7 @@ int disp_devices_open(void)
 			printf("hdmi hpd out, force open?\n");
 			/* TODO: force open hdmi device */
 		} else {
+			printf("%s, hdmi connected\n", __func__)
 			int vendor_id;
 
 			verify_mode = hdmi_verify_mode(
