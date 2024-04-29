@@ -56,7 +56,7 @@
 
 &target {
     boot_clock = <1416>;
-    advert_enable = <0>;
+    advert_enable = <1>;
 };
 
 &aliases {
@@ -542,6 +542,9 @@
 
 	ddc_en_io_ctrl = <0>;
 	power_io_ctrl = <0>;
+
+	/* skip hdmi init in uboot */
+	boot_mask = <0>;
 };
 
 &s_cir0 {

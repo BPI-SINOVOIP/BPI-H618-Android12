@@ -988,11 +988,16 @@
 
 	ddc_en_io_ctrl = <0>;
 	power_io_ctrl = <0>;
+
+	boot_mask = <0>;
 };
 
 /* screenx_output_type  (0:none; 1:lcd; 2:tv; 3:hdmi;)
  * screenx_output_mode  (used for hdmi output, 0:480i 1:576i 2:480p 3:576p 4:720p50)
  *      (5:720p60 6:1080i50 7:1080i60 8:1080p24 9:1080p50 10:1080p60 11:pal 14:ntsc)
+ *      (38: 2560x1440p60 39:1440x2560p60 40:1080x1920p60 41: 800x480p60 42:1024x600p60)
+ *      (43: 1280x800p60 44:640x480p60 45:960x544p60 46: 1920x1200p60 68:1920x720p60)
+ *      (69: 2560x1600p60)
  */
 &disp {
 	disp_init_enable = <1>;
@@ -1034,8 +1039,8 @@
 	hdmi_mode_check = <1>;
 
 	fb0_format = <0>;
-	fb0_width = <1920>;
-	fb0_height = <1080>;
+	fb0_width = <1280>;
+	fb0_height = <720>;
 
 	fb1_format = <0>;
 	fb1_width = <0>;
