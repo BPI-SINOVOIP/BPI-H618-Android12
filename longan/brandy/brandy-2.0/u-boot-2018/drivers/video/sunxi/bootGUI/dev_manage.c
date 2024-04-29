@@ -304,7 +304,7 @@ int disp_devices_open(void)
 			printf("hdmi hpd out, force open?\n");
 			/* TODO: force open hdmi device */
 		} else {
-			printf("%s, hdmi connected\n", __func__)
+			printf("%s, hdmi connected\n", __func__);
 			int vendor_id;
 
 			verify_mode = hdmi_verify_mode(
