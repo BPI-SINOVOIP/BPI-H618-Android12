@@ -1095,7 +1095,7 @@ static u32 phy301_get_freq(u32 pClk)
 		return 44900;
 	else if (pClk == 49500)
 		return 49500;
-	else if ((pClk == 50000) || (pClk == 48960))
+	else if ((pClk == 50000) || (pClk == 48960) || (pClk == 49000))
 		return 50000;
 	else if (((pClk >= 50345) && (pClk <= 50355)) ||
 					((pClk >= 50395) && (pClk <= 50405)))
@@ -1183,7 +1183,7 @@ static u32 phy301_get_freq(u32 pClk)
 	else if (((pClk >= 148347) && (pClk <= 148357)) ||
 					((pClk >= 148495) && (pClk <= 148505)))
 		return 148500;
-	else if (pClk == 154000)
+	else if ((pClk == 154000) ||(pClk == 137520))
 		return 154000;
 	else if (pClk == 156000)
 		return 156000;
