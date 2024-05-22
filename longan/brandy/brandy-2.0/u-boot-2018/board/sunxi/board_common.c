@@ -515,6 +515,9 @@ int sunxi_boot_init_gpio(void)
 #define FDT_PATH_BOOT_INIT_GPIO "/soc/boot_init_gpio"
 	user_gpio_set_t gpio_init;
 	int nodeoffset;
+	uint gpio_num, i;
+	char gpio_name[8];
+
 	if (get_boot_work_mode() != WORK_MODE_BOOT) {
 		return 0;
 	}
@@ -525,13 +528,18 @@ int sunxi_boot_init_gpio(void)
 	if (!fdtdec_get_is_enabled(working_fdt, nodeoffset)) {
 		return 0;
 	}
-	if (fdt_get_one_gpio(FDT_PATH_BOOT_INIT_GPIO, "gpio0", &gpio_init) ==
-	    0) {
-		sunxi_gpio_request(&gpio_init, 1);
+
+	//bpi
+	if (IS_ERR_VALUE(fdt_getprop_u32(working_fdt,nodeoffset, "gpio_num", &gpio_num))) {
+		return 0;
 	}
-	if (fdt_get_one_gpio(FDT_PATH_BOOT_INIT_GPIO, "gpio1", &gpio_init) ==
-	    0) {
-		sunxi_gpio_request(&gpio_init, 1);
+
+	for (i = 0; i < gpio_num; i++) {
+		sprintf(gpio_name, "gpio%d", i);
+		printf("%s, set %s\n", __func__, gpio_name);
+		if (fdt_get_one_gpio(FDT_PATH_BOOT_INIT_GPIO, gpio_name, &gpio_init) == 0) {
+			sunxi_gpio_request(&gpio_init, 1);
+		}
 	}
 
 	return 0;
