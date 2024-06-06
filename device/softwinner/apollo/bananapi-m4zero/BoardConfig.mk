@@ -19,7 +19,8 @@ WIFI_DRIVER_MODULE_ARG  :=
 # 2. Bluetooth Configuration
 BOARD_BLUETOOTH_VENDOR    := common
 BOARD_HAVE_BLUETOOTH_NAME :=
-BOARD_BLUETOOTH_CONFIG_DIR := $(TARGET_DEVICE_DIR)/wireless/bluetooth
+#BOARD_BLUETOOTH_CONFIG_DIR := $(TARGET_DEVICE_DIR)/wireless/bluetooth
+BOARD_BLUETOOTH_CONFIG_DIR :=  $(PRODUCT_PLATFORM_PATH)/common/wireless/bluetooth
 BOARD_BLUETOOTH_TTY := /dev/ttyAS1
 # Must include after wifi/bt configuration
 include device/softwinner/common/config/wireless/wireless_config.mk

@@ -511,6 +511,11 @@ static int map_gpio_to_name(char *name, u32 gpio)
 		base = 'H';
 		goto map_done;
 	}
+	num = gpio - SUNXI_PI_BASE;
+	if ((num >= 0) && (num < PINS_PER_BANK)) {
+		base = 'I';
+		goto map_done;
+	}
 	num = gpio - SUNXI_PJ_BASE;
 	if ((num >= 0) && (num < PINS_PER_BANK)) {
 		base = 'J';

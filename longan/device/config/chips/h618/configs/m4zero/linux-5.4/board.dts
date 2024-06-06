@@ -115,37 +115,36 @@
 	status = "okay";
 };
 
-/* 40pin uart1, pin8,10,16,18*/
+/* bluetooth */
 &uart1 {
 	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&uart1_ph_pins>;
-	pinctrl-1 = <&uart1_ph_sleep>;
+	pinctrl-0 = <&uart1_pg_pins>;
+	pinctrl-1 = <&uart1_pg_sleep>;
 	device_type = "uart1";
-	status = "disabled";
+	status = "okay";
 };
 
-/* 40pin uart2, pin3,5 or pin23,24 */
+/* 40pin uart2, pin23,24 */
 &uart2 {
 	pinctrl-names = "default", "sleep";
-	//pinctrl-0 = <&uart2_pg_pins>;
-	//pinctrl-1 = <&uart2_pg_sleep>;
 	pinctrl-0 = <&uart2_ph_pins>;
 	pinctrl-1 = <&uart2_ph_sleep>;
 	status = "disabled";
 };
 
-/* zero 26pin uart3, pin7,8,9,10 */
+/* 40pin uart3, pin31,29,15,7 */
 &uart3 {
 	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&uart3_ph_pins>;
-	pinctrl-1 = <&uart3_ph_sleep>;
+	pinctrl-0 = <&uart3_pi_pins>;
+	pinctrl-1 = <&uart3_pi_sleep>;
 	status = "disabled";
 };
 
+/* 40pin uart4, pin8,10,16,18*/
 &uart4 {
 	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&uart4_ph_pins>;
-	pinctrl-1 = <&uart4_ph_sleep>;
+	pinctrl-0 = <&uart4_pi_pins>;
+	pinctrl-1 = <&uart4_pi_sleep>;
 	status = "disabled";
 };
 
@@ -176,12 +175,12 @@
 	sd-uhs-ddr50;
 	sd-uhs-sdr104;
 	vmmc-supply = <&reg_dldo1>;
-	//cd-gpios = <&pio PF 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>;
-	non-removable;
+	cd-gpios = <&pio PF 6 GPIO_ACTIVE_HIGH>;
+	//non-removable;
 	status = "okay";
 };
 
-/* 40pin sdio, pin32,22,15,29,31,33 */
+/* sdio wifi */
 &sdc1 {
 	max-frequency = <150000000>;
 	pinctrl-0 = <&sdc1_pins_a>;
@@ -202,7 +201,7 @@
 	ctl-spec-caps = <0x8>;
 	vmmc-supply = <&reg_dldo1>;
 	vqmmc-supply = <&reg_aldo1>;
-	status = "disabled";
+	status = "okay";
 };
 
 &nand0 {
@@ -242,26 +241,16 @@
 		function = "gpio_in";
 	};
 
-	uart1_ph_pins: uart1-ph-pins {
+	uart1_pg_pins: uart1-pg-pins {
 		pins = "PG6", "PG7", "PG8", "PG9";
 		function = "uart1";
 	};
 
-	uart1_ph_sleep: uart1-ph-sleep {
+	uart1_pg_sleep: uart1-pg-sleep {
 		pins = "PG6", "PG7", "PG8", "PG9";
 		function = "gpio_in";
 	};
-/*
-	uart2_ph_pins: uart2-ph-pins {
-		pins = "PG15", "PG16";
-		function = "uart2";
-	};
 
-	uart2_ph_sleep: uart2-ph-sleep {
-		pins = "PG15", "PG16";
-		function = "gpio_in";
-	};
-*/
 	uart2_ph_pins: uart2-ph-pins {
 		pins = "PH5", "PH6";
 		function = "uart2";
@@ -272,23 +261,23 @@
 		function = "gpio_in";
 	};
 
-	uart3_ph_pins: uart3-ph-pins {
+	uart3_pi_pins: uart3-pi-pins {
 		pins = "PI9", "PI10", "PI11", "PI12";
 		function = "uart3";
 	};
 
-	uart3_ph_sleep: uart3-ph-sleep {
+	uart3_pi_sleep: uart3-pi-sleep {
 		pins = "PI9", "PI10", "PI11", "PI12";
 		function = "gpio_in";
 	};
 
-	uart4_ph_pins: uart4-ph-pins {
-		pins = "PI13", "PI14";
+	uart4_pi_pins: uart4-pi-pins {
+		pins = "PI13", "PI14", "PI15", "PI16";
 		function = "uart4";
 	};
 
-	uart4_ph_sleep: uart4-ph-sleep {
-		pins = "PI13", "PI14";
+	uart4_pi_sleep: uart4-pi-sleep {
+		pins = "PI13", "PI14", "PI15", "PI16";
 		function = "gpio_in";
 	};
 
@@ -354,14 +343,14 @@
 	};
 
 	twi1_pins_a: twi1@0 {
-		pins = "PH0", "PH1";
+		pins = "PI7", "PI8";
 		function = "twi1";
 		drive-strength = <10>;
 		bias-pull-up;
 	};
 
 	twi1_pins_b: twi1@1 {
-		pins = "PH0", "PH1";
+		pins = "PI7", "PI8";
 		function = "gpio_in";
 	};
 
@@ -458,16 +447,44 @@
 	        function = "gpio_in";
 	};
 
-
-	pwm1_pin_a: pwm1@0 {
-		pins = "PG19";
-		function = "pwm1";
+	gmac1_pins_a: gmac1@0 {
+		pins = "PA0", "PA1", "PA2", "PA3",
+			"PA4", "PA5", "PA6", "PA7",
+			"PA8", "PA9";
+		function = "gmac1";
 		drive-strength = <10>;
 		bias-pull-up;
 	};
 
-	pwm1_pin_b: pwm1@1 {
-		pins = "PG19";
+	gmac1_pins_b: gmac1@1 {
+		pins = "PA0", "PA1", "PA2", "PA3",
+			"PA4", "PA5", "PA6", "PA7",
+			"PA8", "PA9";
+		function = "gpio_in";
+		drive-strength = <10>;
+	};
+
+	pwm2_pin_a: pwm2@0 {
+		pins = "PI12";
+		function = "pwm2";
+		drive-strength = <10>;
+		bias-pull-up;
+	};
+
+	pwm2_pin_b: pwm2@1 {
+		pins = "PI12";
+		function = "gpio_in";
+	};
+
+	pwm5_pin_a: pwm5@0 {
+		pins = "PA12";
+		function = "pwm5";
+		drive-strength = <10>;
+		bias-pull-up;
+	};
+
+	pwm5_pin_b: pwm5@1 {
+		pins = "PA12";
 		function = "gpio_in";
 	};
 
@@ -586,7 +603,7 @@
 		allwinner,pull = <1>;
 	};
 };
-
+/* 40pin i2c0, pin3,5 */
 &twi0 {
 	clock-frequency = <400000>;
 	pinctrl-0 = <&twi0_pins_a>;
@@ -594,14 +611,9 @@
 	pinctrl-names = "default", "sleep";
 	twi_drv_used = <1>;
 	status = "disabled";
-
-	eeprom@50 {
-		compatible = "atmel,24c16";
-		reg = <0x50>;
-		status = "disabled";
-	};
 };
 
+/* 40pin i2c3, pin27,28 */
 &twi1 {
 	clock-frequency = <400000>;
 	pinctrl-0 = <&twi1_pins_a>;
@@ -621,7 +633,6 @@
 	status = "disabled";
 };
 
-/* 40pin i2c3, pin27,28 */
 &twi3 {
 	clock-frequency = <400000>;
 	pinctrl-0 = <&twi3_pins_a>;
@@ -631,7 +642,6 @@
 	status = "disabled";
 };
 
-/* 40pin i2c4, pin3,5 */
 &twi4 {
 	clock-frequency = <400000>;
 	pinctrl-0 = <&twi4_pins_a>;
@@ -639,13 +649,6 @@
 	pinctrl-names = "default", "sleep";
 	twi_drv_used = <1>;
 	status = "disabled";
-
-	pcm5122: pcm5122@4d {
-		compatible = "ti,pcm5122";
-		reg = <0x4d>;
-		#sound-dai-cells = <0>;
-		status = "disabled";
-	};
 };
 
 &twi5 {
@@ -745,6 +748,11 @@
 
 &gmac1 {
 	phy-mode = "rmii";
+	pinctrl-0 = <&gmac1_pins_a>;
+	pinctrl-1 = <&gmac1_pins_b>;
+	pinctrl-names = "default", "sleep";
+	tx-delay = <7>;
+	rx-delay = <31>;
 	status = "okay";
 };
 
@@ -877,7 +885,7 @@
 	};
 
 	ac200: ac200 {
-		tv_used = <0>;
+		tv_used = <1>;
 		tv_twi_used = <1>;
 		tv_twi_id = <3>;
 		tv_twi_addr = <16>;
@@ -887,34 +895,34 @@
 
 	gpio_para {
 		gpio_num = <28>;
-		gpio_pin_1 = <&pio PG 0  GPIO_ACTIVE_HIGH>;
-		gpio_pin_2 = <&pio PG 1 GPIO_ACTIVE_HIGH>;
-		gpio_pin_3 = <&pio PG 2 GPIO_ACTIVE_HIGH>;
-		gpio_pin_4 = <&pio PG 3 GPIO_ACTIVE_HIGH>;
-		gpio_pin_5 = <&pio PG 4 GPIO_ACTIVE_HIGH>;
-		gpio_pin_6 = <&pio PG 5 GPIO_ACTIVE_HIGH>;
-		gpio_pin_7 = <&pio PG 6 GPIO_ACTIVE_HIGH>;
-		gpio_pin_8 = <&pio PG 7 GPIO_ACTIVE_HIGH>;
-		gpio_pin_9 = <&pio PG 8 GPIO_ACTIVE_HIGH>;
-		gpio_pin_10 = <&pio PG 9 GPIO_ACTIVE_HIGH>;
-		gpio_pin_11 = <&pio PG 10 GPIO_ACTIVE_HIGH>;
-		gpio_pin_12 = <&pio PG 11 GPIO_ACTIVE_HIGH>;
-		gpio_pin_13 = <&pio PG 12 GPIO_ACTIVE_HIGH>;
-		gpio_pin_14 = <&pio PG 13 GPIO_ACTIVE_HIGH>;
-		gpio_pin_15 = <&pio PG 14 GPIO_ACTIVE_HIGH>;
-		gpio_pin_16 = <&pio PG 15 GPIO_ACTIVE_HIGH>;
-		gpio_pin_17 = <&pio PG 16 GPIO_ACTIVE_HIGH>;
-		gpio_pin_18 = <&pio PG 17 GPIO_ACTIVE_HIGH>;
-		gpio_pin_19 = <&pio PG 18 GPIO_ACTIVE_HIGH>;
-		gpio_pin_20 = <&pio PG 19 GPIO_ACTIVE_HIGH>;
-		gpio_pin_21 = <&pio PH 2 GPIO_ACTIVE_HIGH>;
-		gpio_pin_22 = <&pio PH 3 GPIO_ACTIVE_HIGH>;
-		gpio_pin_23 = <&pio PH 4 GPIO_ACTIVE_HIGH>;
-		gpio_pin_24 = <&pio PH 5 GPIO_ACTIVE_HIGH>;
-		gpio_pin_25 = <&pio PH 6 GPIO_ACTIVE_HIGH>;
-		gpio_pin_26 = <&pio PH 7 GPIO_ACTIVE_HIGH>;
-		gpio_pin_27 = <&pio PH 8 GPIO_ACTIVE_HIGH>;
-		gpio_pin_28 = <&pio PH 9 GPIO_ACTIVE_HIGH>;
+		gpio_pin_1 = <&pio PI 6  GPIO_ACTIVE_HIGH>;
+		gpio_pin_2 = <&pio PI 5 GPIO_ACTIVE_HIGH>;
+		gpio_pin_3 = <&pio PI 12 GPIO_ACTIVE_HIGH>;
+		gpio_pin_4 = <&pio PH 2 GPIO_ACTIVE_HIGH>;
+		gpio_pin_5 = <&pio PH 3 GPIO_ACTIVE_HIGH>;
+		gpio_pin_6 = <&pio PI 11 GPIO_ACTIVE_HIGH>;
+		gpio_pin_7 = <&pio PH 7 GPIO_ACTIVE_HIGH>;
+		gpio_pin_8 = <&pio PH 8 GPIO_ACTIVE_HIGH>;
+		gpio_pin_9 = <&pio PH 6 GPIO_ACTIVE_HIGH>;
+		gpio_pin_10 = <&pio PI 8 GPIO_ACTIVE_HIGH>;
+		gpio_pin_11 = <&pio PI 10 GPIO_ACTIVE_HIGH>;
+		gpio_pin_12 = <&pio PI 9 GPIO_ACTIVE_HIGH>;
+		gpio_pin_13 = <&pio PH 10 GPIO_ACTIVE_HIGH>;
+		gpio_pin_14 = <&pio PI 2 GPIO_ACTIVE_HIGH>;
+		gpio_pin_15 = <&pio PI 0 GPIO_ACTIVE_HIGH>;
+		gpio_pin_16 = <&pio PI 3 GPIO_ACTIVE_HIGH>;
+		gpio_pin_17 = <&pio PI 4 GPIO_ACTIVE_HIGH>;
+		gpio_pin_18 = <&pio PC 7 GPIO_ACTIVE_HIGH>;
+		gpio_pin_19 = <&pio PH 4 GPIO_ACTIVE_HIGH>;
+		gpio_pin_20 = <&pio PI 7 GPIO_ACTIVE_HIGH>;
+		gpio_pin_21 = <&pio PH 9 GPIO_ACTIVE_HIGH>;
+		gpio_pin_22 = <&pio PH 5 GPIO_ACTIVE_HIGH>;
+		gpio_pin_23 = <&pio PC 2 GPIO_ACTIVE_HIGH>;
+		gpio_pin_24 = <&pio PI 16 GPIO_ACTIVE_HIGH>;
+		gpio_pin_25 = <&pio PI 15 GPIO_ACTIVE_HIGH>;
+		gpio_pin_26 = <&pio PI 1 GPIO_ACTIVE_HIGH>;
+		gpio_pin_27 = <&pio PI 14 GPIO_ACTIVE_HIGH>;
+		gpio_pin_28 = <&pio PI 13 GPIO_ACTIVE_HIGH>;
 		//gpio_pin_29 = <&pio PC 12 GPIO_ACTIVE_HIGH>;
 		//normal_led = "gpio_pin_1";
 		//easy_light_used = <1>;
@@ -925,7 +933,7 @@
 
 &rfkill {
 	compatible = "allwinner,sunxi-rfkill";
-	//chip_en = <&pio PC 2 GPIO_ACTIVE_HIGH>;
+	chip_en;
 	power_en;
 	pinctrl-0;
 	pinctrl-names;
@@ -936,15 +944,15 @@
 		compatible = "allwinner,sunxi-wlan";
 		wlan_busnum = <0x1>;
 		wlan_power;
-		wlan_regon;
-		wlan_hostwake;
+		wlan_regon = <&pio PG 18 GPIO_ACTIVE_HIGH>;
+		wlan_hostwake = <&pio PG 15 GPIO_ACTIVE_HIGH>;
 		wakeup-source;
 	};
 
 	bt: bt {
 		compatible = "allwinner,sunxi-bt";
 		bt_power;
-		bt_rst_n;
+		bt_rst_n = <&pio PG 19 GPIO_ACTIVE_LOW>;
 	};
 };
 
@@ -953,7 +961,7 @@
 	uart_index = <0x1>;
 	bt_wake = <&pio PG 17 GPIO_ACTIVE_HIGH>;
 	bt_hostwake = <&pio PG 16 GPIO_ACTIVE_HIGH>;
-	status = "disabled";
+	status = "okay";
 	wakeup-source;
 };
 
@@ -965,12 +973,19 @@
 	status = "okay";
 };
 
-/* 40pin pwm1, pin7 */
-&pwm1 {
+/* 40pin pwm2, pin7 */
+&pwm2 {
 	pinctrl-names = "active", "sleep";
-	pinctrl-0 = <&pwm1_pin_a>;
-	pinctrl-1 = <&pwm1_pin_b>;
+	pinctrl-0 = <&pwm2_pin_a>;
+	pinctrl-1 = <&pwm2_pin_b>;
 	status = "disable";
+};
+
+&pwm5 {
+	pinctrl-names = "active", "sleep";
+	pinctrl-0 = <&pwm5_pin_a>;
+	pinctrl-1 = <&pwm5_pin_b>;
+	status = "okay";
 };
 
 &hdmi {
@@ -1075,7 +1090,7 @@
 	ir_power_key_code8 = <0x4d>;
 	ir_addr_code8 = <0x4040>;
 	wakeup-source;
-	status = "okay";
+	status = "disabled";
 };
 
 /* tv configuration
@@ -1221,7 +1236,7 @@
 	status = "disabled";
 };
 
-/* 40pin spidifout, pin36 */
+/* 40pin spidifout, pin32 */
 /* audio dirver module -> spdif */
 &spdif_plat {
 	pinctrl_used;
@@ -1246,17 +1261,19 @@
 	status		= "disabled";
 };
 
+/* 40pin i2s0, pin37, 12, 35, 40, 38*/
 &ahub0_plat {
 	tdm_num		= <0>;
 	tx_pin		= <0>;
 	rx_pin		= <0>;
-	/* pinctrl_used; */
-	/* pinctrl-names= "default","sleep"; */
-	/* pinctrl-0	= <&ahub_daudio0_pins_a &ahub_daudio0_pins_b &ahub_daudio0_pins_c>; */
-	/* pinctrl-1	= <&ahub_daudio0_pins_d>; */
+	pinctrl_used;
+	pinctrl-names= "default","sleep";
+	pinctrl-0	= <&ahub_daudio0_pins_a &ahub_daudio0_pins_b &ahub_daudio0_pins_c>;
+	pinctrl-1	= <&ahub_daudio0_pins_d>;
 	status		= "disabled";
 };
 
+/* hdmi */
 &ahub1_plat {
 	tdm_num		= <1>;
 	tx_pin		= <0>;
@@ -1269,6 +1286,7 @@
 	status		= "okay";
 };
 
+/* 26pin i2s2, 7,8,9,10,11*/
 &ahub2_plat {
 	tdm_num		= <2>;
 	tx_pin		= <0>;
@@ -1280,14 +1298,15 @@
 	status		= "disabled";
 };
 
+/* 40pin i2s3, 24,19,21,23,26 */
 &ahub3_plat {
 	tdm_num		= <3>;
 	tx_pin		= <0>;
 	rx_pin		= <0>;
-	/* pinctrl_used; */
-	/* pinctrl-names= "default","sleep"; */
-	/* pinctrl-0 = <&ahub_daudio3_pins_a &ahub_daudio3_pins_b &ahub_daudio3_pins_c>; */
-	/* pinctrl-1 = <&ahub_daudio3_pins_d>; */
+	pinctrl_used;
+	pinctrl-names= "default","sleep";
+	pinctrl-0 = <&ahub_daudio3_pins_a &ahub_daudio3_pins_b &ahub_daudio3_pins_c>;
+	pinctrl-1 = <&ahub_daudio3_pins_d>;
 	status		= "disabled";
 };
 
@@ -1329,7 +1348,6 @@
 };
 
 &ahub2_mach {
-	soundcard-mach,playback-only;
 	soundcard-mach,format		= "i2s";
 	soundcard-mach,frame-master	= <&ahub2_cpu>;
 	soundcard-mach,bitclock-master	= <&ahub2_cpu>;
@@ -1344,7 +1362,6 @@
 		soundcard-mach,mclk-fs	= <256>;/* mclk freq = pcm rate * mclk-fs */
 	};
 	ahub2_codec: soundcard-mach,codec {
-		sound-dai = <&pcm5122>;
 	};
 };
 
