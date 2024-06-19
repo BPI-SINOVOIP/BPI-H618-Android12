@@ -264,7 +264,7 @@ void DeviceManager::hotplug(int type, int connected)
         routing.mTables.push_back(
                 sunxi::DeviceTable::device_info(
                     id, controler->type(), controler->getDisplayMode(),
-                    controler->getHdmiConnectState(controler->type())/*mapping[i].enabled*/));
+                    /*controler->getHdmiConnectState(controler->type())*/mapping[i].enabled));
 
             /*bpi, set HDMI_USER_STRATEGY prop for hotplug */
             int strategy = controler->getDisplayMode();
