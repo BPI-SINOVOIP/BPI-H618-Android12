@@ -1,9 +1,7 @@
 /*
  * DHD debugability header file
  *
- * <<Broadcom-WL-IPTag/Open:>>
- *
- * Copyright (C) 1999-2017, Broadcom Corporation
+ * Copyright (C) 2020, Broadcom.
  *
  *      Unless you and Broadcom execute a separate written software license
  * agreement governing use of this software, this software is licensed to you
@@ -19,11 +17,10 @@
  * derived from this software.  The special exception does not apply to any
  * modifications of the software.
  *
- *      Notwithstanding the above, under no circumstances may you combine this
- * software in any way with any other Broadcom software provided under a license
- * other than the GPL, without Broadcom's express prior written consent.
  *
- * $Id: dhd_mschdbg.h 571265 2015-07-14 20:50:18Z $
+ * <<Broadcom-WL-IPTag/Open:>>
+ *
+ * $Id: dhd_mschdbg.h 571265 2015-07-14 20:50:18Z eccopark $
  */
 
 #ifndef _dhd_mschdbg_h_
@@ -32,8 +29,8 @@
 #ifdef SHOW_LOGTRACE
 extern void wl_mschdbg_event_handler(dhd_pub_t *dhdp, void *raw_event_ptr, int type,
 	void *data, int len);
-extern void wl_mschdbg_verboselog_handler(dhd_pub_t *dhdp, void *raw_event_ptr, int tag,
-	uint32 *log_ptr);
+extern void wl_mschdbg_verboselog_handler(dhd_pub_t *dhdp, void *raw_event_ptr,
+	prcd_event_log_hdr_t *plog_hdr, uint32 *log_ptr);
 #endif /* SHOW_LOGTRACE */
 
 #endif /* _dhd_mschdbg_h_ */

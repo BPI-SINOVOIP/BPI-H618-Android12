@@ -602,6 +602,14 @@
 		allwinner,drive = <0>;
 		allwinner,pull = <1>;
 	};
+
+	clk_losc_pins_a: losc_out@0 {
+		allwinner,pins = "PG10";
+		allwinner,function = "x32kfout";
+		allwinner,muxsel = <3>;
+		allwinner,drive = <2>;
+		allwinner,pull = <1>;
+	};
 };
 /* 40pin i2c0, pin3,5 */
 &twi0 {
@@ -935,13 +943,15 @@
 	compatible = "allwinner,sunxi-rfkill";
 	chip_en;
 	power_en;
-	pinctrl-0;
-	pinctrl-names;
+	pinctrl-0 = <&clk_losc_pins_a>;
+	pinctrl-names = "default";
 	clocks;
 	status = "okay";
 
 	wlan: wlan {
 		compatible = "allwinner,sunxi-wlan";
+		clocks = <&rtc_ccu CLK_OSC32K_OUT>;
+		clock-names = "osc32k-out";
 		wlan_busnum = <0x1>;
 		wlan_power;
 		wlan_regon = <&pio PG 18 GPIO_ACTIVE_HIGH>;
@@ -951,6 +961,8 @@
 
 	bt: bt {
 		compatible = "allwinner,sunxi-bt";
+		clocks = <&rtc_ccu CLK_OSC32K_OUT>;
+		clock-names = "osc32k-out";
 		bt_power;
 		bt_rst_n = <&pio PG 19 GPIO_ACTIVE_LOW>;
 	};
@@ -961,7 +973,7 @@
 	uart_index = <0x1>;
 	bt_wake = <&pio PG 17 GPIO_ACTIVE_HIGH>;
 	bt_hostwake = <&pio PG 16 GPIO_ACTIVE_HIGH>;
-	status = "okay";
+	status = "disabled";
 	wakeup-source;
 };
 

@@ -2,13 +2,13 @@
  * Dongle BUS interface for USB, OS independent
  *
  * Copyright (C) 1999-2016, Broadcom Corporation
- *
+ * 
  *      Unless you and Broadcom execute a separate written software license
  * agreement governing use of this software, this software is licensed to you
  * under the terms of the GNU General Public License version 2 (the "GPL"),
  * available at http://www.broadcom.com/licenses/GPLv2.php, with the
  * following added to such license:
- *
+ * 
  *      As a special exception, the copyright holders of this software give you
  * permission to link this software with independent modules, and to copy and
  * distribute the resulting executable under terms of your choice, provided that
@@ -16,7 +16,7 @@
  * the license of that module.  An independent module is a module which is not
  * derived from this software.  The special exception does not apply to any
  * modifications of the software.
- *
+ * 
  *      Notwithstanding the above, under no circumstances may you combine this
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
@@ -38,11 +38,12 @@
 #include <bcmutils.h>
 #include <dbus.h>
 #include <usbrdl.h>
+#include <bcmdevs_legacy.h>
 #include <bcmdevs.h>
 #include <bcmendian.h>
 
 uint dbus_msglevel = DBUS_ERROR_VAL;
-module_param(dbus_msglevel, int, 0000);
+module_param(dbus_msglevel, int, 0);
 
 
 #define USB_DLIMAGE_RETRY_TIMEOUT    3000    /* retry Timeout */
@@ -53,6 +54,9 @@ module_param(dbus_msglevel, int, 0000);
 #define USB_DEV_ISBAD(u)             (u->pub->attrib.devid == 0xDEAD)
 #define USB_DLGO_SPINWAIT            100     /* wait after DL_GO (ms) */
 #define TEST_CHIP                    0x4328
+
+/* driver info, initialized when bcmsdh_register is called */
+static dbus_driver_t drvinfo = {NULL, NULL, NULL, NULL};
 
 typedef struct {
 	dbus_pub_t  *pub;
@@ -75,15 +79,15 @@ static void dbus_usb_recv_irb_complete(void *handle, dbus_irb_rx_t *rxirb, int s
 static void dbus_usb_errhandler(void *handle, int err);
 static void dbus_usb_ctl_complete(void *handle, int type, int status);
 static void dbus_usb_state_change(void *handle, int state);
-static struct dbus_irb *dbus_usb_getirb(void *handle, bool send);
+static struct dbus_irb* dbus_usb_getirb(void *handle, bool send);
 static void dbus_usb_rxerr_indicate(void *handle, bool on);
 #if !defined(BCM_REQUEST_FW)
 static int dbus_usb_resetcfg(usb_info_t *usbinfo);
 #endif
 static int dbus_usb_iovar_op(void *bus, const char *name,
 	void *params, int plen, void *arg, int len, bool set);
-static int dbus_iovar_process(usb_info_t *usbinfo, const char *name,
-	void *params, int plen, void *arg, int len, bool set);
+static int dbus_iovar_process(usb_info_t* usbinfo, const char *name,
+                 void *params, int plen, void *arg, int len, bool set);
 static int dbus_usb_doiovar(usb_info_t *bus, const bcm_iovar_t *vi, uint32 actionid,
 	const char *name, void *params, int plen, void *arg, int len, int val_size);
 static int dhdusb_downloadvars(usb_info_t *bus, void *arg, int len);
@@ -146,10 +150,6 @@ const bcm_iovar_t dhdusb_iovars[] = {
  * attach() is not called at probe and detach()
  * can be called inside disconnect()
  */
-static probe_cb_t	probe_cb = NULL;
-static disconnect_cb_t	disconnect_cb = NULL;
-static void		*probe_arg = NULL;
-static void		*disc_arg = NULL;
 static dbus_intf_t	*g_dbusintf = NULL;
 static dbus_intf_t	dbus_usb_intf; /** functions called by higher layer DBUS into lower layer */
 
@@ -159,8 +159,7 @@ static dbus_intf_t	dbus_usb_intf; /** functions called by higher layer DBUS into
  */
 static void *dbus_usb_attach(dbus_pub_t *pub, void *cbarg, dbus_intf_callbacks_t *cbs);
 static void dbus_usb_detach(dbus_pub_t *pub, void *info);
-static void *dbus_usb_probe(void *arg, const char *desc, uint32 bustype,
-	uint16 bus_no, uint16 slot, uint32 hdrlen);
+static void * dbus_usb_probe(uint16 bus_no, uint16 slot, uint32 hdrlen);
 
 /* functions */
 
@@ -169,12 +168,10 @@ static void *dbus_usb_probe(void *arg, const char *desc, uint32 bustype,
  * lower level DBUS functions to call (in both dbus_usb.c and dbus_usb_os.c).
  */
 static void *
-dbus_usb_probe(void *arg, const char *desc, uint32 bustype, uint16 bus_no,
-	uint16 slot, uint32 hdrlen)
+dbus_usb_probe(uint16 bus_no, uint16 slot, uint32 hdrlen)
 {
 	DBUSTRACE(("%s(): \n", __FUNCTION__));
-	if (probe_cb) {
-
+	if (drvinfo.probe) {
 		if (g_dbusintf != NULL) {
 			/* First, initialize all lower-level functions as default
 			 * so that dbus.c simply calls directly to dbus_usb_os.c.
@@ -190,32 +187,55 @@ dbus_usb_probe(void *arg, const char *desc, uint32 bustype, uint16 bus_no,
 			dbus_usb_intf.dlrun = dbus_usb_dlrun;
 		}
 
-		disc_arg = probe_cb(probe_arg, "DBUS USB", USB_BUS, bus_no, slot, hdrlen);
-		return disc_arg;
+		return drvinfo.probe(bus_no, slot, hdrlen);
 	}
 
 	return NULL;
 }
+
+static int
+dbus_usb_suspend(void *handle)
+{
+	DBUSTRACE(("%s(): \n", __FUNCTION__));
+
+	if (drvinfo.suspend)
+		return drvinfo.suspend(handle);
+
+	return BCME_OK;
+}
+
+static int
+dbus_usb_resume(void *handle)
+{
+	DBUSTRACE(("%s(): \n", __FUNCTION__));
+
+	if (drvinfo.resume)
+		drvinfo.resume(handle);
+
+	return 0;
+}
+
+static dbus_driver_t dhd_usb_dbus = {
+	dbus_usb_probe,
+	dbus_usb_disconnect,
+	dbus_usb_suspend,
+	dbus_usb_resume
+};
 
 /**
  * On return, *intf contains this or lower-level DBUS functions to be called by higher
  * level (dbus.c)
  */
 int
-dbus_bus_register(int vid, int pid, probe_cb_t prcb,
-	disconnect_cb_t discb, void *prarg, dbus_intf_t **intf, void *param1, void *param2)
+dbus_bus_register(dbus_driver_t *driver, dbus_intf_t **intf)
 {
 	int err;
 
 	DBUSTRACE(("%s(): \n", __FUNCTION__));
-	probe_cb = prcb;
-	disconnect_cb = discb;
-	probe_arg = prarg;
-
+	drvinfo = *driver;
 	*intf = &dbus_usb_intf;
 
-	err = dbus_bus_osl_register(vid, pid, dbus_usb_probe,
-		dbus_usb_disconnect, NULL, &g_dbusintf, param1, param2);
+	err = dbus_bus_osl_register(&dhd_usb_dbus, &g_dbusintf);
 
 	ASSERT(g_dbusintf);
 	return err;
@@ -291,8 +311,8 @@ void
 dbus_usb_disconnect(void *handle)
 {
 	DBUSTRACE(("%s(): \n", __FUNCTION__));
-	if (disconnect_cb)
-		disconnect_cb(disc_arg);
+	if (drvinfo.remove)
+		drvinfo.remove(handle);
 }
 
 /**
@@ -435,14 +455,14 @@ dbus_usb_iovar_op(void *bus, const char *name,
 {
 	int err = DBUS_OK;
 
-	err = dbus_iovar_process((usb_info_t *)bus, name, params, plen, arg, len, set);
+	err = dbus_iovar_process((usb_info_t*)bus, name, params, plen, arg, len, set);
 	return err;
 }
 
 /** process iovar request from higher DBUS level */
 static int
-dbus_iovar_process(usb_info_t *usbinfo, const char *name,
-				void *params, int plen, void *arg, int len, bool set)
+dbus_iovar_process(usb_info_t* usbinfo, const char *name,
+                 void *params, int plen, void *arg, int len, bool set)
 {
 	const bcm_iovar_t *vi = NULL;
 	int bcmerror = 0;
@@ -461,8 +481,7 @@ dbus_iovar_process(usb_info_t *usbinfo, const char *name,
 	ASSERT(!set || (!params && !plen));
 
 	/* Look up var locally; if not found pass to host driver */
-	vi = bcm_iovar_lookup(dhdusb_iovars, name);
-	if (vi == NULL) {
+	if ((vi = bcm_iovar_lookup(dhdusb_iovars, name)) == NULL) {
 		/* Not Supported */
 		bcmerror = BCME_UNSUPPORTED;
 		DBUSTRACE(("%s: IOVAR %s is not supported\n", name, __FUNCTION__));
@@ -471,7 +490,7 @@ dbus_iovar_process(usb_info_t *usbinfo, const char *name,
 	}
 
 	DBUSTRACE(("%s: %s %s, len %d plen %d\n", __FUNCTION__,
-			name, (set ? "set" : "get"), len, plen));
+	         name, (set ? "set" : "get"), len, plen));
 
 	/* set up 'params' pointer in case this is a set command so that
 	 * the convenience int and bool code can be common to set and get
@@ -499,7 +518,7 @@ exit:
 
 static int
 dbus_usb_doiovar(usb_info_t *bus, const bcm_iovar_t *vi, uint32 actionid, const char *name,
-				void *params, int plen, void *arg, int len, int val_size)
+                void *params, int plen, void *arg, int len, int val_size)
 {
 	int bcmerror = 0;
 	int32 int_val = 0;
@@ -507,17 +526,16 @@ dbus_usb_doiovar(usb_info_t *bus, const bcm_iovar_t *vi, uint32 actionid, const 
 	bool bool_val = 0;
 
 	DBUSTRACE(("%s: Enter, action %d name %s params %p plen %d arg %p len %d val_size %d\n",
-				__FUNCTION__, actionid, name, params, plen, arg, len, val_size));
+	           __FUNCTION__, actionid, name, params, plen, arg, len, val_size));
 
-	bcmerror = bcm_iovar_lencheck(vi, arg, len, IOV_ISSET(actionid));
-	if (bcmerror != 0)
+	if ((bcmerror = bcm_iovar_lencheck(vi, arg, len, IOV_ISSET(actionid))) != 0)
 		goto exit;
 
 	if (plen >= (int)sizeof(int_val))
 		bcopy(params, &int_val, sizeof(int_val));
 
 	if (plen >= (int)sizeof(int_val) * 2)
-		bcopy((void *)((uintptr)params + sizeof(int_val)), &int_val2, sizeof(int_val2));
+		bcopy((void*)((uintptr)params + sizeof(int_val)), &int_val2, sizeof(int_val2));
 
 	bool_val = (int_val != 0) ? TRUE : FALSE;
 
@@ -543,15 +561,15 @@ dbus_usb_doiovar(usb_info_t *bus, const bcm_iovar_t *vi, uint32 actionid, const 
 		dsize = set ? plen - (2 * sizeof(int)) : len;
 		if (dsize < size) {
 			DBUSTRACE(("%s: error on %s membytes, addr 0x%08x size %d dsize %d\n",
-					__FUNCTION__, (set ? "set" : "get"), address, size, dsize));
+			           __FUNCTION__, (set ? "set" : "get"), address, size, dsize));
 			bcmerror = BCME_BADARG;
 			break;
 		}
 		DBUSTRACE(("%s: Request to %s %d bytes at address 0x%08x\n", __FUNCTION__,
-				(set ? "write" : "read"), size, address));
+		          (set ? "write" : "read"), size, address));
 
 		/* Generate the actual data pointer */
-		data = set ? (uint8 *)params + 2 * sizeof(int) : (uint8 *)arg;
+		data = set ? (uint8*)params + 2 * sizeof(int): (uint8*)arg;
 
 		/* Call to do the transfer */
 		bcmerror = dbus_usb_dl_writeimage(BUS_INFO(bus, usb_info_t), data, size);
@@ -648,7 +666,7 @@ dhdusb_downloadvars(usb_info_t *bus, void *arg, int len)
 
 	/* Write the length token to the last word */
 	bcmerror = dbus_write_membytes(bus->usbosl_info, TRUE, ((bus->rdlram_size - 4) +
-		bus->rdlram_base_addr), (uint8 *)&varsizew, 4);
+		bus->rdlram_base_addr), (uint8*)&varsizew, 4);
 err:
 	return bcmerror;
 } /* dbus_usb_doiovar */
@@ -888,65 +906,67 @@ dbus_usb_update_chipinfo(usb_info_t *usbinfo, uint32 chip)
 	bool retval = TRUE;
 	/* based on the CHIP Id, store the ram size which is needed for NVRAM download. */
 	switch (chip) {
-	case 0x4319:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_4319;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_4319;
-		break;
 
-	case 0x4329:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_4329;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_4329;
-		break;
+		case 0x4319:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_4319;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_4319;
+			break;
 
-	case 43234:
-	case 43235:
-	case 43236:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_43236;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_43236;
-		break;
+		case 0x4329:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_4329;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_4329;
+			break;
 
-	case 0x4328:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_4328;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_4328;
-		break;
+		case 43234:
+		case 43235:
+		case 43236:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_43236;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_43236;
+			break;
 
-	case 0x4322:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_4322;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_4322;
-		break;
+		case 0x4328:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_4328;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_4328;
+			break;
 
-	case 0x4360:
-	case 0xAA06:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_4360;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_4360;
-		break;
+		case 0x4322:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_4322;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_4322;
+			break;
 
-	case 43242:
-	case 43243:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_43242;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_43242;
-		break;
+		case 0x4360:
+		case 0xAA06:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_4360;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_4360;
+			break;
 
-	case 43143:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_43143;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_43143;
-		break;
+		case 43242:
+		case 43243:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_43242;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_43242;
+			break;
 
-	case 0x4350:
-	case 43556:
-	case 43558:
-	case 43569:
-		usbinfo->rdlram_size = RDL_RAM_SIZE_4350;
-		usbinfo->rdlram_base_addr = RDL_RAM_BASE_4350;
-		break;
+		case 43143:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_43143;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_43143;
+			break;
 
-	case POSTBOOT_ID:
-		break;
+		case 0x4350:
+		case 43556:
+		case 43558:
+		case 43569:
+			usbinfo->rdlram_size = RDL_RAM_SIZE_4350;
+			usbinfo->rdlram_base_addr = RDL_RAM_BASE_4350;
+			break;
 
-	default:
-		DBUSERR(("%s: Chip 0x%x Ram size is not known\n", __FUNCTION__, chip));
-		retval = FALSE;
-		break;
+		case POSTBOOT_ID:
+			break;
+
+		default:
+			DBUSERR(("%s: Chip 0x%x Ram size is not known\n", __FUNCTION__, chip));
+			retval = FALSE;
+			break;
+
 	}
 
 	return retval;

@@ -1,7 +1,7 @@
 /*
  * BCM47XX Sonics SiliconBackplane embedded ram core
  *
- * Copyright (C) 1999-2017, Broadcom Corporation
+ * Copyright (C) 2020, Broadcom.
  *
  *      Unless you and Broadcom execute a separate written software license
  * agreement governing use of this software, this software is licensed to you
@@ -17,14 +17,8 @@
  * derived from this software.  The special exception does not apply to any
  * modifications of the software.
  *
- *      Notwithstanding the above, under no circumstances may you combine this
- * software in any way with any other Broadcom software provided under a license
- * other than the GPL, without Broadcom's express prior written consent.
  *
- *
- * <<Broadcom-WL-IPTag/Open:>>
- *
- * $Id: sbsocram.h 604712 2015-12-08 08:05:42Z $
+ * <<Broadcom-WL-IPTag/Dual:>>
  */
 
 #ifndef	_SBSOCRAM_H
@@ -171,7 +165,7 @@ typedef volatile struct sbsocramregs {
 #define SOCRAM_BANKIDX_MEMTYPE_SHIFT	8
 /* socram bankinfo memtype */
 #define SOCRAM_MEMTYPE_RAM		0
-#define SOCRAM_MEMTYPE_R0M		1
+#define SOCRAM_MEMTYPE_ROM		1
 #define SOCRAM_MEMTYPE_DEVRAM		2
 
 #define	SOCRAM_BANKINFO_REG		0x40
@@ -200,6 +194,5 @@ typedef volatile struct sbsocramregs {
 /* bank info to calculate bank size */
 #define   SOCRAM_BANKINFO_SZBASE          8192
 #define SOCRAM_BANKSIZE_SHIFT         13      /* SOCRAM_BANKINFO_SZBASE */
-
 
 #endif	/* _SBSOCRAM_H */

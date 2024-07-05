@@ -3,13 +3,13 @@
  * USB Linux Implementation
  *
  * Copyright (C) 1999-2016, Broadcom Corporation
- *
+ * 
  *      Unless you and Broadcom execute a separate written software license
  * agreement governing use of this software, this software is licensed to you
  * under the terms of the GNU General Public License version 2 (the "GPL"),
  * available at http://www.broadcom.com/licenses/GPLv2.php, with the
  * following added to such license:
- *
+ * 
  *      As a special exception, the copyright holders of this software give you
  * permission to link this software with independent modules, and to copy and
  * distribute the resulting executable under terms of your choice, provided that
@@ -17,7 +17,7 @@
  * the license of that module.  An independent module is a module which is not
  * derived from this software.  The special exception does not apply to any
  * modifications of the software.
- *
+ * 
  *      Notwithstanding the above, under no circumstances may you combine this
  * software in any way with any other Broadcom software provided under a license
  * other than the GPL, without Broadcom's express prior written consent.
@@ -78,6 +78,7 @@
 #include <asm/unaligned.h>
 #include <dbus.h>
 #include <bcmutils.h>
+#include <bcmdevs_legacy.h>
 #include <bcmdevs.h>
 #include <linux/usb.h>
 #include <usbrdl.h>
@@ -123,7 +124,8 @@
  * been eliminated.
  */
 #if ((LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 21)) && defined(CONFIG_USB_SUSPEND)) \
-	|| ((LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)) && defined(CONFIG_PM_RUNTIME))
+	|| ((LINUX_VERSION_CODE >= KERNEL_VERSION(3, 10, 0)) && defined(CONFIG_PM_RUNTIME)) \
+	|| (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 19, 0))
 /* For USB power management support, see Linux kernel: Documentation/usb/power-management.txt */
 #define USB_SUSPEND_AVAILABLE
 #endif
@@ -282,7 +284,7 @@ static inline int usb_submit_urb_linux(struct urb *urb)
 enum usbos_suspend_state {
 	USBOS_SUSPEND_STATE_DEVICE_ACTIVE = 0, /* Device is busy, won't allow suspend */
 	USBOS_SUSPEND_STATE_SUSPEND_PENDING,   /* Device is idle, can be suspended */
-										   /* Wating PM to suspend */
+	                                       /* Wating PM to suspend */
 	USBOS_SUSPEND_STATE_SUSPENDED          /* Device suspended */
 };
 
@@ -392,14 +394,14 @@ typedef struct usbos_list_entry {
 	int                 urb_status;
 } usbos_list_entry_t;
 
-static void *dbus_usbos_thread_init(usbos_info_t *usbos_info);
+static void* dbus_usbos_thread_init(usbos_info_t *usbos_info);
 static void  dbus_usbos_thread_deinit(usbos_info_t *usbos_info);
 static void  dbus_usbos_dispatch_schedule(CALLBACK_ARGS);
 static int   dbus_usbos_thread_func(void *data);
 #endif /* USBOS_THREAD */
 
 #ifdef USBOS_TX_THREAD
-void *dbus_usbos_tx_thread_init(usbos_info_t *usbos_info);
+void* dbus_usbos_tx_thread_init(usbos_info_t *usbos_info);
 void  dbus_usbos_tx_thread_deinit(usbos_info_t *usbos_info);
 int   dbus_usbos_tx_thread_func(void *data);
 #endif /* USBOS_TX_THREAD */
@@ -474,16 +476,16 @@ MODULE_DEVICE_TABLE(usb, devid_table);
 
 /** functions called by the Linux kernel USB subsystem */
 static struct usb_driver dbus_usbdev = {
-	.name         = "dbus_usbdev",
-	.probe        = dbus_usbos_probe,
-	.disconnect   = dbus_usbos_disconnect,
-	.id_table     = devid_table,
+	name:           "dbus_usbdev"BUS_TYPE,
+	probe:          dbus_usbos_probe,
+	disconnect:     dbus_usbos_disconnect,
+	id_table:       devid_table,
 #if defined(USB_SUSPEND_AVAILABLE)
-	.suspend      = dbus_usbos_suspend,
-	.resume       = dbus_usbos_resume,
-	.reset_resume = dbus_usbos_reset_resume,
+	suspend:        dbus_usbos_suspend,
+	resume:         dbus_usbos_resume,
+	reset_resume:	dbus_usbos_reset_resume,
 	/* Linux USB core will allow autosuspend for devices bound to this driver */
-	.supports_autosuspend = 1
+	supports_autosuspend: 1
 #endif /* USB_SUSPEND_AVAILABLE */
 };
 
@@ -508,6 +510,9 @@ typedef struct {
 	enum usbos_suspend_state suspend_state;
 	struct usb_interface     *intf;
 } probe_info_t;
+
+/* driver info, initialized when bcmsdh_register is called */
+static dbus_driver_t drvinfo = {NULL, NULL, NULL, NULL};
 
 /*
  * USB Linux dbus_intf_t
@@ -586,9 +591,6 @@ static dbus_intf_t dbus_usbos_intf = {
 };
 
 static probe_info_t    g_probe_info;
-static probe_cb_t      probe_cb = NULL;
-static disconnect_cb_t disconnect_cb = NULL;
-static void            *probe_arg = NULL;
 static void            *disc_arg = NULL;
 
 
@@ -602,7 +604,7 @@ int matches_loopback_pkt(void *buf);
  * multiple code paths in this file dequeue a URB request, this function makes sure that it happens
  * in a concurrency save manner. Don't call this from a sleepable process context.
  */
-static urb_req_t * BCMFASTPATH
+static urb_req_t *
 dbus_usbos_qdeq(struct list_head *urbreq_q, spinlock_t *lock)
 {
 	unsigned long flags;
@@ -633,7 +635,7 @@ dbus_usbos_qdeq(struct list_head *urbreq_q, spinlock_t *lock)
 	return req;
 }
 
-static void BCMFASTPATH
+static void
 dbus_usbos_qenq(struct list_head *urbreq_q, urb_req_t *req, spinlock_t *lock)
 {
 	unsigned long flags;
@@ -844,7 +846,7 @@ dbus_usbos_send_complete(CALLBACK_ARGS)
  * In order to receive USB traffic from the dongle, we need to supply the Linux kernel with a free
  * URB that is going to contain received data.
  */
-static int BCMFASTPATH
+static int
 dbus_usbos_recv_urb_submit(usbos_info_t *usbos_info, dbus_irb_rx_t *rxirb, uint32 ep_idx)
 {
 	urb_req_t *req;
@@ -856,8 +858,7 @@ dbus_usbos_recv_urb_submit(usbos_info_t *usbos_info, dbus_irb_rx_t *rxirb, uint3
 
 	BCM_REFERENCE(rxposted);
 
-	req = dbus_usbos_qdeq(&usbos_info->req_rxfreeq, &usbos_info->rxfree_lock);
-	if (!req) {
+	if (!(req = dbus_usbos_qdeq(&usbos_info->req_rxfreeq, &usbos_info->rxfree_lock))) {
 		DBUSTRACE(("%s No free URB!\n", __FUNCTION__));
 		return DBUS_ERR_RXDROP;
 	}
@@ -907,11 +908,14 @@ dbus_usbos_recv_urb_submit(usbos_info_t *usbos_info, dbus_irb_rx_t *rxirb, uint3
 	usb_fill_bulk_urb(req->urb, usbos_info->usb, rx_pipe,
 		p,
 		rxirb->buf_len,
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0))
+		(void *)dbus_usbos_recv_complete, req);
+#else
 		(usb_complete_t)dbus_usbos_recv_complete, req);
+#endif /* LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0) */
 		req->urb->transfer_flags |= URB_QUEUE_BULK;
 
-	ret = USB_SUBMIT_URB(req->urb);
-	if (ret) {
+	if ((ret = USB_SUBMIT_URB(req->urb))) {
 		DBUSERR(("%s USB_SUBMIT_URB failed. status %d\n", __FUNCTION__, ret));
 		dbus_usbos_qenq(&usbos_info->req_rxfreeq, req, &usbos_info->rxfree_lock);
 		ret = DBUS_ERR_RXFAIL;
@@ -930,7 +934,7 @@ fail:
  * Called by worked thread when a 'receive URB' completed or Linux kernel when it returns a URB to
  * this driver.
  */
-static void BCMFASTPATH
+static void
 dbus_usbos_recv_complete_handle(urb_req_t *req, int len, int status)
 {
 	dbus_irb_rx_t *rxirb = req->arg;
@@ -961,7 +965,7 @@ dbus_usbos_recv_complete_handle(urb_req_t *req, int len, int status)
 		 * Linux 2.4 disconnect: -ENOENT or -EILSEQ for CRC error; rmmod: -ENOENT
 		 * Linux 2.6 disconnect: -EPROTO, rmmod: -ESHUTDOWN
 		 */
-		if ((status == -ENOENT && (!killed)) || status == -ESHUTDOWN) {
+		if ((status == -ENOENT && (!killed))|| status == -ESHUTDOWN) {
 			/* NOTE: unlink() can not be called from URB callback().
 			 * Do not call dbusos_stop() here.
 			 */
@@ -1034,22 +1038,22 @@ dbus_usbos_ctl_complete(usbos_info_t *usbos_info, int type, int urbstatus)
 		return;
 
 	switch (urbstatus) {
-	case 0:
-		status = DBUS_OK;
-	break;
-	case -EINPROGRESS:
-	case -ENOENT:
-	default:
+		case 0:
+			status = DBUS_OK;
+		break;
+		case -EINPROGRESS:
+		case -ENOENT:
+		default:
 #ifdef INTR_EP_ENABLE
-		DBUSERR(("%s:%d fail status %d bus:%d susp:%d intr:%d ctli:%d ctlo:%d\n",
-			__FUNCTION__, type, urbstatus,
-			usbos_info->pub->busstate, g_probe_info.suspend_state,
-			usbos_info->intr_urb_submitted, usbos_info->ctlin_urb_submitted,
-			usbos_info->ctlout_urb_submitted));
+			DBUSERR(("%s:%d fail status %d bus:%d susp:%d intr:%d ctli:%d ctlo:%d\n",
+				__FUNCTION__, type, urbstatus,
+				usbos_info->pub->busstate, g_probe_info.suspend_state,
+				usbos_info->intr_urb_submitted, usbos_info->ctlin_urb_submitted,
+				usbos_info->ctlout_urb_submitted));
 #else
-		DBUSERR(("%s: failed with status %d\n", __FUNCTION__, urbstatus));
-		status = DBUS_ERR;
-	break;
+			DBUSERR(("%s: failed with status %d\n", __FUNCTION__, urbstatus));
+			status = DBUS_ERR;
+		break;
 #endif /* INTR_EP_ENABLE */
 	}
 
@@ -1204,8 +1208,7 @@ dbusos_stop(usbos_info_t *usbos_info)
 #ifdef USBOS_THREAD
 	/* yield the CPU to rx packet thread */
 	while (1) {
-		if (atomic_read(&usbos_info->usbos_list_cnt) <= 0)
-			break;
+		if (atomic_read(&usbos_info->usbos_list_cnt) <= 0)	break;
 		wake_up_interruptible(&usbos_info->usbos_queue_head);
 		OSL_SLEEP(3);
 	}
@@ -1231,28 +1234,48 @@ dbusos_stop(usbos_info_t *usbos_info)
  */
 static int
 dbus_usbos_suspend(struct usb_interface *intf,
-		pm_message_t message)
+            pm_message_t message)
 {
-	DBUSERR(("%s suspend state: %d\n", __FUNCTION__, g_probe_info.suspend_state));
+	usbos_info_t *usbos_info = (usbos_info_t *) g_probe_info.usbos_info;
+	int err = 0;
+
+	printf("%s Enter\n", __FUNCTION__);
+
 	/* DHD for full dongle model */
 	g_probe_info.suspend_state = USBOS_SUSPEND_STATE_SUSPEND_PENDING;
-	dbus_usbos_state_change((usbos_info_t *)g_probe_info.usbos_info, DBUS_STATE_SLEEP);
-	dbus_usbos_cancel_all_urbs((usbos_info_t *)g_probe_info.usbos_info);
+	if (drvinfo.suspend && disc_arg)
+		err = drvinfo.suspend(disc_arg);
+	if (err) {
+		printf("%s: err=%d\n", __FUNCTION__, err);
+//		g_probe_info.suspend_state = USBOS_SUSPEND_STATE_DEVICE_ACTIVE;
+//		return err;
+	}
+	usbos_info->pub->busstate = DBUS_STATE_SLEEP;
+
+	dbus_usbos_cancel_all_urbs((usbos_info_t*)g_probe_info.usbos_info);
 	g_probe_info.suspend_state = USBOS_SUSPEND_STATE_SUSPENDED;
 
-	return 0;
+	printf("%s Exit err=%d\n", __FUNCTION__, err);
+	return err;
 }
 
 /**
  * The resume method is called to tell the driver that the device has been resumed and the driver
  * can return to normal operation.  URBs may once more be submitted.
  */
-static int dbus_usbos_resume(struct usb_interface *intf)
+static int
+dbus_usbos_resume(struct usb_interface *intf)
 {
-	DBUSERR(("%s Device resumed\n", __FUNCTION__));
+	usbos_info_t *usbos_info = (usbos_info_t *) g_probe_info.usbos_info;
 
-	dbus_usbos_state_change((usbos_info_t *)g_probe_info.usbos_info, DBUS_STATE_UP);
+	printf("%s Enter\n", __FUNCTION__);
+
 	g_probe_info.suspend_state = USBOS_SUSPEND_STATE_DEVICE_ACTIVE;
+	if (drvinfo.resume && disc_arg)
+		drvinfo.resume(disc_arg);
+	usbos_info->pub->busstate = DBUS_STATE_UP;
+
+	printf("%s Exit\n", __FUNCTION__);
 	return 0;
 }
 
@@ -1260,13 +1283,16 @@ static int dbus_usbos_resume(struct usb_interface *intf)
 * This function is directly called by the Linux kernel, when the suspended device has been reset
 * instead of being resumed
 */
-static int dbus_usbos_reset_resume(struct usb_interface *intf)
+static int
+dbus_usbos_reset_resume(struct usb_interface *intf)
 {
-	DBUSERR(("%s Device reset resumed\n", __FUNCTION__));
+	printf("%s Enter\n", __FUNCTION__);
 
-	/* The device may have lost power, so a firmware download may be required */
-	dbus_usbos_state_change((usbos_info_t *)g_probe_info.usbos_info, DBUS_STATE_DL_NEEDED);
 	g_probe_info.suspend_state = USBOS_SUSPEND_STATE_DEVICE_ACTIVE;
+	if (drvinfo.resume && disc_arg)
+		drvinfo.resume(disc_arg);
+
+	printf("%s Exit\n", __FUNCTION__);
 	return 0;
 }
 
@@ -1281,7 +1307,7 @@ static int dbus_usbos_reset_resume(struct usb_interface *intf)
 #define DBUS_USBOS_PROBE() static int dbus_usbos_probe(struct usb_interface *intf, const struct usb_device_id *id)
 #define DBUS_USBOS_DISCONNECT() static void dbus_usbos_disconnect(struct usb_interface *intf)
 #else
-#define DBUS_USBOS_PROBE() static void *dbus_usbos_probe(struct usb_device *usb, unsigned int ifnum, const struct usb_device_id *id)
+#define DBUS_USBOS_PROBE() static void * dbus_usbos_probe(struct usb_device *usb, unsigned int ifnum, const struct usb_device_id *id)
 #define DBUS_USBOS_DISCONNECT() static void dbus_usbos_disconnect(struct usb_device *usb, void *ptr)
 #endif /* KERNEL26 */
 
@@ -1310,6 +1336,7 @@ DBUS_USBOS_PROBE()
 		usb->portnum, WIFI_STATUS_POWER_ON);
 	if (adapter == NULL) {
 		DBUSERR(("%s: can't find adapter info for this chip\n", __FUNCTION__));
+		ret = -ENOMEM;
 		goto fail;
 	}
 
@@ -1507,7 +1534,7 @@ DBUS_USBOS_PROBE()
 		if ((endpoint->bmAttributes & USB_ENDPOINT_XFERTYPE_MASK) !=
 		    USB_ENDPOINT_XFER_BULK) {
 			DBUSERR(("%s: invalid data endpoint %d\n",
-					__FUNCTION__, ep));
+			           __FUNCTION__, ep));
 			ret = -1;
 			goto fail;
 		}
@@ -1555,8 +1582,8 @@ DBUS_USBOS_PROBE()
 		g_probe_info.device_speed = FULL_SPEED;
 		DBUSERR(("full speed device detected\n"));
 	}
-	if (g_probe_info.dereged == FALSE && probe_cb) {
-		disc_arg = probe_cb(probe_arg, "", USB_BUS, usb->bus->busnum, usb->portnum, 0);
+	if (g_probe_info.dereged == FALSE && drvinfo.probe) {
+		disc_arg = drvinfo.probe(usb->bus->busnum, usb->portnum, 0);
 	}
 
 	g_probe_info.disc_cb_done = FALSE;
@@ -1617,8 +1644,8 @@ DBUS_USBOS_DISCONNECT()
 	if (probe_usb_init_data) {
 		usbos_info = (usbos_info_t *) probe_usb_init_data->usbos_info;
 		if (usbos_info) {
-			if ((probe_usb_init_data->dereged == FALSE) && disconnect_cb && disc_arg) {
-				disconnect_cb(disc_arg);
+			if ((probe_usb_init_data->dereged == FALSE) && drvinfo.remove && disc_arg) {
+				drvinfo.remove(disc_arg);
 				disc_arg = NULL;
 				probe_usb_init_data->disc_cb_done = TRUE;
 			}
@@ -1675,7 +1702,7 @@ int dbus_usbos_loopback_tx(void *usbos_info_ptr, int cnt, int size)
 	usbos_info_t *usbos_info = (usbos_info_t *) usbos_info_ptr;
 	unsigned char *buf;
 	int j;
-	void *p = NULL;
+	void* p = NULL;
 	int rc, last_rx_cnt;
 	int tx_failed_cnt;
 	int max_size = 1650;
@@ -1711,9 +1738,9 @@ int dbus_usbos_loopback_tx(void *usbos_info_ptr, int cnt, int size)
 			       __FUNCTION__, __LINE__, pkt_size));
 			return BCME_ERROR;
 		}
-		x = (uint32 *) PKTDATA(usbos_info->pub->osh, p);
+		x = (uint32*) PKTDATA(usbos_info->pub->osh, p);
 		*x = LOOPBACK_PKT_START;
-		buf = (unsigned char *) x;
+		buf = (unsigned char*) x;
 		for (j = 4; j < pkt_size; j++) {
 			buf[j] = j % 256;
 		}
@@ -1780,8 +1807,7 @@ dbus_usbos_intf_send_irb(void *bus, dbus_irb_tx_t *txirb)
 		buf = txirb->buf;
 	}
 
-	req = dbus_usbos_qdeq(&usbos_info->req_txfreeq, &usbos_info->txfree_lock);
-	if (!req) {
+	if (!(req = dbus_usbos_qdeq(&usbos_info->req_txfreeq, &usbos_info->txfree_lock))) {
 		DBUSERR(("%s No free URB!\n", __FUNCTION__));
 		return DBUS_ERR_TXDROP;
 	}
@@ -1791,8 +1817,8 @@ dbus_usbos_intf_send_irb(void *bus, dbus_irb_tx_t *txirb)
 	 */
 #ifndef WL_URB_ZPKT
 	if (!(buffer_length % usbos_info->maxps)) {
-		req_zlp = dbus_usbos_qdeq(&usbos_info->req_txfreeq, &usbos_info->txfree_lock);
-		if (!req_zlp) {
+		if (!(req_zlp =
+			dbus_usbos_qdeq(&usbos_info->req_txfreeq, &usbos_info->txfree_lock))) {
 			DBUSERR(("%s No free URB for ZLP!\n", __FUNCTION__));
 			dbus_usbos_qenq(&usbos_info->req_txfreeq, req, &usbos_info->txfree_lock);
 			return DBUS_ERR_TXDROP;
@@ -1806,7 +1832,11 @@ dbus_usbos_intf_send_irb(void *bus, dbus_irb_tx_t *txirb)
 		req_zlp->buf_len = 0;
 
 		usb_fill_bulk_urb(req_zlp->urb, usbos_info->usb, usbos_info->tx_pipe, NULL,
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0))
+			0, (void *)dbus_usbos_send_complete, req_zlp);
+#else
 			0, (usb_complete_t)dbus_usbos_send_complete, req_zlp);
+#endif /* LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0) */
 
 		req_zlp->urb->transfer_flags |= URB_QUEUE_BULK;
 	}
@@ -1861,7 +1891,11 @@ dbus_usbos_intf_send_irb(void *bus, dbus_irb_tx_t *txirb)
 	}
 
 	usb_fill_bulk_urb(req->urb, usbos_info->usb, usbos_info->tx_pipe, buf,
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0))
+		buffer_length, (void *)dbus_usbos_send_complete, req);
+#else
 		buffer_length, (usb_complete_t)dbus_usbos_send_complete, req);
+#endif /* LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0) */
 
 	req->urb->transfer_flags |= URB_QUEUE_BULK;
 
@@ -1879,8 +1913,7 @@ dbus_usbos_intf_send_irb(void *bus, dbus_irb_tx_t *txirb)
 	wake_up_interruptible(&usbos_info->usbos_tx_queue_head);
 	return DBUS_OK;
 #else
-	ret = USB_SUBMIT_URB(req->urb);
-	if (ret) {
+	if ((ret = USB_SUBMIT_URB(req->urb))) {
 		ret = DBUS_ERR_TXDROP;
 		goto fail;
 	}
@@ -1889,8 +1922,7 @@ dbus_usbos_intf_send_irb(void *bus, dbus_irb_tx_t *txirb)
 	atomic_inc(&usbos_info->txposted);
 
 	if (req_zlp != NULL) {
-		ret = USB_SUBMIT_URB(req_zlp->urb);
-		if (ret) {
+		if ((ret = USB_SUBMIT_URB(req_zlp->urb))) {
 			DBUSERR(("failed to submit ZLP URB!\n"));
 			ASSERT(0);
 			ret = DBUS_ERR_TXDROP;
@@ -1960,8 +1992,7 @@ dbus_usbos_intf_recv_irb_from_ep(void *bus, dbus_irb_rx_t *rxirb, uint32 ep_idx)
 		*/
 		if (rxirb == NULL && ep_idx == 0xff) {
 			/* submit intr URB */
-			ret = USB_SUBMIT_URB(usbos_info->intr_urb);
-			if (ret < 0) {
+			if ((ret = USB_SUBMIT_URB(usbos_info->intr_urb)) < 0) {
 				DBUSERR(("%s intr USB_SUBMIT_URB failed, status %d\n",
 					__FUNCTION__, ret));
 			}
@@ -2029,7 +2060,11 @@ dbus_usbos_intf_send_ctl(void *bus, uint8 *buf, int len)
 		usbos_info->usb,
 		usb_sndctrlpipe(usbos_info->usb, 0),
 		(unsigned char *) &usbos_info->ctl_write,
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0))
+		buf, size, (void *)dbus_usbos_ctlwrite_complete, usbos_info);
+#else
 		buf, size, (usb_complete_t)dbus_usbos_ctlwrite_complete, usbos_info);
+#endif /* LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0) */
 
 #ifdef USBOS_TX_THREAD
 	/* Enqueue CTRL request for transmission by the TX thread. The
@@ -2094,7 +2129,11 @@ dbus_usbos_intf_recv_ctl(void *bus, uint8 *buf, int len)
 		usbos_info->usb,
 		usb_rcvctrlpipe(usbos_info->usb, 0),
 		(unsigned char *) &usbos_info->ctl_read,
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0))
+		buf, size, (void *)dbus_usbos_ctlread_complete, usbos_info);
+#else
 		buf, size, (usb_complete_t)dbus_usbos_ctlread_complete, usbos_info);
+#endif /* LINUX_VERSION_CODE >= KERNEL_VERSION(6, 0, 0) */
 
 	status = USB_SUBMIT_URB(usbos_info->ctl_urb);
 	if (status < 0) {
@@ -2159,8 +2198,7 @@ dbus_usbos_intf_up(void *bus)
 			usbos_info->intr_size, (usb_complete_t)dbus_usbos_intr_complete,
 			usbos_info, usbos_info->interval);
 
-		ret = USB_SUBMIT_URB(usbos_info->intr_urb);
-		if (ret) {
+		if ((ret = USB_SUBMIT_URB(usbos_info->intr_urb))) {
 			DBUSERR(("%s USB_SUBMIT_URB failed with status %d\n", __FUNCTION__, ret));
 			return DBUS_ERR;
 		}
@@ -2228,7 +2266,7 @@ static int
 dbus_usbos_intf_set_config(void *bus, dbus_config_t *config)
 {
 	int err = DBUS_ERR;
-	usbos_info_t *usbos_info = bus;
+	usbos_info_t* usbos_info = bus;
 
 	if (config->config_id == DBUS_CONFIG_ID_RXCTL_DEFERRES) {
 		usbos_info->rxctl_deferrespok = config->rxctl_deferrespok;
@@ -2285,7 +2323,7 @@ dbus_usbos_dl_cmd(usbos_info_t *usbinfo, uint8 cmd, void *buffer, int buflen)
 	transferred = USB_CONTROL_MSG(usbinfo->usb, usb_rcvctrlpipe(usbinfo->usb, 0),
 		cmd, (USB_DIR_IN | USB_TYPE_VENDOR | USB_RECIP_INTERFACE),
 		0, index,
-		(void *) tmpbuf, buflen, USB_CTRL_EP_TIMEOUT);
+		(void*) tmpbuf, buflen, USB_CTRL_EP_TIMEOUT);
 	if (transferred == buflen) {
 		memcpy(buffer, tmpbuf, buflen);
 	} else {
@@ -2303,7 +2341,7 @@ dbus_usbos_dl_cmd(usbos_info_t *usbinfo, uint8 cmd, void *buffer, int buflen)
  * download process, when writing nvram variables).
  */
 int
-dbus_write_membytes(usbos_info_t *usbinfo, bool set, uint32 address, uint8 *data, uint size)
+dbus_write_membytes(usbos_info_t* usbinfo, bool set, uint32 address, uint8 *data, uint size)
 {
 	hwacc_t hwacc;
 	int write_bytes = 4;
@@ -2336,7 +2374,7 @@ dbus_write_membytes(usbos_info_t *usbinfo, bool set, uint32 address, uint8 *data
 		hwacc.len = write_bytes;
 
 		while (size >= write_bytes) {
-			hwacc.data = *((unsigned int *)data);
+			hwacc.data = *((unsigned int*)data);
 
 			status = USB_CONTROL_MSG(usbinfo->usb, usb_sndctrlpipe(usbinfo->usb, 0),
 				DL_WRHW, (USB_DIR_OUT | USB_TYPE_VENDOR | USB_RECIP_INTERFACE),
@@ -2560,18 +2598,11 @@ dbus_usbos_state_change(void *bus, int state)
 }
 
 int
-dbus_bus_osl_register(int vid, int pid, probe_cb_t prcb,
-	disconnect_cb_t discb, void *prarg, dbus_intf_t **intf, void *param1, void *param2)
+dbus_bus_osl_register(dbus_driver_t *driver, dbus_intf_t **intf)
 {
 	bzero(&g_probe_info, sizeof(probe_info_t));
 
-	probe_cb = prcb;
-	disconnect_cb = discb;
-	probe_arg = prarg;
-
-	devid_table[0].idVendor = vid;
-	devid_table[0].idProduct = pid;
-
+	drvinfo = *driver;
 	*intf = &dbus_usbos_intf;
 
 	USB_REGISTER();
@@ -2585,8 +2616,8 @@ dbus_bus_osl_deregister()
 	g_probe_info.dereged = TRUE;
 
 	DHD_MUTEX_LOCK();
-	if (disconnect_cb && disc_arg && (g_probe_info.disc_cb_done == FALSE)) {
-		disconnect_cb(disc_arg);
+	if (drvinfo.remove && disc_arg && (g_probe_info.disc_cb_done == FALSE)) {
+		drvinfo.remove(disc_arg);
 		disc_arg = NULL;
 	}
 	DHD_MUTEX_UNLOCK();
@@ -2638,8 +2669,13 @@ dbus_usbos_intf_attach(dbus_pub_t *pub, void *cbarg, dbus_intf_callbacks_t *cbs)
 	}
 
 	if (usbos_info->tx_pipe)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 19, 0))
+		usbos_info->maxps = usb_maxpacket(usbos_info->usb,
+			usbos_info->tx_pipe);
+#else
 		usbos_info->maxps = usb_maxpacket(usbos_info->usb,
 			usbos_info->tx_pipe, usb_pipeout(usbos_info->tx_pipe));
+#endif  /* #if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 0)) */
 
 	INIT_LIST_HEAD(&usbos_info->req_rxfreeq);
 	INIT_LIST_HEAD(&usbos_info->req_txfreeq);
@@ -2659,23 +2695,20 @@ dbus_usbos_intf_attach(dbus_pub_t *pub, void *cbarg, dbus_intf_callbacks_t *cbs)
 #ifdef USB_DISABLE_INT_EP
 	usbos_info->intr_urb = NULL;
 #else
-	usbos_info->intr_urb = USB_ALLOC_URB();
-	if (!usbos_info->intr_urb) {
+	if (!(usbos_info->intr_urb = USB_ALLOC_URB())) {
 		DBUSERR(("%s: usb_alloc_urb (tx) failed\n", __FUNCTION__));
 		goto fail;
 	}
 #endif
 
-	usbos_info->ctl_urb = USB_ALLOC_URB();
-	if (!usbos_info->ctl_urb) {
+	if (!(usbos_info->ctl_urb = USB_ALLOC_URB())) {
 		DBUSERR(("%s: usb_alloc_urb (tx) failed\n", __FUNCTION__));
 		goto fail;
 	}
 
 	init_waitqueue_head(&usbos_info->wait);
 
-	usbos_info->blk_urb = USB_ALLOC_URB();
-	if (!usbos_info->blk_urb) { /* for embedded image downloading */
+	if (!(usbos_info->blk_urb = USB_ALLOC_URB())) {	/* for embedded image downloading */
 		DBUSERR(("%s: usb_alloc_urb (tx) failed\n", __FUNCTION__));
 		goto fail;
 	}
@@ -2805,13 +2838,13 @@ dbus_usbos_tx_thread_init(usbos_info_t *usbos_info)
 
 	if (IS_ERR(usbos_info->usbos_tx_kt)) {
 		DBUSERR(("Thread Creation failed\n"));
-		return NULL;
+		return (NULL);
 	}
 
 	usbos_info->ctl_state = USBOS_REQUEST_STATE_UNSCHEDULED;
 	wake_up_process(usbos_info->usbos_tx_kt);
 
-	return usbos_info->usbos_tx_kt;
+	return (usbos_info->usbos_tx_kt);
 }
 
 void
@@ -2957,7 +2990,7 @@ dbus_usbos_thread_init(usbos_info_t *usbos_info)
 		entry = MALLOC(usbos_info->pub->osh, sizeof(usbos_list_entry_t));
 		if (entry) {
 			spin_lock_irqsave(&usbos_info->usbos_list_lock, flags);
-			list_add_tail((struct list_head *) entry, &usbos_info->usbos_free_list);
+			list_add_tail((struct list_head*) entry, &usbos_info->usbos_free_list);
 			spin_unlock_irqrestore(&usbos_info->usbos_list_lock, flags);
 		} else {
 			DBUSERR(("Failed to create list\n"));
@@ -2969,12 +3002,12 @@ dbus_usbos_thread_init(usbos_info_t *usbos_info)
 
 	if (IS_ERR(usbos_info->usbos_kt)) {
 		DBUSERR(("Thread Creation failed\n"));
-		return NULL;
+		return (NULL);
 	}
 
 	wake_up_process(usbos_info->usbos_kt);
 
-	return usbos_info->usbos_kt;
+	return (usbos_info->usbos_kt);
 }
 
 static void
@@ -2992,7 +3025,8 @@ dbus_usbos_thread_deinit(usbos_info_t *usbos_info)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-	list_for_each_safe(cur, next, &usbos_info->usbos_list) {
+	list_for_each_safe(cur, next, &usbos_info->usbos_list)
+	{
 		entry = list_entry(cur, struct usbos_list_entry, list);
 		/* detach this entry from the list and then free the entry */
 		spin_lock_irqsave(&usbos_info->usbos_list_lock, flags);
@@ -3001,7 +3035,8 @@ dbus_usbos_thread_deinit(usbos_info_t *usbos_info)
 		spin_unlock_irqrestore(&usbos_info->usbos_list_lock, flags);
 	}
 
-	list_for_each_safe(cur, next, &usbos_info->usbos_free_list) {
+	list_for_each_safe(cur, next, &usbos_info->usbos_free_list)
+	{
 		entry = list_entry(cur, struct usbos_list_entry, list);
 		/* detach this entry from the list and then free the entry */
 		spin_lock_irqsave(&usbos_info->usbos_list_lock, flags);
@@ -3046,7 +3081,8 @@ dbus_usbos_thread_func(void *data)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-qual"
 #endif
-		list_for_each_safe(cur, next, &usbos_info->usbos_list) {
+		list_for_each_safe(cur, next, &usbos_info->usbos_list)
+		{
 			urb_req_t           *req;
 			int                 len;
 			int                 stat;
@@ -3144,7 +3180,7 @@ struct request_fw_context {
 static void
 dbus_request_firmware_done(const struct firmware *firmware, void *ctx)
 {
-	struct request_fw_context *context = (struct request_fw_context *)ctx;
+	struct request_fw_context *context = (struct request_fw_context*)ctx;
 
 	/* Store the received firmware handle in the context and wake requester */
 	context->firmware = firmware;
@@ -3170,7 +3206,7 @@ dbus_request_firmware(const char *name, const struct firmware **firmware)
 	sema_init(&context->lock, 0);
 
 	ret = request_firmware_nowait(THIS_MODULE, true, name, &g_probe_info.usb->dev,
-								GFP_KERNEL, context, dbus_request_firmware_done);
+	                              GFP_KERNEL, context, dbus_request_firmware_done);
 	if (ret) {
 		kfree(context);
 		return ret;
@@ -3188,8 +3224,10 @@ dbus_request_firmware(const char *name, const struct firmware **firmware)
 	return *firmware != NULL ? 0 : -ENOENT;
 }
 
+#ifndef DHD_LINUX_STD_FW_API
 static void *
-dbus_get_fwfile(int devid, int chiprev, uint8 **fw, int *fwlen, uint16 boardtype, uint16 boardrev)
+dbus_get_fwfile(int devid, int chiprev, uint8 **fw, int *fwlen,
+	uint16 boardtype, uint16 boardrev, char *path)
 {
 	const struct firmware *firmware = NULL;
 #ifndef OEM_ANDROID
@@ -3201,49 +3239,49 @@ dbus_get_fwfile(int devid, int chiprev, uint8 **fw, int *fwlen, uint16 boardtype
 
 #ifndef OEM_ANDROID
 	switch (devid) {
-	case BCM4350_CHIP_ID:
-	case BCM4354_CHIP_ID:
-	case BCM43556_CHIP_ID:
-	case BCM43558_CHIP_ID:
-	case BCM43566_CHIP_ID:
-	case BCM43568_CHIP_ID:
-	case BCM43570_CHIP_ID:
-	case BCM4358_CHIP_ID:
-		device_id = "4350";
-		break;
-	case BCM43143_CHIP_ID:
-		device_id = "43143";
-		break;
-	case BCM43234_CHIP_ID:
-	case BCM43235_CHIP_ID:
-	case BCM43236_CHIP_ID:
-		device_id = "43236";
-		break;
-	case BCM43242_CHIP_ID:
-		device_id = "43242";
-		break;
-	case BCM43238_CHIP_ID:
-		device_id = "43238";
-		break;
-	case BCM43526_CHIP_ID:
-		device_id = "43526";
-		break;
-	case BCM43569_CHIP_ID:
-		device_id = "43569";
-		switch (chiprev) {
-		case 0:
-			chip_rev = "a0";
+		case BCM4350_CHIP_ID:
+		case BCM4354_CHIP_ID:
+		case BCM43556_CHIP_ID:
+		case BCM43558_CHIP_ID:
+		case BCM43566_CHIP_ID:
+		case BCM43568_CHIP_ID:
+		case BCM43570_CHIP_ID:
+		case BCM4358_CHIP_ID:
+			device_id = "4350";
 			break;
-		case 2:
-			chip_rev = "a2";
+		case BCM43143_CHIP_ID:
+			device_id = "43143";
+			break;
+		case BCM43234_CHIP_ID:
+		case BCM43235_CHIP_ID:
+		case BCM43236_CHIP_ID:
+			device_id = "43236";
+			break;
+		case BCM43242_CHIP_ID:
+			device_id = "43242";
+			break;
+		case BCM43238_CHIP_ID:
+			device_id = "43238";
+			break;
+		case BCM43526_CHIP_ID:
+			device_id = "43526";
+			break;
+		case BCM43569_CHIP_ID:
+			device_id = "43569";
+			switch (chiprev) {
+				case 0:
+					chip_rev = "a0";
+					break;
+				case 2:
+					chip_rev = "a2";
+					break;
+				default:
+					break;
+			}
 			break;
 		default:
-			break;
-		}
-		break;
-	default:
-		DBUSERR(("unsupported device %x\n", devid));
-		return NULL;
+			DBUSERR(("unsupported device %x\n", devid));
+			return NULL;
 	}
 
 	/* Load firmware */
@@ -3252,11 +3290,12 @@ dbus_get_fwfile(int devid, int chiprev, uint8 **fw, int *fwlen, uint16 boardtype
 	snprintf(file_name, sizeof(file_name), "%s", CONFIG_ANDROID_BCMDHD_FW_PATH);
 #endif /* OEM_ANDROID */
 
-	ret = dbus_request_firmware(file_name, &firmware);
+	ret = dbus_request_firmware(path, &firmware);
 	if (ret) {
-		DBUSERR(("fail to request firmware %s\n", file_name));
+		DBUSERR(("fail to request firmware %s\n", path));
 		return NULL;
-	}
+	} else
+		DBUSERR(("%s: %s (%zu bytes) open success\n", __FUNCTION__, path, firmware->size));
 
 	*fwlen = firmware->size;
 	*fw = (uint8 *)firmware->data;
@@ -3265,7 +3304,8 @@ dbus_get_fwfile(int devid, int chiprev, uint8 **fw, int *fwlen, uint16 boardtype
 }
 
 static void *
-dbus_get_nvfile(int devid, int chiprev, uint8 **fw, int *fwlen, uint16 boardtype, uint16 boardrev)
+dbus_get_nvfile(int devid, int chiprev, uint8 **fw, int *fwlen,
+	uint16 boardtype, uint16 boardrev, char *path)
 {
 	const struct firmware *firmware = NULL;
 #ifndef OEM_ANDROID
@@ -3277,79 +3317,80 @@ dbus_get_nvfile(int devid, int chiprev, uint8 **fw, int *fwlen, uint16 boardtype
 
 #ifndef OEM_ANDROID
 	switch (devid) {
-	case BCM4350_CHIP_ID:
-	case BCM4354_CHIP_ID:
-	case BCM43556_CHIP_ID:
-	case BCM43558_CHIP_ID:
-	case BCM43566_CHIP_ID:
-	case BCM43568_CHIP_ID:
-	case BCM43570_CHIP_ID:
-	case BCM4358_CHIP_ID:
-		device_id = "4350";
-		break;
-	case BCM43143_CHIP_ID:
-		device_id = "43143";
-		break;
-	case BCM43234_CHIP_ID:
-		device_id = "43234";
-		break;
-	case BCM43235_CHIP_ID:
-		device_id = "43235";
-		break;
-	case BCM43236_CHIP_ID:
-		device_id = "43236";
-		break;
-	case BCM43238_CHIP_ID:
-		device_id = "43238";
-		break;
-	case BCM43242_CHIP_ID:
-		device_id = "43242";
-		break;
-	case BCM43526_CHIP_ID:
-		device_id = "43526";
-		break;
-	case BCM43569_CHIP_ID:
-		device_id = "43569";
-		switch (chiprev) {
-		case 0:
-			chip_rev = "a0";
+		case BCM4350_CHIP_ID:
+		case BCM4354_CHIP_ID:
+		case BCM43556_CHIP_ID:
+		case BCM43558_CHIP_ID:
+		case BCM43566_CHIP_ID:
+		case BCM43568_CHIP_ID:
+		case BCM43570_CHIP_ID:
+		case BCM4358_CHIP_ID:
+			device_id = "4350";
 			break;
-		case 2:
-			chip_rev = "a2";
+		case BCM43143_CHIP_ID:
+			device_id = "43143";
+			break;
+		case BCM43234_CHIP_ID:
+			device_id = "43234";
+			break;
+		case BCM43235_CHIP_ID:
+			device_id = "43235";
+			break;
+		case BCM43236_CHIP_ID:
+			device_id = "43236";
+			break;
+		case BCM43238_CHIP_ID:
+			device_id = "43238";
+			break;
+		case BCM43242_CHIP_ID:
+			device_id = "43242";
+			break;
+		case BCM43526_CHIP_ID:
+			device_id = "43526";
+			break;
+		case BCM43569_CHIP_ID:
+			device_id = "43569";
+			switch (chiprev) {
+				case 0:
+					chip_rev = "a0";
+					break;
+				case 2:
+					chip_rev = "a2";
+					break;
+				default:
+					break;
+			}
 			break;
 		default:
-			break;
-		}
-		break;
-	default:
-		DBUSERR(("unsupported device %x\n", devid));
-		return NULL;
+			DBUSERR(("unsupported device %x\n", devid));
+			return NULL;
 	}
 
 	/* Load board specific nvram file */
 	snprintf(file_name, sizeof(file_name), "brcm/bcm%s%s-%2x-%2x.nvm",
-			device_id, chip_rev, boardtype, boardrev);
+	         device_id, chip_rev, boardtype, boardrev);
 #else
 	snprintf(file_name, sizeof(file_name), "%s", CONFIG_ANDROID_BCMDHD_NVRAM_PATH);
 #endif /* OEM_ANDROID */
 
-	ret = dbus_request_firmware(file_name, &firmware);
+	ret = dbus_request_firmware(path, &firmware);
 	if (ret) {
-		DBUSERR(("fail to request nvram %s\n", file_name));
+		DBUSERR(("fail to request nvram %s\n", path));
 
 #ifndef OEM_ANDROID
 		/* Load generic nvram file */
 		snprintf(file_name, sizeof(file_name), "brcm/bcm%s%s.nvm",
-				device_id, chip_rev);
+		         device_id, chip_rev);
 
 		ret = dbus_request_firmware(file_name, &firmware);
 #endif /* OEM_ANDROID */
 
 		if (ret) {
-			DBUSERR(("fail to request nvram %s\n", file_name));
+			DBUSERR(("fail to request nvram %s\n", path));
 			return NULL;
 		}
-	}
+	} else
+		DBUSERR(("%s: %s (%zu bytes) open success\n", __FUNCTION__, path, firmware->size));
 
 	*fwlen = firmware->size;
 	*fw = (uint8 *)firmware->data;
@@ -3358,17 +3399,39 @@ dbus_get_nvfile(int devid, int chiprev, uint8 **fw, int *fwlen, uint16 boardtype
 
 void *
 dbus_get_fw_nvfile(int devid, int chiprev, uint8 **fw, int *fwlen, int type, uint16 boardtype,
-	uint16 boardrev)
+	uint16 boardrev, char *path)
 {
 	switch (type) {
-	case DBUS_FIRMWARE:
-		return dbus_get_fwfile(devid, chiprev, fw, fwlen, boardtype, boardrev);
-	case DBUS_NVFILE:
-		return dbus_get_nvfile(devid, chiprev, fw, fwlen, boardtype, boardrev);
-	default:
-		return NULL;
+		case DBUS_FIRMWARE:
+			return dbus_get_fwfile(devid, chiprev, fw, fwlen, boardtype, boardrev, path);
+		case DBUS_NVFILE:
+			return dbus_get_nvfile(devid, chiprev, fw, fwlen, boardtype, boardrev, path);
+		default:
+			return NULL;
 	}
 }
+#else
+void *
+dbus_get_fw_nvfile(int devid, int chiprev, uint8 **fw, int *fwlen, int type, uint16 boardtype,
+	uint16 boardrev, char *path)
+{
+	const struct firmware *firmware = NULL;
+	int err = DBUS_OK;
+
+	err = dbus_request_firmware(path, &firmware);
+	if (err) {
+		DBUSERR(("fail to request firmware %s\n", path));
+		return NULL;
+	} else {
+		DBUSERR(("%s: %s (%zu bytes) open success\n",
+			__FUNCTION__, path, firmware->size));
+	}
+
+	*fwlen = firmware->size;
+	*fw = (uint8 *)firmware->data;
+	return (void *)firmware;
+}
+#endif
 
 void
 dbus_release_fw_nvfile(void *firmware)
@@ -3409,3 +3472,10 @@ dbus_usbos_intf_wlan(struct usb_device *usb)
 	return intf_wlan;
 }
 #endif /* BCMUSBDEV_COMPOSITE */
+
+#ifdef LINUX
+struct device * dbus_get_dev(void)
+{
+	return &g_probe_info.usb->dev;
+}
+#endif /* LINUX */

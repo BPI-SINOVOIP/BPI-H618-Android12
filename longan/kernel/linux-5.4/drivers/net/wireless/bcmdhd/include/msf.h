@@ -1,7 +1,7 @@
 /*
- * BCM common config options
+ * Common interface to MSF (multi-segment format) definitions.
  *
- * Copyright (C) 1999-2017, Broadcom Corporation
+ * Copyright (C) 2020, Broadcom.
  *
  *      Unless you and Broadcom execute a separate written software license
  * agreement governing use of this software, this software is licensed to you
@@ -17,16 +17,44 @@
  * derived from this software.  The special exception does not apply to any
  * modifications of the software.
  *
- *      Notwithstanding the above, under no circumstances may you combine this
- * software in any way with any other Broadcom software provided under a license
- * other than the GPL, without Broadcom's express prior written consent.
  *
- *
- * <<Broadcom-WL-IPTag/Open:>>
- *
- * $Id: bcm_cfg.h 514727 2014-11-12 03:02:48Z $
+ * <<Broadcom-WL-IPTag/Dual:>>
  */
 
-#ifndef _bcm_cfg_h_
-#define _bcm_cfg_h_
-#endif /* _bcm_cfg_h_ */
+#ifndef _WLC_MSF_H_
+#define _WLC_MSF_H_
+
+struct wl_segment {
+	uint32 type;
+	uint32 offset;
+	uint32 length;
+	uint32 crc32;
+	uint32 flags;
+};
+typedef struct wl_segment wl_segment_t;
+
+struct wl_segment_info {
+	uint8        magic[4];
+	uint32       hdr_len;
+	uint32       crc32;
+	uint32       file_type;
+	uint32       num_segments;
+	wl_segment_t segments[1];
+};
+typedef struct wl_segment_info wl_segment_info_t;
+
+typedef struct wlc_blob_segment {
+	uint32 type;
+	uint8  *data;
+	uint32 length;
+} wlc_blob_segment_t;
+
+/** Segment types in Binary Eventlog Archive file */
+enum bea_seg_type_e {
+	MSF_SEG_TYP_RTECDC_BIN  = 1,
+	MSF_SEG_TYP_LOGSTRS_BIN = 2,
+	MSF_SEG_TYP_FW_SYMBOLS  = 3,
+	MSF_SEG_TYP_ROML_BIN    = 4
+};
+
+#endif /* _WLC_MSF_H */

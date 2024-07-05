@@ -1,7 +1,7 @@
 /*
  * Broadcom SiliconBackplane hardware register definitions.
  *
- * Copyright (C) 1999-2017, Broadcom Corporation
+ * Copyright (C) 2020, Broadcom.
  *
  *      Unless you and Broadcom execute a separate written software license
  * agreement governing use of this software, this software is licensed to you
@@ -17,14 +17,8 @@
  * derived from this software.  The special exception does not apply to any
  * modifications of the software.
  *
- *      Notwithstanding the above, under no circumstances may you combine this
- * software in any way with any other Broadcom software provided under a license
- * other than the GPL, without Broadcom's express prior written consent.
  *
- *
- * <<Broadcom-WL-IPTag/Open:>>
- *
- * $Id: sbconfig.h 530150 2015-01-29 08:43:40Z $
+ * <<Broadcom-WL-IPTag/Dual:>>
  */
 
 #ifndef	_SBCONFIG_H
@@ -37,11 +31,11 @@
 #define	PAD		_XSTR(__LINE__)
 #endif
 
-/* enumeration in SB is based on the premise that cores are contiguos in the
+/* enumeration in SB is based on the premise that cores are contiguous in the
  * enumeration space.
  */
 #define SB_BUS_SIZE		0x10000		/**< Each bus gets 64Kbytes for cores */
-#define SB_BUS_BASE(b)		(SI_ENUM_BASE + (b) * SB_BUS_SIZE)
+#define SB_BUS_BASE(sih, b)		(SI_ENUM_BASE(sih) + (b) * SB_BUS_SIZE)
 #define	SB_BUS_MAXCORES		(SB_BUS_SIZE / SI_CORE_SIZE)	/**< Max cores per bus */
 
 /*
