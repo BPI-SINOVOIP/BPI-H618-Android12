@@ -118,8 +118,8 @@
 /* 40pin uart1, pin8,10,16,18*/
 &uart1 {
 	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&uart1_ph_pins>;
-	pinctrl-1 = <&uart1_ph_sleep>;
+	pinctrl-0 = <&uart1_pg_pins>;
+	pinctrl-1 = <&uart1_pg_sleep>;
 	device_type = "uart1";
 	status = "disabled";
 };
@@ -134,18 +134,17 @@
 	status = "disabled";
 };
 
-/* zero 26pin uart3, pin7,8,9,10 */
 &uart3 {
 	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&uart3_ph_pins>;
-	pinctrl-1 = <&uart3_ph_sleep>;
+	pinctrl-0 = <&uart3_pi_pins>;
+	pinctrl-1 = <&uart3_pi_sleep>;
 	status = "disabled";
 };
 
 &uart4 {
 	pinctrl-names = "default", "sleep";
-	pinctrl-0 = <&uart4_ph_pins>;
-	pinctrl-1 = <&uart4_ph_sleep>;
+	pinctrl-0 = <&uart4_pi_pins>;
+	pinctrl-1 = <&uart4_pi_sleep>;
 	status = "disabled";
 };
 
@@ -241,26 +240,26 @@
 		function = "gpio_in";
 	};
 
-	uart1_ph_pins: uart1-ph-pins {
+	uart1_pg_pins: uart1-pg-pins {
 		pins = "PG6", "PG7", "PG8", "PG9";
 		function = "uart1";
 	};
 
-	uart1_ph_sleep: uart1-ph-sleep {
+	uart1_pg_sleep: uart1-pg-sleep {
 		pins = "PG6", "PG7", "PG8", "PG9";
 		function = "gpio_in";
 	};
-/*
-	uart2_ph_pins: uart2-ph-pins {
-		pins = "PG15", "PG16";
+
+	uart2_pg_pins: uart2-pg-pins {
+		pins = "PG15", "PG16", "PG17", "PG18";
 		function = "uart2";
 	};
 
-	uart2_ph_sleep: uart2-ph-sleep {
-		pins = "PG15", "PG16";
+	uart2_pg_sleep: uart2-pg-sleep {
+		pins = "PG15", "PG16", "PG17", "PG18";
 		function = "gpio_in";
 	};
-*/
+
 	uart2_ph_pins: uart2-ph-pins {
 		pins = "PH5", "PH6";
 		function = "uart2";
@@ -271,23 +270,23 @@
 		function = "gpio_in";
 	};
 
-	uart3_ph_pins: uart3-ph-pins {
+	uart3_pi_pins: uart3-pi-pins {
 		pins = "PI9", "PI10", "PI11", "PI12";
 		function = "uart3";
 	};
 
-	uart3_ph_sleep: uart3-ph-sleep {
+	uart3_pi_sleep: uart3-pi-sleep {
 		pins = "PI9", "PI10", "PI11", "PI12";
 		function = "gpio_in";
 	};
 
-	uart4_ph_pins: uart4-ph-pins {
-		pins = "PI13", "PI14";
+	uart4_pi_pins: uart4-pi-pins {
+		pins = "PI13", "PI14", "PI15", "PI16";
 		function = "uart4";
 	};
 
-	uart4_ph_sleep: uart4-ph-sleep {
-		pins = "PI13", "PI14";
+	uart4_pi_sleep: uart4-pi-sleep {
+		pins = "PI13", "PI14", "PI15", "PI16";
 		function = "gpio_in";
 	};
 
