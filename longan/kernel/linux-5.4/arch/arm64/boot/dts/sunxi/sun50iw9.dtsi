@@ -1950,6 +1950,11 @@
 					type = "passive";
 					hysteresis = <0>;
 				};
+				cpu_crit: cpu_crit@0 {
+					temperature = <110000>;
+					type = "critical";
+					hysteresis = <0>;
+				};
 			};
 
 			cooling-maps {
