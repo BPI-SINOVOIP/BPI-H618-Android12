@@ -33,8 +33,14 @@ CONFIG_FILES:=
 SEARCH_PATH := $(shell find $(FW_BASE_PATH)/ap6* -name "*config*.txt" | sed 's/\/[^/]\+\/*$$//g')
 $(foreach p,$(SEARCH_PATH), $(eval CONFIG_FILES += $(p)/config.txt:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/config_$(subst $(FW_BASE_PATH)/,,$(p)).txt))
 
+# Find all BLOB_FILES
+BLOB_FILES :=
+SEARCH_PATH := $(shell find $(FW_BASE_PATH)/ap6* -name "*.blob" | sed 's/\/[^/]\+\/*$$//g')
+$(foreach p,$(SEARCH_PATH), $(eval BLOB_FILES += $(call find-copy-subdir-files,"*.blob",$(p),$(TARGET_COPY_OUT_VENDOR)/etc/firmware)))
+
 PRODUCT_COPY_FILES += $(FW_BIN_FILES)
 PRODUCT_COPY_FILES += $(NVRAM_FILES)
 PRODUCT_COPY_FILES += $(CONFIG_FILES)
+PRODUCT_COPY_FILES += $(BLOB_FILES)
 
 endif
