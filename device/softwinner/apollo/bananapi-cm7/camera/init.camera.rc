@@ -1,0 +1,13 @@
+on late-fs
+### csi module
+    insmod /vendor/lib/modules/videobuf2-memops.ko
+    insmod /vendor/lib/modules/videobuf2-dma-contig.ko
+    insmod /vendor/lib/modules/vin_io.ko
+    insmod /vendor/lib/modules/gc5025_mipi.ko
+    insmod /vendor/lib/modules/gc2385_mipi.ko
+    insmod /vendor/lib/modules/gc030a_mipi.ko
+    insmod /vendor/lib/modules/sp5409_mipi.ko
+    insmod /vendor/lib/modules/c2590_mipi.ko
+    insmod /vendor/lib/modules/actuator.ko
+    insmod /vendor/lib/modules/dw9714_act.ko
+    insmod /vendor/lib/modules/vin_v4l2.ko

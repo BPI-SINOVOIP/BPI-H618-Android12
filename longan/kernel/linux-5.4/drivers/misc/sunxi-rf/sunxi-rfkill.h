@@ -69,6 +69,7 @@ struct sunxi_bt_platdata {
 struct sunxi_wlan_platdata {
 	unsigned int wakeup_enable;
 	int bus_index;
+	u32 power_on_delay_ms;
 
 	struct regulator *power[PWR_MAX];
 	char  *power_name[PWR_MAX];

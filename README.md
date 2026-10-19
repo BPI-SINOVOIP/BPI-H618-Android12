@@ -32,6 +32,9 @@ Build longan
     # or create buildconfig for m4zero build
     # ./build.sh autoconfig -i h618 -o android -n default -a arm64 -k linux-5.4 -b m4zero
 
+    # or create buildconfig for CM7 build
+    # ./build.sh autoconfig -i h618 -o android -n default -a arm64 -k linux-5.4 -b cm7
+
     $ ./build.sh
 
 Build Android
@@ -47,6 +50,9 @@ Build Android
 
     # or build android for m4zero
     $ lunch bananapi_m4zero-userdebug
+
+    # or build android for CM7
+    $ lunch bananapi_cm7-userdebug
 
     $ make -j20
     $ pack

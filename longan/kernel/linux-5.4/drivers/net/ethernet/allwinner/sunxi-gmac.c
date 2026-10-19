@@ -918,7 +918,8 @@ static int geth_phy_init(struct net_device *ndev)
 				phydev_tmp = mdiobus_scan(new_bus, addr);
 			}
 
-			if (!phydev_tmp)
+			/* mdiobus_scan() returns ERR_PTR() when no PHY responds. */
+			if (IS_ERR_OR_NULL(phydev_tmp))
 				continue;
 
 			pr_err("BPI: addr=%d is not null, phydev_tmp->phy_id=%x \n", addr, phydev_tmp->phy_id);

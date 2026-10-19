@@ -27,6 +27,7 @@ $(foreach p,$(SEARCH_PATH), $(eval FW_BIN_FILES += $(call find-copy-subdir-files
 NVRAM_FILES :=
 SEARCH_PATH := $(shell find $(FW_BASE_PATH)/ap6* -name "*nvram*.txt" | sed 's/\/[^/]\+\/*$$//g')
 $(foreach p,$(SEARCH_PATH), $(eval NVRAM_FILES  += $(call find-copy-subdir-files,"*nvram*.txt",$(p),$(TARGET_COPY_OUT_VENDOR)/etc/firmware)))
+NVRAM_FILES += $(FW_BASE_PATH)/k016/nvram_k019.txt:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/nvram_k019.txt
 
 # Find all CONFIG_FILES
 CONFIG_FILES:=

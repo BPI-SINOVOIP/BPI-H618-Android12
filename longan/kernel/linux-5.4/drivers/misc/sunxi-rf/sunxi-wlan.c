@@ -142,6 +142,10 @@ static int sunxi_wlan_on(struct sunxi_wlan_platdata *data, bool on_off)
 			mdelay(10);
 			gpio_set_value(data->gpio_wlan_regon, data->gpio_wlan_regon_assert);
 		}
+
+		/* Some SDIO modules need time to leave reset before CMD5/CMD52. */
+		if (data->power_on_delay_ms)
+			msleep(data->power_on_delay_ms);
 	} else {
 		if (gpio_is_valid(data->gpio_wlan_regon))
 			gpio_set_value(data->gpio_wlan_regon, !data->gpio_wlan_regon_assert);
@@ -285,6 +289,11 @@ int sunxi_wlan_init(struct platform_device *pdev)
 		}
 	}
 	dev_info(dev, "wlan_busnum (%u)\n", val);
+
+	if (!of_property_read_u32(np, "wlan_power_on_delay_ms", &val))
+		data->power_on_delay_ms = val;
+	dev_info(dev, "wlan power-on delay: %u ms\n",
+		 data->power_on_delay_ms);
 
 	count = of_property_count_strings(np, "wlan_power");
 	if (count <= 0) {
