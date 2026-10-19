@@ -19,5 +19,6 @@
 FW_BASE_PATH := hardware/aw/wireless/partner/ampak/firmware/$(BOARD_USR_WIFI)
 
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,"*.bin",$(FW_BASE_PATH),$(TARGET_COPY_OUT_VENDOR)/etc/firmware)
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,"nvram_k016.txt",$(FW_BASE_PATH),$(TARGET_COPY_OUT_VENDOR)/etc/firmware)
 PRODUCT_COPY_FILES += $(FW_BASE_PATH)/nvram_$(BOARD_USR_WIFI).txt:$(TARGET_COPY_OUT_VENDOR)/etc/firmware/nvram.txt
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,"config.txt",$(FW_BASE_PATH),$(TARGET_COPY_OUT_VENDOR)/etc/firmware)

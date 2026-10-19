@@ -105,8 +105,8 @@ const chip_name_map_t chip_name_map[] = {
 	{BCM43362_CHIP_ID,	1,	DONT_CARE,	"bcm40181a2",		""},
 	{BCM4330_CHIP_ID,	4,	FW_TYPE_G,	"bcm40183b2",		""},
 	{BCM4330_CHIP_ID,	4,	FW_TYPE_AG,	"bcm40183b2_ag",	""},
-	{BCM43430_CHIP_ID,	0,	DONT_CARE,	"bcm43438a0",		""},
-	{BCM43430_CHIP_ID,	1,	DONT_CARE,	"bcm43438a1",		""},
+	{BCM43430_CHIP_ID,	0,	DONT_CARE,	"bcm43438a0",		"k016"},
+	{BCM43430_CHIP_ID,	1,	DONT_CARE,	"bcm43438a1",		"k016"},
 	{BCM43430_CHIP_ID,	2,	DONT_CARE,	"bcm43436b0",		""},
 	{BCM43012_CHIP_ID,	1,	FW_TYPE_G,	"bcm43013b0",		""},
 	{BCM43012_CHIP_ID,	1,	FW_TYPE_AG,	"bcm43013c0_ag",	""},
@@ -117,8 +117,8 @@ const chip_name_map_t chip_name_map[] = {
 	{BCM4324_CHIP_ID,	5,	DONT_CARE,	"bcm43241b4_ag",	""},
 	{BCM4335_CHIP_ID,	2,	DONT_CARE,	"bcm4339a0_ag",		""},
 	{BCM4339_CHIP_ID,	1,	DONT_CARE,	"bcm4339a0_ag",		""},
-	{BCM4345_CHIP_ID,	6,	DONT_CARE,	"bcm43455c0_ag",	""},
-	{BCM43454_CHIP_ID,	6,	DONT_CARE,	"bcm43455c0_ag",	""},
+	{BCM4345_CHIP_ID,	6,	DONT_CARE,	"bcm43455c0_ag",	"k019"},
+	{BCM43454_CHIP_ID,	6,	DONT_CARE,	"bcm43455c0_ag",	"k019"},
 	{BCM4345_CHIP_ID,	9,	DONT_CARE,	"bcm43456c5_ag",	""},
 	{BCM43454_CHIP_ID,	9,	DONT_CARE,	"bcm43456c5_ag",	""},
 	{BCM4354_CHIP_ID,	1,	DONT_CARE,	"bcm4354a1_ag",		""},
@@ -393,6 +393,11 @@ dhd_conf_get_otp(dhd_pub_t *dhd, bcmsdh_info_t *sdh, si_t *sih)
 			if (len <= sizeof(dhd->conf->module_name) - 1) {
 				strncpy(dhd->conf->module_name, tuple->data, len);
 				CONFIG_MSG("module_name=%s\n", dhd->conf->module_name);
+				/* Fix OTP: PID/VID a9bf(shawn 20260331) should be a9a6(K016) */
+				if (!strcmp(dhd->conf->module_name, "ap6255")) {
+					strcpy(dhd->conf->module_name, "K016");
+					CONFIG_MSG("corrected module_name=%s\n", dhd->conf->module_name);
+				}
 			} else {
 				CONFIG_ERROR("len is too long %d >= %d\n",
 					len, (int)sizeof(dhd->conf->module_name) - 1);
